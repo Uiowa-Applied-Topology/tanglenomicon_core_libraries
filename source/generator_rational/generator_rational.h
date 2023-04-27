@@ -11,7 +11,7 @@
  *
  */
 
-#ifdef GENERATOR_RATIONAL
+#ifndef GENERATOR_RATIONAL
 #define GENERATOR_RATIONAL
 
 typedef struct

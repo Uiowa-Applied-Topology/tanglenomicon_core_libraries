@@ -415,7 +415,7 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-/pd-to-conway
+/tanglenomicon
 /docs/xml
 /docs/latex
 /docs/html

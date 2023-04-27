@@ -1,9 +1,12 @@
-﻿# CMakeList.txt : CMake project for pd-to-conway, include source and define
+﻿# CMakeList.txt : CMake project for tanglenomicon, include source and define
 # project specific logic here.
 #
 cmake_minimum_required (VERSION 3.8)
 
-project ("pd-to-conway")
+project (tanglenomicon
+LANGUAGES C CXX
+VERSION 0.0.1
+)
 
 option(BUILD_DOC "Build documentation")
 
@@ -16,8 +19,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 enable_testing()
 
 
+add_subdirectory(libraries)
 add_subdirectory(source)
-
 add_subdirectory(tests)
 
 
