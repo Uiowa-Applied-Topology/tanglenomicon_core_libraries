@@ -11,7 +11,7 @@
  *
  */
 
-#ifdef GENERATOR_PATTERN
+#ifndef GENERATOR_PATTERN
 #define GENERATOR_PATTERN
 
 typedef struct

@@ -13,10 +13,17 @@
 
 
 #include "generator_rational.h"
+#include <stddef.h>
+gen_rational_config_t *config;
 
-generator_rational_config_t *config;
-
-void generator_pattern_config(generator_rational_config_t *config_arg)
+/*Docs in header*/
+int  gen_rational_config(gen_rational_config_t *config_arg)
 {
-    config = config_arg;
+    int ret_val = GEN_RATIONAL_CONFIG_FAIL;
+    if(config != NULL)
+    {
+        config = config_arg;
+        ret_val = GEN_RATIONAL_CONFIG_SUCCESS;
+    }
+    return ret_val;
 }

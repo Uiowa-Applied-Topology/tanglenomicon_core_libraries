@@ -1,32 +1,49 @@
-#include <cxxopts.hpp>
+/*!
+ *  @file main.cpp
+ *
+ *  @brief  A pattern for generator modules
+ *
+ *
+ *  @author    Isabel Darcy
+ *  @author    Ethan Rooke
+ *  @author    Zachary Bryhtan
+ *  @author    Joe Starr
+ *
+ */
 
+#include <cxxopts.hpp>
+#include <generator_rational.h>
 #include <iostream>
 #include <memory>
 
-
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
     cxxopts::Options options("test", "A brief description");
 
-    options.add_options()
-        ("b,bar", "Param bar", cxxopts::value<std::string>())
-        ("d,debug", "Enable debugging", cxxopts::value<bool>()->default_value("false"))
-        ("f,foo", "Param foo", cxxopts::value<int>()->default_value("10"))
-        ("h,help", "Print usage")
-    ;
+    options
+        .add_options() /*                                                     */
+        ("r,rational", "Generate rational",
+         cxxopts::value<bool>()->default_value("false")) /*                   */
+        ("n,cNum", "max",
+         cxxopts::value<int>()->default_value("10"))("h,help", "Print usage");
 
     auto result = options.parse(argc, argv);
 
     if (result.count("help"))
     {
-      std::cout << options.help() << std::endl;
-      exit(0);
+        std::cout << options.help() << std::endl;
+        exit(0);
     }
-    bool debug = result["debug"].as<bool>();
-    std::string bar;
-    if (result.count("bar"))
-      bar = result["bar"].as<std::string>();
-    int foo = result["foo"].as<int>();
+    bool doRational = result["rational"].as<bool>();
+    if (doRational == true)
+    {
+        gen_rational_config_t rational_config = {10, NULL, NULL, 0, true};
+        if (gen_rational_config(&rational_config) == GEN_RATIONAL_CONFIG_FAIL)
+        {
+            exit(1);
+        }
+
+    }
 
     return 0;
 }

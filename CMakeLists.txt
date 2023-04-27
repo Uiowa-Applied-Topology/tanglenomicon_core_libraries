@@ -9,7 +9,7 @@ VERSION 0.0.1
 )
 
 option(BUILD_DOC "Build documentation")
-
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 find_package(Python COMPONENTS Interpreter REQUIRED)
 find_package(Doxygen)
 
