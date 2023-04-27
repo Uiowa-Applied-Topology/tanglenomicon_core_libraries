@@ -1,0 +1,2 @@
+add_subdirectory(generator_rational)
+add_subdirectory(main)

@@ -1,0 +1,3 @@
+parametrize_from_file
+pytest-reportlog
+pytest-html

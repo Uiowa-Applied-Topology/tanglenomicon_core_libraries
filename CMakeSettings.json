@@ -1,0 +1,8 @@
+﻿{
+  "configurations": [
+    {
+      "name": "x64-Debug",
+      "generator": "Ninja"
+    }
+  ]
+}
