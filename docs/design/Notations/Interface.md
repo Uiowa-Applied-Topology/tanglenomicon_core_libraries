@@ -17,4 +17,4 @@ class note_t {
 
 ## Brief
 
-This interface describes a generic notation module. A notation module sits between a storage module and an upper layer (Invariant, Generator, etc.). Notation module will define a struct that encodes the notational data and two IO functions. 
+This interface describes a generic notation module. A notation module sits between a storage module and an upper layer (Computation, Generator, etc.). Notation module will define a struct that encodes the notational data and two IO functions. 

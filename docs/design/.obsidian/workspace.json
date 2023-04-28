@@ -4,43 +4,34 @@
     "type": "split",
     "children": [
       {
-        "id": "963c4d37dc907e0d",
+        "id": "44fcb0212f5dcc65",
         "type": "tabs",
         "children": [
           {
-            "id": "6701db70f1a22f18",
+            "id": "217870c7e2a0bfa4",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Translators/Interface.md",
-                "mode": "preview",
+                "file": "Computation/Writhe.md",
+                "mode": "source",
                 "source": true
               }
             }
           },
           {
-            "id": "039f9fc39e8eb00c",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {}
-            }
-          },
-          {
-            "id": "72b428dbda39a24f",
+            "id": "995de153d55563ba",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
+                "file": "Computation/Writhe.md",
                 "mode": "preview",
                 "source": true
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -106,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Home.md",
+                "file": "Computation/Writhe.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Home.md",
+                "file": "Computation/Writhe.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -146,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "Computation/Writhe.md"
               }
             }
           },
@@ -194,29 +185,31 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "72b428dbda39a24f",
+  "active": "217870c7e2a0bfa4",
   "lastOpenFiles": [
+    "Computation/Writhe.md",
+    "Notations/Conway.md",
+    "Computation/Interface.md",
+    "Generators/Rational.md",
+    "Home.md",
+    "Notations/Interface.md",
+    "Generators/Interface.md",
+    "Translators/Interface.md",
     "Runners/CLI.md",
+    "Untitled.canvas",
     "Storage/Keyboard (read only).md",
     "Storage/Untitled.md",
     "Notations/PD.md",
-    "Notations/Interface.md",
-    "Notations/Conway.md",
-    "Invariants/Interface.md",
-    "Generators/Interface.md",
     "Storage/Interface.md",
     "Storage/JSON.md",
     "Storage/Screen.md",
     "Storage/SQLite.md",
-    "Translators/Interface.md",
     "Translators/Pd-To-Conway.md",
-    "Generators/Rational.md",
-    "Home.md",
     "Translators",
     "Runners/Interface.md",
     "Runners",
     "Storage",
-    "Invariants",
+    "Computation",
     "Notations",
     "What Is/DT/DT Code.md",
     "What Is/DT/6_2 13.svg.md",
@@ -227,7 +220,6 @@
     "Research/Untitled.md",
     "Research/Tangle Translation/Tangle.md",
     "Research/Tangle Translation/Untitled 1.md",
-    "Classes/Spring 2023/Algebra/test.md",
     "Research/Rational Tangles/Fundamental Number Theory with Applications.pdf",
     "Research/Rational Tangles",
     "Research/Tangle Translation/media/f30785b1885f9aaadeda78dcce241b9f.png",
@@ -238,7 +230,6 @@
     "Research/Tangle Translation/media/21c43e9bc65886f463ad85126aae5e32.png",
     "Research/media/ade1fa71f1703f03c1deb03a637bf53d.png",
     "Research/media",
-    "Untitled.canvas",
     "Classes/Spring 2023/Algebra/media/c6b146f89c0a94813cd84ae68de5a592.png",
     "Classes/Spring 2023/Algebra/media/450d168198d5f36db25c5a4396507541.png",
     "What Is/DT",
