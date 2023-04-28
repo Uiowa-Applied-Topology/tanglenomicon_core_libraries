@@ -2,7 +2,7 @@
 
 ```mermaid
 classDiagram
-generator *-- gen_config_t
+translator *-- trans_config_t
 class translator{
 <<interface>>
 + trans_config_t config

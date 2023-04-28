@@ -13,5 +13,6 @@
   "cm-editor-syntax-highlight-obsidian",
   "homepage",
   "obsidian-plugin-todo",
-  "obsidian-languagetool-plugin"
+  "obsidian-languagetool-plugin",
+  "obsidian-hider"
 ]

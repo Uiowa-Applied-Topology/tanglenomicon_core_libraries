@@ -4,11 +4,31 @@
     "type": "split",
     "children": [
       {
-        "id": "8ded4a409f8fdb2a",
+        "id": "963c4d37dc907e0d",
         "type": "tabs",
         "children": [
           {
-            "id": "1752eb7c71199e2c",
+            "id": "6701db70f1a22f18",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Translators/Interface.md",
+                "mode": "preview",
+                "source": true
+              }
+            }
+          },
+          {
+            "id": "039f9fc39e8eb00c",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {}
+            }
+          },
+          {
+            "id": "72b428dbda39a24f",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -19,7 +39,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -173,17 +194,25 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "1752eb7c71199e2c",
+  "active": "72b428dbda39a24f",
   "lastOpenFiles": [
-    "Generators/Interface.md",
-    "Invariants/Interface.md",
-    "Translators/Interface.md",
-    "Generators/Rational.md",
+    "Runners/CLI.md",
+    "Storage/Keyboard (read only).md",
+    "Storage/Untitled.md",
+    "Notations/PD.md",
     "Notations/Interface.md",
-    "Home.md",
+    "Notations/Conway.md",
+    "Invariants/Interface.md",
+    "Generators/Interface.md",
     "Storage/Interface.md",
+    "Storage/JSON.md",
+    "Storage/Screen.md",
+    "Storage/SQLite.md",
+    "Translators/Interface.md",
+    "Translators/Pd-To-Conway.md",
+    "Generators/Rational.md",
+    "Home.md",
     "Translators",
-    "Runners/Main.md",
     "Runners/Interface.md",
     "Runners",
     "Storage",
@@ -199,22 +228,14 @@
     "Research/Tangle Translation/Tangle.md",
     "Research/Tangle Translation/Untitled 1.md",
     "Classes/Spring 2023/Algebra/test.md",
-    "Classes/Spring 2023/Algebra/Exam.md",
-    "Research/Rational Tangles/Rational Tangle Upper Bound.md",
     "Research/Rational Tangles/Fundamental Number Theory with Applications.pdf",
-    "Classes/Spring 2023/Numerical Analysis/2.1.md",
-    "Research/Braids.md",
-    "Research/Summer list.md",
     "Research/Rational Tangles",
-    "kanban/Board.md",
     "Research/Tangle Translation/media/f30785b1885f9aaadeda78dcce241b9f.png",
     "Research/Tangle Translation/media/eee0094e808c4e863445b76dcbef580a.png",
     "Research/Tangle Translation/media/c485348589c7af24c84418a4dfe7a278.png",
     "Research/Tangle Translation/media/952717e430fa090b60fe41a128bf19f2.png",
     "Research/Tangle Translation/media/4de31977f71bc6ef850c2c0e4e0cc20b.png",
     "Research/Tangle Translation/media/21c43e9bc65886f463ad85126aae5e32.png",
-    "kanban/Week 15.md",
-    "kanban/seminar talk jones polynomial.md",
     "Research/media/ade1fa71f1703f03c1deb03a637bf53d.png",
     "Research/media",
     "Untitled.canvas",

@@ -19,3 +19,7 @@ class gen_config_t {
 
 
 ```
+
+## Brief
+
+This interface describes a generic generator module. A generator module is a runnable that generates objects of a specific class up to a crossing number. 

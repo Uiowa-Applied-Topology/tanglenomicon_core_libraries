@@ -18,3 +18,9 @@ class inv_config_t {
 
 
 ```
+
+## Brief
+
+This interface describes a generic invariant module. A invariant module is a runnable that computes an invariant for objects.
+
+- [ ] Probably need a common interface for gathering objects
