@@ -8,25 +8,13 @@
         "type": "tabs",
         "children": [
           {
-            "id": "217870c7e2a0bfa4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Computation/Writhe.md",
-                "mode": "source",
-                "source": true
-              }
-            }
-          },
-          {
             "id": "995de153d55563ba",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computation/Writhe.md",
-                "mode": "preview",
+                "file": "Home.md",
+                "mode": "source",
                 "source": true
               }
             }
@@ -81,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 263.5
+    "width": 200
   },
   "right": {
     "id": "b7106eaafedbaff1",
@@ -97,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Computation/Writhe.md",
+                "file": "Home.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Computation/Writhe.md",
+                "file": "Home.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computation/Writhe.md"
+                "file": "Home.md"
               }
             }
           },
@@ -185,25 +173,27 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "217870c7e2a0bfa4",
+  "active": "995de153d55563ba",
   "lastOpenFiles": [
+    "Storage/Interface.md",
+    "Storage/JSON.md",
+    "Storage/Keyboard (read only).md",
+    "Storage/Screen.md",
+    "Storage/SQLite.md",
+    "Home.md",
     "Computation/Writhe.md",
+    "media/Home 2023-04-28 12.20.47.excalidraw.md",
+    "media",
     "Notations/Conway.md",
     "Computation/Interface.md",
     "Generators/Rational.md",
-    "Home.md",
     "Notations/Interface.md",
     "Generators/Interface.md",
     "Translators/Interface.md",
     "Runners/CLI.md",
     "Untitled.canvas",
-    "Storage/Keyboard (read only).md",
     "Storage/Untitled.md",
     "Notations/PD.md",
-    "Storage/Interface.md",
-    "Storage/JSON.md",
-    "Storage/Screen.md",
-    "Storage/SQLite.md",
     "Translators/Pd-To-Conway.md",
     "Translators",
     "Runners/Interface.md",
@@ -219,7 +209,6 @@
     "Research/Scrap..md",
     "Research/Untitled.md",
     "Research/Tangle Translation/Tangle.md",
-    "Research/Tangle Translation/Untitled 1.md",
     "Research/Rational Tangles/Fundamental Number Theory with Applications.pdf",
     "Research/Rational Tangles",
     "Research/Tangle Translation/media/f30785b1885f9aaadeda78dcce241b9f.png",
@@ -232,7 +221,6 @@
     "Research/media",
     "Classes/Spring 2023/Algebra/media/c6b146f89c0a94813cd84ae68de5a592.png",
     "Classes/Spring 2023/Algebra/media/450d168198d5f36db25c5a4396507541.png",
-    "What Is/DT",
-    "Classes/Spring 2023/seminar"
+    "What Is/DT"
   ]
 }
