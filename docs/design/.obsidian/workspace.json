@@ -1,0 +1,226 @@
+{
+  "main": {
+    "id": "32b6bde881715bca",
+    "type": "split",
+    "children": [
+      {
+        "id": "8ded4a409f8fdb2a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1752eb7c71199e2c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Home.md",
+                "mode": "preview",
+                "source": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "91f56314c616df3e",
+    "type": "split",
+    "children": [
+      {
+        "id": "17e82f1209e8ac4b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8dbbeb1cce8cfbc6",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "3ad587dbe226e61f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "0172122c9a49ce1f",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 263.5
+  },
+  "right": {
+    "id": "b7106eaafedbaff1",
+    "type": "split",
+    "children": [
+      {
+        "id": "77f6dcd47ce0960a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "86cc338775ccf4e6",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Home.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": false
+              }
+            }
+          },
+          {
+            "id": "c521a93d84c5ce2d",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Home.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "b2ed51bcb2e98758",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "7396252e0380e8e8",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Home.md"
+              }
+            }
+          },
+          {
+            "id": "7128c0e30f7e3767",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
+          },
+          {
+            "id": "41a7acd7dafe63c4",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
+          },
+          {
+            "id": "d35de65a6d19bb87",
+            "type": "leaf",
+            "state": {
+              "type": "online.larslockefeer.obsidian-plugin-todo",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "graph:Open graph view": false,
+      "switcher:Open quick switcher": false,
+      "canvas:Create new canvas": true,
+      "templates:Insert template": true,
+      "command-palette:Open command palette": true,
+      "obsidian-excalidraw-plugin:Create new drawing": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "homepage:Open homepage": false
+    }
+  },
+  "active": "1752eb7c71199e2c",
+  "lastOpenFiles": [
+    "Generators/Interface.md",
+    "Invariants/Interface.md",
+    "Translators/Interface.md",
+    "Generators/Rational.md",
+    "Notations/Interface.md",
+    "Home.md",
+    "Storage/Interface.md",
+    "Translators",
+    "Runners/Main.md",
+    "Runners/Interface.md",
+    "Runners",
+    "Storage",
+    "Invariants",
+    "Notations",
+    "What Is/DT/DT Code.md",
+    "What Is/DT/6_2 13.svg.md",
+    "Classes/Spring 2023/Algebra/Exam 2 Question 4.md",
+    "What Is/DT/6_2 13.svg",
+    "Research/DT Notation.md",
+    "Research/Scrap..md",
+    "Research/Untitled.md",
+    "Research/Tangle Translation/Tangle.md",
+    "Research/Tangle Translation/Untitled 1.md",
+    "Classes/Spring 2023/Algebra/test.md",
+    "Classes/Spring 2023/Algebra/Exam.md",
+    "Research/Rational Tangles/Rational Tangle Upper Bound.md",
+    "Research/Rational Tangles/Fundamental Number Theory with Applications.pdf",
+    "Classes/Spring 2023/Numerical Analysis/2.1.md",
+    "Research/Braids.md",
+    "Research/Summer list.md",
+    "Research/Rational Tangles",
+    "kanban/Board.md",
+    "Research/Tangle Translation/media/f30785b1885f9aaadeda78dcce241b9f.png",
+    "Research/Tangle Translation/media/eee0094e808c4e863445b76dcbef580a.png",
+    "Research/Tangle Translation/media/c485348589c7af24c84418a4dfe7a278.png",
+    "Research/Tangle Translation/media/952717e430fa090b60fe41a128bf19f2.png",
+    "Research/Tangle Translation/media/4de31977f71bc6ef850c2c0e4e0cc20b.png",
+    "Research/Tangle Translation/media/21c43e9bc65886f463ad85126aae5e32.png",
+    "kanban/Week 15.md",
+    "kanban/seminar talk jones polynomial.md",
+    "Research/media/ade1fa71f1703f03c1deb03a637bf53d.png",
+    "Research/media",
+    "Untitled.canvas",
+    "Classes/Spring 2023/Algebra/media/c6b146f89c0a94813cd84ae68de5a592.png",
+    "Classes/Spring 2023/Algebra/media/450d168198d5f36db25c5a4396507541.png",
+    "What Is/DT",
+    "Classes/Spring 2023/seminar"
+  ]
+}

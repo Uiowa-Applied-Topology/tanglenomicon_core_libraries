@@ -1,0 +1,16 @@
+{
+  "accentColor": "#bd93f9",
+  "cssTheme": "Dracula Official",
+  "baseFontSize": 13,
+  "translucency": false,
+  "enabledCssSnippets": [
+    "MCL Wide Views",
+    "MCL Gallery Cards",
+    "MCL Multi Column",
+    "margin"
+  ],
+  "interfaceFontFamily": "",
+  "textFontFamily": "Fira Code",
+  "monospaceFontFamily": "Fira Code",
+  "theme": "obsidian"
+}
