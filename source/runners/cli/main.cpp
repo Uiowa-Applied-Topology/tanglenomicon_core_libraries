@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     bool doRational = result["rational"].as<bool>();
     if (doRational == true)
     {
-        gen_rational_config_t rational_config = {10, NULL, NULL, 0, true};
+        gen_rational_config_t rational_config = {10, NULL, NULL,true};
         if (gen_rational_config(&rational_config) == GEN_RATIONAL_CONFIG_FAIL)
         {
             exit(1);

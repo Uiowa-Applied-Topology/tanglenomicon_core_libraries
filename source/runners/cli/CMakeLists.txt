@@ -5,6 +5,7 @@ add_executable(cli
 
 target_link_libraries(cli
 generator_rational
+storage_JSON
 cxxopts
 )
 
