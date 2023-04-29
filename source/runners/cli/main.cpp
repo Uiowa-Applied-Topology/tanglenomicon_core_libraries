@@ -15,6 +15,10 @@
 #include <generator_rational.h>
 #include <iostream>
 #include <memory>
+#include <storage_JSON.hpp>
+#include <string>
+
+using namespace std;
 
 int main(int argc, char **argv)
 {
@@ -22,27 +26,36 @@ int main(int argc, char **argv)
 
     options
         .add_options() /*                                                     */
+        /*********************************************************************/
         ("r,rational", "Generate rational",
          cxxopts::value<bool>()->default_value("false")) /*                   */
-        ("n,cNum", "max",
-         cxxopts::value<int>()->default_value("10"))("h,help", "Print usage");
+        /*********************************************************************/
+        ("n,cNum", "maxCrossingNum",
+         cxxopts::value<int>()->default_value("10")) /*                       */
+        /*********************************************************************/
+        ("j,json", "Store as json",
+         cxxopts::value<bool>()->default_value("false")) /*                   */
+        /*********************************************************************/
+        ("f,json", "File for storage",
+         cxxopts::value<string>()->default_value("false")) /*                 */
+        /*********************************************************************/
+        ("h,help", "Print usage");
 
     auto result = options.parse(argc, argv);
 
     if (result.count("help"))
     {
-        std::cout << options.help() << std::endl;
+        cout << options.help() << endl;
         exit(0);
     }
     bool doRational = result["rational"].as<bool>();
     if (doRational == true)
     {
-        gen_rational_config_t rational_config = {10, NULL, NULL,true};
+        gen_rational_config_t rational_config = {10, NULL, NULL, true};
         if (gen_rational_config(&rational_config) == GEN_RATIONAL_CONFIG_FAIL)
         {
             exit(1);
         }
-
     }
 
     return 0;

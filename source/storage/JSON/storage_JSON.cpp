@@ -11,7 +11,7 @@
  *
  */
 
-#include "storage_JSON.h"
+#include "storage_JSON.hpp"
 #include "json.hpp"
 #include "storage.hpp"
 #include <fstream>
