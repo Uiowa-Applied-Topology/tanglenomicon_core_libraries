@@ -1,0 +1,49 @@
+{
+  "userAdmonitions": {
+    "aside": {
+      "type": "aside",
+      "color": "255, 121, 198",
+      "icon": {
+        "type": "obsidian",
+        "name": "right-arrow"
+      },
+      "command": false,
+      "title": "Aside",
+      "injectColor": true,
+      "noTitle": false,
+      "copy": false
+    },
+    "example": {
+      "type": "example",
+      "color": "255, 85, 85",
+      "icon": {
+        "type": "obsidian",
+        "name": "experiment"
+      },
+      "command": false,
+      "injectColor": true,
+      "noTitle": false
+    }
+  },
+  "syntaxHighlight": false,
+  "copyButton": false,
+  "version": "9.2.3",
+  "autoCollapse": true,
+  "defaultCollapseType": "open",
+  "injectColor": true,
+  "parseTitles": true,
+  "dropShadow": true,
+  "hideEmpty": false,
+  "open": {
+    "admonitions": true,
+    "icons": true,
+    "other": true,
+    "advanced": true
+  },
+  "icons": [],
+  "useFontAwesome": true,
+  "rpgDownloadedOnce": false,
+  "msDocConverted": false,
+  "useSnippet": false,
+  "snippetPath": "custom-admonitions.39b9c5"
+}
