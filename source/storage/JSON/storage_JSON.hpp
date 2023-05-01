@@ -22,6 +22,7 @@
 #include <cstring>
 #include <string>
 
+
 /******************************************************************************/
 /*******************************Typedefs***************************************/
 /******************************************************************************/
@@ -36,12 +37,12 @@
 /******************************************************************************/
 /***************************Function Declerations******************************/
 /******************************************************************************/
-namespace storage
+namespace storage_ns
 {
 /*!
  * @brief
  */
-class storage_json : public storage
+class storage_json_c : public storage_interface_c
 {
   public:
     /*!
@@ -49,12 +50,12 @@ class storage_json : public storage
      * @param file_path
      * @param makenewfile
      */
-    storage_json(std::string file_path, bool newfile);
+    storage_json_c(std::string file_path, bool newfile);
 
     /*!
      * @brief
      */
-    ~storage_json();
+    ~storage_json_c();
 
     /*!
      * @brief
@@ -84,5 +85,5 @@ class storage_json : public storage
      */
     std::string file_path = "";
 };
-} // namespace storage
+} // namespace storage_ns
 #endif /* end STORAGE_JSON */

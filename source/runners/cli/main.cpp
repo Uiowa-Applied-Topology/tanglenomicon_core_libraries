@@ -14,62 +14,16 @@
 #include <cxxopts.hpp>
 #include <generator_rational.h>
 #include <iostream>
-#include <memory>
-#include <random>
-#include <sstream>
 #include <storage.hpp>
 #include <storage_JSON.hpp>
 #include <string>
 
 using namespace std;
 
-/*uuid from
- * https://stackoverflow.com/questions/24365331/how-can-i-generate-uuid-in-c-without-using-boost-library*/
-namespace uuid
-{
-static std::random_device rd;
-static std::mt19937 gen(rd());
-static std::uniform_int_distribution<> dis(0, 15);
-static std::uniform_int_distribution<> dis2(8, 11);
-
-std::string generate_uuid_v4()
-{
-    std::stringstream ss;
-    int i;
-    ss << std::hex;
-    for (i = 0; i < 8; i++)
-    {
-        ss << dis(gen);
-    }
-    ss << "-";
-    for (i = 0; i < 4; i++)
-    {
-        ss << dis(gen);
-    }
-    ss << "-4";
-    for (i = 0; i < 3; i++)
-    {
-        ss << dis(gen);
-    }
-    ss << "-";
-    ss << dis2(gen);
-    for (i = 0; i < 3; i++)
-    {
-        ss << dis(gen);
-    }
-    ss << "-";
-    for (i = 0; i < 12; i++)
-    {
-        ss << dis(gen);
-    };
-    return ss.str();
-}
-} // namespace uuid
-
-class runner_main
+class runner_main_c
 {
   public:
-    static storage::storage *storage_interface;
+    static storage_ns::storage_interface_c *storage_interface;
     static string file_path;
     static bool new_file;
 
@@ -89,9 +43,9 @@ class runner_main
     }
 };
 
-bool runner_main::new_file = false;
-string runner_main::file_path = "";
-storage::storage *runner_main::storage_interface = nullptr;
+bool runner_main_c::new_file = false;
+string runner_main_c::file_path = "";
+storage_ns::storage_interface_c *runner_main_c::storage_interface = nullptr;
 
 /******************************************************************************/
 /******************************************************************************/
@@ -130,12 +84,13 @@ int main(int argc, char **argv)
 
     if (result.count("file"))
     {
-        runner_main::file_path = result["file"].as<string>();
+        runner_main_c::file_path = result["file"].as<string>();
     }
     else
     {
-        runner_main::new_file = true;
-        runner_main::file_path = uuid::generate_uuid_v4();
+        runner_main_c::new_file = true;
+        runner_main_c::file_path =
+            storage_ns::storage_interface_c::generate_uuid_v4();
     }
     /**************************************************************************/
     /********************************Storage***********************************/
@@ -145,12 +100,12 @@ int main(int argc, char **argv)
     if (dojson == true)
     {
 
-        if (runner_main::new_file)
+        if (runner_main_c::new_file)
         {
-            runner_main::file_path += ".json";
+            runner_main_c::file_path += ".json";
         }
-        runner_main::storage_interface = new storage::storage_json(
-            runner_main::file_path, runner_main::new_file);
+        runner_main_c::storage_interface = new storage_ns::storage_json_c(
+            runner_main_c::file_path, runner_main_c::new_file);
     }
 
     /**************************************************************************/
@@ -166,8 +121,8 @@ int main(int argc, char **argv)
     {
         gen_rational_config_t rational_config = {
             10, /*                                                            */
-            &runner_main::storage_write, /*                                   */
-            &runner_main::storage_read, /*                                    */
+            &runner_main_c::storage_write, /*                                 */
+            &runner_main_c::storage_read, /*                                  */
             true};
         if (gen_rational_config(&rational_config) == GEN_RATIONAL_CONFIG_FAIL)
         {

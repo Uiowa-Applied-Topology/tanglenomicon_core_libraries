@@ -18,6 +18,10 @@
 /*******************************Includes***************************************/
 /******************************************************************************/
 #include <cstring>
+#include <memory>
+#include <random>
+#include <sstream>
+#include <string>
 
 /******************************************************************************/
 /*******************************Defines***************************************/
@@ -29,9 +33,9 @@
 /******************************************************************************/
 /***************************Interface Descriptions*****************************/
 /******************************************************************************/
-namespace storage
+namespace storage_ns
 {
-class storage
+class storage_interface_c
 {
   public:
     /*!
@@ -55,6 +59,15 @@ class storage
      */
     bool makenewfile = false;
 
+    /*uuid from
+     * https://stackoverflow.com/questions/24365331/how-can-i-generate-uuid-in-c-without-using-boost-library*/
+    static std::string generate_uuid_v4();
+
+  private:
+    static std::random_device rd;
+    static std::mt19937 gen;
+    static std::uniform_int_distribution<> dis;
+    static std::uniform_int_distribution<> dis2;
 };
-} // namespace storage
+};     // namespace storage_ns
 #endif /* end STORAGE_INTERFACE*/
