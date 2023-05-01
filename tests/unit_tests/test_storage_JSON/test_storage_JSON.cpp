@@ -20,7 +20,7 @@ using sj = storage_ns::storage_json_c;
 /******************************************************************************/
 /*******************************Test Data**************************************/
 /******************************************************************************/
-string testfile_good = "[\"[0] \":{\"index\":\"value\"}]";
+string testfile_good = "{\"[0]\":{\"index\":\"value\"}}";
 string testfile_good_path = "testfile_good.json";
 
 string testfile_malformed = "{";
@@ -44,8 +44,8 @@ void setUp(void)
 
 void tearDown(void)
 {
-    remove(testfile_malformed_path.c_str());
-    remove(testfile_good_path.c_str());
+    // remove(testfile_malformed_path.c_str());
+    // remove(testfile_good_path.c_str());
     // clean stuff up here
 }
 
@@ -59,12 +59,11 @@ void tearDown(void)
  */
 void test_create_obj(void)
 {
-    sj *test_obj;
+    sj *test_obj = nullptr;
     TEST_ASSERT_TRUE(!test_obj);
     test_obj = new sj(testfile_good_path, false);
     TEST_ASSERT_TRUE(test_obj);
     delete test_obj;
-    TEST_ASSERT_TRUE(!test_obj);
 }
 
 // char *read(char *key, char *index)
@@ -80,7 +79,8 @@ void test_read(void)
     char index[] = "index";
 
     TEST_ASSERT_TRUE(test_obj);
-    char *read_var = test_obj->read(key, index);
+    const char *read_var;
+    read_var = test_obj->read(key, index);
     TEST_ASSERT_EQUAL_STRING(read_var, "value");
     delete test_obj;
 }

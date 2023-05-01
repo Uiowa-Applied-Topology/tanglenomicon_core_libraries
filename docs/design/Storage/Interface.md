@@ -6,7 +6,9 @@ class storage{
 <<interface>>
 + bool new_base 
 + const char *  read(key,index)
++ const char *  read_iterator(key,index)
 + int write(key,index,value)
++ int delete(key,index,value)
 }
 ```
 

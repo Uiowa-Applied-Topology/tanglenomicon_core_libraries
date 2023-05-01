@@ -19,6 +19,7 @@ find_package(Doxygen)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 enable_testing()
+include(CTest)
 
 add_subdirectory(libraries)
 add_subdirectory(source)

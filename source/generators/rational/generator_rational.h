@@ -38,7 +38,7 @@ extern "C"
     {
         int maxCrossingNumber;
         int (*storage_write)(char *key, char *index, char *value);
-        char *(*storage_read)(char *key, char *index);
+        const char *(*storage_read)(char *key, char *index);
         bool generate;
     } gen_rational_config_t;
 #ifdef __cplusplus

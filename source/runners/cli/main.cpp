@@ -37,7 +37,7 @@ class runner_main_c
      * @param key
      * @return
      */
-    static char *storage_read(char *key, char *index)
+    static const char *storage_read(char *key, char *index)
     {
         return storage_interface->read(key, index);
     }

@@ -55,7 +55,7 @@ class storage_interface_c
      * @param key
      * @return
      */
-    virtual char *read(char *key, char *index) = 0;
+    virtual const char *read(char *key, char *index) = 0;
 
     /*!
      * @brief

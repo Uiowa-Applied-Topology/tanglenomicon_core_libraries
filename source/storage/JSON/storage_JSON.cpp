@@ -18,17 +18,17 @@
 using json = nlohmann::json;
 using sj = storage_ns::storage_json_c;
 
-char *sj::read(char *key, char *index)
+const char *sj::read(char *key, char *index)
 {
-    char *str = nullptr;
+    std::string *value = new std::string();
     if (this->data.contains(key))
     {
         if (this->data[key].contains(index))
         {
-            *str = *(((std::string)this->data[key][index]).c_str());
+            value->append((std::string)this->data[key][index]);
         }
     }
-    return str;
+    return value->c_str();
 }
 
 /*!

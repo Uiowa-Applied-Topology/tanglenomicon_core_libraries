@@ -128,15 +128,16 @@ Generators create new data of a defined type. These might look like a module tha
 
 Computations compute a value for a given data. These might look like computing a polynomial of a link, or a computing the writhe of a tangle. 
 
+#### Translators
+
+Translators define a conversion between two Notations. An example might be a translator from [PD](Notations/PD.md) to [Conway](Notations/Conway.md) notation or it's opposite Conway to PD.
+
 ### Data wranglers 
 
 #### Notations 
 
 Notations define a notational convention for a link/tangle. They describe a method for converting to and from a string representation of a link/tangle and struct describing that link/tangle.
 
-#### Translators
-
-Translators define a conversion between two Notations. An example might be a translator from [PD](Notations/PD.md) to [Conway](Notations/Conway.md) notation or it's opposite Conway to PD.
 
 #### Storage
 

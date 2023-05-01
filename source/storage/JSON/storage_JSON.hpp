@@ -61,7 +61,7 @@ class storage_json_c : public storage_interface_c
      * @param index
      * @return
      */
-    char *read(char *key, char *index);
+    const char *read(char *key, char *index);
 
     /*!
      * @brief
