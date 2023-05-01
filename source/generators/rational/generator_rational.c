@@ -11,16 +11,15 @@
  *
  */
 
-
 #include "generator_rational.h"
 #include <stddef.h>
 gen_rational_config_t *config;
 
 /*Docs in header*/
-int  gen_rational_config(gen_rational_config_t *config_arg)
+int gen_rational_config(gen_rational_config_t *config_arg)
 {
     int ret_val = GEN_RATIONAL_CONFIG_FAIL;
-    if(config != NULL)
+    if (config != NULL)
     {
         config = config_arg;
         ret_val = GEN_RATIONAL_CONFIG_SUCCESS;

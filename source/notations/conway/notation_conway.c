@@ -11,8 +11,5 @@
  *
  */
 
-
 #include "notation_conway.h"
 #include <stddef.h>
-
-
