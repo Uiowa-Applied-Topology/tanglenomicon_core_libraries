@@ -17,7 +17,10 @@
 /******************************************************************************/
 /*******************************Includes***************************************/
 /******************************************************************************/
+#include "json.hpp"
+#include "storage.hpp"
 #include <cstring>
+#include <string>
 
 /******************************************************************************/
 /*******************************Typedefs***************************************/
@@ -27,29 +30,59 @@
 /*******************************Defines***************************************/
 /******************************************************************************/
 
-#define STORE_JSON_WRITE_FAIL    (0x1u)
+#define STORE_JSON_WRITE_FAIL (0x1u)
 #define STORE_JSON_WRITE_SUCCESS (0x0u)
 
 /******************************************************************************/
 /***************************Function Declerations******************************/
 /******************************************************************************/
-
+namespace storage
+{
 /*!
  * @brief
- * @param key
- * @param index
- * @param value
- * @return
  */
-int store_JSON_write(char * key, char * index, char * value);
+class storage_json : public storage
+{
+  public:
+    /*!
+     * @brief
+     * @param file_path
+     * @param makenewfile
+     */
+    storage_json(std::string file_path, bool newfile);
 
+    /*!
+     * @brief
+     */
+    ~storage_json();
 
-/*!
- * @brief
- * @param key
- * @return
- */
-char * store_JSON_read(char * key);
+    /*!
+     * @brief
+     * @param key
+     * @param index
+     * @return
+     */
+    char *read(char *key, char *index);
 
+    /*!
+     * @brief
+     * @param key
+     * @param index
+     * @param value
+     * @return
+     */
+    int write(char *key, char *index, char *value);
 
+  private:
+    /*!
+     * @brief
+     */
+    nlohmann::json data = NULL;
+
+    /*!
+     * @brief
+     */
+    std::string file_path = "";
+};
+} // namespace storage
 #endif /* end STORAGE_JSON */

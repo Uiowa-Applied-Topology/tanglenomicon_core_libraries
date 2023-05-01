@@ -1,15 +1,5 @@
+add_executable(cli main.cpp)
 
-add_executable(cli
-    main.cpp
-)
+target_link_libraries(cli generator_rational storage_JSON cxxopts)
 
-target_link_libraries(cli
-generator_rational
-storage_JSON
-cxxopts
-)
-
-
-target_include_directories(cli PUBLIC
-    ${CMAKE_CURRENT_LIST_DIR}
-)
+target_include_directories(cli PUBLIC ${CMAKE_CURRENT_LIST_DIR})

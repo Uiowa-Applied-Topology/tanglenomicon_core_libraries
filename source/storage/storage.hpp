@@ -29,7 +29,8 @@
 /******************************************************************************/
 /***************************Interface Descriptions*****************************/
 /******************************************************************************/
-
+namespace storage
+{
 class storage
 {
   public:
@@ -40,14 +41,20 @@ class storage
      * @param value
      * @return
      */
-    virtual int write(char *key, char *index, char *value);
+    virtual int write(char *key, char *index, char *value) = 0;
 
     /*!
      * @brief
      * @param key
      * @return
      */
-    virtual char *read(char *key);
-};
+    virtual char *read(char *key, char *index) = 0;
 
+    /*!
+     * @brief
+     */
+    bool makenewfile = false;
+
+};
+} // namespace storage
 #endif /* end STORAGE_INTERFACE*/
