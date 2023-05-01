@@ -4,17 +4,29 @@
     "type": "split",
     "children": [
       {
-        "id": "44fcb0212f5dcc65",
+        "id": "4c2fbfede9c3d8fb",
         "type": "tabs",
         "children": [
           {
-            "id": "995de153d55563ba",
+            "id": "41d0b19c33fc1779",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
+                "file": "Storage/Interface.md",
                 "mode": "source",
+                "source": true
+              }
+            }
+          },
+          {
+            "id": "e413be933c74e5e8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Storage/JSON.md",
+                "mode": "preview",
                 "source": true
               }
             }
@@ -85,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Home.md",
+                "file": "Storage/Interface.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Home.md",
+                "file": "Storage/Interface.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "Storage/Interface.md"
               }
             }
           },
@@ -173,22 +185,22 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "995de153d55563ba",
+  "active": "41d0b19c33fc1779",
   "lastOpenFiles": [
+    "Home.md",
     "Storage/Interface.md",
     "Storage/JSON.md",
+    "Notations/Conway.md",
+    "Generators/Rational.md",
+    "Generators/Interface.md",
     "Storage/Keyboard (read only).md",
     "Storage/Screen.md",
     "Storage/SQLite.md",
-    "Home.md",
     "Computation/Writhe.md",
     "media/Home 2023-04-28 12.20.47.excalidraw.md",
     "media",
-    "Notations/Conway.md",
     "Computation/Interface.md",
-    "Generators/Rational.md",
     "Notations/Interface.md",
-    "Generators/Interface.md",
     "Translators/Interface.md",
     "Runners/CLI.md",
     "Untitled.canvas",

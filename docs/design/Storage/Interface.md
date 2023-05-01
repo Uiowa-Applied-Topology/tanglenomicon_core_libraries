@@ -4,7 +4,8 @@
 classDiagram
 class storage{
 <<interface>>
-+ string read(key)
++ bool new_base 
++ const char *  read(key,index)
 + int write(key,index,value)
 }
 ```

@@ -1,6 +1,6 @@
 {
   "accentColor": "#bd93f9",
-  "cssTheme": "Atom",
+  "cssTheme": "Obsidian Nord",
   "baseFontSize": 13,
   "translucency": false,
   "enabledCssSnippets": [
@@ -12,5 +12,5 @@
   "interfaceFontFamily": "",
   "textFontFamily": "Fira Code",
   "monospaceFontFamily": "Fira Code",
-  "theme": "moonstone"
+  "theme": "obsidian"
 }
