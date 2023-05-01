@@ -35,6 +35,9 @@
 /******************************************************************************/
 namespace storage_ns
 {
+/*!
+ * @brief
+ */
 class storage_interface_c
 {
   public:
@@ -59,14 +62,33 @@ class storage_interface_c
      */
     bool makenewfile = false;
 
-    /*uuid from
-     * https://stackoverflow.com/questions/24365331/how-can-i-generate-uuid-in-c-without-using-boost-library*/
+    /*!
+     * @brief uuid
+     *        from
+     *        [stackOverflow](https://stackoverflow.com/questions/24365331/how-can-i-generate-uuid-in-c-without-using-boost-library)
+     * @return Returns a UUID as a string.
+     */
     static std::string generate_uuid_v4();
 
   private:
+    /*!
+     * @brief
+     */
     static std::random_device rd;
+
+    /*!
+     * @brief
+     */
     static std::mt19937 gen;
+
+    /*!
+     * @brief
+     */
     static std::uniform_int_distribution<> dis;
+
+    /*!
+     * @brief
+     */
     static std::uniform_int_distribution<> dis2;
 };
 };     // namespace storage_ns
