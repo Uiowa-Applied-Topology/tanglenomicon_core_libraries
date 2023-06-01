@@ -1,3 +1,4 @@
+add_subdirectory(util)
 add_subdirectory(notations)
 add_subdirectory(storage)
 add_subdirectory(generators)

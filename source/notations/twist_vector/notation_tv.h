@@ -1,7 +1,7 @@
 /*!
- *  @file notation_conway.h
+ *  @file notation_tv.h
  *
- *  @brief  Notaiton module for conway notation.
+ *  @brief  Notaiton module for twist vector notation.
  *
  *
  *  @author    Isabel Darcy
@@ -11,39 +11,46 @@
  *
  */
 
-#ifndef NOTATION_CONWAY
-#define NOTATION_CONWAY
+#ifndef NOTATION_tv
+#define NOTATION_tv
 
 /******************************************************************************/
 /*******************************Includes***************************************/
 /******************************************************************************/
-
+#include "tang_defs.h"
+#include "notation_defs.h"
 #include "stdbool.h"
+#include "stdint.h"
 #include "stdlib.h"
 #include "string.h"
+
+
+/******************************************************************************/
+/*******************************Defines***************************************/
+/******************************************************************************/
 
 /******************************************************************************/
 /*******************************Typedefs***************************************/
 /******************************************************************************/
 
-/*!
- * @brief
- */
-
 #ifdef __cplusplus
 extern "C"
 {
 #endif
+    /*!
+     * @brief The core structure for twist vectors.
+     */
     typedef struct
     {
-
-    } note_conway_t;
+        uint8_t *twist_vector; /*! A pointer to an array of ints. We pick uint8,
+                                  that's 0-255 here since 256 is larger than any
+                                  reasonable single integral subtangle in a
+                                  rational tangle. */
+        uint8_t tv_length;/*! The length of the twist_vector*/
+    } note_tv_t;
 #ifdef __cplusplus
 }
 #endif
-/******************************************************************************/
-/*******************************Defines***************************************/
-/******************************************************************************/
 
 /******************************************************************************/
 /***************************Function Declerations******************************/
@@ -57,7 +64,7 @@ extern "C"
      * @brief
      * @param str
      */
-    note_conway_t note_conway_parse(char *str);
+    int note_tv_encode(char *str, note_tv_t *twistv);
 #ifdef __cplusplus
 }
 #endif
@@ -70,9 +77,9 @@ extern "C"
      * @brief
      * @param item
      */
-    char *note_conway_encode(note_conway_t item);
+    int note_tv_decode(note_tv_t twistv, char *str);
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* end NOTATION_CONWAY */
+#endif /* end NOTATION_tv */

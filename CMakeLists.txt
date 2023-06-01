@@ -25,6 +25,16 @@ add_subdirectory(libraries)
 add_subdirectory(source)
 add_subdirectory(tests)
 
+################################################################################
+# Start Compiler Defines
+################################################################################
+
+add_compile_definitions(UTIL_TANG_DEFS_MAX_CROSSINGNUM=20u)
+
+################################################################################
+# End Compiler Defines
+################################################################################
+
 if(BUILD_DOC)
   if(DOXYGEN_FOUND)
     set(DOXYFILE ${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile)
