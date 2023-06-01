@@ -1,10 +1,12 @@
 ```mermaid
 classDiagram
-note_conway --|> notation 
-note_conway *-- note_conway_t
 
-class note_conway_t {
+note_tv --|> notation 
+note_tv *-- note_tv_t
+
+class note_tv_t {
 <<struct>>
+List~uint8_t~ twist_vec
 }
 
 
@@ -12,7 +14,12 @@ class notation {
 <<interface>>
 }
 
+
 ```
+
+## Description 
+- [ ] TODO Description
+
 ## Language
 
 C
@@ -27,3 +34,4 @@ C
 * [Pd-To-Conway](Translators/Pd-To-Conway.md)
 
 ## Functionality
+- [ ] TODO Functionality

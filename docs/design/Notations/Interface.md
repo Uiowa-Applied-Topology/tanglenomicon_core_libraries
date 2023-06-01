@@ -5,8 +5,24 @@ classDiagram
 notation *-- note_t
 class notation{
 <<interface>>
-+ note_t parse(string)
-+ string encode(note_t)
++ note_t encode(string)
++ string decode(note_t)
+}
+
+class note_t {
+<<struct>>
+}
+
+```
+
+## C Style Interface
+```mermaid
+classDiagram
+notation *-- note_t
+class notation{
+<<interface>>
++ int decode(note_t*,string*)
++ int encode(string*,note_t*)
 }
 
 class note_t {

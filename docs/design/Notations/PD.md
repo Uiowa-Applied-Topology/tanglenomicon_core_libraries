@@ -1,19 +1,15 @@
 ```mermaid
 classDiagram
 
-note_PD --|> notation 
-note_PD_config_t --|> note_t 
-note_PD *-- note_PD_config_t
+note_pd --|> notation 
+note_pd *-- note_pd_t
 
-class note_PD_config_t {
+class note_pd_t {
 <<struct>>
 }
 
-class notation{
-<<interface>>
-}
 
-class note_t {
+class notation {
 <<interface>>
 }
 
