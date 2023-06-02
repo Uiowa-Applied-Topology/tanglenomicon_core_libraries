@@ -1,1 +1,2 @@
+add_subdirectory(generator_defs)
 add_subdirectory(rational)

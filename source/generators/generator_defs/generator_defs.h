@@ -1,7 +1,7 @@
 /*!
- *  @file notation_defs.h
+ *  @file generator_defs.h
  *
- *  @brief  Common defintions for notation objects.
+ *  @brief  Common defintions for generator objects.
  *
  *
  *  @author    Isabel Darcy
@@ -11,8 +11,8 @@
  *
  */
 
-#ifndef NOTATION_DEFS_H
-#define NOTATION_DEFS_H
+#ifndef GENERATOR_DEFS_H
+#define GENERATOR_DEFS_H
 
 /******************************************************************************/
 /****************************** Includes **************************************/
@@ -28,20 +28,20 @@
 
 /****************************** Encode Status *********************************/
 
-/*! @brief Success is a 0. That lets us use hight bits for notation specific
+/*! @brief Success is a 0. That lets us use hight bits for generator specific
  * codes */
-#define NOTE_DEFS_ENCODE_SUCCESS (0u)
+#define GEN_DEFS_CONFIG_SUCCESS (0u)
 /*! @brief We use bit 0 to indicate a fail. Specific failures encoded in higher
  * bits. */
-#define NOTE_DEFS_ENCODE_FAIL (1u)
+#define GEN_DEFS_CONFIG_FAIL (1u)
 
 /****************************** Decode Status *********************************/
 
-/*! @brief Success is a 0. That lets us use hight bits for notation specific
+/*! @brief Success is a 0. That lets us use hight bits for generator specific
  * codes */
-#define NOTE_DEFS_DECODE_SUCCESS (0u)
+#define GEN_DEFS_GENERATION_SUCCESS (0u)
 /*! @brief We use bit 0 to indicate a fail. Specific failures encoded in higher
  * bits. */
-#define NOTE_DEFS_DECODE_FAIL (1u)
+#define GEN_DEFS_GENERATION_FAIL (1u)
 
-#endif /* end NOTATION_DEFS_H */
+#endif /* end GENERATOR_DEFS_H */

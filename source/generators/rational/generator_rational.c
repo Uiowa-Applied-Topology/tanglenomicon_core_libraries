@@ -1,5 +1,5 @@
 /*!
- *  @file generator_pattern.c
+ *  @file generator_rational.c
  *
  *  @brief  A pattern for generator modules
  *
@@ -12,8 +12,11 @@
  */
 
 #include "generator_rational.h"
-#include <stddef.h>
-gen_rational_config_t *config;
+#include "stddef.h"
+
+/******************************************************************************/
+/************************** Includes ******************************************/
+/******************************************************************************/
 
 /******************************************************************************/
 /************************** Defines *******************************************/
@@ -22,6 +25,9 @@ gen_rational_config_t *config;
 /******************************************************************************/
 /************************** Local Variables ***********************************/
 /******************************************************************************/
+
+
+gen_rational_config_t *config;
 
 /******************************************************************************/
 /************************** Private Function Declerations *********************/
@@ -44,3 +50,21 @@ int gen_rational_config(gen_rational_config_t *config_arg)
     }
     return ret_val;
 }
+/*
+ *  Documentation in header
+ */
+int gen_rational_generate()
+{
+
+    int ret_val = GEN_RATIONAL_CONFIG_FAIL;
+    if (config != NULL)
+    {
+        config = config_arg;
+        ret_val = GEN_RATIONAL_CONFIG_SUCCESS;
+    }
+    return ret_val;
+}
+/******************************************************************************/
+/************************** Private Function Declerations *********************/
+/******************************************************************************/
+
