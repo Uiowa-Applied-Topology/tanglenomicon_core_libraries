@@ -124,7 +124,7 @@ int main(int argc, char **argv)
             &runner_main_c::storage_write, /*                                 */
             &runner_main_c::storage_read, /*                                  */
             true};
-        if (gen_rational_config(&rational_config) == GEN_RATIONAL_CONFIG_FAIL)
+        if (gen_rational_config(&rational_config) == GEN_DEFS_CONFIG_FAIL)
         {
             exit(1);
         }

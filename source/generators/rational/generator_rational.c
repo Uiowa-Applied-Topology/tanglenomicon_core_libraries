@@ -42,11 +42,11 @@ gen_rational_config_t *config;
  */
 int gen_rational_config(gen_rational_config_t *config_arg)
 {
-    int ret_val = GEN_RATIONAL_CONFIG_FAIL;
+    int ret_val = GEN_DEFS_CONFIG_FAIL;
     if (config != NULL)
     {
         config = config_arg;
-        ret_val = GEN_RATIONAL_CONFIG_SUCCESS;
+        ret_val = GEN_DEFS_CONFIG_SUCCESS;
     }
     return ret_val;
 }
@@ -56,12 +56,8 @@ int gen_rational_config(gen_rational_config_t *config_arg)
 int gen_rational_generate()
 {
 
-    int ret_val = GEN_RATIONAL_CONFIG_FAIL;
-    if (config != NULL)
-    {
-        config = config_arg;
-        ret_val = GEN_RATIONAL_CONFIG_SUCCESS;
-    }
+    int ret_val = GEN_DEFS_CONFIG_FAIL;
+
     return ret_val;
 }
 /******************************************************************************/

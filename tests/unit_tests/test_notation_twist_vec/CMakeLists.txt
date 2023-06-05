@@ -1,10 +1,10 @@
 add_executable(test_notation_twist_vec_app
-    test_storage_JSON.cpp
+test_notation_twist_vec.c
 )
 
 target_link_libraries(test_notation_twist_vec_app
-    notation_twist_vector
     notation_defs
+    notation_tv
     Unity
     Cmock
 )

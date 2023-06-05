@@ -18,7 +18,8 @@
 /*************************** Includes *****************************************/
 /******************************************************************************/
 
-
+#include "generator_defs.h"
+#include "tang_defs.h"
 #include "stdbool.h"
 #include "stdlib.h"
 #include "string.h"
