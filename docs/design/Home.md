@@ -116,16 +116,16 @@ Tooling as described in [here](https://devblogs.microsoft.com/cppblog/clear-func
 ### Deployment 
 
 #### Web Server
-We will use Nginx as the webserver of the Uiowa deployment. 
+We will use Nginx as the webserver of the UIowa deployment. 
 
 #### Frontend Framework
-We will use HTML5/CSS3 with the tailwind framework along side jquery for the frontend frameworks. 
+We will use HTML5/CSS3 with the tailwind framework along side jquery for the frontend frameworks for the UIowa deployment. 
 
 #### Backend Framework 
-We will use Python with the Flask framework for the Uiowa deployment. 
+We will use Python with the Flask framework for the UIowa deployment. 
 
 #### Database System
-The design doesn't couple a specific DBS/storage solution to the implementation. For the Iowa deployment of the tanglenomicon we will be using SQLite3 as a backent. 
+The design doesn't couple a specific DBS/storage solution to the implementation. For the Iowa deployment of the tanglenomicon we will be using SQLite3 as the DBS for the UIowa deployment. 
 
 ## Block Diagram
   
