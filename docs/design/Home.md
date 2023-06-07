@@ -138,7 +138,7 @@ subgraph "Runnables"
 	Translator
 	Computation
 end
-subgraph "Data wWanglers"
+subgraph "Data Wanglers"
 	Notation
 	Storage
 end
