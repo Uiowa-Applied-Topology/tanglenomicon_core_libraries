@@ -1,10 +1,10 @@
-# Overview
+# Overview and Philosophy 
 
-The tanglenomicon describes a tool for computing on tangles. The design is indented to allow flexibility in target user interface. The project is written in a mix of C and C++, each module is expected to make a selection, C modules are expected to be C++ linkable. There's no target system but ubuntu linux is the CI OS.
+The tanglenomicon describes a tool for computing on tangles. The design is indented to allow flexibility, that is to be platform and language agnostic. We want a feature, maybe "calculate jones polynomial", to be runnable in a jupyter notebook during undergraduate knot theory class, or wrapped in matlab interfaces for scientific computing, or on a university cluster for high performance use cases. We're targeting a "write once deploy anywhere" design. 
 
+While the design is platform and language agnostic the core implementation for the tanglenomicon project is written in a mix of C and C++. Each module is expected to make a selection, C modules are expected to be C++ linkable. There's no target system but ubuntu linux is the CI OS.
 
-### [[Project Plan]]
-
+# Tanglenomicon
 
 ## Infra
 
@@ -32,11 +32,30 @@ Integration/system testing is done with [pytest](https://docs.pytest.org/en/7.3.
 
 ### Process
 
-##### VC
+#### Software Lifecycle 
+
+We're taking a feature centric waterfall approach with design, implementation, integration, and testing phases. 
+
+Feature centric we mean work on one feature at a time, some examples for feature scope are  rational tangle generation, JSON storage, or Conway notation. 
+
+Waterfall means we complete a full life cycle for each feature. 
+
+
+```mermaid
+flowchart TD
+	Requirements --> Design 
+	Design --> Implementation
+	Implementation --> UT[Unit Testing]
+	UT --> IT["Integration Testing"]
+```
+
+This methodology will allow us to have high traceability meaning we can track our features through the development cycle, allowing us to justify every decision we made in the process.
+
+##### Version Control (VC)
 
 The project uses git as it's primary VC system. We use git pull requests for merging onto the ```main```. Tests are expected to be passing for a pull request to be approved.
 
-##### CI
+##### Continuous Integration (CI) 
 
 The project uses GitHub actions for CI.
 
@@ -94,54 +113,80 @@ Doxygen comments are parsed and output as xml. Python docstrings are parsed auto
 
 Tooling as described in [here](https://devblogs.microsoft.com/cppblog/clear-functional-c-documentation-with-sphinx-breathe-doxygen-cmake/)
 
-# Block Er Diagram
+### Deployment 
+
+#### Web Server
+We will use Nginx as the webserver of the Uiowa deployment. 
+
+#### Frontend Framework
+We will use HTML5/CSS3 with the bootstrap framework along side jquery for the frontend frameworks. 
+
+#### Backend Framework 
+We will use Python with the Flask framework for the Uiowa deployment. 
+
+#### Database System
+The design doesn't couple a specific DBS/storage solution to the implementation. For the Iowa deployment of the tanglenomicon we will be using SQLite3 as a backent. 
+
+## Block Diagram
+  
 
 ```mermaid
-erDiagram
-    Runner ||--|{ Generator : Runs
-    Runner ||--|{ Computation : Runs
-    Runner ||--|{ Translator : Runs
-		Generator ||--||Notation : Uses
-		Computation ||--||Notation : Uses
-		Translator ||--|{ Notation : ""
-		Generator ||--||Storage : Uses
-		Computation||--||Storage : Uses
-		Translator ||--|| Storage : Uses
+flowchart LR
+	Runner
+subgraph "Runnables"
+	Generator
+	Translator
+	Computation
+end
+subgraph "Data wWanglers"
+	Notation
+	Storage
+end
+Runner -->|Runs| Generator
+Runner -->|Runs| Computation
+Runner -->|Runs| Translator
+Translator -->|Uses| Notation
+Generator -->|Uses| Notation
+Computation -->|Uses| Notation
+Generator -->|Uses| Storage
+Computation -->|Uses| Storage
+Translator -->|Uses| Storage
+
 ```
 
 
-## Runners
+### Runners
 
 A runner is a human/machine interface layer. This abstracts the routines in lower layers for a user to interact with. This could be a CLI interface, python bindings, a Mathematica wrapper, etc.
 
-### Definitions
+#### Definitions
 
 - [CLI](Runners/CLI.md)
 
-## Module types
+### Module types
 
-### Runnables
+#### Runnables
 
-#### Generators
+##### Generators
 
 Generators create new data of a defined type. These might look like a module that generates rational tangles up to a crossing number or tangle closures of a specific type. They may use one or more Computations, Notations, or Translators.
 
-#### Computation
+##### Computation
 
 Computations compute a value for a given data. These might look like computing a polynomial of a link, or a computing the writhe of a tangle.
 
-#### Translators
+##### Translators
 
 Translators define a conversion between two Notations. An example might be a translator from [PD](Notations/PD.md) to [Conway](Notations/Conway.md) notation or it's opposite Conway to PD.
 
-### Data wranglers
+#### Data wranglers
 
-#### Notations
+##### Notations
 
 Notations define a notational convention for a link/tangle. They describe a method for converting to and from a string representation of a link/tangle and struct describing that link/tangle.
 
 
-#### Storage
+##### Storage
 
 A storage module defines a storage interface for the application. The main inter-module type is string
 and the calling module is responsible for en/decoding the string. The interfaces are defined with serializable storage in mind.
