@@ -64,7 +64,7 @@ The project uses GitHub actions for CI.
 A style format is defined as a clang format file. Files are checked against clang.tidy on pull request.
 
 ##### Directory Map
-
+```
 📦tanglenomicon_core
  ┣ 📂.github
  ┃ ┗ 📂workflows
@@ -95,7 +95,7 @@ A style format is defined as a clang format file. Files are checked against clan
  ┣ 📜CMakeSettings.json
  ┣ 📜README.md
  ┗ 📜requirements.txt
-
+```
 
 ### Documentation
 
