@@ -119,7 +119,7 @@ Tooling as described in [here](https://devblogs.microsoft.com/cppblog/clear-func
 We will use Nginx as the webserver of the Uiowa deployment. 
 
 #### Frontend Framework
-We will use HTML5/CSS3 with the bootstrap framework along side jquery for the frontend frameworks. 
+We will use HTML5/CSS3 with the tailwind framework along side jquery for the frontend frameworks. 
 
 #### Backend Framework 
 We will use Python with the Flask framework for the Uiowa deployment. 
