@@ -106,9 +106,20 @@ int note_tv_decode(note_tv_t twistv, char *str)
      * added*/
     uint8_t retval = NOTE_DEFS_DECODE_SUCCESS;
     char local_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
+    uint8_t first_nonzero = 0;
+    uint8_t i = 0;
     char *str_p = str;
     note_tv_tvrev(&twistv);
-    for (uint8_t i = 0; i < twistv.tv_length; i++)
+
+    for (first_nonzero = 0; first_nonzero < twistv.tv_length; first_nonzero++)
+    {
+        if (twistv.twist_vector[first_nonzero] != 0u)
+        {
+            break;
+        }
+    }
+
+    for (i = first_nonzero; i < twistv.tv_length; i++)
     {
         sprintf(local_str, "%u", twistv.twist_vector[i]);
         strcpy(str_p, local_str);
