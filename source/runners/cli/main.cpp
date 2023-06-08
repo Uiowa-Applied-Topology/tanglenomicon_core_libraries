@@ -11,11 +11,12 @@
  *
  */
 
-#include <cxxopts.hpp>
 #include <generator_rational.h>
-#include <iostream>
 #include <storage.hpp>
 #include <storage_JSON.hpp>
+
+#include <cxxopts.hpp>
+#include <iostream>
 #include <string>
 
 using namespace std;

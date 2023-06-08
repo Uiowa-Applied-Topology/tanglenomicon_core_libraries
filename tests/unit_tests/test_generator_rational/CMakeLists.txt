@@ -4,6 +4,7 @@ test_generator_rational.c
 
 target_link_libraries(test_generator_rational_app
     generator_defs
+    tang_defs
     generator_rational
     Unity
     Cmock

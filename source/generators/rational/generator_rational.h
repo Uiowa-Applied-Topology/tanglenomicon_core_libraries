@@ -19,16 +19,23 @@
 /******************************************************************************/
 
 #include "generator_defs.h"
-#include "tang_defs.h"
 #include "stdbool.h"
 #include "stdlib.h"
 #include "string.h"
+#include "notation_tv.h"
+
 
 /******************************************************************************/
 /*************************** Defines ******************************************/
 /******************************************************************************/
 
+/*************************** Config *******************************************/
 
+#define GEN_RATIONAL_CONFIG_IS_NULL (0x1u << 1u)
+#define GEN_RATIONAL_CONFIG_BUFFER (0x1u << 2u)
+
+/*************************** Generate *****************************************/
+#define GEN_RATIONAL_PERMUTATION_FAIL (0x1u << 1u)
 
 /******************************************************************************/
 /*************************** Typedefs *****************************************/
@@ -43,10 +50,11 @@ extern "C"
 #endif
     typedef struct
     {
-        int crossingNumber;
+        uint8_t crossingNumber;
         int (*storage_write)(char *key, char *index, char *value);
         const char *(*storage_read)(char *key, char *index);
         bool generate;
+        note_tv_t *tv_buff;
     } gen_rational_config_t;
 #ifdef __cplusplus
 }
