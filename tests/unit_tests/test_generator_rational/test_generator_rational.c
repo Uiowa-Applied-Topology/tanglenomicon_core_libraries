@@ -16,25 +16,32 @@
 #define STORE_WRITE_FAIL (0x1u)
 #define STORE_WRITE_SUCCESS (0x0u)
 
-char key_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u] = {[0] = STR_TERMINAL_CHAR};
-char index_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u] = {[0] =
-                                                            STR_TERMINAL_CHAR};
-char value_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u] = {[0] =
-                                                            STR_TERMINAL_CHAR};
+char key_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u][UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
+char index_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u][UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
+char value_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u][UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
+uint8_t key_idx = 0;
+uint8_t index_idx = 0;
+uint8_t value_idx = 0;
 
 int stub_write_success(char *key, char *index, char *value)
 {
-    strcpy(key_buff, key);
-    strcpy(index_buff, index);
-    strcpy(value_buff, value);
+    strcpy(key_buff[key_idx], key);
+    strcpy(index_buff[index_idx], index);
+    strcpy(value_buff[value_idx], value);
+    key_idx++;
+    index_idx++;
+    value_idx++;
     return STORE_WRITE_SUCCESS;
 }
 
 int stub_write_fail(char *key, char *index, char *value)
 {
-    strcpy(key_buff, key);
-    strcpy(index_buff, index);
-    strcpy(value_buff, value);
+    strcpy(key_buff[key_idx], key);
+    strcpy(index_buff[index_idx], index);
+    strcpy(value_buff[value_idx], value);
+    key_idx++;
+    index_idx++;
+    value_idx++;
     return STORE_WRITE_FAIL;
 }
 
@@ -82,7 +89,12 @@ void test_config(void)
  * @brief
  * @param
  */
-void test_generate(void) {}
+void test_generate(void) {
+    uint8_t ret_val = gen_rational_config(&tc_write_success);
+    TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_CONFIG_SUCCESS);
+    generate
+
+}
 /******************************************************************************/
 /*******************************Test main**************************************/
 /******************************************************************************/
