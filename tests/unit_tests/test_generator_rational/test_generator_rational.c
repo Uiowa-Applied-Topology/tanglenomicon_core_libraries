@@ -1,6 +1,6 @@
-#include "tang_defs.h"
 #include "generator_rational.h"
 #include "string.h"
+#include "tang_defs.h"
 #include "unity.h"
 
 /******************************************************************************/
@@ -16,9 +16,12 @@
 #define STORE_WRITE_FAIL (0x1u)
 #define STORE_WRITE_SUCCESS (0x0u)
 
-char key_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u][UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
-char index_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u][UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
-char value_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u][UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
+char key_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u]
+             [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
+char index_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u]
+               [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
+char value_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u]
+               [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
 uint8_t key_idx = 0;
 uint8_t index_idx = 0;
 uint8_t value_idx = 0;
@@ -45,7 +48,7 @@ int stub_write_fail(char *key, char *index, char *value)
     return STORE_WRITE_FAIL;
 }
 
-const char *stub_read(char *key, char *index) { return value_buff; }
+const char *stub_read(char *key, char *index) { return value_buff[value_idx]; }
 
 /******************************************************************************/
 /*******************************Test Data**************************************/
@@ -89,11 +92,13 @@ void test_config(void)
  * @brief
  * @param
  */
-void test_generate(void) {
+void test_generate(void)
+{
     uint8_t ret_val = gen_rational_config(&tc_write_success);
     TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_CONFIG_SUCCESS);
-    generate
-
+    ret_val = gen_rational_generate();
+    TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_GENERATION_SUCCESS);
+    //@@@TODO check the buffers
 }
 /******************************************************************************/
 /*******************************Test main**************************************/
