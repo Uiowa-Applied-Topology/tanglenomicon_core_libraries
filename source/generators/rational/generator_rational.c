@@ -44,11 +44,9 @@ int gen_rational_accel_asc();
  * @brief
  *
  *
- * @param ary
- * @param length
  * @return
  */
-int gen_rational_permute(uint8_t length);
+int gen_rational_permute();
 
 /*!
  * @brief
@@ -145,7 +143,7 @@ int gen_rational_accel_asc()
                 if ((k + 2) % 2 == 1)
                 {
                     *len = k + 2;
-                    gen_rational_permute(k + 2);
+                    gen_rational_permute();
                 }
                 x += 1;
                 y -= 1;
@@ -155,7 +153,7 @@ int gen_rational_accel_asc()
             if ((k + 2) % 2 == 1)
             {
                 *len = k + 2;
-                gen_rational_permute(k + 2);
+                gen_rational_permute();
             }
         }
     }
@@ -166,10 +164,11 @@ int gen_rational_accel_asc()
 /*
  *  Documentation at Declaration
  */
-int gen_rational_permute(uint8_t length)
+int gen_rational_permute()
 {
     uint8_t i;
     uint8_t j;
+    uint8_t length = config->tv_buff->tv_length;
     uint8_t *p2tv = config->tv_buff->twist_vector;
     uint8_t num_of_ones = 0;
     uint8_t *elements_to_permute[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
@@ -279,9 +278,11 @@ int gen_rational_heaps(uint8_t *A[], uint8_t length)
                 gen_rational_swap_ptr(A[c[i]], A[i]);
             }
 
-            note_tv_decode(*(config->tv_buff), str);
-            config->storage_write("key", str, str);
-
+            if (A[0] != 1)
+            {
+                note_tv_decode(*(config->tv_buff), str);
+                config->storage_write("key", str, str);
+            }
             // Swap has occurred ending the for-loop. Simulate the increment
             // of the for-loop counter
             c[i]++;
@@ -312,3 +313,4 @@ int gen_rational_swap_ptr(uint8_t *ptr1, uint8_t *ptr2)
     *ptr1 = *ptr2;
     *ptr2 = temp;
 }
+
