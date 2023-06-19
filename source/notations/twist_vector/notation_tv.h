@@ -46,7 +46,7 @@ extern "C"
                               array of ints. We pick uint8, that's 0-255 here
                               since 256 is larger than any reasonable single
                               integral subtangle in a rational tangle. */
-        uint8_t tv_length; /*! The length of the twist_vector*/
+        size_t tv_length; /*! The length of the twist_vector*/
     } note_tv_t;
 #ifdef __cplusplus
 }

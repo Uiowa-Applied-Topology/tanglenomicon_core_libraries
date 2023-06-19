@@ -33,6 +33,7 @@
 
 #define GEN_RATIONAL_CONFIG_IS_NULL (0x1u << 1u)
 #define GEN_RATIONAL_CONFIG_BUFFER (0x1u << 2u)
+#define GEN_RATIONAL_CONFIG_STR_BUFFER (0x1u << 3u)
 
 /*************************** Generate *****************************************/
 #define GEN_RATIONAL_PERMUTATION_FAIL (0x1u << 1u)
@@ -54,7 +55,9 @@ extern "C"
         int (*storage_write)(char *key, char *index, char *value);
         const char *(*storage_read)(char *key, char *index);
         bool generate;
-        note_tv_t *tv_buff;
+        note_tv_t *tv_n;
+        char *tv_str_buff;
+        size_t tv_str_buff_len;
     } gen_rational_config_t;
 #ifdef __cplusplus
 }
@@ -72,7 +75,7 @@ extern "C"
      * @brief
      * @param config_arg
      */
-    int gen_rational_config(gen_rational_config_t *config_arg);
+    uint8_t gen_rational_config(gen_rational_config_t *config_arg);
 #ifdef __cplusplus
 }
 #endif
@@ -84,7 +87,7 @@ extern "C"
     /*!
      * @brief
      */
-    int gen_rational_generate();
+    uint8_t gen_rational_generate();
 #ifdef __cplusplus
 }
 #endif

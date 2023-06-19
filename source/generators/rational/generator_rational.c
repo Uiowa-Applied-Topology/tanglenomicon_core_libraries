@@ -5,19 +5,18 @@
  *
  *
  *  @author    Isabel Darcy
- *  @author    Ethan Rooke
  *  @author    Zachary Bryhtan
  *  @author    Joe Starr
  *
  */
 
-#include "generator_rational.h"
-#include "stdbool.h"
-#include "stdint.h"
-
 /******************************************************************************/
 /************************** Includes ******************************************/
 /******************************************************************************/
+
+#include "generator_rational.h"
+#include "stdbool.h"
+#include "stdint.h"
 
 /******************************************************************************/
 /************************** Defines *******************************************/
@@ -27,6 +26,10 @@
 /************************** Local Variables ***********************************/
 /******************************************************************************/
 
+/*!
+ * @brief
+ *
+ */
 static gen_rational_config_t *config = NULL;
 
 /******************************************************************************/
@@ -36,9 +39,42 @@ static gen_rational_config_t *config = NULL;
 /*!
  * @brief
  *
- * @return int
+ * @return uint8_t
  */
-int gen_rational_accel_asc();
+static uint8_t gen_rational_accel_asc();
+
+/*!
+ * @brief
+ *
+ *
+ * @return uint8_t
+ */
+static uint8_t gen_rational_permute();
+
+/*!
+ * @brief
+ *
+ * @param A
+ * @param length
+ * @return uint8_t
+ */
+static uint8_t gen_rational_heaps();
+
+/*!
+ * @brief
+ *
+ * @param i
+ * @param j
+ * @return uint8_t
+ */
+static uint8_t gen_rational_swap_in_tv(uint8_t *left_p, uint8_t *right_p);
+
+/*!
+ * @brief
+ *
+ * @return uint8_t
+ */
+static uint8_t gen_rational_tvrev();
 
 /*!
  * @brief
@@ -46,43 +82,31 @@ int gen_rational_accel_asc();
  *
  * @return
  */
-int gen_rational_permute();
-
-/*!
- * @brief
- *
- * @param A
- * @param length
- * @return int
- */
-int gen_rational_heaps(uint8_t *A[], uint8_t length);
-
-/*!
- * @brief
- *
- * @param ptr1
- * @param ptr2
- * @return int
- */
-int gen_rational_swap_ptr(uint8_t *ptr1, uint8_t *ptr2);
+static uint8_t gen_rational_write();
 
 /******************************************************************************/
-/************************** Public Function Definitions ***********************/
+/************************** Public Function Definitions
+ ***********************/
 /******************************************************************************/
 
 /*
  *  Documentation in header
  */
-int gen_rational_config(gen_rational_config_t *config_arg)
+uint8_t gen_rational_config(gen_rational_config_t *config_arg)
 {
-    int ret_val = GEN_DEFS_CONFIG_FAIL;
+    uint8_t ret_val = GEN_DEFS_CONFIG_FAIL;
     if (config_arg == NULL)
     {
         ret_val |= GEN_RATIONAL_CONFIG_IS_NULL;
     }
-    else if (config_arg->tv_buff == NULL)
+    else if (config_arg->tv_n == NULL)
     {
         ret_val |= GEN_RATIONAL_CONFIG_BUFFER;
+    }
+    else if ((config_arg->tv_str_buff == NULL) ||
+             (config_arg->tv_str_buff_len <= 0))
+    {
+        ret_val |= GEN_RATIONAL_CONFIG_STR_BUFFER;
     }
     else
     {
@@ -95,10 +119,10 @@ int gen_rational_config(gen_rational_config_t *config_arg)
 /*
  *  Documentation in header
  */
-int gen_rational_generate()
+uint8_t gen_rational_generate()
 {
 
-    int ret_val = GEN_DEFS_GENERATION_FAIL;
+    uint8_t ret_val = GEN_DEFS_GENERATION_FAIL;
     if (config == NULL)
     {
         ret_val |= GEN_RATIONAL_CONFIG_IS_NULL;
@@ -116,16 +140,18 @@ int gen_rational_generate()
 /*
  *  Documentation at Declaration
  */
-int gen_rational_accel_asc()
+uint8_t gen_rational_accel_asc()
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
+    uint8_t *a = config->tv_n->twist_vector;
+    size_t *len = &(config->tv_n->tv_length);
+
     uint8_t l = 0;
-    uint8_t *a = config->tv_buff->twist_vector;
-    uint8_t *len = &(config->tv_buff->tv_length);
     uint8_t n = config->crossingNumber;
     uint8_t k = 1;
     uint8_t y = n - 1;
     uint8_t x = 0;
+
     while (k != 0)
     {
         x = a[k - 1] + 1;
@@ -135,28 +161,44 @@ int gen_rational_accel_asc()
             a[k] = x;
             y -= x;
             k += 1;
-            l = k + 1;
-            while (x <= y)
-            {
-                a[k] = x;
-                a[l] = y;
-                if ((k + 2) % 2 == 1)
-                {
-                    *len = k + 2;
-                    gen_rational_permute();
-                }
-                x += 1;
-                y -= 1;
-            }
-            a[k] = x + y;
-            y = x + y - 1;
-            if ((k + 2) % 2 == 1)
+        }
+        l = k + 1;
+        while (x <= y)
+        {
+            a[k] = x;
+            a[l] = y;
+            if (k % 2 == 1)
             {
                 *len = k + 2;
                 gen_rational_permute();
             }
+            x += 1;
+            y -= 1;
+        }
+        a[k] = x + y;
+        y = x + y - 1;
+        if (k % 2 == 1)
+        {
+            *len = k + 2;
+            gen_rational_permute();
         }
     }
+    *len = 1;
+    a[0] = config->crossingNumber;
+    (void)gen_rational_write();
+    return ret_val;
+}
+
+/*
+ *  Documentation at Declaration
+ */
+uint8_t gen_rational_permute()
+{
+    uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
+
+    //@@@TODO: we need to add heuristics here to cut down on compares.
+    (void)gen_rational_heaps();
+    (void)gen_rational_tvrev();
 
     return ret_val;
 }
@@ -164,153 +206,95 @@ int gen_rational_accel_asc()
 /*
  *  Documentation at Declaration
  */
-int gen_rational_permute()
+uint8_t gen_rational_heaps()
 {
-    uint8_t i;
-    uint8_t j;
-    uint8_t length = config->tv_buff->tv_length;
-    uint8_t *p2tv = config->tv_buff->twist_vector;
-    uint8_t num_of_ones = 0;
-    uint8_t *elements_to_permute[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
+    uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
 
-    for (i = 0; i < length; i++)
-    {
-        if (p2tv[i] != 1)
-        {
-            num_of_ones = i;
-            break;
-        }
-    }
+    uint8_t c[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {0};
 
-    j = 0;
+    uint8_t *a = config->tv_n->twist_vector;
+    size_t length = config->tv_n->tv_length;
 
-    //@@@TODO: Invert me
-    for (i = length - 1; i >= num_of_ones - 1; i--)
-    {
-        elements_to_permute[j] = &(p2tv[i]);
-        j++;
-    }
+    size_t i = 0;
 
-    for (i = 0; i < num_of_ones; i++)
-    {
-        elements_to_permute[length - num_of_ones] = &(p2tv[i]);
-        gen_rational_heaps(elements_to_permute, length - num_of_ones + 1);
-    }
-
-    /*uint8_t i;
-    uint8_t *p2tv = config->tv_buff->twist_vector;
-    uint8_t num_ele_to_permute = length;
-    uint8_t *elements_to_permute[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
-
-    for (i = 0u; i < length; i++)
-    {
-        if (p2tv[i] == 1)
-        {
-            num_ele_to_permute--;
-        }
-        else
-        {
-            break;
-        }
-    }
-
-    if (num_ele_to_permute+1 < length)
-    {
-        uint8_t perms = 0;
-        uint8_t j = 0;
-        for (i = length-1; i > num_ele_to_permute; i--)
-        {
-            elements_to_permute[j] = &(p2tv[i]);
-            j++;
-        }
-        while ((num_ele_to_permute + perms) < length)
-        {
-            gen_rational_heaps(elements_to_permute, num_ele_to_permute);
-            perms++;
-            if (perms % 2 == 0)
-            {
-                elements_to_permute[0] = &(p2tv[num_ele_to_permute - perms]);
-            }
-            else
-            {
-                elements_to_permute[num_ele_to_permute] =
-                    &(p2tv[num_ele_to_permute + perms]);
-            }
-        }
-    }
-    else
-    {
-
-        for (i = 0u; i < length; i++)
-        {
-            elements_to_permute[num_ele_to_permute] = &(p2tv[i]);
-        }
-        gen_rational_heaps(elements_to_permute, length);
-    }*/
-    return 0;
-}
-
-/*
- *  Documentation at Declaration
- */
-int gen_rational_heaps(uint8_t *A[], uint8_t length)
-{
-
-    uint8_t i;
-    uint8_t elements_to_permute;
-    uint8_t c[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {[0] = 0};
-    char str[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2];
-
-    // i acts similarly to a stack pointer
-    i = 1;
     while (i < length)
     {
-
+        if (i == 0)
+        {
+            (void)gen_rational_write();
+        }
         if (c[i] < i)
         {
-
             if (i % 2 == 0)
             {
-                gen_rational_swap_ptr(A[0], A[i]);
+                (void)gen_rational_swap_in_tv(a, a + i);
             }
             else
             {
-                gen_rational_swap_ptr(A[c[i]], A[i]);
+                (void)gen_rational_swap_in_tv(a + i, a + c[i]);
             }
-
-            if (A[0] != 1)
-            {
-                note_tv_decode(*(config->tv_buff), str);
-                config->storage_write("key", str, str);
-            }
-            // Swap has occurred ending the for-loop. Simulate the increment
-            // of the for-loop counter
             c[i]++;
-            // Simulate recursive call reaching the base case by bringing
-            // the pointer to the base case analog in the array
-            i = 1;
+            i = 0;
         }
         else
         {
-            // Calling generate(i+1, A) has ended as the for-loop
-            // terminated. Reset the state and simulate popping the stack by
-            // incrementing the pointer.
             c[i] = 0;
             i++;
         }
     }
-    gen_rational_swap_ptr(&A[0], &A[length]);
-
-    return 0;
+    return ret_val;
 }
 
 /*
  *  Documentation at Declaration
  */
-int gen_rational_swap_ptr(uint8_t *ptr1, uint8_t *ptr2)
+uint8_t gen_rational_swap_in_tv(uint8_t *left_p, uint8_t *right_p)
 {
-    uint8_t temp = *ptr1;
-    *ptr1 = *ptr2;
-    *ptr2 = temp;
+    uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
+    /*Swap the int at left_p with the one at right_p*/
+    uint8_t placeholder;
+    placeholder = *left_p;
+    *left_p = *right_p;
+    *right_p = placeholder;
+    return ret_val;
 }
 
+/*
+ *  Documentation at declaration
+ */
+uint8_t gen_rational_write()
+{
+    uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
+    note_tv_decode(*(config->tv_n), config->tv_str_buff);
+    config->storage_write("key", config->tv_str_buff, config->tv_str_buff);
+    return ret_val;
+}
+
+/*
+ *  Documentation at declaration
+ */
+uint8_t gen_rational_tvrev()
+{
+    uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
+
+    uint8_t *tv = config->tv_n->twist_vector;
+    uint8_t length = config->tv_n->tv_length;
+
+    uint8_t *left_p, *right_p;
+
+    left_p = tv;
+    right_p = tv + length - 1;
+
+    /* While the address for the right_p is bigger then the address on the
+     * left_p.*/
+    while (right_p > left_p)
+    {
+
+        /*Move the left_p right by one*/
+        left_p++;
+        /*Move the right_p left by one*/
+        right_p--;
+    }
+
+    return ret_val;
+}

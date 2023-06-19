@@ -16,15 +16,15 @@
 #define STORE_WRITE_FAIL (0x1u)
 #define STORE_WRITE_SUCCESS (0x0u)
 
-char key_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u]
-             [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
-char index_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u]
-               [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
-char value_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u]
-               [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
-uint8_t key_idx = 0;
-uint8_t index_idx = 0;
-uint8_t value_idx = 0;
+char key_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u]
+             [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
+char index_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u]
+               [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
+char value_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u]
+               [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
+size_t key_idx = 0;
+size_t index_idx = 0;
+size_t value_idx = 0;
 
 int stub_write_success(char *key, char *index, char *value)
 {
@@ -54,12 +54,35 @@ const char *stub_read(char *key, char *index) { return value_buff[value_idx]; }
 /*******************************Test Data**************************************/
 /******************************************************************************/
 note_tv_t tv;
-gen_rational_config_t tc_write_success = {8, &stub_write_success, &stub_read,
-                                          false, &tv};
-gen_rational_config_t tc_write_fail = {8, &stub_write_fail, &stub_read, false,
-                                       &tv};
-gen_rational_config_t tc_null_buff = {8, &stub_write_fail, &stub_read, false,
-                                      NULL};
+char tv_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
+gen_rational_config_t tc_write_success = {5,
+                                          &stub_write_success,
+                                          &stub_read,
+                                          false,
+                                          &tv,
+                                          tv_str,
+                                          UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u};
+gen_rational_config_t tc_write_fail = {5,
+                                       &stub_write_fail,
+                                       &stub_read,
+                                       false,
+                                       &tv,
+                                       tv_str,
+                                       UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u};
+gen_rational_config_t tc_null_buff = {5,
+                                      &stub_write_fail,
+                                      &stub_read,
+                                      false,
+                                      NULL,
+                                      tv_str,
+                                      UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u};
+gen_rational_config_t tc_null_str_buff = {5,
+                                          &stub_write_fail,
+                                          &stub_read,
+                                          false,
+                                          &tv,
+                                          NULL,
+                                          UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u};
 
 /******************************************************************************/
 /*******************************Test prep**************************************/
@@ -87,6 +110,9 @@ void test_config(void)
     ret_val = gen_rational_config(&tc_null_buff);
     TEST_ASSERT_EQUAL_UINT8(ret_val,
                             GEN_RATIONAL_CONFIG_BUFFER | GEN_DEFS_CONFIG_FAIL);
+    ret_val = gen_rational_config(&tc_null_str_buff);
+    TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_RATIONAL_CONFIG_STR_BUFFER |
+                                         GEN_DEFS_CONFIG_FAIL);
 }
 /*!
  * @brief
