@@ -125,7 +125,7 @@ We will use HTML5/CSS3 with the tailwind framework along side jquery for the fro
 We will use Python with the Flask framework for the UIowa deployment. 
 
 #### Database System
-The design doesn't couple a specific DBS/storage solution to the implementation. For the Iowa deployment of the tanglenomicon we will be using SQLite3 as the DBS for the UIowa deployment. 
+The design doesn't couple a specific DBS/storage solution to the implementation. For the Iowa deployment of the tanglenomicon we will be using MongoDB as the DBS for the UIowa deployment. 
 
 ## Block Diagram
   
