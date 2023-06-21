@@ -5,7 +5,6 @@
  *
  *
  *  @author    Isabel Darcy
- *  @author    Ethan Rooke
  *  @author    Zachary Bryhtan
  *  @author    Joe Starr
  *
@@ -61,8 +60,11 @@ extern "C"
 {
 #endif
     /*!
-     * @brief
-     * @param str
+     * @brief Function to take a string and encode it as a note_tv_t
+     *
+     * @param str Input string to encode as note_tv_t
+     * @param twistv the note_tv_t pointer to store the encoded string into.
+     * @return uint8_t The return code for the encoding operation.
      */
     uint8_t note_tv_encode(char *str, note_tv_t *twistv);
 #ifdef __cplusplus
@@ -74,8 +76,11 @@ extern "C"
 {
 #endif
     /*!
-     * @brief
-     * @param item
+      * @brief Function to take a note_tv_t and decode it as a string
+     *
+     * @param twistv the note_tv_t pointer to decode.
+     * @param str Output string for decoded note_tv_t
+     * @return uint8_t The return code for the decoding operation.
      */
     uint8_t note_tv_decode(note_tv_t twistv, char *str);
 #ifdef __cplusplus

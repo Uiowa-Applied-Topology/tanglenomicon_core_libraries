@@ -5,7 +5,6 @@
  *
  *
  *  @author    Isabel Darcy
- *  @author    Ethan Rooke
  *  @author    Zachary Bryhtan
  *  @author    Joe Starr
  *
@@ -19,6 +18,10 @@
 /************************** Defines *******************************************/
 /******************************************************************************/
 
+/*!
+ * @brief The number base used for str->int functions.
+ *
+ */
 #define NOTE_TV_INT_BASE (10u)
 
 /******************************************************************************/
@@ -30,20 +33,10 @@
 /******************************************************************************/
 
 /*!
- * @brief
+ * @brief A function to reverse the order of the twist vector.
  *
- *
- * @param str
- * @return
- */
-char *note_tv_strrev(char *str);
-
-/*!
- * @brief
- *
- *
- * @param tv
- * @return
+ * @param tv Twist vector to work on.
+ * @return note_tv_t a pointer to the reversed object, needed for nesting.
  */
 note_tv_t *note_tv_tvrev(note_tv_t *tv);
 
@@ -112,40 +105,6 @@ uint8_t note_tv_decode(note_tv_t twistv, char *str)
 /************************** Private Function Definitions **********************/
 /******************************************************************************/
 
-/*
- *  Documentation at declaration
- */
-char *note_tv_strrev(char *str)
-{
-    char *left_p, *right_p;
-
-    /*Error check if string are not empty or void */
-    if (!str || !*str)
-    {
-        return str;
-    }
-
-    left_p = str;
-    right_p = str + strlen(str) - 1;
-
-    /* While the address for the right_p is bigger then the address on the
-     * left_p.*/
-    while (right_p > left_p)
-    {
-        /*Swap the char at left_p with the one at right_p*/
-        char placeholder;
-        placeholder = *left_p;
-        *left_p = *right_p;
-        *right_p = placeholder;
-
-        /*Move the left_p right by one*/
-        left_p++;
-        /*Move the right_p left by one*/
-        right_p--;
-    }
-
-    return str;
-}
 /*
  *  Documentation at declaration
  */

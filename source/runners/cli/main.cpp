@@ -11,11 +11,12 @@
  *
  */
 
-#include <tang_defs.h>
 #include <generator_rational.h>
 #include <notation_tv.h>
 #include <storage.hpp>
 #include <storage_JSON.hpp>
+#include <tang_defs.h>
+
 
 #include <cxxopts.hpp>
 #include <iostream>
@@ -128,6 +129,7 @@ int main(int argc, char **argv)
             result["cNum"].as<uint8_t>(), /*                                  */
             &runner_main_c::storage_write, /*                                 */
             &runner_main_c::storage_read, /*                                  */
+            &tv_n, /*                                                         */
             tv_str, /*                                                        */
             UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u};
 

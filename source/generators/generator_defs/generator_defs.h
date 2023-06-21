@@ -33,6 +33,7 @@
 /*! @brief Success is a 0. That lets us use hight bits for generator specific
  * codes */
 #define GEN_DEFS_CONFIG_SUCCESS (0u)
+
 /*! @brief We use bit 0 to indicate a fail. Specific failures encoded in higher
  * bits. */
 #define GEN_DEFS_CONFIG_FAIL (1u)
@@ -42,6 +43,7 @@
 /*! @brief Success is a 0. That lets us use hight bits for generator specific
  * codes */
 #define GEN_DEFS_GENERATION_SUCCESS (0u)
+
 /*! @brief We use bit 0 to indicate a fail. Specific failures encoded in higher
  * bits. */
 #define GEN_DEFS_GENERATION_FAIL (1u)
