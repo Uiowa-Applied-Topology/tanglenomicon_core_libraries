@@ -11,7 +11,9 @@
  *
  */
 
+#include <tang_defs.h>
 #include <generator_rational.h>
+#include <notation_tv.h>
 #include <storage.hpp>
 #include <storage_JSON.hpp>
 
@@ -120,14 +122,27 @@ int main(int argc, char **argv)
     bool doRational = result["rational"].as<bool>();
     if (doRational == true)
     {
+        note_tv_t tv_n;
+        char tv_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
         gen_rational_config_t rational_config = {
-            10, /*                                                            */
+            result["cNum"].as<uint8_t>(), /*                                  */
             &runner_main_c::storage_write, /*                                 */
             &runner_main_c::storage_read, /*                                  */
-            true};
-        if (gen_rational_config(&rational_config) == GEN_DEFS_CONFIG_FAIL)
+            tv_str, /*                                                        */
+            UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u};
+
+        uint8_t result = gen_rational_config(&rational_config);
+        if ((result & GEN_DEFS_CONFIG_FAIL) == GEN_DEFS_CONFIG_FAIL)
         {
             exit(1);
+        }
+        else
+        {
+            result = gen_rational_generate();
+            if ((result & GEN_DEFS_GENERATION_FAIL) == GEN_DEFS_GENERATION_FAIL)
+            {
+                exit(1);
+            }
         }
     }
 

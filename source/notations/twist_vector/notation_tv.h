@@ -64,7 +64,7 @@ extern "C"
      * @brief
      * @param str
      */
-    int note_tv_encode(char *str, note_tv_t *twistv);
+    uint8_t note_tv_encode(char *str, note_tv_t *twistv);
 #ifdef __cplusplus
 }
 #endif
@@ -77,7 +77,7 @@ extern "C"
      * @brief
      * @param item
      */
-    int note_tv_decode(note_tv_t twistv, char *str);
+    uint8_t note_tv_decode(note_tv_t twistv, char *str);
 #ifdef __cplusplus
 }
 #endif

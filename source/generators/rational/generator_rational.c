@@ -1,7 +1,7 @@
 /*!
  *  @file generator_rational.c
  *
- *  @brief  A pattern for generator modules
+ *  @brief  A module for generating rational tangles.
  *
  *
  *  @author    Isabel Darcy
@@ -22,110 +22,121 @@
 /************************** Defines *******************************************/
 /******************************************************************************/
 
+/*!
+ * @brief Number of permutation functions used by the module.
+ *
+ */
+#define GEN_RATIONAL_PERM_FUNS_LEN (2u)
+
 /******************************************************************************/
 /************************** Typedefs ******************************************/
 /******************************************************************************/
 
 /*!
- * @brief
+ * @brief The type for permutation functions used by the module.
  *
  */
-typedef bool (*gen_rational_perm_t)(gen_rational_config_t*);
-
+typedef bool (*gen_rational_perm_t)(gen_rational_config_t *);
 
 /******************************************************************************/
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
 
 /*!
- * @brief
+ * @brief An impliementation of an integer partitioning algorithm info at:
+ * Kelleher, J., & O'Sullivan, B. (2009). Generating All Partitions: A
+ * Comparison Of Two Encodings (Version 2). arXiv.
+ * https://doi.org/10.48550/ARXIV.0909.2331
  *
- * @param cfg
- * @return uint8_t
+ * @param cfg Configuration to work on.
+ * @return uint8_t Success/Fail flag.
  */
-static uint8_t gen_rational_accel_asc(gen_rational_config_t* cfg);
+static inline uint8_t gen_rational_accel_asc(gen_rational_config_t *cfg);
 
 /*!
- * @brief
+ * @brief This function handles the permuting of a twist vector found in cfg.
+ * The function calls all configured permutation algorithms.
  *
- * @param cfg
- * @return uint8_t
+ * @param cfg Configuration to work on.
+ * @return uint8_t Success/Fail flag.
  */
-static uint8_t gen_rational_permute(gen_rational_config_t* cfg);
+static inline uint8_t gen_rational_permute(gen_rational_config_t *cfg);
 
 /*!
- * @brief
+ * @brief An impliementation of an permutation algorithm info at: Heap,
+ * B. R. (1963). Permutations by Interchanges. In The Computer Journal (Vol. 6,
+ * Issue 3, pp. 293-298). Oxford University Press (OUP).
+ * https://doi.org/10.1093/comjnl/6.3.293
  *
- * @param cfg
- * @return uint8_t
+ * @param cfg Configuration to work on.
+ * @return uint8_t Success/Fail flag.
  */
-static uint8_t gen_rational_heaps(gen_rational_config_t* cfg);
+static inline uint8_t gen_rational_heaps(gen_rational_config_t *cfg);
 
 /*!
- * @brief
+ * @brief A function to swap the contents of two pointers.
  *
- * @param left_p
- * @param right_p
- * @return uint8_t
+ * @param left_p The left side pointer.
+ * @param right_p The right side pointer.
+ * @return uint8_t Success/Fail flag.
  */
-static uint8_t gen_rational_swap_in_tv(uint8_t *left_p, uint8_t *right_p);
+static inline uint8_t gen_rational_swap_in_tv(uint8_t *left_p,
+                                              uint8_t *right_p);
 
 /*!
- * @brief
+ * @brief A function to reverse the order of the twist vector found in cfg.
  *
- * @param cfg
- * @return uint8_t
+ * @param cfg Configuration to work on.
+ * @return uint8_t Success/Fail flag.
  */
-static uint8_t gen_rational_tvrev(gen_rational_config_t* cfg);
+static inline uint8_t gen_rational_tvrev(gen_rational_config_t *cfg);
 
 /*!
- * @brief
+ * @brief A function to write the twist vector in cfg to the storage device in
+ * cfg.
  *
- * @param cfg
- * @return uint8_t
+ * @param cfg Configuration to work on.
+ * @return uint8_t Success/Fail flag.
  */
-static uint8_t gen_rational_write(gen_rational_config_t* cfg);
+static inline uint8_t gen_rational_write(gen_rational_config_t *cfg);
 
 /*!
- * @brief
+ * @brief A permutation function that checks if the twist vector in cfg is only
+ * one value. This hapens for the largest odd partition, which is only "1"s.
  *
- * @param cfg
+ * @param cfg Configuration to work on.
  * @return true
  * @return false
  */
-static bool gen_rational_perm_all_matching(gen_rational_config_t* cfg);
+static bool gen_rational_perm_all_matching(gen_rational_config_t *cfg);
 
 /*!
- * @brief
+ * @brief The default permutation function. Simply finds all permutations for
+ * the twist vector found in cfg.
  *
- * @param cfg
+ * @param cfg Configuration to work on.
  * @return true
  * @return false
  */
-static bool gen_rational_perm_default(gen_rational_config_t* cfg);
+static bool gen_rational_perm_default(gen_rational_config_t *cfg);
 
 /******************************************************************************/
 /************************** Local Variables ***********************************/
 /******************************************************************************/
 
 /*!
- * @brief
+ * @brief The local configuration of the rational gen module.
  *
  */
 static gen_rational_config_t *gen_rational_localcfg = NULL;
 
 /*!
- * @brief
+ * @brief The list of permuation function pointers.
  *
  */
 static gen_rational_perm_t gen_rational_perm_funs[] = {
-    &gen_rational_perm_all_matching, &gen_rational_perm_default};
-
-/*!
- * @brief
- *
- */
-static size_t gen_rational_perm_funs_len = 2u;
+    &gen_rational_perm_all_matching, /*****************************************/
+    &gen_rational_perm_default};
 
 /******************************************************************************/
 /************************** Public Function Definitions ***********************/
@@ -184,7 +195,7 @@ uint8_t gen_rational_generate()
 /*
  *  Documentation at Declaration
  */
-uint8_t gen_rational_accel_asc(gen_rational_config_t* cfg)
+uint8_t gen_rational_accel_asc(gen_rational_config_t *cfg)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
     uint8_t *a = cfg->tv_n->twist_vector;
@@ -236,15 +247,18 @@ uint8_t gen_rational_accel_asc(gen_rational_config_t* cfg)
 /*
  *  Documentation at Declaration
  */
-uint8_t gen_rational_permute(gen_rational_config_t* cfg)
+uint8_t gen_rational_permute(gen_rational_config_t *cfg)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
 
     //@@@TODO: we need to add heuristics here to cut down on compares.
     size_t i = 0;
-    while (((gen_rational_perm_funs[i])(cfg)) == false)
+    for (i = 0; i < GEN_RATIONAL_PERM_FUNS_LEN; i++)
     {
-        i++;
+        if (gen_rational_perm_funs[i](cfg) == true)
+        {
+            break;
+        }
     }
 
     return ret_val;
@@ -253,7 +267,7 @@ uint8_t gen_rational_permute(gen_rational_config_t* cfg)
 /*
  *  Documentation at Declaration
  */
-uint8_t gen_rational_heaps(gen_rational_config_t* cfg)
+uint8_t gen_rational_heaps(gen_rational_config_t *cfg)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
 
@@ -309,7 +323,7 @@ uint8_t gen_rational_swap_in_tv(uint8_t *left_p, uint8_t *right_p)
 /*
  *  Documentation at declaration
  */
-uint8_t gen_rational_write(gen_rational_config_t* cfg)
+uint8_t gen_rational_write(gen_rational_config_t *cfg)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
     note_tv_decode(*(cfg->tv_n), cfg->tv_str_buff);
@@ -320,7 +334,7 @@ uint8_t gen_rational_write(gen_rational_config_t* cfg)
 /*
  *  Documentation at declaration
  */
-uint8_t gen_rational_tvrev(gen_rational_config_t* cfg)
+uint8_t gen_rational_tvrev(gen_rational_config_t *cfg)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
 
@@ -346,8 +360,10 @@ uint8_t gen_rational_tvrev(gen_rational_config_t* cfg)
     return ret_val;
 }
 
-
-bool gen_rational_perm_all_matching(gen_rational_config_t* cfg)
+/*
+ *  Documentation at declaration
+ */
+bool gen_rational_perm_all_matching(gen_rational_config_t *cfg)
 {
     bool ret_val = true;
 
@@ -355,16 +371,16 @@ bool gen_rational_perm_all_matching(gen_rational_config_t* cfg)
     uint8_t length = cfg->tv_n->tv_length;
 
     uint8_t i = 0;
-    for (i = length-1;i>0;i--)
+    for (i = length - 1; i > 0; i--)
     {
-        if(tv[i-1]!=tv[i])
+        if (tv[i - 1] != tv[i])
         {
             ret_val = false;
             break;
         }
     }
 
-    if(ret_val==true)
+    if (ret_val == true)
     {
         (void)gen_rational_write(cfg);
     }
@@ -372,8 +388,10 @@ bool gen_rational_perm_all_matching(gen_rational_config_t* cfg)
     return ret_val;
 }
 
-
-bool gen_rational_perm_default(gen_rational_config_t* cfg)
+/*
+ *  Documentation at declaration
+ */
+bool gen_rational_perm_default(gen_rational_config_t *cfg)
 {
     (void)gen_rational_heaps(cfg);
     (void)gen_rational_tvrev(cfg);
