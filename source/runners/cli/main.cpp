@@ -17,7 +17,6 @@
 #include <storage_JSON.hpp>
 #include <tang_defs.h>
 
-
 #include <cxxopts.hpp>
 #include <iostream>
 #include <string>

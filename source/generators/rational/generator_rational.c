@@ -17,6 +17,8 @@
 #include "generator_rational.h"
 #include "stdbool.h"
 #include "stdint.h"
+#include "stdio.h"
+#include "stdlib.h"
 
 /******************************************************************************/
 /************************** Defines *******************************************/
@@ -82,14 +84,6 @@ static inline uint8_t gen_rational_heaps(gen_rational_config_t *cfg);
  */
 static inline uint8_t gen_rational_swap_in_tv(uint8_t *left_p,
                                               uint8_t *right_p);
-
-/*!
- * @brief A function to reverse the order of the twist vector found in cfg.
- *
- * @param cfg Configuration to work on.
- * @return uint8_t Success/Fail flag.
- */
-static inline uint8_t gen_rational_tvrev(gen_rational_config_t *cfg);
 
 /*!
  * @brief A function to write the twist vector in cfg to the storage device in
@@ -204,10 +198,11 @@ uint8_t gen_rational_accel_asc(gen_rational_config_t *cfg)
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
 
     /* Set function inputs to match the cfg data*/
-    uint8_t *a = cfg->tv_n->twist_vector;
+    uint8_t *tv = cfg->tv_n->twist_vector;
     size_t *len = &(cfg->tv_n->tv_length);
     uint8_t n = cfg->crossingNumber;
 
+    uint8_t a[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {0};
     uint8_t l = 0;
     uint8_t k = 1;
     uint8_t y = n - 1;
@@ -229,11 +224,17 @@ uint8_t gen_rational_accel_asc(gen_rational_config_t *cfg)
             a[k] = x;
             a[l] = y;
 
-            /* Check if the current partition is odd then permute*/
+            /* Check if the current partition is odd then permute. */
             if (k % 2 == 1)
             {
+                size_t i = 0;
+                /* Initialize the tv in cfg with the partition.*/
                 *len = k + 2;
-                gen_rational_permute(cfg);
+                for (i = 0; i < k + 2; i++)
+                {
+                    tv[i] = a[i];
+                }
+                (void)gen_rational_permute(cfg);
             }
 
             x += 1;
@@ -242,16 +243,19 @@ uint8_t gen_rational_accel_asc(gen_rational_config_t *cfg)
         a[k] = x + y;
         y = x + y - 1;
 
-        /* Check if the current partition is odd then permute*/
-        if (k % 2 == 1)
+        /* Check if the current partition is odd then permute. */
+        if (k % 2 == 0)
         {
-            *len = k + 2;
-            gen_rational_permute(cfg);
+            size_t i = 0;
+            /* Initialize the tv in cfg with the partition.*/
+            *len = k + 1;
+            for (i = 0; i < k + 1; i++)
+            {
+                tv[i] = a[i];
+            }
+            (void)gen_rational_permute(cfg);
         }
     }
-    *len = 1;
-    a[0] = cfg->crossingNumber;
-    (void)gen_rational_write(cfg);
     return ret_val;
 }
 
@@ -264,7 +268,9 @@ uint8_t gen_rational_permute(gen_rational_config_t *cfg)
 
     /*@@@TODO: we need to add heuristics here to cut down on compares.*/
     size_t i = 0;
-    /* Iterate over the function pointers for heuristic permutation functions.*/
+    /* Iterate over the function pointers for heuristic permutation functions.
+     * This emulates the functionality of a switch case statement, but with
+     * arbitrary functionality in each case. */
     for (i = 0; i < GEN_RATIONAL_PERM_FUNS_LEN; i++)
     {
         if (gen_rational_perm_funs[i](cfg) == true)
@@ -342,44 +348,17 @@ uint8_t gen_rational_swap_in_tv(uint8_t *left_p, uint8_t *right_p)
 uint8_t gen_rational_write(gen_rational_config_t *cfg)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
+    char local_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
 
-    /* Decode to get the string representation for the tv. */
     note_tv_decode(*(cfg->tv_n), cfg->tv_str_buff);
 
     /* Write the data to the storage device. */
     /*@@@TODO: we need to add the correct document values.*/
-    cfg->storage_write(GEN_RATIONAL_STORAGE_UKEY, cfg->tv_str_buff,
-                       cfg->tv_str_buff);
+    cfg->storage_write(cfg->tv_str_buff, "twist_vector", cfg->tv_str_buff);
 
-    return ret_val;
-}
-
-/*
- *  Documentation at declaration
- */
-uint8_t gen_rational_tvrev(gen_rational_config_t *cfg)
-{
-    uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
-
-    /* Set local redirects for cfg data. */
-    uint8_t *tv = cfg->tv_n->twist_vector;
-    uint8_t length = cfg->tv_n->tv_length;
-
-    uint8_t *left_p, *right_p;
-
-    left_p = tv;
-    right_p = tv + length - 1;
-
-    /* While the address for the right_p is bigger then the address on the
-     * left_p. */
-    while (right_p > left_p)
-    {
-
-        /*Move the left_p right by one*/
-        left_p++;
-        /*Move the right_p left by one*/
-        right_p--;
-    }
+    /* Decode to get the string representation for the tv and store.*/
+    sprintf(local_str, "%u", cfg->crossingNumber);
+    cfg->storage_write(cfg->tv_str_buff, "crossing_num", local_str);
 
     return ret_val;
 }
@@ -423,8 +402,6 @@ bool gen_rational_perm_default(gen_rational_config_t *cfg)
 {
     /* Take all permutations of the tv. */
     (void)gen_rational_heaps(cfg);
-    /* Heaps reverses the ary we need to undo that for the parition tooling. */
-    (void)gen_rational_tvrev(cfg);
 
     /* Default case return true. */
     return true;

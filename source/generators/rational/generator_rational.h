@@ -27,7 +27,8 @@
 /*************************** Defines ******************************************/
 /******************************************************************************/
 
-/*************************** Write Keys *******************************************/
+/*************************** Write Keys
+ * *******************************************/
 
 /*!
  * @brief The key for
@@ -110,7 +111,8 @@ extern "C"
 {
 #endif
     /*!
-     * @brief The public generation function. When called the module will work against the current config.
+     * @brief The public generation function. When called the module will work
+     * against the current config.
      *
      * @return uint8_t Generation status info.
      */

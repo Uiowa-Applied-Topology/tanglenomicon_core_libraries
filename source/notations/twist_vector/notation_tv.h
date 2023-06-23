@@ -76,7 +76,7 @@ extern "C"
 {
 #endif
     /*!
-      * @brief Function to take a note_tv_t and decode it as a string
+     * @brief Function to take a note_tv_t and decode it as a string
      *
      * @param twistv the note_tv_t pointer to decode.
      * @param str Output string for decoded note_tv_t
