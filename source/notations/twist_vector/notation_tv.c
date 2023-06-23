@@ -54,14 +54,22 @@ uint8_t note_tv_encode(char *str, note_tv_t *twistv)
     uint8_t retval = NOTE_DEFS_ENCODE_SUCCESS;
     uint8_t tv_idx = 0u;
     char *str_end = str + strlen(str);
+
+    /* Iterate over string. */
     while (str < str_end)
     {
+        /* strtoul splits str around ' ' outputing an usigned long. */
         twistv->twist_vector[tv_idx] = strtoul(str, &str, NOTE_TV_INT_BASE);
         tv_idx++;
     }
 
     twistv->tv_length = tv_idx;
+
+    /* The tv string stores values in the opposite direction as the ary. This
+     * could be done simultaneously with two counters this is more maintainable.
+     */
     note_tv_tvrev(twistv);
+
     return retval;
 }
 
@@ -74,30 +82,28 @@ uint8_t note_tv_decode(note_tv_t twistv, char *str)
      * added*/
     uint8_t retval = NOTE_DEFS_DECODE_SUCCESS;
     char local_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
-    uint8_t first_nonzero = 0;
-    uint8_t i = 0;
     char *str_p = str;
-    note_tv_tvrev(&twistv);
 
-    for (first_nonzero = 0; first_nonzero < twistv.tv_length; first_nonzero++)
+    /* Iterate over tv backwards. */
+    size_t i = twistv.tv_length;
+    while (i > 0)
     {
-        if (twistv.twist_vector[first_nonzero] != 0u)
-        {
-            break;
-        }
-    }
-
-    for (i = first_nonzero; i < twistv.tv_length; i++)
-    {
+        /* Length is off by one so decrementing first aligns the counter. */
+        i--;
+        /* String to int. Store in local_str. then copy to output string.*/
         sprintf(local_str, "%u", twistv.twist_vector[i]);
         strcpy(str_p, local_str);
-        if (i < (twistv.tv_length - 1))
+
+        /* Move the output string pointer.*/
+        str_p += strlen(local_str);
+        /* Insert spaces where needed. */
+        if (i >= 1)
         {
             strcat(str_p, " ");
             str_p += 1;
         }
-        str_p += strlen(local_str);
     }
+
     return retval;
 }
 

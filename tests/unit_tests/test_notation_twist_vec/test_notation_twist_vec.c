@@ -58,7 +58,7 @@ void test_decode(void)
         [0] = STR_TERMINAL_CHAR};
     uint8_t retval = note_tv_decode(tv_t, test_str);
     TEST_ASSERT_EQUAL_UINT8(retval, NOTE_DEFS_DECODE_SUCCESS);
-    TEST_ASSERT_EQUAL_STRING(test_str, tv_string);
+    TEST_ASSERT_EQUAL_STRING(tv_string, test_str);
 }
 
 /******************************************************************************/

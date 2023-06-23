@@ -164,7 +164,7 @@ uint8_t gen_rational_config(gen_rational_config_t *config_arg)
     }
     else
     {
-        /* Set the config.*/
+        /* Set the config. */
         gen_rational_localcfg = config_arg;
 
         ret_val = GEN_DEFS_CONFIG_SUCCESS;
@@ -187,6 +187,7 @@ uint8_t gen_rational_generate()
     {
         /* Find all partitions for the local config. */
         (void)gen_rational_accel_asc(gen_rational_localcfg);
+        ret_val = GEN_DEFS_GENERATION_SUCCESS;
     }
     return ret_val;
 }
@@ -263,10 +264,12 @@ uint8_t gen_rational_permute(gen_rational_config_t *cfg)
 
     /*@@@TODO: we need to add heuristics here to cut down on compares.*/
     size_t i = 0;
+    /* Iterate over the function pointers for heuristic permutation functions.*/
     for (i = 0; i < GEN_RATIONAL_PERM_FUNS_LEN; i++)
     {
         if (gen_rational_perm_funs[i](cfg) == true)
         {
+            /* Break loop if we 'used' a heuristic. */
             break;
         }
     }
@@ -281,10 +284,11 @@ uint8_t gen_rational_heaps(gen_rational_config_t *cfg)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
 
-    uint8_t c[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {0};
-
+    /* Set function inputs to match the cfg data*/
     uint8_t *a = cfg->tv_n->twist_vector;
     size_t length = cfg->tv_n->tv_length;
+
+    uint8_t c[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {0};
 
     size_t i = 0;
 
@@ -322,11 +326,13 @@ uint8_t gen_rational_heaps(gen_rational_config_t *cfg)
 uint8_t gen_rational_swap_in_tv(uint8_t *left_p, uint8_t *right_p)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
-    /*Swap the int at left_p with the one at right_p*/
     uint8_t placeholder;
+
+    /*Swap the int at left_p with the one at right_p*/
     placeholder = *left_p;
     *left_p = *right_p;
     *right_p = placeholder;
+
     return ret_val;
 }
 
@@ -336,8 +342,15 @@ uint8_t gen_rational_swap_in_tv(uint8_t *left_p, uint8_t *right_p)
 uint8_t gen_rational_write(gen_rational_config_t *cfg)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
+
+    /* Decode to get the string representation for the tv. */
     note_tv_decode(*(cfg->tv_n), cfg->tv_str_buff);
-    cfg->storage_write("key", cfg->tv_str_buff, cfg->tv_str_buff);
+
+    /* Write the data to the storage device. */
+    /*@@@TODO: we need to add the correct document values.*/
+    cfg->storage_write(GEN_RATIONAL_STORAGE_UKEY, cfg->tv_str_buff,
+                       cfg->tv_str_buff);
+
     return ret_val;
 }
 
@@ -348,6 +361,7 @@ uint8_t gen_rational_tvrev(gen_rational_config_t *cfg)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
 
+    /* Set local redirects for cfg data. */
     uint8_t *tv = cfg->tv_n->twist_vector;
     uint8_t length = cfg->tv_n->tv_length;
 
@@ -357,7 +371,7 @@ uint8_t gen_rational_tvrev(gen_rational_config_t *cfg)
     right_p = tv + length - 1;
 
     /* While the address for the right_p is bigger then the address on the
-     * left_p.*/
+     * left_p. */
     while (right_p > left_p)
     {
 
@@ -377,10 +391,13 @@ bool gen_rational_perm_all_matching(gen_rational_config_t *cfg)
 {
     bool ret_val = true;
 
+    /* Set local redirects for cfg data. */
     uint8_t *tv = cfg->tv_n->twist_vector;
     uint8_t length = cfg->tv_n->tv_length;
 
     uint8_t i = 0;
+    /* Iterate over tv backwards. We go backwards since the high values are the
+     * non-1 values. While iterating check if successave values match. */
     for (i = length - 1; i > 0; i--)
     {
         if (tv[i - 1] != tv[i])
@@ -390,6 +407,7 @@ bool gen_rational_perm_all_matching(gen_rational_config_t *cfg)
         }
     }
 
+    /* If all idx match we can write and move on to the next parition. */
     if (ret_val == true)
     {
         (void)gen_rational_write(cfg);
@@ -403,7 +421,11 @@ bool gen_rational_perm_all_matching(gen_rational_config_t *cfg)
  */
 bool gen_rational_perm_default(gen_rational_config_t *cfg)
 {
+    /* Take all permutations of the tv. */
     (void)gen_rational_heaps(cfg);
+    /* Heaps reverses the ary we need to undo that for the parition tooling. */
     (void)gen_rational_tvrev(cfg);
+
+    /* Default case return true. */
     return true;
 }
