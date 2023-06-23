@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef GENERATOR_RATIONAL
-#define GENERATOR_RATIONAL
+#ifndef GENERATOR_RATIONAL_H
+#define GENERATOR_RATIONAL_H
 
 /******************************************************************************/
 /*************************** Includes *****************************************/
@@ -109,4 +109,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif
-#endif /* end GENERATOR_RATIONAL */
+#endif /* end GENERATOR_RATIONAL_H */

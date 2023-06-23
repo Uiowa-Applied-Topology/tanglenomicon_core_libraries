@@ -5,13 +5,12 @@
  *
  *
  *  @author    Isabel Darcy
- *  @author    Ethan Rooke
  *  @author    Zachary Bryhtan
  *  @author    Joe Starr
  *
  */
 
-#include "storage_JSON.hpp"
+#include <storage_JSON.hpp>
 #include <fstream>
 #include <iostream>
 

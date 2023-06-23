@@ -5,14 +5,13 @@
  *
  *
  *  @author    Isabel Darcy
- *  @author    Ethan Rooke
  *  @author    Zachary Bryhtan
  *  @author    Joe Starr
  *
  */
 
-#ifndef STORAGE_INTERFACE
-#define STORAGE_INTERFACE
+#ifndef STORAGE_INTERFACE_H
+#define STORAGE_INTERFACE_H
 
 /******************************************************************************/
 /*******************************Includes***************************************/
@@ -92,4 +91,4 @@ class storage_interface_c
     static std::uniform_int_distribution<> dis2;
 };
 };     // namespace storage_ns
-#endif /* end STORAGE_INTERFACE*/
+#endif /* end STORAGE_INTERFACE_H */

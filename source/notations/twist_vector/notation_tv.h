@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef NOTATION_tv
-#define NOTATION_tv
+#ifndef NOTATION_TV_H
+#define NOTATION_TV_H
 
 /******************************************************************************/
 /*******************************Includes***************************************/
@@ -87,4 +87,4 @@ extern "C"
 }
 #endif
 
-#endif /* end NOTATION_tv */
+#endif /* end NOTATION_TV_H */

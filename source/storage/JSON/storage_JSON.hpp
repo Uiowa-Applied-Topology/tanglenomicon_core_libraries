@@ -5,14 +5,13 @@
  *
  *
  *  @author    Isabel Darcy
- *  @author    Ethan Rooke
  *  @author    Zachary Bryhtan
  *  @author    Joe Starr
  *
  */
 
-#ifndef STORAGE_JSON
-#define STORAGE_JSON
+#ifndef STORAGE_JSON_H
+#define STORAGE_JSON_H
 
 /******************************************************************************/
 /*******************************Includes***************************************/
@@ -84,4 +83,4 @@ class storage_json_c : public storage_interface_c
     std::string file_path = "";
 };
 } // namespace storage_ns
-#endif /* end STORAGE_JSON */
+#endif /* end STORAGE_JSON_H */

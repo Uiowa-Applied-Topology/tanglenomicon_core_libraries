@@ -156,6 +156,7 @@ uint8_t gen_rational_config(gen_rational_config_t *config_arg)
     {
         ret_val |= GEN_RATIONAL_CONFIG_BUFFER;
     }
+    /* Ensure the string buffer exists and has a length. */
     else if ((config_arg->tv_str_buff == NULL) ||
              (config_arg->tv_str_buff_len <= 0))
     {
@@ -163,6 +164,7 @@ uint8_t gen_rational_config(gen_rational_config_t *config_arg)
     }
     else
     {
+        /* Set the config.*/
         gen_rational_localcfg = config_arg;
 
         ret_val = GEN_DEFS_CONFIG_SUCCESS;
@@ -183,6 +185,7 @@ uint8_t gen_rational_generate()
     }
     else
     {
+        /* Find all partitions for the local config. */
         (void)gen_rational_accel_asc(gen_rational_localcfg);
     }
     return ret_val;
@@ -198,11 +201,13 @@ uint8_t gen_rational_generate()
 uint8_t gen_rational_accel_asc(gen_rational_config_t *cfg)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
+
+    /* Set function inputs to match the cfg data*/
     uint8_t *a = cfg->tv_n->twist_vector;
     size_t *len = &(cfg->tv_n->tv_length);
+    uint8_t n = cfg->crossingNumber;
 
     uint8_t l = 0;
-    uint8_t n = cfg->crossingNumber;
     uint8_t k = 1;
     uint8_t y = n - 1;
     uint8_t x = 0;
@@ -222,16 +227,21 @@ uint8_t gen_rational_accel_asc(gen_rational_config_t *cfg)
         {
             a[k] = x;
             a[l] = y;
+
+            /* Check if the current partition is odd then permute*/
             if (k % 2 == 1)
             {
                 *len = k + 2;
                 gen_rational_permute(cfg);
             }
+
             x += 1;
             y -= 1;
         }
         a[k] = x + y;
         y = x + y - 1;
+
+        /* Check if the current partition is odd then permute*/
         if (k % 2 == 1)
         {
             *len = k + 2;
@@ -251,7 +261,7 @@ uint8_t gen_rational_permute(gen_rational_config_t *cfg)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
 
-    //@@@TODO: we need to add heuristics here to cut down on compares.
+    /*@@@TODO: we need to add heuristics here to cut down on compares.*/
     size_t i = 0;
     for (i = 0; i < GEN_RATIONAL_PERM_FUNS_LEN; i++)
     {
