@@ -12,7 +12,7 @@ class generator{
 }
 
 class generator_rational{
-- note_conway
+- notation_conway
 
 }
 

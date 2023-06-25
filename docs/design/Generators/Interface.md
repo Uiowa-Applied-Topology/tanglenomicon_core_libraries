@@ -13,8 +13,8 @@ class generator{
 class gen_config_t {
 <<struct>>
 + int maxCrossingNumber
-+ int *storage_write(key,index,value)
-+ string *storage_read(key,index)
++ int storage_write(key,index,value)
++ const char * storage_read(key,index)
 }
 
 

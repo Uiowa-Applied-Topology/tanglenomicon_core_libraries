@@ -1,0 +1,50 @@
+/*!
+ *  @file notation_defs.h
+ *
+ *  @brief  Common defintions for notation objects.
+ *
+ *
+ *  @author    Isabel Darcy
+ *  @author    Ethan Rooke
+ *  @author    Zachary Bryhtan
+ *  @author    Joe Starr
+ *
+ */
+
+#ifndef NOTATION_DEFS_H
+#define NOTATION_DEFS_H
+
+/******************************************************************************/
+/****************************** Includes **************************************/
+/******************************************************************************/
+#include "tang_defs.h"
+
+/******************************************************************************/
+/****************************** Macro *****************************************/
+/******************************************************************************/
+
+/******************************************************************************/
+/****************************** Defines ***************************************/
+/******************************************************************************/
+
+/****************************** Encode Status *********************************/
+
+/*! @brief Success is a 0. That lets us use hight bits for notation specific
+ * codes */
+#define NOTE_DEFS_ENCODE_SUCCESS (0u)
+
+/*! @brief We use bit 0 to indicate a fail. Specific failures encoded in higher
+ * bits. */
+#define NOTE_DEFS_ENCODE_FAIL (1u)
+
+/****************************** Decode Status *********************************/
+
+/*! @brief Success is a 0. That lets us use hight bits for notation specific
+ * codes */
+#define NOTE_DEFS_DECODE_SUCCESS (0u)
+
+/*! @brief We use bit 0 to indicate a fail. Specific failures encoded in higher
+ * bits. */
+#define NOTE_DEFS_DECODE_FAIL (1u)
+
+#endif /* end NOTATION_DEFS_H */

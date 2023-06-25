@@ -1,22 +1,16 @@
 ```mermaid
 classDiagram
-
 note_conway --|> notation 
-note_conway_config_t --|> note_t 
-note_conway *-- note_conway_config_t
+note_conway *-- note_conway_t
 
-class note_conway_config_t {
+class note_conway_t {
 <<struct>>
 }
 
-class notation{
+
+class notation {
 <<interface>>
 }
-
-class note_t {
-<<interface>>
-}
-
 
 ```
 ## Language

@@ -1,2 +1,5 @@
-add_subdirectory(generator_rational)
-add_subdirectory(main)
+add_subdirectory(util)
+add_subdirectory(notations)
+add_subdirectory(storage)
+add_subdirectory(generators)
+add_subdirectory(runners)

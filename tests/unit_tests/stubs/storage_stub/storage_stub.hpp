@@ -1,7 +1,7 @@
 /*!
- *  @file generator_pattern.h
+ *  @file storage_stub.h
  *
- *  @brief  A pattern for generator modules
+ *  @brief  Storage module for JSON files.
  *
  *
  *  @author    Isabel Darcy
@@ -11,58 +11,75 @@
  *
  */
 
-#ifndef GENERATOR_RATIONAL
-#define GENERATOR_RATIONAL
+#ifndef STORAGE_JSON
+#define STORAGE_JSON
 
 /******************************************************************************/
 /*******************************Includes***************************************/
 /******************************************************************************/
-
-#include "stdlib.h"
-#include "stdbool.h"
+#include "json.hpp"
+#include "storage.hpp"
+#include <cstring>
+#include <string>
 
 /******************************************************************************/
 /*******************************Typedefs***************************************/
 /******************************************************************************/
 
-/*!
- * @brief
- */
-
-#ifdef  __cplusplus
-extern "C" {
-#endif
-typedef struct
-{
-    int maxCrossingNumber;
-    int (*storage_interface)(char generatedData[], int data_Length);
-    char *sourceData;
-    unsigned int sourceData_length;
-    bool generate;
-} gen_rational_config_t;
-#ifdef  __cplusplus
-}
-#endif
 /******************************************************************************/
 /*******************************Defines***************************************/
 /******************************************************************************/
 
-#define GEN_RATIONAL_CONFIG_FAIL (0x1u)
-#define GEN_RATIONAL_CONFIG_SUCCESS (0x0u)
-
 /******************************************************************************/
 /***************************Function Declerations******************************/
 /******************************************************************************/
-
+namespace storage_ns
+{
 /*!
  * @brief
- * @param config_arg
  */
-#ifdef  __cplusplus
-extern "C" {
-#endif
-int gen_rational_config(gen_rational_config_t *config_arg);
-#ifdef  __cplusplus
-}
-#endif
-#endif /* end GENERATOR_RATIONAL */
+class storage_json_c : public storage_interface_c
+{
+  public:
+    /*!
+     * @brief
+     * @param file_path
+     * @param makenewfile
+     */
+    storage_json_c(std::string file_path, bool newfile);
+
+    /*!
+     * @brief
+     */
+    ~storage_json_c();
+
+    /*!
+     * @brief
+     * @param key
+     * @param index
+     * @return
+     */
+    const char *read(char *key, char *index);
+
+    /*!
+     * @brief
+     * @param key
+     * @param index
+     * @param value
+     * @return
+     */
+    int write(char *key, char *index, char *value);
+
+  private:
+    /*!
+     * @brief
+     */
+    nlohmann::json data = NULL;
+
+    /*!
+     * @brief
+     */
+    std::string file_path = "";
+};
+} // namespace storage_ns
+#endif /* end STORAGE_JSON */
