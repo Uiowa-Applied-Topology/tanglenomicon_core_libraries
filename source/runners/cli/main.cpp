@@ -29,6 +29,7 @@ class runner_main_c
     static storage_ns::storage_interface_c *storage_interface;
     static string file_path;
     static bool new_file;
+    static void deconstruct_ptr() { delete storage_interface; }
 
     static int storage_write(char *key, char *index, char *value)
     {
@@ -65,7 +66,8 @@ int main(int argc, char **argv)
          cxxopts::value<bool>()->default_value("false")) /*                   */
         /**********************************************************************/
         ("n,cNum", "maxCrossingNum",
-         cxxopts::value<int>()->default_value("10")) /*                       */
+         cxxopts::value<uint8_t>()->default_value(
+             "10")) /*                       */
         /**********************************************************************/
         ("j,json", "Store as json",
          cxxopts::value<bool>()->default_value("false")) /*                   */
@@ -140,6 +142,7 @@ int main(int argc, char **argv)
         else
         {
             result = gen_rational_generate();
+            runner_main_c::deconstruct_ptr();
             if ((result & GEN_DEFS_GENERATION_FAIL) == GEN_DEFS_GENERATION_FAIL)
             {
                 exit(1);

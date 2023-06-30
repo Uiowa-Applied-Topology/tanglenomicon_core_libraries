@@ -113,7 +113,7 @@ void test_read_malformed(void)
  */
 void test_write_newkey(void)
 {
-    char key[] = "[1]";
+    char key[] = "[1] ";
     char index[] = "index";
     char value[] = "value1";
     sj *test_obj = new sj(testfile_good_path, false);
