@@ -138,6 +138,7 @@ uint8_t gen_rational_generate()
 static uint8_t gen_rational_partions(size_t n, size_t i,
                                      gen_rational_config_t *cfg)
 {
+    uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
     /* Set function inputs to match the cfg data*/
     uint8_t *tv = cfg->tv_n->twist_vector;
     uint8_t cn = (cfg->crossingNumber) + 1;
@@ -163,6 +164,7 @@ static uint8_t gen_rational_partions(size_t n, size_t i,
             }
         }
     }
+    return ret_val;
 }
 
 /*
