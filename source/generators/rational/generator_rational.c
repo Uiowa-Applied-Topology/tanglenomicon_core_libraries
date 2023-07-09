@@ -185,13 +185,15 @@ uint8_t gen_rational_write(gen_rational_config_t *cfg)
 
     note_tv_decode(*(cfg->tv_n), cfg->tv_str_buff);
 
+    char *value = "twist_vector";
     /* Write the data to the storage device. */
     /*@@@TODO: we need to add the correct document values.*/
-    cfg->storage_write(cfg->tv_str_buff, "twist_vector", cfg->tv_str_buff);
+    cfg->storage_write(cfg->tv_str_buff, value, cfg->tv_str_buff);
 
+    value = "crossing_num";
     /* Decode to get the string representation for the tv and store.*/
     sprintf(local_str, "%u", cfg->crossingNumber);
-    cfg->storage_write(cfg->tv_str_buff, "crossing_num", local_str);
+    cfg->storage_write(cfg->tv_str_buff, value, local_str);
 
     return ret_val;
 }
