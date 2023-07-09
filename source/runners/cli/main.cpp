@@ -19,7 +19,9 @@
 
 #include <cxxopts.hpp>
 #include <iostream>
+#include <fstream>
 #include <string>
+#include <sys/stat.h>
 
 using namespace std;
 
@@ -29,6 +31,7 @@ class runner_main_c
     static storage_ns::storage_interface_c *storage_interface;
     static string file_path;
     static bool new_file;
+    static bool init_file;
     static void deconstruct_ptr() { delete storage_interface; }
 
     static int storage_write(char *key, char *index, char *value)
@@ -47,7 +50,14 @@ class runner_main_c
     }
 };
 
+inline bool file_exists_test(const std::string &name)
+{
+    struct stat buffer;
+    return (stat(name.c_str(), &buffer) == 0);
+}
+
 bool runner_main_c::new_file = false;
+bool runner_main_c::init_file = false;
 string runner_main_c::file_path = "";
 storage_ns::storage_interface_c *runner_main_c::storage_interface = nullptr;
 
@@ -90,10 +100,15 @@ int main(int argc, char **argv)
     if (result.count("file"))
     {
         runner_main_c::file_path = result["file"].as<string>();
+        if (!file_exists_test(runner_main_c::file_path))
+        {
+            runner_main_c::init_file = true;
+        }
     }
     else
     {
         runner_main_c::new_file = true;
+        runner_main_c::init_file = true;
         runner_main_c::file_path =
             storage_ns::storage_interface_c::generate_uuid_v4();
     }
@@ -108,6 +123,13 @@ int main(int argc, char **argv)
         if (runner_main_c::new_file)
         {
             runner_main_c::file_path += ".json";
+        }
+        if (runner_main_c::init_file)
+        {
+            std::ofstream file;
+            file.open(runner_main_c::file_path);
+            file << "{}";
+            file.close();
         }
         runner_main_c::storage_interface = new storage_ns::storage_json_c(
             runner_main_c::file_path, runner_main_c::new_file);
