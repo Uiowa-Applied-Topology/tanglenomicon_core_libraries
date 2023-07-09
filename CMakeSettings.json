@@ -3,6 +3,10 @@
     {
       "name": "x64-Debug",
       "generator": "Ninja"
+    },
+    {
+      "name": "Release",
+      "generator": "Ninja"
     }
   ]
 }

@@ -17,6 +17,7 @@ find_package(
 find_package(Doxygen)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+set(TEST_RESULTS_PATH ${CMAKE_CURRENT_SOURCE_DIR}/tests/results/)
 
 enable_testing()
 include(CTest)
