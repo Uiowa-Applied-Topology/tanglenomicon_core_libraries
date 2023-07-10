@@ -126,10 +126,9 @@ int main(int argc, char **argv)
         }
         if (runner_main_c::init_file)
         {
-            std::ofstream file;
-            file.open(runner_main_c::file_path);
+            std::ofstream file(runner_main_c::file_path);
             file << "{}";
-            file.close();
+            file.flush();
         }
         runner_main_c::storage_interface = new storage_ns::storage_json_c(
             runner_main_c::file_path, runner_main_c::new_file);

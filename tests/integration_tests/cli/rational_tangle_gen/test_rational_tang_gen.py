@@ -3,8 +3,79 @@
 import subprocess
 import os
 from pathlib import Path
+import json
 
 BUILD_PATH = "../../.."
+
+json_test_data = """
+{
+    "1 1 1 1 1": {
+        "twist_vector": "1 1 1 1 1",
+        "crossing_num": "5"
+    },
+    "0 2 1 1 1": {
+        "twist_vector": "0 2 1 1 1",
+        "crossing_num": "5"
+    },
+    "0 1 2 1 1": {
+        "twist_vector": "0 1 2 1 1",
+        "crossing_num": "5"
+    },
+    "0 1 1 2 1": {
+        "twist_vector": "0 1 1 2 1",
+        "crossing_num": "5"
+    },
+    "0 1 1 1 2": {
+        "twist_vector": "0 1 1 1 2",
+        "crossing_num": "5"
+    },
+    "3 1 1": {
+        "twist_vector": "3 1 1",
+        "crossing_num": "5"
+    },
+    "1 3 1": {
+        "twist_vector": "1 3 1",
+        "crossing_num": "5"
+    },
+    "1 1 3": {
+        "twist_vector": "1 1 3",
+        "crossing_num": "5"
+    },
+    "2 2 1": {
+        "twist_vector": "2 2 1",
+        "crossing_num": "5"
+    },
+    "2 1 2": {
+        "twist_vector": "2 1 2",
+        "crossing_num": "5"
+    },
+    "1 2 2": {
+        "twist_vector": "1 2 2",
+        "crossing_num": "5"
+    },
+    "0 3 2": {
+        "twist_vector": "0 3 2",
+        "crossing_num": "5"
+    },
+    "0 2 3": {
+        "twist_vector": "0 2 3",
+        "crossing_num": "5"
+    },
+    "0 4 1": {
+        "twist_vector": "0 4 1",
+        "crossing_num": "5"
+    },
+    "0 1 4": {
+        "twist_vector": "0 1 4",
+        "crossing_num": "5"
+    },
+    "5": {
+        "twist_vector": "5",
+        "crossing_num": "5"
+    }
+}
+"""
+
 
 exepath = Path.cwd() / BUILD_PATH
 
@@ -15,13 +86,32 @@ else:
 
 
 def test_tangles():
-
     out_file = Path.cwd() / "res.json"
-    arg_list = f" -r -n 5 -j -f\"{out_file}\""
 
-    with subprocess.Popen([exepath,arg_list], stdout=subprocess.PIPE) as proc:
-        proc.wait()
-        assert proc.returncode == 0
+    assert exepath.is_file() == True
+
+    if out_file.is_file():
+        os.remove(out_file)
+
+    assert out_file.is_file() == False
+
+    args = [exepath, "-rj", "-n","5","-f",f"{out_file}"]
+
+    proc = subprocess.call(args)
+    assert proc ==0
+
+    assert out_file.is_file() == True
+
+    test_json_content = json.loads(json_test_data)
+    with open(out_file, "r") as out_file_stream:
+        out_json_content = json.loads(out_file_stream.read())
+        for tangle in test_json_content:
+
+            print(tangle)
+
+            assert tangle in out_json_content
+            assert out_json_content[tangle] == test_json_content[tangle]
+
+            ...
         # @@@ TODO: add checks for correctness
         ...
-

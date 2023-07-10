@@ -62,6 +62,14 @@ static uint8_t gen_rational_partions(size_t n, size_t i,
  */
 static inline uint8_t gen_rational_write(gen_rational_config_t *cfg);
 
+/*!
+ * @brief
+ *
+ * @param cfg
+ * @return uint8_t
+ */
+static inline uint8_t gen_rational_evenperm_shift(gen_rational_config_t *cfg);
+
 /******************************************************************************/
 /************************** Local Variables ***********************************/
 /******************************************************************************/
@@ -151,14 +159,13 @@ static uint8_t gen_rational_partions(size_t n, size_t i,
         if (i % 2 == 0)
         {
             *len = i + 1;
-            tv[i] = 0;
+            (void)gen_rational_evenperm_shift(cfg);
         }
         else
         {
             *len = i;
+            (void)gen_rational_write(cfg);
         }
-
-        (void)gen_rational_write(cfg);
     }
     else
     {
@@ -175,6 +182,33 @@ static uint8_t gen_rational_partions(size_t n, size_t i,
     return ret_val;
 }
 
+/*
+ *  Documentation at declaration
+ */
+uint8_t gen_rational_evenperm_shift(gen_rational_config_t *cfg)
+{
+
+    uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
+    /* Set function inputs to match the cfg data*/
+    uint8_t *tv = cfg->tv_n->twist_vector;
+    uint8_t cn = (cfg->crossingNumber);
+    size_t len = cfg->tv_n->tv_length;
+
+    size_t i;
+    for (i = len - 1; i > 0; i--)
+    {
+        tv[i] = tv[i - 1];
+    }
+    tv[0] = 0;
+
+    (void)gen_rational_write(cfg);
+
+    for (i = 0; i < len; i++)
+    {
+        tv[i] = tv[i + 1];
+    }
+    return ret_val;
+}
 /*
  *  Documentation at declaration
  */
