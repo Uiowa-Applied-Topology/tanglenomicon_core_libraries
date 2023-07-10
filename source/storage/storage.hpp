@@ -56,6 +56,9 @@ class storage_interface_c
      */
     virtual const char *read(char *key, char *index) = 0;
 
+
+    virtual ~storage_interface_c(){};
+
     /*!
      * @brief
      */
