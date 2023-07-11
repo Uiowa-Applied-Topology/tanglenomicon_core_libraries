@@ -13,20 +13,20 @@ json_test_data = """
         "twist_vector": "1 1 1 1 1",
         "crossing_num": "5"
     },
-    "0 2 1 1 1": {
-        "twist_vector": "0 2 1 1 1",
+    "2 1 1 1 0": {
+        "twist_vector": "2 1 1 1 0",
         "crossing_num": "5"
     },
-    "0 1 2 1 1": {
-        "twist_vector": "0 1 2 1 1",
+    "1 2 1 1 0": {
+        "twist_vector": "1 2 1 1 0",
         "crossing_num": "5"
     },
-    "0 1 1 2 1": {
-        "twist_vector": "0 1 1 2 1",
+    "1 1 2 1 0": {
+        "twist_vector": "1 1 2 1 0",
         "crossing_num": "5"
     },
-    "0 1 1 1 2": {
-        "twist_vector": "0 1 1 1 2",
+    "1 1 1 2 0": {
+        "twist_vector": "1 1 1 2 0",
         "crossing_num": "5"
     },
     "3 1 1": {
@@ -53,20 +53,20 @@ json_test_data = """
         "twist_vector": "1 2 2",
         "crossing_num": "5"
     },
-    "0 3 2": {
-        "twist_vector": "0 3 2",
+    "3 2 0": {
+        "twist_vector": "3 2 0",
         "crossing_num": "5"
     },
-    "0 2 3": {
-        "twist_vector": "0 2 3",
+    "2 3 0": {
+        "twist_vector": "2 3 0",
         "crossing_num": "5"
     },
-    "0 4 1": {
-        "twist_vector": "0 4 1",
+    "4 1 0": {
+        "twist_vector": "4 1 0",
         "crossing_num": "5"
     },
-    "0 1 4": {
-        "twist_vector": "0 1 4",
+    "1 4 0": {
+        "twist_vector": "1 4 0",
         "crossing_num": "5"
     },
     "5": {
