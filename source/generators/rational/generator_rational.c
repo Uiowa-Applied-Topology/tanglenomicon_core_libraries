@@ -45,12 +45,13 @@ typedef bool (*gen_rational_perm_t)(gen_rational_config_t *);
 /******************************************************************************/
 
 /*!
- * @brief
+ * @brief Iterativly generates all possible permutation of integer partitions of
+ * the cfg.crossingNumber without.
  *
- * @param cfg
- * @return uint8_t
+ * @param cfg Configuration to work on.
+ * @return uint8_t Success/Fail flag.
  */
-static uint8_t gen_rational_partions(gen_rational_config_t *cfg);
+static inline uint8_t gen_rational_partions(gen_rational_config_t *cfg);
 
 /*!
  * @brief A function to write the twist vector in cfg to the storage device in
@@ -62,12 +63,16 @@ static uint8_t gen_rational_partions(gen_rational_config_t *cfg);
 static inline uint8_t gen_rational_write(gen_rational_config_t *cfg);
 
 /*!
- * @brief
+ * @brief The canonical form for twist vector is given as odd length. When we
+ * get something in the even class of twist vectors we can 'oddify' it by
+ * prepending a 0. This function handles prepending the zero and then writing to
+ * the cfg storage device.
  *
- * @param cfg
- * @return uint8_t
+ * @param cfg Configuration to work on.
+ * @return uint8_t Success/Fail flag.
  */
-static inline uint8_t gen_rational_evenperm_shift(gen_rational_config_t *cfg);
+static inline uint8_t
+gen_rational_evenperm_shift_write(gen_rational_config_t *cfg);
 
 /******************************************************************************/
 /************************** Local Variables ***********************************/
@@ -120,7 +125,6 @@ uint8_t gen_rational_generate()
 {
 
     uint8_t ret_val = GEN_DEFS_GENERATION_FAIL;
-    uint8_t cn = gen_rational_localcfg->crossingNumber;
 
     if (gen_rational_localcfg == NULL)
     {
@@ -129,8 +133,7 @@ uint8_t gen_rational_generate()
     else
     {
         /* Find all partitions for the local config. */
-        (void)gen_rational_partions(gen_rational_localcfg);
-        ret_val = GEN_DEFS_GENERATION_SUCCESS;
+        ret_val = gen_rational_partions(gen_rational_localcfg);
     }
     return ret_val;
 }
@@ -145,45 +148,68 @@ uint8_t gen_rational_generate()
 static uint8_t gen_rational_partions(gen_rational_config_t *cfg)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
+
     /* Set function inputs to match the cfg data*/
     uint8_t *tv = cfg->tv_n->twist_vector;
-    uint8_t cn = (cfg->crossingNumber);
+    uint8_t crossing_num = (cfg->crossingNumber);
     size_t *len = &(cfg->tv_n->tv_length);
 
-    size_t stack_k[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {0};
-    size_t stack_ptr = 0;
-    size_t n = cn;
+    /* Variables to emulate recursive calling.*/
+    size_t stack_i[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {0};
+    size_t tv_idx = 0;
+    size_t available_crossings = crossing_num;
 
-    stack_k[0] = 1;
-    while (stack_k[0] <= cn)
+    /* Set the outermost for loop iterator to 1.*/
+    stack_i[0] = 1;
+
+    /* This while loop emulates for loops executing recursively. The outermost
+     * for loop as the termination condition. */
+    while (stack_i[0] <= crossing_num)
     {
-        tv[stack_ptr] = stack_k[stack_ptr];
-        if ((n - stack_k[stack_ptr]) == 0)
+        /* Set the tv to the value of the tv_idx-th for loop counter. */
+        tv[tv_idx] = stack_i[tv_idx];
+
+        /* Check if the inner most (tv_idx-th) for loop has exhausted availble
+         * crossings. */
+        if ((available_crossings - stack_i[tv_idx]) == 0)
         {
-            *len = 0;
-            if ((stack_ptr + 1) % 2 == 0)
+            /*Set twist vector length*/
+            *len = tv_idx + 1;
+
+            if ((*len) % 2 == 0)
             {
-                *len = stack_ptr + 2;
-                (void)gen_rational_evenperm_shift(cfg);
+                (void)gen_rational_evenperm_shift_write(cfg);
             }
             else
             {
-                *len = stack_ptr + 1;
+                /* Twist vector already odd length. */
                 (void)gen_rational_write(cfg);
             }
-            n = n + stack_k[stack_ptr - 1];
-            if (stack_ptr != 0)
+
+            /* Emulate an escape from the tv_idx-th for loop.*/
+
+            /* Make sure we don't underflow then decrament.*/
+            if (tv_idx != 0)
             {
-                stack_ptr--;
+                tv_idx--;
             }
+
+            /* Restore available crossings */
+            available_crossings += stack_i[tv_idx];
         }
         else
         {
-            stack_ptr++;
-            n = n - stack_k[stack_ptr - 1];
-            stack_k[stack_ptr] = 0;
+            /* Emulate a recursive call into the tv_idx+1-th for loop.*/
+
+            /* Remove available crossings */
+            available_crossings -= stack_i[tv_idx];
+            tv_idx++;
+            /* We want the initial state of the tv_idx+1-th loop iterator to be
+             * 1, we set 0 here and increment on the next instruction.*/
+            stack_i[tv_idx] = 0;
         }
-        stack_k[stack_ptr]++;
+        /* Increment the tv_idx-th for loop iterator.*/
+        stack_i[tv_idx]++;
     }
 
     return ret_val;
@@ -192,25 +218,32 @@ static uint8_t gen_rational_partions(gen_rational_config_t *cfg)
 /*
  *  Documentation at declaration
  */
-uint8_t gen_rational_evenperm_shift(gen_rational_config_t *cfg)
+uint8_t gen_rational_evenperm_shift_write(gen_rational_config_t *cfg)
 {
 
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
     /* Set function inputs to match the cfg data*/
     uint8_t *tv = cfg->tv_n->twist_vector;
-    uint8_t cn = (cfg->crossingNumber);
-    size_t len = cfg->tv_n->tv_length;
+    uint8_t crossing_num = (cfg->crossingNumber);
+    size_t *len = &(cfg->tv_n->tv_length);
 
+    /* Increase tv_length by 1 to account for leading 0.*/
+    (*len)++;
+
+    /* right shift the twist vector */
     size_t i;
-    for (i = len - 1; i > 0; i--)
+    for (i = *len - 1; i > 0; i--)
     {
         tv[i] = tv[i - 1];
     }
+
+    /* Add leading 0 */
     tv[0] = 0;
 
     (void)gen_rational_write(cfg);
 
-    for (i = 0; i < len; i++)
+    /* left shift the twist vector */
+    for (i = 0; i < *len; i++)
     {
         tv[i] = tv[i + 1];
     }
