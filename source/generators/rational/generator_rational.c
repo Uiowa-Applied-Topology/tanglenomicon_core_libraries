@@ -50,8 +50,7 @@ typedef bool (*gen_rational_perm_t)(gen_rational_config_t *);
  * @param cfg
  * @return uint8_t
  */
-static uint8_t gen_rational_partions(size_t n, size_t i,
-                                     gen_rational_config_t *cfg);
+static uint8_t gen_rational_partions(gen_rational_config_t *cfg);
 
 /*!
  * @brief A function to write the twist vector in cfg to the storage device in
@@ -130,7 +129,7 @@ uint8_t gen_rational_generate()
     else
     {
         /* Find all partitions for the local config. */
-        (void)gen_rational_partions(cn, 0, gen_rational_localcfg);
+        (void)gen_rational_partions(gen_rational_localcfg);
         ret_val = GEN_DEFS_GENERATION_SUCCESS;
     }
     return ret_val;
@@ -143,42 +142,50 @@ uint8_t gen_rational_generate()
 /*
  *  Documentation in header
  */
-static uint8_t gen_rational_partions(size_t n, size_t i,
-                                     gen_rational_config_t *cfg)
+static uint8_t gen_rational_partions(gen_rational_config_t *cfg)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
     /* Set function inputs to match the cfg data*/
     uint8_t *tv = cfg->tv_n->twist_vector;
     uint8_t cn = (cfg->crossingNumber);
     size_t *len = &(cfg->tv_n->tv_length);
-    size_t k;
-    if (n == 0)
-    {
 
-        *len = 0;
-        if (i % 2 == 0)
+    size_t stack_k[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {0};
+    size_t stack_ptr = 0;
+    size_t n = cn;
+
+    stack_k[0] = 1;
+    while (stack_k[0] <= cn)
+    {
+        tv[stack_ptr] = stack_k[stack_ptr];
+        if ((n - stack_k[stack_ptr]) == 0)
         {
-            *len = i + 1;
-            (void)gen_rational_evenperm_shift(cfg);
+            *len = 0;
+            if ((stack_ptr + 1) % 2 == 0)
+            {
+                *len = stack_ptr + 2;
+                (void)gen_rational_evenperm_shift(cfg);
+            }
+            else
+            {
+                *len = stack_ptr + 1;
+                (void)gen_rational_write(cfg);
+            }
+            n = n + stack_k[stack_ptr - 1];
+            if (stack_ptr != 0)
+            {
+                stack_ptr--;
+            }
         }
         else
         {
-            *len = i;
-            (void)gen_rational_write(cfg);
+            stack_ptr++;
+            n = n - stack_k[stack_ptr - 1];
+            stack_k[stack_ptr] = 0;
         }
+        stack_k[stack_ptr]++;
     }
-    else
-    {
-        for (k = 1; k <= cn; k++)
-        {
-            tv[i] = k;
-            (void)gen_rational_partions(n - k, i + 1, cfg);
-            if ((n - k) == 0)
-            {
-                break;
-            }
-        }
-    }
+
     return ret_val;
 }
 
