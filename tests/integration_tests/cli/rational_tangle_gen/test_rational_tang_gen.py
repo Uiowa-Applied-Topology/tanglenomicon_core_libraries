@@ -95,7 +95,9 @@ def test_tangles():
 
     assert out_file.is_file() == False
 
-    args = [exepath, "-rj", "-n","5","-f",f"{out_file}"]
+    args = [str(exepath), "-rj", "-n","5","-f",f"{out_file}"]
+
+    print(" ".join(args))
 
     proc = subprocess.call(args)
     assert proc ==0
