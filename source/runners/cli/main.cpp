@@ -50,14 +50,8 @@ class runner_main_c
     }
 };
 
-inline bool file_exists_test(const std::string &name)
-{
-    struct stat buffer;
-    return (stat(name.c_str(), &buffer) == 0);
-}
 
 bool runner_main_c::new_file = false;
-bool runner_main_c::init_file = false;
 string runner_main_c::file_path = "";
 storage_ns::storage_interface_c *runner_main_c::storage_interface = nullptr;
 
@@ -69,22 +63,25 @@ int main(int argc, char **argv)
 {
     cxxopts::Options options("test", "A brief description");
 
+    /* clang-format off */
     options
-        .add_options() /*                                                     */
+        .add_options()
         /**********************************************************************/
         ("r,rational", "Generate rational",
-         cxxopts::value<bool>()->default_value("false")) /*                   */
+         cxxopts::value<bool>()->default_value("false"))
         /**********************************************************************/
-        ("n,cNum", "maxCrossingNum",
-         cxxopts::value<uint8_t>()->default_value(
-             "10")) /*                       */
+        ("n,cNum", "Crossing number to target",
+         cxxopts::value<uint8_t>()->default_value("10"))
         /**********************************************************************/
         ("j,json", "Store as json",
-         cxxopts::value<bool>()->default_value("false")) /*                   */
-        /*********************************************************************/
-        ("f,file", "File for storage", cxxopts::value<string>()) /*           */
+         cxxopts::value<bool>()->default_value("false"))
+        /**********************************************************************/
+        ("f,file", "File for storage",
+         cxxopts::value<string>())
         /**********************************************************************/
         ("h,help", "Print usage");
+
+    /* clang-format on */
 
     auto result = options.parse(argc, argv);
 
@@ -100,15 +97,10 @@ int main(int argc, char **argv)
     if (result.count("file"))
     {
         runner_main_c::file_path = result["file"].as<string>();
-        if (!file_exists_test(runner_main_c::file_path))
-        {
-            runner_main_c::init_file = true;
-        }
     }
     else
     {
         runner_main_c::new_file = true;
-        runner_main_c::init_file = true;
         runner_main_c::file_path =
             storage_ns::storage_interface_c::generate_uuid_v4();
     }
@@ -124,12 +116,7 @@ int main(int argc, char **argv)
         {
             runner_main_c::file_path += ".json";
         }
-        if (runner_main_c::init_file)
-        {
-            std::ofstream file(runner_main_c::file_path);
-            file << "{}";
-            file.flush();
-        }
+
         runner_main_c::storage_interface = new storage_ns::storage_json_c(
             runner_main_c::file_path, runner_main_c::new_file);
     }
@@ -147,13 +134,16 @@ int main(int argc, char **argv)
     {
         note_tv_t tv_n;
         char tv_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
+
+        /* clang-format off */
         gen_rational_config_t rational_config = {
-            result["cNum"].as<uint8_t>(), /*                                  */
-            &runner_main_c::storage_write, /*                                 */
-            &runner_main_c::storage_read, /*                                  */
-            &tv_n, /*                                                         */
-            tv_str, /*                                                        */
+            result["cNum"].as<uint8_t>(),
+            &runner_main_c::storage_write,
+            &runner_main_c::storage_read,
+            &tv_n,
+            tv_str,
             UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u};
+        /* clang-format on */
 
         uint8_t result = gen_rational_config(&rational_config);
         if ((result & GEN_DEFS_CONFIG_FAIL) == GEN_DEFS_CONFIG_FAIL)
