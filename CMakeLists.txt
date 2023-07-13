@@ -24,6 +24,7 @@ include(CTest)
 
 add_subdirectory(libraries)
 add_subdirectory(source)
+add_subdirectory(misc)
 add_subdirectory(tests)
 
 ################################################################################
