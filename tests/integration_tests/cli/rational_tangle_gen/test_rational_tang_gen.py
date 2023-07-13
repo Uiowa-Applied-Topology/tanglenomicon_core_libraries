@@ -97,8 +97,6 @@ def test_tangles():
 
     args = [str(exepath), "-rj", "-n","5","-f",f"{out_file}"]
 
-    print(" ".join(args))
-
     proc = subprocess.call(args)
     assert proc ==0
 
@@ -108,8 +106,6 @@ def test_tangles():
     with open(out_file, "r") as out_file_stream:
         out_json_content = json.loads(out_file_stream.read())
         for tangle in test_json_content:
-
-            print(tangle)
 
             assert tangle in out_json_content
             assert out_json_content[tangle] == test_json_content[tangle]
