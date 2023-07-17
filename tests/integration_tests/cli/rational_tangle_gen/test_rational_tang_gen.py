@@ -1,4 +1,4 @@
-"""@@@TODO:Plz fill out """
+""" Rational tangle generation integration Test for the CLI runner."""
 
 import subprocess
 import os
@@ -111,5 +111,4 @@ def test_tangles():
             assert out_json_content[tangle] == test_json_content[tangle]
 
             ...
-        # @@@ TODO: add checks for correctness
         ...
