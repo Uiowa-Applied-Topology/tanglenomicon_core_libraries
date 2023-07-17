@@ -1,7 +1,7 @@
 ﻿# CMakeList.txt : CMake project for tanglenomicon, include source and define
 # project specific logic here.
 #
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.12)
 
 project(
   tanglenomicon
@@ -17,19 +17,26 @@ find_package(
 find_package(Doxygen)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+set(TEST_RESULTS_PATH ${CMAKE_CURRENT_SOURCE_DIR}/tests/results/)
+
+################################################################################
+# Start Compiler Defines
+################################################################################
+
+add_compile_definitions(UTIL_TANG_DEFS_MAX_CROSSINGNUM=40)
+
+################################################################################
+# Start Includes
+################################################################################
 
 enable_testing()
 include(CTest)
 
 add_subdirectory(libraries)
 add_subdirectory(source)
+add_subdirectory(misc)
 add_subdirectory(tests)
 
-################################################################################
-# Start Compiler Defines
-################################################################################
-
-add_compile_definitions(UTIL_TANG_DEFS_MAX_CROSSINGNUM=20u)
 
 ################################################################################
 # End Compiler Defines

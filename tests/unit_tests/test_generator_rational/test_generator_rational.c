@@ -101,9 +101,14 @@ gen_rational_config_t tc_null_str_buff = {5,
                                           NULL,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u,};
 
-char cross_num_five_rattang[8][UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u]={
+char cross_num_five_rattang[UTIL_TANG_DEFS_MAX_CROSSINGNUM*5][UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u]={
 /* 5 */
 "1 1 1 1 1",
+/* 4 */
+"2 1 1 1 0",
+"1 2 1 1 0",
+"1 1 2 1 0",
+"1 1 1 2 0",
 /* 3 */
 "3 1 1",
 "1 3 1",
@@ -111,6 +116,11 @@ char cross_num_five_rattang[8][UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u]={
 "2 2 1",
 "2 1 2",
 "1 2 2",
+/* 2 */
+"3 2 0",
+"2 3 0",
+"4 1 0",
+"1 4 0",
 /* 1 */
 "5",
 };
@@ -154,27 +164,33 @@ void test_config(void)
 void test_generate(void)
 {
     uint8_t ret_val = gen_rational_config(&tc_write_success);
+    size_t j, i;
+
     TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_CONFIG_SUCCESS);
     ret_val = gen_rational_generate();
     TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_GENERATION_SUCCESS);
     //@@@TODO check the buffers
 
-    TEST_ASSERT_EQUAL_UINT8(key_idx, 8);
-
-    for (size_t j = 0; j < 8; j++)
+    TEST_ASSERT_EQUAL_UINT8(16, key_idx);
+    for (i = 0; i < 16; i++)
     {
+        TEST_MESSAGE("Checking against:");
+        TEST_MESSAGE(key_buff[i]);
+
         bool fail = true;
-        for (size_t i = 0; i < key_idx; i++)
+        for (j = 0; j < key_idx; j++)
         {
-            if (strcmp(key_buff[i], cross_num_five_rattang[j]) == 0)
+            TEST_MESSAGE("Looking for generated:");
+            TEST_MESSAGE(cross_num_five_rattang[j]);
+            if (strcmp(key_buff[j], cross_num_five_rattang[i]) == 0)
             {
+                TEST_MESSAGE("Found!");
                 fail = false;
                 break;
             }
         }
         if (fail)
         {
-            TEST_FAIL();
             TEST_FAIL_MESSAGE("Couldn't find a tangle in the list.");
         }
     }
