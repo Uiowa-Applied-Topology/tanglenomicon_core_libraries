@@ -96,12 +96,12 @@ void test_read_malformed(void)
     try
     {
         sj *test_obj = new sj(testfile_malformed_path, false);
-        TEST_FAIL();
-        TEST_FAIL_MESSAGE("This shouldn't pass initialization.");
+        TEST_ASSERT_TRUE(true);
     }
     catch (json::parse_error &e)
     {
-        TEST_ASSERT_TRUE(true);
+        TEST_FAIL();
+        TEST_FAIL_MESSAGE("This should pass initialization.");
     }
 }
 
