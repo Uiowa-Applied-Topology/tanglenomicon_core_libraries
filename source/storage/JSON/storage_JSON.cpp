@@ -14,7 +14,6 @@
 #include <fstream>
 #include <iostream>
 
-
 using json = nlohmann::json;
 using sj = storage_ns::storage_json_c;
 
@@ -66,14 +65,17 @@ sj::storage_json_c(std::string file_path, bool newfile)
     this->data = json::object();
     if (!newfile)
     {
-        if (json::accept(this->file_path))
+        std::ifstream json_file(this->file_path);
+        if (json::accept(json_file))
         {
-            std::ifstream json_file(this->file_path);
+            json_file.clear();
+            json_file.seekg(0);
             this->data = json::parse(json_file);
-            json_file.close();
         }
+        json_file.close();
     }
 }
+
 sj::~storage_json_c()
 {
     std::ofstream json_file(this->file_path);
