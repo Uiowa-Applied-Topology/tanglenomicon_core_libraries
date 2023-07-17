@@ -52,6 +52,7 @@ class runner_main_c
 
 
 bool runner_main_c::new_file = false;
+bool runner_main_c::init_file = false;
 string runner_main_c::file_path = "";
 storage_ns::storage_interface_c *runner_main_c::storage_interface = nullptr;
 
@@ -101,6 +102,7 @@ int main(int argc, char **argv)
     else
     {
         runner_main_c::new_file = true;
+        runner_main_c::init_file = true;
         runner_main_c::file_path =
             storage_ns::storage_interface_c::generate_uuid_v4();
     }
