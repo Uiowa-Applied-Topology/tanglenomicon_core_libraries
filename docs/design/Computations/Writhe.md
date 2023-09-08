@@ -26,7 +26,7 @@ C
 
 ## Implements 
 
-* [Interface](Computation/Interface.md)
+* [Interface](Computations/Interface.md)
 
 ## Used by 
 

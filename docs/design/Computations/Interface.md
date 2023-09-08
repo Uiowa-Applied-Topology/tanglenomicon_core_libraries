@@ -6,8 +6,8 @@ computation *-- comp_config_t
 class computation{
 <<interface>>
 + comp_config_t config
-+ int comp_onfig(comp_config_t config)
-+ int comp_compute(key)
++ int comp_config(comp_config_t config)
++ int comp_compute()
 }
 
 class comp_config_t {

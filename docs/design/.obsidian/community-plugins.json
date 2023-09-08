@@ -1,5 +1,4 @@
 [
-  "obsidian-admonition",
   "obsidian-icon-folder",
   "obsidian-dictionary-plugin",
   "calendar",
@@ -14,5 +13,6 @@
   "homepage",
   "obsidian-plugin-todo",
   "obsidian-languagetool-plugin",
-  "obsidian-hider"
+  "obsidian-hider",
+  "pseudocode-in-obs"
 ]
