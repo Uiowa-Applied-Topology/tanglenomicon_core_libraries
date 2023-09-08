@@ -25,7 +25,7 @@
 /******************************************************************************/
 
 /*!
- * @brief Number of permutation functions used by the module.
+ * @brief Number of combination functions used by the module.
  *
  */
 #define GEN_RATIONAL_PERM_FUNS_LEN (2u)
@@ -34,24 +34,18 @@
 /************************** Typedefs ******************************************/
 /******************************************************************************/
 
-/*!
- * @brief The type for permutation functions used by the module.
- *
- */
-typedef bool (*gen_rational_perm_t)(gen_rational_config_t *);
-
 /******************************************************************************/
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
 
 /*!
- * @brief Iterativly generates all possible permutation of integer partitions of
- * the cfg.crossingNumber without.
+ * @brief Iteratively generates all possible combination of integer partitions
+ * of the cfg.crossingNumber without.
  *
  * @param cfg Configuration to work on.
  * @return uint8_t Success/Fail flag.
  */
-static inline uint8_t gen_rational_partions(gen_rational_config_t *cfg);
+static inline uint8_t gen_rational_combinations(gen_rational_config_t *cfg);
 
 /*!
  * @brief A function to write the twist vector in cfg to the storage device in
@@ -133,7 +127,7 @@ uint8_t gen_rational_generate()
     else
     {
         /* Find all partitions for the local config. */
-        ret_val = gen_rational_partions(gen_rational_localcfg);
+        ret_val = gen_rational_combinations(gen_rational_localcfg);
     }
     return ret_val;
 }
@@ -145,7 +139,7 @@ uint8_t gen_rational_generate()
 /*
  *  Documentation in header
  */
-static uint8_t gen_rational_partions(gen_rational_config_t *cfg)
+static uint8_t gen_rational_combinations(gen_rational_config_t *cfg)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
 

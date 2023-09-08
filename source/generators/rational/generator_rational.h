@@ -58,10 +58,10 @@
 /*************************** Generate *****************************************/
 
 /*!
- * @brief Failed to generate due to permutation failure.
+ * @brief Failed to generate due to combination failure.
  *
  */
-#define GEN_RATIONAL_PERMUTATION_FAIL (0x1u << 1u)
+#define GEN_RATIONAL_COMBINATION_FAIL (0x1u << 1u)
 
 /******************************************************************************/
 /*************************** Typedefs *****************************************/
