@@ -50,7 +50,7 @@ N/A
 
 ## Functionality
 
-A rational tangle is given by alternating NE,SE and SE,SW twisting of the $0$ tangle. A canonical combinatorial description of a rational tangle can be given by the [Twist Vector](Notations/Twist%20Vector.md).
+A rational tangle is given by alternating NE,SE and SE,SW twisting of the $0$ tangle[${}^{[2]}$](https://doi.org/10.48550/arXiv.math/0212011)[${}^{[1]}$](https://doi.org/10.1016/B978-0-08-012975-4.50034-5). A canonical combinatorial description of a rational tangle can be given by the [Twist Vector](Notations/Twist%20Vector.md).
 
 This module generates twist vectors and in doing so rational tangles. A normal flows go as:
 
@@ -68,7 +68,9 @@ stateDiagram-v2
 ```mermaid
 stateDiagram-v2
   state "Get Combination of CN" as gen 
+  state join_state <<fork>>
   state is_even <<choice>>
+  state no_combinations <<choice>>
   state "Print" as print {
   state "Set TV values" as stv
   state "Set CN value" as scv
@@ -85,16 +87,21 @@ stateDiagram-v2
 	shiftR --> pp0
 	pp0 --> print
 	print --> shiftL
-	shiftL --> [*]
+	shiftL --> join_state
+
   
   }
   
 	[*] --> gen 
-	gen --> is_even
+	gen --> no_combinations
+  no_combinations --> is_even: if is not final combination
+	no_combinations --> [*] : if is final combination
+
   is_even --> even: if tv.length % 2 == 0
 	is_even --> print : if tv.length % 2 == 1
-	print --> gen
-	gen --> [*]
+	print --> join_state
+	join_state --> gen
+
 
 ```
 
