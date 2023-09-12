@@ -40,6 +40,7 @@
  * @return uint8_t
  */
 static inline uint8_t comp_rational_data_alg_eq(uint16_t p, uint16_t q);
+
 /*!
  * @brief
  *
@@ -135,12 +136,11 @@ uint8_t comp_rational_data_compute()
                    comp_rational_data_localcfg->tv_str_buff);
 
     /*@@@TODO: Add error handling.*/
-    ret_val = comp_rational_data_rat_num(&p, &q);
-    ret_val = comp_rational_data_write_rat_num(p, q);
-
-    (void)comp_rational_data_alg_eq(p, q);
-    (void)comp_rational_data_parity(p, q);
-    return COMP_DEFS_COMPUTE_FAIL;
+    ret_val |= comp_rational_data_rat_num(&p, &q);
+    ret_val |= comp_rational_data_write_rat_num(p, q);
+    ret_val |= comp_rational_data_alg_eq(p, q);
+    ret_val |= comp_rational_data_parity(p, q);
+    return ret_val;
 }
 
 /******************************************************************************/
@@ -152,15 +152,31 @@ uint8_t comp_rational_data_compute()
  */
 uint8_t comp_rational_data_alg_eq(uint16_t p, uint16_t q)
 {
-
-    return COMP_DEFS_COMPUTE_FAIL;
+    return comp_rational_data_write_alg_eq(p % q, q % p);
 }
 /*
  *  Documentation at declaration
  */
 uint8_t comp_rational_data_write_alg_eq(uint16_t num_eq, uint16_t den_eq)
 {
-    return COMP_DEFS_COMPUTE_FAIL;
+    uint8_t ret_val = COMP_DEFS_COMPUTE_SUCCESS;
+    char *value = COMP_RATIONAL_DAT_STORAGE_UKEY;
+    char local_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
+
+    value = "numerator_eq";
+    /* Decode to get the string representation for the numerator equivalence
+     * class and store.*/
+    sprintf(local_str, "%u", num_eq);
+    comp_rational_data_localcfg->storage_write(
+        comp_rational_data_localcfg->tv_str_buff, value, local_str);
+
+    value = "numerator_eq";
+    /* Decode to get the string representation for the denominator equivalence
+     * class and store.*/
+    sprintf(local_str, "%u", den_eq);
+    comp_rational_data_localcfg->storage_write(
+        comp_rational_data_localcfg->tv_str_buff, value, local_str);
+    return ret_val;
 }
 
 /*
