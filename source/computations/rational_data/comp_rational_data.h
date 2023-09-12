@@ -42,7 +42,7 @@
  * @brief Failed to configure the module due to null config
  *
  */
-#define COMP_RATIONAL_CONFIG_IS_NULL (0x1u << 1u)
+#define COMP_RATIONAL_DAT_CONFIG_IS_NULL (0x1u << 1u)
 /*!
  * @brief Failed to configure the module due to issue in buffer.
  *
@@ -54,13 +54,6 @@
  */
 #define COMP_RATIONAL_DAT_CONFIG_STR_BUFFER (0x1u << 3u)
 
-/*************************** Generate *****************************************/
-
-/*!
- * @brief Failed to generate due to combination failure.
- *
- */
-#define COMP_RATIONAL_DAT_COMBINATION_FAIL (0x1u << 1u)
 
 /******************************************************************************/
 /*************************** Typedefs *****************************************/
@@ -80,6 +73,8 @@ extern "C"
         int (*storage_write)(char *key, char *index, char *value);
         const char *(*storage_read)(char *key, char *index);
         note_tv_t *tv_n;
+        char *tv_str_buff;
+        size_t tv_str_buff_len;
     } comp_rational_data_config_t;
 #ifdef __cplusplus
 }
