@@ -65,8 +65,7 @@ static inline uint8_t gen_rational_write();
  * @param cfg Configuration to work on.
  * @return uint8_t Success/Fail flag.
  */
-static inline uint8_t
-gen_rational_evenperm_shift_write();
+static inline uint8_t gen_rational_evenperm_shift_write();
 
 /******************************************************************************/
 /************************** Local Variables ***********************************/
@@ -251,17 +250,21 @@ uint8_t gen_rational_write()
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
     char local_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
 
-    note_tv_decode(*(gen_rational_localcfg->tv_n), gen_rational_localcfg->tv_str_buff);
+    note_tv_decode(*(gen_rational_localcfg->tv_n),
+                   gen_rational_localcfg->tv_str_buff);
 
     char *value = "twist_vector";
     /* Write the data to the storage device. */
     /*@@@TODO: we need to add the correct document values.*/
-    gen_rational_localcfg->storage_write(gen_rational_localcfg->tv_str_buff, value, gen_rational_localcfg->tv_str_buff);
+    gen_rational_localcfg->storage_write(gen_rational_localcfg->tv_str_buff,
+                                         value,
+                                         gen_rational_localcfg->tv_str_buff);
 
     value = "crossing_num";
     /* Decode to get the string representation for the tv and store.*/
     sprintf(local_str, "%u", gen_rational_localcfg->crossingNumber);
-    gen_rational_localcfg->storage_write(gen_rational_localcfg->tv_str_buff, value, local_str);
+    gen_rational_localcfg->storage_write(gen_rational_localcfg->tv_str_buff,
+                                         value, local_str);
 
     return ret_val;
 }
