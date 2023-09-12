@@ -59,6 +59,7 @@ static inline uint8_t comp_rational_data_write_alg_eq(uint16_t num_eq,
  * @return uint8_t
  */
 static inline uint8_t comp_rational_data_parity(uint16_t p, uint16_t q);
+
 /*!
  * @brief
  *
@@ -75,6 +76,7 @@ static inline uint8_t comp_rational_data_write_parity(char *parity);
  * @return uint8_t
  */
 static inline uint8_t comp_rational_data_rat_num(uint16_t *p, uint16_t *q);
+
 /*!
  * @brief
  *
@@ -154,6 +156,7 @@ uint8_t comp_rational_data_alg_eq(uint16_t p, uint16_t q)
 {
     return comp_rational_data_write_alg_eq(p % q, q % p);
 }
+
 /*
  *  Documentation at declaration
  */
@@ -254,6 +257,7 @@ uint8_t comp_rational_data_rat_num(uint16_t *p, uint16_t *q)
 
     return ret_val;
 }
+
 /*
  *  Documentation at declaration
  */
