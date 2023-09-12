@@ -64,7 +64,7 @@ static inline uint8_t comp_rational_data_parity(uint16_t p, uint16_t q);
  * @param parity
  * @return uint8_t
  */
-static inline uint8_t comp_rational_data_write_parity(uint16_t parity);
+static inline uint8_t comp_rational_data_write_parity(char *parity);
 
 /*!
  * @brief
@@ -131,6 +131,9 @@ uint8_t comp_rational_data_compute()
     uint16_t p;
     uint16_t q;
 
+    note_tv_decode(*(comp_rational_data_localcfg->tv_n),
+                   comp_rational_data_localcfg->tv_str_buff);
+
     /*@@@TODO: Add error handling.*/
     ret_val = comp_rational_data_rat_num(&p, &q);
     ret_val = comp_rational_data_write_rat_num(p, q);
@@ -165,16 +168,46 @@ uint8_t comp_rational_data_write_alg_eq(uint16_t num_eq, uint16_t den_eq)
  */
 uint8_t comp_rational_data_parity(uint16_t p, uint16_t q)
 {
-    return COMP_DEFS_COMPUTE_FAIL;
+    uint8_t ret_val = COMP_DEFS_COMPUTE_FAIL;
+    char *parity = "";
+    if (!((p % 2 == 0) && (q % 2 == 0)))
+    {
+        ret_val = COMP_DEFS_COMPUTE_SUCCESS;
+        if (p % 2 == 1)
+        {
+            if (q % 2 == 1)
+            {
+                parity = UTIL_TANG_DEFS_ONE_TANG_STR;
+            }
+            else
+            {
+                parity = UTIL_TANG_DEFS_INF_TANG_STR;
+            }
+        }
+        else
+        {
+            parity = UTIL_TANG_DEFS_ZERO_TANG_STR;
+        }
+        (void)comp_rational_data_write_parity(parity);
+    }
+    return ret_val;
 }
+
 /*
  *  Documentation at declaration
  */
-uint8_t comp_rational_data_write_parity(uint16_t parity)
+uint8_t comp_rational_data_write_parity(char *parity)
 {
+    uint8_t ret_val = COMP_DEFS_COMPUTE_SUCCESS;
+    char *value = COMP_RATIONAL_DAT_STORAGE_UKEY;
 
-    return COMP_DEFS_COMPUTE_FAIL;
+    value = "parity";
+    /* Decode to get the string representation for the numerator and store.*/
+    comp_rational_data_localcfg->storage_write(
+        comp_rational_data_localcfg->tv_str_buff, value, parity);
+    return ret_val;
 }
+
 /*
  *  Documentation at declaration
  */
@@ -213,9 +246,6 @@ uint8_t comp_rational_data_write_rat_num(uint16_t p, uint16_t q)
     uint8_t ret_val = COMP_DEFS_COMPUTE_SUCCESS;
     char local_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
     char *value = COMP_RATIONAL_DAT_STORAGE_UKEY;
-
-    note_tv_decode(*(comp_rational_data_localcfg->tv_n),
-                   comp_rational_data_localcfg->tv_str_buff);
 
     value = "numerator";
     /* Decode to get the string representation for the numerator and store.*/

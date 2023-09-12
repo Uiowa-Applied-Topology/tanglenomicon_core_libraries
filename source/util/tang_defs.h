@@ -60,4 +60,24 @@ can suppress warning on windows. */
 #define UTIL_TANG_DEFS_MAX_CROSSINGNUM (20u)
 #endif
 
+#ifndef UTIL_TANG_DEFS_INF_TANG_STR
+/*! @brief The string representation for infinity tangle. */
+#define UTIL_TANG_DEFS_INF_TANG_STR ("infty")
+#endif
+
+#ifndef UTIL_TANG_DEFS_ZERO_TANG_STR
+/*! @brief The string representation for zero tangle. */
+#define UTIL_TANG_DEFS_ZERO_TANG_STR ("0")
+#endif
+
+#ifndef UTIL_TANG_DEFS_ONE_TANG_STR
+/*! @brief The string representation for 1 tangle. */
+#define UTIL_TANG_DEFS_ONE_TANG_STR ("1")
+#endif
+
+#ifndef UTIL_TANG_DEFS_M_ONE_TANG_STR
+/*! @brief The string representation for -1 tangle. */
+#define UTIL_TANG_DEFS_M_ONE_TANG_STR ("-1")
+#endif
+
 #endif /* end UTIL_TANG_DEF_H */
