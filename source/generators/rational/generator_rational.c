@@ -137,7 +137,7 @@ uint8_t gen_rational_generate()
 /******************************************************************************/
 
 /*
- *  Documentation in header
+ *  Documentation in declaration
  */
 static uint8_t gen_rational_combinations(gen_rational_config_t *cfg)
 {
