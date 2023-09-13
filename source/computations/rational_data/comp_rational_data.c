@@ -114,6 +114,11 @@ uint8_t comp_rational_data_config(comp_rational_data_config_t *config_arg)
     else if (config_arg->tv_n == NULL)
     {
         ret_val |= COMP_RATIONAL_DAT_CONFIG_BUFFER;
+    }  /* Ensure the string buffer exists and has a length. */
+    else if ((config_arg->tv_str_buff == NULL) ||
+             (config_arg->tv_str_buff_len <= 0))
+    {
+        ret_val |= COMP_RATIONAL_DAT_CONFIG_STR_BUFFER;
     }
     else
     {

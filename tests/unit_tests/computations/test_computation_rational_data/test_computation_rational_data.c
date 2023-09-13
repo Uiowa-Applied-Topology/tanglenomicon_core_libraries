@@ -1,4 +1,4 @@
-#include "generator_rational.h"
+#include "comp_rational_data.h"
 #include "string.h"
 #include "unity.h"
 
@@ -24,25 +24,6 @@ char value_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u]
 size_t key_idx = 0;
 size_t index_idx = 0;
 size_t value_idx = 0;
-
-int stub_write_dedup_success(char *key, char *index, char *value)
-{
-    size_t i = 0;
-    for (i = 0; i < key_idx; i++)
-    {
-        if (strcmp(key_buff[i], key) == 0)
-        {
-            return STORE_WRITE_SUCCESS;
-        }
-    }
-    strcpy(key_buff[key_idx], key);
-    strcpy(index_buff[index_idx], index);
-    strcpy(value_buff[value_idx], value);
-    key_idx++;
-    index_idx++;
-    value_idx++;
-    return STORE_WRITE_SUCCESS;
-}
 
 int stub_write_success(char *key, char *index, char *value)
 {
@@ -74,56 +55,49 @@ const char *stub_read(char *key, char *index) { return value_buff[value_idx]; }
 note_tv_t tv;
 char tv_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
 
+note_tv_t tv_oe = {{2, 3, 1}, 3};
+char output_oe[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 5]
+              [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u] = {
+                  "9", "4", "1", "4", UTIL_TANG_DEFS_INF_TANG_STR};
+
+note_tv_t tv_oo = {{1, 3, 2}, 3};
+char output_oo[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 5]
+              [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u] = {
+                  "9", "7", "2", "7", UTIL_TANG_DEFS_ONE_TANG_STR};
+
+note_tv_t tv_eo = {{1, 2, 3}, 3};
+char output_eo[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 5]
+              [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u] = {
+                  "10", "7", "3", "7", UTIL_TANG_DEFS_ZERO_TANG_STR};
+
+size_t output_len = 5;
+
 /* clang-format off */
 
-gen_rational_config_t tc_write_success = {5,
-                                          &stub_write_dedup_success,
+comp_rational_data_config_t tc_write_success = {
+                                          &stub_write_success,
                                           &stub_read,
                                           &tv,
                                           tv_str,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u,};
-gen_rational_config_t tc_write_fail    = {5,
+comp_rational_data_config_t tc_write_fail = {
                                           &stub_write_fail,
                                           &stub_read,
                                           &tv,
                                           tv_str,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u,};
-gen_rational_config_t tc_null_buff     = {5,
+comp_rational_data_config_t tc_null_buff = {
                                           &stub_write_fail,
                                           &stub_read,
                                           NULL,
                                           tv_str,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u,};
-gen_rational_config_t tc_null_str_buff = {5,
+comp_rational_data_config_t tc_null_str_buff = {
                                           &stub_write_fail,
                                           &stub_read,
                                           &tv,
                                           NULL,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u,};
-
-char cross_num_five_rattang[UTIL_TANG_DEFS_MAX_CROSSINGNUM*5][UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u]={
-/* 5 */
-"1 1 1 1 1",
-/* 4 */
-"2 1 1 1 0",
-"1 2 1 1 0",
-"1 1 2 1 0",
-"1 1 1 2 0",
-/* 3 */
-"3 1 1",
-"1 3 1",
-"1 1 3",
-"2 2 1",
-"2 1 2",
-"1 2 2",
-/* 2 */
-"3 2 0",
-"2 3 0",
-"4 1 0",
-"1 4 0",
-/* 1 */
-"5",
-};
 
 /* clang-format on */
 
@@ -145,54 +119,59 @@ void tearDown(void) {}
  */
 void test_config(void)
 {
-    uint8_t ret_val = gen_rational_config(&tc_write_success);
-    TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_CONFIG_SUCCESS);
-    ret_val = gen_rational_config(NULL);
-    TEST_ASSERT_EQUAL_UINT8(ret_val,
-                            GEN_RATIONAL_CONFIG_IS_NULL | GEN_DEFS_CONFIG_FAIL);
-    ret_val = gen_rational_config(&tc_null_buff);
-    TEST_ASSERT_EQUAL_UINT8(ret_val,
-                            GEN_RATIONAL_CONFIG_BUFFER | GEN_DEFS_CONFIG_FAIL);
-    ret_val = gen_rational_config(&tc_null_str_buff);
-    TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_RATIONAL_CONFIG_STR_BUFFER |
-                                         GEN_DEFS_CONFIG_FAIL);
+    uint8_t ret_val = comp_rational_data_config(&tc_write_success);
+    TEST_ASSERT_EQUAL_UINT8(ret_val, COMP_DEFS_CONFIG_SUCCESS);
+    ret_val = comp_rational_data_config(NULL);
+    TEST_ASSERT_EQUAL_UINT8(ret_val, COMP_RATIONAL_DAT_CONFIG_IS_NULL |
+                                         COMP_DEFS_CONFIG_FAIL);
+    ret_val = comp_rational_data_config(&tc_null_buff);
+    TEST_ASSERT_EQUAL_UINT8(ret_val, COMP_RATIONAL_DAT_CONFIG_BUFFER |
+                                         COMP_DEFS_CONFIG_FAIL);
+    ret_val = comp_rational_data_config(&tc_null_str_buff);
+    TEST_ASSERT_EQUAL_UINT8(ret_val, COMP_RATIONAL_DAT_CONFIG_STR_BUFFER |
+                                         COMP_DEFS_CONFIG_FAIL);
 }
 /*!
  * @brief
  * @param
  */
-void test_generate(void)
+void test_compute(void)
 {
-    uint8_t ret_val = gen_rational_config(&tc_write_success);
-    size_t j, i;
+    uint8_t ret_val = comp_rational_data_config(&tc_write_success);
+    size_t i;
 
-    TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_CONFIG_SUCCESS);
-    ret_val = gen_rational_generate();
-    TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_GENERATION_SUCCESS);
-    //@@@TODO check the buffers
-
-    TEST_ASSERT_EQUAL_UINT8(16, key_idx);
-    for (i = 0; i < 16; i++)
+    /* Odd/Even*/
+    tc_write_success.tv_n = &tv_oe;
+    TEST_ASSERT_EQUAL_UINT8(ret_val, COMP_DEFS_CONFIG_SUCCESS);
+    ret_val = comp_rational_data_compute();
+    TEST_ASSERT_EQUAL_UINT8(ret_val, COMP_DEFS_COMPUTE_SUCCESS);
+    for (i = 0; i < output_len; i++)
     {
-        TEST_MESSAGE("Checking against:");
-        TEST_MESSAGE(key_buff[i]);
-
-        bool fail = true;
-        for (j = 0; j < key_idx; j++)
-        {
-            TEST_MESSAGE("Looking for generated:");
-            TEST_MESSAGE(cross_num_five_rattang[j]);
-            if (strcmp(key_buff[j], cross_num_five_rattang[i]) == 0)
-            {
-                TEST_MESSAGE("Found!");
-                fail = false;
-                break;
-            }
-        }
-        if (fail)
-        {
-            TEST_FAIL_MESSAGE("Couldn't find a tangle in the list.");
-        }
+        TEST_ASSERT_EQUAL_STRING(output_oe[i], value_buff[i]);
+    }
+    key_idx = 0;
+    index_idx = 0;
+    value_idx = 0;
+    /* Even/Odd*/
+    tc_write_success.tv_n = &tv_oo;
+    TEST_ASSERT_EQUAL_UINT8(ret_val, COMP_DEFS_CONFIG_SUCCESS);
+    ret_val = comp_rational_data_compute();
+    TEST_ASSERT_EQUAL_UINT8(ret_val, COMP_DEFS_COMPUTE_SUCCESS);
+    for (i = 0; i < output_len; i++)
+    {
+        TEST_ASSERT_EQUAL_STRING(output_oo[i], value_buff[i]);
+    }
+    key_idx = 0;
+    index_idx = 0;
+    value_idx = 0;
+    /* Odd/Odd*/
+    tc_write_success.tv_n = &tv_eo;
+    TEST_ASSERT_EQUAL_UINT8(ret_val, COMP_DEFS_CONFIG_SUCCESS);
+    ret_val = comp_rational_data_compute();
+    TEST_ASSERT_EQUAL_UINT8(ret_val, COMP_DEFS_COMPUTE_SUCCESS);
+    for (i = 0; i < output_len; i++)
+    {
+        TEST_ASSERT_EQUAL_STRING(output_eo[i], value_buff[i]);
     }
 }
 /******************************************************************************/
@@ -203,7 +182,7 @@ int main(void)
     UNITY_BEGIN();
 
     RUN_TEST(test_config);
-    RUN_TEST(test_generate);
+    RUN_TEST(test_compute);
 
     return UNITY_END();
 }
