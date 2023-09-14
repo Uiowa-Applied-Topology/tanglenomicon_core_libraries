@@ -30,7 +30,7 @@
 /*************************** Write Keys   *************************************/
 
 /*!
- * @brief The key for
+ * @brief The key for the rational data computation
  *
  */
 #define COMP_RATIONAL_DAT_STORAGE_UKEY ("COMP_RATIONAL_DAT")
@@ -65,7 +65,7 @@ extern "C"
 #endif
 
     /*!
-     * @brief The type definition for configuring the rational generation.
+     * @brief The type definition for configuring the rational data computation.
      *
      */
     typedef struct
@@ -102,7 +102,7 @@ extern "C"
 {
 #endif
     /*!
-     * @brief
+     * @brief A public function, calling this executes the computation on the configured tangle.
      * @return uint8_t Generation status info.
      */
     uint8_t comp_rational_data_compute();
