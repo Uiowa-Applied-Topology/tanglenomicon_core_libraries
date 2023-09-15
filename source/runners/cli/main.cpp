@@ -12,6 +12,7 @@
  */
 
 #include <generator_rational.h>
+#include <comp_rational_data.h>
 #include <notation_tv.h>
 #include <storage.hpp>
 #include <storage_JSON.hpp>
@@ -50,7 +51,6 @@ class runner_main_c
     }
 };
 
-
 bool runner_main_c::new_file = false;
 bool runner_main_c::init_file = false;
 string runner_main_c::file_path = "";
@@ -70,6 +70,12 @@ int main(int argc, char **argv)
         /**********************************************************************/
         ("r,rational", "Generate rational",
          cxxopts::value<bool>()->default_value("false"))
+        /**********************************************************************/
+        ("d,rational_dat", "Compute rational data",
+         cxxopts::value<bool>()->default_value("false"))
+        /**********************************************************************/
+        ("t,twistvec", "A twist vector to work on",
+         cxxopts::value<string>())
         /**********************************************************************/
         ("n,cNum", "Crossing number to target",
          cxxopts::value<uint8_t>()->default_value("10"))
@@ -127,6 +133,45 @@ int main(int argc, char **argv)
     /********************************Computations******************************/
     /**************************************************************************/
 
+    bool doRational_dat = comand_args["rational_dat"].as<bool>();
+    if (doRational_dat == true)
+    {
+        if (comand_args.count("twistvec"))
+        {
+            note_tv_t tv_n;
+            char tv_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
+            (void)note_tv_encode(
+                (char *)(comand_args["twistvec"].as<string>().c_str()), &tv_n);
+            /* clang-format off */
+            comp_rational_data_config_t rational_dat_config = {
+                &runner_main_c::storage_write,
+                &runner_main_c::storage_read,
+                &tv_n,
+                tv_str,
+                UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u};
+            /* clang-format on */
+
+            uint8_t result = comp_rational_data_config(&rational_dat_config);
+            if ((result & GEN_DEFS_CONFIG_FAIL) == GEN_DEFS_CONFIG_FAIL)
+            {
+                exit(1);
+            }
+            else
+            {
+                result = comp_rational_data_compute();
+                runner_main_c::deconstruct_ptr();
+                if ((result & GEN_DEFS_GENERATION_FAIL) ==
+                    GEN_DEFS_GENERATION_FAIL)
+                {
+                    exit(1);
+                }
+            }
+        }
+        else
+        {
+            exit(1);
+        }
+    }
     /**************************************************************************/
     /********************************Generators********************************/
     /**************************************************************************/
