@@ -37,9 +37,18 @@ class runner_main_c
     static size_t size_bytes;
 
     static void deconstruct_ptr() { delete storage_interface; }
+    static void reinit()
+    {
+        // reset counts on CN change.
+        gen_counter = 0;
+        size_bytes = 0;
+    }
     static void write_results()
     {
+        // The rational tangle generator calls write twice for each TV.
+        // we need to divide count by two.
         gen_counter >>= 1;
+        // Write data to json writer.
         std::string str_cnt = std::to_string(gen_counter);
         std::string str_cn = std::to_string(crossing_num);
         std::string str_bytes = std::to_string(size_bytes);
@@ -55,6 +64,7 @@ class runner_main_c
 
     static int storage_write(char *key, char *index, char *value)
     {
+        // Stub te write function just keep count.
         gen_counter++;
         std::string key_s(key);
         std::string index_s(index);
@@ -96,6 +106,9 @@ int main(int argc, char **argv)
         /**********************************************************************/
         ("n,cNum", "Crossing number to target",
          cxxopts::value<uint8_t>()->default_value("10"))
+        /**********************************************************************/
+        ("u,upto", "upto",
+         cxxopts::value<bool>()->default_value("false"))
         /**********************************************************************/
         ("f,file", "File for storage",
          cxxopts::value<string>())
@@ -143,36 +156,53 @@ int main(int argc, char **argv)
 
     note_tv_t tv_n;
     char tv_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
-    runner_main_c::crossing_num = command_args["cNum"].as<uint8_t>();
-    /* clang-format off */
-    gen_rational_config_t rational_config = {
+    bool upto = command_args["upto"].as<bool>();
+    // Are we getting numbers for 1 CN or up to the CN
+    if (upto)
+    {
+        for (uint8_t i = 1; i <= command_args["cNum"].as<uint8_t>(); i++)
+        {
+            runner_main_c::crossing_num = i;
+            /* clang-format off */
+            gen_rational_config_t rational_config = {
+                            i,
+                            &runner_main_c::storage_write,
+                            &runner_main_c::storage_read,
+                            &tv_n,
+                            tv_str,
+                            UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u};
+            /* clang-format on */
+
+            uint8_t result = gen_rational_config(&rational_config);
+            result = gen_rational_generate();
+            runner_main_c::write_results();
+            runner_main_c::reinit();
+
+        }
+    }
+    else
+    {
+        runner_main_c::crossing_num = command_args["cNum"].as<uint8_t>();
+        /* clang-format off */
+        gen_rational_config_t rational_config = {
         command_args["cNum"].as<uint8_t>(),
         &runner_main_c::storage_write,
         &runner_main_c::storage_read,
         &tv_n,
         tv_str,
         UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u};
-    /* clang-format on */
+        /* clang-format on */
 
-    uint8_t result = gen_rational_config(&rational_config);
-    if ((result & GEN_DEFS_CONFIG_FAIL) == GEN_DEFS_CONFIG_FAIL)
-    {
-        exit(1);
-    }
-    else
-    {
+        uint8_t result = gen_rational_config(&rational_config);
         result = gen_rational_generate();
         runner_main_c::write_results();
-        runner_main_c::deconstruct_ptr();
-        if ((result & GEN_DEFS_GENERATION_FAIL) == GEN_DEFS_GENERATION_FAIL)
-        {
-            exit(1);
-        }
     }
 
     /**************************************************************************/
     /********************************Translators*******************************/
     /**************************************************************************/
+    // write to file
+    runner_main_c::deconstruct_ptr();
 
     /**************************************************************************/
     /********************************Notations*********************************/
