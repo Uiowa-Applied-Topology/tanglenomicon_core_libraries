@@ -197,7 +197,7 @@ uint8_t comp_rational_data_write_alg_eq(uint16_t num_eq, uint16_t den_eq)
     comp_rational_data_localcfg->storage_write(
         comp_rational_data_localcfg->tv_str_buff, value, local_str);
 
-    value = "numerator_eq";
+    value = "denominator_eq";
     /* Decode to get the string representation for the denominator equivalence
      * class and store.*/
     sprintf(local_str, "%u", den_eq);
