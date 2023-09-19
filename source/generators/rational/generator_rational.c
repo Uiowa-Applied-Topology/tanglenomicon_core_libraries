@@ -25,7 +25,7 @@
 /******************************************************************************/
 
 /*!
- * @brief Number of permutation functions used by the module.
+ * @brief Number of combination functions used by the module.
  *
  */
 #define GEN_RATIONAL_PERM_FUNS_LEN (2u)
@@ -34,24 +34,18 @@
 /************************** Typedefs ******************************************/
 /******************************************************************************/
 
-/*!
- * @brief The type for permutation functions used by the module.
- *
- */
-typedef bool (*gen_rational_perm_t)(gen_rational_config_t *);
-
 /******************************************************************************/
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
 
 /*!
- * @brief Iterativly generates all possible permutation of integer partitions of
- * the cfg.crossingNumber without.
+ * @brief Iteratively generates all possible combination of integer partitions
+ * of the cfg.crossingNumber without.
  *
  * @param cfg Configuration to work on.
  * @return uint8_t Success/Fail flag.
  */
-static inline uint8_t gen_rational_partions(gen_rational_config_t *cfg);
+static inline uint8_t gen_rational_combinations();
 
 /*!
  * @brief A function to write the twist vector in cfg to the storage device in
@@ -60,7 +54,7 @@ static inline uint8_t gen_rational_partions(gen_rational_config_t *cfg);
  * @param cfg Configuration to work on.
  * @return uint8_t Success/Fail flag.
  */
-static inline uint8_t gen_rational_write(gen_rational_config_t *cfg);
+static inline uint8_t gen_rational_write();
 
 /*!
  * @brief The canonical form for twist vector is given as odd length. When we
@@ -71,8 +65,7 @@ static inline uint8_t gen_rational_write(gen_rational_config_t *cfg);
  * @param cfg Configuration to work on.
  * @return uint8_t Success/Fail flag.
  */
-static inline uint8_t
-gen_rational_evenperm_shift_write(gen_rational_config_t *cfg);
+static inline uint8_t gen_rational_evenperm_shift_write();
 
 /******************************************************************************/
 /************************** Local Variables ***********************************/
@@ -133,7 +126,7 @@ uint8_t gen_rational_generate()
     else
     {
         /* Find all partitions for the local config. */
-        ret_val = gen_rational_partions(gen_rational_localcfg);
+        ret_val = gen_rational_combinations();
     }
     return ret_val;
 }
@@ -143,16 +136,16 @@ uint8_t gen_rational_generate()
 /******************************************************************************/
 
 /*
- *  Documentation in header
+ *  Documentation in declaration
  */
-static uint8_t gen_rational_partions(gen_rational_config_t *cfg)
+static uint8_t gen_rational_combinations()
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
 
     /* Set function inputs to match the cfg data*/
-    uint8_t *tv = cfg->tv_n->twist_vector;
-    uint8_t crossing_num = (cfg->crossingNumber);
-    size_t *len = &(cfg->tv_n->tv_length);
+    uint8_t *tv = gen_rational_localcfg->tv_n->twist_vector;
+    uint8_t crossing_num = (gen_rational_localcfg->crossingNumber);
+    size_t *len = &(gen_rational_localcfg->tv_n->tv_length);
 
     /* Variables to emulate recursive calling.*/
     size_t stack_i[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {0};
@@ -178,12 +171,12 @@ static uint8_t gen_rational_partions(gen_rational_config_t *cfg)
 
             if ((*len) % 2 == 0)
             {
-                (void)gen_rational_evenperm_shift_write(cfg);
+                (void)gen_rational_evenperm_shift_write();
             }
             else
             {
                 /* Twist vector already odd length. */
-                (void)gen_rational_write(cfg);
+                (void)gen_rational_write();
             }
 
             /* Emulate an escape from the tv_idx-th for loop.*/
@@ -218,14 +211,14 @@ static uint8_t gen_rational_partions(gen_rational_config_t *cfg)
 /*
  *  Documentation at declaration
  */
-uint8_t gen_rational_evenperm_shift_write(gen_rational_config_t *cfg)
+uint8_t gen_rational_evenperm_shift_write()
 {
 
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
     /* Set function inputs to match the cfg data*/
-    uint8_t *tv = cfg->tv_n->twist_vector;
-    uint8_t crossing_num = (cfg->crossingNumber);
-    size_t *len = &(cfg->tv_n->tv_length);
+    uint8_t *tv = gen_rational_localcfg->tv_n->twist_vector;
+    uint8_t crossing_num = (gen_rational_localcfg->crossingNumber);
+    size_t *len = &(gen_rational_localcfg->tv_n->tv_length);
 
     /* Increase tv_length by 1 to account for leading 0.*/
     (*len)++;
@@ -240,7 +233,7 @@ uint8_t gen_rational_evenperm_shift_write(gen_rational_config_t *cfg)
     /* Add leading 0 */
     tv[0] = 0;
 
-    (void)gen_rational_write(cfg);
+    (void)gen_rational_write();
 
     /* left shift the twist vector */
     for (i = 0; i < *len; i++)
@@ -252,22 +245,26 @@ uint8_t gen_rational_evenperm_shift_write(gen_rational_config_t *cfg)
 /*
  *  Documentation at declaration
  */
-uint8_t gen_rational_write(gen_rational_config_t *cfg)
+uint8_t gen_rational_write()
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
     char local_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
 
-    note_tv_decode(*(cfg->tv_n), cfg->tv_str_buff);
+    note_tv_decode(*(gen_rational_localcfg->tv_n),
+                   gen_rational_localcfg->tv_str_buff);
 
     char *value = "twist_vector";
     /* Write the data to the storage device. */
     /*@@@TODO: we need to add the correct document values.*/
-    cfg->storage_write(cfg->tv_str_buff, value, cfg->tv_str_buff);
+    gen_rational_localcfg->storage_write(gen_rational_localcfg->tv_str_buff,
+                                         value,
+                                         gen_rational_localcfg->tv_str_buff);
 
     value = "crossing_num";
     /* Decode to get the string representation for the tv and store.*/
-    sprintf(local_str, "%u", cfg->crossingNumber);
-    cfg->storage_write(cfg->tv_str_buff, value, local_str);
+    sprintf(local_str, "%u", gen_rational_localcfg->crossingNumber);
+    gen_rational_localcfg->storage_write(gen_rational_localcfg->tv_str_buff,
+                                         value, local_str);
 
     return ret_val;
 }

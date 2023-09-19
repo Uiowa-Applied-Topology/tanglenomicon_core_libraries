@@ -5,6 +5,8 @@ target_include_directories(Unity PUBLIC framework)
 
 target_include_directories(Cmock PUBLIC framework)
 
-add_subdirectory(test_storage_JSON)
-add_subdirectory(test_notation_twist_vec)
-add_subdirectory(test_generator_rational)
+add_subdirectory(computations)
+add_subdirectory(generators)
+add_subdirectory(notations)
+add_subdirectory(storage)
+add_subdirectory(translators)

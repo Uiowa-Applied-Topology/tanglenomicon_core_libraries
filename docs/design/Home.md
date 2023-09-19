@@ -86,8 +86,9 @@ A style format is defined as a clang format file. Files are checked against clan
  ┃ ┗ 📂unit_tests
  ┃   ┣ 📂framework
  ┃   ┃ ┗ \<Unit Test Framework Source\>
- ┃   ┣ 📂 \<Module Unit Test\>
- ┃     ┗ \<Module Unit Test Source\>
+ ┃   ┗ 📂 \<Unit Test Suites\>
+ ┃     ┗ 📂\<Module Unit Test\>
+ ┃        ┗ \<Module Unit Test Source\>
  ┣ 📜.clang-format
  ┣ 📜.clang-tidy
  ┣ 📜.gitignore
