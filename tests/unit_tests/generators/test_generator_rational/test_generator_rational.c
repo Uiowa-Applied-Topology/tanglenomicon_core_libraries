@@ -25,7 +25,7 @@ size_t key_idx = 0;
 size_t index_idx = 0;
 size_t value_idx = 0;
 
-int stub_write_success(char *key, char *index, char *value)
+int stub_write_success_dedupe(char *key, char *index, char *value)
 {
     size_t i = 0;
     for (i = 0; i < key_idx; i++)
