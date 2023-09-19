@@ -55,16 +55,19 @@ const char *stub_read(char *key, char *index) { return value_buff[value_idx]; }
 note_tv_t tv;
 char tv_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
 
+/* this is tv: 1 3 2*/
 note_tv_t tv_oe = {{2, 3, 1}, 3};
 char output_oe[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 5]
               [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u] = {
                   "9", "4", "1", "4", UTIL_TANG_DEFS_INF_TANG_STR};
 
+/* this is tv: 2 3 1*/
 note_tv_t tv_oo = {{1, 3, 2}, 3};
 char output_oo[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 5]
               [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u] = {
                   "9", "7", "2", "7", UTIL_TANG_DEFS_ONE_TANG_STR};
 
+/* this is tv: 3 2 1*/
 note_tv_t tv_eo = {{1, 2, 3}, 3};
 char output_eo[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 5]
               [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u] = {
