@@ -25,7 +25,7 @@ size_t key_idx = 0;
 size_t index_idx = 0;
 size_t value_idx = 0;
 
-int stub_write_success_dedupe(char *key, char *index, char *value)
+int stub_write_dedup_success(char *key, char *index, char *value)
 {
     size_t i = 0;
     for (i = 0; i < key_idx; i++)
@@ -77,7 +77,7 @@ char tv_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
 /* clang-format off */
 
 gen_rational_config_t tc_write_success = {5,
-                                          &stub_write_success,
+                                          &stub_write_dedup_success,
                                           &stub_read,
                                           &tv,
                                           tv_str,
