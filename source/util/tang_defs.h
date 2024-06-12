@@ -17,7 +17,7 @@
 /******************************************************************************/
 /****************************** Pre processor Switches ************************/
 /******************************************************************************/
-
+#ifndef __PYX_EXTERN_C
 #ifdef _WIN32
 #ifndef _CRT_SECURE_NO_WARNINGS
 /*! For portability we're using the old style "unsafe" string interfaces. We
@@ -39,6 +39,7 @@ can suppress warning on windows. */
 #error                                                                         \
     "Something has gone wrong. We want this define to be 1 and it's already not"
 #else
+#endif
 #endif
 #endif
 #endif

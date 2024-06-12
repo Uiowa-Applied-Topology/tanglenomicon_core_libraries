@@ -1,1 +1,3 @@
 add_subdirectory(cli)
+add_subdirectory(py_gen_montesinos)
+add_subdirectory(mont_gen_wasm)

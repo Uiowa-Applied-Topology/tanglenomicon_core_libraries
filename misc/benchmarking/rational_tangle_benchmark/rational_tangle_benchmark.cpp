@@ -62,7 +62,7 @@ class runner_main_c
                                  (char *)(str_bytes.c_str()));
     }
 
-    static int storage_write(char *key, char *index, char *value)
+    static uint8_t storage_write(char *key, char *index, char *value)
     {
         // Stub te write function just keep count.
         gen_counter++;
@@ -72,7 +72,7 @@ class runner_main_c
         size_bytes += key_s.size();
         size_bytes += index_s.size();
         size_bytes += value_s.size();
-        return STORE_WRITE_SUCCESS;
+        return STORE_DEFS_WRITE_SUCCESS;
     }
 
     /*!

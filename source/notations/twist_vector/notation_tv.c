@@ -1,7 +1,7 @@
 /*!
  *  @file notation_tv.c
  *
- *  @brief  Notaiton module for twist vectors.
+ *  @brief  Notation module for twist vectors.
  *
  *
  *  @author    Isabel Darcy
@@ -38,7 +38,7 @@
  * @param tv Twist vector to work on.
  * @return note_tv_t a pointer to the reversed object, needed for nesting.
  */
-note_tv_t *note_tv_tvrev(note_tv_t *tv);
+static inline note_tv_t *note_tv_tvrev(note_tv_t *tv);
 
 /******************************************************************************/
 /************************** Public Function Definitions ***********************/
@@ -53,7 +53,8 @@ uint8_t note_tv_encode(char *str, note_tv_t *twistv)
      * added*/
     uint8_t retval = NOTE_DEFS_ENCODE_SUCCESS;
     uint8_t tv_idx = 0u;
-    char *str_end = str + strlen(str);
+    str++;
+    char *str_end = str + strlen(str)-1;
 
     /* Iterate over string. */
     while (str < str_end)
@@ -83,6 +84,8 @@ uint8_t note_tv_decode(note_tv_t twistv, char *str)
     uint8_t retval = NOTE_DEFS_DECODE_SUCCESS;
     char local_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
     char *str_p = str;
+    strcpy(str_p, "[");
+    str_p++;
 
     /* Iterate over tv backwards. */
     size_t i = twistv.tv_length;
@@ -99,10 +102,12 @@ uint8_t note_tv_decode(note_tv_t twistv, char *str)
         /* Insert spaces where needed. */
         if (i >= 1)
         {
-            strcat(str_p, " ");
-            str_p += 1;
+            strcpy(str_p, " ");
+            str_p++;
         }
     }
+    strcpy(str_p, "]");
+    str_p++;
 
     return retval;
 }
@@ -114,15 +119,10 @@ uint8_t note_tv_decode(note_tv_t twistv, char *str)
 /*
  *  Documentation at declaration
  */
-note_tv_t *note_tv_tvrev(note_tv_t *tv)
+static note_tv_t *note_tv_tvrev(note_tv_t *tv)
 {
     uint8_t *left_p, *right_p;
 
-    /*Error check if string are not empty or void */
-    if (!tv || !(*tv->twist_vector))
-    {
-        return tv;
-    }
 
     left_p = tv->twist_vector;
     right_p = tv->twist_vector + tv->tv_length - 1;

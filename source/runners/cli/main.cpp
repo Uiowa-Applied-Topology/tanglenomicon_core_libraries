@@ -35,7 +35,7 @@ class runner_main_c
     static bool init_file;
     static void deconstruct_ptr() { delete storage_interface; }
 
-    static int storage_write(char *key, char *index, char *value)
+    static uint8_t storage_write(char *key, char *index, char *value)
     {
         return storage_interface->write(key, index, value);
     }

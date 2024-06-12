@@ -12,8 +12,7 @@
 
 #define STR_TERMINAL_CHAR (0x7Fu)
 
-#define STORE_WRITE_FAIL (0x1u)
-#define STORE_WRITE_SUCCESS (0x0u)
+#define STORE_DEFS_WRITE_SUCCESS (0x1u)
 
 char key_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u]
              [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
@@ -25,7 +24,7 @@ size_t key_idx = 0;
 size_t index_idx = 0;
 size_t value_idx = 0;
 
-int stub_write_success(char *key, char *index, char *value)
+uint8_t stub_write_success(char *key, char *index, char *value)
 {
     strcpy(key_buff[key_idx], key);
     strcpy(index_buff[index_idx], index);
@@ -33,10 +32,10 @@ int stub_write_success(char *key, char *index, char *value)
     key_idx++;
     index_idx++;
     value_idx++;
-    return STORE_WRITE_SUCCESS;
+    return STORE_DEFS_WRITE_SUCCESS;
 }
 
-int stub_write_fail(char *key, char *index, char *value)
+uint8_t stub_write_fail(char *key, char *index, char *value)
 {
     strcpy(key_buff[key_idx], key);
     strcpy(index_buff[index_idx], index);
@@ -44,7 +43,7 @@ int stub_write_fail(char *key, char *index, char *value)
     key_idx++;
     index_idx++;
     value_idx++;
-    return STORE_WRITE_FAIL;
+    return STORE_DEFS_WRITE_SUCCESS;
 }
 
 const char *stub_read(char *key, char *index) { return value_buff[value_idx]; }

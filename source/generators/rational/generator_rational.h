@@ -18,6 +18,7 @@
 /******************************************************************************/
 
 #include "generator_defs.h"
+#include "storage_defs.h"
 #include "notation_tv.h"
 #include "stdbool.h"
 #include "stdlib.h"
@@ -79,8 +80,8 @@ extern "C"
     typedef struct
     {
         uint8_t crossingNumber;
-        int (*storage_write)(char *key, char *index, char *value);
-        const char *(*storage_read)(char *key, char *index);
+        gen_storage_write_fun_t storage_write;
+        gen_storage_read_fun_t storage_read;
         note_tv_t *tv_n;
         char *tv_str_buff;
         size_t tv_str_buff_len;
