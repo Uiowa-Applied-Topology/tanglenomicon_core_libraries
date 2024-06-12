@@ -157,7 +157,7 @@ static uint8_t gen_rational_combinations()
 
     /* This while loop emulates for loops executing recursively. The outermost
      * for loop as the termination condition. */
-    while (stack_i[0] <= crossing_num)
+    while ((stack_i[0] <= crossing_num) && (ret_val==GEN_DEFS_GENERATION_SUCCESS))
     {
         /* Set the tv to the value of the tv_idx-th for loop counter. */
         tv[tv_idx] = stack_i[tv_idx];
@@ -171,12 +171,12 @@ static uint8_t gen_rational_combinations()
 
             if ((*len) % 2 == 0)
             {
-                (void)gen_rational_evenperm_shift_write();
+                ret_val = gen_rational_evenperm_shift_write();
             }
             else
             {
                 /* Twist vector already odd length. */
-                (void)gen_rational_write();
+                ret_val = gen_rational_write();
             }
 
             /* Emulate an escape from the tv_idx-th for loop.*/
@@ -233,7 +233,7 @@ uint8_t gen_rational_evenperm_shift_write()
     /* Add leading 0 */
     tv[0] = 0;
 
-    (void)gen_rational_write();
+    ret_val = gen_rational_write();
 
     /* left shift the twist vector */
     for (i = 0; i < *len; i++)
@@ -247,7 +247,8 @@ uint8_t gen_rational_evenperm_shift_write()
  */
 uint8_t gen_rational_write()
 {
-    uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
+    uint8_t ret_val = GEN_DEFS_GENERATION_FAIL;
+    uint8_t write_status = STORE_DEFS_WRITE_FAIL;
     char local_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
 
     note_tv_decode(*(gen_rational_localcfg->tv_n),
@@ -256,15 +257,21 @@ uint8_t gen_rational_write()
     char *value = "twist_vector";
     /* Write the data to the storage device. */
     /*@@@TODO: we need to add the correct document values.*/
-    gen_rational_localcfg->storage_write(gen_rational_localcfg->tv_str_buff,
-                                         value,
-                                         gen_rational_localcfg->tv_str_buff);
+    write_status = gen_rational_localcfg->storage_write(
+        gen_rational_localcfg->tv_str_buff, value,
+        gen_rational_localcfg->tv_str_buff);
+    if (write_status == STORE_DEFS_WRITE_SUCCESS)
+    {
+        value = "crossing_num";
+        /* Decode to get the string representation for the tv and store.*/
+        sprintf(local_str, "%u", gen_rational_localcfg->crossingNumber);
+        write_status = gen_rational_localcfg->storage_write(
+            gen_rational_localcfg->tv_str_buff, value, local_str);
+    }
 
-    value = "crossing_num";
-    /* Decode to get the string representation for the tv and store.*/
-    sprintf(local_str, "%u", gen_rational_localcfg->crossingNumber);
-    gen_rational_localcfg->storage_write(gen_rational_localcfg->tv_str_buff,
-                                         value, local_str);
-
+    if( write_status == STORE_DEFS_WRITE_SUCCESS)
+    {
+        ret_val = GEN_DEFS_GENERATION_SUCCESS;
+    }
     return ret_val;
 }

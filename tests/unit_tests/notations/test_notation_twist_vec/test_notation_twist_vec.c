@@ -20,7 +20,7 @@ note_tv_t tv_t = {
         [6] = 7
     },
     7};
-char tv_string[] = "7 6 5 4 3 2 145";
+char tv_string[] = "[7 6 5 4 3 2 145]";
 
 #define STR_TERMINAL_CHAR (0x7Fu)
 

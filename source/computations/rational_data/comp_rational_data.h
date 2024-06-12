@@ -70,7 +70,7 @@ extern "C"
      */
     typedef struct
     {
-        int (*storage_write)(char *key, char *index, char *value);
+        uint8_t (*storage_write)(char *key, char *index, char *value);
         const char *(*storage_read)(char *key, char *index);
         note_tv_t *tv_n;
         char *tv_str_buff;

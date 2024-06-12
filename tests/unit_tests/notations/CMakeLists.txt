@@ -1,2 +1,3 @@
 
 add_subdirectory(test_notation_twist_vec)
+add_subdirectory(test_notation_att)

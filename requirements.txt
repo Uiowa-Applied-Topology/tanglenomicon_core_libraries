@@ -1,3 +1,7 @@
+pytest
 parametrize_from_file
 pytest-reportlog
 pytest-html
+cython
+flake8
+black

@@ -1,2 +1,3 @@
 
 add_subdirectory(test_generator_rational)
+add_subdirectory(test_generator_montesinos)

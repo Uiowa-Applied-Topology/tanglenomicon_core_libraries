@@ -37,16 +37,16 @@ const char *sj::read(char *key, char *index)
  * @param value
  * @return
  */
-int sj::write(char *key, char *index, char *value)
+uint8_t sj::write(char *key, char *index, char *value)
 {
-    int ret_val = STORE_WRITE_SUCCESS;
+    uint8_t ret_val = STORE_DEFS_WRITE_SUCCESS;
     if (this->data.is_null())
     {
-        ret_val = STORE_WRITE_FAIL;
+        ret_val = STORE_DEFS_WRITE_SUCCESS;
     }
     else if (this->data.type() == json::value_t::array)
     {
-        ret_val = STORE_WRITE_FAIL;
+        ret_val = STORE_DEFS_WRITE_SUCCESS;
     }
     else
     {

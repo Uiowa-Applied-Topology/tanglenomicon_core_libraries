@@ -422,9 +422,13 @@ FodyWeavers.xsd
 /.vscode
 
 Build/**/*
+build/**/*
 tests/.pytest_cache
 tests/__pycache__
 tests/results/*
 tests/results/**/*
 /docs/design/.obsidian/workspace-mobile.json
 /docs/design/.obsidian/workspace.json
+.venv
+.idea
+cmake-*

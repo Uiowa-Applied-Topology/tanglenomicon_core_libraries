@@ -119,7 +119,7 @@ void test_write_newkey(void)
     sj *test_obj = new sj(testfile_good_path, false);
     TEST_ASSERT_TRUE(test_obj);
     int write_res = test_obj->write(key, index, value);
-    TEST_ASSERT_EQUAL(write_res, STORE_WRITE_SUCCESS);
+    TEST_ASSERT_EQUAL(write_res, STORE_DEFS_WRITE_SUCCESS);
     delete test_obj;
 }
 
@@ -137,7 +137,7 @@ void test_write_newindex(void)
     sj *test_obj = new sj(testfile_good_path, false);
     TEST_ASSERT_TRUE(test_obj);
     int write_res = test_obj->write(key, index, value);
-    TEST_ASSERT_EQUAL(write_res, STORE_WRITE_SUCCESS);
+    TEST_ASSERT_EQUAL(write_res, STORE_DEFS_WRITE_SUCCESS);
     delete test_obj;
 }
 
@@ -155,7 +155,7 @@ void test_write_updateindex(void)
     sj *test_obj = new sj(testfile_good_path, false);
     TEST_ASSERT_TRUE(test_obj);
     int write_res = test_obj->write(key, index, value);
-    TEST_ASSERT_EQUAL(write_res, STORE_WRITE_SUCCESS);
+    TEST_ASSERT_EQUAL(write_res, STORE_DEFS_WRITE_SUCCESS);
     delete test_obj;
 }
 

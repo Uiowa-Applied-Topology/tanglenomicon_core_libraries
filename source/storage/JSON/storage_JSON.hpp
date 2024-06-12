@@ -67,7 +67,7 @@ class storage_json_c : public storage_interface_c
      * @param value
      * @return
      */
-    int write(char *key, char *index, char *value);
+    uint8_t write(char *key, char *index, char *value);
 
   private:
     /*!

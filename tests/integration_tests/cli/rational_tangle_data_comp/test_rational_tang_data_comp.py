@@ -9,7 +9,7 @@ BUILD_PATH = "../../.."
 
 json_test_data = """
 {
-    "1 3 2": {
+    "[1 3 2]": {
         "numerator": "9",
         "denominator": "4",
         "numerator_eq":"1",
@@ -29,7 +29,7 @@ else:
 
 
 def test_tangles():
-    out_file = Path.cwd() / "res.json"
+    out_file = Path.cwd() / "test_rational_tang_data_comp_res.json"
 
     assert exepath.is_file() == True
 
@@ -38,7 +38,7 @@ def test_tangles():
 
     assert out_file.is_file() == False
 
-    args = [str(exepath), "-dj", "-t","1 3 2","-f",f"{out_file}"]
+    args = [str(exepath), "-dj", "-t","[1 3 2]","-f",f"{out_file}"]
 
     proc = subprocess.call(args)
     assert proc ==0

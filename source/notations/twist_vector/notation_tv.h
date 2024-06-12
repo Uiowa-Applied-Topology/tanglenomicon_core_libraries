@@ -1,7 +1,7 @@
 /*!
  *  @file notation_tv.h
  *
- *  @brief  Notaiton module for twist vector notation.
+ *  @brief  Notation module for twist vector notation.
  *
  *
  *  @author    Isabel Darcy

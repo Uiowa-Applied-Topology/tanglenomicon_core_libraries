@@ -1,6 +1,7 @@
 #include "generator_rational.h"
 #include "string.h"
 #include "unity.h"
+#include "storage_defs.h"
 
 /******************************************************************************/
 /*******************************Untested Frameworks****************************/
@@ -12,8 +13,7 @@
 
 #define STR_TERMINAL_CHAR (0x7Fu)
 
-#define STORE_WRITE_FAIL (0x1u)
-#define STORE_WRITE_SUCCESS (0x0u)
+
 
 char key_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u]
              [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
@@ -25,14 +25,14 @@ size_t key_idx = 0;
 size_t index_idx = 0;
 size_t value_idx = 0;
 
-int stub_write_dedup_success(char *key, char *index, char *value)
+uint8_t stub_write_dedup_success(char *key, char *index, char *value)
 {
     size_t i = 0;
     for (i = 0; i < key_idx; i++)
     {
         if (strcmp(key_buff[i], key) == 0)
         {
-            return STORE_WRITE_SUCCESS;
+            return STORE_DEFS_WRITE_SUCCESS;
         }
     }
     strcpy(key_buff[key_idx], key);
@@ -41,10 +41,10 @@ int stub_write_dedup_success(char *key, char *index, char *value)
     key_idx++;
     index_idx++;
     value_idx++;
-    return STORE_WRITE_SUCCESS;
+    return STORE_DEFS_WRITE_SUCCESS;
 }
 
-int stub_write_success(char *key, char *index, char *value)
+uint8_t stub_write_success(char *key, char *index, char *value)
 {
     strcpy(key_buff[key_idx], key);
     strcpy(index_buff[index_idx], index);
@@ -52,18 +52,12 @@ int stub_write_success(char *key, char *index, char *value)
     key_idx++;
     index_idx++;
     value_idx++;
-    return STORE_WRITE_SUCCESS;
+    return STORE_DEFS_WRITE_SUCCESS;
 }
 
-int stub_write_fail(char *key, char *index, char *value)
+uint8_t stub_write_fail(char *key, char *index, char *value)
 {
-    strcpy(key_buff[key_idx], key);
-    strcpy(index_buff[index_idx], index);
-    strcpy(value_buff[value_idx], value);
-    key_idx++;
-    index_idx++;
-    value_idx++;
-    return STORE_WRITE_FAIL;
+    return STORE_DEFS_WRITE_FAIL;
 }
 
 const char *stub_read(char *key, char *index) { return value_buff[value_idx]; }
@@ -103,26 +97,26 @@ gen_rational_config_t tc_null_str_buff = {5,
 
 char cross_num_five_rattang[UTIL_TANG_DEFS_MAX_CROSSINGNUM*5][UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u]={
 /* 5 */
-"1 1 1 1 1",
+"[1 1 1 1 1]",
 /* 4 */
-"2 1 1 1 0",
-"1 2 1 1 0",
-"1 1 2 1 0",
-"1 1 1 2 0",
+"[2 1 1 1 0]",
+"[1 2 1 1 0]",
+"[1 1 2 1 0]",
+"[1 1 1 2 0]",
 /* 3 */
-"3 1 1",
-"1 3 1",
-"1 1 3",
-"2 2 1",
-"2 1 2",
-"1 2 2",
+"[3 1 1]",
+"[1 3 1]",
+"[1 1 3]",
+"[2 2 1]",
+"[2 1 2]",
+"[1 2 2]",
 /* 2 */
-"3 2 0",
-"2 3 0",
-"4 1 0",
-"1 4 0",
+"[3 2 0]",
+"[2 3 0]",
+"[4 1 0]",
+"[1 4 0]",
 /* 1 */
-"5",
+"[5]",
 };
 
 /* clang-format on */
@@ -156,6 +150,17 @@ void test_config(void)
     ret_val = gen_rational_config(&tc_null_str_buff);
     TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_RATIONAL_CONFIG_STR_BUFFER |
                                          GEN_DEFS_CONFIG_FAIL);
+}
+/*!
+ * @brief
+ * @param
+ */
+void test_generate_fail(void)
+{
+
+    uint8_t ret_val = gen_rational_config(&tc_write_fail);
+    ret_val = gen_rational_generate();
+    TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_GENERATION_FAIL);
 }
 /*!
  * @brief
@@ -204,6 +209,7 @@ int main(void)
 
     RUN_TEST(test_config);
     RUN_TEST(test_generate);
+    RUN_TEST(test_generate_fail);
 
     return UNITY_END();
 }

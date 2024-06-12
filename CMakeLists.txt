@@ -10,10 +10,21 @@ project(
 
 option(BUILD_DOC "Build documentation")
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+
+if (DEFINED EMSCRIPTEN)
+add_compile_options("-fPIC")
+add_compile_definitions(ENABLE_EMSCRIPTEN)
+else()
+set(Python_ROOT_DIR "./.venv/bin")
+set(Python3_FIND_VIRTUALENV "ONLY")
+
 find_package(
   Python
-  COMPONENTS Interpreter
+  COMPONENTS Interpreter Development.Module
   REQUIRED)
+find_program(CYTHON "cython")
+endif()
+
 find_package(Doxygen)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
@@ -42,6 +53,9 @@ add_subdirectory(tests)
 # End Compiler Defines
 ################################################################################
 
+################################################################################
+# Start Extra Build Defines
+################################################################################
 if(BUILD_DOC)
   if(DOXYGEN_FOUND)
     set(DOXYFILE ${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile)
@@ -59,3 +73,7 @@ if(BUILD_DOC)
       "Doxygen need to be installed to generate the doxygen documentation")
   endif(DOXYGEN_FOUND)
 endif(BUILD_DOC)
+
+################################################################################
+# Start Extra Build Defines
+################################################################################
