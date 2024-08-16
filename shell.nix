@@ -46,6 +46,7 @@ in pkgs.mkShell rec {
   # This is optional and can be left out to run pip manually.
   postShellHook = ''
     # allow pip to install wheels
+    export PATH="$PWD/node_modules/.bin/:$HOME/.local/share/JetBrains/Toolbox/scripts:$HOME/.local/share/JetBrains/Toolbox/:$PATH"
     unset SOURCE_DATE_EPOCH
   '';
 }

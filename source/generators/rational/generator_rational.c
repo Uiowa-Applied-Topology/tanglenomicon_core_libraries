@@ -39,13 +39,14 @@
 /******************************************************************************/
 
 /*!
- * @brief Iteratively generates all possible combination of integer partitions
- * of the cfg.crossingNumber without.
+ * @brief A function to process a template describing the ' ', and '+' for a
+ * twist vector. A template is a bitfield where 1 is $+$ and 0 is ' '.
+ * Example: 0101 -> [1 1+1 1+1] -> [1 2 2]
  *
- * @param cfg Configuration to work on.
+ * @param template Template to work on.
  * @return uint8_t Success/Fail flag.
  */
-static inline uint8_t gen_rational_combinations();
+static inline uint8_t gen_rational_proc_template(uint8_t template);
 
 /*!
  * @brief A function to write the twist vector in cfg to the storage device in
@@ -125,8 +126,18 @@ uint8_t gen_rational_generate()
     }
     else
     {
+        size_t i = 0u;
+        /* A left shift multiplies the value of an integer by 2. */
+        size_t count_lim = 0x01u << (gen_rational_localcfg->crossingNumber - 1);
+        for (i = 0u; i < count_lim; i++)
+        {
+            ret_val = gen_rational_proc_template(i);
+            if (ret_val == GEN_DEFS_GENERATION_FAIL)
+            {
+                break;
+            }
+        }
         /* Find all partitions for the local config. */
-        ret_val = gen_rational_combinations();
     }
     return ret_val;
 }
@@ -138,71 +149,39 @@ uint8_t gen_rational_generate()
 /*
  *  Documentation in declaration
  */
-static uint8_t gen_rational_combinations()
+static uint8_t gen_rational_proc_template(uint8_t template)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
-
-    /* Set function inputs to match the cfg data*/
+    uint8_t counter = gen_rational_localcfg->crossingNumber;
+    size_t *tv_len = &(gen_rational_localcfg->tv_n->tv_length);
     uint8_t *tv = gen_rational_localcfg->tv_n->twist_vector;
-    uint8_t crossing_num = (gen_rational_localcfg->crossingNumber);
-    size_t *len = &(gen_rational_localcfg->tv_n->tv_length);
-
-    /* Variables to emulate recursive calling.*/
-    size_t stack_i[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {0};
-    size_t tv_idx = 0;
-    size_t available_crossings = crossing_num;
-
-    /* Set the outermost for loop iterator to 1.*/
-    stack_i[0] = 1;
-
-    /* This while loop emulates for loops executing recursively. The outermost
-     * for loop as the termination condition. */
-    while ((stack_i[0] <= crossing_num) && (ret_val==GEN_DEFS_GENERATION_SUCCESS))
+    size_t i = 0u;
+    for (i = 0u; i < UTIL_TANG_DEFS_MAX_CROSSINGNUM; i++)
     {
-        /* Set the tv to the value of the tv_idx-th for loop counter. */
-        tv[tv_idx] = stack_i[tv_idx];
-
-        /* Check if the inner most (tv_idx-th) for loop has exhausted availble
-         * crossings. */
-        if ((available_crossings - stack_i[tv_idx]) == 0)
+        tv[i] = 1;
+    }
+    *tv_len = 0;
+    while (counter > 0u)
+    {
+        counter--;
+        if ((template & 0x01u) == 0)
         {
-            /*Set twist vector length*/
-            *len = tv_idx + 1;
-
-            if ((*len) % 2 == 0)
-            {
-                ret_val = gen_rational_evenperm_shift_write();
-            }
-            else
-            {
-                /* Twist vector already odd length. */
-                ret_val = gen_rational_write();
-            }
-
-            /* Emulate an escape from the tv_idx-th for loop.*/
-
-            /* Make sure we don't underflow then decrament.*/
-            if (tv_idx != 0)
-            {
-                tv_idx--;
-            }
-
-            /* Restore available crossings */
-            available_crossings += stack_i[tv_idx];
+            (*tv_len)++;
         }
         else
         {
-            /* Emulate a recursive call into the tv_idx+1-th for loop.*/
-
-            /* Remove available crossings */
-            available_crossings -= stack_i[tv_idx];
-            tv_idx++;
-            /* We want the initial state of the tv_idx+1-th loop iterator to be
-             * 1, we set 0 here and increment on the next instruction.*/
-            stack_i[tv_idx] = 0;
+            (tv[(*tv_len)])++;
         }
-        /* Increment the tv_idx-th for loop iterator.*/
-        stack_i[tv_idx]++;
+        template = template >> 0x01u;
+    }
+    if ((*tv_len) % 2 == 0)
+    {
+        ret_val = gen_rational_evenperm_shift_write();
+    }
+    else
+    {
+        /* Twist vector already odd length. */
+        ret_val = gen_rational_write();
     }
 
     return ret_val;
@@ -269,7 +248,7 @@ uint8_t gen_rational_write()
             gen_rational_localcfg->tv_str_buff, value, local_str);
     }
 
-    if( write_status == STORE_DEFS_WRITE_SUCCESS)
+    if (write_status == STORE_DEFS_WRITE_SUCCESS)
     {
         ret_val = GEN_DEFS_GENERATION_SUCCESS;
     }
