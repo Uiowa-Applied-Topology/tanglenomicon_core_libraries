@@ -1,7 +1,7 @@
 /*!
  *  @file storage_JSON.h
  *
- *  @brief  Storage module for JSON files.
+ *  @brief  storage module for JSON files.
  *
  *
  *  @author    Isabel Darcy

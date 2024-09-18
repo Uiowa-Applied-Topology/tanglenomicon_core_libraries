@@ -1,7 +1,7 @@
 /*!
  *  @file storage.hpp
  *
- *  @brief  Storage interface description.
+ *  @brief  storage interface description.
  *
  *
  *  @author    Isabel Darcy
