@@ -23,12 +23,12 @@
 /******************************************************************************/
 
 /*!
- * @brief Storage for the current string index.
+ * @brief storage for the current string index.
  */
 static size_t note_att_str_idx = 0u;
 
 /*!
- * @brief Storage for the current twist vector index.
+ * @brief storage for the current twist vector index.
  */
 static size_t note_att_tv_idx = 0u;
 /******************************************************************************/

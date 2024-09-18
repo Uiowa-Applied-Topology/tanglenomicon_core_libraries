@@ -427,8 +427,9 @@ tests/.pytest_cache
 tests/__pycache__
 tests/results/*
 tests/results/**/*
-/docs/design/.obsidian/workspace-mobile.json
-/docs/design/.obsidian/workspace.json
+/docs/use_cases/.obsidian/workspace-mobile.json
+/docs/use_cases/.obsidian/workspace.json
 .venv
 .idea
 cmake-*
+/docs/build/
