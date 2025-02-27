@@ -22,6 +22,7 @@ else ()
     set(Python_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/.venv/bin)
     set(Python3_EXECUTABLE ${CMAKE_CURRENT_SOURCE_DIR}/.venv/bin/python)
     set(Python3_FIND_VIRTUALENV "ONLY")
+    SET(ENV{VIRTUAL_ENV} "${CMAKE_CURRENT_SOURCE_DIR}/.venv")
 
     find_package(
             Python

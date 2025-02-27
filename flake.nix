@@ -196,12 +196,15 @@
           emscripten
           gdb
           wget
-          rip
+          rip2
+          ninja
+          clang
+          graphviz
         ];
 
         shellHook = ''
           export LD_LIBRARY_PATH="$NIX_LD_LIBRARY_PATH"
-          export PATH=":$HOME/.local/share/JetBrains/Toolbox/scripts:$HOME/.local/share/JetBrains/Toolbox/:$PATH"
+          export PATH=":$HOME/.local/share/JetBrains/Toolbox/scripts/:$HOME/.local/share/JetBrains/Toolbox/:$PATH"
           unset SOURCE_DATE_EPOCH
           wget -q --spider https://google.com
 
@@ -213,6 +216,7 @@
           fi
 
           just bootstrap
+          source .venv/bin/activate
           echo done!
         '';
       };
