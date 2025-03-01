@@ -1,0 +1,49 @@
+name: Create release
+
+on:
+    push:
+        tags:
+            - "v*.*.*"
+
+permissions:
+    contents: write
+
+jobs:
+    release:
+        runs-on: ubuntu-22.04
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  submodules: recursive
+                  fetch-depth: 0
+
+            - name: Check Nixpkgs inputs
+              uses: DeterminateSystems/flake-checker-action@main
+              with:
+                  fail-mode: true
+
+            - name: Install Nix
+              uses: DeterminateSystems/nix-installer-action@main
+
+            - name: Build
+              run: |
+                nix develop --command \
+                  just build_all debug
+
+
+            - name: Test
+              run: |
+                nix develop --command \
+                  just test_all
+
+            - name: Docs
+              run: |
+                nix develop --command \
+                  just docs && \
+                  zip -r ./.build/docs/docs.zip ./.build/docs
+
+            - name: Release
+              uses: softprops/action-gh-release@v2
+              with:
+                  files: |
+                      ./.build/docs/docs.zip

@@ -1,0 +1,31 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: 'The Tanglenomicon: Core Libraries'
+message: >-
+  If you use this software or design, please cite it as
+  below.
+type: software
+authors:
+  - family-names: Starr
+    given-names: Joseph
+  - given-names: Zachary
+    family-names: Bryhtan
+  - given-names: Nicholas
+    family-names: Connolly
+  - given-names: Isabel
+    family-names: Darcy
+  - given-names: Paria
+    family-names: Karimi
+  - given-names: Ethan
+    family-names: Rooke
+repository-code: 'https://github.com/Uiowa-Applied-Topology/Core-Libraries'
+abstract: >-
+  The Tanglenomicon core libraries consists of a collection
+  of libraries for computation and generation of knot/tangle
+  data. Each library should be considered its own project
+  with its own life-cycle however libraries are loosely
+  coupled by a common cmake interface.
+license: GPL-3.0-or-later
+date-released: '2025-02-11'

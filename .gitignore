@@ -433,3 +433,7 @@ tests/results/**/*
 .idea
 cmake-*
 /docs/build/
+.build/CMakeDoxygenDefaults.cmake
+.build/DartConfiguration.tcl
+.build/CMakeDoxyfile.in
+.build/**/*
