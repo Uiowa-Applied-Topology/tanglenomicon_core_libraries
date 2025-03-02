@@ -39,11 +39,10 @@ jobs:
             - name: Docs
               run: |
                 nix develop --command \
-                  just docs && \
-                  zip -r ./.build/docs/docs.zip ./.build/docs
+                  zip -r ./.build/docs.zip ./docs/build
 
             - name: Release
               uses: softprops/action-gh-release@v2
               with:
                   files: |
-                      ./.build/docs/docs.zip
+                      ./.build/docs.zip

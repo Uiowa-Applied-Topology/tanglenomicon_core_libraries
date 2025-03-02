@@ -29,9 +29,6 @@ test: bootstrap
     uv run pytest
 
 
-test_all build_dir=buildDir build_tgt=buildTrgt: bootstrap
-    cd {{build_dir}} && ctest -C {{build_tgt}}
-
 clion:
     sh clion ./
 
@@ -41,8 +38,8 @@ bib:
 live: bootstrap
     .venv/bin/sphinx-autobuild docs
 
-docs build_dir=buildDir: bootstrap
-    .venv/bin/sphinx-build docs {{build_dir}}/docs/sphinx
+test_all build_dir=buildDir build_tgt=buildTrgt: bootstrap
+    cd {{build_dir}} && ctest -C {{build_tgt}}
 
 build_all build_dir=buildDir build_tgt=buildTrgt : bootstrap
     if test -e {{build_dir}}; then \
