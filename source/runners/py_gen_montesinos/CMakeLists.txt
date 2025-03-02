@@ -9,8 +9,10 @@ add_custom_command(
     "${CMAKE_CURRENT_BINARY_DIR}/py_gen_montesinos.c")
 
 
+
 python_add_library(py_gen_montesinos MODULE "${CMAKE_CURRENT_BINARY_DIR}/py_gen_montesinos.c"
     WITH_SOABI )
 target_link_libraries(py_gen_montesinos PRIVATE generator_montesinos tang_defs generator_defs
         notation_att storage_defs)
+set_property(TARGET py_gen_montesinos PROPERTY C_STANDARD 99)
 endif()

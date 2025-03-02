@@ -4,7 +4,6 @@
 #include "string.h"
 #include "unity.h"
 
-
 /******************************************************************************/
 /*******************************Untested Frameworks****************************/
 /******************************************************************************/
@@ -157,9 +156,9 @@ note_tv_t tv_set_3[]={
             },
     };
 note_tv_t *tv_sets[]={
-    [0]=&tv_set_1,
-    [1]=&tv_set_2,
-    [2]=&tv_set_3
+    [0]=&tv_set_1[0],
+    [1]=&tv_set_2[0],
+    [2]=&tv_set_3[0]
 };
 size_t tv_set_lens[]={3,2,4};
 gen_montesinos_config_t tc_write_success = {
@@ -224,7 +223,6 @@ char mont_trees[UTIL_TANG_DEFS_MAX_CROSSINGNUM*5][UTIL_TANG_DEFS_MAX_CROSSINGNUM
 "+[3 3 0]+[2 2 1][4 4 2]",
 };
 
-
 /* clang-format on */
 
 /******************************************************************************/
@@ -248,8 +246,8 @@ void test_config(void)
     uint8_t ret_val = gen_montesinos_config(&tc_write_success);
     TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_CONFIG_SUCCESS);
     ret_val = gen_montesinos_config(NULL);
-    TEST_ASSERT_EQUAL_UINT8(ret_val,
-                            GEN_MONTESINOS_CONFIG_IS_NULL | GEN_DEFS_CONFIG_FAIL);
+    TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_MONTESINOS_CONFIG_IS_NULL |
+                                         GEN_DEFS_CONFIG_FAIL);
 }
 /*!
  * @brief
@@ -288,7 +286,6 @@ void test_generate(void)
             TEST_FAIL_MESSAGE("Couldn't find a tangle in the list.");
         }
     }
-
 }
 
 /*!
