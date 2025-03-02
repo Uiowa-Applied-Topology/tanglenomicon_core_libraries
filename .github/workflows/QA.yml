@@ -37,9 +37,3 @@ jobs:
                     just build_all release && \
                     just test_all
 
-            - name: Docs
-              run: |
-                  nix develop --command \
-                    just bootstrap && \
-                    just docs
-
