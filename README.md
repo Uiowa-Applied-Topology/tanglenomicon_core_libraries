@@ -36,6 +36,26 @@ Version control will be git based with research git as the source of truth. Work
 items will have a branch per work item. Merging a work item will be managed by
 Gitlab merge requests.
 
+### Release Schedule
+
+A release will be created at the completion of each feature lifecycle.
+
+#### Release Tagging
+
+The project adopts [semantic versioning](https://semver.org) for version labels.
+
+```
+vMAJOR.MINOR.PATCH
+```
+
+Since a release is created for every feature implemented the project version may
+look odd `v0.20.0` this is OKAY.
+
+```{note}
+It is required that every feature module in the project maintian it's own sematic
+versioning. It is suggusted to check for compatability of used libraries at compile time.
+```
+
 ## Software Lifecycle
 
 We're taking a feature centric waterfall approach with design, implementation,
@@ -54,8 +74,8 @@ flowchart TD
     UT --> IT["Integration Testing"]
 ```
 
-This methodology will allow us to have high traceability meaning we can track
-our features through the development cycle, allowing us to justify every
+This methodology will allow us to have high traceability, meaning we can track
+our features through the development cycle. This allows us to justify every
 decision we made in the process.
 
 ## Project Structure
