@@ -125,7 +125,7 @@ uint8_t comp_rational_data_config(comp_rational_data_config_t *config_arg)
     /*Ensure the cfg is not empty.*/
     if (config_arg == NULL)
     {
-        ret_val = COMP_RATIONAL_DAT_CONFIG_IS_NULL;
+        ret_val |= COMP_RATIONAL_DAT_CONFIG_IS_NULL;
     } /*Ensure the tv is not empty.*/
     else if (config_arg->tv_n == NULL)
     {

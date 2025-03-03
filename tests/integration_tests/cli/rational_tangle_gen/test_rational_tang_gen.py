@@ -5,7 +5,8 @@ import os
 from pathlib import Path
 import json
 
-BUILD_PATH = "../../.."
+BUILD_PATH = os.environ.get("BUILD_DIR")
+
 
 json_test_data = """
 {

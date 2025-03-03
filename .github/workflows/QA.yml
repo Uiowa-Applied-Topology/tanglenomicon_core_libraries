@@ -9,8 +9,6 @@ on:
 
 jobs:
     build:
-        env:
-            BUILD_TYPE: Debug
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
@@ -29,11 +27,10 @@ jobs:
             - name: Build
               run: |
                   nix develop --command \
-                      just build_all debug
+                      just build_all
 
             - name: Test
               run: |
                   nix develop --command \
-                    just build_all release && \
                     just test_all
 

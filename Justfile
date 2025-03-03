@@ -38,8 +38,6 @@ bib:
 live: bootstrap
     .venv/bin/sphinx-autobuild docs
 
-test_all build_dir=buildDir build_tgt=buildTrgt: bootstrap
-    cd {{build_dir}} && ctest -C {{build_tgt}}
 
 build_all build_dir=buildDir build_tgt=buildTrgt : bootstrap
     if test -e {{build_dir}}; then \
@@ -47,3 +45,7 @@ build_all build_dir=buildDir build_tgt=buildTrgt : bootstrap
     fi
     cmake -B{{build_dir}} -DCMAKE_BUILD_TYPE={{build_tgt}}
     cmake --build {{build_dir}}
+
+
+test_all build_dir=buildDir build_tgt=buildTrgt: bootstrap build_all
+    cd {{build_dir}} && ctest -C {{build_tgt}}

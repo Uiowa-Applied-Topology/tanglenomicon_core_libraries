@@ -28,7 +28,7 @@ jobs:
             - name: Build
               run: |
                 nix develop --command \
-                  just build_all debug
+                  just build_all
 
 
             - name: Test
