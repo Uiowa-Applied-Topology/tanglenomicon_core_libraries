@@ -36,7 +36,7 @@ bib:
     curl http://127.0.0.1:23119/better-bibtex/export/collection\?/1/Thesis.bibtex > ./docs/refs/zotero.bib
 
 live: bootstrap
-    .venv/bin/sphinx-autobuild docs
+    .venv/bin/sphinx-autobuild docs docs/build/html
 
 
 build_all build_dir=buildDir build_tgt=buildTrgt : bootstrap
