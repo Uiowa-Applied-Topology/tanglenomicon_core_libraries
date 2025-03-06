@@ -253,40 +253,39 @@ Now, resolving the plumbing, we arrive at bands as in {prf:ref}`apn-example-12`.
 ![band 1](../media/bands/arbor_ring.svg)
 ```
 
-We should notice that the boundary of these plumbed bands has three components
-as seen in {prf:ref}`apn-example-13`, the three components being denoted by the
-colors; red, pink, and orange.
+Notice that the boundary of these plumbed bands has three components as seen in
+{prf:ref}`apn-example-13`.
 
 ```{prf:example} Ring boundary
 :label: apn-example-13
 ![band 1](../media/bands/arbor_ring_no_bnd.svg)
 ```
 
-With an obvious flype and inversion of the Conway circle given by the free bond,
-we can arrange our plumbed bands into the standard tangle projection seen in
-{prf:ref}`apn-example-14`. This tangle projection tells us that the branch in
-{prf:ref}`apn-example-11` is one of the zero or infinity tangle with a ring
-around the two tangle strings.
+With an obvious flype and inversion of the Conway circle given by the
+non-plumbed square, we can arrange our plumbed bands into the standard tangle
+projection seen in {prf:ref}`apn-example-14`. This tangle projection tells us
+that the subtree in {prf:ref}`apn-example-11` is one of the zero or infinity
+tangle with a ring.
 
 ```{prf:example} Ring Tangle
 :label: apn-example-14
 ![band 1](../media/bands/arbor_ring_tangle.svg)
 ```
 
-When this plumbing construction is used in practice, tree with ring branches
-appear frequently, often with multiple branches as seen in the
-{prf:ref}`apn-example-15`. This leaves us in a clunky notational situation, as
-the rings only impact data local to the ring branch.
+In practice trees with ring subtrees appear frequently, often with multiple
+subtrees attached to a single vertex as seen in the {prf:ref}`apn-example-15`.
+This leaves us in a clunky notational situation, as the rings only impact data
+local to the ring subtree.
 
 ```{prf:example} Typical tree
 :label: apn-example-15
 ![band 1](../media/bands/arbor_ring_number_typical.svg)
 ```
 
-We want a way to simplify our notation where rings are concerned, to do so we
-simply forget any branches that form ring tangles. We instead note the count of
-number of ring branches at each vertex, augmenting the vertex with the count, as
-shown in {prf:ref}`apn-example-16`, we call such a tree "abbreviated."
+To simplify our notation where rings are concerned, we simply forget any
+subtrees that form ring tangles. We instead note the count of number of ring
+subtrees at each vertex, augmenting the vertex with the count, as shown in
+{prf:ref}`apn-example-16`, we call such a tree "abbreviated."
 
 ```{prf:example} Abreviated
 :label: apn-example-16
@@ -295,13 +294,25 @@ shown in {prf:ref}`apn-example-16`, we call such a tree "abbreviated."
 
 #### Essential vertices
 
-Again, we take a local picture of a vertex, it's useful to partition vertices of
-a tree into two classes, essential vertices and non-essential vertices. We
-define an essential vertex as any vertex with valence greater than $3$ or ring
-number greater than $1$. A vertex is called non-essential if it has valence
-$0,1,2$ and no rings.
+Shifting away from special subtrees for a moment we again consider a local
+picture of a vertex. It is useful during computation on weighted planar trees to
+partition vertices into two classes, essential vertices and non-essential
+vertices.
 
-We see in {prf:ref}`apn-example-18` essential vertices in orange nad
+```{prf:definition} Essential vertex
+:label: apn-def-2
+We define an **essential vertex** as any vertex with valence
+greater than $3$ or ring number greater than $1$. A vertex is called
+non-essential if it has valence $0,1,2$ and no rings.
+```
+
+```{prf:definition} Non-essential vertex
+:label: apn-def-3
+A vertex is called
+non-essential if it has valence $0,1,2$ and no rings.
+```
+
+We see in {prf:ref}`apn-example-18` essential vertices in orange and
 non-essential in red.
 
 ```{prf:example} Abreviated
@@ -311,11 +322,16 @@ non-essential in red.
 
 #### Sticks
 
-The next branch class we are going to define are the sticks of a tree. To see
-the sticks we first take a tree $\Gamma$. Let $\LS e_i\RS$ be the set of
-essential vertices of $\Gamma$ including their bond. We call the collection
-branches $\Gamma_s=\Gamma \setminus \LS e_i\RS$ the sticks of $\Gamma$ with
-every connected component of $\Gamma_s$ being a stick.
+The final important portion in the anatomy of a tree is to describe the sticks
+of a tree.
+
+```{prf:definition} Sticks of a weighted planar tree
+:label: apn-def-1
+Let $\Gamma$ be a weighted planar tree and $\LS e_i\RS$ be the set of essential
+vertices of $\Gamma$ including their bonds. We call the collection subtrees
+$\Gamma_s=\Gamma \setminus \LS e_i\RS$ the **sticks** of $\Gamma$ and every
+connected component of $\Gamma_s$ a **stick**.
+```
 
 As an example, consider the tree seen in {prf:ref}`apn-example-18`, the sticks
 of which can be seen in {prf:ref}`apn-example-19`.
@@ -325,17 +341,17 @@ of which can be seen in {prf:ref}`apn-example-19`.
 ![band 1](../media/bands/arbor_ring_noessential.svg)
 ```
 
-By definition a stick of a tree has 0,1,2 bonds, we call a stick with; 0 bonds
-closed, 1 bond half-open, and 2 bonds open. Bonahon and Seibenman prove a
-correspondence between sticks and rational tangles
-{cite:p}`bonahonNewGeometricSplittings2016` particularly when a stick is open it
-takes the form of the vignette seen in {prf:ref}`apn-example-21` where each free
-bond forms a boundary component.
+By construction a stick of a tree has 0,1, or 2 free bonds, we call a stick
+with; 0 free bonds closed, 1 free bond half-open, and 2 free bonds open.
 
-```{prf:example} Rational Vignette
-:label: apn-example-21
+:::{seealso} Bonahon and Seibenman prove a correspondence between sticks and
+rational tangles {cite:p}`bonahonNewGeometricSplittings2016` particularly when a
+stick is open it takes the form of the vignette seen below where each free bond
+forms a boundary component.
+
 ![band 1](../media/bands/rational_vignette.svg)
-```
+
+:::
 
 ## Linearization Strategy
 
@@ -399,14 +415,14 @@ before continuing to the next child {prf:ref}`UC-N-apn-E-COMPASS`.
 ```
 
 If a child is essential, we start the process from the beginning with the child
-vertex as the root of the branch. If the child is not essential, we continue
+vertex as the root of the subtree. If the child is not essential, we continue
 traversing until we reach a vertex of valence one or an essential vertex. If we
 reach a vertex of valence one we have traversed a half open stick and we append
 that stick as the twist vector for the corresponding rational tangle. However,
 if we arrive at an essential vertex we have traversed a open stick. In this case
 we append $\LS\RN$ followed by the twist vector for the open stick, we then
 carry out the algorithm again from the beginning with the essential vertex as
-the root of a new branch. When we have exhausted the children for the object
+the root of a new subtree. When we have exhausted the children for the object
 vertex we close our linearization for that vertex with the matching $\LN\RP$ or
 $\LN\RS$, and return to the parent linearization until all parents have been
 exhausted. An example of a tree encoded with this strategy can be seen in
