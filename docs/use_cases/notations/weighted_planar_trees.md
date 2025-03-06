@@ -20,19 +20,19 @@ Our first step in describing a notation for the arborescent knots
 on bands. A band with a plumbing square is a band $S^1x[0,1]$, along with an
 oriented square on the band such that two of the sides of the square intersect
 the boundary of the band. Two examples of bands with plumbing squares can be
-seen in {prf:ref}`apn-example-4`, note in the pink band the square should be
+seen in {prf:ref}`UC-N-APN-E-4`, note in the pink band the square should be
 viewed as looking through the surface of the band. That is a half rotation of
 the band will yield a plumbing square matching the green band.
 
 ```{prf:example} Two bands
-:label: apn-example-4
+:label: UC-N-APN-E-4
 ![band 1](../media/bands/bnd_sum_1.svg)
 ![band 2](../media/bands/bnd_sum_2.svg)
 ```
 
 ##### Plumbing bands
 
-We will now glue the bands seen {prf:ref}`apn-example-4` together with an
+We will now glue the bands seen {prf:ref}`UC-N-APN-E-4` together with an
 operation called plumbing. Consider the orientation given in green band's
 plumbing square. We will call the red arrow $x$ and the orange arrow $y$,
 similarly for the pink band $x^\prime$ and $y^\prime$.
@@ -41,12 +41,12 @@ We plumb the bands together along their plumbing squares with the requirement
 that the orientation labels are mapped $x\to y^\prime$ and $y\to x^\prime$.
 Finally, we then forget the boundaries of the plumbing square, leaving only the
 joined boundaries of the bands. The result of plumbing as well as a local
-picture for plumbing can be seen in {prf:ref}`apn-example-5`.
+picture for plumbing can be seen in {prf:ref}`UC-N-APN-E-5`.
 
 <!-- prettier-ignore-start -->
 
 ````{prf:example} Plumbed bands
-:label: apn-example-5
+:label: UC-N-APN-E-5
 
 ```{list-table}
 :widths: 50 50
@@ -60,7 +60,7 @@ picture for plumbing can be seen in {prf:ref}`apn-example-5`.
 
 To complete our band construction for knots prior to plumbing we add a series of
 half-twists into our bands with plumbing squares, seen in
-{prf:ref}`apn-example-6` and {prf:ref}`apn-example-25`. When forming the half
+{prf:ref}`UC-N-APN-E-6` and {prf:ref}`UC-N-APN-E-25`. When forming the half
 twists we have two options for direction, we call one positive and one negative.
 A positive twist results in the "closer" boundary component having a positive
 slope, negative likewise. It is important to note that the twists appear in
@@ -72,7 +72,7 @@ squares.
 :width: 100%
 
 *   -   ````{prf:example}
-        :label: apn-example-6
+        :label: UC-N-APN-E-6
         ```{image} ../media/bands/arbor_band_with_twist.svg
             :width: 20em
             :align: center
@@ -81,7 +81,7 @@ squares.
         Band with two negative half twists<br/> and three plumbing squares.
         ````
     -   ````{prf:example}
-        :label: apn-example-25
+        :label: UC-N-APN-E-25
         ```{image} ../media/bands/arbor_band_with_twist_2.svg
             :width: 20em
             :align: center
@@ -93,10 +93,10 @@ squares.
 <!-- prettier-ignore-end -->
 
 It's Combining these half twisted bands together with plumbing yields objects
-similar to those seen in {prf:ref}`apn-example-10`. We require that no sequence
-of plumbing forms a cycle. Finally, turning {prf:ref}`apn-example-10` into a
-knot is as simple as forgetting the two cell leaving only the boundary, seen in
-{prf:ref}`apn-example-24`.
+similar to those seen in {prf:ref}`UC-N-APN-E-10`. We require that no sequence
+of plumbing forms a cycle. Finally, turning {prf:ref}`UC-N-APN-E-10` into a knot
+is as simple as forgetting the two cell leaving only the boundary, seen in
+{prf:ref}`UC-N-APN-E-24`.
 
 <!-- prettier-ignore-start -->
 ````{list-table}
@@ -104,11 +104,11 @@ knot is as simple as forgetting the two cell leaving only the boundary, seen in
 :width: 100%
 
 *   -   ```{prf:example} Bands plumbed
-        :label: apn-example-10
+        :label: UC-N-APN-E-10
         ![band 1](../media/bands/arbor_bands.svg)
         ```
     -   ```{prf:example} An arborescent knot
-        :label: apn-example-24
+        :label: UC-N-APN-E-24
         ![band 1](../media/bands/arbor_bound.svg)
         ```
 ````
@@ -130,7 +130,6 @@ Given a band $B$ with plumbing squares, we call the set $C$ of bands
 plumbed to $B$ the **children** of $B$. Additionally, for $c\in C$ we call $B$
 the **parent** of $c$ and the collection of $C-\LS c \RS$ the
 **siblings of $C$**.
-
 ```
 
 Our goal is to take arborescent knots in the smooth setting built form plumbed
@@ -161,16 +160,29 @@ order on the vertices. We call the least vertex the **root** of the tree.
 
 The set of vertices in a tree is discrete, so we can order the set with positive
 integer labels. Observe that in a rooted plane tree for each vertex $v$ the
-children (along with a potential parent) of $v$ have an order inherited from the
-total order. The additional structure of rooted plane trees gives us a method
-for encoding relative positions of plumbing squares. The final data we need to
-record is the position and count of half twists relative to plumbing squares. We
-start by considering the local picture around a vertex {prf:ref}`apn-example-8`
-consisting of a vertex and a collection of bonds (half-edges) associated to
-plumbing squares.
+children of $v$ have an order inherited from the total order. For convenience,
+we will now place a convention on the order of a rooted plane tree. Let $\Gamma$
+be a rooted plane tree, $r$ be the root of $\Gamma$, and $v_i\neq r$ be a
+vertex, with parent $p$. Further assume $v_i$ has order $i$, $p$ has order $j$
+and the children $c_1,\,\cdots,\,c_n$ of $v$ have order $k_1,\,\cdots,\,k_n$. We
+require that an order on a rooted plane tree satisfy the following:
+
+-   $r$ has order $1$
+-   $j<i<k_1<\cdots k_n$
+
+With this order requirement a non-root vertex has a clear cyclic order starting
+from the parent vertex and increasing. This yields a unique embedding of
+$\Gamma$ into the plane.
+
+The additional structure of rooted plane trees gives us a method for encoding
+relative positions of plumbing squares. The final data we need to record is the
+position and count of half twists relative to plumbing squares. We start by
+considering the local picture around a vertex {prf:ref}`UC-N-APN-E-8` consisting
+of a vertex and a collection of bonds (half-edges) associated to plumbing
+squares.
 
 ````{prf:example} The local view of a vertex
-:label: apn-example-8
+:label: UC-N-APN-E-8
 ```{image} ../media/bands/arbor_graph_split_local.svg
             :width: 20em
             :align: center
@@ -180,25 +192,25 @@ plumbing squares.
 We observed earlier that the half twists on a band must lay in a unique region
 determined by position relative to plumbing squares. This placement can be
 recreated in a rooted plane tree by annotating the local view of a vertex in
-{prf:ref}`apn-example-8` with an integer placed in the spaces between bonds. The
+{prf:ref}`UC-N-APN-E-8` with an integer placed in the spaces between bonds. The
 relationship between a plumbing band and a weighted vertex in a rooted plane
-tree can be seen in {prf:ref}`apn-example-7`.
+tree can be seen in {prf:ref}`UC-N-APN-E-7`.
 
 ````{prf:example} The local view of a vertex with weight
-:label: apn-example-7
+:label: UC-N-APN-E-7
 ```{image} ../media/bands/arbor_graph_split_local_with_band.svg
             :align: center
 ```
 ````
 
 We can see a full example of a tree with its associated plumbed construction in
-{prf:ref}`apn-example-27`. We call this fully realized combinatorial recipe a
+{prf:ref}`UC-N-APN-E-27`. We call this fully realized combinatorial recipe a
 **Weighted Planar tree**.
 
 <!-- prettier-ignore-start -->
 
 ````{prf:example} Weighted Planar Trees and Plumbed Bands
-:label: apn-example-27
+:label: UC-N-APN-E-27
 
 ```{list-table}
 :widths: 50 50
@@ -214,13 +226,13 @@ We can see a full example of a tree with its associated plumbed construction in
 
 Our construction to this point has been concerned exclusively with the notation
 for knots, we will now give a modification of this notation for tangles. A tree,
-as in {prf:ref}`apn-example-9`, can be modified to represent a tangle by
-allowing a "free" bond be attached to a vertex, that is, to allow one band to
-have a non-plumbed plumbing square. We can realize the non-plumbed square a
-Conway circle for a two string tangle.
+as in {prf:ref}`UC-N-APN-E-9`, can be modified to represent a tangle by allowing
+a "free" bond be attached to a vertex, that is, to allow one band to have a
+non-plumbed plumbing square. We can realize the non-plumbed square a Conway
+circle for a two string tangle.
 
 ````{prf:example} Plane tree and plumbed bands
-:label: apn-example-11
+:label: UC-N-APN-E-11
 
 ```{list-table}
 :widths: 50 50
@@ -239,56 +251,56 @@ planar trees.
 ###### Rings
 
 We will now describe a special subtree of a weighted planar tree locally
-appearing as {prf:ref}`apn-example-17`.
+appearing as {prf:ref}`UC-N-APN-E-17`.
 
 ```{prf:example} Ring graph
-:label: apn-example-17
+:label: UC-N-APN-E-17
 ![band 1](../media/bands/arbor_graph_ring.svg)
 ```
 
-Now, resolving the plumbing, we arrive at bands as in {prf:ref}`apn-example-12`.
+Now, resolving the plumbing, we arrive at bands as in {prf:ref}`UC-N-APN-E-12`.
 
 ```{prf:example} Plumbed ring bands
-:label: apn-example-12
+:label: UC-N-APN-E-12
 ![band 1](../media/bands/arbor_ring.svg)
 ```
 
 Notice that the boundary of these plumbed bands has three components as seen in
-{prf:ref}`apn-example-13`.
+{prf:ref}`UC-N-APN-E-13`.
 
 ```{prf:example} Ring boundary
-:label: apn-example-13
+:label: UC-N-APN-E-13
 ![band 1](../media/bands/arbor_ring_no_bnd.svg)
 ```
 
 With an obvious flype and inversion of the Conway circle given by the
 non-plumbed square, we can arrange our plumbed bands into the standard tangle
-projection seen in {prf:ref}`apn-example-14`. This tangle projection tells us
-that the subtree in {prf:ref}`apn-example-11` is one of the zero or infinity
+projection seen in {prf:ref}`UC-N-APN-E-14`. This tangle projection tells us
+that the subtree in {prf:ref}`UC-N-APN-E-11` is one of the zero or infinity
 tangle with a ring.
 
 ```{prf:example} Ring Tangle
-:label: apn-example-14
+:label: UC-N-APN-E-14
 ![band 1](../media/bands/arbor_ring_tangle.svg)
 ```
 
 In practice trees with ring subtrees appear frequently, often with multiple
-subtrees attached to a single vertex as seen in the {prf:ref}`apn-example-15`.
+subtrees attached to a single vertex as seen in the {prf:ref}`UC-N-APN-E-15`.
 This leaves us in a clunky notational situation, as the rings only impact data
 local to the ring subtree.
 
 ```{prf:example} Typical tree
-:label: apn-example-15
+:label: UC-N-APN-E-15
 ![band 1](../media/bands/arbor_ring_number_typical.svg)
 ```
 
 To simplify our notation where rings are concerned, we simply forget any
 subtrees that form ring tangles. We instead note the count of number of ring
 subtrees at each vertex, augmenting the vertex with the count, as shown in
-{prf:ref}`apn-example-16`, we call such a tree "abbreviated."
+{prf:ref}`UC-N-APN-E-16`, we call such a tree "abbreviated."
 
 ```{prf:example} Abreviated
-:label: apn-example-16
+:label: UC-N-APN-E-16
 ![band 1](../media/bands/arbor_ring_number.svg)
 ```
 
@@ -312,11 +324,11 @@ A vertex is called
 non-essential if it has valence $0,1,2$ and no rings.
 ```
 
-We see in {prf:ref}`apn-example-18` essential vertices in orange and
+We see in {prf:ref}`UC-N-APN-E-18` essential vertices in orange and
 non-essential in red.
 
 ```{prf:example} Abreviated
-:label: apn-example-18
+:label: UC-N-APN-E-18
 ![band 1](../media/bands/arbor_ring_essential.svg)
 ```
 
@@ -333,51 +345,95 @@ $\Gamma_s=\Gamma \setminus \LS e_i\RS$ the **sticks** of $\Gamma$ and every
 connected component of $\Gamma_s$ a **stick**.
 ```
 
-As an example, consider the tree seen in {prf:ref}`apn-example-18`, the sticks
-of which can be seen in {prf:ref}`apn-example-19`.
+As an example, consider the tree seen in {prf:ref}`UC-N-APN-E-18`, the sticks of
+which can be seen in {prf:ref}`UC-N-APN-E-19`.
 
 ```{prf:example} Sticks of a tree
-:label: apn-example-19
+:label: UC-N-APN-E-19
 ![band 1](../media/bands/arbor_ring_noessential.svg)
 ```
 
 By construction a stick of a tree has 0,1, or 2 free bonds, we call a stick
 with; 0 free bonds closed, 1 free bond half-open, and 2 free bonds open.
 
-:::{seealso} Bonahon and Seibenman prove a correspondence between sticks and
-rational tangles {cite:p}`bonahonNewGeometricSplittings2016` particularly when a
-stick is open it takes the form of the vignette seen below where each free bond
-forms a boundary component.
+<!-- prettier-ignore-start -->
+:::{seealso} Correspondence between sticks and rational tangles
+:class: dropdown
+
+Bonahon and Seibenman prove a correspondence between sticks and rational tangles
+{cite:p}`bonahonNewGeometricSplittings2016` particularly when a stick is open it
+takes the form of the vignette seen below where each free bond forms a boundary
+component.
 
 ![band 1](../media/bands/rational_vignette.svg)
 
 :::
+<!-- prettier-ignore-end -->
 
 ## Linearization Strategy
 
-We're now in a position we can describe a linearization strategy for our
-weighted planar trees. With compatibility in mind, we will consider all trees to
-be encoded as an abbreviated tree but not requiring a tree to actually be
-abbreviated. We will make two assumptions on presentation of the tree, weights
-for all vertices of valence 2 fall on the "same" side of the cyclic order, we
-will give analogy to a compass in our encoding, select one of 001-179 or
-181-359. When hand encoding this assumption shouldn't be to cumbersome, but if
-the encoding of arbitrarily weighted two vertices is desired, simply encodes the
-vertex as essential. The second assumption we will make on trees is that all
-trees are assumed to be connected. If trees with multiple components are
-desired, a modification must be made to the code base to interpret multiple root
-vertices, this should be simple but out of scope for this project. It's worth
-saying here that these requirements allow linearization of degenerate trees such
-at the tree seen in {prf:ref}`apn-example-20`.
+The weighted planar trees we have developed thus far is a useful tool for work
+on arborescent knots by human or machine. Unfortunately, the weighted planar
+trees as we have seen them so far are difficult to store in a computer database.
+We will rectify this by introducing a linearization strategy for weighted planar
+trees. We make an assumption on presentation of our weighted planar trees, that
+weights for all vertices of valence 2 fall in the second order position.
 
-```{prf:example} Degenerate tree
-:label: apn-example-20
-![band 1](../media/bands/watt_degenerate.svg)
+### Linearizing a vertex
+
+We start by describing the linearization of a single vertex. Let $\Gamma$ be a
+weighted plane tree and $\Gamma_v$ be a vertex $v$ of $\Gamma$ along with its
+bonds and weights, see {prf:ref}`UC-N-APN-E-30`. A total order can be on the
+bonds of $v$ so that the order of bonds aligns with the order of children of $v$
+in $\Gamma$, by convention the lowest index child is the parent of $v$. When
+realizing the $\Gamma_v$ in the plane we let $c_1$ point up.
+
+````{prf:example} The local view of a vertex
+:label: UC-N-APN-E-30
+```{image} ../media/bands/arbor_graph_split_local_1.svg
+            :width: 20em
+            :align: center
+```
+````
+
+The order of children induces a cyclic order in the plane starting with the
+parent bond, in the up position. Leveraging this, our strategy for linearizing
+$\Gamma_v$ is to follow the cyclic order listing the weights and children in
+sequence. We can think of this as an arm sweeping out from the parent bond
+picking off the data of each weight as it sweeps through, this can be seen in
+{prf:ref}`UC-N-UC-N-APN-E-COMPASS`.
+
+```{prf:example}
+:label: UC-N-UC-N-APN-E-COMPASS
+![band 1](../media/bands/moves/f3/f3_local_ccw_1.svg)
 ```
 
-Let $\Gamma$ be an planar tree, and arbitrarily select a vertex from $\Gamma$ as
-the root {prf:ref}`apn-example-22`, we will consider the root vertex as
-essential.
+### Walking the tree
+
+To expand the local method to capture the whole weighted planar tree we need a
+method to move from $\Gamma_v$ to a child while recording this decent. We will
+descend the tree in a depth-first order. We will annotate our local
+linearization with four sets of delimiters that delimit the change in depth in
+the tree, that is moving from parent to child. Each delimiter also communicates
+extra information about the subtree it is delimiting. The four sets of
+delimiters are as follows:
+
+-   $\LP\RP$: Corresponds to an essential vertex with no ring number.
+-   $\LA\RA$: Corresponds to an essential vertex with ring number.
+-   $\LS\RS$: Corresponds to an open stick. This is an optional delimiter.
+-   $\LB\RB$: Corresponds to a half open stick and is interpreted as a twist
+    vector for a rational tangle.
+
+We will now walk through an example of the linearization process. Let $\Gamma$
+be a weighted planar tree, and $v$ an arbitrarily select a vertex from $\Gamma$
+as the root {prf:ref}`UC-N-APN-E-22`, we will consider the root vertex as
+essential. Starting from the root we descend the tree in a depth-first order,
+this makes the root our first **object vertex**.
+
+```{prf:example} Rooted tree
+:label: UC-N-APN-E-22
+![band 1](../media/bands/watt_rooted.svg)
+```
 
 ```{Note}
 :class: dropdown
@@ -386,50 +442,29 @@ The selection of a root of a knot is arbitrary making this linearization
 non-unique.
 ```
 
-Starting from the root, a depth-first pre-order gives a linearization of the
-vertices. Unfortunately, this fails to maintain the local structures and
-particular embedding of a tree. To maintain local data, we will add four pieces
-of additional data $\LP\RP,\LA\RA,\LS\RS,\text{ and }\LB\RB$, where $\LP\RP$
-corresponds to an essential vertex with no ring number, $\LA\RA$ is a vertex
-with ring number, $\LS\RS$ is a open stick, and $\LB\RB$ is a twist vector for a
-rational tangle. We will also describe a mechanism to enforce cyclic order to
-our linearization. By taking root as essential, we start the description of the
-linearization with the root as the object vertex.
+Appending $\LP\RN$ or$\LA\RN$ depending on if the object vertex has ring number,
+we then note the ring number, if any. Next, we sweep out the local picture as
+discussed in previously. However, when we encounter a child bond we descend to
+the child. If the child is essential, we start the process from the beginning
+with the child vertex as the root of the subtree. If the child is not essential,
+we continue traversing until we reach a vertex of valence one or an essential
+vertex. If we reach a vertex of valence one we have traversed a half open stick,
+and we append that stick as the twist vector for the corresponding rational
+tangle. However, if we arrive at an essential vertex we have traversed an open
+stick. In this case, if we are using the optional delimiter append $\LS\RN$
+followed by the twist vector for the open stick, we then carry out the algorithm
+again from the beginning with the essential vertex as the root of a new subtree.
+If we are not using the optional delimiter we traverse the open stick from its
+root pretending each vertex is essential.
 
-```{prf:example} Rooted tree
-:label: apn-example-22
-![band 1](../media/bands/watt_rooted.svg)
-```
 
-We carry out the linearization by first appending $\LP\RN$ or$\LA\RN$ depending
-on if the object vertex has ring number, we then note the ring number, if any.
-Next, we traverse the child vertices We will order the traversal of the children
-by taking the bond connecting to the parent as 000 on a compass and traverse
-children anti-clockwise, that is from $000\to270\to180\to90\to000$. While
-traversing in this order, if a weight is found in a local region, we note it
-before continuing to the next child {prf:ref}`UC-N-apn-E-COMPASS`.
+When we have exhausted the children for the object vertex we close our
+linearization for that vertex with the matching $\LN\RP$ or $\LN\RS$, and return
+to the parent linearization until all parents have been exhausted. An example of
+a tree encoded with this strategy can be seen in {prf:ref}`UC-N-APN-E-23`.
 
-```{prf:example} Compass
-:label: UC-N-apn-E-COMPASS
-![band 1](/use_cases/media/bands/moves/f3/F3_local_ccw.svg)
-```
-
-If a child is essential, we start the process from the beginning with the child
-vertex as the root of the subtree. If the child is not essential, we continue
-traversing until we reach a vertex of valence one or an essential vertex. If we
-reach a vertex of valence one we have traversed a half open stick and we append
-that stick as the twist vector for the corresponding rational tangle. However,
-if we arrive at an essential vertex we have traversed a open stick. In this case
-we append $\LS\RN$ followed by the twist vector for the open stick, we then
-carry out the algorithm again from the beginning with the essential vertex as
-the root of a new subtree. When we have exhausted the children for the object
-vertex we close our linearization for that vertex with the matching $\LN\RP$ or
-$\LN\RS$, and return to the parent linearization until all parents have been
-exhausted. An example of a tree encoded with this strategy can be seen in
-{prf:ref}`apn-example-23`.
-
-```{prf:example} Encoded tree
-:label: apn-example-23
+```{prf:example} Encoded tree with and without optional delimiter
+:label: UC-N-APN-E-23
 ![band 1](../media/bands/watt_walk.svg)
 ```
 
