@@ -56,22 +56,46 @@ picture for plumbing can be seen in {prf:ref}`apn-example-5`.
     -   ![band 1](../media/bands/bnd_sum_patch.svg)
 ```
 ````
-
 <!-- prettier-ignore-end -->
 
 To complete our band construction for knots prior to plumbing we add a series of
 half-twists into our bands with plumbing squares, seen in
-{prf:ref}`apn-example-6`.
+{prf:ref}`apn-example-6` and {prf:ref}`apn-example-25`. When forming the half
+twists we have two options for direction, we call one positive and one negative.
+A positive twist results in the "closer" boundary component having a positive
+slope, negative likewise. It is important to note that the twists appear in
+unique regions of the band which are determined by relative position of plumbing
+squares.
 
-```{prf:example} Two twisted bands
-:label: apn-example-6
-![band 1](../media/bands/arbor_band_with_twist.svg)
-![band 1](../media/bands/arbor_band_with_twist_2.svg)
-```
+<!-- prettier-ignore-start -->
+`````{list-table}
+:width: 100%
 
-These combining these half twisted bands with plumbing yields objects similar to
-those seen in {prf:ref}`apn-example-10`. Now turning this into a knot is as
-simple as forgetting everything but the boundary, seen in
+*   -   ````{prf:example}
+        :label: apn-example-6
+        ```{image} ../media/bands/arbor_band_with_twist.svg
+            :width: 20em
+            :align: center
+        ```
+        <br/><br/>
+        Band with two negative half twists<br/> and three plumbing squares.
+        ````
+    -   ````{prf:example}
+        :label: apn-example-25
+        ```{image} ../media/bands/arbor_band_with_twist_2.svg
+            :width: 20em
+            :align: center
+        ```
+        <br/><br/>
+         Band with three positive half twists <br/>and one plumbing square.
+        ````
+`````
+<!-- prettier-ignore-end -->
+
+It's Combining these half twisted bands together with plumbing yields objects
+similar to those seen in {prf:ref}`apn-example-10`. We require that no sequence
+of plumbing forms a cycle. Finally, turning {prf:ref}`apn-example-10` into a
+knot is as simple as forgetting the two cell leaving only the boundary, seen in
 {prf:ref}`apn-example-24`.
 
 <!-- prettier-ignore-start -->
@@ -92,79 +116,130 @@ simple as forgetting everything but the boundary, seen in
 
 ##### Weighted Planar Trees
 
-We now develop a combinatorial recipe for building knots from plumbing bands.
-Our first step in this construction is to define some labels for relative
-positions of bands. This language will be reused when we transition to the more
+We now develop a combinatorial recipe for constructing knots from a collection
+of plumbing bands. This recipe will take the form of a tree, in the graph
+theoretic sense, structure describing the collection of plumbing bands and how
+they are plumbed together. Before we begin constructing this combinatorial
+notation we need to define some labels for relative positions of bands in the
+smooth setting. This language will be reused when we transition to the more
 combinatorial setting.
 
 ```{prf:definition} Relationships of Bands
 :label: apn-def-1
-Given a band $B$ with $n$ plumbing squares, we call the set $C$ of bands
+Given a band $B$ with plumbing squares, we call the set $C$ of bands
 plumbed to $B$ the **children** of $B$. Additionally, for $c\in C$ we call $B$
 the **parent** of $c$ and the collection of $C-\LS c \RS$ the
 **siblings of $C$**.
 
 ```
 
-We need a data structure that encodes relative positional data, the most obvious
-would be a graph, particularly a tree, we will need to modify the general
-definition of a tree slightly for our purposes. We let the vertex of a graph
-represent a band giving us an encoding scheme for requirements one and two by
-taking the edges as plumbing squares and fixing a cyclic order on the edges
-giving relative position. Now, for three and four our first reaction may be to
-assign a weight to the vertex, this neglects the issues of "where" the twists
-live relative to the plumbing squares (imagine moving the twists "over" one band
-in the purple image above). To encode three and four we must modify our
-definition of a graph, we start by considering the local picture around a
-vertex, taking each edge as a "bond" (half edge). A graph under this local view
-may be split as
+Our goal is to take arborescent knots in the smooth setting built form plumbed
+bands and distill the essential information into a combinatorial context. The
+essential information we need to encode from the smooth setting is as follows:
 
-```{prf:example} A tree split into local verticies
-:label: apn-example-7
-![band 1](../media/bands/arbor_graph_split.svg)
+-   The parent child relationship of bands
+-   The relative positions of plumbing squares and twists on a band
+
+Tackling first the encoding of parent child relationships. There are many
+combinatorial structures that can encode data similar to our required. Perhaps
+the most commonly used structure that can encode this data is an abstract graph,
+and since our data is acyclic specifically an abstract tree. The data for the
+parent child relationships can be encoded by mapping bands to vertices and
+plumbing relationships to edges.
+
+Unfortunately, since an abstract tree doesn't maintain an order for child
+vertices it fails for the second piece of essential information. To solve this
+problem we will define a modified version of an abstract tree, the **rooted
+plane tree**.
+
+```{prf:definition} Rooted Plane Tree
+:label: apn-def-1
+
+A **rooted plane tree** is an abstract tree with imbued with a strict total
+order on the vertices. We call the least vertex the **root** of the tree.
 ```
 
-with a local picture around a vertex
+The set of vertices in a tree is discrete, so we can order the set with positive
+integer labels. Observe that in a rooted plane tree for each vertex $v$ the
+children (along with a potential parent) of $v$ have an order inherited from the
+total order. The additional structure of rooted plane trees gives us a method
+for encoding relative positions of plumbing squares. The final data we need to
+record is the position and count of half twists relative to plumbing squares. We
+start by considering the local picture around a vertex {prf:ref}`apn-example-8`
+consisting of a vertex and a collection of bonds (half-edges) associated to
+plumbing squares.
 
-```{prf:example} The local view of a vertex
+````{prf:example} The local view of a vertex
 :label: apn-example-8
-![band 1](../media/bands/arbor_graph_split_local.svg){w=200px}
+```{image} ../media/bands/arbor_graph_split_local.svg
+            :width: 20em
+            :align: center
 ```
+````
 
-In this local view we notice that for a vertex of valence $n$ the plane is split
-(like a pie) into $n$ pieces. We can assign a weight to each of these local
-slices around a vertex, satisfying our need to track the relative positions of
-twists and plumbing squares.
+We observed earlier that the half twists on a band must lay in a unique region
+determined by position relative to plumbing squares. This placement can be
+recreated in a rooted plane tree by annotating the local view of a vertex in
+{prf:ref}`apn-example-8` with an integer placed in the spaces between bonds. The
+relationship between a plumbing band and a weighted vertex in a rooted plane
+tree can be seen in {prf:ref}`apn-example-7`.
 
-```{prf:example} A tree with assosiated bands
-:label: apn-example-9
-![band 1](../media/bands/arbor_graph.svg)
+````{prf:example} The local view of a vertex with weight
+:label: apn-example-7
+```{image} ../media/bands/arbor_graph_split_local_with_band.svg
+            :align: center
 ```
+````
 
-and gluing along edges yields bands as in
+We can see a full example of a tree with its associated plumbed construction in
+{prf:ref}`apn-example-27`. We call this fully realized combinatorial recipe a
+**Weighted Planar tree**.
+
+<!-- prettier-ignore-start -->
+
+````{prf:example} Weighted Planar Trees and Plumbed Bands
+:label: apn-example-27
+
+```{list-table}
+:widths: 50 50
+:width: 100%
+
+*   -   ![band 1](../media/bands/arbor_graph.svg)
+    -   ![band 1](../media/bands/arbor_bands.svg)
+```
+````
+<!-- prettier-ignore-end -->
 
 ##### Weighted Planar Tangle Trees
 
 Our construction to this point has been concerned exclusively with the notation
 for knots, we will now give a modification of this notation for tangles. A tree,
 as in {prf:ref}`apn-example-9`, can be modified to represent a tangle by
-allowing a "free" bond (half edge) be attached to a vertex, that is, to allow
-one band to have a non-plumbed plumbing square.
+allowing a "free" bond be attached to a vertex, that is, to allow one band to
+have a non-plumbed plumbing square. We can realize the non-plumbed square a
+Conway circle for a two string tangle.
 
-```{prf:example} Bands plumbed
+````{prf:example} Plane tree and plumbed bands
 :label: apn-example-11
-![band 1](../media/bands/arbor_tangle.svg)
+
+```{list-table}
+:widths: 50 50
+:width: 100%
+
+*   -   ![band 1](../media/bands/arbor_graph_tangle.svg)
+    -   ![band 1](../media/bands/arbor_tangle.svg)
 ```
+````
 
-##### Special Branches
+##### Anatomy of a tree
 
-In this section, we will describe a number of special branches found as portions
-of weighted arborescent trees.
+In this section, we will describe a number of special portions of weighted
+planar trees.
 
 ###### Rings
 
-We will now describe a special subtree of the Consider a branch of a weighted
-arborescent tree locally appearing as {prf:ref}`apn-example-17`.
+We will now describe a special subtree of a weighted planar tree locally
+appearing as {prf:ref}`apn-example-17`.
 
 ```{prf:example} Ring graph
 :label: apn-example-17
@@ -179,16 +254,15 @@ Now, resolving the plumbing, we arrive at bands as in {prf:ref}`apn-example-12`.
 ```
 
 We should notice that the boundary of these plumbed bands has three components
-when taking the free bond as a conway sphere) as seen in
-{prf:ref}`apn-example-13`, the three components being denoted by the colors;
-red, pink, and orange.
+as seen in {prf:ref}`apn-example-13`, the three components being denoted by the
+colors; red, pink, and orange.
 
 ```{prf:example} Ring boundary
 :label: apn-example-13
 ![band 1](../media/bands/arbor_ring_no_bnd.svg)
 ```
 
-With an obvious flype and inversion of the conway sphere given by the free bond,
+With an obvious flype and inversion of the Conway circle given by the free bond,
 we can arrange our plumbed bands into the standard tangle projection seen in
 {prf:ref}`apn-example-14`. This tangle projection tells us that the branch in
 {prf:ref}`apn-example-11` is one of the zero or infinity tangle with a ring
@@ -266,14 +340,14 @@ bond forms a boundary component.
 ## Linearization Strategy
 
 We're now in a position we can describe a linearization strategy for our
-weighted arborescent trees. With compatibility in mind, we will consider all
-trees to be encoded as an abbreviated tree but not requiring a tree to actually
-be abbreviated. We will make two assumptions on presentation of the tree,
-weights for all vertices of valence 2 fall on the "same" side of the cyclic
-order, we will give analogy to a compass in our encoding, select one of 001-179
-or 181-359. When hand encoding this assumption shouldn't be to cumbersome, but
-if the encoding of arbitrarily weighted two vertices is desired, simply encodes
-the vertex as essential. The second assumption we will make on trees is that all
+weighted planar trees. With compatibility in mind, we will consider all trees to
+be encoded as an abbreviated tree but not requiring a tree to actually be
+abbreviated. We will make two assumptions on presentation of the tree, weights
+for all vertices of valence 2 fall on the "same" side of the cyclic order, we
+will give analogy to a compass in our encoding, select one of 001-179 or
+181-359. When hand encoding this assumption shouldn't be to cumbersome, but if
+the encoding of arbitrarily weighted two vertices is desired, simply encodes the
+vertex as essential. The second assumption we will make on trees is that all
 trees are assumed to be connected. If trees with multiple components are
 desired, a modification must be made to the code base to interpret multiple root
 vertices, this should be simple but out of scope for this project. It's worth
@@ -285,9 +359,9 @@ at the tree seen in {prf:ref}`apn-example-20`.
 ![band 1](../media/bands/watt_degenerate.svg)
 ```
 
-Let $\Gamma$ be an arborescent tree, and arbitrarily select a vertex from
-$\Gamma$ as the root {prf:ref}`apn-example-22`, we will consider the root vertex
-as essential.
+Let $\Gamma$ be an planar tree, and arbitrarily select a vertex from $\Gamma$ as
+the root {prf:ref}`apn-example-22`, we will consider the root vertex as
+essential.
 
 ```{Note}
 :class: dropdown
