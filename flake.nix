@@ -15,33 +15,52 @@
       pkgs = nixpkgs.legacyPackages.${system};
       tex = pkgs.texlive.combine {
         inherit (pkgs.texlive)
-          scheme-medium
-          latexmk
-          ifoddpage
-          relsize
-          mdframed
-          zref
-          needspace
-          xcharter
-          xstring
-          xetex
-          fontaxes
-          amsmath
-          lipsum
-          enumitem
-          glossaries
-          listings
-          tcolorbox
-          environ
-          tikzfill
-          pdfcol
-          sauerj
+          scheme-tetex
           adjustbox
+          amsmath
+          bbm
+          biblatex
+          capt-of
+          catchfile
           datetime
-          fmtcount
-          framed
           doi
+          enumitem
+          environ
+          fancyhdr
+          fmtcount
+          fncychap
+          fontaxes
+          fontspec
+          framed
+          glossaries
           graphbox
+          graphics
+          hyperref
+          ifoddpage
+          import
+          latexmk
+          lipsum
+          listings
+          mdframed
+          needspace
+          pdfcol
+          relsize
+          sauerj
+          silence
+          svg
+          tabulary
+          tcolorbox
+          tikzfill
+          titlesec
+          transparent
+          upquote
+          varwidth
+          wrapfig
+          xcharter
+          xetex
+          xstring
+          xurl
+          zref
           ;
       };
     in
@@ -200,6 +219,9 @@
           ninja
           clang
           graphviz
+          imagemagick
+          inkscape
+          svg2pdf
         ];
 
         shellHook = ''
@@ -215,7 +237,7 @@
               echo "Offline"
           fi
 
-          just bootstrap
+          just bootstrap && \
           source .venv/bin/activate
           echo done!
         '';

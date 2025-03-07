@@ -30,10 +30,12 @@ extensions = [
     "sphinxcontrib.mermaid",
     # "autodoc2",
     "sphinx_rtd_dark_mode",
-    'sphinxcontrib.bibtex',
+    "sphinxcontrib.bibtex",
     "breathe",
     "sphinx_proof",
-    "sphinx_togglebutton"
+    "sphinx_togglebutton",
+    "sphinxcontrib.inkscapeconverter",
+    "sphinx_material"
 ]
 templates_path = ["_templates"]
 exclude_patterns = []
@@ -69,7 +71,7 @@ intersphinx_mapping = {
 
 
 # -- Bibtex settings ---------------------------------------------------
-bibtex_bibfiles = ['./refs/zotero.bib', './refs/manual.bib']
+bibtex_bibfiles = ["./refs/zotero.bib", "./refs/manual.bib"]
 
 # -- Breathe settings ---------------------------------------------------
 breathe_projects = {"Core_Libraries": "./build/doxygen/xml"}
@@ -132,7 +134,7 @@ myst_substitutions = {
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 # user starts in dark mode
 default_dark_mode = True
-html_theme = "sphinx_rtd_theme"
+html_theme = "sphinx-material"
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = "dracula"
 # html_static_path = ["_static"]
@@ -147,3 +149,103 @@ autosummary_generate = True
 autoclass_content = "both"
 html_show_sourcelink = False
 autodoc_inherit_docstrings = True
+
+latex_engine = 'lualatex'
+latex_theme = 'howto'
+latex_elements = {
+    "preamble": r"""
+    % Définition de TwemojiMozilla comme police de substitution
+    % pour pouvoir l'utiliser lorsque des caractères sont introuvables,
+    % notamment lorsqu'il s'agit d'emojis.
+    \directlua{
+        luaotfload.add_fallback("emoji", {"[TwemojiMozilla.ttf]:mode=harf"})
+    }
+    % Définition des polices du document,
+    % en spécifiant la police de substitution.
+    \setmainfont{LatinModernRoman}[RawFeature={fallback=emoji},SmallCapsFont={* Caps}]
+    \setsansfont{LatinModernSans}[RawFeature={fallback=emoji}]
+    \setmonofont{DejaVuSansMono}[RawFeature={fallback=emoji},Scale=0.8]
+    \usepackage{xcolor}
+
+
+    \definecolor{draculabg}      {RGB} {40,   42,   54}
+    \definecolor{draculacl}      {RGB} {68,   71,   90}
+    \definecolor{draculafg}      {RGB} {248,  248,  242}
+    \definecolor{draculacomment} {RGB} {98,   114,  164}
+    \definecolor{draculacyan}    {RGB} {139,  233,  253}
+    \definecolor{draculagreen}   {RGB} {80,   250,  123}
+    \definecolor{draculaorange}  {RGB} {255,  184,  108}
+    \definecolor{draculapink}    {RGB} {255,  121,  198}
+    \definecolor{draculapurple}  {RGB} {189,  147,  249}
+    \definecolor{draculared}     {RGB} {255,  85,   85}
+    \definecolor{draculayellow}  {RGB} {241,  250,  140}
+
+    \pagecolor{draculabg}
+    \color{draculafg}
+
+    \sphinxsetup{%
+         verbatimwithframe=true,
+         VerbatimColor={named}{draculabg},
+         VerbatimBorderColor={named}{draculapurple},
+         TitleColor={named}{draculapurple},
+         hintBorderColor={named}{draculapink},
+         attentionborder=3pt,
+         attentionBorderColor={named}{draculared},
+         attentionBgColor={named}{draculabg},
+         noteborder=2pt,
+         noteBorderColor={named}{draculagreen},
+         InnerLinkColor={named}{draculacyan},
+         OuterLinkColor={named}{draculaorange},
+         cautionborder=3pt,
+         cautionBorderColor={named}{draculacyan},
+         cautionBgColor={named}{draculacyan},
+         div.topic_background-TeXcolor={named}{draculabg},
+         div.topic_background-TeXcolor={named}{draculabg},
+         div.topic_title-background-TeXcolor={named}{draculabg},
+         }
+
+    \newcommand{\N}{\mathbb{N}}
+    \newcommand{\Z}{\mathbb{Z}}
+    \newcommand{\Q}{\mathbb{Q}}
+    \newcommand{\R}{\mathbb{R}}
+    \newcommand{\LN}{\left.}
+    \newcommand{\RN}{\right.}
+    \newcommand{\LP}{\left(}
+    \newcommand{\RP}{\right)}
+    \newcommand{\LS}{\left\lbrace}
+    \newcommand{\RS}{\right\rbrace}
+    \newcommand{\LA}{\left\langle}
+    \newcommand{\RA}{\right\rangle}
+    \newcommand{\LB}{\left[}
+    \newcommand{\RB}{\right]}
+    \newcommand{\MM}{\ \middle|\ }
+    \newcommand{\abs}[1]{\left\vert#1\right\vert}
+    \newcommand{\msr}[1]{m\left(#1\right)}
+    \newcommand{\inv}[1]{ #1^{-1}}
+    \newcommand{\bkt}[1]{\LA \img{ #1}\RA}
+
+\renewenvironment{sphinxnote}[1]
+  {\begin{sphinxlightbox}\sphinxstrong{#1} }
+  {\end{sphinxlightbox}}
+\renewenvironment{sphinxhint}[1]
+  {\begin{sphinxlightbox}\sphinxstrong{#1} }
+  {\end{sphinxlightbox}}
+\renewenvironment{sphinximportant}[1]
+  {\begin{sphinxlightbox}\sphinxstrong{#1} }
+  {\end{sphinxlightbox}}
+\renewenvironment{sphinxtip}[1]
+  {\begin{sphinxlightbox}\sphinxstrong{#1} }
+  {\end{sphinxlightbox}}
+\renewenvironment{sphinxseealso}[1]
+  {\sphinxcolorlet{spx@notice@bordercolor}{sphinxseealsoBorderColor}%
+   \csname spx@notice@border\endcsname=
+   \dimexpr\csname spx@seealso@border@top\endcsname\relax
+  \begin{sphinxlightbox}\sphinxstrong{#1} }
+  {\end{sphinxlightbox}}
+\renewenvironment{sphinxtodo}[1]
+  {\sphinxcolorlet{spx@notice@bordercolor}{sphinxtodoBorderColor}%
+   \csname spx@notice@border\endcsname=
+   \dimexpr\csname spx@todo@border@top\endcsname\relax
+  \begin{sphinxlightbox}\sphinxstrong{#1} }
+  {\end{sphinxlightbox}}""",
+}

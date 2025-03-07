@@ -36,7 +36,13 @@ bib:
     curl http://127.0.0.1:23119/better-bibtex/export/collection\?/1/Thesis.bibtex > ./docs/refs/zotero.bib
 
 live: bootstrap
-    .venv/bin/sphinx-autobuild docs
+    .venv/bin/sphinx-autobuild docs docs/build/html
+
+
+pdf: bootstrap
+    .venv/bin/sphinx-build -M latex docs docs/build/latex
+    cd docs/build/latex/latex && \
+    latexmk -synctex=1 -interaction=nonstopmode -file-line-error -shell-escape -lualatex tanglenomiconcorelibraries.tex
 
 
 build_all build_dir=buildDir build_tgt=buildTrgt : bootstrap
