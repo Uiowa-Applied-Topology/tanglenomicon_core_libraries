@@ -11,3 +11,7 @@ struct describing that link/tangle.
 :maxdepth: 2
 *
 ```
+
+```{raw} latex
+    \newpage
+```

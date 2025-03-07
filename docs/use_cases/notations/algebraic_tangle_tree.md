@@ -12,7 +12,8 @@ abstract: A use case description for the Algebraic Tangle Tree Notation.
 ## Functionality
 
 An algebraic tangle is any tangle generated from an "algebraic" statement built
-from the two binary operations $+$ and $\vee$ on the four basic tangles ($0,\
+from the two binary operations $+$ and $\vee$ on the four basic tangles
+($0,\
 \pm1,\ \infty$).
 
 ```{prf:example}
@@ -21,8 +22,8 @@ $$\LP\LP\infty+\infty\RP\vee\LP 0\vee0\RP\RP+\LP1+0\RP+\infty$$
 ```
 
 Since each of $+$ and $\vee$ are binary operations we can interpret these
-algebraic statements as binary trees where each non-leaf vertex corresponds to an
-operation and each leaf a basic tangle, we call these algebraic tangle trees.
+algebraic statements as binary trees where each non-leaf vertex corresponds to
+an operation and each leaf a basic tangle, we call these algebraic tangle trees.
 The concept of a algebraic tree decomposition was given first by Caudron
 {cite:p}`caudron1982classification` and then further refined by Connolly
 {cite:p}`connollyClassificationTabulation2string2021`.
@@ -52,7 +53,6 @@ The concept of a algebraic tree decomposition was given first by Caudron
 
 ```
 ````
-
 
 To simplify the combinatorics we can substitute rational tangles (as) twist
 vectors for the basic tangles and record the tree as a string in polish notation
@@ -84,4 +84,9 @@ att "decoded":
 
 ```{bibliography}
    :filter: docname in docnames
+```
+
+
+```{raw} latex
+    \newpage
 ```

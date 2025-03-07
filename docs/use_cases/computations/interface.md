@@ -2,8 +2,8 @@
 
 ## Goal:
 
-This interface describes the public interfaces of a generic computation
-module. The flow for a generic computation is modeled as
+This interface describes the public interfaces of a generic computation module.
+The flow for a generic computation is modeled as
 
 ```mermaid
 stateDiagram-v2
@@ -26,9 +26,13 @@ particular library.
 A computation library shall have a "set" function, this function will take a
 configuration as input and configure the instance to that input.
 
-A computation library shall have a compute function, when called this
-function carries out the computation on supplied data.
+A computation library shall have a compute function, when called this function
+carries out the computation on supplied data.
 
 ## Todo and enhancements
 
-- [ ] Probably need a common interface for gathering objects
+-   [ ] Probably need a common interface for gathering objects
+
+```{raw} latex
+    \newpage
+```

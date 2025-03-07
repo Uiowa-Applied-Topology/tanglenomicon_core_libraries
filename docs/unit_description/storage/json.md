@@ -16,3 +16,7 @@ C++
 ## Libraries
 
 ## Functionality
+
+```{raw} latex
+    \newpage
+```

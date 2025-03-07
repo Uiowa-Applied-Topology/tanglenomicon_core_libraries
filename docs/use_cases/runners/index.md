@@ -11,3 +11,7 @@ bindings, a Mathematica wrapper, etc.
 :maxdepth: 2
 *
 ```
+
+```{raw} latex
+    \newpage
+```

@@ -1,6 +1,5 @@
 # @@@TODO Unit Description: Montesinos Tangle Generator
 
-
 ```mermaid
 classDiagram
     generator_mont --|> generator
@@ -49,11 +48,13 @@ class note_tv{
 C
 
 ## Implements
-* [Generator Interface](interface.md)
+
+-   [Generator Interface](interface.md)
 
 ## Uses
-* [Twist Vector Notation](../notations/twist_vector.md)
-* [Algebraic Tangle Tree Notation](../notations/algebraic_tangle_tree.md)
+
+-   [Twist Vector Notation](../notations/twist_vector.md)
+-   [Algebraic Tangle Tree Notation](../notations/algebraic_tangle_tree.md)
 
 ## Libraries
 
@@ -63,11 +64,12 @@ N/A
 
 A canonical description of a Montesinos Knots is given by Bonahon and Siebenmann
 in Theorem 11.6 of "New Geometric Splittings of Classical Knots and the
-Classiﬁcation and Symmetries of Arborescent Knots" [${}^{[1]}$](https://dornsife.usc.edu/assets/sites/1191/docs/preprints/bonsieb.pdf).
+Classiﬁcation and Symmetries of Arborescent Knots"
+[${}^{[1]}$](https://dornsife.usc.edu/assets/sites/1191/docs/preprints/bonsieb.pdf).
 The given construction can be modified to describe a canonical Montesinos
-Tangle. That is a tangle with $n$ rational sub-tangles summed together with
-$+$, with potentially $1$ integral tangle as the final sub-tangle. This means
-our generation strategy for Montesinos tangles is to take combinations of our
+Tangle. That is a tangle with $n$ rational sub-tangles summed together with $+$,
+with potentially $1$ integral tangle as the final sub-tangle. This means our
+generation strategy for Montesinos tangles is to take combinations of our
 rational tangles (non-integral), where the crossing numbers of the components
 sum to the target crossing number.
 
@@ -83,10 +85,10 @@ $$+[1 2 0]+[2 1 0][2 2 0]$$
 
 ```
 
-
 This module generates att of unique Montesinos tangles. A normal flows go as:
 
 ### Config
+
 ```mermaid
 stateDiagram-v2
   state "Init local config" as Sc
@@ -97,6 +99,7 @@ stateDiagram-v2
 ```
 
 ### Generate
+
 ```mermaid
 stateDiagram-v2
 	state "Set prt=0" as init1
@@ -137,7 +140,9 @@ join_while --> while
 
 
 ```
+
 #### Process Loop State
+
 ```mermaid
 stateDiagram-v2
 	state "Convert notation and store" as print
@@ -158,9 +163,13 @@ stateDiagram-v2
 	end note
 ```
 
-
-
-
 ## Cite
 
-1. F. Bonahon and L. C. Siebenmann, “New Geometric Splittings of Classical Knots and the Classiﬁcation and Symmetries of Arborescent Knots”. Version: January 26, 2016 [pdf](https://dornsife.usc.edu/assets/sites/1191/docs/preprints/bonsieb.pdf)
+1. F. Bonahon and L. C. Siebenmann, “New Geometric Splittings of Classical Knots
+   and the Classiﬁcation and Symmetries of Arborescent Knots”. Version: January
+   26, 2016
+   [pdf](https://dornsife.usc.edu/assets/sites/1191/docs/preprints/bonsieb.pdf)
+
+```{raw} latex
+    \newpage
+```

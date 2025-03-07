@@ -1,6 +1,5 @@
 # @@@TODO Unit Description: Rational Tangle Generator
 
-
 ```mermaid
 classDiagram
     generator_rational --|> generator
@@ -38,10 +37,11 @@ C
 
 ## Implements
 
-* [Generator Interface](interface.md)
+-   [Generator Interface](interface.md)
 
 ## Uses
-* [Notation Twist Vector](../notations/twist_vector.md)
+
+-   [Notation Twist Vector](../notations/twist_vector.md)
 
 ## Libraries
 
@@ -49,11 +49,16 @@ N/A
 
 ## Functionality
 
-A rational tangle is given by alternating NE,SE and SE,SW twisting of the $0$ tangle[${}^{[2]}$](https://doi.org/10.48550/arXiv.math/0212011)[${}^{[1]}$](https://doi.org/10.1016/B978-0-08-012975-4.50034-5). A canonical combinatorial description of a rational tangle can be given by the [Twist Vector](../notations/twist%20vector.md).
+A rational tangle is given by alternating NE,SE and SE,SW twisting of the $0$
+tangle[${}^{[2]}$](https://doi.org/10.48550/arXiv.math/0212011)[${}^{[1]}$](https://doi.org/10.1016/B978-0-08-012975-4.50034-5).
+A canonical combinatorial description of a rational tangle can be given by the
+[Twist Vector](../notations/twist%20vector.md).
 
-This module generates twist vectors and in doing so rational tangles. A normal flows go as:
+This module generates twist vectors and in doing so rational tangles. A normal
+flows go as:
 
 ### Config
+
 ```mermaid
 stateDiagram-v2
   state "Init local config" as Sc
@@ -64,6 +69,7 @@ stateDiagram-v2
 ```
 
 ### Generate
+
 ```mermaid
 stateDiagram-v2
   state "Get Combination of CN" as gen
@@ -104,10 +110,16 @@ stateDiagram-v2
 
 ```
 
-
-
-
 ## Cite
 
-1. Conway, J.H. “An Enumeration of Knots and Links, and Some of Their Algebraic Properties.” In _Computational Problems in Abstract Algebra_, 329–58. Elsevier, 1970. [https://doi.org/10.1016/B978-0-08-012975-4.50034-5](https://doi.org/10.1016/b978-0-08-012975-4.50034-5).
-2. Kauffman, Louis H., and Sofia Lambropoulou. “On the Classification of Rational Knots,” 2002. [https://doi.org/10.48550/ARXIV.MATH/0212011](https://doi.org/10.48550/arxiv.math/0212011).
+1. Conway, J.H. “An Enumeration of Knots and Links, and Some of Their Algebraic
+   Properties.” In _Computational Problems in Abstract Algebra_, 329–58.
+   Elsevier, 1970.
+   [https://doi.org/10.1016/B978-0-08-012975-4.50034-5](https://doi.org/10.1016/b978-0-08-012975-4.50034-5).
+2. Kauffman, Louis H., and Sofia Lambropoulou. “On the Classification of
+   Rational Knots,” 2002.
+   [https://doi.org/10.48550/ARXIV.MATH/0212011](https://doi.org/10.48550/arxiv.math/0212011).
+
+```{raw} latex
+    \newpage
+```
