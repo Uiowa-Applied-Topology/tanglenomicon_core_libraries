@@ -28,4 +28,3 @@ runnable that generates objects of a specific class up to a crossing number.
 ```{raw} latex
     \newpage
 ```
-

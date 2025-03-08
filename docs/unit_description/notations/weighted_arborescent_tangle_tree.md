@@ -40,11 +40,11 @@ C
 
 ## Implements
 
--   [Notations Interface](interface.md)
+- [Notations Interface](interface.md)
 
 ## Uses
 
--   [Notations Twist Vector](twist_vector.md)
+- [Notations Twist Vector](twist_vector.md)
 
 ## Libraries
 

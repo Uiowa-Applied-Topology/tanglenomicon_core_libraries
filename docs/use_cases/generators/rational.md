@@ -37,11 +37,11 @@ C
 
 ## Implements
 
--   [Generator Interface](interface.md)
+- [Generator Interface](interface.md)
 
 ## Uses
 
--   [Notation Twist Vector](../notations/twist_vector.md)
+- [Notation Twist Vector](../notations/twist_vector.md)
 
 ## Libraries
 

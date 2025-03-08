@@ -153,4 +153,3 @@ tangle. Tracking the parts of this operation we can see clearly in
 ```{raw} latex
     \newpage
 ```
-

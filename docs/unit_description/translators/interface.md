@@ -27,4 +27,3 @@ since anything in LTS needs to be human consumable.
 ```{raw} latex
     \newpage
 ```
-

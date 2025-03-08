@@ -31,7 +31,7 @@ carries out the computation on supplied data.
 
 ## Todo and enhancements
 
--   [ ] Probably need a common interface for gathering objects
+- [ ] Probably need a common interface for gathering objects
 
 ```{raw} latex
     \newpage

@@ -23,7 +23,7 @@ C
 
 ## Implements
 
--   [Notations Interface](../notations/interface.md)
+- [Notations Interface](../notations/interface.md)
 
 ## Uses
 

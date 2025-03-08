@@ -12,7 +12,6 @@ translator from [PD](design/notations/pd.md) to
 *
 ```
 
-
 ```{raw} latex
     \newpage
 ```

@@ -39,11 +39,11 @@ C
 
 ## Implements
 
--   [Computation Interface](interface.md)
+- [Computation Interface](interface.md)
 
 ## Uses
 
--   [Notation Twist Vector](../notations/twist_vector.md)
+- [Notation Twist Vector](../notations/twist_vector.md)
 
 ## External Libraries
 
@@ -178,4 +178,3 @@ denominator closure:
 ```{raw} latex
     \newpage
 ```
-

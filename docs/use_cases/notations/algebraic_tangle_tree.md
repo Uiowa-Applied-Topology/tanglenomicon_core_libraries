@@ -86,7 +86,6 @@ att "decoded":
    :filter: docname in docnames
 ```
 
-
 ```{raw} latex
     \newpage
 ```
