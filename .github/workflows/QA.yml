@@ -16,6 +16,12 @@ jobs:
                   submodules: recursive
                   fetch-depth: 0
 
+            - name: Prettify code
+              uses: creyD/prettier_action@v4.3
+              with:
+                 dry: true
+                 only_changed: true
+
             - name: Check Nixpkgs inputs
               uses: DeterminateSystems/flake-checker-action@main
               with:
@@ -34,3 +40,7 @@ jobs:
                   nix develop --command \
                     just test_all
 
+            - name: Docs
+              run: |
+                nix develop --command \
+                  just pdf

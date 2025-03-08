@@ -39,6 +39,11 @@ jobs:
             - name: Docs
               run: |
                 nix develop --command \
+                  just pdf
+
+            - name: Zip Docs
+              run: |
+                nix develop --command \
                   zip -r ./.build/docs.zip ./docs/build
 
             - name: Release
@@ -46,3 +51,4 @@ jobs:
               with:
                   files: |
                       ./.build/docs.zip
+                      ./docs/build/latex/latex/tanglenomiconcorelibraries.pdf
