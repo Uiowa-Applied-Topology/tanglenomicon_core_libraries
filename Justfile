@@ -35,6 +35,10 @@ clion:
 bib:
     curl http://127.0.0.1:23119/better-bibtex/export/collection\?/1/Thesis.bibtex > ./docs/refs/zotero.bib
 
+pret:
+    prettier README.md --check
+    prettier "docs/**/*.md" --check
+
 live: bootstrap
     source .venv/bin/activate && \
     sphinx-autobuild docs docs/.build/html
@@ -65,3 +69,4 @@ test_all build_dir=buildDir build_tgt=buildTrgt: bootstrap build_all
     source .venv/bin/activate && \
     cd {{build_dir}} && \
     ctest -C {{build_tgt}}
+

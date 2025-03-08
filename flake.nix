@@ -224,12 +224,12 @@
           svg2pdf
           twemoji-color-font
           lmodern
+          nodePackages.prettier
         ];
 
         shellHook = ''
-
+                    export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
                     export LD_LIBRARY_PATH="$NIX_LD_LIBRARY_PATH"
-                    export LANG="en_US.UTF-8"
                     export PATH=":$HOME/.local/share/JetBrains/Toolbox/scripts/:$HOME/.local/share/JetBrains/Toolbox/:$PATH"
                     unset SOURCE_DATE_EPOCH
                     wget -q --spider https://google.com
