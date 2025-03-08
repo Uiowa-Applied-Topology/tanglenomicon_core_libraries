@@ -436,4 +436,4 @@ cmake-*
 .build/CMakeDoxygenDefaults.cmake
 .build/DartConfiguration.tcl
 .build/CMakeDoxyfile.in
-.build/**/*
+**/.build/**/*

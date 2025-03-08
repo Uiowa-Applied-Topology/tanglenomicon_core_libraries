@@ -38,30 +38,15 @@ else ()
 
 
     if (DOXYGEN_FOUND)
-        set(DOXY_BUILD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/docs/build/doxygen)
-        set(SPHINX_BUILD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/docs/build/sphinx)
+        set(DOXY_BUILD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/docs/.build/doxygen)
         set(DOXYFILE ${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile)
-        set(SPHINX_EXE ${Python_ROOT_DIR}/sphinx-build)
 
         message("Doxygen build started")
         set(DOXYGEN_INDEX_FILE ${DOXY_BUILD_DIR}/xml/index.xml)
-        set(SPHINX_INDEX_FILE ${SPHINX_BUILD_DIR}/index.html)
         add_custom_target(dox ALL
-                COMMAND rm -r ${SPHINX_BUILD_DIR} && mkdir -p ${SPHINX_BUILD_DIR} && ${Python_ROOT_DIR}/sphinx-build -M html docs ${SPHINX_BUILD_DIR} && ${Python_ROOT_DIR}/sphinx-build -M xml docs ${SPHINX_BUILD_DIR}
-                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-                COMMENT "Generating documentation with Sphinx"
-                DEPENDS ${SPHINX_EXE} ${DOXYGEN_INDEX_FILE})
-        add_custom_command(
-                OUTPUT ${DOXYGEN_INDEX_FILE}
                 COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYFILE}
                 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
                 COMMENT "Generating API documentation with Doxygen")
-        add_custom_command(
-                OUTPUT ${SPHINX_EXE}
-                COMMAND ${Python3_EXECUTABLE} -m pip install --upgrade pip wheel pip-tools && ${Python3_EXECUTABLE} -m pip install -r ${CMAKE_CURRENT_SOURCE_DIR}/requirements.txt
-                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-                COMMENT "Updating pip from requirements.txt")
-
     else (DOXYGEN_FOUND)
         message(
                 "Doxygen need to be installed to generate the doxygen documentation")

@@ -222,24 +222,28 @@
           imagemagick
           inkscape
           svg2pdf
+          twemoji-color-font
+          lmodern
         ];
 
         shellHook = ''
-          export LD_LIBRARY_PATH="$NIX_LD_LIBRARY_PATH"
-          export PATH=":$HOME/.local/share/JetBrains/Toolbox/scripts/:$HOME/.local/share/JetBrains/Toolbox/:$PATH"
-          unset SOURCE_DATE_EPOCH
-          wget -q --spider https://google.com
 
-          if [ $? -eq 0 ]; then
-              echo "Online"
-              rip .venv
-          else
-              echo "Offline"
-          fi
+                    export LD_LIBRARY_PATH="$NIX_LD_LIBRARY_PATH"
+                    export LANG="en_US.UTF-8"
+                    export PATH=":$HOME/.local/share/JetBrains/Toolbox/scripts/:$HOME/.local/share/JetBrains/Toolbox/:$PATH"
+                    unset SOURCE_DATE_EPOCH
+                    wget -q --spider https://google.com
 
-          just bootstrap && \
-          source .venv/bin/activate
-          echo done!
+                    if [ $? -eq 0 ]; then
+                        echo "Online"
+                        rip .venv
+                    else
+                        echo "Offline"
+                    fi
+
+                    just bootstrap && \
+                    source .venv/bin/activate
+                    echo done!
         '';
       };
     };

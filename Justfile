@@ -36,22 +36,32 @@ bib:
     curl http://127.0.0.1:23119/better-bibtex/export/collection\?/1/Thesis.bibtex > ./docs/refs/zotero.bib
 
 live: bootstrap
-    .venv/bin/sphinx-autobuild docs docs/build/html
+    source .venv/bin/activate && \
+    sphinx-autobuild docs docs/.build/html
 
 
 pdf: bootstrap
-    .venv/bin/sphinx-build -M latex docs docs/build/latex
-    cd docs/build/latex/latex && \
+    source .venv/bin/activate && \
+    sphinx-build -M latex docs docs/.build
+    cd docs/.build/latex && \
     latexmk -synctex=1 -interaction=nonstopmode -file-line-error -shell-escape -lualatex tanglenomiconcorelibraries.tex
 
+html: bootstrap
+    source .venv/bin/activate && \
+    sphinx-build -M html docs docs/.build
 
 build_all build_dir=buildDir build_tgt=buildTrgt : bootstrap
     if test -e {{build_dir}}; then \
         rip {{build_dir}}; \
     fi
-    cmake -B{{build_dir}} -DCMAKE_BUILD_TYPE={{build_tgt}}
+    source .venv/bin/activate && \
+    cmake -B{{build_dir}} -DCMAKE_BUILD_TYPE={{build_tgt}} && \
     cmake --build {{build_dir}}
 
+zip:
+    zip -r ./docs/.build/html.zip ./docs/.build/html
 
 test_all build_dir=buildDir build_tgt=buildTrgt: bootstrap build_all
-    cd {{build_dir}} && ctest -C {{build_tgt}}
+    source .venv/bin/activate && \
+    cd {{build_dir}} && \
+    ctest -C {{build_tgt}}
