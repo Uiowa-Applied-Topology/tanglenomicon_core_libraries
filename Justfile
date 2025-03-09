@@ -8,17 +8,8 @@ buildDir := "./.build"
 
 # Set up development environment
 bootstrap build_dir=buildDir:
-    if test ! -e {{build_dir}}/flake; then \
-      mkdir -p {{build_dir}}/flake; \
-    fi
-    if test ! -e {{build_dir}}/docs; then \
-      mkdir -p {{build_dir}}/docs; \
-    fi
-    if test ! -e docs/build/sphinx; then \
-      mkdir -p docs/build/sphinx; \
-    fi
-    if test ! -e {{build_dir}}/docs/sphinx; then \
-      mkdir -p {{build_dir}}/docs/sphinx; \
+    if test ! -e docs/.build/doxygen; then \
+      mkdir -p docs/.build/doxygen; \
     fi
     if test ! -e .venv; then \
       uv venv --python 3.11 && uv pip install -r requirements.txt ; \
@@ -47,6 +38,8 @@ live: bootstrap
 pdf: bootstrap
     source .venv/bin/activate && \
     sphinx-build -M latex docs docs/.build
+    cp -r docs/resources/coloremoji/coloremoji docs/.build/latex
+    cp docs/resources/coloremoji/coloremoji.sty docs/.build/latex
     cd docs/.build/latex && \
     latexmk -synctex=1 -interaction=nonstopmode -file-line-error -shell-escape -lualatex tanglenomiconcorelibraries.tex
 

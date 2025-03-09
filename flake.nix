@@ -13,9 +13,25 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      systemfontdirs =
+        with pkgs;
+        map toString [
+          noto-fonts
+          noto-fonts-cjk-sans
+          noto-fonts-emoji
+          liberation_ttf
+          fira-code
+          fira-code-symbols
+          mplus-outline-fonts.githubRelease
+          dina-font
+          proggyfonts
+          freefont_ttf
+        ];
+
       tex = pkgs.texlive.combine {
         inherit (pkgs.texlive)
           scheme-tetex
+          collection-luatex
           adjustbox
           amsmath
           bbm
@@ -61,6 +77,9 @@
           xstring
           xurl
           zref
+          commonunicode
+          newunicodechar
+          gnu-freefont
           ;
       };
     in
@@ -223,27 +242,34 @@
           inkscape
           svg2pdf
           twemoji-color-font
+          dejavu_fonts
           lmodern
           nodePackages.prettier
+          freefont_ttf
         ];
+        # used by xetex and mtx-fonts (context)
+        FONTCONFIG_FILE = pkgs.makeFontsConf { fontDirectories = systemfontdirs ++ [ tex.fonts ]; };
+        # used by luaotfload (lualatex)
+        OSFONTDIR = pkgs.lib.concatStringsSep "//:" systemfontdirs;
+        LOCALE_ARCHIVE = "${pkgs.glibcLocales}/lib/locale/locale-archive";
 
         shellHook = ''
-                    export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
-                    export LD_LIBRARY_PATH="$NIX_LD_LIBRARY_PATH"
-                    export PATH=":$HOME/.local/share/JetBrains/Toolbox/scripts/:$HOME/.local/share/JetBrains/Toolbox/:$PATH"
-                    unset SOURCE_DATE_EPOCH
-                    wget -q --spider https://google.com
+          export LD_LIBRARY_PATH="$NIX_LD_LIBRARY_PATH"
+          export PATH=":$HOME/.local/share/JetBrains/Toolbox/scripts/:$HOME/.local/share/JetBrains/Toolbox/:$PATH"
+          unset SOURCE_DATE_EPOCH
+          wget -q --spider https://google.com
 
-                    if [ $? -eq 0 ]; then
-                        echo "Online"
-                        rip .venv
-                    else
-                        echo "Offline"
-                    fi
+          if [ $? -eq 0 ]; then
+              echo "Online"
+              rip .venv
+          else
+              echo "Offline"
+          fi
 
-                    just bootstrap && \
-                    source .venv/bin/activate
-                    echo done!
+          just bootstrap
+          luaotfload-tool --cache=erase --flush-lookups --force
+          source .venv/bin/activate
+          echo done!
         '';
       };
     };

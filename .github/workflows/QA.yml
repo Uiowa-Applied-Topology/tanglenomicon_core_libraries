@@ -42,4 +42,4 @@ jobs:
             - name: Docs
               run: |
                 nix develop --command \
-                  just pdf
+                      env HOME=$(mktemp -d) just pdf

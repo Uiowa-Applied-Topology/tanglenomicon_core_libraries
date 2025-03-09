@@ -154,18 +154,8 @@ latex_engine = 'lualatex'
 latex_theme = 'howto'
 latex_elements = {
     "preamble": r"""
-    % Définition de TwemojiMozilla comme police de substitution
-    % pour pouvoir l'utiliser lorsque des caractères sont introuvables,
-    % notamment lorsqu'il s'agit d'emojis.
-    \directlua{
-        luaotfload.add_fallback("emoji", {"[TwemojiMozilla.ttf]:mode=harf"})
-    }
-    % Définition des polices du document,
-    % en spécifiant la police de substitution.
-    \setmainfont{LatinModernRoman}[RawFeature={fallback=emoji},SmallCapsFont={* Caps}]
-    \setsansfont{LatinModernSans}[RawFeature={fallback=emoji}]
-    \setmonofont{DejaVuSansMono}[RawFeature={fallback=emoji},Scale=0.8]
     \usepackage{xcolor}
+    \usepackage[twitter]{coloremoji}
 
 
     \definecolor{draculabg}      {RGB} {40,   42,   54}

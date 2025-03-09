@@ -43,7 +43,7 @@ jobs:
             - name: Docs
               run: |
                   nix develop --command \
-                    just pdf
+                     just pdf
 
             - name: Zip Docs
               run: |
