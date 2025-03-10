@@ -246,6 +246,7 @@
           lmodern
           nodePackages.prettier
           freefont_ttf
+          dos2unix
         ];
         # used by xetex and mtx-fonts (context)
         FONTCONFIG_FILE = pkgs.makeFontsConf { fontDirectories = systemfontdirs ++ [ tex.fonts ]; };
