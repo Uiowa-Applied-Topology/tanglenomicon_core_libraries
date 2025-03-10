@@ -54,7 +54,6 @@
  */
 #define COMP_RATIONAL_DAT_CONFIG_STR_BUFFER (0x1u << 3u)
 
-
 /******************************************************************************/
 /*************************** Typedefs *****************************************/
 /******************************************************************************/
@@ -102,7 +101,8 @@ extern "C"
 {
 #endif
     /*!
-     * @brief A public function, calling this executes the computation on the configured tangle.
+     * @brief A public function, calling this executes the computation on the
+     * configured tangle.
      * @return uint8_t Generation status info.
      */
     uint8_t comp_rational_data_compute();

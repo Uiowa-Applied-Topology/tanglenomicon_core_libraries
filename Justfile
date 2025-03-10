@@ -26,9 +26,6 @@ clion:
 bib:
     curl http://127.0.0.1:23119/better-bibtex/export/collection\?/1/Thesis.bibtex > ./docs/refs/zotero.bib
 
-pret:
-    prettier README.md --check
-    prettier "docs/**/*.md" --check
 
 live: bootstrap
     source .venv/bin/activate && \
@@ -54,6 +51,24 @@ build_all build_dir=buildDir build_tgt=buildTrgt : bootstrap
     source .venv/bin/activate && \
     cmake -B{{build_dir}} -DCMAKE_BUILD_TYPE={{build_tgt}} && \
     cmake --build {{build_dir}}
+
+do-clang-format:
+    find ./source -iname "*.c"   -exec  sh -c 'clang-format -i "$0" || kill $PPID' \{\} \;
+    find ./source -iname "*.h"   -exec  sh -c 'clang-format -i "$0" || kill $PPID' \{\} \;
+    find ./source -iname "*.cpp" -exec  sh -c 'clang-format -i "$0" || kill $PPID' \{\} \;
+
+check-clang-format:
+    find ./source -iname "*.c"   -exec sh -c 'clang-format --Werror --dry-run "$0" || kill $PPID' \{\} \;
+    find ./source -iname "*.h"   -exec sh -c 'clang-format --Werror --dry-run "$0" || kill $PPID' \{\} \;
+    find ./source -iname "*.cpp" -exec sh -c 'clang-format --Werror --dry-run "$0" || kill $PPID' \{\} \;
+
+check-prettier:
+    prettier README.md --check
+    prettier "docs/**/*.md" --check
+
+do-prettier:
+    prettier -w README.md
+    prettier -w "docs/**/*.md"
 
 zip:
     zip -r ./docs/.build/html.zip ./docs/.build/html

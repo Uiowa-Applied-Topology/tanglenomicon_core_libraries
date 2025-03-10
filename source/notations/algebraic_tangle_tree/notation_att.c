@@ -199,14 +199,13 @@ static uint8_t note_att_add_tv(note_tv_t *tv, char *str)
     return ret_val;
 }
 
-
 /*!
  * @brief Walk the string converting it to an algebraic tangle tree.
  * @param att The storage location for the algebraic tangle tree.
- * @param node 
- * @param str 
+ * @param node
+ * @param str
  * @param att_node_idx
- * @return 
+ * @return
  */
 static uint8_t note_att_traverse_string(note_att_t *att, note_att_node_t *node,
                                         char *str, size_t att_node_idx)

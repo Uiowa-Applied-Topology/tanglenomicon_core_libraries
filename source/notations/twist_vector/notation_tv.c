@@ -54,7 +54,7 @@ uint8_t note_tv_encode(char *str, note_tv_t *twistv)
     uint8_t retval = NOTE_DEFS_ENCODE_SUCCESS;
     uint8_t tv_idx = 0u;
     str++;
-    char *str_end = str + strlen(str)-1;
+    char *str_end = str + strlen(str) - 1;
 
     /* Iterate over string. */
     while (str < str_end)
@@ -122,7 +122,6 @@ uint8_t note_tv_decode(note_tv_t twistv, char *str)
 static note_tv_t *note_tv_tvrev(note_tv_t *tv)
 {
     uint8_t *left_p, *right_p;
-
 
     left_p = tv->twist_vector;
     right_p = tv->twist_vector + tv->tv_length - 1;
