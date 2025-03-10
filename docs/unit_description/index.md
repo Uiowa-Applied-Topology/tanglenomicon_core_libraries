@@ -10,3 +10,7 @@ computations/index.md
 notations/index.md
 storage/index.md
 ```
+
+```{raw} latex
+    \newpage
+```

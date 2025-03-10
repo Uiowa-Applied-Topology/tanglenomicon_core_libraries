@@ -21,3 +21,5 @@ sphinx-autobuild
 sphinxcontrib-bibtex
 sphinx-proof
 sphinx-togglebutton
+sphinxcontrib-svg2pdfconverter
+sphinx-material

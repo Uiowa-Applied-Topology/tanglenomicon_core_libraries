@@ -24,6 +24,16 @@ jobs:
             - name: Install Nix
               uses: DeterminateSystems/nix-installer-action@main
 
+            - name: Prettier
+              run: |
+                  nix develop --command \
+                      just check-prettier
+
+            - name: Clang-format
+              run: |
+                  nix develop --command \
+                      just check-clang-format
+
             - name: Build
               run: |
                   nix develop --command \
@@ -34,3 +44,7 @@ jobs:
                   nix develop --command \
                     just test_all
 
+            - name: Docs
+              run: |
+                  nix develop --command \
+                        env HOME=$(mktemp -d) just pdf

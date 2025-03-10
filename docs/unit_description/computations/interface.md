@@ -18,3 +18,7 @@ classDiagram
 
 
 ```
+
+```{raw} latex
+    \newpage
+```

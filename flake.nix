@@ -13,35 +13,73 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      systemfontdirs =
+        with pkgs;
+        map toString [
+          noto-fonts
+          noto-fonts-cjk-sans
+          noto-fonts-emoji
+          liberation_ttf
+          fira-code
+          fira-code-symbols
+          mplus-outline-fonts.githubRelease
+          dina-font
+          proggyfonts
+          freefont_ttf
+        ];
+
       tex = pkgs.texlive.combine {
         inherit (pkgs.texlive)
-          scheme-medium
-          latexmk
-          ifoddpage
-          relsize
-          mdframed
-          zref
-          needspace
-          xcharter
-          xstring
-          xetex
-          fontaxes
-          amsmath
-          lipsum
-          enumitem
-          glossaries
-          listings
-          tcolorbox
-          environ
-          tikzfill
-          pdfcol
-          sauerj
+          scheme-tetex
+          collection-luatex
           adjustbox
+          amsmath
+          bbm
+          biblatex
+          capt-of
+          catchfile
           datetime
-          fmtcount
-          framed
           doi
+          enumitem
+          environ
+          fancyhdr
+          fmtcount
+          fncychap
+          fontaxes
+          fontspec
+          framed
+          glossaries
           graphbox
+          graphics
+          hyperref
+          ifoddpage
+          import
+          latexmk
+          lipsum
+          listings
+          mdframed
+          needspace
+          pdfcol
+          relsize
+          sauerj
+          silence
+          svg
+          tabulary
+          tcolorbox
+          tikzfill
+          titlesec
+          transparent
+          upquote
+          varwidth
+          wrapfig
+          xcharter
+          xetex
+          xstring
+          xurl
+          zref
+          commonunicode
+          newunicodechar
+          gnu-freefont
           ;
       };
     in
@@ -200,7 +238,20 @@
           ninja
           clang
           graphviz
+          imagemagick
+          inkscape
+          svg2pdf
+          twemoji-color-font
+          dejavu_fonts
+          lmodern
+          nodePackages.prettier
+          freefont_ttf
         ];
+        # used by xetex and mtx-fonts (context)
+        FONTCONFIG_FILE = pkgs.makeFontsConf { fontDirectories = systemfontdirs ++ [ tex.fonts ]; };
+        # used by luaotfload (lualatex)
+        OSFONTDIR = pkgs.lib.concatStringsSep "//:" systemfontdirs;
+        LOCALE_ARCHIVE = "${pkgs.glibcLocales}/lib/locale/locale-archive";
 
         shellHook = ''
           export LD_LIBRARY_PATH="$NIX_LD_LIBRARY_PATH"
@@ -216,6 +267,7 @@
           fi
 
           just bootstrap
+          luaotfload-tool --cache=erase --flush-lookups --force
           source .venv/bin/activate
           echo done!
         '';

@@ -1,5 +1,4 @@
-# @@@TODO Unit Description:  Generator Interface
-
+# @@@TODO Unit Description: Generator Interface
 
 ```mermaid
 classDiagram
@@ -23,4 +22,9 @@ classDiagram
 
 ## Brief
 
-This interface describes a generic generator module. A generator module is a runnable that generates objects of a specific class up to a crossing number.
+This interface describes a generic generator module. A generator module is a
+runnable that generates objects of a specific class up to a crossing number.
+
+```{raw} latex
+    \newpage
+```

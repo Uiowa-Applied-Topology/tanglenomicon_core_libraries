@@ -40,11 +40,11 @@ C
 
 ## Implements
 
-* [Notations Interface](interface.md)
+- [Notations Interface](interface.md)
 
 ## Uses
 
-* [Notations Twist Vector](twist_vector.md)
+- [Notations Twist Vector](twist_vector.md)
 
 ## Libraries
 
@@ -55,7 +55,7 @@ N/A
 An arborescent tangle is a tangle built from the plumbing calculus described in
 Bonahon
 
-```{note}
+````{note}
 
 ![Mont](../media/mont.svg)
 
@@ -74,7 +74,7 @@ id0("+")-->id2("+")
 id2("+")-->id3("[2 1 0]")
 id2("+")-->id4("[2 2 0]")
 
-```
+````
 
 ### Data Structure Description
 
@@ -99,3 +99,7 @@ preorder
 2. N. Connolly, "Classification and tabulation of 2-string tangles: the
    astronomy of subtangle decompositions," Doctor of Philosophy, University of
    Iowa, 2021. doi: 10.17077/etd.005978.
+
+```{raw} latex
+    \newpage
+```

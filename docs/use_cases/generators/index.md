@@ -11,3 +11,7 @@ specific type. They may use one or more Computations, Notations, or Translators.
 :maxdepth: 2
 *
 ```
+
+```{raw} latex
+    \newpage
+```

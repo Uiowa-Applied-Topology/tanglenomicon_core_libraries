@@ -25,24 +25,39 @@ jobs:
             - name: Install Nix
               uses: DeterminateSystems/nix-installer-action@main
 
+            - name: Prettier
+              run: |
+                  nix develop --command \
+                      just check-prettier
+
+            - name: Clang-format
+              run: |
+                  nix develop --command \
+                      just check-clang-format
+
             - name: Build
               run: |
-                nix develop --command \
-                  just build_all
-
+                  nix develop --command \
+                      just build_all
 
             - name: Test
               run: |
-                nix develop --command \
-                  just test_all
+                  nix develop --command \
+                    just test_all
 
             - name: Docs
               run: |
-                nix develop --command \
-                  zip -r ./.build/docs.zip ./docs/build
+                  nix develop --command \
+                        env HOME=$(mktemp -d) just pdf
+
+            - name: Zip Docs
+              run: |
+                  nix develop --command \
+                    just zip
 
             - name: Release
               uses: softprops/action-gh-release@v2
               with:
                   files: |
-                      ./.build/docs.zip
+                      ./docs/.build/html.zip
+                      ./docs/.build/latex/latex/tanglenomiconcorelibraries.pdf

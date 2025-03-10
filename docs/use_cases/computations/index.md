@@ -11,3 +11,7 @@ polynomial of a link, or a computing the writhe of a tangle.
 arborescent_moves/index.md
 *
 ```
+
+```{raw} latex
+    \newpage
+```

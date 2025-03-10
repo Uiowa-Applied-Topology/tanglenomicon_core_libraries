@@ -19,12 +19,11 @@ tangles; rational number, parity, and algebraic equivalence of closures.
 #### Rational Number
 
 In Conways original tangle paper {cite:p}`conwayEnumerationKnotsLinks1970` he
-states that rational tangles and rational
-numbers are in one to one correspondence, this was later proven for tangles
-by Goldman and Kauffman {cite:p}`goldmanRationalTangles1997a`. The correspondence
-comes from interpreting the twist vector of a rational tangle as a finite
-continued fraction that is:
-$$\LB a\ b\ c\RB=c+\frac{1}{b+\frac{1}{a}}$$
+states that rational tangles and rational numbers are in one to one
+correspondence, this was later proven for tangles by Goldman and Kauffman
+{cite:p}`goldmanRationalTangles1997a`. The correspondence comes from
+interpreting the twist vector of a rational tangle as a finite continued
+fraction that is: $$\LB a\ b\ c\RB=c+\frac{1}{b+\frac{1}{a}}$$
 
 #### Parity
 
@@ -43,6 +42,7 @@ The parity of a rational tangle describes it's fixed point connectivity
 
 ```
 ````
+
 the connectivity, formally described by Kauffman and Lambropoulou
 {cite:p}`kauffmanClassificationRationalKnots2002` as
 
@@ -76,10 +76,15 @@ class of the numerator closure of the tangle. Equivalence is give by schubert
 1. $p=p^{\prime}$
 2. $q \equiv q^{\prime}(\bmod p)$ or $q q^{\prime} \equiv 1(\bmod p)$.
 ```
+
 where $N()$ indicates the numerator closure of the object tangle.
 
 ## Bibliography
 
 ```{bibliography}
    :filter: docname in docnames
+```
+
+```{raw} latex
+    \newpage
 ```
