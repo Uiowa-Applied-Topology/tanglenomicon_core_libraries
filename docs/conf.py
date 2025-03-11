@@ -28,14 +28,11 @@ extensions = [
     "sphinx.ext.autosummary",
     "myst_parser",
     "sphinxcontrib.mermaid",
-    # "autodoc2",
-    "sphinx_rtd_dark_mode",
     "sphinxcontrib.bibtex",
     "breathe",
     "sphinx_proof",
-    "sphinx_togglebutton",
     "sphinxcontrib.inkscapeconverter",
-    "sphinx_material"
+    "sphinx_material",
 ]
 templates_path = ["_templates"]
 exclude_patterns = []
@@ -48,26 +45,6 @@ intersphinx_mapping = {
     "sphinx": ("https://www.sphinx-doc.org/en/master", None),
     "markdown_it": ("https://markdown-it-py.readthedocs.io/en/latest", None),
 }
-
-# -- Autodoc settings ---------------------------------------------------
-#
-# autodoc2_packages = [
-#     {
-#         "path": "../tanglenomicon_data_api",
-#         "exclude_files": ["_docs.py"],
-#     }
-# ]
-# autodoc2_hidden_objects = ["dunder", "private", "inherited"]
-# autodoc2_replace_annotations = [
-#     ("re.Pattern", "typing.Pattern"),
-#     ("markdown_it.MarkdownIt", "markdown_it.main.MarkdownIt"),
-# ]
-# autodoc2_replace_bases = [
-#     ("sphinx.directives.SphinxDirective", "sphinx.util.docutils.SphinxDirective"),
-# ]
-# autodoc2_render_plugin = "myst"
-#
-# nitpicky = False
 
 
 # -- Bibtex settings ---------------------------------------------------
@@ -82,7 +59,6 @@ myst_fence_as_directive = ["mermaid"]
 
 myst_enable_extensions = [
     "dollarmath",
-    # "amsmath",
     "deflist",
     "fieldlist",
     "html_admonition",
@@ -123,7 +99,6 @@ myst_url_schemes = {
 myst_number_code_blocks = ["typescript"]
 myst_heading_anchors = 2
 myst_footnote_transition = True
-# myst_dmath_double_inline = True
 myst_enable_checkboxes = True
 myst_substitutions = {
     "role": "[role](#syntax/roles)",
@@ -135,9 +110,31 @@ myst_substitutions = {
 # user starts in dark mode
 default_dark_mode = True
 html_theme = "sphinx-material"
-# The name of the Pygments (syntax highlighting) style to use.
-pygments_style = "dracula"
-# html_static_path = ["_static"]
+html_theme = "sphinx_material"
+
+# Material theme options (see theme.conf for more information)
+html_theme_options = {
+    # Set the name of the project to appear in the navigation.
+    "nav_title": "The Tanglenomicon: Core Libraries",
+    # Set the color and the accent color
+    "theme_color": "001f3f",
+    "color_primary": "#001f3f",
+    "color_accent": "#7FDBFF",
+    # Set the repo location to get a badge with stats
+    "repo_url": "https://github.com/Uiowa-Applied-Topology/tanglenomicon_core_libraries",
+    "repo_name": "tanglenomicon_core_libraries",
+    "html_minify": True,
+    "css_minify": True,
+    "logo_icon": "",
+}
+html_sidebars = {
+    "**": [
+        "globaltoc.html",
+        "localtoc.html",
+    ]
+}
+html_show_sourcelink = False
+# -- Mermaid settings ---------------------------------------------------
 
 mermaid_d3_zoom = True
 mermaid_init_js = """mermaid.initialize({
@@ -145,13 +142,10 @@ mermaid_init_js = """mermaid.initialize({
   theme: 'dark',
 });"""
 
-autosummary_generate = True
-autoclass_content = "both"
-html_show_sourcelink = False
-autodoc_inherit_docstrings = True
+# -- LaTex settings ---------------------------------------------------
 
-latex_engine = 'lualatex'
-latex_theme = 'howto'
+latex_engine = "lualatex"
+latex_theme = "howto"
 latex_elements = {
     "preamble": r"""
     \usepackage{xcolor}
@@ -239,3 +233,9 @@ latex_elements = {
   \begin{sphinxlightbox}\sphinxstrong{#1} }
   {\end{sphinxlightbox}}""",
 }
+
+# -- Misc settings ---------------------------------------------------
+
+autosummary_generate = True
+autoclass_content = "both"
+autodoc_inherit_docstrings = True
