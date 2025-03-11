@@ -211,11 +211,12 @@ C/C++ modules are expected to link to
 their design markdown files in their header @file block.
 ```
 
-#### Style Guide
+#### Code Style Guide
 
 The C/C++ code in this repository is expected to be formatted by the bundled
-clang.tidy configuration. Doxygen comments are expected to be formatted by
-clang.tidy.
+clang-format configuration. Doxygen comments are expected to be formatted.
+
+Python code in this repository is expected to be formatted with black.
 
 ### Tools
 
@@ -244,6 +245,32 @@ markdown files in the "docs" directory. General documentation is aggregated
 using the [sphinx](https://www.sphinx-doc.org/en/master/) framework. Sphinx then
 uses [breathe](https://github.com/breathe-doc/breathe) to parse doxygen xml into
 general documentation.
+
+## Colors
+
+Diagrams included in documentation for features (use case and unit descriptions)
+is expected to use the [COLORS](https://clrs.cc) color palette.
+
+```
+/* Colors */
+Navy    : #001F3F
+Blue    : #0074D9
+Aqua    : #7FDBFF
+Teal    : #39CCCC
+Olive   : #3D9970
+Green   : #2ECC40
+Lime    : #01FF70
+Yellow  : #FFDC00
+Orange  : #FF851B
+Red     : #FF4136
+Fuchsia : #F012BE
+Purple  : #B10DC9
+Maroon  : #85144B
+White   : #FFFFFF
+Silver  : #DDDDDD
+Gray    : #AAAAAA
+Black   : #111111
+```
 
 ## Units
 

@@ -1,15 +1,15 @@
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
 <svg xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" viewBox="0 0 64.30478 64.304777" version="1.1" id="svg1" inkscape:version="1.3.2 (091e20ef0f, 2023-11-25)" sodipodi:docname="arbor_ring_tangle.svg">
   <sodipodi:namedview id="namedview1" pagecolor="#282a36" bordercolor="#000000" borderopacity="0.25" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#44475a" inkscape:document-units="mm" showgrid="true" inkscape:zoom="7.223835" inkscape:cx="36.199608" inkscape:cy="33.084919" inkscape:window-width="1920" inkscape:window-height="1126" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" inkscape:current-layer="layer1" showguides="false">
     <inkscape:grid id="grid1" units="mm" originx="-97.847614" originy="-29.96457" spacingx="0.99999998" spacingy="1" empcolor="#0099e5" empopacity="0.30196078" color="#0099e5" opacity="0.14901961" empspacing="5" dotted="false" gridanglex="30" gridanglez="30" visible="true"/>
   </sodipodi:namedview>
   <defs id="defs1"/>
   <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1" transform="translate(-97.847614,-29.964573)">
-    <path style="fill:none;stroke:#ff5555;stroke-width:3.77953;stroke-linejoin:round;stroke-miterlimit:4.1" d="m 111.42617,61.021641 c 0,-3.081883 8.11803,-5.580244 18.13213,-5.580244 10.0141,-1e-6 18.13214,2.498359 18.13214,5.580244" id="path14"/>
-    <path id="path11" style="display:none;fill:none;stroke:#6272a4;stroke-width:3.77953;stroke-linejoin:round;stroke-miterlimit:4.1" d="m 150.95209,41.164876 -41.90418,41.904173 m 0,-41.904173 41.90418,41.904173"/>
-    <path style="fill:none;stroke:#ff79c6;stroke-width:3.77953;stroke-linejoin:round;stroke-miterlimit:4.1" d="M 109.04791,41.164876 C 130,62.116963 130,62.116962 109.04791,83.069049" id="path12" sodipodi:nodetypes="cc"/>
-    <path style="fill:none;stroke:#ffb86c;stroke-width:3.77953;stroke-linejoin:round;stroke-miterlimit:4.1" d="M 150.95209,83.069049 C 130,62.116963 130,62.116962 150.95209,41.164876" id="path13" sodipodi:nodetypes="cc"/>
-    <path id="path9" style="fill:none;stroke:#6272a4;stroke-width:3.54796;stroke-linejoin:round;stroke-miterlimit:4.1" d="M 160.37841,62.116962 A 30.378407,30.378409 0 0 1 130,92.495372 30.378407,30.378409 0 0 1 99.621594,62.116962 30.378407,30.378409 0 0 1 130,31.738553 30.378407,30.378409 0 0 1 160.37841,62.116962 Z"/>
-    <path style="fill:none;stroke:#ff5555;stroke-width:3.77953;stroke-linejoin:round;stroke-miterlimit:4.1" d="m 147.69044,61.021641 c 0,3.081884 -8.11804,5.580244 -18.13214,5.580243 -10.0141,0 -18.13213,-2.49836 -18.13213,-5.580243" id="path15"/>
+    <path style="fill:none;stroke:#FF4136;stroke-width:3.77953;stroke-linejoin:round;stroke-miterlimit:4.1" d="m 111.42617,61.021641 c 0,-3.081883 8.11803,-5.580244 18.13213,-5.580244 10.0141,-1e-6 18.13214,2.498359 18.13214,5.580244" id="path14" class="stroke-red"/>
+    <path id="path11" style="display:none;fill:none;stroke:#AAAAAA;stroke-width:3.77953;stroke-linejoin:round;stroke-miterlimit:4.1" d="m 150.95209,41.164876 -41.90418,41.904173 m 0,-41.904173 41.90418,41.904173" class="stroke-comment"/>
+    <path style="fill:none;stroke:#39CCCC;stroke-width:3.77953;stroke-linejoin:round;stroke-miterlimit:4.1" d="M 109.04791,41.164876 C 130,62.116963 130,62.116962 109.04791,83.069049" id="path12" sodipodi:nodetypes="cc" class="stroke-cyan"/>
+    <path style="fill:none;stroke:#FF851B;stroke-width:3.77953;stroke-linejoin:round;stroke-miterlimit:4.1" d="M 150.95209,83.069049 C 130,62.116963 130,62.116962 150.95209,41.164876" id="path13" sodipodi:nodetypes="cc" class="stroke-orange"/>
+    <path id="path9" style="fill:none;stroke:#AAAAAA;stroke-width:3.54796;stroke-linejoin:round;stroke-miterlimit:4.1" d="M 160.37841,62.116962 A 30.378407,30.378409 0 0 1 130,92.495372 30.378407,30.378409 0 0 1 99.621594,62.116962 30.378407,30.378409 0 0 1 130,31.738553 30.378407,30.378409 0 0 1 160.37841,62.116962 Z" class="stroke-comment"/>
+    <path style="fill:none;stroke:#FF4136;stroke-width:3.77953;stroke-linejoin:round;stroke-miterlimit:4.1" d="m 147.69044,61.021641 c 0,3.081884 -8.11804,5.580244 -18.13214,5.580243 -10.0141,0 -18.13213,-2.49836 -18.13213,-5.580243" id="path15" class="stroke-red"/>
   </g>
 </svg>
