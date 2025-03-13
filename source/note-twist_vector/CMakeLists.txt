@@ -1,6 +1,6 @@
 add_library(notation_tv STATIC src/notation_tv.c)
 
-target_include_directories(notation_tv PUBLIC .)
+target_include_directories(notation_tv PUBLIC src)
 target_link_libraries(notation_tv tang_defs notation_defs)
 
 

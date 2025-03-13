@@ -5,7 +5,7 @@ add_custom_command(
     OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/py_gen_montesinos.c
     DEPENDS py_gen_montesinos.pyx
     VERBATIM
-    COMMAND "${CYTHON}" "py_gen_montesinos.pyx" --output-file
+    COMMAND "${CYTHON}" "${CMAKE_CURRENT_SOURCE_DIR}/py_gen_montesinos.pyx" --output-file
     "${CMAKE_CURRENT_BINARY_DIR}/py_gen_montesinos.c")
 
 

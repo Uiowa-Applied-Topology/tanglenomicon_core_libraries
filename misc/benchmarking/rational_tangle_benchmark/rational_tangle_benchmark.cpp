@@ -14,7 +14,7 @@
 #include <generator_rational.h>
 #include <notation_tv.h>
 #include <storage.hpp>
-#include <storage_JSON.hpp>
+#include <storage_json.hpp>
 #include <tang_defs.h>
 
 #include <cxxopts.hpp>
