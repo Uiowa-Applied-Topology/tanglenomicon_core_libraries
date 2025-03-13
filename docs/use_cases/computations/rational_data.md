@@ -4,7 +4,7 @@ status: test
 authors:
     - Joe Starr
 contact: joe@joe-starr.com
-abstract: A use case description for computations on rational tangle data.
+abstract: A use case description for defs on rational tangle data.
 ---
 
 # Use Case: Rational Data Computation

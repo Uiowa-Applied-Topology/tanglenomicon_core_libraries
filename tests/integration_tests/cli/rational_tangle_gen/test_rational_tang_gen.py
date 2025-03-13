@@ -11,67 +11,67 @@ BUILD_PATH = os.environ.get("BUILD_DIR")
 json_test_data = """
 {
     "[1 1 1 1 1]": {
-        "twist_vector": "[1 1 1 1 1]",
+        "note-twist_vector": "[1 1 1 1 1]",
         "crossing_num": "5"
     },
     "[2 1 1 1 0]": {
-        "twist_vector": "[2 1 1 1 0]",
+        "note-twist_vector": "[2 1 1 1 0]",
         "crossing_num": "5"
     },
     "[1 2 1 1 0]": {
-        "twist_vector": "[1 2 1 1 0]",
+        "note-twist_vector": "[1 2 1 1 0]",
         "crossing_num": "5"
     },
     "[1 1 2 1 0]": {
-        "twist_vector": "[1 1 2 1 0]",
+        "note-twist_vector": "[1 1 2 1 0]",
         "crossing_num": "5"
     },
     "[1 1 1 2 0]": {
-        "twist_vector": "[1 1 1 2 0]",
+        "note-twist_vector": "[1 1 1 2 0]",
         "crossing_num": "5"
     },
     "[3 1 1]": {
-        "twist_vector": "[3 1 1]",
+        "note-twist_vector": "[3 1 1]",
         "crossing_num": "5"
     },
     "[1 3 1]": {
-        "twist_vector": "[1 3 1]",
+        "note-twist_vector": "[1 3 1]",
         "crossing_num": "5"
     },
     "[1 1 3]": {
-        "twist_vector": "[1 1 3]",
+        "note-twist_vector": "[1 1 3]",
         "crossing_num": "5"
     },
     "[2 2 1]": {
-        "twist_vector": "[2 2 1]",
+        "note-twist_vector": "[2 2 1]",
         "crossing_num": "5"
     },
     "[2 1 2]": {
-        "twist_vector": "[2 1 2]",
+        "note-twist_vector": "[2 1 2]",
         "crossing_num": "5"
     },
     "[1 2 2]": {
-        "twist_vector": "[1 2 2]",
+        "note-twist_vector": "[1 2 2]",
         "crossing_num": "5"
     },
     "[3 2 0]": {
-        "twist_vector": "[3 2 0]",
+        "note-twist_vector": "[3 2 0]",
         "crossing_num": "5"
     },
     "[2 3 0]": {
-        "twist_vector": "[2 3 0]",
+        "note-twist_vector": "[2 3 0]",
         "crossing_num": "5"
     },
     "[4 1 0]": {
-        "twist_vector": "[4 1 0]",
+        "note-twist_vector": "[4 1 0]",
         "crossing_num": "5"
     },
     "[1 4 0]": {
-        "twist_vector": "[1 4 0]",
+        "note-twist_vector": "[1 4 0]",
         "crossing_num": "5"
     },
     "[5]": {
-        "twist_vector": "[5]",
+        "note-twist_vector": "[5]",
         "crossing_num": "5"
     }
 }
@@ -81,9 +81,9 @@ json_test_data = """
 exepath = Path.cwd() / BUILD_PATH
 
 if os.name == "nt":
-    exepath = exepath / r"cli.exe"
+    exepath = exepath / r"runner-cli.exe"
 else:
-    exepath = exepath / r"cli"
+    exepath = exepath / r"runner-cli"
 
 
 def test_tangles():

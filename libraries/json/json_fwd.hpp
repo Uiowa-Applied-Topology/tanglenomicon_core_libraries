@@ -1,5 +1,5 @@
 //     __ _____ _____ _____
-//  __|  |   __|     |   | |  JSON for Modern C++
+//  __|  |   __|     |   | |  store-json for Modern C++
 // |  |  |__   |  |  | | | |  version 3.11.2
 // |_____|_____|_____|_|___|  https://github.com/nlohmann/json
 //
@@ -17,7 +17,7 @@
 
 // #include <nlohmann/detail/abi_macros.hpp>
 //     __ _____ _____ _____
-//  __|  |   __|     |   | |  JSON for Modern C++
+//  __|  |   __|     |   | |  store-json for Modern C++
 // |  |  |__   |  |  | | | |  version 3.11.2
 // |_____|_____|_____|_|___|  https://github.com/nlohmann/json
 //
@@ -135,7 +135,7 @@ for serialization.
 template<typename T = void, typename SFINAE = void>
 struct adl_serializer;
 
-/// a class to store JSON values
+/// a class to store store-json values
 /// @sa https://json.nlohmann.me/api/basic_json/
 template<template<typename U, typename V, typename... Args> class ObjectType =
          std::map,
@@ -151,7 +151,7 @@ template<template<typename U, typename V, typename... Args> class ObjectType =
          class CustomBaseClass = void>
 class basic_json;
 
-/// @brief JSON Pointer defines a string syntax for identifying a specific value within a JSON document
+/// @brief store-json Pointer defines a string syntax for identifying a specific value within a store-json document
 /// @sa https://json.nlohmann.me/api/json_pointer/
 template<typename RefStringType>
 class json_pointer;
