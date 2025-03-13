@@ -81,9 +81,9 @@ json_test_data = """
 exepath = Path.cwd() / BUILD_PATH
 
 if os.name == "nt":
-    exepath = exepath / r"runner-cli.exe"
+    exepath = exepath / r"cli.exe"
 else:
-    exepath = exepath / r"runner-cli"
+    exepath = exepath / r"cli"
 
 
 def test_tangles():
