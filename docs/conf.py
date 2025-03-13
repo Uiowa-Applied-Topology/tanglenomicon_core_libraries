@@ -25,7 +25,6 @@ release = "0.0.1"
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    "sphinxcontrib.collections",
     "sphinx.ext.napoleon",
     "sphinx.ext.todo",
     "sphinx.ext.viewcode",
@@ -35,7 +34,7 @@ extensions = [
     "sphinxcontrib.mermaid",
     "sphinxcontrib.bibtex",
     "breathe",
-    # "sphinx_proof",
+    "sphinx_proof",
     "sphinxcontrib.inkscapeconverter",
     "sphinx_material",
 ]

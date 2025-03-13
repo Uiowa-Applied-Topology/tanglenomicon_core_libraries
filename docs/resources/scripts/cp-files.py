@@ -1,4 +1,4 @@
-from pathlib import Path,PurePath
+from pathlib import Path, PurePath
 # from rich import print
 from tqdm import tqdm
 import os
@@ -17,21 +17,20 @@ class CopyFileNameDriver:
             return
         try:
             for use_case in tqdm(
-                    list(Path(self.config['source']).glob(f"**/{self.config['file-name']}"))):
-                print("")
-                print(str(self.config["target"].absolute()))
-                print(str(use_case))
-                dest = Path(str(self.config["target"].absolute()) + str(use_case))
-                print(str(dest))
-                # dest.parent.mkdir(parents=True, exist_ok=True)
-                # copyfile(use_case, str(dest))
+                    list(Path(self.config['source']).glob(
+                        f"**/{self.config['file-name']}"))):
+                dest = self.config["target"].joinpath(
+                    use_case.relative_to(self.config["source"]))
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                copyfile(use_case, str(dest))
                 ...
         except IOError as e:
             self.error("Problems during copying folder.", e)
 
     def clean(self):
         try:
-            for file in Path(self.config["target"]).glob(f"./**/{self.config['file-name']}"):
+            for file in Path(self.config["target"]).glob(
+                    f"./**/{self.config['file-name']}"):
                 file.unlink()
             for dir in Path(self.config["target"]).glob("./**"):
                 rmtree(dir)
@@ -39,7 +38,8 @@ class CopyFileNameDriver:
         except FileNotFoundError:
             pass  # Already cleaned? I'm okay with it.
         except IOError as e:
-            self.error("Problems during cleaning for collection {}".format(self.config["name"]), e)
+            self.error("Problems during cleaning for collection {}".format(
+                self.config["name"]), e)
 
     def info(self, data: str):
         print(data)
@@ -54,14 +54,15 @@ if __name__ == "__main__":
     collections = [
         CopyFileNameDriver(
             {
-                'source': DOCS_PATH / "../source",
-                'target':  DOCS_PATH / './use_cases/.cp_from_source',
+                'source': (DOCS_PATH / "../source").resolve(),
+                'target': (DOCS_PATH / './use_cases/.cp_from_source').resolve(),
                 'file-name': "use-case.md",
             }),
         CopyFileNameDriver(
             {
-                'source': DOCS_PATH / "source",
-                'target':  DOCS_PATH / './unit_description/.cp_from_source',
+                'source': (DOCS_PATH / "../source").resolve(),
+                'target': (
+                            DOCS_PATH / './unit_description/.cp_from_source').resolve(),
                 'file-name': "unit-description.md",
             }),
     ]
