@@ -37,11 +37,11 @@ C
 
 ## Implements
 
-- [Generator Interface](interface.md)
+- [Generator Interface](../../docs/use_cases/generators/interface.md)
 
 ## Uses
 
-- [Notation Twist Vector](../notations/twist_vector.md)
+- [Notation Twist Vector](../note-twist_vector/use-case)
 
 ## Libraries
 

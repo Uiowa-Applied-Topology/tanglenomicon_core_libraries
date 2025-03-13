@@ -49,12 +49,12 @@ C
 
 ## Implements
 
-- [Generator Interface](interface.md)
+- [Generator Interface](../../docs/use_cases/generators/interface.md)
 
 ## Uses
 
-- [Twist Vector Notation](../notations/twist_vector.md)
-- [Algebraic Tangle Tree Notation](../notations/algebraic_tangle_tree.md)
+- [Twist Vector Notation](../note-twist_vector/use-case)
+- [Algebraic Tangle Tree Notation](../note-algebraic_tangle_tree/use-case)
 
 ## Libraries
 

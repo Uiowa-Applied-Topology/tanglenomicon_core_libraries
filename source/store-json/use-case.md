@@ -1,8 +1,8 @@
-# @@@TODO Use Case: Screen Storage
+# @@@TODO Use Case: JSON Storage
 
 ```mermaid
 classDiagram
-    storage_Screen --|> storage
+    storage_JSON --|> storage
 ```
 
 ## Language
@@ -11,7 +11,7 @@ C++
 
 ## Implements
 
-[Interface](../storage/interface.md)
+[Interface](../../docs/use_cases/storage/interface.md)
 
 ## Libraries
 
