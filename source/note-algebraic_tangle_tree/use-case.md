@@ -18,7 +18,7 @@ from the two binary operations $+$ and $\vee$ on the four basic tangles
 
 ```{prf:example}
 
-$$\LP\LP\infty+\infty\RP\vee\LP 0\vee0\RP\RP+\LP1+0\RP+\infty$$
+$\LP\LP\infty+\infty\RP\vee\LP 0\vee0\RP\RP+\LP1+0\RP+\infty$
 ```
 
 Since each of $+$ and $\vee$ are binary operations we can interpret these
@@ -59,15 +59,15 @@ vectors for the basic tangles and record the tree as a string in polish notation
 
 ````{prf:example}
 
-![Mont](../media/mont.svg)
+![Mont](../../../media/mont.svg)
 
 Algebraically:
 
-$$[1 2 0]+\LP[2 1 0]+[2 2 0]\RP$$
+$[1 2 0]+\LP[2 1 0]+[2 2 0]\RP$
 
 In polish notation:
 
-$$+[1 2 0]+[2 1 0][2 2 0]$$
+$+[1 2 0]+[2 1 0][2 2 0]$
 
 As a algebraic tangle tree
 att "decoded":

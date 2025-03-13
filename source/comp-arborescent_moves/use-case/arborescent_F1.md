@@ -24,7 +24,7 @@ of bonds and weights at every vertex of the graph.
 
 ```{prf:example} $F_1$ on a WATT
 :label: UC-C-f1-E-F1
-![The F1 move on a WATT](../../media/bands/moves/f1/watt_rooted.svg)
+![The F1 move on a WATT](../../../../media/bands/moves/f1/watt_rooted.svg)
 ```
 
 ## Bibliography

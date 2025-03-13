@@ -60,7 +60,6 @@ breathe_default_project = "Core_Libraries"
 myst_fence_as_directive = ["mermaid"]
 
 myst_enable_extensions = [
-    "dollarmath",
     "deflist",
     "fieldlist",
     "html_admonition",

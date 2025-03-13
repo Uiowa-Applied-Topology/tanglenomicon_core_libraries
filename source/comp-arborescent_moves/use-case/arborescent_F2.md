@@ -23,7 +23,7 @@ at each vertex at even distance from $v_0$ in the tree.
 
 ```{prf:example} $F_2$ on a WATT
 :label: UC-C-f2-E-F2
-![The F1 move on a WATT](../../media/bands/moves/f2/watt_rooted.svg)
+![The F1 move on a WATT](../../../../media/bands/moves/f2/watt_rooted.svg)
 ```
 
 ## Bibliography

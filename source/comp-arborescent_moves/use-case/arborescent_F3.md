@@ -34,8 +34,8 @@ descendants can be seen in {prf:ref}`UC-C-f3-E-F3_ON_TREE`.
 
 ```{prf:example} $F_3^\prime$ move on a tree
 :label: UC-C-f3-E-F3_ON_TREE
-![The F3 move on a WATT](../../media/bands/moves/f3/f3_local_cw.svg)
-![The F3 move on a WATT](../../media/bands/moves/f3/f3_local_ccw.svg)
+![The F3 move on a WATT](../../../../media/bands/moves/f3/f3_local_cw.svg)
+![The F3 move on a WATT](../../../../media/bands/moves/f3/f3_local_ccw.svg)
 ```
 
 #### $F_3^\prime$ on bands
@@ -51,7 +51,7 @@ $F_3^\prime$ move on a pair of plumbed bands can be seen in
 
 ```{prf:example} $F_3^\prime$ on a band model
 :label: UC-C-f3-E-FLYPE_BND
-![The F1 move on a WATT](../../media/bands/moves/f3/bnd_only_f3.svg)
+![The F1 move on a WATT](../../../../media/bands/moves/f3/bnd_only_f3.svg)
 ```
 
 #### $F_3^\prime$ impact on descendants
@@ -66,7 +66,7 @@ $4$.
 
 ```{prf:example} Cyclic order reversal
 :label: UC-C-f3-E-COR
-![The F1 move on a WATT](../../media/bands/moves/f3/cyclic_order_odd.svg)
+![The F1 move on a WATT](../../../../media/bands/moves/f3/cyclic_order_odd.svg)
 ```
 
 Now, carry out a $F_3^\prime$ on the weight across the stick. This will invert
@@ -107,7 +107,7 @@ process can be seen in {prf:ref}`UC-C-f3-E-F3E`.
 
 ```{prf:example} $F_3$ on a WATT with even weight
 :label: UC-C-f3-E-F3E
-![The F1 move on a WATT](../../media/bands/moves/f3/watt_rooted_even.svg)
+![The F1 move on a WATT](../../../../media/bands/moves/f3/watt_rooted_even.svg)
 ```
 
 #### $F_3^\prime$ as a flype
@@ -120,7 +120,7 @@ After shifting our final crossing we
 
 ```{prf:example} $F_3$ on a WATT with odd weight
 :label: UC-C-f3-E-F3O
-![The F1 move on a WATT](../../media/bands/moves/f3/watt_rooted_odd.svg)
+![The F1 move on a WATT](../../../../media/bands/moves/f3/watt_rooted_odd.svg)
 ```
 
 Now that we're on firm footing with the arborescent construction for the
@@ -131,7 +131,7 @@ Conjecture" {cite:p}`taitKnotsIIIII1900` fame.
 
 ```{prf:example} Flype
 :label: UC-C-f3-E-FLYPE
-![The F1 move on a WATT](../../media/reidemeister_move/flype.svg)
+![The F1 move on a WATT](../../../../media/reidemeister_move/flype.svg)
 ```
 
 To see the coincidence of $F_3^\prime$ and flype we need to view the plumbed
@@ -141,7 +141,7 @@ tangle. Tracking the parts of this operation we can see clearly in
 
 ```{prf:example} Flype and $F_3^\prime$
 :label: UC-C-f3-E-FLYPE_AND_BND
-![The F1 move on a WATT](../../media/bands/moves/f3/bnd_f3.svg)
+![The F1 move on a WATT](../../../../media/bands/moves/f3/bnd_f3.svg)
 ```
 
 ## Bibliography

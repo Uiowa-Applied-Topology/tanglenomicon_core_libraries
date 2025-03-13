@@ -56,7 +56,7 @@ two binary operations $+$ and $\vee$ on the four basic tangles
 ```{admonition} An example
 :class: example
 
-$$\LP\LP\infty+\infty\RP\vee\LP 0\vee0\RP\RP+\LP1+0\RP+\infty$$
+$\LP\LP\infty+\infty\RP\vee\LP 0\vee0\RP\RP+\LP1+0\RP+\infty$
 
 ```
 
@@ -69,13 +69,13 @@ binary tree is assigned one of the two basic
 
 ````{hint}
 
-![Mont](../media/mont.svg)
+![Mont](../../../media/mont.svg)
 
 Algebraically:
-$$[1 2 0]+[2 1 0]+[2 2 0]$$
+$[1 2 0]+[2 1 0]+[2 2 0]$
 
 att "encoded":
-$$+[1 2 0]+[2 1 0][2 2 0]$$
+$+[1 2 0]+[2 1 0][2 2 0]$
 
 
 att "decoded":

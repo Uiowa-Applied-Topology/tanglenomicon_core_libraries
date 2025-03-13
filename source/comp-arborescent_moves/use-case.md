@@ -1,4 +1,4 @@
-# Arborescent Moves
+# Use Case: Arborescent Moves
 
 The use cases below give computational descriptions for the moves on
 [weighted arborescent tangle trees](/use_cases/notations/weighted_arborescent_tangle_tree)

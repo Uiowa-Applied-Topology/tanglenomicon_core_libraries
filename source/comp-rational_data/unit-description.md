@@ -58,7 +58,7 @@ tangle.
 
 The rational number for a twist vector is computed by taking the twist vector as
 a finite continued fraction that is:
-$$\LB a\ b\ c\RB=c+\frac{1}{b+\frac{1}{a}}$$ given
+$\LB a\ b\ c\RB=c+\frac{1}{b+\frac{1}{a}}$ given
 
 > [!Note] Note The convention for indexing is reversed in most other places
 > including Conway's original
@@ -80,37 +80,37 @@ $p_{i}, q_{i}$ \EndProcedure \end{algorithmic} \end{algorithm}\]
 The parity of a rational tangle describes it's fixed point relationships. Given
 the four fixed points: NW,NE,SE,SW we have the following parities:
 
-$$
+$ $
 \begin{array}{ccc}
 NW\to NE & & \\
 & \to & 0 \\
 SW\to SE & & \\
 \end{array}
-$$
+$ $
 
 or the end behavior of
 
-![[media/0.svg | center | 200]]
+![[../../../media/0.svg | center | 200]]
 
-$$
+$ $
 \begin{array}{ccc}
 NW\to SW & & \\
 &\to & \infty \\
 NE\to SE & & \\
 \end{array}
-$$
+$ $
 
 or the end behavior of
 
-![[media/inf.svg | center | 200]]
+![[../../../media/inf.svg | center | 200]]
 
 all other combinations have end behavior of $1$ or of the diagram
 
-![[media/1.svg | center | 200]]
+![[../../../media/1.svg | center | 200]]
 
 given a twist vector an it's associated rational number we can detect parity as
 
-$$
+$ $
 \begin{array}{|c|c|c|}
 p\ \%\ 2 &q\ \%\ 2&Parity\\\hline
 0 &0&N/A\\\hline
@@ -118,7 +118,7 @@ p\ \%\ 2 &q\ \%\ 2&Parity\\\hline
 1 &0&\infty\\\hline
 1 &1& 1\\\hline
 \end{array}
-$$
+$ $
 
 from
 

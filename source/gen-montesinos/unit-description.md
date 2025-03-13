@@ -74,13 +74,13 @@ rational tangles (non-integral), where the crossing numbers of the components
 sum to the target crossing number.
 
 ```{important}
-![Mont](../media/mont.svg)
+![Mont](../../../media/mont.svg)
 
 Algebraically:
-$$[1 2 0]+[2 1 0]+[2 2 0]$$
+$[1 2 0]+[2 1 0]+[2 2 0]$
 
 att:
-$$+[1 2 0]+[2 1 0][2 2 0]$$
+$+[1 2 0]+[2 1 0][2 2 0]$
 
 
 ```

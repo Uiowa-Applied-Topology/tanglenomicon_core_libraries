@@ -23,7 +23,7 @@ states that rational tangles and rational numbers are in one to one
 correspondence, this was later proven for tangles by Goldman and Kauffman
 {cite:p}`goldmanRationalTangles1997a`. The correspondence comes from
 interpreting the twist vector of a rational tangle as a finite continued
-fraction that is: $$\LB a\ b\ c\RB=c+\frac{1}{b+\frac{1}{a}}$$
+fraction that is: $\LB a\ b\ c\RB=c+\frac{1}{b+\frac{1}{a}}$
 
 #### Parity
 
@@ -36,9 +36,9 @@ The parity of a rational tangle describes it's fixed point connectivity
 :align: center
 
 
-| ![media/0.svg](media/312.svg){w=100px}   | ![media/0.svg](media/321.svg){w=100px} | ![media/0.svg](media/322.svg){w=100px}      |
+| ![../../../media/0.svg](../../../media/312.svg){w=100px}   | ![../../../media/0.svg](../../../media/321.svg){w=100px} | ![../../../media/0.svg](../../../media/322.svg){w=100px}      |
 |----------------------------------------|--------------------------------------|-------------------------------------------|
-| ![media/inf.svg](media/inf.svg){w=100px} | ![media/0.svg](media/0.svg){w=100px}   | ![media/0.svg](media/parity_1.svg){w=100px} |
+| ![../../../media/inf.svg](../../../media/inf.svg){w=100px} | ![../../../media/0.svg](../../../media/0.svg){w=100px}   | ![../../../media/0.svg](../../../media/parity_1.svg){w=100px} |
 
 ```
 ````
