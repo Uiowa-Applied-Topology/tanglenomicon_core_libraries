@@ -13,8 +13,6 @@
 
 #define STR_TERMINAL_CHAR (0x7Fu)
 
-
-
 char key_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u]
              [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
 char index_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u]

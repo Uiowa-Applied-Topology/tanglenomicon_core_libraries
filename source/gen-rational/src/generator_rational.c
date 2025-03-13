@@ -49,8 +49,8 @@
 static inline uint8_t gen_rational_proc_template(uint8_t template);
 
 /*!
- * @brief A function to write the twist vector in cfg to the store-storage_interface device in
- * cfg.
+ * @brief A function to write the twist vector in cfg to the
+ * store-storage_interface device in cfg.
  *
  * @param cfg Configuration to work on.
  * @return uint8_t Success/Fail flag.

@@ -57,8 +57,8 @@ tangle.
 ### Rational Number
 
 The rational number for a twist vector is computed by taking the twist vector as
-a finite continued fraction that is:
-$\LB a\ b\ c\RB=c+\frac{1}{b+\frac{1}{a}}$ given
+a finite continued fraction that is: $\LB a\ b\ c\RB=c+\frac{1}{b+\frac{1}{a}}$
+given
 
 > [!Note] Note The convention for indexing is reversed in most other places
 > including Conway's original
@@ -98,7 +98,8 @@ NW\to SW & & \\
 &\to & \infty \\
 NE\to SE & & \\
 \end{array}
-$ $
+$
+$
 
 or the end behavior of
 
@@ -110,15 +111,10 @@ all other combinations have end behavior of $1$ or of the diagram
 
 given a twist vector an it's associated rational number we can detect parity as
 
-$ $
-\begin{array}{|c|c|c|}
-p\ \%\ 2 &q\ \%\ 2&Parity\\\hline
-0 &0&N/A\\\hline
-0 &1& 0 \\\hline
-1 &0&\infty\\\hline
-1 &1& 1\\\hline
-\end{array}
-$ $
+$
+$ \begin{array}{|c|c|c|} p\ \%\ 2 &q\ \%\ 2&Parity\\\hline 0 &0&N/A\\\hline 0
+&1& 0 \\\hline 1 &0&\infty\\\hline 1 &1& 1\\\hline \end{array} $
+$
 
 from
 

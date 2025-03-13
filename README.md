@@ -90,26 +90,25 @@ Project structure will follow a fairly "normal" project structure as follows:
  ┣ 📂data
  ┃ ┗ 📜\<Static data files\>
  ┣ 📂docs
- ┃ ┣ 📂design
- ┃ ┃ ┗ 📜\<Design Files\>
+ ┃ ┣ 📜\<Sphinx files\>
  ┃ ┗ 📜Doxyfile
  ┣ 📂libraries \< external libraries\>
  ┃ ┗ 📜\<C/C++ libraries data files\>
+ ┣ 📂misc
+ ┃ ┗ 📜\< Single use tooling\>
  ┣ 📂source
  ┃ ┗  📂\<Module\>
- ┃    ┗ 📜\<Module Source Files\>
+ ┃    ┣ 📂source
+ ┃    ┃ ┗ 📜\<Module Source Files\>
+ ┃    ┣ 📂test
+ ┃    ┃ ┗ 📜\<Module unit test Files\>
+ ┃    ┣ 📜use-case.md
+ ┃    ┗ 📜unit-description.md
  ┣ 📂tests
  ┃ ┣ 📂results
  ┃ ┃ ┗ 📜.gitkeep
- ┃ ┣ 📂integration_tests
- ┃ ┃ ┗ 📂 \<integration Test Suites\>
- ┃ ┃   ┗ 📜\<Module Unit Test Source\>
- ┃ ┗ 📂unit_tests
- ┃   ┣ 📂framework
- ┃   ┃ ┗ 📜\<Unit Test Framework Source\>
- ┃   ┗ 📂 \<Unit Test Suites\>
- ┃     ┗ 📂\<Module Unit Test\>
- ┃        ┗ 📜\<Module Unit Test Source\>
+ ┃ ┗ 📂integration_tests
+ ┃   ┗ 📂 \<integration Test Suites\>
  ┣ 📜.clang-format
  ┣ 📜.clang-tidy
  ┣ 📜.gitignore
@@ -206,11 +205,6 @@ indexing is handled by
 Integration testing of runners is handled whatever standard test tooling is
 appropriate.
 
-```{note}
-C/C++ modules are expected to link to
-their design markdown files in their header @file block.
-```
-
 #### Code Style Guide
 
 The C/C++ code in this repository is expected to be formatted by the bundled
@@ -241,9 +235,9 @@ Python code in this repository is expected to be formatted with black.
 
 C/C++ code is documented with [Doxygen](https://www.doxygen.nl/), the doxygen
 comments are parsed and output as xml. General documentation is recorded as
-markdown files in the "docs" directory. General documentation is aggregated
-using the [sphinx](https://www.sphinx-doc.org/en/master/) framework. Sphinx then
-uses [breathe](https://github.com/breathe-doc/breathe) to parse doxygen xml into
+markdown files in each module's directory. Documentation is aggregated using the
+[sphinx](https://www.sphinx-doc.org/en/master/) framework. Sphinx then uses
+[breathe](https://github.com/breathe-doc/breathe) to parse doxygen xml into
 general documentation.
 
 ## Colors

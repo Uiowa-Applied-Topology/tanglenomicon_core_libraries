@@ -66,10 +66,12 @@ check-clang-format:
 check-prettier:
     prettier README.md --check
     prettier "docs/**/*.md" --check
+    prettier "source/**/*.md" --check
 
 do-prettier:
     prettier -w README.md
     prettier -w "docs/**/*.md"
+    prettier -w "source/**/*.md"
 
 zip:
     zip -r ./docs/.build/html.zip ./docs/.build/html

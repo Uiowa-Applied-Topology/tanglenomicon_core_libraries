@@ -42,8 +42,8 @@ Discussion of canonicality of this construction of twist vector can be found in
 encodes these alternating twists as a list of integers.
 
 > [!Example] Example Starting with the $0$ tangle
-> ![[../../../media/0.svg | center | 200]] then twisting NE/SE clockwise 3 times SW/SE
-> cockwise 2 times NE/SE clockwise 2 times we have
+> ![[../../../media/0.svg | center | 200]] then twisting NE/SE clockwise 3 times
+> SW/SE cockwise 2 times NE/SE clockwise 2 times we have
 > ![[../../../media/Rational.svg | center | 200]] noted as $\LB3\ 2\ 2\RB$
 
 ### Data Structure Description
@@ -52,15 +52,11 @@ When encoding a twist vector as a string the standard indexing is
 $\LB x_n\ x_{n-1}\ \cdots\ x_0\RB$ we follow the convention but align the
 indexing to the array index, that is
 
-$ $
-\LB x_n\ x_{n-1}\ \cdots\ x_0\RB\to
-\begin{array}{|c|c|c|c|}
-\hline
-\text{0x0000}& & &\text{0x0000}+n\cdot \text{size\_t}\\\hline
-x_0&\cdots & x_{n-1} &x_n\\
-\hline
-\end{array}
-$ $
+$
+$ \LB x*n\ x*{n-1}\ \cdots\ x*0\RB\to \begin{array}{|c|c|c|c|} \hline
+\text{0x0000}& & &\text{0x0000}+n\cdot \text{size_t}\\\hline x_0&\cdots &
+x*{n-1} &x_n\\ \hline \end{array} $
+$
 
 ### Encoding
 

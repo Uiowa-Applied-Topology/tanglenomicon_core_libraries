@@ -201,7 +201,8 @@ static uint8_t note_att_add_tv(note_tv_t *tv, char *str)
 
 /*!
  * @brief Walk the string converting it to an algebraic tangle tree.
- * @param att The store-storage_interface location for the algebraic tangle tree.
+ * @param att The store-storage_interface location for the algebraic tangle
+ * tree.
  * @param node
  * @param str
  * @param att_node_idx
