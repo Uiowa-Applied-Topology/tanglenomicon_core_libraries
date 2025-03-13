@@ -23,3 +23,5 @@ sphinx-proof
 sphinx-togglebutton
 sphinxcontrib-svg2pdfconverter
 sphinx-material
+tqdm
+rich

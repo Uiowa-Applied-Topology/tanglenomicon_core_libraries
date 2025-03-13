@@ -2,6 +2,10 @@
 
 import os
 import sys
+from pathlib import  Path
+
+
+
 
 # Configuration file for the Sphinx documentation builder.
 #
@@ -21,6 +25,7 @@ release = "0.0.1"
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
+    "sphinxcontrib.collections",
     "sphinx.ext.napoleon",
     "sphinx.ext.todo",
     "sphinx.ext.viewcode",
@@ -30,7 +35,7 @@ extensions = [
     "sphinxcontrib.mermaid",
     "sphinxcontrib.bibtex",
     "breathe",
-    "sphinx_proof",
+    # "sphinx_proof",
     "sphinxcontrib.inkscapeconverter",
     "sphinx_material",
 ]
@@ -109,7 +114,6 @@ myst_substitutions = {
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 # user starts in dark mode
 default_dark_mode = True
-html_theme = "sphinx-material"
 html_theme = "sphinx_material"
 
 # Material theme options (see theme.conf for more information)
@@ -150,43 +154,6 @@ latex_elements = {
     "preamble": r"""
     \usepackage{xcolor}
     \usepackage[twitter]{coloremoji}
-
-
-    \definecolor{draculabg}      {RGB} {40,   42,   54}
-    \definecolor{draculacl}      {RGB} {68,   71,   90}
-    \definecolor{draculafg}      {RGB} {248,  248,  242}
-    \definecolor{draculacomment} {RGB} {98,   114,  164}
-    \definecolor{draculacyan}    {RGB} {139,  233,  253}
-    \definecolor{draculagreen}   {RGB} {80,   250,  123}
-    \definecolor{draculaorange}  {RGB} {255,  184,  108}
-    \definecolor{draculapink}    {RGB} {255,  121,  198}
-    \definecolor{draculapurple}  {RGB} {189,  147,  249}
-    \definecolor{draculared}     {RGB} {255,  85,   85}
-    \definecolor{draculayellow}  {RGB} {241,  250,  140}
-
-    \pagecolor{draculabg}
-    \color{draculafg}
-
-    \sphinxsetup{%
-         verbatimwithframe=true,
-         VerbatimColor={named}{draculabg},
-         VerbatimBorderColor={named}{draculapurple},
-         TitleColor={named}{draculapurple},
-         hintBorderColor={named}{draculapink},
-         attentionborder=3pt,
-         attentionBorderColor={named}{draculared},
-         attentionBgColor={named}{draculabg},
-         noteborder=2pt,
-         noteBorderColor={named}{draculagreen},
-         InnerLinkColor={named}{draculacyan},
-         OuterLinkColor={named}{draculaorange},
-         cautionborder=3pt,
-         cautionBorderColor={named}{draculacyan},
-         cautionBgColor={named}{draculacyan},
-         div.topic_background-TeXcolor={named}{draculabg},
-         div.topic_background-TeXcolor={named}{draculabg},
-         div.topic_title-background-TeXcolor={named}{draculabg},
-         }
 
     \newcommand{\N}{\mathbb{N}}
     \newcommand{\Z}{\mathbb{Z}}
@@ -239,3 +206,6 @@ latex_elements = {
 autosummary_generate = True
 autoclass_content = "both"
 autodoc_inherit_docstrings = True
+
+
+
