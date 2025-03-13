@@ -53,8 +53,8 @@ C
 
 ## Uses
 
-- [Twist Vector Notation](../note-twist_vector/twist_vector.md)
-- [Algebraic Tangle Tree Notation](../note-algebraic_tangle_tree/algebraic_tangle_tree.md)
+- [Twist Vector Notation](../note-twist_vector/unit-description)
+- [Algebraic Tangle Tree Notation](../note-algebraic_tangle_tree/unit-description)
 
 ## Libraries
 
