@@ -9,7 +9,8 @@ translator from [PD](design/notations/pd.md) to
 ```{toctree}
 :glob:
 :maxdepth: 2
-
+.cp_from_source/trans-*/use-case
+translator-interface.md
 ```
 
 ```{raw} latex

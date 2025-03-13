@@ -10,7 +10,7 @@ as defined by Bonahon and Siebenmann
 ```{toctree}
 :glob:
 :maxdepth: 1
-*
+use-case/*
 ```
 
 ## Bibliography

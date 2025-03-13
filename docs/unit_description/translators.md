@@ -9,7 +9,8 @@ or it's opposite Conway to PD.
 ```{toctree}
 :glob:
 :maxdepth: 2
-
+.cp_from_source/trans-*/unit-description
+translator-interface.md
 ```
 
 ```{raw} latex

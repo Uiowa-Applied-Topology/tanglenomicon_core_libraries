@@ -25,3 +25,4 @@ sphinxcontrib-svg2pdfconverter
 sphinx-material
 tqdm
 rich
+sphinx-collections

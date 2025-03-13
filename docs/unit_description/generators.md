@@ -9,6 +9,8 @@ specific type. They may use one or more Computations, Notations, or Translators.
 ```{toctree}
 :glob:
 :maxdepth: 2
+.cp_from_source/gen-*/unit-description
+generator-interface.md
 
 ```
 

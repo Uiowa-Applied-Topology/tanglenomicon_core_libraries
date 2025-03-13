@@ -26,16 +26,14 @@ clion:
 bib:
     curl http://127.0.0.1:23119/better-bibtex/export/collection\?/1/Thesis.bibtex > ./docs/refs/zotero.bib
 
-copy-docs: bootstrap
-     uv run ./docs/resources/scripts/cp-files.py
 
 
-live: bootstrap copy-docs
+live: bootstrap
     source .venv/bin/activate && \
     sphinx-autobuild docs docs/.build/html
 
 
-pdf: bootstrap copy-docs
+pdf: bootstrap
     source .venv/bin/activate && \
     sphinx-build -M latex docs docs/.build
     cp -r docs/resources/coloremoji/coloremoji docs/.build/latex
@@ -43,7 +41,7 @@ pdf: bootstrap copy-docs
     cd docs/.build/latex && \
     latexmk -synctex=1 -interaction=nonstopmode -file-line-error -shell-escape -lualatex tanglenomiconcorelibraries.tex
 
-html: bootstrap copy-docs
+html: bootstrap
     source .venv/bin/activate && \
     sphinx-build -M html docs docs/.build
 

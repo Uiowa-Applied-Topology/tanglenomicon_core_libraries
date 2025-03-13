@@ -1,11 +1,9 @@
 """Documentation for DE-Book."""
 
-import os
-import sys
-from pathlib import  Path
-
-
-
+from pathlib import Path
+from shutil import copyfile, copytree, rmtree
+from sphinxcontrib.collections.drivers import Driver
+from sphinxcontrib.collections.api import register_driver
 
 # Configuration file for the Sphinx documentation builder.
 #
@@ -37,6 +35,7 @@ extensions = [
     "sphinx_proof",
     "sphinxcontrib.inkscapeconverter",
     "sphinx_material",
+    "sphinxcontrib.collections",
 ]
 templates_path = ["_templates"]
 exclude_patterns = []
@@ -49,7 +48,6 @@ intersphinx_mapping = {
     "sphinx": ("https://www.sphinx-doc.org/en/master", None),
     "markdown_it": ("https://markdown-it-py.readthedocs.io/en/latest", None),
 }
-
 
 # -- Bibtex settings ---------------------------------------------------
 bibtex_bibfiles = ["./refs/zotero.bib", "./refs/manual.bib"]
@@ -207,4 +205,64 @@ autoclass_content = "both"
 autodoc_inherit_docstrings = True
 
 
+class CopyDocsDriver(Driver):
+    def run(self):
+        self.info("Copy folder...")
+        source = Path(self.config['source'])
+        target = Path(self.config['target'])
+        print(source)
+        if not source.exists():
+            self.error("Source {} does not exist".format(source))
+            return
+        try:
+            for use_case in source.glob(f"**/{self.config['file-name']}.md"):
+                dest = target.joinpath(
+                    use_case.relative_to(source))
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                copyfile(use_case, str(dest))
+                ...
+            for use_case in source.glob(f"**/{self.config['file-name']}"):
+                dest = target.joinpath(
+                    use_case.relative_to(source))
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                copytree(use_case, str(dest))
+                ...
+        except IOError as e:
+            self.error("Problems during copying folder.", e)
 
+    def clean(self):
+        target = Path(self.config['target'])
+        try:
+            for dir in Path(target).glob("./**/"):
+                rmtree(dir)
+                self.info("Folder deleted: {}".format(dir))
+            for file in Path(target).glob(
+                    f"./**/{self.config['file-name']}.md"):
+                file.unlink()
+                self.info("File deleted: {}".format(file))
+        except FileNotFoundError:
+            pass  # Already cleaned? I'm okay with it.
+        except IOError as e:
+            self.error("Problems during cleaning for collection {}".format(
+                self.config["name"]), e)
+
+
+register_driver('my_driver', CopyDocsDriver)
+
+collections = {
+    'use-cases': {
+        'driver': 'my_driver',
+        'source': 'source',
+        'target': '../use_cases/.cp_from_source',
+        'active': True,
+        'file-name': "use-case",
+    },
+    'unit-descriptions': {
+        'driver': 'my_driver',
+        'source': 'source',
+        'target': '../unit_description/.cp_from_source',
+        'active': True,
+        'file-name': "unit-description",
+    },
+
+}
