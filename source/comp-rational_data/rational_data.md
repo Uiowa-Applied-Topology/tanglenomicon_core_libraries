@@ -39,11 +39,11 @@ C
 
 ## Implements
 
-- [Computation Interface](interface.md)
+- [Computation Interface](../../docs/unit_description/computations/interface.md)
 
 ## Uses
 
-- [Notation Twist Vector](../notations/twist_vector.md)
+- [Notation Twist Vector](../note-twist_vector/twist_vector.md)
 
 ## External Libraries
 

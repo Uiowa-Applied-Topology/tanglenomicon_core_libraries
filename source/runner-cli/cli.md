@@ -18,10 +18,10 @@ Uses [cxxopts](https://github.com/jarro2783/cxxopts) for command line arguments.
 
 ## Uses
 
-- [JSON](../storage/json.md)
-- [Screen](../storage/screen.md)
+- [JSON](../store-json/json.md)
+- [Screen](../../docs/unit_description/storage/screen.md)
 - [SQLite](../storage/sqlite.md)
-- [Rational](../generators/rational.md)
+- [Rational](../gen-rational/rational.md)
 - [Keyboard (read only)](<../storage/keyboard_(read_only).md>)
 
 ## Functionality

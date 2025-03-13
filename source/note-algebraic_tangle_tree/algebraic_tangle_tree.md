@@ -36,7 +36,7 @@ C
 
 ## Implements
 
-- [Notations Interface](../notations/interface.md)
+- [Notations Interface](../../docs/unit_description/notations/interface.md)
 
 ## Uses
 
