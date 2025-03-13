@@ -11,7 +11,7 @@ C++
 
 ## Implements
 
-[Interface](../../docs/unit_description/storage/interface.md)
+[Interface](../../docs/unit_description/storage-interface.md)
 
 ## Libraries
 

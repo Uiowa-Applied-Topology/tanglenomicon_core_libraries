@@ -437,3 +437,6 @@ cmake-*
 .build/DartConfiguration.tcl
 .build/CMakeDoxyfile.in
 **/.build/**/*
+/docs/use_cases/.cp_from_source/
+/docs/unit_description/.cp_from_source/
+/docs/_collections/

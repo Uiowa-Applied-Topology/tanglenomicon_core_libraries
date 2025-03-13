@@ -9,7 +9,7 @@ specific type. They may use one or more Computations, Notations, or Translators.
 ```{toctree}
 :glob:
 :maxdepth: 2
-*
+generator-interface.md
 ```
 
 ```{raw} latex

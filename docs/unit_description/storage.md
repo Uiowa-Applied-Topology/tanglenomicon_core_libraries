@@ -10,7 +10,7 @@ mind.
 ```{toctree}
 :glob:
 :maxdepth: 2
-*
+
 ```
 
 ```{raw} latex

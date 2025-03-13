@@ -9,7 +9,7 @@ bindings, a Mathematica wrapper, etc.
 ```{toctree}
 :glob:
 :maxdepth: 2
-*
+
 ```
 
 ```{raw} latex

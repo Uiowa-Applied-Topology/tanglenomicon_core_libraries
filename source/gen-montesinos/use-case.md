@@ -49,7 +49,7 @@ C
 
 ## Implements
 
-- [Generator Interface](../../docs/use_cases/generators/interface.md)
+- [Generator Interface](../../docs/use_cases/generator-interface.md)
 
 ## Uses
 

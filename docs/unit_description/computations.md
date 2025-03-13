@@ -8,5 +8,5 @@ polynomial of a link, or a computing the writhe of a tangle.
 ```{toctree}
 :glob:
 :maxdepth: 2
-*
+
 ```
