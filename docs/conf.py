@@ -1,7 +1,9 @@
 """Documentation for DE-Book."""
 
-import os
-import sys
+from pathlib import Path
+from shutil import copyfile, copytree, rmtree
+from sphinxcontrib.collections.drivers import Driver
+from sphinxcontrib.collections.api import register_driver
 
 # Configuration file for the Sphinx documentation builder.
 #
@@ -33,6 +35,7 @@ extensions = [
     "sphinx_proof",
     "sphinxcontrib.inkscapeconverter",
     "sphinx_material",
+    "sphinxcontrib.collections",
 ]
 templates_path = ["_templates"]
 exclude_patterns = []
@@ -46,7 +49,6 @@ intersphinx_mapping = {
     "markdown_it": ("https://markdown-it-py.readthedocs.io/en/latest", None),
 }
 
-
 # -- Bibtex settings ---------------------------------------------------
 bibtex_bibfiles = ["./refs/zotero.bib", "./refs/manual.bib"]
 
@@ -58,7 +60,6 @@ breathe_default_project = "Core_Libraries"
 myst_fence_as_directive = ["mermaid"]
 
 myst_enable_extensions = [
-    "dollarmath",
     "deflist",
     "fieldlist",
     "html_admonition",
@@ -109,7 +110,6 @@ myst_substitutions = {
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 # user starts in dark mode
 default_dark_mode = True
-html_theme = "sphinx-material"
 html_theme = "sphinx_material"
 
 # Material theme options (see theme.conf for more information)
@@ -150,43 +150,6 @@ latex_elements = {
     "preamble": r"""
     \usepackage{xcolor}
     \usepackage[twitter]{coloremoji}
-
-
-    \definecolor{draculabg}      {RGB} {40,   42,   54}
-    \definecolor{draculacl}      {RGB} {68,   71,   90}
-    \definecolor{draculafg}      {RGB} {248,  248,  242}
-    \definecolor{draculacomment} {RGB} {98,   114,  164}
-    \definecolor{draculacyan}    {RGB} {139,  233,  253}
-    \definecolor{draculagreen}   {RGB} {80,   250,  123}
-    \definecolor{draculaorange}  {RGB} {255,  184,  108}
-    \definecolor{draculapink}    {RGB} {255,  121,  198}
-    \definecolor{draculapurple}  {RGB} {189,  147,  249}
-    \definecolor{draculared}     {RGB} {255,  85,   85}
-    \definecolor{draculayellow}  {RGB} {241,  250,  140}
-
-    \pagecolor{draculabg}
-    \color{draculafg}
-
-    \sphinxsetup{%
-         verbatimwithframe=true,
-         VerbatimColor={named}{draculabg},
-         VerbatimBorderColor={named}{draculapurple},
-         TitleColor={named}{draculapurple},
-         hintBorderColor={named}{draculapink},
-         attentionborder=3pt,
-         attentionBorderColor={named}{draculared},
-         attentionBgColor={named}{draculabg},
-         noteborder=2pt,
-         noteBorderColor={named}{draculagreen},
-         InnerLinkColor={named}{draculacyan},
-         OuterLinkColor={named}{draculaorange},
-         cautionborder=3pt,
-         cautionBorderColor={named}{draculacyan},
-         cautionBgColor={named}{draculacyan},
-         div.topic_background-TeXcolor={named}{draculabg},
-         div.topic_background-TeXcolor={named}{draculabg},
-         div.topic_title-background-TeXcolor={named}{draculabg},
-         }
 
     \newcommand{\N}{\mathbb{N}}
     \newcommand{\Z}{\mathbb{Z}}
@@ -239,3 +202,66 @@ latex_elements = {
 autosummary_generate = True
 autoclass_content = "both"
 autodoc_inherit_docstrings = True
+
+
+class CopyDocsDriver(Driver):
+    def run(self):
+        self.info("Copy folder...")
+        source = Path(self.config['source'])
+        target = Path(self.config['target'])
+        print(source)
+        if not source.exists():
+            self.error("Source {} does not exist".format(source))
+            return
+        try:
+            for use_case in source.glob(f"**/{self.config['file-name']}.md"):
+                dest = target.joinpath(
+                    use_case.relative_to(source))
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                copyfile(use_case, str(dest))
+                ...
+            for use_case in source.glob(f"**/{self.config['file-name']}"):
+                dest = target.joinpath(
+                    use_case.relative_to(source))
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                copytree(use_case, str(dest))
+                ...
+        except IOError as e:
+            self.error("Problems during copying folder.", e)
+
+    def clean(self):
+        target = Path(self.config['target'])
+        try:
+            for dir in Path(target).glob("./**/"):
+                rmtree(dir)
+                self.info("Folder deleted: {}".format(dir))
+            for file in Path(target).glob(
+                    f"./**/{self.config['file-name']}.md"):
+                file.unlink()
+                self.info("File deleted: {}".format(file))
+        except FileNotFoundError:
+            pass  # Already cleaned? I'm okay with it.
+        except IOError as e:
+            self.error("Problems during cleaning for collection {}".format(
+                self.config["name"]), e)
+
+
+register_driver('my_driver', CopyDocsDriver)
+
+collections = {
+    'use-cases': {
+        'driver': 'my_driver',
+        'source': 'source',
+        'target': '../use_cases/.cp_from_source',
+        'active': True,
+        'file-name': "use-case",
+    },
+    'unit-descriptions': {
+        'driver': 'my_driver',
+        'source': 'source',
+        'target': '../unit_description/.cp_from_source',
+        'active': True,
+        'file-name': "unit-description",
+    },
+
+}

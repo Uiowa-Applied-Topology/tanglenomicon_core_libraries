@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 
-dir = Path(__file__).parent / "../../../build/source/runners/py_gen_montesinos"
+dir = Path(__file__).parent / "../../../build/source/runners/runner-py_gen_montesinos"
 
 sys.path.append(str(dir.absolute()))
 

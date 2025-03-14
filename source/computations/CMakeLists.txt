@@ -1,2 +1,0 @@
-add_subdirectory(computation_defs)
-add_subdirectory(rational_data)

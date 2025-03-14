@@ -27,6 +27,7 @@ bib:
     curl http://127.0.0.1:23119/better-bibtex/export/collection\?/1/Thesis.bibtex > ./docs/refs/zotero.bib
 
 
+
 live: bootstrap
     source .venv/bin/activate && \
     sphinx-autobuild docs docs/.build/html
@@ -65,10 +66,12 @@ check-clang-format:
 check-prettier:
     prettier README.md --check
     prettier "docs/**/*.md" --check
+    prettier "source/**/*.md" --check
 
 do-prettier:
     prettier -w README.md
     prettier -w "docs/**/*.md"
+    prettier -w "source/**/*.md"
 
 zip:
     zip -r ./docs/.build/html.zip ./docs/.build/html
