@@ -1,0 +1,19 @@
+name: ⌨️ Implementation
+description: Template for an Implementation subtask
+title: '[⌨️] '
+body:
+  - type: checkboxes
+    id: check-search
+    attributes:
+      label: 'Checklist:'
+      options:
+        - label: Implement a header.
+          required: false
+        - label: Implement source file.
+          required: false
+        - label: Implement cmake file andlibrary target.
+          required: false
+        - label: 'Check doxygen comments are exist. '
+          required: false
+        - label: 'Check doxygen comments are linked. '
+          required: false
