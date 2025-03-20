@@ -1,0 +1,13 @@
+name: 📘 Documentation
+description: Template for an Documentation subtask
+title: '[📘] '
+body:
+  - type: checkboxes
+    id: check-search
+    attributes:
+      label: 'Checklist:'
+      options:
+        - label: Implement a usecase file.
+          required: false
+        - label: Implement a unit description file.
+          required: false
