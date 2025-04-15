@@ -1,6 +1,9 @@
 name: 👶 Implementation
 description: Template for an Implementation subtask
 title: '[👶] '
+labels:
+  - Child
+  - Implementation
 body:
   - type: checkboxes
     id: check-search

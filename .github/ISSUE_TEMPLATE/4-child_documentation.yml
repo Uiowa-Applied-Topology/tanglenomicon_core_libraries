@@ -1,6 +1,9 @@
 name: 👶 Documentation
 description: Template for an Documentation subtask
 title: '[👶] '
+labels:
+  - Child
+  - Documentation
 body:
   - type: checkboxes
     id: check-search
