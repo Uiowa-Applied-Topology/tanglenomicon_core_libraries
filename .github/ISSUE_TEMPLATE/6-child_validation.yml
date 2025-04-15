@@ -1,6 +1,9 @@
-name: 🧪 Validation
+name: 👶 Validation
 description: Template for an Validation subtask
-title: '[🧪] '
+title: '[👶] '
+labels:
+  - Child
+  - Validation
 body:
   - type: checkboxes
     id: check-search
