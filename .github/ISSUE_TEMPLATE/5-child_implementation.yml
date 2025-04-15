@@ -1,6 +1,6 @@
-name: ⌨️ Implementation
+name: 👶 Implementation
 description: Template for an Implementation subtask
-title: '[⌨️] '
+title: '[👶] '
 body:
   - type: checkboxes
     id: check-search

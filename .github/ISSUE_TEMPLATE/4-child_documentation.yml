@@ -1,6 +1,6 @@
-name: 📘 Documentation
+name: 👶 Documentation
 description: Template for an Documentation subtask
-title: '[📘] '
+title: '[👶] '
 body:
   - type: checkboxes
     id: check-search
