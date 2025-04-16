@@ -25,7 +25,7 @@
 /******************************************************************************/
 /****************************** typedef ***************************************/
 /******************************************************************************/
-typedef uint8_t (*gen_storage_write_fun_t)(char *key, char *index, char *value);
+typedef uint8_t (*gen_storage_write_fun_t)(const char *key, const char *index, const char *value);
 typedef const char *(*gen_storage_read_fun_t)(char *key, char *index);
 
 /******************************************************************************/

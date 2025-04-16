@@ -9,7 +9,7 @@ import cython
 
 
 cdef extern from "generator_defs.h":
-    ctypedef uint8_t (*gen_storage_write_fun_t)(char *key, char *index, char *value)
+    ctypedef uint8_t (*gen_storage_write_fun_t)(const char *key, const char *index, const char *value)
     ctypedef const char * (*gen_storage_read_fun_t)(char *key, char *index)
 
 cdef extern from "notation_tv.h":
@@ -45,7 +45,7 @@ cdef extern from "generator_montesinos.h":
     uint8_t gen_montesinos_generate()
 
 
-cdef uint8_t pywrite(char *key, char *index, char *value) noexcept:
+cdef uint8_t pywrite(const char *key,const char *index,const char *value) noexcept:
     print(key.decode('ASCII'))
     return 0
 

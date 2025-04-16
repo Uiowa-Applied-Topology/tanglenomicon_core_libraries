@@ -5,5 +5,7 @@ unusedFunction
 useStlAlgorithm
 redundantAssignment
 checkersReport
+preprocessorErrorDirective
+
 
 unmatchedSuppression
