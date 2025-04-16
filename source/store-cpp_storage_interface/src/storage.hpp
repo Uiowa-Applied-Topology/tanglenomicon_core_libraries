@@ -1,7 +1,7 @@
 /*!
- *  @file store-storage_interface.hpp
+ *  @file store-cpp_storage_interface.hpp
  *
- *  @brief  store-storage_interface interface description.
+ *  @brief  store-cpp_storage_interface interface description.
  *
  *
  *  @author    Isabel Darcy
