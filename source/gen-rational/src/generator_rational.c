@@ -97,8 +97,7 @@ uint8_t gen_rational_config(gen_rational_config_t *config_arg)
         ret_val |= GEN_RATIONAL_CONFIG_BUFFER;
     }
     /* Ensure the string buffer exists and has a length. */
-    else if ((config_arg->tv_str_buff == NULL) ||
-             (config_arg->tv_str_buff_len <= 0))
+    else if (config_arg->tv_str_buff == NULL)
     {
         ret_val |= GEN_RATIONAL_CONFIG_STR_BUFFER;
     }
@@ -196,7 +195,6 @@ uint8_t gen_rational_evenperm_shift_write()
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
     /* Set function inputs to match the cfg data*/
     uint8_t *tv = gen_rational_localcfg->tv_n->twist_vector;
-    uint8_t crossing_num = (gen_rational_localcfg->crossingNumber);
     size_t *len = &(gen_rational_localcfg->tv_n->tv_length);
 
     /* Increase tv_length by 1 to account for leading 0.*/
@@ -228,7 +226,6 @@ uint8_t gen_rational_write()
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_FAIL;
     uint8_t write_status = STORE_DEFS_WRITE_FAIL;
-    char local_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
 
     note_tv_decode(*(gen_rational_localcfg->tv_n),
                    gen_rational_localcfg->tv_str_buff);
@@ -241,6 +238,7 @@ uint8_t gen_rational_write()
         gen_rational_localcfg->tv_str_buff);
     if (write_status == STORE_DEFS_WRITE_SUCCESS)
     {
+        char local_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
         value = "crossing_num";
         /* Decode to get the string representation for the tv and store.*/
         sprintf(local_str, "%u", gen_rational_localcfg->crossingNumber);
