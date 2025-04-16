@@ -17,7 +17,7 @@
 using json = nlohmann::json;
 using sj = storage_ns::storage_json_c;
 
-const char *sj::read(char *key, char *index)
+const char *sj::read(const char *key,const char *index)
 {
     std::string *value = new std::string();
     if (this->data.contains(key))
@@ -37,7 +37,7 @@ const char *sj::read(char *key, char *index)
  * @param value
  * @return
  */
-uint8_t sj::write(char *key, char *index, char *value)
+uint8_t sj::write(const char *key,const  char *index,const char *value)
 {
     uint8_t ret_val = STORE_DEFS_WRITE_SUCCESS;
     if (this->data.is_null())

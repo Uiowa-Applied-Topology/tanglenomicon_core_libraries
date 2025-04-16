@@ -41,17 +41,17 @@ class storage_interface_c
      * @param value
      * @return
      */
-    virtual uint8_t write(char *key, char *index, char *value) = 0;
+    virtual uint8_t write(const char *key, const char *index,
+                          const char *value) = 0;
 
     /*!
      * @brief
      * @param key
      * @return
      */
-    virtual const char *read(char *key, char *index) = 0;
+    virtual const char *read(const char *key, const char *index) = 0;
 
-
-    virtual ~storage_interface_c(){};
+    virtual ~storage_interface_c() {};
 
     /*!
      * @brief
@@ -87,5 +87,5 @@ class storage_interface_c
      */
     static std::uniform_int_distribution<> dis2;
 };
-};     // namespace storage_ns
+}; // namespace storage_ns
 #endif /* end STORAGE_INTERFACE_H */

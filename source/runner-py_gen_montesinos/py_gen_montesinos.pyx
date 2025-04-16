@@ -10,7 +10,7 @@ import cython
 
 cdef extern from "generator_defs.h":
     ctypedef uint8_t (*storage_write_funptr_t)(const char *key, const char *index, const char *value)
-    ctypedef const char * (*storage_read_funptr_t)(char *key, char *index)
+    ctypedef const char * (*storage_read_funptr_t)(const char *key,const char *index)
 
 cdef extern from "notation_tv.h":
     ctypedef struct note_tv_t:
@@ -49,7 +49,7 @@ cdef uint8_t pywrite(const char *key,const char *index,const char *value) noexce
     print(key.decode('ASCII'))
     return 0
 
-cdef const char * pyread(char *key, char *index) noexcept:
+cdef const char * pyread(const char *key,const char *index) noexcept:
 
     return ""
 

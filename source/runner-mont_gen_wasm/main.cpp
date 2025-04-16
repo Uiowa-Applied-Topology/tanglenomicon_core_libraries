@@ -38,8 +38,7 @@ uint8_t stub_write_success(const char *key, const char *index,
     return STORE_DEFS_WRITE_SUCCESS;
 }
 
-/* cppcheck-suppress constParameterCallback */
-const char *stub_read(char *key, char *index)
+const char *stub_read(const char *key, const char *index)
 {
     fprintf(stderr, "Read: %s\n", key);
     return NULL;

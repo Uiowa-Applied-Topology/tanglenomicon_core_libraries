@@ -1,1 +1,5 @@
-add_subdirectory(benchmarking)
+block(SCOPE_FOR VARIABLES)
+    unset(CMAKE_CXX_CPPCHECK)
+    unset(CMAKE_C_CPPCHECK)
+    add_subdirectory(benchmarking)
+endblock()

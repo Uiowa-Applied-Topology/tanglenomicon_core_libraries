@@ -58,7 +58,7 @@ class storage_json_c : public storage_interface_c
      * @param index
      * @return
      */
-    const char *read(char *key, char *index);
+    const char *read(const char *key, const char *index);
 
     /*!
      * @brief
@@ -67,7 +67,7 @@ class storage_json_c : public storage_interface_c
      * @param value
      * @return
      */
-    uint8_t write(char *key, char *index, char *value);
+    uint8_t write(const char *key, const char *index, const char *value);
 
   private:
     /*!
