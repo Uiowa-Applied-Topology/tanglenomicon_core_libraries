@@ -54,6 +54,12 @@ else ()
 
 
 endif ()
+
+find_program(cppcheck_exe NAMES cppcheck REQUIRED)
+set(cppcheck_opts -q --enable=all --inline-suppr --error-exitcode=1 --suppressions-list=${CMAKE_CURRENT_SOURCE_DIR}/cppcheck.supp)
+set(CMAKE_C_CPPCHECK ${cppcheck_exe} --std=c90 ${cppcheck_opts})
+set(CMAKE_CXX_CPPCHECK ${cppcheck_exe} --std=c++20 ${cppcheck_opts})
+
 ################################################################################
 # Start Compiler Defines
 ################################################################################
@@ -69,7 +75,7 @@ include(CTest)
 
 add_subdirectory(libraries)
 add_subdirectory(source)
-add_subdirectory(misc)
+add_subdirectory(misc/benchmarking)
 add_subdirectory(tests)
 
 

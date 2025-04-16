@@ -1,0 +1,8 @@
+missingIncludeSystem
+missingInclude
+constParameter
+unusedFunction
+useStlAlgorithm
+redundantAssignment
+
+unmatchedSuppression
