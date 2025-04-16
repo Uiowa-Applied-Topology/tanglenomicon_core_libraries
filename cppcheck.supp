@@ -4,5 +4,6 @@ constParameter
 unusedFunction
 useStlAlgorithm
 redundantAssignment
+checkersReport
 
 unmatchedSuppression

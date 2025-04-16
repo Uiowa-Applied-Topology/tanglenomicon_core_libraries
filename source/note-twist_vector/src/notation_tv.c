@@ -54,7 +54,7 @@ uint8_t note_tv_encode(char *str, note_tv_t *twistv)
     uint8_t retval = NOTE_DEFS_ENCODE_SUCCESS;
     uint8_t tv_idx = 0u;
     str++;
-    char *str_end = str + strlen(str) - 1;
+    const char *str_end = str + strlen(str) - 1;
 
     /* Iterate over string. */
     while (str < str_end)
