@@ -24,7 +24,8 @@ size_t key_idx = 0;
 size_t index_idx = 0;
 size_t value_idx = 0;
 
-uint8_t stub_write_dedup_success(char *key, char *index, char *value)
+uint8_t stub_write_dedup_success(const char *key, const char *index,
+                                 const char *value)
 {
     size_t i = 0;
     for (i = 0; i < key_idx; i++)
@@ -43,7 +44,8 @@ uint8_t stub_write_dedup_success(char *key, char *index, char *value)
     return STORE_DEFS_WRITE_SUCCESS;
 }
 
-uint8_t stub_write_success(char *key, char *index, char *value)
+STATIC_INLINE uint8_t stub_write_success(const char *key, const char *index,
+                                         const char *value)
 {
     strcpy(key_buff[key_idx], key);
     strcpy(index_buff[index_idx], index);
@@ -54,12 +56,17 @@ uint8_t stub_write_success(char *key, char *index, char *value)
     return STORE_DEFS_WRITE_SUCCESS;
 }
 
-uint8_t stub_write_fail(char *key, char *index, char *value)
+STATIC_INLINE uint8_t stub_write_fail(const char *key, const char *index,
+                                      const char *value)
 {
     return STORE_DEFS_WRITE_FAIL;
 }
 
-const char *stub_read(char *key, char *index) { return value_buff[value_idx]; }
+/* cppcheck-suppress constParameterCallback */
+STATIC_INLINE const char *stub_read(char *key, char *index)
+{
+    return value_buff[value_idx];
+}
 
 /******************************************************************************/
 /*******************************Test Data**************************************/
@@ -241,7 +248,7 @@ void tearDown(void) {}
  * @brief
  * @param
  */
-void test_config(void)
+STATIC_INLINE void test_config(void)
 {
     uint8_t ret_val = gen_montesinos_config(&tc_write_success);
     TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_CONFIG_SUCCESS);
@@ -253,7 +260,7 @@ void test_config(void)
  * @brief
  * @param
  */
-void test_generate(void)
+STATIC_INLINE void test_generate(void)
 {
     uint8_t ret_val = gen_montesinos_config(&tc_write_success);
     size_t j, i;
@@ -292,10 +299,11 @@ void test_generate(void)
  * @brief
  * @param
  */
-void test_generate_fail(void)
+STATIC_INLINE void test_generate_fail(void)
 {
 
     uint8_t ret_val = gen_montesinos_config(&tc_write_fail);
+    TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_CONFIG_SUCCESS);
     ret_val = gen_montesinos_generate();
     TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_GENERATION_FAIL);
 }
