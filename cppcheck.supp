@@ -6,6 +6,6 @@ useStlAlgorithm
 redundantAssignment
 checkersReport
 preprocessorErrorDirective
-
+normalCheckLevelMaxBranches
 
 unmatchedSuppression

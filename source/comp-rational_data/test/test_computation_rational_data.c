@@ -10,10 +10,6 @@
 /******************************* Stubs ****************************************/
 /******************************************************************************/
 
-#define STR_TERMINAL_CHAR (0x7Fu)
-
-#define STORE_DEFS_WRITE_SUCCESS (0x1u)
-
 char key_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u]
              [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
 char index_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u]
@@ -24,7 +20,8 @@ size_t key_idx = 0;
 size_t index_idx = 0;
 size_t value_idx = 0;
 
-uint8_t stub_write_success(char *key, char *index, char *value)
+STATIC_INLINE uint8_t stub_write_success(const char *key, const char *index,
+                                         const char *value)
 {
     strcpy(key_buff[key_idx], key);
     strcpy(index_buff[index_idx], index);
@@ -35,7 +32,8 @@ uint8_t stub_write_success(char *key, char *index, char *value)
     return STORE_DEFS_WRITE_SUCCESS;
 }
 
-uint8_t stub_write_fail(char *key, char *index, char *value)
+STATIC_INLINE uint8_t stub_write_fail(const char *key, const char *index,
+                                      const char *value)
 {
     strcpy(key_buff[key_idx], key);
     strcpy(index_buff[index_idx], index);
@@ -45,8 +43,8 @@ uint8_t stub_write_fail(char *key, char *index, char *value)
     value_idx++;
     return STORE_DEFS_WRITE_SUCCESS;
 }
-
-const char *stub_read(char *key, char *index) { return value_buff[value_idx]; }
+/* cppcheck-suppress constParameterCallback */
+STATIC_INLINE const char *stub_read(char *key, char *index) { return value_buff[value_idx]; }
 
 /******************************************************************************/
 /*******************************Test Data**************************************/
@@ -119,7 +117,7 @@ void tearDown(void) {}
  * @brief
  * @param
  */
-void test_config(void)
+STATIC_INLINE void test_config(void)
 {
     uint8_t ret_val = comp_rational_data_config(&tc_write_success);
     TEST_ASSERT_EQUAL_UINT8(ret_val, COMP_DEFS_CONFIG_SUCCESS);
@@ -137,7 +135,7 @@ void test_config(void)
  * @brief
  * @param
  */
-void test_compute(void)
+STATIC_INLINE void test_compute(void)
 {
     uint8_t ret_val = comp_rational_data_config(&tc_write_success);
     size_t i;
