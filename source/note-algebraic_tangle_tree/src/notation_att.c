@@ -36,11 +36,11 @@ static size_t note_att_tv_idx = 0u;
 /******************************************************************************/
 
 STATIC_INLINE uint8_t note_att_traverse(note_att_node_t *node, char *str);
-STATIC_INLINE uint8_t note_att_add_tv(note_tv_t *tv, char *str);
+STATIC_INLINE uint8_t note_att_add_tv(const note_tv_t *tv, char *str);
 STATIC_INLINE uint8_t note_att_traverse_string(note_att_t *att,
                                                note_att_node_t *node, char *str,
                                                size_t att_node_idx);
-STATIC_INLINE uint8_t note_att_process_tv(char *str, note_att_t *att);
+STATIC_INLINE uint8_t note_att_process_tv(const char *str, note_att_t *att);
 
 /******************************************************************************/
 /************************** Public Function Definitions ***********************/
@@ -94,7 +94,6 @@ uint8_t note_att_decode(note_att_t att, char *str)
 {
 
     uint8_t retval = NOTE_DEFS_ENCODE_FAIL;
-    uint8_t result = NOTE_ATT_TRAVERSE_FAIL;
     if (str == NULL)
     {
         retval = NOTE_DEFS_ENCODE_FAIL;
@@ -105,6 +104,7 @@ uint8_t note_att_decode(note_att_t att, char *str)
     }
     else
     {
+        uint8_t result = NOTE_ATT_TRAVERSE_FAIL;
         result = note_att_traverse(att.root, str);
         if (result == NOTE_ATT_TRAVERSE_SUCCESS)
         {
@@ -124,7 +124,7 @@ uint8_t note_att_decode(note_att_t att, char *str)
  * @param str
  * @return
  */
-static uint8_t note_att_traverse(note_att_node_t *node, char *str)
+STATIC_INLINE uint8_t note_att_traverse(note_att_node_t *node, char *str)
 {
     uint8_t retval = NOTE_ATT_TRAVERSE_SUCCESS;
 
@@ -187,7 +187,7 @@ static uint8_t note_att_traverse(note_att_node_t *node, char *str)
  * @param str The data to decode.
  * @return Indicate succes failure of adding the twist vector.
  */
-static uint8_t note_att_add_tv(note_tv_t *tv, char *str)
+STATIC_INLINE uint8_t note_att_add_tv(const note_tv_t *tv, char *str)
 {
     uint8_t ret_val = NOTE_ATT_TRAVERSE_SUCCESS;
     uint8_t result = NOTE_DEFS_DECODE_FAIL;
@@ -208,7 +208,7 @@ static uint8_t note_att_add_tv(note_tv_t *tv, char *str)
  * @param att_node_idx
  * @return
  */
-static uint8_t note_att_traverse_string(note_att_t *att, note_att_node_t *node,
+STATIC_INLINE uint8_t note_att_traverse_string(note_att_t *att, note_att_node_t *node,
                                         char *str, size_t att_node_idx)
 {
     uint8_t ret_val = NOTE_ATT_TRAVERSE_SUCCESS;
@@ -312,7 +312,7 @@ static uint8_t note_att_traverse_string(note_att_t *att, note_att_node_t *node,
  * @param att
  * @return
  */
-static uint8_t note_att_process_tv(char *str, note_att_t *att)
+STATIC_INLINE uint8_t note_att_process_tv(const char *str, note_att_t *att)
 {
     uint8_t ret_val = NOTE_ATT_TRAVERSE_FAIL;
     char string_buffer[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10];
