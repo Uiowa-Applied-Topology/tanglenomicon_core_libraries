@@ -44,6 +44,15 @@ can suppress warning on windows. */
 #endif
 #endif
 
+#ifndef STATIC_INLINE
+#if defined(__GNUC__) || defined(__cplusplus) ||                               \
+    (defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L))
+#define STATIC_INLINE static inline
+#else
+#define STATIC_INLINE static
+#endif
+#endif /* STATIC_INLINE */
+
 /******************************************************************************/
 /****************************** Includes **************************************/
 /******************************************************************************/

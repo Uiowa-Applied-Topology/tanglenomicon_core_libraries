@@ -31,8 +31,8 @@
 /******************************************************************************/
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
-static inline uint8_t gen_montesinos_process_lists();
-static inline uint8_t gen_montesinos_process_loop_state(size_t *stack);
+STATIC_INLINE uint8_t gen_montesinos_process_lists();
+STATIC_INLINE uint8_t gen_montesinos_process_loop_state(size_t *stack);
 /******************************************************************************/
 /************************** Local Variables ***********************************/
 /******************************************************************************/

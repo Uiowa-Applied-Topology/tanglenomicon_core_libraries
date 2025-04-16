@@ -46,7 +46,7 @@
  * @param template Template to work on.
  * @return uint8_t Success/Fail flag.
  */
-static inline uint8_t gen_rational_proc_template(uint8_t template);
+STATIC_INLINE uint8_t gen_rational_proc_template(uint8_t template);
 
 /*!
  * @brief A function to write the twist vector in cfg to the
@@ -55,7 +55,7 @@ static inline uint8_t gen_rational_proc_template(uint8_t template);
  * @param cfg Configuration to work on.
  * @return uint8_t Success/Fail flag.
  */
-static inline uint8_t gen_rational_write();
+STATIC_INLINE uint8_t gen_rational_write();
 
 /*!
  * @brief The canonical form for twist vector is given as odd length. When we
@@ -66,7 +66,7 @@ static inline uint8_t gen_rational_write();
  * @param cfg Configuration to work on.
  * @return uint8_t Success/Fail flag.
  */
-static inline uint8_t gen_rational_evenperm_shift_write();
+STATIC_INLINE uint8_t gen_rational_evenperm_shift_write();
 
 /******************************************************************************/
 /************************** Local Variables ***********************************/

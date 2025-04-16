@@ -35,12 +35,12 @@ static size_t note_att_tv_idx = 0u;
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
 
-static inline uint8_t note_att_traverse(note_att_node_t *node, char *str);
-static inline uint8_t note_att_add_tv(note_tv_t *tv, char *str);
-static inline uint8_t note_att_traverse_string(note_att_t *att,
+STATIC_INLINE uint8_t note_att_traverse(note_att_node_t *node, char *str);
+STATIC_INLINE uint8_t note_att_add_tv(note_tv_t *tv, char *str);
+STATIC_INLINE uint8_t note_att_traverse_string(note_att_t *att,
                                                note_att_node_t *node, char *str,
                                                size_t att_node_idx);
-static inline uint8_t note_att_process_tv(char *str, note_att_t *att);
+STATIC_INLINE uint8_t note_att_process_tv(char *str, note_att_t *att);
 
 /******************************************************************************/
 /************************** Public Function Definitions ***********************/

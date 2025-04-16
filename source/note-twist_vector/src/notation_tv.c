@@ -38,7 +38,7 @@
  * @param tv Twist vector to work on.
  * @return note_tv_t a pointer to the reversed object, needed for nesting.
  */
-static inline note_tv_t *note_tv_tvrev(note_tv_t *tv);
+STATIC_INLINE note_tv_t *note_tv_tvrev(note_tv_t *tv);
 
 /******************************************************************************/
 /************************** Public Function Definitions ***********************/
