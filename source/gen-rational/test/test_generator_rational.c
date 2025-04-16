@@ -59,11 +59,11 @@ STATIC_INLINE uint8_t stub_write_success(const char *key, const char *index,
 STATIC_INLINE uint8_t stub_write_fail(const char *key, const char *index,
                                       const char *value)
 {
+
     return STORE_DEFS_WRITE_FAIL;
 }
 
-/* cppcheck-suppress constParameterCallback */
-STATIC_INLINE const char *stub_read(char *key, char *index)
+STATIC_INLINE const char *stub_read(const char *key, const char *index)
 {
     return value_buff[value_idx];
 }

@@ -43,8 +43,10 @@ STATIC_INLINE uint8_t stub_write_fail(const char *key, const char *index,
     value_idx++;
     return STORE_DEFS_WRITE_SUCCESS;
 }
-/* cppcheck-suppress constParameterCallback */
-STATIC_INLINE const char *stub_read(char *key, char *index) { return value_buff[value_idx]; }
+STATIC_INLINE const char *stub_read(const char *key, const char *index)
+{
+    return value_buff[value_idx];
+}
 
 /******************************************************************************/
 /*******************************Test Data**************************************/
