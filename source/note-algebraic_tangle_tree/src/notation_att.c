@@ -208,8 +208,9 @@ STATIC_INLINE uint8_t note_att_add_tv(const note_tv_t *tv, char *str)
  * @param att_node_idx
  * @return
  */
-STATIC_INLINE uint8_t note_att_traverse_string(note_att_t *att, note_att_node_t *node,
-                                        char *str, size_t att_node_idx)
+STATIC_INLINE uint8_t note_att_traverse_string(note_att_t *att,
+                                               note_att_node_t *node, char *str,
+                                               size_t att_node_idx)
 {
     uint8_t ret_val = NOTE_ATT_TRAVERSE_SUCCESS;
     size_t new_att_gen = 0x0u;
