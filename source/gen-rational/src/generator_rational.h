@@ -80,8 +80,8 @@ extern "C"
     typedef struct
     {
         uint8_t crossingNumber;
-        gen_storage_write_fun_t storage_write;
-        gen_storage_read_fun_t storage_read;
+        storage_write_funptr_t storage_write;
+        storage_read_funptr_t storage_read;
         note_tv_t *tv_n;
         char *tv_str_buff;
         size_t tv_str_buff_len;

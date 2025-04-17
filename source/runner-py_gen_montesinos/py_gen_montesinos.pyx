@@ -9,8 +9,8 @@ import cython
 
 
 cdef extern from "generator_defs.h":
-    ctypedef uint8_t (*gen_storage_write_fun_t)(char *key, char *index, char *value)
-    ctypedef const char * (*gen_storage_read_fun_t)(char *key, char *index)
+    ctypedef uint8_t (*storage_write_funptr_t)(const char *key, const char *index, const char *value)
+    ctypedef const char * (*storage_read_funptr_t)(const char *key,const char *index)
 
 cdef extern from "notation_tv.h":
     ctypedef struct note_tv_t:
@@ -33,8 +33,8 @@ cdef extern from "notation_att.h":
 
 cdef extern from "generator_montesinos.h":
     ctypedef struct gen_montesinos_config_t:
-        gen_storage_write_fun_t storage_write
-        gen_storage_read_fun_t storage_read
+        storage_write_funptr_t storage_write
+        storage_read_funptr_t storage_read
         note_att_t *att_n
         note_tv_t **tv_sets
         size_t *tv_set_lens
@@ -45,11 +45,11 @@ cdef extern from "generator_montesinos.h":
     uint8_t gen_montesinos_generate()
 
 
-cdef uint8_t pywrite(char *key, char *index, char *value) noexcept:
+cdef uint8_t pywrite(const char *key,const char *index,const char *value) noexcept:
     print(key.decode('ASCII'))
     return 0
 
-cdef const char * pyread(char *key, char *index) noexcept:
+cdef const char * pyread(const char *key,const char *index) noexcept:
 
     return ""
 
@@ -91,7 +91,7 @@ def start_job():
     tv_set_lens[2]=4
 
     config.storage_write = pywrite
-    # (gen_storage_write_fun_t)&write
+    # (storage_write_funptr_t)&write
     config.storage_read = pyread
     config.att_n = &att_n
     config.tv_sets = tv_sets

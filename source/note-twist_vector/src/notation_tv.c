@@ -38,7 +38,7 @@
  * @param tv Twist vector to work on.
  * @return note_tv_t a pointer to the reversed object, needed for nesting.
  */
-static inline note_tv_t *note_tv_tvrev(note_tv_t *tv);
+STATIC_INLINE note_tv_t *note_tv_tvrev(note_tv_t *tv);
 
 /******************************************************************************/
 /************************** Public Function Definitions ***********************/
@@ -54,7 +54,7 @@ uint8_t note_tv_encode(char *str, note_tv_t *twistv)
     uint8_t retval = NOTE_DEFS_ENCODE_SUCCESS;
     uint8_t tv_idx = 0u;
     str++;
-    char *str_end = str + strlen(str) - 1;
+    const char *str_end = str + strlen(str) - 1;
 
     /* Iterate over string. */
     while (str < str_end)

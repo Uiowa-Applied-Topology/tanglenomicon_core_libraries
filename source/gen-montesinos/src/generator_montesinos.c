@@ -31,8 +31,8 @@
 /******************************************************************************/
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
-static inline uint8_t gen_montesinos_process_lists();
-static inline uint8_t gen_montesinos_process_loop_state(size_t *stack);
+STATIC_INLINE uint8_t gen_montesinos_process_lists();
+STATIC_INLINE uint8_t gen_montesinos_process_loop_state(const size_t *stack);
 /******************************************************************************/
 /************************** Local Variables ***********************************/
 /******************************************************************************/
@@ -101,13 +101,12 @@ uint8_t gen_montesinos_generate()
 /******************************************************************************/
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
-static uint8_t gen_montesinos_process_lists()
+STATIC_INLINE uint8_t gen_montesinos_process_lists()
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
-    note_att_t *att_local = gen_montesinos_localcfg->att_n;
     size_t stack[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
     size_t stack_ptr = 0;
-    size_t *loop_lims = gen_montesinos_localcfg->tv_set_lens;
+    const size_t *loop_lims = gen_montesinos_localcfg->tv_set_lens;
     size_t list_cnt = gen_montesinos_localcfg->tv_sets_len;
 
     stack[0] = 0;
@@ -136,16 +135,14 @@ static uint8_t gen_montesinos_process_lists()
 
     return ret_val;
 }
-static uint8_t gen_montesinos_process_loop_state(size_t *stack)
+STATIC_INLINE uint8_t gen_montesinos_process_loop_state(const size_t *stack)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_FAIL;
     uint8_t decode_result = NOTE_DEFS_ENCODE_FAIL;
-    uint8_t write_status = STORE_DEFS_WRITE_FAIL;
     size_t num_of_tv_sets = gen_montesinos_localcfg->tv_sets_len;
     note_tv_t **tvs = gen_montesinos_localcfg->tv_sets;
     note_att_t *att_local = gen_montesinos_localcfg->att_n;
     note_att_node_t *node = NULL;
-    char *value = "att";
     size_t i = 0;
     size_t stack_val = 0;
 
@@ -167,6 +164,8 @@ static uint8_t gen_montesinos_process_loop_state(size_t *stack)
 
     if (decode_result == NOTE_DEFS_ENCODE_SUCCESS)
     {
+        uint8_t write_status = STORE_DEFS_WRITE_FAIL;
+        const char *value = "att";
         /* Write the data to the store-storage_interface device. */
         /*@@@TODO: we need to add the correct document values.*/
         write_status = gen_montesinos_localcfg->storage_write(

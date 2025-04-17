@@ -19,6 +19,7 @@
 
 #include "computation_defs.h"
 #include "notation_tv.h"
+#include "storage_defs.h"
 #include "stdbool.h"
 #include "stdlib.h"
 #include "string.h"
@@ -69,8 +70,8 @@ extern "C"
      */
     typedef struct
     {
-        uint8_t (*storage_write)(char *key, char *index, char *value);
-        const char *(*storage_read)(char *key, char *index);
+        storage_write_funptr_t storage_write;
+        storage_read_funptr_t storage_read;
         note_tv_t *tv_n;
         char *tv_str_buff;
         size_t tv_str_buff_len;

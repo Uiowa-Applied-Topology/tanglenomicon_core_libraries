@@ -62,7 +62,8 @@ class runner_main_c
                                  (char *)(str_bytes.c_str()));
     }
 
-    static uint8_t storage_write(char *key, char *index, char *value)
+    static uint8_t storage_write(const char *key, const char *index,
+                                 const char *value)
     {
         // Stub te write function just keep count.
         gen_counter++;
@@ -80,7 +81,7 @@ class runner_main_c
      * @param key
      * @return
      */
-    static const char *storage_read(char *key, char *index)
+    static const char *storage_read(const char *key, const char *index)
     {
         return storage_interface->read(key, index);
     }

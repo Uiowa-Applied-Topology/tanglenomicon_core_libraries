@@ -42,7 +42,7 @@ void tearDown(void) {}
  * @brief
  * @param
  */
-void test_encode(void)
+STATIC_INLINE void test_encode(void)
 {
     note_tv_t test_tv;
     uint8_t retval = note_tv_encode(tv_string, &test_tv);
@@ -55,7 +55,7 @@ void test_encode(void)
  * @brief
  * @param
  */
-void test_decode(void)
+STATIC_INLINE void test_decode(void)
 {
     char test_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u] = {
         [0] = STR_TERMINAL_CHAR};

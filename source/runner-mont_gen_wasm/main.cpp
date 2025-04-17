@@ -31,12 +31,14 @@ typedef std::vector<tvnote_list_t> tvnote_lists_t;
 VecString mont_list;
 tvnote_lists_t tv_sets;
 
-uint8_t stub_write_success(char *key, char *index, char *value)
+uint8_t stub_write_success(const char *key, const char *index,
+                           const char *value)
 {
     mont_list.emplace_back((std::string)key);
     return STORE_DEFS_WRITE_SUCCESS;
 }
-const char *stub_read(char *key, char *index)
+
+const char *stub_read(const char *key, const char *index)
 {
     fprintf(stderr, "Read: %s\n", key);
     return NULL;
@@ -62,6 +64,7 @@ int encode_tv(const tv_lists_t &tvs)
         for (int j = 0; j < tvs[i].size(); j++)
         {
             note_tv_t tv;
+            /* cppcheck-suppress cstyleCast */
             note_tv_encode((char *)(tvs[i][j].c_str()), &tv);
             char test[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2];
             note_tv_decode(tv, test);
@@ -120,7 +123,7 @@ VecString generate(const tv_lists_t &tvs)
     ret_val = gen_montesinos_config(&mon_cfg);
     if (ret_val != GEN_DEFS_CONFIG_FAIL)
     {
-        ret_val = gen_montesinos_generate();
+        gen_montesinos_generate();
     }
     fprintf(stderr, "End generate");
     clear_tv();

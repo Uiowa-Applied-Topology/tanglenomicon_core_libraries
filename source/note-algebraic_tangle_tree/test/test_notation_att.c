@@ -74,7 +74,7 @@ void tearDown(void) {}
  * @brief
  * @param
  */
-void test_encode(void)
+STATIC_INLINE void test_encode(void)
 {
     note_att_t test_att;
     note_att_node_t node_buffer[100];
@@ -108,7 +108,7 @@ void test_encode(void)
  * @brief
  * @param
  */
-void test_decode(void)
+STATIC_INLINE void test_decode(void)
 {
     char test_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u] = {
         [0] = STR_TERMINAL_CHAR};

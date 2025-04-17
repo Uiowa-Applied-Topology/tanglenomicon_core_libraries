@@ -41,7 +41,7 @@
  * @return uint8_t A condition code for the computation. Indicates failure mode
  * if any.
  */
-static inline uint8_t comp_rational_data_alg_eq(uint16_t p, uint16_t q);
+STATIC_INLINE uint8_t comp_rational_data_alg_eq(uint16_t p, uint16_t q);
 
 /*!
  * @brief A private function that commits to store-storage_interface the
@@ -54,7 +54,7 @@ static inline uint8_t comp_rational_data_alg_eq(uint16_t p, uint16_t q);
  * @return uint8_t A condition code for the computation. Indicates failure mode
  * if any.
  */
-static inline uint8_t comp_rational_data_write_alg_eq(uint16_t num_eq,
+STATIC_INLINE uint8_t comp_rational_data_write_alg_eq(uint16_t num_eq,
                                                       uint16_t den_eq);
 
 /*!
@@ -65,7 +65,7 @@ static inline uint8_t comp_rational_data_write_alg_eq(uint16_t num_eq,
  * @return uint8_t A condition code for the computation. Indicates failure mode
  * if any.
  */
-static inline uint8_t comp_rational_data_parity(uint16_t p, uint16_t q);
+STATIC_INLINE uint8_t comp_rational_data_parity(uint16_t p, uint16_t q);
 
 /*!
  * @brief A private function that commits to store-storage_interface the parity
@@ -75,7 +75,7 @@ static inline uint8_t comp_rational_data_parity(uint16_t p, uint16_t q);
  * @return uint8_t A condition code for the computation. Indicates failure mode
  * if any.
  */
-static inline uint8_t comp_rational_data_write_parity(char *parity);
+STATIC_INLINE uint8_t comp_rational_data_write_parity(char *parity);
 
 /*!
  * @brief A private function that computes the rational number associated to the
@@ -88,7 +88,7 @@ static inline uint8_t comp_rational_data_write_parity(char *parity);
  * @return uint8_t A condition code for the computation. Indicates failure mode
  * if any.
  */
-static inline uint8_t comp_rational_data_rat_num(uint16_t *p, uint16_t *q);
+STATIC_INLINE uint8_t comp_rational_data_rat_num(uint16_t *p, uint16_t *q);
 
 /*!
  * @brief A private function that commits to store-storage_interface the
@@ -99,7 +99,7 @@ static inline uint8_t comp_rational_data_rat_num(uint16_t *p, uint16_t *q);
  * @return uint8_t A condition code for the computation. Indicates failure mode
  * if any.
  */
-static inline uint8_t comp_rational_data_write_rat_num(uint16_t p, uint16_t q);
+STATIC_INLINE uint8_t comp_rational_data_write_rat_num(uint16_t p, uint16_t q);
 
 /******************************************************************************/
 /************************** Local Variables ***********************************/
@@ -131,8 +131,7 @@ uint8_t comp_rational_data_config(comp_rational_data_config_t *config_arg)
     {
         ret_val |= COMP_RATIONAL_DAT_CONFIG_BUFFER;
     } /* Ensure the string buffer exists and has a length. */
-    else if ((config_arg->tv_str_buff == NULL) ||
-             (config_arg->tv_str_buff_len <= 0))
+    else if (config_arg->tv_str_buff == NULL)
     {
         ret_val |= COMP_RATIONAL_DAT_CONFIG_STR_BUFFER;
     }
@@ -212,11 +211,11 @@ uint8_t comp_rational_data_write_alg_eq(uint16_t num_eq, uint16_t den_eq)
 uint8_t comp_rational_data_parity(uint16_t p, uint16_t q)
 {
     uint8_t ret_val = COMP_DEFS_COMPUTE_FAIL;
-    char *parity = "";
     /*Parity computation is described in docs.*/
     /*Check if p,q are even*/
     if (!((p % 2 == 0) && (q % 2 == 0)))
     {
+        char *parity = "";
         ret_val = COMP_DEFS_COMPUTE_SUCCESS;
         if (p % 2 == 1)
         {
