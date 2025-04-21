@@ -49,7 +49,7 @@ STATIC_INLINE uint8_t note_att_process_tv(const char *str, note_att_t *att);
 /*
  *  Documentation in header
  */
-uint8_t note_att_encode(char *str, note_att_t *att)
+uint8_t note_att_decode(char *str, note_att_t *att)
 {
 
     uint8_t retval = NOTE_DEFS_DECODE_SUCCESS;
@@ -90,7 +90,7 @@ uint8_t note_att_encode(char *str, note_att_t *att)
 /*
  *  Documentation in header
  */
-uint8_t note_att_decode(note_att_t att, char *str)
+uint8_t note_att_encode(note_att_t att, char *str)
 {
 
     uint8_t retval = NOTE_DEFS_ENCODE_FAIL;

@@ -257,13 +257,13 @@ extern "C"
 {
 #endif
     /*!
-     * @brief Function to take a string and encode it as a note_att_t
+     * @brief Function to take a string and decode it as a note_att_t
      *
-     * @param str Input string to encode as note_att_t
-     * @param att the note_att_t pointer to store the encoded string into.
+     * @param str Input string to decode as note_att_t
+     * @param att the note_att_t pointer to store the decoded string into.
      * @return uint8_t The return code for the encoding operation.
      */
-    uint8_t note_att_encode(char *str, note_att_t *att);
+    uint8_t note_att_decode(char *str, note_att_t *att);
 #ifdef __cplusplus
 }
 #endif
@@ -273,13 +273,13 @@ extern "C"
 {
 #endif
     /*!
-     * @brief Function to take a note_att_t and decode it as a string
+     * @brief Function to take a note_att_t and encode it as a string
      *
-     * @param att the note_att_t pointer to decode.
-     * @param str Output string for decoded note_att_t
-     * @return uint8_t The return code for the decoding operation.
+     * @param att the note_att_t pointer to encode.
+     * @param str Output string for encoded note_att_t
+     * @return uint8_t The return code for the encoding operation.
      */
-    uint8_t note_att_decode(note_att_t att, char *str);
+    uint8_t note_att_encode(note_att_t att, char *str);
 #ifdef __cplusplus
 }
 #endif
