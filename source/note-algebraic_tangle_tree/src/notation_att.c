@@ -49,7 +49,7 @@ STATIC_INLINE uint8_t note_att_process_tv(const char *str, note_att_t *att);
 /*
  *  Documentation in header
  */
-uint8_t note_att_encode(char *str, note_att_t *att)
+uint8_t note_att_decode(char *str, note_att_t *att)
 {
 
     uint8_t retval = NOTE_DEFS_DECODE_SUCCESS;
@@ -90,7 +90,7 @@ uint8_t note_att_encode(char *str, note_att_t *att)
 /*
  *  Documentation in header
  */
-uint8_t note_att_decode(note_att_t att, char *str)
+uint8_t note_att_encode(note_att_t att, char *str)
 {
 
     uint8_t retval = NOTE_DEFS_ENCODE_FAIL;
@@ -190,9 +190,9 @@ STATIC_INLINE uint8_t note_att_traverse(note_att_node_t *node, char *str)
 STATIC_INLINE uint8_t note_att_add_tv(const note_tv_t *tv, char *str)
 {
     uint8_t ret_val = NOTE_ATT_TRAVERSE_SUCCESS;
-    uint8_t result = NOTE_DEFS_DECODE_FAIL;
-    result = note_tv_decode(*tv, str);
-    if (result != NOTE_DEFS_DECODE_SUCCESS)
+    uint8_t result = NOTE_DEFS_ENCODE_FAIL;
+    result = note_tv_encode(*tv, str);
+    if (result != NOTE_DEFS_ENCODE_SUCCESS)
     {
         ret_val = NOTE_ATT_TRAVERSE_FAIL;
     }
@@ -324,7 +324,7 @@ STATIC_INLINE uint8_t note_att_process_tv(const char *str, note_att_t *att)
         if (str[note_att_str_idx + i] == ']')
         {
             string_buffer[i + 1] = '\0';
-            note_tv_encode(string_buffer, &att->tv_buffer[note_att_tv_idx]);
+            note_tv_decode(string_buffer, &att->tv_buffer[note_att_tv_idx]);
             note_att_str_idx += i + 1;
             ret_val = NOTE_ATT_TRAVERSE_SUCCESS;
             break;

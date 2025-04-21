@@ -138,7 +138,7 @@ STATIC_INLINE uint8_t gen_montesinos_process_lists()
 STATIC_INLINE uint8_t gen_montesinos_process_loop_state(const size_t *stack)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_FAIL;
-    uint8_t decode_result = NOTE_DEFS_ENCODE_FAIL;
+    uint8_t encode_result = NOTE_DEFS_ENCODE_FAIL;
     size_t num_of_tv_sets = gen_montesinos_localcfg->tv_sets_len;
     note_tv_t **tvs = gen_montesinos_localcfg->tv_sets;
     note_att_t *att_local = gen_montesinos_localcfg->att_n;
@@ -159,10 +159,10 @@ STATIC_INLINE uint8_t gen_montesinos_process_loop_state(const size_t *stack)
     stack_val = stack[num_of_tv_sets - 1];
     node->R_child = (void *)&(tvs[num_of_tv_sets - 1][stack_val]);
 
-    decode_result =
-        note_att_decode(*att_local, gen_montesinos_localcfg->str_buff);
+    encode_result =
+        note_att_encode(*att_local, gen_montesinos_localcfg->str_buff);
 
-    if (decode_result == NOTE_DEFS_ENCODE_SUCCESS)
+    if (encode_result == NOTE_DEFS_ENCODE_SUCCESS)
     {
         uint8_t write_status = STORE_DEFS_WRITE_FAIL;
         const char *value = "att";

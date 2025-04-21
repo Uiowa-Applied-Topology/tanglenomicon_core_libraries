@@ -47,11 +47,11 @@ STATIC_INLINE note_tv_t *note_tv_tvrev(note_tv_t *tv);
 /*
  *  Documentation in header
  */
-uint8_t note_tv_encode(char *str, note_tv_t *twistv)
+uint8_t note_tv_decode(char *str, note_tv_t *twistv)
 {
     /*@@@TODO: the return logic here needs to be inverted when error handing is
      * added*/
-    uint8_t retval = NOTE_DEFS_ENCODE_SUCCESS;
+    uint8_t retval = NOTE_DEFS_DECODE_SUCCESS;
     uint8_t tv_idx = 0u;
     str++;
     const char *str_end = str + strlen(str) - 1;
@@ -77,11 +77,11 @@ uint8_t note_tv_encode(char *str, note_tv_t *twistv)
 /*
  *  Documentation in header
  */
-uint8_t note_tv_decode(note_tv_t twistv, char *str)
+uint8_t note_tv_encode(note_tv_t twistv, char *str)
 {
     /*@@@TODO: the return logic here needs to be inverted when error handing is
      * added*/
-    uint8_t retval = NOTE_DEFS_DECODE_SUCCESS;
+    uint8_t retval = NOTE_DEFS_ENCODE_SUCCESS;
     char local_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
     char *str_p = str;
     strcpy(str_p, "[");

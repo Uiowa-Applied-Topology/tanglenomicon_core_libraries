@@ -1,2 +1,0 @@
-add_subdirectory(integration_tests)
-#add_subdirectory(storage_stub)
