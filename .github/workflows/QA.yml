@@ -44,7 +44,12 @@ jobs:
                   nix develop --command \
                     just test_all
 
-            - name: Docs
+            - name: Docs pdf
               run: |
                   nix develop --command \
                         env HOME=$(mktemp -d) just pdf
+
+            - name: Docs html
+              run: |
+                  nix develop --command \
+                        env HOME=$(mktemp -d) just html
