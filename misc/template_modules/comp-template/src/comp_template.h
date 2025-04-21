@@ -1,19 +1,24 @@
 /*!
- *  @file template.h
+ *  @file comp_template.h
  *
- *  @brief
+ *  @brief  A module for compute template
  *
  *
- *  @author
+ *  @author    author
  *
  */
 
-#ifndef TEMPLATE_H
-#define TEMPLATE_H
+#ifndef COMPUTATION_TEMPLATE_H
+#define COMPUTATION_TEMPLATE_H
 
 /******************************************************************************/
 /*************************** Includes *****************************************/
 /******************************************************************************/
+
+#include "computation_defs.h"
+#include "stdbool.h"
+#include "stdlib.h"
+#include "string.h"
 
 /******************************************************************************/
 /*************************** Defines ******************************************/
@@ -23,23 +28,9 @@
 /*************************** Typedefs *****************************************/
 /******************************************************************************/
 
-/*!
- * @brief
- */
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-    typedef struct
-    {
-        int template;
-    } template_t;
-#ifdef __cplusplus
-}
-#endif
 
 /******************************************************************************/
-/*************************** Public Function Declerations *********************/
+/*************************** Public Function Declarations *********************/
 /******************************************************************************/
 
 #ifdef __cplusplus
@@ -47,11 +38,25 @@ extern "C"
 {
 #endif
     /*!
-     * @brief
-     * @param
+     * @brief The public configuration function.
+     * @param config_arg The config to set.
      */
-    int template();
+    uint8_t comp_template_config(comp_template_config_t *config_arg);
 #ifdef __cplusplus
 }
 #endif
-#endif /* end TEMPLATE_H */
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+    /*!
+     * @brief A public function, calling this executes the computation on the
+     * configured tangle.
+     * @return uint8_t Generation status info.
+     */
+    uint8_t comp_template_compute();
+#ifdef __cplusplus
+}
+#endif
+#endif /* end COMPUTATION_template_H */
