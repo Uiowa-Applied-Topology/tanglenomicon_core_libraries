@@ -17,13 +17,15 @@ classDiagram
 
 ## C Style Interface
 
+The C interface takes the source $\to$ destination convention in the arguments.
+
 ```mermaid
 classDiagram
 notation *-- note_t
 class notation{
 <<interface>>
-+ int decode(note_t*,string*)
-+ int encode(string*,note_t*)
++ int encode(note_t*,string*)
++ int decode(string*,note_t*)
 }
 
 class note_t {
@@ -39,15 +41,13 @@ between a storage module and an upper layer (Computation, Generator, etc.).
 Notation module will define a struct that encodes the notational data and two IO
 functions.
 
-The encode/decode operations are taken from the perspective of the database.
-
 ### Encoding
 
-Takes a data structure and encodes it as it's string representation.
+Takes a data structure and encodes it as its string representation.
 
 ### Decoding
 
-Takes a string and decodes it as it's data structure representation.
+Takes a string and decodes it as its data structure representation.
 
 ```{raw} latex
     \newpage
