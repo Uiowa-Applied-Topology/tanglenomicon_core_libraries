@@ -1,7 +1,6 @@
 block(SCOPE_FOR VARIABLES)
     unset(CMAKE_CXX_CPPCHECK)
     unset(CMAKE_C_CPPCHECK)
-    add_subdirectory(cxxopts)
     add_subdirectory(json)
     add_subdirectory(unit_test_framework)
 endblock()
