@@ -111,12 +111,12 @@ It is important to note that we assume the minimal sub tangles of a tree are rat
 
 ### Encoding
 
-To encode the data to a string we need only traverse the tree and report with a
+To encode the data to a string, we need only traverse the tree and report with a
 depth first preorder.
 
 ### Decoding
 
-To decode a string to a tree we again interpret to a tree with depth first
+To decode a string to a tree, we again interpret to a tree with depth first
 preorder
 
 ## Cite

@@ -153,9 +153,9 @@ uint8_t comp_rational_data_compute()
     uint8_t ret_val = COMP_DEFS_COMPUTE_SUCCESS;
     uint16_t p;
     uint16_t q;
-    /*All code paths need the stringified twist vector as a key. We decode
+    /*All code paths need the stringified twist vector as a key. We encode
      * here.*/
-    note_tv_decode(*(comp_rational_data_localcfg->tv_n),
+    note_tv_encode(*(comp_rational_data_localcfg->tv_n),
                    comp_rational_data_localcfg->tv_str_buff);
 
     /*@@@TODO: Add error handling.*/

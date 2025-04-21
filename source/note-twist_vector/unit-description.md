@@ -23,7 +23,7 @@ C
 
 ## Implements
 
-- [Notations Interface](../../docs/unit_description/notation-interface.md)
+-   [Notations Interface](../../docs/unit_description/notation-interface.md)
 
 ## Uses
 
@@ -65,8 +65,8 @@ read the twist vector array. This will left align the $0$ index in the string.
 
 ### Decoding
 
-We need to insert entries into the twist vector data structure, to do this we
-will traverse the string in reverse.
+We need to insert entries into the twist vector data structure, to achieve this
+we will traverse the string in reverse.
 
 ## Cite
 
