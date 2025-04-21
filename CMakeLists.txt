@@ -21,39 +21,33 @@ set(CMAKE_CXX_EXTENSIONS Off)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(TEST_RESULTS_PATH ${CMAKE_CURRENT_SOURCE_DIR}/tests/results/)
 
-if (DEFINED EMSCRIPTEN)
-    add_compile_options("-fPIC")
-    add_compile_definitions(ENABLE_EMSCRIPTEN)
-else ()
-    set(Python_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/.venv/bin)
-    set(Python3_EXECUTABLE ${CMAKE_CURRENT_SOURCE_DIR}/.venv/bin/python)
-    set(Python3_FIND_VIRTUALENV "ONLY")
-    SET(ENV{VIRTUAL_ENV} "${CMAKE_CURRENT_SOURCE_DIR}/.venv")
+set(Python_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/.venv/bin)
+set(Python3_EXECUTABLE ${CMAKE_CURRENT_SOURCE_DIR}/.venv/bin/python)
+set(Python3_FIND_VIRTUALENV "ONLY")
+SET(ENV{VIRTUAL_ENV} "${CMAKE_CURRENT_SOURCE_DIR}/.venv")
 
-    find_package(
-            Python
-            COMPONENTS Interpreter Development.Module
-            REQUIRED)
-    find_program(CYTHON "cython")
+find_package(
+        Python
+        COMPONENTS Interpreter Development.Module
+        REQUIRED)
+find_program(CYTHON "cython")
 
 
-    if (DOXYGEN_FOUND)
-        set(DOXY_BUILD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/docs/.build/doxygen)
-        set(DOXYFILE ${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile)
+if (DOXYGEN_FOUND)
+    set(DOXY_BUILD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/docs/.build/doxygen)
+    set(DOXYFILE ${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile)
 
-        message("Doxygen build started")
-        set(DOXYGEN_INDEX_FILE ${DOXY_BUILD_DIR}/xml/index.xml)
-        add_custom_target(dox ALL
-                COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYFILE}
-                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-                COMMENT "Generating API documentation with Doxygen")
-    else (DOXYGEN_FOUND)
-        message(
-                "Doxygen need to be installed to generate the doxygen documentation")
-    endif (DOXYGEN_FOUND)
+    message("Doxygen build started")
+    set(DOXYGEN_INDEX_FILE ${DOXY_BUILD_DIR}/xml/index.xml)
+    add_custom_target(dox ALL
+            COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYFILE}
+            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+            COMMENT "Generating API documentation with Doxygen")
+else (DOXYGEN_FOUND)
+    message(
+            "Doxygen need to be installed to generate the doxygen documentation")
+endif (DOXYGEN_FOUND)
 
-
-endif ()
 
 find_program(cppcheck_exe NAMES cppcheck REQUIRED)
 set(cppcheck_opts -q --enable=all --inline-suppr --error-exitcode=1 -i${CMAKE_CURRENT_SOURCE_DIR}/libraries --suppressions-list=${CMAKE_CURRENT_SOURCE_DIR}/cppcheck.supp)

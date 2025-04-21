@@ -220,7 +220,6 @@
               dejavu_fonts
               dos2unix
               doxygen
-              emscripten
               freefont_ttf
               gcc
               gdb
