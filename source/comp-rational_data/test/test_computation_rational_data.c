@@ -73,30 +73,34 @@ char output_eo[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 5]
                   "10", "7", "3", "7", UTIL_TANG_DEFS_ZERO_TANG_STR};
 
 size_t output_len = 5;
-
+comp_rational_data_result_t result_store;
 /* clang-format off */
 
 comp_rational_data_config_t tc_write_success = {
                                           &stub_write_success,
                                           &stub_read,
+                                    {0,0,"0",0,0},
                                           &tv,
                                           tv_str,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u,};
 comp_rational_data_config_t tc_write_fail = {
                                           &stub_write_fail,
                                           &stub_read,
+                                    {0,0,"0",0,0},
                                           &tv,
                                           tv_str,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u,};
 comp_rational_data_config_t tc_null_buff = {
                                           &stub_write_fail,
                                           &stub_read,
+                                    {0,0,"0",0,0},
                                           NULL,
                                           tv_str,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u,};
 comp_rational_data_config_t tc_null_str_buff = {
                                           &stub_write_fail,
                                           &stub_read,
+                                    {0,0,"0",0,0},
                                           &tv,
                                           NULL,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u,};

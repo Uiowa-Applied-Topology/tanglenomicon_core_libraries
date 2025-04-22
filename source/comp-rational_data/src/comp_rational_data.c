@@ -195,6 +195,7 @@ uint8_t comp_rational_data_write_alg_eq(uint16_t num_eq, uint16_t den_eq)
     sprintf(local_str, "%u", num_eq);
     comp_rational_data_localcfg->storage_write(
         comp_rational_data_localcfg->tv_str_buff, value, local_str);
+    comp_rational_data_localcfg->result.num_algebraic_equ = num_eq;
 
     value = "denominator_eq";
     /* Decode to get the string representation for the denominator equivalence
@@ -202,6 +203,7 @@ uint8_t comp_rational_data_write_alg_eq(uint16_t num_eq, uint16_t den_eq)
     sprintf(local_str, "%u", den_eq);
     comp_rational_data_localcfg->storage_write(
         comp_rational_data_localcfg->tv_str_buff, value, local_str);
+    comp_rational_data_localcfg->result.den_algebraic_equ = den_eq;
     return ret_val;
 }
 
@@ -237,6 +239,7 @@ uint8_t comp_rational_data_parity(uint16_t p, uint16_t q)
         }
         /*Write data*/
         (void)comp_rational_data_write_parity(parity);
+        comp_rational_data_localcfg->result.parity = parity;
     }
     return ret_val;
 }
@@ -309,12 +312,14 @@ uint8_t comp_rational_data_write_rat_num(uint16_t p, uint16_t q)
     sprintf(local_str, "%u", p);
     comp_rational_data_localcfg->storage_write(
         comp_rational_data_localcfg->tv_str_buff, value, local_str);
+    comp_rational_data_localcfg->result.numerator = p;
 
     value = "denominator";
     /* Decode to get the string representation for the denominator and store.*/
     sprintf(local_str, "%u", q);
     comp_rational_data_localcfg->storage_write(
         comp_rational_data_localcfg->tv_str_buff, value, local_str);
+    comp_rational_data_localcfg->result.denominator = q;
 
     return ret_val;
 }

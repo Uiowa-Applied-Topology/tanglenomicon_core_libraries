@@ -177,7 +177,6 @@ denominator closure:
 
 \end{algorithm} \]
 
-
 1. Conway, J.H. “An Enumeration of Knots and Links, and Some of Their Algebraic
    Properties.” In _Computational Problems in Abstract Algebra_, 329–58.
    Elsevier, 1970.
