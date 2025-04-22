@@ -5,6 +5,8 @@ classDiagram
     comp_rational_data --|> computation
     comp_rational_data_config_t --|> notation_tv
     comp_rational_data_config_t --|> comp_config_t
+    comp_rational_data_config_t --|> comp_rational_data_result_t
+    comp_rational_data_result_t --|> comp_result_t
     comp_rational_data *-- comp_rational_data_config_t
 
     class computation {
@@ -22,10 +24,24 @@ class notation_tv{
 class comp_rational_data_config_t {
 <<struct>>
 - notation_tv
+- notation_tv
 
 }
 
+class comp_rational_data_result_t {
+<<struct>>
+- numerator
+- denominator
+- parity
+- num_algebraic_equ
+- den_algebraic_equ
+}
+
 class comp_config_t {
+<<interface>>
+
+}
+class comp_result_t {
 <<interface>>
 
 }
@@ -161,8 +177,6 @@ denominator closure:
 
 \end{algorithm} \]
 
-## Cite
-
 1. Conway, J.H. “An Enumeration of Knots and Links, and Some of Their Algebraic
    Properties.” In _Computational Problems in Abstract Algebra_, 329–58.
    Elsevier, 1970.
@@ -170,6 +184,12 @@ denominator closure:
 2. Kauffman, Louis H., and Sofia Lambropoulou. “On the Classification of
    Rational Knots,” 2002.
    [https://doi.org/10.48550/ARXIV.MATH/0212011](https://doi.org/10.48550/arxiv.math/0212011).
+
+## Bibliography
+
+```{bibliography}
+   :filter: docname in docnames
+```
 
 ```{raw} latex
     \newpage

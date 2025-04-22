@@ -1,34 +1,17 @@
-# @@@TODO Unit Description: Notation Interface
+# Unit Description: Notation Interface
 
 ```mermaid
 classDiagram
     notation *-- note_t
     class notation {
         <<interface>>
-        + note_t encode(string)
-        + string decode(note_t)
+        + note_t decode(string)
+        + string encode(note_t)
     }
 
     class note_t {
         <<struct>>
     }
-
-```
-
-## C Style Interface
-
-```mermaid
-classDiagram
-notation *-- note_t
-class notation{
-<<interface>>
-+ int decode(note_t*,string*)
-+ int encode(string*,note_t*)
-}
-
-class note_t {
-<<struct>>
-}
 
 ```
 
@@ -43,11 +26,11 @@ The encode/decode operations are taken from the perspective of the database.
 
 ### Encoding
 
-Takes a data structure and encodes it as it's string representation.
+Takes a data structure and encodes it as its string representation.
 
 ### Decoding
 
-Takes a string and decodes it as it's data structure representation.
+Takes a string and decodes it as its data structure representation.
 
 ```{raw} latex
     \newpage

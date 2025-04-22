@@ -1,9 +1,8 @@
-# @@@TODO Use Case: Computation Interface
+# Use Case: Computation Interface
 
-## Goal:
+## General Flow:
 
-This interface describes the public interfaces of a generic computation module.
-The flow for a generic computation is modeled as
+The flow for a generic computation is modeled as:
 
 ```mermaid
 stateDiagram-v2
@@ -16,22 +15,17 @@ stateDiagram-v2
     rv  -->  [*]
 ```
 
-## Functional description:
+## Brief
 
-A computation library shall have a configuration data structure, the config
-structure shall minimally contain storage interface (read and write). Beyond
-required members the members of this structure are largely unique to the
-particular library.
+A computation module satisfies the need for a component type that carries out an
+atomic operation. Meaning, one thing goes in, and one thing comes out. Example
+use-cases that can be implemented as a computation component are:
 
-A computation library shall have a "set" function, this function will take a
-configuration as input and configure the instance to that input.
-
-A computation library shall have a compute function, when called this function
-carries out the computation on supplied data.
-
-## Todo and enhancements
-
-- [ ] Probably need a common interface for gathering objects
+- Computing the Jones polynomial of an object.
+- Translating between two notation types.
+- Applying a Reidemeister move on an object.
+- Computing the distance between two tangles.
+- Computing rational number of a rational tangle.
 
 ```{raw} latex
     \newpage

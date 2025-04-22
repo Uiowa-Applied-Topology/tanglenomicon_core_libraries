@@ -73,7 +73,7 @@ do-prettier:
     prettier -w "docs/**/*.md"
     prettier -w "source/**/*.md"
 
-zip:
+zip: html
     zip -r ./docs/.build/html.zip ./docs/.build/html
 
 test_all build_dir=buildDir build_tgt=buildTrgt: bootstrap build_all

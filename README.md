@@ -138,8 +138,8 @@ Integration tests are expected for every bundled "runner".
 
 ## Requirements
 
-Since this repository contains a collection of libraries this section will
-describe the high level design for types of libraries/common use cases.
+Since this repository contains a collection of libraries, this section will
+describe the high-level design for types of libraries/common use cases.
 
 ### Functional Requirements
 
@@ -148,7 +148,6 @@ flowchart LR
     Runner
     subgraph "Runnables"
         Generator
-        Translator
         Computation
     end
     subgraph "Data Wranglers"
@@ -157,13 +156,11 @@ flowchart LR
     end
     Runner -->|Runs| Generator
     Runner -->|Runs| Computation
-    Runner -->|Runs| Translator
-    Translator -->|Uses| Notation
     Generator -->|Uses| Notation
     Computation -->|Uses| Notation
     Generator -->|Uses| Storage
     Computation -->|Uses| Storage
-    Translator -->|Uses| Storage
+
 
 ```
 
@@ -171,7 +168,6 @@ General use case descriptions of each of these blocks can be found here:
 
 - [Runners](/use_cases/runners/index.md)
 - [Generators](/use_cases/generators/index.md)
-- [Translators](/use_cases/translators/index.md)
 - [Computations](/use_cases/computations/index.md)
 - [Notations](/use_cases/notations/index.md)
 - [Storage](/use_cases/storage/index.md)
@@ -202,15 +198,15 @@ Unit testing of runnable and data wrangler libraries will use the
 indexing is handled by
 [ctest](https://cmake.org/cmake/help/latest/module/CTest.html).
 
-Integration testing of runners is handled whatever standard test tooling is
+Integration testing of runners is handled by whatever standard test tooling is
 appropriate.
 
 #### Code Style Guide
 
-The C/C++ code in this repository is expected to be formatted by the bundled
-clang-format configuration. Doxygen comments are expected to be formatted.
+The C/C++ code in this repository shall be formatted by the bundled clang-format
+configuration. Doxygen comments are expected to be formatted.
 
-Python code in this repository is expected to be formatted with black.
+Python code in this repository shall be formatted with black.
 
 ### Tools
 
@@ -224,8 +220,6 @@ Python code in this repository is expected to be formatted with black.
 - ctest
 - doxygen
 - Cmock
-- WASM
-- Emscripten
 - python3
 - MyStmd
 - sphinx
@@ -234,11 +228,11 @@ Python code in this repository is expected to be formatted with black.
 # Design and Documentation
 
 C/C++ code is documented with [Doxygen](https://www.doxygen.nl/), the doxygen
-comments are parsed and output as xml. General documentation is recorded as
-markdown files in each module's directory. Documentation is aggregated using the
-[sphinx](https://www.sphinx-doc.org/en/master/) framework. Sphinx then uses
-[breathe](https://github.com/breathe-doc/breathe) to parse doxygen xml into
-general documentation.
+comments shall be parsed and output as xml. General documentation shall be
+recorded as markdown files in each module's directory. Documentation shall be
+aggregated using the [sphinx](https://www.sphinx-doc.org/en/master/) framework.
+Sphinx shall then use [breathe](https://github.com/breathe-doc/breathe) to parse
+doxygen xml into the general documentation.
 
 ## Colors
 

@@ -70,8 +70,30 @@ extern "C"
      */
     typedef struct
     {
+        int numerator;
+        int denominator;
+        char *parity;
+        int num_algebraic_equ;
+        int den_algebraic_equ;
+    } comp_rational_data_result_t;
+#ifdef __cplusplus
+}
+#endif
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+    /*!
+     * @brief The type definition for configuring the rational data computation.
+     *
+     */
+    typedef struct
+    {
         storage_write_funptr_t storage_write;
         storage_read_funptr_t storage_read;
+        comp_rational_data_result_t result;
         note_tv_t *tv_n;
         char *tv_str_buff;
         size_t tv_str_buff_len;
