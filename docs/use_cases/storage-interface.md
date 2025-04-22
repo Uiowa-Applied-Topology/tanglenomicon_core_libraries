@@ -1,22 +1,13 @@
-# @@@TODO Use Case: Storage Interface
-
-```mermaid
-classDiagram
-    class storage {
-        <<interface>>
-        + bool new_base
-        + const char *  read(key, index)
-        + const char *  read_iterator(key, index)
-        + int write(key, index, value)
-        + int delete(key, index, value)
-    }
-```
+# Use Case: Storage Interface
 
 ## Brief
 
-This interface describes a generic storage module to be consumed by generation
-modules. The main data type on the interfaces is a `string`. We pick string
-since anything in LTS needs to be human consumable.
+A storage interface describes an interface for reading and writing key value
+pairs to/from other components. The most common use case for this is writing out
+stringified results from generator and computation components. It's important to
+use callback functions for reading a writing, since libraries are often called
+from high-level languages. Using callbacks and high-level languages gives some
+degree of flexibility without increasing the low-level complexity.
 
 ```{raw} latex
     \newpage

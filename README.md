@@ -166,11 +166,11 @@ flowchart LR
 
 General use case descriptions of each of these blocks can be found here:
 
--   [Runners](/use_cases/runners/index.md)
--   [Generators](/use_cases/generators/index.md)
--   [Computations](/use_cases/computations/index.md)
--   [Notations](/use_cases/notations/index.md)
--   [Storage](/use_cases/storage/index.md)
+- [Runners](/use_cases/runners/index.md)
+- [Generators](/use_cases/generators/index.md)
+- [Computations](/use_cases/computations/index.md)
+- [Notations](/use_cases/notations/index.md)
+- [Storage](/use_cases/storage/index.md)
 
 A functional description for individual libraries are phrased in the following
 use cases:
@@ -210,20 +210,20 @@ Python code in this repository shall be formatted with black.
 
 ### Tools
 
--   git
--   vscode
--   clion
--   mermaid.js
--   Unity
--   clang
--   cmake
--   ctest
--   doxygen
--   Cmock
--   python3
--   MyStmd
--   sphinx
--   pytest
+- git
+- vscode
+- clion
+- mermaid.js
+- Unity
+- clang
+- cmake
+- ctest
+- doxygen
+- Cmock
+- python3
+- MyStmd
+- sphinx
+- pytest
 
 # Design and Documentation
 

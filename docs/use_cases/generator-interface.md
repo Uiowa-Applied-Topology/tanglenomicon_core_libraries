@@ -1,29 +1,28 @@
 # Use Case: Generator Interface
 
+## General Flow:
+
+The flow for a generic generator is modeled as:
+
 ```mermaid
-classDiagram
-    generator *-- gen_config_t
-    class generator {
-        <<interface>>
-        + gen_config_t config
-        + int gen_config(gen_config_t config)
-        + int gen_generate()
-    }
-
-    class gen_config_t {
-        <<struct>>
-        + int maxCrossingNumber
-        + int storage_write(key, index, value)
-        + const char * storage_read(key, index)
-    }
-
-
+stateDiagram-v2
+    state "Get data" as gd
+    state "Generate new data" as wod
+    state "Report new data" as rv
+    [*] --> gd
+    gd  -->  wod
+    wod --> rv
+    rv  -->  [*]
 ```
 
 ## Brief
 
-This interface describes a generic generator module. A generator module is a
-runnable that generates objects of a specific class up to a crossing number.
+A generator module satisfies the need for a component type that carries out an
+non-atomic operations. Meaning, one thing goes in, and many things comes out.
+Example use-cases that can be implemented as a generator component are:
+
+- Generating all rational tangles.
+- Generating all tangles related to a tangle by crossing change.
 
 ```{raw} latex
     \newpage
