@@ -46,7 +46,7 @@
  * @param template Template to work on.
  * @return uint8_t Success/Fail flag.
  */
-STATIC_INLINE uint8_t gen_rational_proc_template(uint8_t template);
+STATIC_INLINE_UINT8 gen_rational_proc_template(uint8_t template);
 
 /*!
  * @brief A function to write the twist vector in cfg to the
@@ -55,7 +55,7 @@ STATIC_INLINE uint8_t gen_rational_proc_template(uint8_t template);
  * @param cfg Configuration to work on.
  * @return uint8_t Success/Fail flag.
  */
-STATIC_INLINE uint8_t gen_rational_write();
+STATIC_INLINE_UINT8 gen_rational_write();
 
 /*!
  * @brief The canonical form for twist vector is given as odd length. When we
@@ -66,7 +66,7 @@ STATIC_INLINE uint8_t gen_rational_write();
  * @param cfg Configuration to work on.
  * @return uint8_t Success/Fail flag.
  */
-STATIC_INLINE uint8_t gen_rational_evenperm_shift_write();
+STATIC_INLINE_UINT8 gen_rational_evenperm_shift_write();
 
 /******************************************************************************/
 /************************** Local Variables ***********************************/
@@ -227,14 +227,15 @@ uint8_t gen_rational_write()
     uint8_t ret_val = GEN_DEFS_GENERATION_FAIL;
     uint8_t write_status = STORE_DEFS_WRITE_FAIL;
 
-    note_tv_encode(*(gen_rational_localcfg->tv_n),
-                   gen_rational_localcfg->tv_str_buff);
+    note_tv_encode(
+        *(gen_rational_localcfg->tv_n), gen_rational_localcfg->tv_str_buff);
 
     char *value = "note-twist_vector";
     /* Write the data to the store-storage_interface device. */
     /*@@@TODO: we need to add the correct document values.*/
     write_status = gen_rational_localcfg->storage_write(
-        gen_rational_localcfg->tv_str_buff, value,
+        gen_rational_localcfg->tv_str_buff,
+        value,
         gen_rational_localcfg->tv_str_buff);
     if (write_status == STORE_DEFS_WRITE_SUCCESS)
     {

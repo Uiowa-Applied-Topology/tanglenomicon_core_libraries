@@ -31,8 +31,8 @@
 /******************************************************************************/
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
-STATIC_INLINE uint8_t gen_montesinos_process_lists();
-STATIC_INLINE uint8_t gen_montesinos_process_loop_state(const size_t *stack);
+STATIC_INLINE_UINT8 gen_montesinos_process_lists();
+STATIC_INLINE_UINT8 gen_montesinos_process_loop_state(const size_t *stack);
 /******************************************************************************/
 /************************** Local Variables ***********************************/
 /******************************************************************************/
@@ -84,14 +84,14 @@ uint8_t gen_montesinos_generate()
     for (i = 0; i < num_of_tv_sets - 2; i++)
     {
         node = &(att_local->node_buffer[i]);
-        node->flavor = NOTE_ATT_FLVR(NOTE_ATT_OP_PLUS, NOTE_ATT_TYPE_L_TANG,
-                                     NOTE_ATT_TYPE_R_OP);
+        node->flavor = NOTE_ATT_FLVR(
+            NOTE_ATT_OP_PLUS, NOTE_ATT_TYPE_L_TANG, NOTE_ATT_TYPE_R_OP);
         node->R_child = (void *)&(att_local->node_buffer[i + 1]);
     }
 
     node = &(att_local->node_buffer[num_of_tv_sets - 2]);
-    node->flavor = NOTE_ATT_FLVR(NOTE_ATT_OP_PLUS, NOTE_ATT_TYPE_L_TANG,
-                                 NOTE_ATT_TYPE_R_TANG);
+    node->flavor = NOTE_ATT_FLVR(
+        NOTE_ATT_OP_PLUS, NOTE_ATT_TYPE_L_TANG, NOTE_ATT_TYPE_R_TANG);
 
     // process lists
     ret_val = gen_montesinos_process_lists();
@@ -101,7 +101,7 @@ uint8_t gen_montesinos_generate()
 /******************************************************************************/
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
-STATIC_INLINE uint8_t gen_montesinos_process_lists()
+STATIC_INLINE_UINT8 gen_montesinos_process_lists()
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
     size_t stack[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
@@ -110,8 +110,7 @@ STATIC_INLINE uint8_t gen_montesinos_process_lists()
     size_t list_cnt = gen_montesinos_localcfg->tv_sets_len;
 
     stack[0] = 0;
-    while ((stack[0] < loop_lims[0]) &&
-           (ret_val == GEN_DEFS_GENERATION_SUCCESS))
+    while ((stack[0] < loop_lims[0]) && (ret_val == GEN_DEFS_GENERATION_SUCCESS))
     {
         if (stack[stack_ptr] < loop_lims[stack_ptr])
         {
@@ -135,7 +134,7 @@ STATIC_INLINE uint8_t gen_montesinos_process_lists()
 
     return ret_val;
 }
-STATIC_INLINE uint8_t gen_montesinos_process_loop_state(const size_t *stack)
+STATIC_INLINE_UINT8 gen_montesinos_process_loop_state(const size_t *stack)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_FAIL;
     uint8_t encode_result = NOTE_DEFS_ENCODE_FAIL;
@@ -159,8 +158,8 @@ STATIC_INLINE uint8_t gen_montesinos_process_loop_state(const size_t *stack)
     stack_val = stack[num_of_tv_sets - 1];
     node->R_child = (void *)&(tvs[num_of_tv_sets - 1][stack_val]);
 
-    encode_result =
-        note_att_encode(*att_local, gen_montesinos_localcfg->str_buff);
+    encode_result = note_att_encode(
+        *att_local, gen_montesinos_localcfg->str_buff);
 
     if (encode_result == NOTE_DEFS_ENCODE_SUCCESS)
     {
@@ -169,7 +168,8 @@ STATIC_INLINE uint8_t gen_montesinos_process_loop_state(const size_t *stack)
         /* Write the data to the store-storage_interface device. */
         /*@@@TODO: we need to add the correct document values.*/
         write_status = gen_montesinos_localcfg->storage_write(
-            gen_montesinos_localcfg->str_buff, value,
+            gen_montesinos_localcfg->str_buff,
+            value,
             gen_montesinos_localcfg->str_buff);
         if (write_status == STORE_DEFS_WRITE_SUCCESS)
         {

@@ -48,8 +48,8 @@ STATIC_INLINE void test_encode(void)
     uint8_t retval = note_tv_decode(tv_string, &test_tv);
     TEST_ASSERT_EQUAL_UINT8(retval, NOTE_DEFS_DECODE_SUCCESS);
     TEST_ASSERT_EQUAL_UINT8(test_tv.tv_length, tv_t.tv_length);
-    TEST_ASSERT_EQUAL_UINT8_ARRAY(test_tv.twist_vector, tv_t.twist_vector,
-                                  tv_t.tv_length);
+    TEST_ASSERT_EQUAL_UINT8_ARRAY(
+        test_tv.twist_vector, tv_t.twist_vector, tv_t.tv_length);
 }
 /*!
  * @brief

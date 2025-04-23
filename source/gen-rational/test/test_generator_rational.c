@@ -23,9 +23,9 @@ size_t key_idx = 0;
 size_t index_idx = 0;
 size_t value_idx = 0;
 
-STATIC_INLINE uint8_t stub_write_dedup_success(const char *key,
-                                               const char *index,
-                                               const char *value)
+STATIC_INLINE_UINT8 stub_write_dedup_success(const char *key,
+                                             const char *index,
+                                             const char *value)
 {
     size_t i = 0;
     for (i = 0; i < key_idx; i++)
@@ -44,8 +44,9 @@ STATIC_INLINE uint8_t stub_write_dedup_success(const char *key,
     return STORE_DEFS_WRITE_SUCCESS;
 }
 
-STATIC_INLINE uint8_t stub_write_success(const char *key, const char *index,
-                                         const char *value)
+STATIC_INLINE_UINT8 stub_write_success(const char *key,
+                                       const char *index,
+                                       const char *value)
 {
     strcpy(key_buff[key_idx], key);
     strcpy(index_buff[index_idx], index);
@@ -56,8 +57,9 @@ STATIC_INLINE uint8_t stub_write_success(const char *key, const char *index,
     return STORE_DEFS_WRITE_SUCCESS;
 }
 
-STATIC_INLINE uint8_t stub_write_fail(const char *key, const char *index,
-                                      const char *value)
+STATIC_INLINE_UINT8 stub_write_fail(const char *key,
+                                    const char *index,
+                                    const char *value)
 {
 
     return STORE_DEFS_WRITE_FAIL;
@@ -148,14 +150,14 @@ STATIC_INLINE void test_config(void)
     uint8_t ret_val = gen_rational_config(&tc_write_success);
     TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_CONFIG_SUCCESS);
     ret_val = gen_rational_config(NULL);
-    TEST_ASSERT_EQUAL_UINT8(ret_val,
-                            GEN_RATIONAL_CONFIG_IS_NULL | GEN_DEFS_CONFIG_FAIL);
+    TEST_ASSERT_EQUAL_UINT8(
+        ret_val, GEN_RATIONAL_CONFIG_IS_NULL | GEN_DEFS_CONFIG_FAIL);
     ret_val = gen_rational_config(&tc_null_buff);
-    TEST_ASSERT_EQUAL_UINT8(ret_val,
-                            GEN_RATIONAL_CONFIG_BUFFER | GEN_DEFS_CONFIG_FAIL);
+    TEST_ASSERT_EQUAL_UINT8(
+        ret_val, GEN_RATIONAL_CONFIG_BUFFER | GEN_DEFS_CONFIG_FAIL);
     ret_val = gen_rational_config(&tc_null_str_buff);
-    TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_RATIONAL_CONFIG_STR_BUFFER |
-                                         GEN_DEFS_CONFIG_FAIL);
+    TEST_ASSERT_EQUAL_UINT8(
+        ret_val, GEN_RATIONAL_CONFIG_STR_BUFFER | GEN_DEFS_CONFIG_FAIL);
 }
 /*!
  * @brief
