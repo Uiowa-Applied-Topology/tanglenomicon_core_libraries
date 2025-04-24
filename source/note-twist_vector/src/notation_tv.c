@@ -77,7 +77,7 @@ uint8_t note_tv_decode(char *str, note_tv_t *twistv)
 /*
  *  Documentation in header
  */
-uint8_t note_tv_encode(note_tv_t twistv, char *str)
+uint8_t note_tv_encode(note_tv_t twistv, char *str, size_t buffer_size)
 {
     /*@@@TODO: the return logic here needs to be inverted when error handing is
      * added*/

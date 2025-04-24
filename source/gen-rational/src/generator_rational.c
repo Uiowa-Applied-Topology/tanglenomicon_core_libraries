@@ -227,8 +227,9 @@ uint8_t gen_rational_write()
     uint8_t ret_val = GEN_DEFS_GENERATION_FAIL;
     uint8_t write_status = STORE_DEFS_WRITE_FAIL;
 
-    note_tv_encode(
-        *(gen_rational_localcfg->tv_n), gen_rational_localcfg->tv_str_buff);
+    note_tv_encode(*(gen_rational_localcfg->tv_n),
+                   gen_rational_localcfg->tv_str_buff,
+                   gen_rational_localcfg->tv_str_buff_len);
 
     char *value = "note-twist_vector";
     /* Write the data to the store-storage_interface device. */

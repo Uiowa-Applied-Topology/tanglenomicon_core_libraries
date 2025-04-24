@@ -156,7 +156,8 @@ uint8_t comp_rational_data_compute()
     /*All code paths need the stringified twist vector as a key. We encode
      * here.*/
     note_tv_encode(*(comp_rational_data_localcfg->tv_n),
-                   comp_rational_data_localcfg->tv_str_buff);
+                   comp_rational_data_localcfg->tv_str_buff,
+                   comp_rational_data_localcfg->tv_str_buff_len);
 
     /*@@@TODO: Add error handling.*/
     /*Execute local functions.*/

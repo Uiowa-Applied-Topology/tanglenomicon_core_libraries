@@ -82,7 +82,7 @@ extern "C"
      * @param str Output string for encoded note_tv_t
      * @return uint8_t The return code for the encoding operation.
      */
-    uint8_t note_tv_encode(note_tv_t twistv, char *str);
+    uint8_t note_tv_encode(note_tv_t twistv, char *str, size_t buffer_size);
 #ifdef __cplusplus
 }
 #endif

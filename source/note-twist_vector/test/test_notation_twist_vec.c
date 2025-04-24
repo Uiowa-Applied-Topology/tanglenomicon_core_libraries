@@ -59,7 +59,8 @@ STATIC_INLINE void test_decode(void)
 {
     char test_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u] = {
         [0] = STR_TERMINAL_CHAR};
-    uint8_t retval = note_tv_encode(tv_t, test_str);
+    uint8_t retval = note_tv_encode(
+        tv_t, test_str, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u);
     TEST_ASSERT_EQUAL_UINT8(retval, NOTE_DEFS_ENCODE_SUCCESS);
     TEST_ASSERT_EQUAL_STRING(tv_string, test_str);
 }

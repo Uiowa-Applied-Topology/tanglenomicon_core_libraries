@@ -158,8 +158,9 @@ STATIC_INLINE_UINT8 gen_montesinos_process_loop_state(const size_t *stack)
     stack_val = stack[num_of_tv_sets - 1];
     node->R_child = (void *)&(tvs[num_of_tv_sets - 1][stack_val]);
 
-    encode_result = note_att_encode(
-        *att_local, gen_montesinos_localcfg->str_buff);
+    encode_result = note_att_encode(*att_local,
+                                    gen_montesinos_localcfg->str_buff,
+                                    gen_montesinos_localcfg->str_buff_len);
 
     if (encode_result == NOTE_DEFS_ENCODE_SUCCESS)
     {

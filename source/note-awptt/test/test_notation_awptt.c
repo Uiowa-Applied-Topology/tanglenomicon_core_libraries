@@ -10,6 +10,8 @@
 /******************************************************************************/
 /* clang-format off */
 
+char tv_string[] = "x< 1<2 (3(4 (5 [7 8 9 10]) 6)>11>";
+note_awptt_node_t note_awptt_node[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
 
 /* clang-format on */
 

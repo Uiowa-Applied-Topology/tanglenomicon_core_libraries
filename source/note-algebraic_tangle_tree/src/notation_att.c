@@ -35,8 +35,12 @@ static size_t note_att_tv_idx = 0u;
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
 
-STATIC_INLINE_UINT8 note_att_traverse(note_att_node_t *node, char *str);
-STATIC_INLINE_UINT8 note_att_add_tv(const note_tv_t *tv, char *str);
+STATIC_INLINE_UINT8 note_att_traverse(note_att_node_t *node,
+                                      char *str,
+                                      size_t buffer_size);
+STATIC_INLINE_UINT8 note_att_add_tv(const note_tv_t *tv,
+                                    char *str,
+                                    size_t buffer_size);
 STATIC_INLINE_UINT8 note_att_traverse_string(note_att_t *att,
                                              note_att_node_t *node,
                                              char *str,
@@ -91,7 +95,7 @@ uint8_t note_att_decode(char *str, note_att_t *att)
 /*
  *  Documentation in header
  */
-uint8_t note_att_encode(note_att_t att, char *str)
+uint8_t note_att_encode(note_att_t att, char *str, size_t buffer_size)
 {
 
     uint8_t retval = NOTE_DEFS_ENCODE_FAIL;
@@ -106,7 +110,7 @@ uint8_t note_att_encode(note_att_t att, char *str)
     else
     {
         uint8_t result = NOTE_ATT_TRAVERSE_FAIL;
-        result = note_att_traverse(att.root, str);
+        result = note_att_traverse(att.root, str, buffer_size);
         if (result == NOTE_ATT_TRAVERSE_SUCCESS)
         {
             retval = NOTE_DEFS_ENCODE_SUCCESS;
@@ -125,7 +129,9 @@ uint8_t note_att_encode(note_att_t att, char *str)
  * @param str
  * @return
  */
-STATIC_INLINE_UINT8 note_att_traverse(note_att_node_t *node, char *str)
+STATIC_INLINE_UINT8 note_att_traverse(note_att_node_t *node,
+                                      char *str,
+                                      size_t buffer_size)
 {
     uint8_t retval = NOTE_ATT_TRAVERSE_SUCCESS;
 
@@ -141,17 +147,21 @@ STATIC_INLINE_UINT8 note_att_traverse(note_att_node_t *node, char *str)
     {
         retval = NOTE_ATT_TRAVERSE_FAIL;
     }
+
+    buffer_size -= strlen(str);
     str += strlen(str);
 
     if (retval != NOTE_ATT_TRAVERSE_FAIL)
     {
         if (NOTE_ATT_CHK_L_TYPE(node->flavor, NOTE_ATT_TYPE_L_OP) == true)
         {
-            retval = note_att_traverse((note_att_node_t *)node->L_child, str);
+            retval = note_att_traverse(
+                (note_att_node_t *)node->L_child, str, buffer_size);
         }
         else if (NOTE_ATT_CHK_L_TYPE(node->flavor, NOTE_ATT_TYPE_L_TANG) == true)
         {
-            retval = note_att_add_tv((note_tv_t *)node->L_child, str);
+            retval = note_att_add_tv(
+                (note_tv_t *)node->L_child, str, buffer_size);
         }
         else
         {
@@ -164,12 +174,14 @@ STATIC_INLINE_UINT8 note_att_traverse(note_att_node_t *node, char *str)
     {
         if (NOTE_ATT_CHK_R_TYPE(node->flavor, NOTE_ATT_TYPE_R_OP) == true)
         {
-            retval = note_att_traverse((note_att_node_t *)node->R_child, str);
+            retval = note_att_traverse(
+                (note_att_node_t *)node->R_child, str, buffer_size);
         }
         else if (NOTE_ATT_CHK_R_TYPE(node->flavor, NOTE_ATT_TYPE_R_TANG) == true)
         {
 
-            retval = note_att_add_tv((note_tv_t *)node->R_child, str);
+            retval = note_att_add_tv(
+                (note_tv_t *)node->R_child, str, buffer_size);
         }
         else
         {
@@ -184,13 +196,15 @@ STATIC_INLINE_UINT8 note_att_traverse(note_att_node_t *node, char *str)
  * @brief Decode a string into a twist vector and report succes.
  * @param tv The note_tv_t store-storage_interface to store the data to.
  * @param str The data to decode.
- * @return Indicate succes failure of adding the twist vector.
+ * @return Indicate success failure of adding the twist vector.
  */
-STATIC_INLINE_UINT8 note_att_add_tv(const note_tv_t *tv, char *str)
+STATIC_INLINE_UINT8 note_att_add_tv(const note_tv_t *tv,
+                                    char *str,
+                                    size_t buffer_size)
 {
     uint8_t ret_val = NOTE_ATT_TRAVERSE_SUCCESS;
     uint8_t result = NOTE_DEFS_ENCODE_FAIL;
-    result = note_tv_encode(*tv, str);
+    result = note_tv_encode(*tv, str, buffer_size);
     if (result != NOTE_DEFS_ENCODE_SUCCESS)
     {
         ret_val = NOTE_ATT_TRAVERSE_FAIL;
