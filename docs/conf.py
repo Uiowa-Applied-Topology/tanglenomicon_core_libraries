@@ -53,7 +53,7 @@ intersphinx_mapping = {
 bibtex_bibfiles = ["./refs/zotero.bib", "./refs/manual.bib"]
 
 # -- Breathe settings ---------------------------------------------------
-breathe_projects = {"Core_Libraries": "./build/doxygen/xml"}
+breathe_projects = {"Core_Libraries": "./.build/doxygen/xml"}
 breathe_default_project = "Core_Libraries"
 
 # -- MyST settings ---------------------------------------------------
