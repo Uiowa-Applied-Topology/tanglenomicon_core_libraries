@@ -49,11 +49,18 @@ else (DOXYGEN_FOUND)
 endif (DOXYGEN_FOUND)
 
 
-find_program(cppcheck_exe NAMES cppcheck REQUIRED)
-set(cppcheck_opts -q --enable=all --inline-suppr --error-exitcode=1 -i${CMAKE_CURRENT_SOURCE_DIR}/libraries --suppressions-list=${CMAKE_CURRENT_SOURCE_DIR}/cppcheck.supp)
-set(CMAKE_C_CPPCHECK ${cppcheck_exe} --std=c90 ${cppcheck_opts})
-set(CMAKE_CXX_CPPCHECK ${cppcheck_exe} --std=c++20 ${cppcheck_opts})
+set(CMAKE_C_FLAGS_DEBUG "-g -O0")
+set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
 
+if (CPPCHECK_OFF)
+    message(
+            "BUILDING WITHOUT CPPCHECK!")
+else (CPPCHECK_OFF)
+    find_program(cppcheck_exe NAMES cppcheck REQUIRED)
+    set(cppcheck_opts -q --enable=all --inline-suppr --error-exitcode=1 -i${CMAKE_CURRENT_SOURCE_DIR}/libraries --suppressions-list=${CMAKE_CURRENT_SOURCE_DIR}/cppcheck.supp)
+    set(CMAKE_C_CPPCHECK ${cppcheck_exe} --std=c90 ${cppcheck_opts})
+    set(CMAKE_CXX_CPPCHECK ${cppcheck_exe} --std=c++20 ${cppcheck_opts})
+endif (CPPCHECK_OFF)
 ################################################################################
 # Start Compiler Defines
 ################################################################################
