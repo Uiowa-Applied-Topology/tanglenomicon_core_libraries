@@ -95,4 +95,4 @@ do-prettier:
     prettier -w "source/**/*.md"
 
 zip: html
-    zip -r ./docs/.build/html.zip ./docs/.build/html
+    zip -r ./Library_Documentation.zip ./docs/.build/html

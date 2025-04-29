@@ -1,6 +1,6 @@
 name: 👶 Documentation
 description: Template for an Documentation subtask
-title: '[👶] '
+title: '[👶]  Document '
 labels:
   - Child
   - Documentation
@@ -10,7 +10,9 @@ body:
     attributes:
       label: 'Checklist:'
       options:
-        - label: Implement a usecase file.
+        - label: Implement a use-case file.
           required: false
         - label: Implement a unit description file.
+          required: false
+        - label: Verify docs build
           required: false
