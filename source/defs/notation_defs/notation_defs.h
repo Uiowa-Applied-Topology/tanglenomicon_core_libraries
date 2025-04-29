@@ -47,4 +47,12 @@
  * bits. */
 #define NOTE_DEFS_DECODE_FAIL (1u)
 
+/****************************** Flag Builder Macro ****************************/
+
+/*!
+ * @brief A function like macro for building bitfield flags
+ *
+ */
+#define NOTE_STATUS_BLDR(FLAG, HIGH_BITS) ((FLAG) | (HIGH_BITS))
+
 #endif /* end NOTATION_DEFS_H */
