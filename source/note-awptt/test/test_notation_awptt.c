@@ -1,6 +1,11 @@
 #include "notation_awptt.h"
 #include "unity.h"
-
+#include "utils/utils.h"
+#include "tests/decode/positive_tests.h"
+#include "tests/decode/negative_tests.h"
+#include "tests/encode/positive_tests.h"
+#include "tests/encode/negative_tests.h"
+#include "tests/turn_around_test.h"
 /******************************************************************************/
 /*******************************Untested Frameworks****************************/
 /******************************************************************************/
@@ -10,11 +15,7 @@
 /******************************************************************************/
 /* clang-format off */
 
-char tv_string[] = "x< 1<2 (3(4 (5 [7 8 9 10]) 6)>11>";
-note_awptt_node_t note_awptt_node[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
-
 /* clang-format on */
-
 /******************************************************************************/
 /*******************************Test prep**************************************/
 /******************************************************************************/
@@ -27,21 +28,6 @@ void tearDown(void) {}
 /*******************************Test cases*************************************/
 /******************************************************************************/
 
-/*!
- * @brief
- * @param
- */
-void test_encode(void)
-{
-}
-/*!
- * @brief
- * @param
- */
-void test_decode(void)
-{
-}
-
 /******************************************************************************/
 /*******************************Test main**************************************/
 /******************************************************************************/
@@ -49,8 +35,11 @@ int main(void)
 {
     UNITY_BEGIN();
 
-    RUN_TEST(test_decode);
-    RUN_TEST(test_encode);
+    test_decode_positive();
+    test_decode_negative();
+    test_encode_positive();
+    test_encode_negative();
+    test_turn_around();
 
     return UNITY_END();
 }
