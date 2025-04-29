@@ -466,14 +466,15 @@ The output string buffer is a NULL pointer.
 
 The function will produce an error.
 
-## Doxygen Documentation 
+## Doxygen Documentation
 
 ```{doxygenfile} notation_awptt.h
+
 ```
 
 ```{doxygenfile} notation_awptt.c
+
 ```
-   
 
 ## Bibliography
 
