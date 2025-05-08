@@ -41,7 +41,7 @@
  * @return uint8_t A condition code for the computation. Indicates failure mode
  * if any.
  */
-STATIC_INLINE uint8_t comp_rational_data_alg_eq(uint16_t p, uint16_t q);
+STATIC_INLINE_UINT8 comp_rational_data_alg_eq(uint16_t p, uint16_t q);
 
 /*!
  * @brief A private function that commits to store-storage_interface the
@@ -54,8 +54,8 @@ STATIC_INLINE uint8_t comp_rational_data_alg_eq(uint16_t p, uint16_t q);
  * @return uint8_t A condition code for the computation. Indicates failure mode
  * if any.
  */
-STATIC_INLINE uint8_t comp_rational_data_write_alg_eq(uint16_t num_eq,
-                                                      uint16_t den_eq);
+STATIC_INLINE_UINT8 comp_rational_data_write_alg_eq(uint16_t num_eq,
+                                                    uint16_t den_eq);
 
 /*!
  * @brief A private function that computes the parity for the configured tangle.
@@ -65,7 +65,7 @@ STATIC_INLINE uint8_t comp_rational_data_write_alg_eq(uint16_t num_eq,
  * @return uint8_t A condition code for the computation. Indicates failure mode
  * if any.
  */
-STATIC_INLINE uint8_t comp_rational_data_parity(uint16_t p, uint16_t q);
+STATIC_INLINE_UINT8 comp_rational_data_parity(uint16_t p, uint16_t q);
 
 /*!
  * @brief A private function that commits to store-storage_interface the parity
@@ -75,7 +75,7 @@ STATIC_INLINE uint8_t comp_rational_data_parity(uint16_t p, uint16_t q);
  * @return uint8_t A condition code for the computation. Indicates failure mode
  * if any.
  */
-STATIC_INLINE uint8_t comp_rational_data_write_parity(char *parity);
+STATIC_INLINE_UINT8 comp_rational_data_write_parity(char *parity);
 
 /*!
  * @brief A private function that computes the rational number associated to the
@@ -88,7 +88,7 @@ STATIC_INLINE uint8_t comp_rational_data_write_parity(char *parity);
  * @return uint8_t A condition code for the computation. Indicates failure mode
  * if any.
  */
-STATIC_INLINE uint8_t comp_rational_data_rat_num(uint16_t *p, uint16_t *q);
+STATIC_INLINE_UINT8 comp_rational_data_rat_num(uint16_t *p, uint16_t *q);
 
 /*!
  * @brief A private function that commits to store-storage_interface the
@@ -99,7 +99,7 @@ STATIC_INLINE uint8_t comp_rational_data_rat_num(uint16_t *p, uint16_t *q);
  * @return uint8_t A condition code for the computation. Indicates failure mode
  * if any.
  */
-STATIC_INLINE uint8_t comp_rational_data_write_rat_num(uint16_t p, uint16_t q);
+STATIC_INLINE_UINT8 comp_rational_data_write_rat_num(uint16_t p, uint16_t q);
 
 /******************************************************************************/
 /************************** Local Variables ***********************************/
@@ -156,7 +156,8 @@ uint8_t comp_rational_data_compute()
     /*All code paths need the stringified twist vector as a key. We encode
      * here.*/
     note_tv_encode(*(comp_rational_data_localcfg->tv_n),
-                   comp_rational_data_localcfg->tv_str_buff);
+                   comp_rational_data_localcfg->tv_str_buff,
+                   comp_rational_data_localcfg->tv_str_buff_len);
 
     /*@@@TODO: Add error handling.*/
     /*Execute local functions.*/

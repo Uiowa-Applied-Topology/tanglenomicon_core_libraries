@@ -1,6 +1,6 @@
 name: 👶 Validation
 description: Template for an Validation subtask
-title: '[👶] '
+title: '[👶] Validate'
 labels:
   - Child
   - Validation

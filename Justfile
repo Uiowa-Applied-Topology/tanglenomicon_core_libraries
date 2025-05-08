@@ -3,8 +3,10 @@ set export
 @_default:
     just --list
 
-buildTrgt := "debug"
+buildTrgt := "Release"
+buildTrgt_dbg := "Debug"
 buildDir := "./.build"
+buildDir_dbg := "./.build_dbg"
 
 # Set up development environment
 bootstrap build_dir=buildDir:
@@ -45,13 +47,32 @@ html: bootstrap
     source .venv/bin/activate && \
     sphinx-build -M html docs docs/.build
 
-build_all build_dir=buildDir build_tgt=buildTrgt : bootstrap
-    if test -e {{build_dir}}; then \
-        rip {{build_dir}}; \
+build_all : bootstrap
+    if test -e {{buildDir}}; then \
+        rip {{buildDir}}; \
     fi
     source .venv/bin/activate && \
-    cmake -B{{build_dir}} -DCMAKE_BUILD_TYPE={{build_tgt}} && \
-    cmake --build {{build_dir}}
+    cmake -B{{buildDir}} -DCMAKE_BUILD_TYPE={{buildTrgt}} && \
+    cmake --build {{buildDir}}
+
+test_all: bootstrap
+    source .venv/bin/activate && \
+    cd {{buildDir}} && \
+    ctest -C {{buildTrgt}}
+
+build_dbg : bootstrap
+    if test -e {{buildDir_dbg}}; then \
+        rip {{buildDir_dbg}}; \
+    fi
+    source .venv/bin/activate && \
+    cmake -B{{buildDir_dbg}} -DCMAKE_BUILD_TYPE={{buildTrgt_dbg}} && \
+    cmake --build {{buildDir_dbg}}
+
+test_dbg: bootstrap
+    source .venv/bin/activate && \
+    cd {{buildDir_dbg}} && \
+    ctest -C {{buildTrgt_dbg}}
+
 
 do-clang-format:
     find ./source -iname "*.c"   -exec  sh -c 'clang-format -i "$0" || kill $PPID' \{\} \;
@@ -74,10 +95,4 @@ do-prettier:
     prettier -w "source/**/*.md"
 
 zip: html
-    zip -r ./docs/.build/html.zip ./docs/.build/html
-
-test_all build_dir=buildDir build_tgt=buildTrgt: bootstrap build_all
-    source .venv/bin/activate && \
-    cd {{build_dir}} && \
-    ctest -C {{build_tgt}}
-
+    zip -r ./Library_Documentation.zip ./docs/.build/html

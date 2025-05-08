@@ -1,6 +1,6 @@
 name: 👶 Implementation
 description: Template for an Implementation subtask
-title: '[👶] '
+title: '[👶] Implement'
 labels:
   - Child
   - Implementation
@@ -14,9 +14,11 @@ body:
           required: false
         - label: Implement source file.
           required: false
-        - label: Implement cmake file andlibrary target.
+        - label: Implement cmake file and library target.
           required: false
         - label: 'Check doxygen comments are exist. '
           required: false
         - label: 'Check doxygen comments are linked. '
+          required: false
+        - label: Verify docs build
           required: false

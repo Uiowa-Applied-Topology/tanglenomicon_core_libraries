@@ -88,7 +88,8 @@ STATIC_INLINE void test_encode(void)
 
     uint8_t retval = note_att_decode(att_string, &test_att);
     TEST_ASSERT_EQUAL_UINT8(retval, NOTE_DEFS_DECODE_SUCCESS);
-    retval = note_att_encode(test_att, test_str);
+    retval = note_att_encode(
+        test_att, test_str, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
     TEST_ASSERT_EQUAL_UINT8(retval, NOTE_DEFS_ENCODE_SUCCESS);
     TEST_ASSERT_EQUAL_STRING(att_string, test_str);
     TEST_ASSERT_EQUAL_UINT8_ARRAY(tv_buffer_de.twist_vector,
@@ -112,7 +113,8 @@ STATIC_INLINE void test_decode(void)
 {
     char test_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u] = {
         [0] = STR_TERMINAL_CHAR};
-    uint8_t retval = note_att_encode(att_de, test_str);
+    uint8_t retval = note_att_encode(
+        att_de, test_str, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
     TEST_ASSERT_EQUAL_UINT8(retval, NOTE_DEFS_ENCODE_SUCCESS);
     TEST_ASSERT_EQUAL_STRING(att_string, test_str);
 }

@@ -279,7 +279,7 @@ extern "C"
      * @param str Output string for encoded note_att_t
      * @return uint8_t The return code for the encoding operation.
      */
-    uint8_t note_att_encode(note_att_t att, char *str);
+    uint8_t note_att_encode(note_att_t att, char *str, size_t buffer_size);
 #ifdef __cplusplus
 }
 #endif
