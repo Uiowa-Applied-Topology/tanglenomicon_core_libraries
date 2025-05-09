@@ -26,6 +26,39 @@
 /************************** Typedefs ******************************************/
 /******************************************************************************/
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+    /*!
+     * @brief The type definition for configuring the rational data computation.
+     *
+     */
+    typedef struct
+    {
+
+    } comp_template_result_t;
+#ifdef __cplusplus
+}
+#endif
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+    /*!
+     * @brief The type definition for configuring the rational data computation.
+     *
+     */
+    typedef struct
+    {
+    } comp_template_config_t;
+#ifdef __cplusplus
+}
+#endif
+
 /******************************************************************************/
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
@@ -53,6 +86,16 @@ uint8_t comp_template_config(comp_template_config_t *config_arg)
  *  Documentation in header
  */
 uint8_t comp_template_compute()
+{
+    uint8_t ret_val = COMP_DEFS_COMPUTE_SUCCESS;
+    return ret_val;
+}
+
+
+/*
+ *  Documentation in header
+ */
+uint8_t comp_template_results()
 {
     uint8_t ret_val = COMP_DEFS_COMPUTE_SUCCESS;
     return ret_val;

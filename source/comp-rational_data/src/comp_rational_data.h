@@ -93,7 +93,6 @@ extern "C"
     {
         storage_write_funptr_t storage_write;
         storage_read_funptr_t storage_read;
-        comp_rational_data_result_t result;
         note_tv_t *tv_n;
         char *tv_str_buff;
         size_t tv_str_buff_len;
@@ -129,6 +128,19 @@ extern "C"
      * @return uint8_t Generation status info.
      */
     uint8_t comp_rational_data_compute();
+#ifdef __cplusplus
+}
+#endif
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+    /*!
+     * @brief A public function, calling this retrieves the results context.
+     * @return uint8_t Generation status info.
+     */
+    comp_rational_data_result_t comp_rational_data_results();
 #ifdef __cplusplus
 }
 #endif

@@ -8,6 +8,7 @@ classDiagram
         + comp_config_t config
         + int comp_config(comp_config_t config)
         + int comp_compute()
+        + comp_result_t comp_results()
     }
 
     class comp_config_t {
