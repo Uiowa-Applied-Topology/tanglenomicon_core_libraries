@@ -28,6 +28,21 @@
 /*************************** Typedefs *****************************************/
 /******************************************************************************/
 
+/******************************************************************************/
+/************************** Local Variables ***********************************/
+/******************************************************************************/
+
+/*!
+ * @brief The local configuration of the rational comp module.
+ *
+ */
+static comp_template_config_t *comp_template_localcfg = NULL;
+
+/*!
+ * @brief The local configuration of the rational comp module.
+ *
+ */
+static comp_template_results_t comp_results_localcntxt;
 
 /******************************************************************************/
 /*************************** Public Function Declarations *********************/
@@ -56,6 +71,19 @@ extern "C"
      * @return uint8_t Generation status info.
      */
     uint8_t comp_template_compute();
+#ifdef __cplusplus
+}
+#endif
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+    /*!
+     * @brief A public function, calling this retrieves the results context.
+     * @return uint8_t Generation status info.
+     */
+    comp_template_results_t comp_template_compute();
 #ifdef __cplusplus
 }
 #endif

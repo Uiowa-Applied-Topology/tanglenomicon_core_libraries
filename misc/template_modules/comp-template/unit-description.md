@@ -42,6 +42,11 @@ class comp_config_t {
 
 }
 
+class comp__t {
+<<interface>>
+
+}
+
 
 ```
 
@@ -83,16 +88,27 @@ A list of external compnents and libraries used by the feature.
 A struct description of the computation config.
 ```
 
+##### results structure
+
+```
+A struct description of the computation results.
+```
+
 #### comp_config function
 
 ```{note}
-A function description for the encode interface.
+A function description for the config setting interface.
 ```
 
 #### comp_compute function
 
 ```{note}
-A function description for the decode interface.
+A function description for the compute interface.
+```
+#### comp_results function
+
+```{note}
+A function description for the results context interface.
 ```
 
 ### Private
