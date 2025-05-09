@@ -111,6 +111,16 @@ STATIC_INLINE_UINT8 comp_rational_data_write_rat_num(uint16_t p, uint16_t q);
  */
 static comp_rational_data_config_t *comp_rational_data_localcfg = NULL;
 
+/*!
+ * @brief The local configuration of the rational comp module.
+ *
+ */
+static comp_rational_data_result_t comp_rational_data_results_cntxt = {0,
+                                                                       0,
+                                                                       NULL,
+                                                                       0,
+                                                                       0};
+
 /******************************************************************************/
 /************************** Public Function Definitions ***********************/
 /******************************************************************************/
@@ -139,7 +149,11 @@ uint8_t comp_rational_data_config(comp_rational_data_config_t *config_arg)
     {
         /* Set the config. */
         comp_rational_data_localcfg = config_arg;
-
+        comp_rational_data_results_cntxt.den_algebraic_equ = 0;
+        comp_rational_data_results_cntxt.num_algebraic_equ = 0;
+        comp_rational_data_results_cntxt.parity = NULL;
+        comp_rational_data_results_cntxt.numerator = 0;
+        comp_rational_data_results_cntxt.denominator = 0;
         ret_val = COMP_DEFS_CONFIG_SUCCESS;
     }
     return ret_val;
@@ -168,6 +182,13 @@ uint8_t comp_rational_data_compute()
     return ret_val;
 }
 
+/*
+ *  Documentation in header
+ */
+comp_rational_data_result_t comp_rational_data_results()
+{
+    return comp_rational_data_results_cntxt;
+}
 /******************************************************************************/
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
@@ -196,7 +217,7 @@ uint8_t comp_rational_data_write_alg_eq(uint16_t num_eq, uint16_t den_eq)
     sprintf(local_str, "%u", num_eq);
     comp_rational_data_localcfg->storage_write(
         comp_rational_data_localcfg->tv_str_buff, value, local_str);
-    comp_rational_data_localcfg->result.num_algebraic_equ = num_eq;
+    comp_rational_data_results_cntxt.num_algebraic_equ = num_eq;
 
     value = "denominator_eq";
     /* Decode to get the string representation for the denominator equivalence
@@ -204,7 +225,7 @@ uint8_t comp_rational_data_write_alg_eq(uint16_t num_eq, uint16_t den_eq)
     sprintf(local_str, "%u", den_eq);
     comp_rational_data_localcfg->storage_write(
         comp_rational_data_localcfg->tv_str_buff, value, local_str);
-    comp_rational_data_localcfg->result.den_algebraic_equ = den_eq;
+    comp_rational_data_results_cntxt.den_algebraic_equ = den_eq;
     return ret_val;
 }
 
@@ -240,7 +261,7 @@ uint8_t comp_rational_data_parity(uint16_t p, uint16_t q)
         }
         /*Write data*/
         (void)comp_rational_data_write_parity(parity);
-        comp_rational_data_localcfg->result.parity = parity;
+        comp_rational_data_results_cntxt.parity = parity;
     }
     return ret_val;
 }
@@ -313,14 +334,14 @@ uint8_t comp_rational_data_write_rat_num(uint16_t p, uint16_t q)
     sprintf(local_str, "%u", p);
     comp_rational_data_localcfg->storage_write(
         comp_rational_data_localcfg->tv_str_buff, value, local_str);
-    comp_rational_data_localcfg->result.numerator = p;
+    comp_rational_data_results_cntxt.numerator = p;
 
     value = "denominator";
     /* Decode to get the string representation for the denominator and store.*/
     sprintf(local_str, "%u", q);
     comp_rational_data_localcfg->storage_write(
         comp_rational_data_localcfg->tv_str_buff, value, local_str);
-    comp_rational_data_localcfg->result.denominator = q;
+    comp_rational_data_results_cntxt.denominator = q;
 
     return ret_val;
 }
