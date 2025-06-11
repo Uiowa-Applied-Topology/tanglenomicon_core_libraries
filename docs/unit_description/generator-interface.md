@@ -5,7 +5,7 @@ classDiagram
     generator *-- gen_config_t
     class generator {
         <<interface>>
-        + gen_config_t config
+        - gen_config_t config
         + int gen_config(gen_config_t config)
         + int gen_generate()
     }
@@ -13,27 +13,53 @@ classDiagram
     class gen_config_t {
         <<struct>>
         + int storage_write(key, index, value)
-        + const char * storage_read(key, index)
     }
 
 
 ```
 
-# Functional Description
+## Functionality
 
-A generator library shall have a configuration data structure, the config
-structure shall minimally contain storage interface (read and write). Beyond
-required members, the members of this structure are largely unique to the
-particular library.
+### Public Structures
 
-A generator library shall have a "set" function, this function will take a
-configuration as input and configure the instance to that input.
+#### Generator Config Structure
 
-A generator library shall have a generate function, when called this function
-carries out the generation from supplied data.
+The generator config structure defines the collection of data the component
+needs for a single run. Setting a config should be considered equivalent to
+instantiating a class in a high-level language. However, in this case, there is
+only ever a single active instance of the class.
 
-The generate function is not an atomic operation, meaning more than a single
-operation is executed with more than a single output produced.
+### Public Functions
+
+#### Config Function
+
+The function will take a configuration as input and set the local config
+instance to that input. The function returns a flag indicating if the function
+was successful. This function can be considered analogous to the `init` function
+of a class in a high-level language.
+
+#### Generate Function
+
+When this function is invoked, the generation process begins. The actual
+internal functionality is specific to the specific generator. The function
+returns a flag indicating if the function was successful.
+
+The flow for a generator is modeled by the following state machine:
+
+```{mermaid-p}
+stateDiagram-v2
+    state "Get data" as gd
+    state "Generate new data" as wod
+    state "Report new data" as rv
+    state if_done <<choice>>
+
+    [*] --> gd
+    gd  -->  wod
+    wod --> rv
+    rv --> if_done
+    if_done --> [*]: Operations are complete
+    if_done --> wod: Operations are not complete
+```
 
 ```{raw} latex
     \newpage
