@@ -13,75 +13,6 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      systemfontdirs =
-        with pkgs;
-        map toString [
-          noto-fonts
-          noto-fonts-cjk-sans
-          noto-fonts-emoji
-          liberation_ttf
-          fira-code
-          fira-code-symbols
-          mplus-outline-fonts.githubRelease
-          dina-font
-          proggyfonts
-          freefont_ttf
-        ];
-
-      tex = pkgs.texlive.combine {
-        inherit (pkgs.texlive)
-          scheme-tetex
-          collection-luatex
-          adjustbox
-          amsmath
-          bbm
-          biblatex
-          capt-of
-          catchfile
-          datetime
-          doi
-          enumitem
-          environ
-          fancyhdr
-          fmtcount
-          fncychap
-          fontaxes
-          fontspec
-          framed
-          glossaries
-          graphbox
-          graphics
-          hyperref
-          ifoddpage
-          import
-          latexmk
-          lipsum
-          listings
-          mdframed
-          needspace
-          pdfcol
-          relsize
-          sauerj
-          silence
-          svg
-          tabulary
-          tcolorbox
-          tikzfill
-          titlesec
-          transparent
-          upquote
-          varwidth
-          wrapfig
-          xcharter
-          xetex
-          xstring
-          xurl
-          zref
-          commonunicode
-          newunicodechar
-          gnu-freefont
-          ;
-      };
     in
     {
 
@@ -92,7 +23,8 @@
           }
           {
             NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
-              # For sure not all of these are needed. I don't want to figure out which ones are.
+              # For sure not all of these are needed for clion.
+              # I don't want to figure out which ones are.
               pkgs.alsa-lib
               pkgs.at-spi2-atk
               pkgs.at-spi2-core
@@ -211,16 +143,11 @@
 
             buildInputs = with pkgs; [
               act
-              clang
               clang-tools
               cmake
               codespell
-              conan
               cppcheck
-              dejavu_fonts
-              dos2unix
               doxygen
-              freefont_ttf
               gcc
               gdb
               git
@@ -230,41 +157,27 @@
               imagemagick
               inkscape
               just
-              lcov
-              libxml2
-              libxslt
-              libzip
-              lmodern
               ninja
               nodePackages.prettier
               openssl
               python3
               rip2
-              rsync
               ruff
               stdenv.cc.cc.lib
-              stdenv.cc.cc # jupyter lab needs
+              stdenv.cc.cc
               svg2pdf
               taglib
-              tex
-              twemoji-color-font
+              tectonic
               uv
-              vcpkg
-              vcpkg-tool
               wget
               zip
               zlib
             ];
-            # used by xetex and mtx-fonts (context)
-            FONTCONFIG_FILE = pkgs.makeFontsConf { fontDirectories = systemfontdirs ++ [ tex.fonts ]; };
-            # used by luaotfload (lualatex)
-            OSFONTDIR = pkgs.lib.concatStringsSep "//:" systemfontdirs;
             LOCALE_ARCHIVE = "${pkgs.glibcLocales}/lib/locale/locale-archive";
 
             shellHook = ''
               export LD_LIBRARY_PATH="$NIX_LD_LIBRARY_PATH"
               export PATH=":$HOME/.local/share/JetBrains/Toolbox/scripts/:$HOME/.local/share/JetBrains/Toolbox/:$PATH"
-              unset SOURCE_DATE_EPOCH
               wget -q --spider https://google.com
 
               if [ $? -eq 0 ]; then
@@ -275,7 +188,6 @@
               fi
 
               just bootstrap
-              luaotfload-tool --cache=erase --flush-lookups --force
               source .venv/bin/activate
               echo done!
             '';

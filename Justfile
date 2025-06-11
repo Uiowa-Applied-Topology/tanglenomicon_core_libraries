@@ -41,7 +41,7 @@ pdf: bootstrap
     cp -r docs/resources/coloremoji/coloremoji docs/.build/latex
     cp docs/resources/coloremoji/coloremoji.sty docs/.build/latex
     cd docs/.build/latex && \
-    latexmk -synctex=1 -interaction=nonstopmode -file-line-error -shell-escape -lualatex tanglenomiconcorelibraries.tex
+    tectonic tanglenomiconcorelibraries.tex --keep-logs --keep-intermediates
 
 html: bootstrap
     source .venv/bin/activate && \
