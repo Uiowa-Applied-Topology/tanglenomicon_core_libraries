@@ -172,7 +172,6 @@ note_tv_t *tv_sets[]={
 size_t tv_set_lens[]={3,2,4};
 gen_montesinos_config_t tc_write_success = {
                                             &stub_write_success,
-                                            &stub_read,
                                             &att_n,
                                             tv_sets,
                                             tv_set_lens,
@@ -183,7 +182,6 @@ gen_montesinos_config_t tc_write_success = {
 
 gen_montesinos_config_t tc_write_fail = {
                                             &stub_write_fail,
-                                            &stub_read,
                                             &att_n,
                                             tv_sets,
                                             tv_set_lens,
