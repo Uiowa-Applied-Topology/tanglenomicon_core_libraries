@@ -80,25 +80,21 @@ char tv_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
 
 gen_rational_config_t tc_write_success = {5,
                                           &stub_write_dedup_success,
-                                          &stub_read,
                                           &tv,
                                           tv_str,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u,};
 gen_rational_config_t tc_write_fail    = {5,
                                           &stub_write_fail,
-                                          &stub_read,
                                           &tv,
                                           tv_str,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u,};
 gen_rational_config_t tc_null_buff     = {5,
                                           &stub_write_fail,
-                                          &stub_read,
                                           NULL,
                                           tv_str,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u,};
 gen_rational_config_t tc_null_str_buff = {5,
                                           &stub_write_fail,
-                                          &stub_read,
                                           &tv,
                                           NULL,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u,};

@@ -81,7 +81,6 @@ extern "C"
     {
         uint8_t crossingNumber;
         storage_write_funptr_t storage_write;
-        storage_read_funptr_t storage_read;
         note_tv_t *tv_n;
         char *tv_str_buff;
         size_t tv_str_buff_len;
