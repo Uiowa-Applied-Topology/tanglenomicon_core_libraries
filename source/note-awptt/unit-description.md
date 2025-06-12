@@ -63,7 +63,7 @@ C
 
 ## Implements
 
-- [Notations Interface](interface.md)
+- [Notations Interface](../../notation-interface.md)
 
 ## Uses
 
@@ -129,7 +129,7 @@ This allows components to invert read order, read from $(n-1)\to 0$, at runtime.
 
 ##### decode function
 
-The decode function takes in the linearized string form of the AWPTT and encodes
+The decode function takes in the linearized string form of the AWPTT and decodes
 it as a `note_awptt_node_t`.
 
 This process is described in the following state machines:
@@ -343,11 +343,11 @@ stateDiagram-v2
 
 #### Positive Tests
 
-##### Valid string representing a knot
+```{test-card} Valid string representing a knot
 
 A valid string representing a knot (no free bond) is fed to the function.
 
-###### Inputs:
+**Inputs:**
 
 - A valid string representing a knot.
 - A stick tree.
@@ -355,15 +355,17 @@ A valid string representing a knot (no free bond) is fed to the function.
 - A tree with a vertex that has ring number.
 - A tree with a vertex with more than one weight.
 
-###### Expected Output:
+**Expected Output:**
 
 A valid decoding of the string
 
-##### Valid string representing a tangle
+```
+
+```{test-card} Valid string representing a tangle
 
 A valid string representing a tangle (with free bond) is fed to the function.
 
-###### Inputs:
+**Inputs:**
 
 - A valid string representing a tangle with each label:
     - i
@@ -375,17 +377,20 @@ A valid string representing a tangle (with free bond) is fed to the function.
 - A tree with a vertex that has ring number.
 - A tree with a vertex with more than one weight.
 
-###### Expected Output:
+**Expected Output:**
 
 A valid decoding of the string
 
+
+```
+
 #### Negative Tests
 
-##### A malformed tree is fed to the function
+```{test-card} A malformed tree is fed to the function
 
 Various malformed trees are fed to the function.
 
-###### Inputs:
+**Inputs:**
 
 Malformed strings with the following characteristics:
 
@@ -394,19 +399,22 @@ Malformed strings with the following characteristics:
 - The string has more weights than possible.
 - An empty string.
 
-###### Expected Output:
+**Expected Output:**
 
 The function reports an error.
+
+
+```
 
 ### Encode interface
 
 #### Positive Tests
 
-##### A valid knot AWPTT is fed to the function
+```{test-card} A valid knot AWPTT is fed to the function
 
 A valid knot AWPTT (with no label) is fed to the encode function.
 
-###### Inputs:
+**Inputs:**
 
 - A valid AWPTT representing a knot.
 - A stick AWPTT.
@@ -414,15 +422,17 @@ A valid knot AWPTT (with no label) is fed to the encode function.
 - A AWPTT with a vertex that has ring number.
 - A AWPTT with a vertex with more than one weight.
 
-###### Expected Output:
+**Expected Output:**
 
 The function produces the corresponding encoded string.
 
-##### A valid tangle AWPTT is fed to the function
+```
+
+```{test-card} A valid tangle AWPTT is fed to the function
 
 A valid tangle AWPTT (with label) is fed to the encode function.
 
-###### Inputs:
+**Inputs:**
 
 - A valid AWPTT representing a tangle with each label:
     - i
@@ -434,37 +444,43 @@ A valid tangle AWPTT (with label) is fed to the encode function.
 - A AWPTT with a vertex that has ring number.
 - A AWPTT with a vertex with more than one weight.
 
-###### Expected Output:
+**Expected Output:**
 
 The function produces the corresponding encoded string.
 
+
+```
+
 #### Negative Tests
 
-##### A malformed AWPTT is passed to the function
+```{test-card} A malformed AWPTT is passed to the function
 
 A malformed AWPTT is passed to the function.
 
-###### Inputs:
+**Inputs:**
 
 - A NULL child is present
 - A NULL root is present
 - An UNINIT label is present
 
-###### Expected Output:
+**Expected Output:**
 
 The function will produce an error.
 
-##### A NULL string buffer is passed
+```
+
+```{test-card} A NULL string buffer is passed
 
 The output string buffer is a NULL pointer.
 
-###### Inputs:
+**Inputs:**
 
 - A NULL pointer buffer is passed to the function
 
-###### Expected Output:
+**Expected Output:**
 
 The function will produce an error.
+```
 
 ## Doxygen Documentation
 
