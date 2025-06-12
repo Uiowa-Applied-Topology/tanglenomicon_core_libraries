@@ -29,21 +29,13 @@
 
 /*
 
-| Flv      | NA  | NA  | Op  | Op  | Type R | Type R | Type L | Type L |
-|----------|-----|-----|-----|-----|--------|--------|--------|--------|
-| Uninit   |  0  |  0  |  0  |  0  |   0    |   0    |   0    |   0    |
-|----------|-----|-----|-----|-----|--------|--------|--------|--------|
-| L Op     |  0  |  0  |  0  |  0  |   0    |   0    |   0    |   1    |
-|----------|-----|-----|-----|-----|--------|--------|--------|--------|
-| L Tang   |  0  |  0  |  0  |  0  |   0    |   0    |   1    |   0    |
-|----------|-----|-----|-----|-----|--------|--------|--------|--------|
-| R Op     |  0  |  0  |  0  |  0  |   0    |   1    |   0    |   0    |
-|----------|-----|-----|-----|-----|--------|--------|--------|--------|
-| R Tang   |  0  |  0  |  0  |  0  |   1    |   0    |   0    |   0    |
-|----------|-----|-----|-----|-----|--------|--------|--------|--------|
-| Plus     |  0  |  0  |  0  |  1  |   0    |   0    |   0    |   0    |
-|----------|-----|-----|-----|-----|--------|--------|--------|--------|
-| Vee      |  0  |  0  |  1  |  0  |   0    |   0    |   0    |   0    |
+| Flv      | NA  | NA  | NA  | NA  | NA  | NA  | Op  | Op  |
+|----------|-----|-----|-----|-----|-----|-----|-----|-----|
+| uninit   |  0  |  0  |  0  |  0  |  0  |  0  |  0  |  0  |
+|----------|-----|-----|-----|-----|-----|-----|-----|-----|
+| Plus     |  0  |  0  |  0  |  0  |  0  |  0  |  0  |  1  |
+|----------|-----|-----|-----|-----|-----|-----|-----|-----|
+| Vee      |  0  |  0  |  0  |  0  |  0  |  0  |  1  |  0  |
 
 */
 
@@ -51,19 +43,7 @@
  * @brief
  *
  */
-#define NOTE_ATT_OP_L_TYPE_SHIFT_LEN (0x00u)
-
-/*!
- * @brief
- *
- */
-#define NOTE_ATT_OP_R_TYPE_SHIFT_LEN (0x02u)
-
-/*!
- * @brief
- *
- */
-#define NOTE_ATT_OP_SHIFT_LEN (0x04u)
+#define NOTE_ATT_OP_SHIFT_LEN (0x00u)
 
 /*!
  * @brief
@@ -87,85 +67,13 @@
  * @brief
  *
  */
-#define NOTE_ATT_TYPE_L_UNINIT (0x00u << NOTE_ATT_OP_L_TYPE_SHIFT_LEN)
-
-/*!
- * @brief
- *
- */
-#define NOTE_ATT_TYPE_L_OP (0x01u << NOTE_ATT_OP_L_TYPE_SHIFT_LEN)
-
-/*!
- * @brief
- *
- */
-#define NOTE_ATT_TYPE_L_TANG (0x02u << NOTE_ATT_OP_L_TYPE_SHIFT_LEN)
-
-/*!
- * @brief
- *
- */
-#define NOTE_ATT_TYPE_R_UNINIT (0x00u << NOTE_ATT_OP_R_TYPE_SHIFT_LEN)
-
-/*!
- * @brief
- *
- */
-#define NOTE_ATT_TYPE_R_OP (0x01u << NOTE_ATT_OP_R_TYPE_SHIFT_LEN)
-
-/*!
- * @brief
- *
- */
-#define NOTE_ATT_TYPE_R_TANG (0x02u << NOTE_ATT_OP_R_TYPE_SHIFT_LEN)
-
-/*!
- * @brief
- *
- */
 #define NOTE_ATT_CLR_OP(FLV)                                                   \
     (FLV = ((FLV) & (~(0x03u << NOTE_ATT_OP_SHIFT_LEN))))
 /*!
  * @brief
  *
  */
-#define NOTE_ATT_CLR_L_TYPE(FLV)                                               \
-    (FLV = ((FLV) & (~(0x03u << NOTE_ATT_OP_L_TYPE_SHIFT_LEN))))
-/*!
- * @brief
- *
- */
-#define NOTE_ATT_CLR_R_TYPE(FLV)                                               \
-    (FLV = ((FLV) & (~(0x03u << NOTE_ATT_OP_R_TYPE_SHIFT_LEN))))
-
-/*!
- * @brief
- *
- */
 #define NOTE_ATT_SET_OP(FLV, OP) (FLV = (((FLV) | (OP))))
-/*!
- * @brief
- *
- */
-#define NOTE_ATT_SET_L_TYPE(FLV, TYPE) (FLV = (((FLV) | (TYPE))))
-/*!
- * @brief
- *
- */
-#define NOTE_ATT_SET_R_TYPE(FLV, TYPE) (FLV = (((FLV) | (TYPE))))
-
-/*!
- * @brief
- *
- */
-#define NOTE_ATT_FLVR(OP, R_TYPE, L_TYPE) (((OP) | (R_TYPE)) | (L_TYPE))
-
-/*!
- * @brief
- *
- */
-#define NOTE_ATT_CHK_FLVR(FLVR, OP, R_TYPE, L_TYPE)                            \
-    ((FLVR) == NOTE_ATT_FLVR((OP), (R_TYPE), (L_TYPE)) ? (true) : (false))
 
 /*!
  * @brief
@@ -173,28 +81,6 @@
  */
 #define NOTE_ATT_CHK_OP(FLVR, OP)                                              \
     (((FLVR) & (0x03u << NOTE_ATT_OP_SHIFT_LEN)) == (OP) ? (true) : (false))
-
-/*!
- * @brief
- *
- */
-#define NOTE_ATT_CHK_L_TYPE(FLVR, TYPE)                                        \
-    (((FLVR) & (0x03u << NOTE_ATT_OP_L_TYPE_SHIFT_LEN)) == (TYPE) ? (true)     \
-                                                                  : (false))
-
-/*!
- * @brief
- *
- */
-#define NOTE_ATT_CHK_R_TYPE(FLVR, TYPE)                                        \
-    (((FLVR) & (0x03u << NOTE_ATT_OP_R_TYPE_SHIFT_LEN)) == (TYPE) ? (true)     \
-                                                                  : (false))
-
-/*!
- * @brief
- *
- */
-#define NOTE_ATT_FLVR_UNINIT (0x00u)
 
 /*!
  * @brief
@@ -219,11 +105,13 @@ extern "C"
     /*!
      * @brief The core structure for algebraic tangle trees.
      */
-    typedef struct
+    typedef struct note_att_node_t
     {
-        void *L_child;
-        void *R_child;
-        uint8_t flavor;
+        struct note_att_node_t *L_child;
+        struct note_att_node_t *R_child;
+        note_tv_t *L_tv;
+        note_tv_t *R_tv;
+        uint8_t operation;
     } note_att_node_t;
 #ifdef __cplusplus
 }
