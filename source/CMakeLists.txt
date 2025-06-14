@@ -19,7 +19,7 @@ add_subdirectory(gen-montesinos)
 ################################################################################
 add_subdirectory(note-twist_vector)
 add_subdirectory(note-algebraic_tangle_tree)
-add_subdirectory(note-awptt)
+add_subdirectory(note-wptt)
 
 ################################################################################
 # Add Storage Components

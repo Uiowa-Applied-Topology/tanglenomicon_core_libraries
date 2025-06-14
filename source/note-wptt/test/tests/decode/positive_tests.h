@@ -1,0 +1,10 @@
+//
+// Created by joe on 4/25/25.
+//
+
+#ifndef TEST_NOTATION_wptt_DECODE_POSITIVE_TEST_H
+#define TEST_NOTATION_wptt_DECODE_POSITIVE_TEST_H
+
+void test_decode_positive(void);
+
+#endif // TEST_NOTATION_wptt_DECODE_POSITIVE_TEST_H

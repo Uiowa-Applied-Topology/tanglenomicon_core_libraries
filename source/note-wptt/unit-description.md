@@ -10,28 +10,28 @@ abstract: A unit description for the arborescent planar tangle tree notation.
 
 ```mermaid
 classDiagram
-    note_awptt --|> notation
-    note_awptt *-- note_awptt_t
-    note_awptt_t *-- note_awptt_node_t
-    note_awptt_node_t *-- note_awptt_order_e
-    note_awptt_t *-- note_awptt_V4_label_e
+    note_wptt --|> notation
+    note_wptt *-- note_wptt_t
+    note_wptt_t *-- note_wptt_node_t
+    note_wptt_node_t *-- note_wptt_order_e
+    note_wptt_t *-- note_wptt_V4_label_e
 
-    class note_awptt_t {
+    class note_wptt_t {
         <<struct>>
-        note_awptt_node_t* root
-        note_awptt_node_t* node_buffer
-        note_awptt_V4_label_e label
+        note_wptt_node_t* root
+        note_wptt_node_t* node_buffer
+        note_wptt_V4_label_e label
         size_t node_buffer_len
     }
 
-    class note_awptt_order_e {
+    class note_wptt_order_e {
         <<enum>>
         uninit,
         forward,
         reverse
     }
 
-    class note_awptt_V4_label_e {
+    class note_wptt_V4_label_e {
         <<enum>>
         uninit,
         none,
@@ -41,13 +41,13 @@ classDiagram
         z
     }
 
-    class note_awptt_node_t {
+    class note_wptt_node_t {
         <<struct>>
-        note_awptt_node_t* children[MAX_CN]
+        note_wptt_node_t* children[MAX_CN]
         uint8_t weights[MAX_CN]
         size_t number_of_children
         uint8_t number_of_rings
-        note_awptt_order_t order
+        note_wptt_order_t order
     }
 
     class notation {
@@ -67,11 +67,11 @@ C
 
 ## Uses
 
-The AWPTT notation component does not use any other components.
+The wptt notation component does not use any other components.
 
 ## External Libraries
 
-The AWPTT notation component does not use any external libraries.
+The wptt notation component does not use any external libraries.
 
 ## Functionality
 
@@ -85,15 +85,15 @@ The interface structure for the component is designed to match the non memory
 allocating design goals of non-runner components. That means this notation
 structure contains:
 
-- A pointer to the root of the AWPTT
-- A buffer of/for nodes in the AWPTT
+- A pointer to the root of the wptt
+- A buffer of/for nodes in the wptt
 - A length for the buffer supplied to the component instance
-- A $V_4$ label for the AWPTT
+- A $V_4$ label for the wptt
 
 ##### Node structure
 
 We saw in the use-case description an outline for the important data that needs
-to be encoded in a AWPTT data structure. This data is summarized as:
+to be encoded in a wptt data structure. This data is summarized as:
 
 - Children and their cyclic order
 - Weights and their location in the cyclic order
@@ -129,8 +129,8 @@ This allows components to invert read order, read from $(n-1)\to 0$, at runtime.
 
 ##### decode function
 
-The decode function takes in the linearized string form of the AWPTT and decodes
-it as a `note_awptt_node_t`.
+The decode function takes in the linearized string form of the wptt and decodes
+it as a `note_wptt_node_t`.
 
 This process is described in the following state machines:
 
@@ -158,8 +158,8 @@ stateDiagram-v2
 
 ##### encode function
 
-The encode function takes in a `note_awptt_node_t` and encodes it into the
-linearized string form of the AWPTT.
+The encode function takes in a `note_wptt_node_t` and encodes it into the
+linearized string form of the wptt.
 
 ```mermaid
 stateDiagram-v2
@@ -268,7 +268,7 @@ stateDiagram-v2
 ###### Move active node down
 
 This function moves the active node to be a child of the current node.
-Functionally, this is the same as descending the AWPTT.
+Functionally, this is the same as descending the wptt.
 
 ```mermaid
 stateDiagram-v2
@@ -284,7 +284,7 @@ stateDiagram-v2
 ###### Move root up
 
 This function moves the active node to be a parent of the current node.
-Functionally, this is the same as ascending the AWPTT.
+Functionally, this is the same as ascending the wptt.
 
 ```mermaid
 stateDiagram-v2
@@ -410,17 +410,17 @@ The function reports an error.
 
 #### Positive Tests
 
-```{test-card} A valid knot AWPTT is fed to the function
+```{test-card} A valid knot wptt is fed to the function
 
-A valid knot AWPTT (with no label) is fed to the encode function.
+A valid knot wptt (with no label) is fed to the encode function.
 
 **Inputs:**
 
-- A valid AWPTT representing a knot.
-- A stick AWPTT.
-- A AWPTT with an essential vertex.
-- A AWPTT with a vertex that has ring number.
-- A AWPTT with a vertex with more than one weight.
+- A valid wptt representing a knot.
+- A stick wptt.
+- A wptt with an essential vertex.
+- A wptt with a vertex that has ring number.
+- A wptt with a vertex with more than one weight.
 
 **Expected Output:**
 
@@ -428,21 +428,21 @@ The function produces the corresponding encoded string.
 
 ```
 
-```{test-card} A valid tangle AWPTT is fed to the function
+```{test-card} A valid tangle wptt is fed to the function
 
-A valid tangle AWPTT (with label) is fed to the encode function.
+A valid tangle wptt (with label) is fed to the encode function.
 
 **Inputs:**
 
-- A valid AWPTT representing a tangle with each label:
+- A valid wptt representing a tangle with each label:
     - i
     - x
     - y
     - z
-- A stick AWPTT.
-- A AWPTT with an essential vertex.
-- A AWPTT with a vertex that has ring number.
-- A AWPTT with a vertex with more than one weight.
+- A stick wptt.
+- A wptt with an essential vertex.
+- A wptt with a vertex that has ring number.
+- A wptt with a vertex with more than one weight.
 
 **Expected Output:**
 
@@ -453,9 +453,9 @@ The function produces the corresponding encoded string.
 
 #### Negative Tests
 
-```{test-card} A malformed AWPTT is passed to the function
+```{test-card} A malformed wptt is passed to the function
 
-A malformed AWPTT is passed to the function.
+A malformed wptt is passed to the function.
 
 **Inputs:**
 
@@ -484,11 +484,11 @@ The function will produce an error.
 
 ## Doxygen Documentation
 
-```{doxygenfile} notation_awptt.h
+```{doxygenfile} notation_wptt.h
 
 ```
 
-```{doxygenfile} notation_awptt.c
+```{doxygenfile} notation_wptt.c
 
 ```
 

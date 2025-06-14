@@ -1,6 +1,6 @@
 
 #include "positive_tests.h"
-#include "notation_awptt.h"
+#include "notation_wptt.h"
 #include "unity.h"
 
 static void test_encode_positive_knot_1(void);
@@ -42,78 +42,78 @@ static void test_encode_positive_knot_1(void)
     char string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
     "<1 13<2(3(4(5[7 8 9 10])12(11)6))>>";
 
-    note_awptt_node_t S_7 = {
+    note_wptt_node_t S_7 = {
                             {NULL},
                             {7},
                             0,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_8 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_8 = {
                             {&S_7},
                             {0, 8},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_9 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_9 = {
                             {&S_8},
                             {0, 9},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_10 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_10 = {
                             {&S_9},
                             {0, 10},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_5 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_5 = {
                             {&S_10},
                             {5},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t P_12 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t P_12 = {
                             {NULL},
                             {11},
                             0,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t P_46 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t P_46 = {
                             {&S_5, &P_12},
                             {4, 12, 6},
                             2,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
+                            NOTE_wptt_ORDER_FORWARD};
 
-    note_awptt_node_t P_3 = {
+    note_wptt_node_t P_3 = {
                             {&P_46},
                             {3},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
+                            NOTE_wptt_ORDER_FORWARD};
 
-    note_awptt_node_t P_2 = {
+    note_wptt_node_t P_2 = {
                             {&P_3},
                             {0},
                             1,
                             2,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t P_1 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t P_1 = {
                             {&P_2},
                             {13},
                             1,
                             1,
-                            NOTE_AWPTT_ORDER_FORWARD};
+                            NOTE_wptt_ORDER_FORWARD};
 
-    note_awptt_t note_awptt_valid = {
+    note_wptt_t note_wptt_valid = {
                             &P_1,
                             {NULL,0,0},
-                            NOTE_AWPTT_V4_LABEL_NONE,
+                            NOTE_wptt_V4_LABEL_NONE,
                             };
     /* clang-format on */
     char test_string[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u];
-    retval = note_awptt_encode(
-        note_awptt_valid, test_string, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
+    retval = note_wptt_encode(
+        note_wptt_valid, test_string, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
     TEST_ASSERT_EQUAL(NOTE_DEFS_ENCODE_SUCCESS, retval);
     TEST_ASSERT_EQUAL_STRING(string, test_string);
 }
@@ -136,41 +136,41 @@ static void test_encode_positive_knot_2(void)
     "[7 8 9 10]";
 
 
-    note_awptt_node_t S_7 = {
+    note_wptt_node_t S_7 = {
                             {NULL},
                             {7},
                             0,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_8 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_8 = {
                             {&S_7},
                             {0, 8},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_9 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_9 = {
                             {&S_8},
                             {0, 9},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_10 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_10 = {
                             {&S_9},
                             {0, 10},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
+                            NOTE_wptt_ORDER_FORWARD};
 
-    note_awptt_t note_awptt_valid = {
+    note_wptt_t note_wptt_valid = {
                             &S_10,
                             {NULL,0,0},
-                            NOTE_AWPTT_V4_LABEL_NONE,
+                            NOTE_wptt_V4_LABEL_NONE,
                             };
     /* clang-format on */
 
     char test_string[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u] = "";
-    retval = note_awptt_encode(
-        note_awptt_valid, test_string, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
+    retval = note_wptt_encode(
+        note_wptt_valid, test_string, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
     TEST_ASSERT_EQUAL(NOTE_DEFS_ENCODE_SUCCESS, retval);
     TEST_ASSERT_EQUAL_STRING(string, test_string);
 }
@@ -180,7 +180,7 @@ static void test_encode_positive_knot_2(void)
  * - A tree with an essential vertex.
  * - A tree with a vertex that has ring number.
  * - A tree with a vertex with more than one weight.
- * - A valid AWPTT representing a tangle with each label:
+ * - A valid wptt representing a tangle with each label:
  *     - i
  */
 
@@ -195,78 +195,78 @@ static void test_encode_positive_tangle_1(void)
     char string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
     "i<1 13<2(3(4(5[7 8 9 10])12(11)6))>>";
 
-    note_awptt_node_t S_7 = {
+    note_wptt_node_t S_7 = {
                             {NULL},
                             {7},
                             0,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_8 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_8 = {
                             {&S_7},
                             {0, 8},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_9 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_9 = {
                             {&S_8},
                             {0, 9},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_10 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_10 = {
                             {&S_9},
                             {0, 10},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_5 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_5 = {
                             {&S_10},
                             {5},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t P_12 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t P_12 = {
                             {NULL},
                             {11},
                             0,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t P_46 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t P_46 = {
                             {&S_5, &P_12},
                             {4, 12, 6},
                             2,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
+                            NOTE_wptt_ORDER_FORWARD};
 
-    note_awptt_node_t P_3 = {
+    note_wptt_node_t P_3 = {
                             {&P_46},
                             {3},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
+                            NOTE_wptt_ORDER_FORWARD};
 
-    note_awptt_node_t P_2 = {
+    note_wptt_node_t P_2 = {
                             {&P_3},
                             {0},
                             1,
                             2,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t P_1 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t P_1 = {
                             {&P_2},
                             {13},
                             1,
                             1,
-                            NOTE_AWPTT_ORDER_FORWARD};
+                            NOTE_wptt_ORDER_FORWARD};
 
-    note_awptt_t note_awptt_valid = {
+    note_wptt_t note_wptt_valid = {
                             &P_1,
                             {NULL,0,0},
-                            NOTE_AWPTT_V4_LABEL_I,
+                            NOTE_wptt_V4_LABEL_I,
                             };
     /* clang-format on */
     char test_string[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u] = "";
-    retval = note_awptt_encode(
-        note_awptt_valid, test_string, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
+    retval = note_wptt_encode(
+        note_wptt_valid, test_string, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
     TEST_ASSERT_EQUAL(NOTE_DEFS_ENCODE_SUCCESS, retval);
     TEST_ASSERT_EQUAL_STRING(string, test_string);
 }
@@ -274,7 +274,7 @@ static void test_encode_positive_tangle_1(void)
 /****************************** Test 2 Data ***********************************/
 /*
  * - A valid string representing a knot.
- * - A valid AWPTT representing a tangle with each label:
+ * - A valid wptt representing a tangle with each label:
  *     - x
  */
 
@@ -291,41 +291,41 @@ static void test_encode_positive_tangle_2(void)
     "x[7 8 9 10]";
 
 
-    note_awptt_node_t S_7 = {
+    note_wptt_node_t S_7 = {
                             {NULL},
                             {7},
                             0,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_8 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_8 = {
                             {&S_7},
                             {0, 8},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_9 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_9 = {
                             {&S_8},
                             {0, 9},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_10 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_10 = {
                             {&S_9},
                             {0, 10},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
+                            NOTE_wptt_ORDER_FORWARD};
 
-    note_awptt_t note_awptt_valid = {
+    note_wptt_t note_wptt_valid = {
                             &S_10,
                             {NULL,0,0},
-                            NOTE_AWPTT_V4_LABEL_X,
+                            NOTE_wptt_V4_LABEL_X,
                             };
     /* clang-format on */
 
     char test_string[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u];
-    retval = note_awptt_encode(
-        note_awptt_valid, test_string, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
+    retval = note_wptt_encode(
+        note_wptt_valid, test_string, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
     TEST_ASSERT_EQUAL(NOTE_DEFS_ENCODE_SUCCESS, retval);
     TEST_ASSERT_EQUAL_STRING(string, test_string);
 }
@@ -335,7 +335,7 @@ static void test_encode_positive_tangle_2(void)
  * - A tree with an essential vertex.
  * - A tree with a vertex that has ring number.
  * - A tree with a vertex with more than one weight.
- * - A valid AWPTT representing a tangle with each label:
+ * - A valid wptt representing a tangle with each label:
  *     - y
  */
 
@@ -350,78 +350,78 @@ static void test_encode_positive_tangle_3(void)
     char string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
     "y<1 13<2(3(4(5[7 8 9 10])12(11)6))>>";
 
-    note_awptt_node_t S_7 = {
+    note_wptt_node_t S_7 = {
                             {NULL},
                             {7},
                             0,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_8 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_8 = {
                             {&S_7},
                             {0, 8},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_9 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_9 = {
                             {&S_8},
                             {0, 9},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_10 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_10 = {
                             {&S_9},
                             {0, 10},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_5 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_5 = {
                             {&S_10},
                             {5},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t P_12 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t P_12 = {
                             {NULL},
                             {11},
                             0,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t P_46 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t P_46 = {
                             {&S_5, &P_12},
                             {4, 12, 6},
                             2,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
+                            NOTE_wptt_ORDER_FORWARD};
 
-    note_awptt_node_t P_3 = {
+    note_wptt_node_t P_3 = {
                             {&P_46},
                             {3},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
+                            NOTE_wptt_ORDER_FORWARD};
 
-    note_awptt_node_t P_2 = {
+    note_wptt_node_t P_2 = {
                             {&P_3},
                             {0},
                             1,
                             2,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t P_1 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t P_1 = {
                             {&P_2},
                             {13},
                             1,
                             1,
-                            NOTE_AWPTT_ORDER_FORWARD};
+                            NOTE_wptt_ORDER_FORWARD};
 
-    note_awptt_t note_awptt_valid = {
+    note_wptt_t note_wptt_valid = {
                             &P_1,
                             {NULL,0,0},
-                            NOTE_AWPTT_V4_LABEL_Y,
+                            NOTE_wptt_V4_LABEL_Y,
                             };
     /* clang-format on */
     char test_string[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u];
-    retval = note_awptt_encode(
-        note_awptt_valid, test_string, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
+    retval = note_wptt_encode(
+        note_wptt_valid, test_string, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
     TEST_ASSERT_EQUAL(NOTE_DEFS_ENCODE_SUCCESS, retval);
     TEST_ASSERT_EQUAL_STRING(string, test_string);
 }
@@ -430,7 +430,7 @@ static void test_encode_positive_tangle_3(void)
 /*
  * - A valid string representing a knot.
  *
- * - A valid AWPTT representing a tangle with each label:
+ * - A valid wptt representing a tangle with each label:
  *     - z
  */
 
@@ -447,41 +447,41 @@ static void test_encode_positive_tangle_4(void)
     "z[7 8 9 10]";
 
 
-    note_awptt_node_t S_7 = {
+    note_wptt_node_t S_7 = {
                             {NULL},
                             {7},
                             0,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_8 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_8 = {
                             {&S_7},
                             {0, 8},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_9 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_9 = {
                             {&S_8},
                             {0, 9},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
-    note_awptt_node_t S_10 = {
+                            NOTE_wptt_ORDER_FORWARD};
+    note_wptt_node_t S_10 = {
                             {&S_9},
                             {0, 10},
                             1,
                             0,
-                            NOTE_AWPTT_ORDER_FORWARD};
+                            NOTE_wptt_ORDER_FORWARD};
 
-    note_awptt_t note_awptt_valid = {
+    note_wptt_t note_wptt_valid = {
                             &S_10,
                             {NULL,0,0},
-                            NOTE_AWPTT_V4_LABEL_Z,
+                            NOTE_wptt_V4_LABEL_Z,
                             };
     /* clang-format on */
 
     char test_string[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u];
-    retval = note_awptt_encode(
-        note_awptt_valid, test_string, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
+    retval = note_wptt_encode(
+        note_wptt_valid, test_string, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
     TEST_ASSERT_EQUAL(NOTE_DEFS_ENCODE_SUCCESS, retval);
     TEST_ASSERT_EQUAL_STRING(string, test_string);
 }

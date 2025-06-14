@@ -2,10 +2,10 @@
 // Created by joe on 4/25/25.
 //
 #include "negative_tests.h"
-#include "notation_awptt.h"
+#include "notation_wptt.h"
 #include "unity.h"
 
-extern bool trees_equal(const note_awptt_t *tree1, const note_awptt_t *tree2);
+extern bool trees_equal(const note_wptt_t *tree1, const note_wptt_t *tree2);
 static void test_decode_negative_test_1(void);
 static void test_decode_negative_test_2(void);
 static void test_decode_negative_test_3(void);
@@ -31,16 +31,16 @@ void test_decode_negative_test_1()
     /* clang-format off */
     char string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
     "";
-    struct note_awptt_node_t  note_awptt_node[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {NULL};
-    note_awptt_node_buffer_t buffer = {(note_awptt_node_t*)&note_awptt_node,
+    struct note_wptt_node_t  note_wptt_node[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {NULL};
+    note_wptt_node_buffer_t buffer = {(note_wptt_node_t*)&note_wptt_node,
                                         UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                         0};
-    note_awptt_t note_awptt = {
+    note_wptt_t note_wptt = {
                                 NULL,
                                 buffer,
-                                NOTE_AWPTT_V4_LABEL_UNINIT};
+                                NOTE_wptt_V4_LABEL_UNINIT};
 
-    retval = note_awptt_decode(string, &note_awptt);
+    retval = note_wptt_decode(string, &note_wptt);
     TEST_ASSERT_EQUAL(NOTE_DEFS_DECODE_FAIL, 0x01u & retval);
 }
 /****************************** Test 1 Data ***********************************/
@@ -55,16 +55,16 @@ void test_decode_negative_test_2()
     /* clang-format off */
     char string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
     "(";
-    struct note_awptt_node_t  note_awptt_node[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {NULL};
-    note_awptt_node_buffer_t buffer = {(note_awptt_node_t*)&note_awptt_node,
+    struct note_wptt_node_t  note_wptt_node[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {NULL};
+    note_wptt_node_buffer_t buffer = {(note_wptt_node_t*)&note_wptt_node,
                                         UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                         0};
-    note_awptt_t note_awptt = {
+    note_wptt_t note_wptt = {
                                 NULL,
                                 buffer,
-                                NOTE_AWPTT_V4_LABEL_UNINIT};
+                                NOTE_wptt_V4_LABEL_UNINIT};
 
-    retval = note_awptt_decode(string, &note_awptt);
+    retval = note_wptt_decode(string, &note_wptt);
     TEST_ASSERT_EQUAL(NOTE_DEFS_DECODE_FAIL, 0x01u & retval);
 }
 /****************************** Test 1 Data ***********************************/
@@ -79,16 +79,16 @@ void test_decode_negative_test_3()
     /* clang-format off */
     char string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
     "x(4 *)";
-    struct note_awptt_node_t  note_awptt_node[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {NULL};
-    note_awptt_node_buffer_t buffer = {(note_awptt_node_t*)&note_awptt_node,
+    struct note_wptt_node_t  note_wptt_node[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {NULL};
+    note_wptt_node_buffer_t buffer = {(note_wptt_node_t*)&note_wptt_node,
                                         UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                         0};
-    note_awptt_t note_awptt = {
+    note_wptt_t note_wptt = {
                                 NULL,
                                 buffer,
-                                NOTE_AWPTT_V4_LABEL_UNINIT};
+                                NOTE_wptt_V4_LABEL_UNINIT};
 
-    retval = note_awptt_decode(string, &note_awptt);
+    retval = note_wptt_decode(string, &note_wptt);
     TEST_ASSERT_EQUAL(NOTE_DEFS_DECODE_FAIL, 0x01u & retval);
 }
 /****************************** Test 1 Data ***********************************/
@@ -103,15 +103,15 @@ void test_decode_negative_test_4()
     /* clang-format off */
     char string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
     "x(4 4)";
-    struct note_awptt_node_t  note_awptt_node[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {NULL};
-    note_awptt_node_buffer_t buffer = {(note_awptt_node_t*)&note_awptt_node,
+    struct note_wptt_node_t  note_wptt_node[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {NULL};
+    note_wptt_node_buffer_t buffer = {(note_wptt_node_t*)&note_wptt_node,
                                         UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                         0};
-    note_awptt_t note_awptt = {
+    note_wptt_t note_wptt = {
                                 NULL,
                                 buffer,
-                                NOTE_AWPTT_V4_LABEL_UNINIT};
+                                NOTE_wptt_V4_LABEL_UNINIT};
 
-    retval = note_awptt_decode(string, &note_awptt);
+    retval = note_wptt_decode(string, &note_wptt);
     TEST_ASSERT_EQUAL(NOTE_DEFS_DECODE_FAIL, 0x01u & retval);
 }

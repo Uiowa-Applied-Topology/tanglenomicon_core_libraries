@@ -50,7 +50,7 @@ C
 
 ## Implements
 
--   [Generator Interface](../../generator-interface.md)
+- [Generator Interface](../../generator-interface.md)
 
 ## Uses
 
@@ -72,10 +72,10 @@ tangle trees from a collection of lists of twist vectors.
 
 This includes:
 
--   An integer representation of the target crossing number.
--   A notation structure for an algebraic tangle tree.
--   A pointer to a multidimensional array of twist vectors.
--   A string buffer for holding the stringified algebraic tangle tree.
+- An integer representation of the target crossing number.
+- A notation structure for an algebraic tangle tree.
+- A pointer to a multidimensional array of twist vectors.
+- A string buffer for holding the stringified algebraic tangle tree.
 
 ### Public Functions
 
@@ -261,6 +261,3 @@ The algebraic tangle trees:
 -  +[3 3 0]+[2 2 1][4 4 2]
 
 ```
-
-
-

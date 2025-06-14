@@ -7,7 +7,7 @@ contact: joe@joe-starr.com
 abstract: A use case description for the Weighted Planar Trees Notation.
 ---
 
-# Use Case: Arborescent Weighted Planar Tree Notation (AWPTT)
+# Use Case: Arborescent Weighted Planar Tree Notation (wptt)
 
 ## Functionality
 

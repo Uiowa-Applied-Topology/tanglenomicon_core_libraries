@@ -84,11 +84,11 @@ and right child nodes and second, pointers for left and right twist vector leaf
 nodes. Additionally, each node must contain an operation, either $+$ or $\vee$.
 This operation data is stored as a bit field.
 
-| Operation | NA | NA | NA | NA | NA | NA | Op | Op |
-|-----------|----|----|----|----|----|----|----|----|
-| uninit    | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  |
-| Plus      | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 1  |
-| Vee       | 0  | 0  | 0  | 0  | 0  | 0  | 1  | 0  |
+| Operation | NA  | NA  | NA  | NA  | NA  | NA  | Op  | Op  |
+| --------- | --- | --- | --- | --- | --- | --- | --- | --- |
+| uninit    | 0   | 0   | 0   | 0   | 0   | 0   | 0   | 0   |
+| Plus      | 0   | 0   | 0   | 0   | 0   | 0   | 0   | 1   |
+| Vee       | 0   | 0   | 0   | 0   | 0   | 0   | 1   | 0   |
 
 ### Public Functions
 
