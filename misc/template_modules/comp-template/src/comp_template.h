@@ -28,21 +28,37 @@
 /*************************** Typedefs *****************************************/
 /******************************************************************************/
 
-/******************************************************************************/
-/************************** Local Variables ***********************************/
-/******************************************************************************/
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
-/*!
- * @brief The local configuration of the rational comp module.
- *
- */
-static comp_template_config_t *comp_template_localcfg = NULL;
+    /*!
+     * @brief The type definition for configuring the template computation.
+     *
+     */
+    typedef struct
+    {
+    } comp_template_result_t;
+#ifdef __cplusplus
+}
+#endif
 
-/*!
- * @brief The local configuration of the rational comp module.
- *
- */
-static comp_template_results_t comp_results_localcntxt;
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+    /*!
+     * @brief The type definition for configuring the template computation.
+     *
+     */
+    typedef struct
+    {
+    } comp_template_config_t;
+#ifdef __cplusplus
+}
+#endif
 
 /******************************************************************************/
 /*************************** Public Function Declarations *********************/
@@ -75,16 +91,19 @@ extern "C"
 }
 #endif
 
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
     /*!
-     * @brief A public function, calling this retrieves the results context.
+     * @brief A public function, calling this executes the computation on the
+     * configured tangle.
      * @return uint8_t Generation status info.
      */
-    comp_template_results_t comp_template_compute();
+    const comp_template_result_t* comp_template_result();
 #ifdef __cplusplus
 }
 #endif
+
 #endif /* end COMPUTATION_template_H */

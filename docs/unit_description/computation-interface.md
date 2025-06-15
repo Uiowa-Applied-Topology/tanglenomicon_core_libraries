@@ -1,6 +1,7 @@
 # Unit Description: Computation Interface
 
 ```{mermaid-p}
+```mermaid
 classDiagram
     computation *-- comp_config_t
     comp_config_t *-- comp_result_t
@@ -9,12 +10,11 @@ classDiagram
         - comp_config_t config
         + int comp_config(comp_config_t config)
         + int comp_compute()
-        + comp_result_t comp_results()
+        + comp_result_t comp_result()
     }
 
     class comp_config_t {
         <<struct>>
-        + comp_results_t result
         + int *storage_write(key, index, value)
     }
 
@@ -24,34 +24,34 @@ classDiagram
 
 ```
 
-#### Functionality
+## Functionality
 
-##### Public Structures
+### Public Structures
 
-###### Computation Config Structure
+#### Computation Config Structure
 
 The computation config structure defines the collection of data the component
 needs for a single run. Setting a config should be considered equivalent to
 instantiating a class in a high-level language. However, in this case, there is
 only ever a single active instance of the class.
 
-###### Computation Result Structure
+#### Computation Result Structure
 
 The computation result structure defines the collection of data the component
 will produce in a single run. This is used as an alternative to the write
 interface, allowing the component to be used internally in other computation or
 generator components.
 
-##### Public Functions
+### Public Functions
 
-###### Config Function
+#### Config Function
 
 The function will take a configuration as input and set the local config
 instance to that input. The function returns a flag indicating if the function
 was successful. This function can be considered analogous to the `init` function
 of a class in a high-level language.
 
-###### Compute Function
+#### Compute Function
 
 When this function is invoked, the computation process begins. The actual
 internal functionality is specific to the specific computation. The function
@@ -69,6 +69,12 @@ stateDiagram-v2
     wod --> rv
     rv  -->  [*]
 ```
+#### Result Function
+
+When this function is invoked, the result of the computation process is
+reported. The actual internal functionality is specific to the specific
+computation.
+
 
 ```{raw} latex
     \newpage

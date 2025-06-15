@@ -81,9 +81,9 @@ graph TD
     F -->|Validation| D
 ```
 
-This methodology allows us to have high traceability, meaning we can track
-our features through the development cycle. This allows us to justify every
-decision we made in the process.
+This methodology allows us to have high traceability, meaning we can track our
+features through the development cycle. This allows us to justify every decision
+we made in the process.
 
 ## Project Structure
 
