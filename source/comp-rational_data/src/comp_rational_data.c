@@ -213,7 +213,8 @@ uint8_t comp_rational_data_compute()
 const comp_rational_data_result_t *comp_rational_data_result()
 {
 
-    const comp_rational_data_result_t *ret_val = NULL;;
+    const comp_rational_data_result_t *ret_val = NULL;
+    ;
     if (comp_rational_data_localcfg == NULL)
     {
         ret_val = NULL;

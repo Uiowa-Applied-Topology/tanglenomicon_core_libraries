@@ -82,7 +82,7 @@ typedef struct note_wptt_decode_char_dic_t
 STATIC_INLINE_UINT8 note_wptt_decode_push_node();
 STATIC_INLINE note_wptt_V4_label_e note_wptt_decode_get_v4_label(char label);
 STATIC_INLINE bool note_wptt_decode_check_charset(const char *valid_chars,
-                                                   const char str);
+                                                  const char str);
 STATIC_INLINE_UINT8 note_wptt_decode_add_child();
 STATIC_INLINE_UINT8 note_wptt_decode_space_handler(char **str);
 STATIC_INLINE_UINT8 note_wptt_decode_opn_p_handler(char **str);
@@ -97,24 +97,24 @@ STATIC_INLINE bool note_wptt_encode_stick_check(note_wptt_node_t *active_node_p)
 STATIC_INLINE_UINT8 note_wptt_encode_get_child_ordered_idx(
     const note_wptt_node_t *active_node_p);
 STATIC_INLINE_UINT8 note_wptt_encode_insert_label(note_wptt_V4_label_e label,
-                                                   char **str_p,
-                                                   const char *buffer_end_p);
-
-STATIC_INLINE_UINT8 note_wptt_encode_insert_char(char new_char,
                                                   char **str_p,
                                                   const char *buffer_end_p);
 
-STATIC_INLINE_UINT8 note_wptt_encode_insert_int(int8_t new_int,
+STATIC_INLINE_UINT8 note_wptt_encode_insert_char(char new_char,
                                                  char **str_p,
                                                  const char *buffer_end_p);
 
+STATIC_INLINE_UINT8 note_wptt_encode_insert_int(int8_t new_int,
+                                                char **str_p,
+                                                const char *buffer_end_p);
+
 STATIC_INLINE_UINT8 note_wptt_encode_insert_space(char **str_p,
-                                                   const char *buffer_start_p,
-                                                   const char *buffer_end_p);
+                                                  const char *buffer_start_p,
+                                                  const char *buffer_end_p);
 
 STATIC_INLINE_UINT8 note_wptt_encode_insert_stick(note_wptt_node_t *active_node_p,
-                                                   char **str_p,
-                                                   const char *buffer_end_p);
+                                                  char **str_p,
+                                                  const char *buffer_end_p);
 
 STATIC_INLINE_UINT8 note_wptt_encode_complete_active_node(
     const note_wptt_node_t *active_node_p,
@@ -188,8 +188,7 @@ uint8_t note_wptt_decode(char *str, note_wptt_t *wptt)
         retval = NOTE_STATUS_BLDR(
             NOTE_DEFS_DECODE_FAIL, NOTE_wptt_DECODE_NULL_DEST);
     }
-    else if ((NULL == wptt->node_buffer.buffer) ||
-             (0 == wptt->node_buffer.size))
+    else if ((NULL == wptt->node_buffer.buffer) || (0 == wptt->node_buffer.size))
     {
         retval = NOTE_STATUS_BLDR(
             NOTE_DEFS_DECODE_FAIL, NOTE_wptt_DECODE_BUFFER_ERROR);
@@ -265,15 +264,13 @@ uint8_t note_wptt_encode(note_wptt_t wptt, char *str, size_t buffer_size)
     {
         buffer_end_p = str + (buffer_size - 1);
         buffer_start_p = str;
-        retval |= note_wptt_encode_insert_label(
-            wptt.label, &str, buffer_end_p);
+        retval |= note_wptt_encode_insert_label(wptt.label, &str, buffer_end_p);
         /*While stack is not empty and string buffer has space*/
         while ((0 < wptt_stack_len) && (str < buffer_end_p) &&
                (NOTE_DEFS_ENCODE_SUCCESS == retval))
         {
 
-            note_wptt_node_t *active_node_p =
-                wptt_node_stack[wptt_stack_len - 1];
+            note_wptt_node_t *active_node_p = wptt_node_stack[wptt_stack_len - 1];
 
             /*Do basic error checking.*/
             if (NULL == active_node_p)
@@ -290,8 +287,8 @@ uint8_t note_wptt_encode(note_wptt_t wptt, char *str, size_t buffer_size)
             }
             else
             {
-                size_t ordered_child_idx =
-                    note_wptt_encode_get_child_ordered_idx(active_node_p);
+                size_t ordered_child_idx = note_wptt_encode_get_child_ordered_idx(
+                    active_node_p);
                 /*Check if active node is complete*/
                 if (active_node_p->number_of_children <
                     child_idx_stack[wptt_stack_len - 1])
@@ -392,7 +389,7 @@ STATIC_INLINE note_wptt_V4_label_e note_wptt_decode_get_v4_label(char label)
  * @return The truthiness of if the character is one of the valid characters.
  */
 STATIC_INLINE bool note_wptt_decode_check_charset(const char *valid_chars,
-                                                   const char str_char)
+                                                  const char str_char)
 {
     bool retval = false;
     size_t i;
@@ -529,8 +526,7 @@ STATIC_INLINE_UINT8 note_wptt_decode_opn_a_handler(char **str)
         }
         else
         {
-            note_wptt_node_t *active_node_p =
-                wptt_node_stack[wptt_stack_len - 1];
+            note_wptt_node_t *active_node_p = wptt_node_stack[wptt_stack_len - 1];
             active_node_p->number_of_rings = strtol(
                 *str, str, NOTE_wptt_INT_BASE);
         }
@@ -637,8 +633,7 @@ STATIC_INLINE_UINT8 note_wptt_decode_add_child()
         /*Check if the active node is the root*/
         if (1 < wptt_stack_len)
         {
-            note_wptt_node_t *active_node_p =
-                wptt_node_stack[wptt_stack_len - 2];
+            note_wptt_node_t *active_node_p = wptt_node_stack[wptt_stack_len - 2];
 
             /*Add child to active node*/
             active_node_p->children[active_node_p->number_of_children] =
@@ -708,8 +703,8 @@ STATIC_INLINE_UINT8 note_wptt_encode_get_child_ordered_idx(
  * @return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_encode_insert_stick(note_wptt_node_t *active_node_p,
-                                                   char **str_p,
-                                                   const char *buffer_end_p)
+                                                  char **str_p,
+                                                  const char *buffer_end_p)
 {
     uint8_t retval = NOTE_DEFS_ENCODE_FAIL;
     uint8_t weights[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {0};
@@ -749,8 +744,8 @@ STATIC_INLINE_UINT8 note_wptt_encode_insert_stick(note_wptt_node_t *active_node_
  * @return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_encode_insert_label(note_wptt_V4_label_e label,
-                                                   char **str_p,
-                                                   const char *buffer_end_p)
+                                                  char **str_p,
+                                                  const char *buffer_end_p)
 {
     uint8_t retval = NOTE_DEFS_ENCODE_SUCCESS;
     switch (label)
@@ -798,8 +793,8 @@ STATIC_INLINE_UINT8 note_wptt_encode_insert_label(note_wptt_V4_label_e label,
  * @return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_encode_insert_space(char **str_p,
-                                                   const char *buffer_start_p,
-                                                   const char *buffer_end_p)
+                                                  const char *buffer_start_p,
+                                                  const char *buffer_end_p)
 {
     uint8_t retval = NOTE_DEFS_ENCODE_FAIL;
     /*Check if there is room in string buffer*/
@@ -830,8 +825,8 @@ STATIC_INLINE_UINT8 note_wptt_encode_insert_space(char **str_p,
  * @return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_encode_insert_char(char new_char,
-                                                  char **str_p,
-                                                  const char *buffer_end_p)
+                                                 char **str_p,
+                                                 const char *buffer_end_p)
 {
     uint8_t retval = NOTE_DEFS_ENCODE_FAIL;
     if ((*str_p + 1) < buffer_end_p)
@@ -858,8 +853,8 @@ STATIC_INLINE_UINT8 note_wptt_encode_insert_char(char new_char,
  * @return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_encode_insert_int(int8_t new_int,
-                                                 char **str_p,
-                                                 const char *buffer_end_p)
+                                                char **str_p,
+                                                const char *buffer_end_p)
 {
     uint8_t retval = NOTE_DEFS_ENCODE_FAIL;
     size_t local_offset = 0;

@@ -1,6 +1,5 @@
 # Unit Description: Computation Interface
 
-
 ```mermaid
 classDiagram
     computation *-- comp_config_t
@@ -69,12 +68,12 @@ stateDiagram-v2
     wod --> rv
     rv  -->  [*]
 ```
+
 #### Result Function
 
 When this function is invoked, the result of the computation process is
 reported. The actual internal functionality is specific to the specific
 computation.
-
 
 ```{raw} latex
     \newpage

@@ -139,9 +139,8 @@ extern "C"
      * computation
      * @return comp_rational_data_result_t Computation results.
      */
-    const comp_rational_data_result_t *  comp_rational_data_result();
+    const comp_rational_data_result_t *comp_rational_data_result();
 #ifdef __cplusplus
 }
 #endif
 #endif /* end COMPUTATION_RATIONAL_DATA_H */
-
