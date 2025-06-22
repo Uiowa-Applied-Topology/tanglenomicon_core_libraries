@@ -2,7 +2,7 @@
 
 #### Class Diagram
 
-```{mermaid-p}
+```mermaid
 classDiagram
     notation *-- note_t
     class notation {

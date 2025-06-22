@@ -46,7 +46,7 @@ returns a flag indicating if the function was successful.
 
 The flow for a generator is modeled by the following state machine:
 
-```{mermaid-p}
+```mermaid}
 stateDiagram-v2
     state "Get data" as gd
     state "Generate new data" as wod

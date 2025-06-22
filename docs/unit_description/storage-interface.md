@@ -2,7 +2,7 @@
 
 ## Class Diagram
 
-```{mermaid-p}
+```mermaid}
 classDiagram
     class storage {
         <<interface>>
