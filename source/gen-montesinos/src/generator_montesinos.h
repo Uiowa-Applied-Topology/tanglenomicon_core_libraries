@@ -74,7 +74,6 @@ extern "C"
     typedef struct
     {
         storage_write_funptr_t storage_write;
-        storage_read_funptr_t storage_read;
         note_att_t *att_n;
         note_tv_t **tv_sets;
         size_t *tv_set_lens;

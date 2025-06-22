@@ -14,38 +14,40 @@ A block diagram for the component under development
 
 ```mermaid
 classDiagram
-    comp_template_data --|> computation
-    comp_template_data_config_t --|> notation_template
-    comp_template_data_config_t --|> comp_config_t
-    comp_template_data *-- comp_template_config_t
+    comp_template --|> computation
+    comp_template_config_t --|> notation_template
+    comp_template_config_t --|> comp_config_t
+    comp_template_result_t --|> comp_result_t
+    comp_template *-- comp_template_config_t
+    comp_template *-- comp_template_result_t
 
     class computation {
         <<interface>>
     }
 
     class comp_template {
-<<>>
-}
+    <<>>
+    }
 
-class notation_template{
-<<>>
-}
+    class notation_template{
+    <<>>
+    }
 
-class comp_template_config_t {
-<<struct>>
-- notation_template
+    class comp_template_config_t {
+    <<struct>>
+    - notation_template
 
-}
+    }
+    class comp_template_result_t {
+    <<struct>>
+    - notation_template
 
-class comp_config_t {
-<<interface>>
+    }
 
-}
+    class comp_config_t {
+    <<interface>>
 
-class comp__t {
-<<interface>>
-
-}
+    }
 
 
 ```
@@ -67,13 +69,13 @@ A list of interfaces implemented by the feature.
 ## Uses
 
 ```{note}
-A list of compnents and libraries used by the feature.
+A list of components and libraries used by the feature.
 ```
 
 ## External Libraries
 
 ```{note}
-A list of external compnents and libraries used by the feature.
+A list of external components and libraries used by the feature.
 ```
 
 ## Functionality
@@ -88,27 +90,30 @@ A list of external compnents and libraries used by the feature.
 A struct description of the computation config.
 ```
 
-##### results structure
+##### result structure
 
 ```
-A struct description of the computation results.
+A struct description of the computation config.
 ```
 
-#### comp_config function
+#### Functions
+
+##### comp_config function
 
 ```{note}
-A function description for the config setting interface.
+A function description for the config interface.
 ```
 
-#### comp_compute function
+##### comp_compute function
 
 ```{note}
 A function description for the compute interface.
 ```
-#### comp_results function
+
+##### comp_result function
 
 ```{note}
-A function description for the results context interface.
+A function description for the result interface.
 ```
 
 ### Private
@@ -159,7 +164,7 @@ A list/description of input for the test.
 ###### Expected Output:
 
 ```{note}
-A description of what ourput is expected to be for the test.
+A description of what output is expected to be for the test.
 ```
 
 #### Negative Tests
@@ -181,6 +186,16 @@ A description of the goal of the unit test and how it will be carried out.
 
 ```{note}
 A list/description of input for the test.
+```
+
+## Doxygen Documentation
+
+```{doxygenfile} template.h
+
+```
+
+```{doxygenfile} template.c
+
 ```
 
 ## Bibliography

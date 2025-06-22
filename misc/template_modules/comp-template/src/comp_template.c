@@ -26,48 +26,16 @@
 /************************** Typedefs ******************************************/
 /******************************************************************************/
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
-    /*!
-     * @brief The type definition for configuring the rational data computation.
-     *
-     */
-    typedef struct
-    {
-
-    } comp_template_result_t;
-#ifdef __cplusplus
-}
-#endif
-
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
-    /*!
-     * @brief The type definition for configuring the rational data computation.
-     *
-     */
-    typedef struct
-    {
-    } comp_template_config_t;
-#ifdef __cplusplus
-}
-#endif
-
 /******************************************************************************/
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
 
-
 /******************************************************************************/
 /************************** Local Variables ***********************************/
 /******************************************************************************/
-
+static comp_template_result_t result;
+static uint8_t comp_template_executed = 0;
+static comp_template_config_t * config = NULL;
 /******************************************************************************/
 /************************** Public Function Definitions ***********************/
 /******************************************************************************/
@@ -79,6 +47,7 @@ uint8_t comp_template_config(comp_template_config_t *config_arg)
 {
 
     uint8_t ret_val = COMP_DEFS_CONFIG_FAIL;
+    config = config_arg;
     return ret_val;
 }
 
@@ -88,17 +57,16 @@ uint8_t comp_template_config(comp_template_config_t *config_arg)
 uint8_t comp_template_compute()
 {
     uint8_t ret_val = COMP_DEFS_COMPUTE_SUCCESS;
+    comp_template_executed = 1;
     return ret_val;
 }
-
 
 /*
  *  Documentation in header
  */
-uint8_t comp_template_results()
+const comp_template_result_t *comp_template_result()
 {
-    uint8_t ret_val = COMP_DEFS_COMPUTE_SUCCESS;
-    return ret_val;
+    return (const comp_template_result_t *)&result;
 }
 
 /******************************************************************************/

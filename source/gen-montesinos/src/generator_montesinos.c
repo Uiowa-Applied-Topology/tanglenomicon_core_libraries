@@ -84,14 +84,12 @@ uint8_t gen_montesinos_generate()
     for (i = 0; i < num_of_tv_sets - 2; i++)
     {
         node = &(att_local->node_buffer[i]);
-        node->flavor = NOTE_ATT_FLVR(
-            NOTE_ATT_OP_PLUS, NOTE_ATT_TYPE_L_TANG, NOTE_ATT_TYPE_R_OP);
-        node->R_child = (void *)&(att_local->node_buffer[i + 1]);
+        NOTE_ATT_SET_OP(node->operation, NOTE_ATT_OP_PLUS);
+        node->R_child = &(att_local->node_buffer[i + 1]);
     }
 
     node = &(att_local->node_buffer[num_of_tv_sets - 2]);
-    node->flavor = NOTE_ATT_FLVR(
-        NOTE_ATT_OP_PLUS, NOTE_ATT_TYPE_L_TANG, NOTE_ATT_TYPE_R_TANG);
+    NOTE_ATT_SET_OP(node->operation, NOTE_ATT_OP_PLUS);
 
     // process lists
     ret_val = gen_montesinos_process_lists();
@@ -150,13 +148,13 @@ STATIC_INLINE_UINT8 gen_montesinos_process_loop_state(const size_t *stack)
     {
         node = &(att_local->node_buffer[i]);
         stack_val = stack[i];
-        node->L_child = (void *)&(tvs[i][stack_val]);
+        node->L_tv = &(tvs[i][stack_val]);
     }
     node = &(att_local->node_buffer[num_of_tv_sets - 2]);
     stack_val = stack[num_of_tv_sets - 2];
-    node->L_child = (void *)&(tvs[num_of_tv_sets - 2][stack_val]);
+    node->L_tv = &(tvs[num_of_tv_sets - 2][stack_val]);
     stack_val = stack[num_of_tv_sets - 1];
-    node->R_child = (void *)&(tvs[num_of_tv_sets - 1][stack_val]);
+    node->R_tv = &(tvs[num_of_tv_sets - 1][stack_val]);
 
     encode_result = note_att_encode(*att_local,
                                     gen_montesinos_localcfg->str_buff,

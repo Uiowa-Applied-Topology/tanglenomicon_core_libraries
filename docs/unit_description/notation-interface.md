@@ -1,5 +1,7 @@
 # Unit Description: Notation Interface
 
+#### Class Diagram
+
 ```mermaid
 classDiagram
     notation *-- note_t
@@ -15,23 +17,24 @@ classDiagram
 
 ```
 
-## Brief
+#### Functionality
 
-This interface describes a generic notation module. A notation module sits
-between a storage module and an upper layer (Computation, Generator, etc.).
-Notation module will define a struct that encodes the notational data and two IO
-functions.
+##### Public Structures
 
-The encode/decode operations are taken from the perspective of the database.
+###### Notation Data Structure
 
-### Encoding
+This is the primary data structure for a notation component. This data structure
+defines and stores the computational representation of a knot notation.
 
-Takes a data structure and encodes it as its string representation.
+##### Public Functions
 
-### Decoding
+###### Encode Function
 
-Takes a string and decodes it as its data structure representation.
+The encode function takes in the string representation of a knot notation,
+processes the string and stores the computational representation into a notation
+data structure.
 
-```{raw} latex
-    \newpage
-```
+###### Decode Function
+
+The decode function takes in a computational representation of a notation data
+structure, and processes it into a string representation of a knot notation.

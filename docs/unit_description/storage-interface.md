@@ -1,22 +1,30 @@
 # Unit Description: Storage Interface
 
-```mermaid
+## Class Diagram
+
+```mermaid}
 classDiagram
     class storage {
         <<interface>>
-        + bool new_base
         + const char *  read(key, index)
-        + const char *  read_iterator(key, index)
         + int write(key, index, value)
-        + int delete(key, index, value)
     }
 ```
 
-## Brief
+## Functionality
 
-This interface describes a generic storage module to be consumed by generation
-modules. The main data type on the interfaces is a `string`. We pick string
-since anything in LTS needs to be human consumable.
+### Public Functions
+
+#### Read Function
+
+The read function takes in a key index pair, then reads the value at key:index
+from the data store and returns the value.
+
+#### Write Function
+
+The write function takes in a key, index, and value tuple and writes the value
+to the data store at key:index. The function then returns an integer status
+indicator.
 
 ```{raw} latex
     \newpage

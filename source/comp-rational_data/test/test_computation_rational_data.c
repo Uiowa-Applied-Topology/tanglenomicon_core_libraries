@@ -79,25 +79,21 @@ size_t output_len = 5;
 
 comp_rational_data_config_t tc_write_success = {
                                           &stub_write_success,
-                                          &stub_read,
                                           &tv,
                                           tv_str,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u,};
 comp_rational_data_config_t tc_write_fail = {
                                           &stub_write_fail,
-                                          &stub_read,
                                           &tv,
                                           tv_str,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u,};
 comp_rational_data_config_t tc_null_buff = {
                                           &stub_write_fail,
-                                          &stub_read,
                                           NULL,
                                           tv_str,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u,};
 comp_rational_data_config_t tc_null_str_buff = {
                                           &stub_write_fail,
-                                          &stub_read,
                                           &tv,
                                           NULL,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u,};
@@ -134,17 +130,41 @@ STATIC_INLINE void test_config(void)
     TEST_ASSERT_EQUAL_UINT8(
         ret_val, COMP_RATIONAL_DAT_CONFIG_STR_BUFFER | COMP_DEFS_CONFIG_FAIL);
 }
+
+/*!
+ * @brief
+ * @param
+ */
+STATIC_INLINE void test_result(void)
+{
+    uint8_t ret_val = comp_rational_data_config(&tc_write_success);
+    const comp_rational_data_result_t *result;
+
+    /* Odd/Even*/
+    tc_write_success.tv_n = &tv_oe;
+    TEST_ASSERT_EQUAL_UINT8(ret_val, COMP_DEFS_CONFIG_SUCCESS);
+    ret_val = comp_rational_data_compute();
+    TEST_ASSERT_EQUAL_UINT8(ret_val, COMP_DEFS_COMPUTE_SUCCESS);
+    result = comp_rational_data_result();
+    TEST_ASSERT_EQUAL_STRING(result->parity, UTIL_TANG_DEFS_INF_TANG_STR);
+    TEST_ASSERT_EQUAL_UINT8(result->numerator, 9);
+    TEST_ASSERT_EQUAL_UINT8(result->denominator, 4);
+    TEST_ASSERT_EQUAL_UINT8(result->num_algebraic_equ, 1);
+    TEST_ASSERT_EQUAL_UINT8(result->den_algebraic_equ, 4);
+}
+
 /*!
  * @brief
  * @param
  */
 STATIC_INLINE void test_compute(void)
 {
-    uint8_t ret_val = comp_rational_data_config(&tc_write_success);
+    uint8_t ret_val;
     size_t i;
 
     /* Odd/Even*/
     tc_write_success.tv_n = &tv_oe;
+    ret_val = comp_rational_data_config(&tc_write_success);
     TEST_ASSERT_EQUAL_UINT8(ret_val, COMP_DEFS_CONFIG_SUCCESS);
     ret_val = comp_rational_data_compute();
     TEST_ASSERT_EQUAL_UINT8(ret_val, COMP_DEFS_COMPUTE_SUCCESS);
@@ -157,6 +177,7 @@ STATIC_INLINE void test_compute(void)
     value_idx = 0;
     /* Even/Odd*/
     tc_write_success.tv_n = &tv_oo;
+    ret_val = comp_rational_data_config(&tc_write_success);
     TEST_ASSERT_EQUAL_UINT8(ret_val, COMP_DEFS_CONFIG_SUCCESS);
     ret_val = comp_rational_data_compute();
     TEST_ASSERT_EQUAL_UINT8(ret_val, COMP_DEFS_COMPUTE_SUCCESS);
@@ -169,6 +190,7 @@ STATIC_INLINE void test_compute(void)
     value_idx = 0;
     /* Odd/Odd*/
     tc_write_success.tv_n = &tv_eo;
+    ret_val = comp_rational_data_config(&tc_write_success);
     TEST_ASSERT_EQUAL_UINT8(ret_val, COMP_DEFS_CONFIG_SUCCESS);
     ret_val = comp_rational_data_compute();
     TEST_ASSERT_EQUAL_UINT8(ret_val, COMP_DEFS_COMPUTE_SUCCESS);
@@ -186,6 +208,7 @@ int main(void)
 
     RUN_TEST(test_config);
     RUN_TEST(test_compute);
+    RUN_TEST(test_result);
 
     return UNITY_END();
 }

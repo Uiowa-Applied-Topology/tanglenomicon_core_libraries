@@ -1,4 +1,6 @@
-# @@@TODO Unit Description: Rational Tangle Generator
+# Unit Description: Rational Tangle Generator
+
+## Class Diagram
 
 ```mermaid
 classDiagram
@@ -17,7 +19,10 @@ classDiagram
 
 class gen_rational_config_t {
 <<struct>>
-+ notation_tv
+uint8_t crossingNumber;
+note_tv_t *tv_n;
+char *tv_str_buff;
+size_t tv_str_buff_len;
 }
 
 class gen_config_t {
@@ -37,11 +42,11 @@ C
 
 ## Implements
 
-- [Generator Interface](../../docs/unit_description/generator-interface.md)
+- [Generator Interface](../../generator-interface.md)
 
 ## Uses
 
-- [Notation Twist Vector](../note-twist_vector/unit-description)
+- [Notation Twist Vector](../note-twist_vector/unit-description.md)
 
 ## Libraries
 
@@ -49,77 +54,175 @@ N/A
 
 ## Functionality
 
-A rational tangle is given by alternating NE,SE and SE,SW twisting of the $0$
-tangle[${}^{[2]}$](https://doi.org/10.48550/arXiv.math/0212011)[${}^{[1]}$](https://doi.org/10.1016/B978-0-08-012975-4.50034-5).
-A canonical combinatorial description of a rational tangle can be given by the
-[Twist Vector](../notations/twist%20vector.md).
+### Public Structures
 
-This module generates twist vectors and in doing so rational tangles. A normal
-flows go as:
+#### Rational Generator Config Structure
 
-### Config
+The config structure contains the data needed for generating twist vectors up to
+a given crossing number. This includes:
 
-```mermaid
-stateDiagram-v2
-  state "Init local config" as Sc
+- An integer representation of the target crossing number.
+- A notation structure for a twist vector.
+- A string buffer for holding the stringified twist vector.
 
-	[*] --> Sc
-	Sc --> [*]
+### Public Functions
 
-```
+#### Config Function
 
-### Generate
+The config function configures the local instance variable of the generator.
+
+This process is described in the following state machines:
 
 ```mermaid
 stateDiagram-v2
-  state "Get Combination of CN" as gen
-  state join_state <<fork>>
-  state is_even <<choice>>
-  state no_combinations <<choice>>
-  state "Print" as print {
-  state "Set TV values" as stv
-  state "Set CN value" as scv
-	[*] --> stv
-	stv --> scv
-	scv --> [*]
-  }
-
-  state "Oddify Even combination" as even {
-  state "shift array left"  as shiftL
-  state "shift array right" as shiftR
-  state "prepend 0" as pp0
-	[*] --> shiftR
-	shiftR --> pp0
-	pp0 --> print
-	print --> shiftL
-	shiftL --> join_state
-
-
-  }
-
-	[*] --> gen
-	gen --> no_combinations
-  no_combinations --> is_even: if is not final combination
-	no_combinations --> [*] : if is final combination
-
-  is_even --> even: if tv.length % 2 == 0
-	is_even --> print : if tv.length % 2 == 1
-	print --> join_state
-	join_state --> gen
-
+    state "Init local config" as Sc
+    [*] --> Sc
+    Sc --> [*]
 
 ```
 
-## Cite
+#### Generate Function
 
-1. Conway, J.H. “An Enumeration of Knots and Links, and Some of Their Algebraic
-   Properties.” In _Computational Problems in Abstract Algebra_, 329–58.
-   Elsevier, 1970.
-   [https://doi.org/10.1016/B978-0-08-012975-4.50034-5](https://doi.org/10.1016/b978-0-08-012975-4.50034-5).
-2. Kauffman, Louis H., and Sofia Lambropoulou. “On the Classification of
-   Rational Knots,” 2002.
-   [https://doi.org/10.48550/ARXIV.MATH/0212011](https://doi.org/10.48550/arxiv.math/0212011).
+The generation function carries out the rational tangle generation until the
+target crossing number is met. The function may contain sub machines that can be
+broken out into functions in the implementation.
 
-```{raw} latex
-    \newpage
+This process is described in the following state machines:
+
+```mermaid
+stateDiagram-v2
+    state if_done <<choice>>
+    state "Init " as State_i
+    state "• i as 0 " as State_i
+state State_ipp: i++
+state "Construct TV from i as a bitfield" as tv_calc{
+state "Init" as State_temp
+state "• temp as i" as State_temp
+state "• j as 0" as State_temp
+state "• count as N" as State_temp
+State_jpp: j++
+State_cntmm: count--
+State_sum_tv: TV[j]++
+State_rsh: right shift temp by 1
+state if_lsb <<choice>>
+state if_cnteo <<choice>>
+State_store_tv: Store TV
+
+[*] --> State_temp
+State_temp --> if_cnteo
+if_cnteo --> State_cntmm: if cnt>0
+if_cnteo --> State_store_tv: if cnt==0
+State_store_tv --> [*]
+
+State_cntmm -->if_lsb
+if_lsb --> State_sum_tv: if (tmplt & 0x01u)==1u
+State_sum_tv --> State_rsh
+if_lsb --> State_jpp: if (tmplt & 0x01u)==0u
+State_jpp --> State_rsh
+State_rsh --> if_cnteo
+}
+[*] --> State_i
+State_i --> if_done
+if_done --> tv_calc: if i < 2**(N-1)
+tv_calc --> State_ipp
+State_ipp --> if_done
+if_done --> [*]: if i == 2**(N-1)
+
+```
+
+## Validation
+
+### Config interface
+
+#### Positive Tests
+
+```{test-card} Valid Config
+
+A valid config for the generator is passed to the function.
+
+**Inputs:**
+
+- A valid config.
+
+**Expected Output:**
+
+A positive response.
+
+```
+
+#### Negative Tests
+
+```{test-card} Null Config
+
+A null config for the generator is passed to the function.
+
+**Inputs:**
+
+- A null config.
+
+**Expected Output:**
+
+A negative response.
+
+```
+
+```{test-card} A Config with null twist vector
+
+A config with a null twist vector is passed to the function.
+
+**Inputs:**
+
+- A config with a null twist vector.
+
+**Expected Output:**
+
+A negative response.
+
+```
+
+```{test-card} A Config with null string buffer
+
+A config with a null string buffer is passed to the function.
+
+**Inputs:**
+
+- A config with a null string buffer.
+
+**Expected Output:**
+
+A negative response.
+
+```
+
+### Generate interface
+
+```{test-card} Valid Config and generation
+
+A valid config is set and the generation is called.
+
+**Inputs:**
+
+- A target crossing number of 5
+
+**Expected Output:**
+
+The twist vectors:
+
+- [1 1 1 1 1]
+- [2 1 1 1 0]
+- [1 2 1 1 0]
+- [1 1 2 1 0]
+- [1 1 1 2 0]
+- [3 1 1]
+- [1 3 1]
+- [1 1 3]
+- [2 2 1]
+- [2 1 2]
+- [1 2 2]
+- [3 2 0]
+- [2 3 0]
+- [4 1 0]
+- [1 4 0]
+- [5]
+
 ```

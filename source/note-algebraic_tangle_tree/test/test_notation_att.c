@@ -24,18 +24,24 @@ note_tv_t tv_buffer_de = {
     7};
 note_att_node_t node_buffer_de[] = {
     [0]={
-        (void *)&(node_buffer_de[1]),
-        (void *)&(tv_buffer_de),
-        NOTE_ATT_FLVR(NOTE_ATT_OP_PLUS,NOTE_ATT_TYPE_L_OP,NOTE_ATT_TYPE_R_TANG)
+        &(node_buffer_de[1]),
+        NULL,
+        NULL,
+        &(tv_buffer_de),
+        NOTE_ATT_OP_PLUS
     },
     [1]={
-        (void *)&(tv_buffer_de),
-        (void *)&(node_buffer_de[2]),
-        NOTE_ATT_FLVR(NOTE_ATT_OP_VEE,NOTE_ATT_TYPE_L_TANG,NOTE_ATT_TYPE_R_OP)},
+        NULL,
+        &(node_buffer_de[2]),
+        &(tv_buffer_de),
+        NULL,
+        NOTE_ATT_OP_VEE},
     [2]={
-        (void *)&(tv_buffer_de),
-        (void *)&(tv_buffer_de),
-        NOTE_ATT_FLVR(NOTE_ATT_OP_PLUS,NOTE_ATT_TYPE_L_TANG,NOTE_ATT_TYPE_R_TANG)}
+        NULL,
+        NULL,
+        &(tv_buffer_de),
+        &(tv_buffer_de),
+        NOTE_ATT_OP_PLUS}
 };
 note_att_t att_de = {
         &node_buffer_de[0],
@@ -74,7 +80,7 @@ void tearDown(void) {}
  * @brief
  * @param
  */
-STATIC_INLINE void test_encode(void)
+STATIC_INLINE void test_decode(void)
 {
     note_att_t test_att;
     note_att_node_t node_buffer[100];
@@ -109,7 +115,7 @@ STATIC_INLINE void test_encode(void)
  * @brief
  * @param
  */
-STATIC_INLINE void test_decode(void)
+STATIC_INLINE void test_encode(void)
 {
     char test_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u] = {
         [0] = STR_TERMINAL_CHAR};

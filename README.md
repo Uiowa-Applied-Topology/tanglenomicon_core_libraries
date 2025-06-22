@@ -67,16 +67,23 @@ scope are rational tangle generation, JSON storage, or Conway notation.
 Waterfall means we complete a full life cycle for each library.
 
 ```mermaid
-flowchart TD
-    Requirements --> Design
-    Design --> Implementation
-    Implementation --> UT[Unit Testing]
-    UT --> IT["Integration Testing"]
+graph TD
+    A[Requirements] --> B[Design]
+    B --> D[Unit Design]
+    D --> E[Implementation]
+
+    E --> F[Unit Testing]
+    F --> G[Integration Testing]
+    G --> I[Acceptance Testing]
+
+    I -->|Validation| B
+    G -->|Validation| B
+    F -->|Validation| D
 ```
 
-This methodology will allow us to have high traceability, meaning we can track
-our features through the development cycle. This allows us to justify every
-decision we made in the process.
+This methodology allows us to have high traceability, meaning we can track our
+features through the development cycle. This allows us to justify every decision
+we made in the process.
 
 ## Project Structure
 

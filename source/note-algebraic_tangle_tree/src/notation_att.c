@@ -74,13 +74,11 @@ uint8_t note_att_decode(char *str, note_att_t *att)
         note_att_tv_idx = 0u;
         if (str[0] == '+')
         {
-            NOTE_ATT_CLR_OP(att->root->flavor);
-            NOTE_ATT_SET_OP(att->root->flavor, NOTE_ATT_OP_PLUS);
+            NOTE_ATT_SET_OP(att->root->operation, NOTE_ATT_OP_PLUS);
         }
         else if (str[0] == 'v')
         {
-            NOTE_ATT_CLR_OP(att->root->flavor);
-            NOTE_ATT_SET_OP(att->root->flavor, NOTE_ATT_OP_VEE);
+            NOTE_ATT_SET_OP(att->root->operation, NOTE_ATT_OP_VEE);
         }
         else
         {
@@ -135,11 +133,11 @@ STATIC_INLINE_UINT8 note_att_traverse(note_att_node_t *node,
 {
     uint8_t retval = NOTE_ATT_TRAVERSE_SUCCESS;
 
-    if (NOTE_ATT_CHK_OP(node->flavor, NOTE_ATT_OP_PLUS) == true)
+    if (NOTE_ATT_CHK_OP(node->operation, NOTE_ATT_OP_PLUS) == true)
     {
         strcpy(str, "+");
     }
-    else if (NOTE_ATT_CHK_OP(node->flavor, NOTE_ATT_OP_VEE) == true)
+    else if (NOTE_ATT_CHK_OP(node->operation, NOTE_ATT_OP_VEE) == true)
     {
         strcpy(str, "v");
     }
@@ -153,15 +151,13 @@ STATIC_INLINE_UINT8 note_att_traverse(note_att_node_t *node,
 
     if (retval != NOTE_ATT_TRAVERSE_FAIL)
     {
-        if (NOTE_ATT_CHK_L_TYPE(node->flavor, NOTE_ATT_TYPE_L_OP) == true)
+        if (node->L_child != NULL)
         {
-            retval = note_att_traverse(
-                (note_att_node_t *)node->L_child, str, buffer_size);
+            retval = note_att_traverse(node->L_child, str, buffer_size);
         }
-        else if (NOTE_ATT_CHK_L_TYPE(node->flavor, NOTE_ATT_TYPE_L_TANG) == true)
+        else if (node->L_tv != NULL)
         {
-            retval = note_att_add_tv(
-                (note_tv_t *)node->L_child, str, buffer_size);
+            retval = note_att_add_tv(node->L_tv, str, buffer_size);
         }
         else
         {
@@ -172,16 +168,14 @@ STATIC_INLINE_UINT8 note_att_traverse(note_att_node_t *node,
 
     if (retval != NOTE_ATT_TRAVERSE_FAIL)
     {
-        if (NOTE_ATT_CHK_R_TYPE(node->flavor, NOTE_ATT_TYPE_R_OP) == true)
+        if (node->R_child != NULL)
         {
-            retval = note_att_traverse(
-                (note_att_node_t *)node->R_child, str, buffer_size);
+            retval = note_att_traverse(node->R_child, str, buffer_size);
         }
-        else if (NOTE_ATT_CHK_R_TYPE(node->flavor, NOTE_ATT_TYPE_R_TANG) == true)
+        else if (node->R_tv != NULL)
         {
 
-            retval = note_att_add_tv(
-                (note_tv_t *)node->R_child, str, buffer_size);
+            retval = note_att_add_tv(node->R_tv, str, buffer_size);
         }
         else
         {
@@ -202,12 +196,15 @@ STATIC_INLINE_UINT8 note_att_add_tv(const note_tv_t *tv,
                                     char *str,
                                     size_t buffer_size)
 {
-    uint8_t ret_val = NOTE_ATT_TRAVERSE_SUCCESS;
-    uint8_t result = NOTE_DEFS_ENCODE_FAIL;
-    result = note_tv_encode(*tv, str, buffer_size);
-    if (result != NOTE_DEFS_ENCODE_SUCCESS)
+    uint8_t ret_val = NOTE_ATT_TRAVERSE_FAIL;
+    if (tv != NULL)
     {
-        ret_val = NOTE_ATT_TRAVERSE_FAIL;
+        uint8_t result = NOTE_DEFS_ENCODE_FAIL;
+        result = note_tv_encode(*tv, str, buffer_size);
+        if (result == NOTE_DEFS_ENCODE_SUCCESS)
+        {
+            ret_val = NOTE_ATT_TRAVERSE_SUCCESS;
+        }
     }
     return ret_val;
 }
@@ -228,97 +225,65 @@ STATIC_INLINE_UINT8 note_att_traverse_string(note_att_t *att,
 {
     uint8_t ret_val = NOTE_ATT_TRAVERSE_SUCCESS;
     size_t new_att_gen = 0x0u;
+    node->L_child = NULL;
+    node->R_child = NULL;
+    node->L_tv = NULL;
+    node->R_tv = NULL;
     // +[4 3 3 5 6]v+[3 3 3][2 2 3]
-    if (str[note_att_str_idx] == '+')
+    if (str[note_att_str_idx] == '[')
     {
-        NOTE_ATT_CLR_L_TYPE(att->node_buffer[att_node_idx].flavor);
-        NOTE_ATT_SET_L_TYPE(
-            att->node_buffer[att_node_idx].flavor, NOTE_ATT_TYPE_L_OP);
-        new_att_gen++;
-        node->L_child = (void *)&(att->node_buffer[att_node_idx + new_att_gen]);
-        NOTE_ATT_CLR_OP(att->node_buffer[att_node_idx + new_att_gen].flavor);
-        NOTE_ATT_SET_OP(att->node_buffer[att_node_idx + new_att_gen].flavor,
-                        NOTE_ATT_OP_PLUS);
-        note_att_str_idx++;
-        ret_val = note_att_traverse_string(att,
-                                           (note_att_node_t *)node->L_child,
-                                           str,
-                                           att_node_idx + new_att_gen);
-    }
-    else if (str[note_att_str_idx] == 'v')
-    {
-        NOTE_ATT_CLR_L_TYPE(att->node_buffer[att_node_idx].flavor);
-        NOTE_ATT_SET_L_TYPE(
-            att->node_buffer[att_node_idx].flavor, NOTE_ATT_TYPE_L_OP);
-        new_att_gen++;
-        node->L_child = (void *)&(att->node_buffer[att_node_idx + new_att_gen]);
-        NOTE_ATT_CLR_OP(att->node_buffer[att_node_idx + new_att_gen].flavor);
-        NOTE_ATT_SET_OP(att->node_buffer[att_node_idx + new_att_gen].flavor,
-                        NOTE_ATT_OP_VEE);
-        note_att_str_idx++;
-        ret_val = note_att_traverse_string(att,
-                                           (note_att_node_t *)node->L_child,
-                                           str,
-                                           att_node_idx + new_att_gen);
-    }
-    else if (str[note_att_str_idx] == '[')
-    {
-        NOTE_ATT_CLR_L_TYPE(att->node_buffer[att_node_idx].flavor);
-        NOTE_ATT_SET_L_TYPE(
-            att->node_buffer[att_node_idx].flavor, NOTE_ATT_TYPE_L_TANG);
-        node->L_child = (void *)&(att->tv_buffer[note_att_tv_idx]);
+        node->L_tv = &(att->tv_buffer[note_att_tv_idx]);
         ret_val = note_att_process_tv(str, att);
         note_att_tv_idx++;
     }
     else
     {
-        ret_val = NOTE_DEFS_DECODE_FAIL;
+        new_att_gen++;
+        node->L_child = &(att->node_buffer[att_node_idx + new_att_gen]);
+        if (str[note_att_str_idx] == '+')
+        {
+            NOTE_ATT_SET_OP(node->L_child->operation, NOTE_ATT_OP_PLUS);
+        }
+        else if (str[note_att_str_idx] == 'v')
+        {
+            NOTE_ATT_SET_OP(node->L_child->operation, NOTE_ATT_OP_VEE);
+        }
+        else
+        {
+            ret_val = NOTE_DEFS_DECODE_FAIL;
+        }
+        note_att_str_idx++;
+        ret_val = note_att_traverse_string(
+            att, node->L_child, str, att_node_idx + new_att_gen);
     }
 
-    if ((str[note_att_str_idx] == '+') && (ret_val == NOTE_ATT_TRAVERSE_SUCCESS))
+    if ((str[note_att_str_idx] == '[') && (ret_val == NOTE_ATT_TRAVERSE_SUCCESS))
     {
-        NOTE_ATT_CLR_R_TYPE(att->node_buffer[att_node_idx].flavor);
-        NOTE_ATT_SET_R_TYPE(
-            att->node_buffer[att_node_idx].flavor, NOTE_ATT_TYPE_R_OP);
-        new_att_gen++;
-        node->R_child = (void *)&(att->node_buffer[att_node_idx + new_att_gen]);
-        NOTE_ATT_CLR_OP(att->node_buffer[att_node_idx + new_att_gen].flavor);
-        NOTE_ATT_SET_OP(att->node_buffer[att_node_idx + new_att_gen].flavor,
-                        NOTE_ATT_OP_PLUS);
-        note_att_str_idx++;
-        ret_val = note_att_traverse_string(att,
-                                           (note_att_node_t *)node->R_child,
-                                           str,
-                                           att_node_idx + new_att_gen);
-    }
-    else if (str[note_att_str_idx] == 'v')
-    {
-        NOTE_ATT_CLR_R_TYPE(att->node_buffer[att_node_idx].flavor);
-        NOTE_ATT_SET_R_TYPE(
-            att->node_buffer[att_node_idx].flavor, NOTE_ATT_TYPE_R_OP);
-        new_att_gen++;
-        node->R_child = (void *)&(att->node_buffer[att_node_idx]);
-        NOTE_ATT_CLR_OP(att->node_buffer[att_node_idx + new_att_gen].flavor);
-        NOTE_ATT_SET_OP(att->node_buffer[att_node_idx + new_att_gen].flavor,
-                        NOTE_ATT_OP_VEE);
-        note_att_str_idx++;
-        ret_val = note_att_traverse_string(att,
-                                           (note_att_node_t *)node->R_child,
-                                           str,
-                                           att_node_idx + new_att_gen);
-    }
-    else if (str[note_att_str_idx] == '[')
-    {
-        NOTE_ATT_CLR_R_TYPE(att->node_buffer[att_node_idx].flavor);
-        NOTE_ATT_SET_R_TYPE(
-            att->node_buffer[att_node_idx].flavor, NOTE_ATT_TYPE_R_TANG);
-        node->R_child = (void *)&(att->tv_buffer[note_att_tv_idx]);
+        node->R_tv = &(att->tv_buffer[note_att_tv_idx]);
         ret_val = note_att_process_tv(str, att);
         note_att_tv_idx++;
     }
     else
     {
-        ret_val = NOTE_DEFS_DECODE_FAIL;
+        new_att_gen++;
+        node->R_child = &(att->node_buffer[att_node_idx + new_att_gen]);
+        if (str[note_att_str_idx] == '+')
+        {
+
+            NOTE_ATT_SET_OP(node->R_child->operation, NOTE_ATT_OP_PLUS);
+        }
+        else if (str[note_att_str_idx] == 'v')
+        {
+
+            NOTE_ATT_SET_OP(node->R_child->operation, NOTE_ATT_OP_VEE);
+        }
+        else
+        {
+            ret_val = NOTE_DEFS_DECODE_FAIL;
+        }
+        note_att_str_idx++;
+        ret_val = note_att_traverse_string(
+            att, node->R_child, str, att_node_idx + new_att_gen);
     }
 
     return ret_val;

@@ -1,9 +1,10 @@
 """Documentation for DE-Book."""
-
+import sys
 from pathlib import Path
 from shutil import copyfile, copytree, rmtree
 from sphinxcontrib.collections.drivers import Driver
 from sphinxcontrib.collections.api import register_driver
+sys.path.append(str(Path('_ext').resolve()))
 
 # Configuration file for the Sphinx documentation builder.
 #
@@ -36,6 +37,7 @@ extensions = [
     "sphinxcontrib.inkscapeconverter",
     "sphinx_material",
     "sphinxcontrib.collections",
+    "custom_admonitions"
 ]
 templates_path = ["_templates"]
 exclude_patterns = []
@@ -149,7 +151,6 @@ latex_theme = "howto"
 latex_elements = {
     "preamble": r"""
     \usepackage{xcolor}
-    \usepackage[twitter]{coloremoji}
 
     \newcommand{\N}{\mathbb{N}}
     \newcommand{\Z}{\mathbb{Z}}
