@@ -81,9 +81,8 @@ The wptt notation component does not use any external libraries.
 
 ##### Notation structure
 
-The interface structure for the component is designed to match the non memory
-allocating design goals of non-runner components. That means this notation
-structure contains:
+The interface structure for the component is designed to match the non memory allocating design
+goals of non-runner components. That means this notation structure contains:
 
 - A pointer to the root of the wptt
 - A buffer of/for nodes in the wptt
@@ -92,18 +91,17 @@ structure contains:
 
 ##### Node structure
 
-We saw in the use-case description an outline for the important data that needs
-to be encoded in a wptt data structure. This data is summarized as:
+We saw in the use-case description an outline for the important data that needs to be encoded in a
+wptt data structure. This data is summarized as:
 
 - Children and their cyclic order
 - Weights and their location in the cyclic order
 - Number of rings
 
-Each of these items are easy to encode in a C structure. The children (except
-parent linkage) are encoded as an array of pointers to the children.
-Additionally, this array implicitly encodes a cyclic order of the children by
-the order in the array. Weights are encoded likewise in an array. Weight index
-is interpreted as "after" the same child weight in order as seen below.
+Each of these items are easy to encode in a C structure. The children (except parent linkage) are
+encoded as an array of pointers to the children. Additionally, this array implicitly encodes a
+cyclic order of the children by the order in the array. Weights are encoded likewise in an array.
+Weight index is interpreted as "after" the same child weight in order as seen below.
 
 ```{prf:example} Interleaved index
 
@@ -129,8 +127,8 @@ This allows components to invert read order, read from $(n-1)\to 0$, at runtime.
 
 ##### decode function
 
-The decode function takes in the linearized string form of the wptt and decodes
-it as a `note_wptt_node_t`.
+The decode function takes in the linearized string form of the wptt and decodes it as a
+`note_wptt_node_t`.
 
 This process is described in the following state machines:
 
@@ -158,8 +156,8 @@ stateDiagram-v2
 
 ##### encode function
 
-The encode function takes in a `note_wptt_node_t` and encodes it into the
-linearized string form of the wptt.
+The encode function takes in a `note_wptt_node_t` and encodes it into the linearized string form of
+the wptt.
 
 ```mermaid
 stateDiagram-v2
@@ -208,9 +206,8 @@ The component has no private structures.
 
 ###### Char checker
 
-This function checks a character passed to it and updates the current notation
-instance with one of seven execution paths. These paths are based on the class
-the character falls into:
+This function checks a character passed to it and updates the current notation instance with one of
+seven execution paths. These paths are based on the class the character falls into:
 
 - A delimiter
     - An opening delimiter
@@ -267,8 +264,8 @@ stateDiagram-v2
 
 ###### Move active node down
 
-This function moves the active node to be a child of the current node.
-Functionally, this is the same as descending the wptt.
+This function moves the active node to be a child of the current node. Functionally, this is the
+same as descending the wptt.
 
 ```mermaid
 stateDiagram-v2
@@ -283,8 +280,8 @@ stateDiagram-v2
 
 ###### Move root up
 
-This function moves the active node to be a parent of the current node.
-Functionally, this is the same as ascending the wptt.
+This function moves the active node to be a parent of the current node. Functionally, this is the
+same as ascending the wptt.
 
 ```mermaid
 stateDiagram-v2

@@ -1,12 +1,11 @@
 # Use Case: Storage Interface
 
-The storage interface defines the general form for a component that reads and
-writes key value pairs. These function will generally be defined by the user
-interface layer and passed to components as function pointers. Data is assumed
-to be formatted in a key value store with two layers. The outermost layer is
-indexed by a value called a **key**. The value for the key is another collection
-of key value pairs. At this level, we call the key value is called an **index**
-and value entry **value**.
+The storage interface defines the general form for a component that reads and writes key value
+pairs. These function will generally be defined by the user interface layer and passed to components
+as function pointers. Data is assumed to be formatted in a key value store with two layers. The
+outermost layer is indexed by a value called a **key**. The value for the key is another collection
+of key value pairs. At this level, we call the key value is called an **index** and value entry
+**value**.
 
 ````{prf:example}
 ```json

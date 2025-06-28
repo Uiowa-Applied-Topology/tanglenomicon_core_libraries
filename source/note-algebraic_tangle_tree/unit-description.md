@@ -58,8 +58,7 @@ C
 
 ## External Libraries
 
-The algebraic tangle tree notation component does not use any external
-libraries.
+The algebraic tangle tree notation component does not use any external libraries.
 
 ## Functionality
 
@@ -67,22 +66,20 @@ libraries.
 
 #### Notation structure
 
-The interface notation structure contains the data needed to store the data
-structure for an algebraic tangle tree. The notation structure contains a
-pointer to the root node of an algebraic tangle tree. Additionally, the notation
-interface contains two buffers for storing elements of the tree. The first
-buffer is a node buffer for storing non-leaf nodes of a tree. The second is a
-twist vector buffer for storing leaf nodes of the tree.
+The interface notation structure contains the data needed to store the data structure for an
+algebraic tangle tree. The notation structure contains a pointer to the root node of an algebraic
+tangle tree. Additionally, the notation interface contains two buffers for storing elements of the
+tree. The first buffer is a node buffer for storing non-leaf nodes of a tree. The second is a twist
+vector buffer for storing leaf nodes of the tree.
 
 #### Node structure
 
-The second structure is the node structure. This structure defines the data
-needed by a non-leaf node of an algebraic tangle tree. An algebraic tangle tree
-is a binary tree, for any node the children of that node can be of two types. We
-store these possibilities with two sets of pointers. First, pointers for left
-and right child nodes and second, pointers for left and right twist vector leaf
-nodes. Additionally, each node must contain an operation, either $+$ or $\vee$.
-This operation data is stored as a bit field.
+The second structure is the node structure. This structure defines the data needed by a non-leaf
+node of an algebraic tangle tree. An algebraic tangle tree is a binary tree, for any node the
+children of that node can be of two types. We store these possibilities with two sets of pointers.
+First, pointers for left and right child nodes and second, pointers for left and right twist vector
+leaf nodes. Additionally, each node must contain an operation, either $+$ or $\vee$. This operation
+data is stored as a bit field.
 
 | Operation | NA  | NA  | NA  | NA  | NA  | NA  | Op  | Op  |
 | --------- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -94,8 +91,8 @@ This operation data is stored as a bit field.
 
 #### Decode Function
 
-The decode function takes in the linearized string form of the algebraic tangle
-tree and encodes it as a `note_att_t`.
+The decode function takes in the linearized string form of the algebraic tangle tree and encodes it
+as a `note_att_t`.
 
 This process is described in the following state machines:
 
@@ -121,8 +118,8 @@ stateDiagram-v2
 
 #### Encode Function
 
-The encode function takes in a `note_tv_t` and encodes it into the linearized
-string form of the algebraic tangle tree.
+The encode function takes in a `note_tv_t` and encodes it into the linearized string form of the
+algebraic tangle tree.
 
 ```mermaid
 stateDiagram-v2
@@ -135,8 +132,7 @@ stateDiagram-v2
 
 #### Traverse String
 
-This function recursively processes a string into the non-root elements of an
-algebraic tangle tree.
+This function recursively processes a string into the non-root elements of an algebraic tangle tree.
 
 ```mermaid
 stateDiagram-v2
@@ -189,8 +185,7 @@ stateDiagram-v2
 
 #### Traverse Tree
 
-This function recursively processes a string into the non-root elements of an
-algebraic tangle tree.
+This function recursively processes a string into the non-root elements of an algebraic tangle tree.
 
 ```mermaid
 stateDiagram-v2
