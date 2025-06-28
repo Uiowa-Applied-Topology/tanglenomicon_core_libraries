@@ -1,4 +1,3 @@
-
 #include "positive_tests.h"
 #include "notation_wptt.h"
 #include "unity.h"
@@ -27,6 +26,7 @@ void test_decode_positive(void)
 }
 
 /****************************** Test 1 Data ***********************************/
+
 /*
  * - A tree with an essential vertex.
  * - A tree with a vertex that has ring number.
@@ -40,6 +40,7 @@ void test_decode_positive(void)
 static void test_decode_positive_knot_1(void)
 {
     uint8_t retval = -1;
+
     /* clang-format off */
     char string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
     "<1 13<2(3(4(5[7 8 9 10])12(11)6))>>";
@@ -139,8 +140,8 @@ static void test_decode_positive_knot_1(void)
  */
 static void test_decode_positive_knot_2(void)
 {
-
     uint8_t retval = -1;
+
     /* clang-format off */
     char string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
     "[7 8 9 10]";
@@ -192,6 +193,7 @@ static void test_decode_positive_knot_2(void)
 }
 
 /****************************** Test 1 Data ***********************************/
+
 /*
  * - A tree with an essential vertex.
  * - A tree with a vertex that has ring number.
@@ -207,6 +209,7 @@ static void test_decode_positive_knot_2(void)
 static void test_decode_positive_tangle_1(void)
 {
     uint8_t retval = -1;
+
     /* clang-format off */
     char string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
     "x<1 13<2(3(4(5[7 8 9 10])12(11)6))>>";
@@ -308,8 +311,8 @@ static void test_decode_positive_tangle_1(void)
  */
 static void test_decode_positive_tangle_2(void)
 {
-
     uint8_t retval = -1;
+
     /* clang-format off */
     char string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
     "i[7 8 9 10]";
@@ -360,6 +363,7 @@ static void test_decode_positive_tangle_2(void)
 }
 
 /****************************** Test 3 Data ***********************************/
+
 /*
  * - A valid string representing a tangle with each label:
  *     - y
@@ -372,6 +376,7 @@ static void test_decode_positive_tangle_2(void)
 static void test_decode_positive_tangle_3(void)
 {
     uint8_t retval = -1;
+
     /* clang-format off */
     char string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
     "y<1 13<2(3(4(5[7 8 9 10])12(11)6))>>";
@@ -458,7 +463,9 @@ static void test_decode_positive_tangle_3(void)
     TEST_ASSERT_EQUAL(NOTE_DEFS_DECODE_SUCCESS, retval);
     TEST_ASSERT_EQUAL(true, trees_equal(&note_wptt, &note_wptt_valid));
 }
+
 /****************************** Test 4 Data ***********************************/
+
 /*
  * - A valid string representing a tangle with each label:
  *     - z
@@ -471,6 +478,7 @@ static void test_decode_positive_tangle_3(void)
 static void test_decode_positive_tangle_4(void)
 {
     uint8_t retval = -1;
+
     /* clang-format off */
     char string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
     "z<1 13<2(3(4(5[7 8 9 10])12(11)6))>>";

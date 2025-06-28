@@ -1,10 +1,10 @@
-//
-// Created by joe on 4/25/25.
-//
+/* */
+/* Created by joe on 4/25/25. */
+/* */
 
 #ifndef TEST_NOTATION_wptt_ENCODE_NEGATIVE_TESTS_H
 #define TEST_NOTATION_wptt_ENCODE_NEGATIVE_TESTS_H
 
 void test_encode_negative(void);
 
-#endif // TEST_NOTATION_wptt_ENCODE_NEGATIVE_TESTS_H
+#endif /* TEST_NOTATION_wptt_ENCODE_NEGATIVE_TESTS_H */

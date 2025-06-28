@@ -35,7 +35,7 @@
  * @brief The key for
  *
  */
-#define GEN_RATIONAL_STORAGE_UKEY ("GEN_RATIONAL")
+#define GEN_RATIONAL_STORAGE_UKEY    ("GEN_RATIONAL")
 /*@@@TODO: add keys*/
 
 /*************************** Config *******************************************/
@@ -44,17 +44,19 @@
  * @brief Failed to configure the module due to null config
  *
  */
-#define GEN_RATIONAL_CONFIG_IS_NULL (0x1u << 1u)
+#define GEN_RATIONAL_CONFIG_IS_NULL       (0x1u << 1u)
+
 /*!
  * @brief Failed to configure the module due to issue in buffer.
  *
  */
-#define GEN_RATIONAL_CONFIG_BUFFER (0x1u << 2u)
+#define GEN_RATIONAL_CONFIG_BUFFER        (0x1u << 2u)
+
 /*!
  * @brief Failed to configure the module due to issue in string buffer.
  *
  */
-#define GEN_RATIONAL_CONFIG_STR_BUFFER (0x1u << 3u)
+#define GEN_RATIONAL_CONFIG_STR_BUFFER    (0x1u << 3u)
 
 /*************************** Generate *****************************************/
 
@@ -62,7 +64,7 @@
  * @brief Failed to generate due to combination failure.
  *
  */
-#define GEN_RATIONAL_COMBINATION_FAIL (0x1u << 1u)
+#define GEN_RATIONAL_COMBINATION_FAIL    (0x1u << 1u)
 
 /******************************************************************************/
 /*************************** Typedefs *****************************************/
@@ -73,18 +75,17 @@ extern "C"
 {
 #endif
 
-    /*!
-     * @brief The type definition for configuring the rational generation.
-     *
-     */
-    typedef struct
-    {
-        uint8_t crossingNumber;
-        storage_write_funptr_t storage_write;
-        note_tv_t *tv_n;
-        char *tv_str_buff;
-        size_t tv_str_buff_len;
-    } gen_rational_config_t;
+/*!
+ * @brief The type definition for configuring the rational generation.
+ *
+ */
+typedef struct {
+    uint8_t                crossingNumber;
+    storage_write_funptr_t storage_write;
+    note_tv_t *            tv_n;
+    char *                 tv_str_buff;
+    size_t                 tv_str_buff_len;
+} gen_rational_config_t;
 #ifdef __cplusplus
 }
 #endif
@@ -97,11 +98,13 @@ extern "C"
 extern "C"
 {
 #endif
-    /*!
-     * @brief The public configuration function.
-     * @param config_arg The config to set.
-     */
-    uint8_t gen_rational_config(gen_rational_config_t *config_arg);
+
+/*!
+ * @brief The public configuration function.
+ * @param config_arg The config to set.
+ */
+uint8_t gen_rational_config(gen_rational_config_t *config_arg);
+
 #ifdef __cplusplus
 }
 #endif
@@ -110,13 +113,14 @@ extern "C"
 extern "C"
 {
 #endif
-    /*!
-     * @brief The public generation function. When called the module will work
-     * against the current config.
-     *
-     * @return uint8_t Generation status info.
-     */
-    uint8_t gen_rational_generate();
+
+/*!
+ * @brief The public generation function. When called the module will work against the current config.
+ *
+ * @return uint8_t Generation status info.
+ */
+uint8_t gen_rational_generate();
+
 #ifdef __cplusplus
 }
 #endif

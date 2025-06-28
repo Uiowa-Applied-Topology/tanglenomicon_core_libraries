@@ -35,7 +35,7 @@
  * @brief The key for
  *
  */
-#define GEN_MONTESINOS_STORAGE_UKEY ("GEN_MONTESINOS")
+#define GEN_MONTESINOS_STORAGE_UKEY    ("GEN_MONTESINOS")
 /*@@@TODO: add keys*/
 
 /*************************** Config *******************************************/
@@ -44,17 +44,19 @@
  * @brief Failed to configure the module due to null config
  *
  */
-#define GEN_MONTESINOS_CONFIG_IS_NULL (0x1u << 1u)
+#define GEN_MONTESINOS_CONFIG_IS_NULL       (0x1u << 1u)
+
 /*!
  * @brief Failed to configure the module due to issue in buffer.
  *
  */
-#define GEN_MONTESINOS_CONFIG_BUFFER (0x1u << 2u)
+#define GEN_MONTESINOS_CONFIG_BUFFER        (0x1u << 2u)
+
 /*!
  * @brief Failed to configure the module due to issue in string buffer.
  *
  */
-#define GEN_MONTESINOS_CONFIG_STR_BUFFER (0x1u << 3u)
+#define GEN_MONTESINOS_CONFIG_STR_BUFFER    (0x1u << 3u)
 
 /*************************** Generate *****************************************/
 
@@ -67,20 +69,19 @@ extern "C"
 {
 #endif
 
-    /*!
-     * @brief The type definition for configuring the montesinos generation.
-     *
-     */
-    typedef struct
-    {
-        storage_write_funptr_t storage_write;
-        note_att_t *att_n;
-        note_tv_t **tv_sets;
-        size_t *tv_set_lens;
-        size_t tv_sets_len;
-        char *str_buff;
-        size_t str_buff_len;
-    } gen_montesinos_config_t;
+/*!
+ * @brief The type definition for configuring the montesinos generation.
+ *
+ */
+typedef struct {
+    storage_write_funptr_t storage_write;
+    note_att_t *           att_n;
+    note_tv_t **           tv_sets;
+    size_t *               tv_set_lens;
+    size_t                 tv_sets_len;
+    char *                 str_buff;
+    size_t                 str_buff_len;
+} gen_montesinos_config_t;
 #ifdef __cplusplus
 }
 #endif
@@ -93,11 +94,13 @@ extern "C"
 extern "C"
 {
 #endif
-    /*!
-     * @brief The public configuration function.
-     * @param config_arg The config to set.
-     */
-    uint8_t gen_montesinos_config(gen_montesinos_config_t *config_arg);
+
+/*!
+ * @brief The public configuration function.
+ * @param config_arg The config to set.
+ */
+uint8_t gen_montesinos_config(gen_montesinos_config_t *config_arg);
+
 #ifdef __cplusplus
 }
 #endif
@@ -106,13 +109,14 @@ extern "C"
 extern "C"
 {
 #endif
-    /*!
-     * @brief The public generation function. When called the module will work
-     * against the current config.
-     *
-     * @return uint8_t Generation status info.
-     */
-    uint8_t gen_montesinos_generate();
+
+/*!
+ * @brief The public generation function. When called the module will work against the current config.
+ *
+ * @return uint8_t Generation status info.
+ */
+uint8_t gen_montesinos_generate();
+
 #ifdef __cplusplus
 }
 #endif

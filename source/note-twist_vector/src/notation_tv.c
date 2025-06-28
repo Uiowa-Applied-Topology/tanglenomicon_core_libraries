@@ -22,7 +22,7 @@
  * @brief The number base used for str->int functions.
  *
  */
-#define NOTE_TV_INT_BASE (10u)
+#define NOTE_TV_INT_BASE    (10u)
 
 /******************************************************************************/
 /************************** Local Variables ***********************************/
@@ -49,10 +49,10 @@ STATIC_INLINE note_tv_t *note_tv_tvrev(note_tv_t *tv);
  */
 uint8_t note_tv_decode(char *str, note_tv_t *twistv)
 {
-    /*@@@TODO: the return logic here needs to be inverted when error handing is
-     * added*/
+    /*@@@TODO: the return logic here needs to be inverted when error handing is added*/
     uint8_t retval = NOTE_DEFS_DECODE_SUCCESS;
     uint8_t tv_idx = 0u;
+
     str++;
     const char *str_end = str + strlen(str) - 1;
 
@@ -66,8 +66,7 @@ uint8_t note_tv_decode(char *str, note_tv_t *twistv)
 
     twistv->tv_length = tv_idx;
 
-    /* The tv string stores values in the opposite direction as the ary. This
-     * could be done simultaneously with two counters this is more maintainable.
+    /* The tv string stores values in the opposite direction as the ary. This could be done simultaneously with two counters this is more maintainable.
      */
     note_tv_tvrev(twistv);
 
@@ -79,11 +78,11 @@ uint8_t note_tv_decode(char *str, note_tv_t *twistv)
  */
 uint8_t note_tv_encode(note_tv_t twistv, char *str, size_t buffer_size)
 {
-    /*@@@TODO: the return logic here needs to be inverted when error handing is
-     * added*/
+    /*@@@TODO: the return logic here needs to be inverted when error handing is added*/
     uint8_t retval = NOTE_DEFS_ENCODE_SUCCESS;
-    char local_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
-    char *str_p = str;
+    char    local_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
+    char *  str_p = str;
+
     strcpy(str_p, "[");
     str_p++;
 
@@ -123,18 +122,17 @@ static note_tv_t *note_tv_tvrev(note_tv_t *tv)
 {
     uint8_t *left_p, *right_p;
 
-    left_p = tv->twist_vector;
+    left_p  = tv->twist_vector;
     right_p = tv->twist_vector + tv->tv_length - 1;
 
-    /* While the address for the right_p is bigger then the address on the
-     * left_p.*/
+    /* While the address for the right_p is bigger then the address on the left_p.*/
     while (right_p > left_p)
     {
         /*Swap the char at left_p with the one at right_p*/
         uint8_t placeholder;
         placeholder = *left_p;
-        *left_p = *right_p;
-        *right_p = placeholder;
+        *left_p     = *right_p;
+        *right_p    = placeholder;
 
         /*Move the left_p right by one*/
         left_p++;

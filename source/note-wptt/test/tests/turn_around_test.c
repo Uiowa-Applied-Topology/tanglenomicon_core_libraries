@@ -1,6 +1,6 @@
-//
-// Created by joe on 4/27/25.
-//
+/* */
+/* Created by joe on 4/27/25. */
+/* */
 #include "turn_around_test.h"
 #include "notation_wptt.h"
 #include "unity.h"
@@ -12,9 +12,13 @@ static void test_turn_around_test_1(void);
  * @brief
  * @param
  */
-void test_turn_around(void) { RUN_TEST(test_turn_around_test_1); }
+void test_turn_around(void)
+{
+    RUN_TEST(test_turn_around_test_1);
+}
 
 /****************************** Test 1 Data ***********************************/
+
 /*
  * - A tree with an essential vertex.
  * - A tree with a vertex that has ring number.
@@ -28,6 +32,7 @@ void test_turn_around(void) { RUN_TEST(test_turn_around_test_1); }
 static void test_turn_around_test_1(void)
 {
     uint8_t retval = -1;
+
     /* clang-format off */
     char string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
     "x<1 13<2(3(4(5[7 8 -9 10])12(-11)6))>>";

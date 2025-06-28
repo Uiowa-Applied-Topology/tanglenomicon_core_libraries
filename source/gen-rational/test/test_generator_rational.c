@@ -11,15 +11,12 @@
 /******************************* Stubs ****************************************/
 /******************************************************************************/
 
-#define STR_TERMINAL_CHAR (0x7Fu)
+#define STR_TERMINAL_CHAR    (0x7Fu)
 
-char key_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u]
-             [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
-char index_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u]
-               [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
-char value_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u]
-               [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
-size_t key_idx = 0;
+char   key_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u][UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
+char   index_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u][UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
+char   value_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u][UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
+size_t key_idx   = 0;
 size_t index_idx = 0;
 size_t value_idx = 0;
 
@@ -28,6 +25,7 @@ STATIC_INLINE_UINT8 stub_write_dedup_success(const char *key,
                                              const char *value)
 {
     size_t i = 0;
+
     for (i = 0; i < key_idx; i++)
     {
         if (strcmp(key_buff[i], key) == 0)
@@ -61,7 +59,6 @@ STATIC_INLINE_UINT8 stub_write_fail(const char *key,
                                     const char *index,
                                     const char *value)
 {
-
     return STORE_DEFS_WRITE_FAIL;
 }
 
@@ -74,7 +71,7 @@ STATIC_INLINE const char *stub_read(const char *key, const char *index)
 /*******************************Test Data**************************************/
 /******************************************************************************/
 note_tv_t tv;
-char tv_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
+char      tv_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
 
 /* clang-format off */
 
@@ -129,9 +126,13 @@ char cross_num_five_rattang[UTIL_TANG_DEFS_MAX_CROSSINGNUM*5][UTIL_TANG_DEFS_MAX
 /*******************************Test prep**************************************/
 /******************************************************************************/
 
-void setUp(void) {}
+void setUp(void)
+{
+}
 
-void tearDown(void) {}
+void tearDown(void)
+{
+}
 
 /******************************************************************************/
 /*******************************Test cases*************************************/
@@ -144,6 +145,7 @@ void tearDown(void) {}
 STATIC_INLINE void test_config(void)
 {
     uint8_t ret_val = gen_rational_config(&tc_write_success);
+
     TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_CONFIG_SUCCESS);
     ret_val = gen_rational_config(NULL);
     TEST_ASSERT_EQUAL_UINT8(
@@ -155,18 +157,20 @@ STATIC_INLINE void test_config(void)
     TEST_ASSERT_EQUAL_UINT8(
         ret_val, GEN_RATIONAL_CONFIG_STR_BUFFER | GEN_DEFS_CONFIG_FAIL);
 }
+
 /*!
  * @brief
  * @param
  */
 STATIC_INLINE void test_generate_fail(void)
 {
-
     uint8_t ret_val = gen_rational_config(&tc_write_fail);
+
     TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_CONFIG_SUCCESS);
     ret_val = gen_rational_generate();
     TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_GENERATION_FAIL);
 }
+
 /*!
  * @brief
  * @param
@@ -174,12 +178,12 @@ STATIC_INLINE void test_generate_fail(void)
 STATIC_INLINE void test_generate(void)
 {
     uint8_t ret_val = gen_rational_config(&tc_write_success);
-    size_t j, i;
+    size_t  j, i;
 
     TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_CONFIG_SUCCESS);
     ret_val = gen_rational_generate();
     TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_GENERATION_SUCCESS);
-    //@@@TODO check the buffers
+    /*@@@TODO check the buffers */
 
     TEST_ASSERT_EQUAL_UINT8(16, key_idx);
     for (i = 0; i < 16; i++)
@@ -205,6 +209,7 @@ STATIC_INLINE void test_generate(void)
         }
     }
 }
+
 /******************************************************************************/
 /*******************************Test main**************************************/
 /******************************************************************************/

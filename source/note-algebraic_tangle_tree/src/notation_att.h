@@ -28,71 +28,72 @@
 /******************************************************************************/
 
 /*
-
-| Flv      | NA  | NA  | NA  | NA  | NA  | NA  | Op  | Op  |
-|----------|-----|-----|-----|-----|-----|-----|-----|-----|
-| uninit   |  0  |  0  |  0  |  0  |  0  |  0  |  0  |  0  |
-|----------|-----|-----|-----|-----|-----|-----|-----|-----|
-| Plus     |  0  |  0  |  0  |  0  |  0  |  0  |  0  |  1  |
-|----------|-----|-----|-----|-----|-----|-----|-----|-----|
-| Vee      |  0  |  0  |  0  |  0  |  0  |  0  |  1  |  0  |
-
-*/
+ *
+ | Flv      | NA  | NA  | NA  | NA  | NA  | NA  | Op  | Op  |
+ |----------|-----|-----|-----|-----|-----|-----|-----|-----|
+ | uninit   |  0  |  0  |  0  |  0  |  0  |  0  |  0  |  0  |
+ |----------|-----|-----|-----|-----|-----|-----|-----|-----|
+ | Plus     |  0  |  0  |  0  |  0  |  0  |  0  |  0  |  1  |
+ |----------|-----|-----|-----|-----|-----|-----|-----|-----|
+ | Vee      |  0  |  0  |  0  |  0  |  0  |  0  |  1  |  0  |
+ |
+ */
 
 /*!
  * @brief
  *
  */
-#define NOTE_ATT_OP_SHIFT_LEN (0x00u)
+#define NOTE_ATT_OP_SHIFT_LEN    (0x00u)
 
 /*!
  * @brief
  *
  */
-#define NOTE_ATT_OP_UNINIT (0x00u << NOTE_ATT_OP_SHIFT_LEN)
+#define NOTE_ATT_OP_UNINIT       (0x00u << NOTE_ATT_OP_SHIFT_LEN)
 
 /*!
  * @brief
  *
  */
-#define NOTE_ATT_OP_PLUS (0x01u << NOTE_ATT_OP_SHIFT_LEN)
+#define NOTE_ATT_OP_PLUS         (0x01u << NOTE_ATT_OP_SHIFT_LEN)
 
 /*!
  * @brief
  *
  */
-#define NOTE_ATT_OP_VEE (0x02u << NOTE_ATT_OP_SHIFT_LEN)
+#define NOTE_ATT_OP_VEE          (0x02u << NOTE_ATT_OP_SHIFT_LEN)
 
 /*!
  * @brief
  *
  */
-#define NOTE_ATT_CLR_OP(FLV)                                                   \
-    (FLV = ((FLV) & (~(0x03u << NOTE_ATT_OP_SHIFT_LEN))))
-/*!
- * @brief
- *
- */
-#define NOTE_ATT_SET_OP(FLV, OP) (FLV = (((FLV) | (OP))))
+#define NOTE_ATT_CLR_OP(FLV) \
+        (FLV = ((FLV)&(~(0x03u << NOTE_ATT_OP_SHIFT_LEN))))
 
 /*!
  * @brief
  *
  */
-#define NOTE_ATT_CHK_OP(FLVR, OP)                                              \
-    (((FLVR) & (0x03u << NOTE_ATT_OP_SHIFT_LEN)) == (OP) ? (true) : (false))
+#define NOTE_ATT_SET_OP(FLV, OP)    (FLV = (((FLV) | (OP))))
 
 /*!
  * @brief
  *
  */
-#define NOTE_ATT_TRAVERSE_FAIL (0x01u)
+#define NOTE_ATT_CHK_OP(FLVR, OP) \
+        (((FLVR) & (0x03u << NOTE_ATT_OP_SHIFT_LEN)) == (OP) ? (true) : (false))
 
 /*!
  * @brief
  *
  */
-#define NOTE_ATT_TRAVERSE_SUCCESS (0x00u)
+#define NOTE_ATT_TRAVERSE_FAIL       (0x01u)
+
+/*!
+ * @brief
+ *
+ */
+#define NOTE_ATT_TRAVERSE_SUCCESS    (0x00u)
 
 /******************************************************************************/
 /*******************************Typedefs***************************************/
@@ -102,17 +103,17 @@
 extern "C"
 {
 #endif
-    /*!
-     * @brief The core structure for algebraic tangle trees.
-     */
-    typedef struct note_att_node_t
-    {
-        struct note_att_node_t *L_child;
-        struct note_att_node_t *R_child;
-        note_tv_t *L_tv;
-        note_tv_t *R_tv;
-        uint8_t operation;
-    } note_att_node_t;
+
+/*!
+ * @brief The core structure for algebraic tangle trees.
+ */
+typedef struct note_att_node_t {
+    struct note_att_node_t *L_child;
+    struct note_att_node_t *R_child;
+    note_tv_t *             L_tv;
+    note_tv_t *             R_tv;
+    uint8_t                 operation;
+} note_att_node_t;
 #ifdef __cplusplus
 }
 #endif
@@ -121,17 +122,17 @@ extern "C"
 extern "C"
 {
 #endif
-    /*!
-     * @brief The core structure for algebraic tangle trees.
-     */
-    typedef struct
-    {
-        note_att_node_t *root;
-        note_att_node_t *node_buffer;
-        size_t node_buffer_len;
-        note_tv_t *tv_buffer;
-        size_t tv_buffer_len;
-    } note_att_t;
+
+/*!
+ * @brief The core structure for algebraic tangle trees.
+ */
+typedef struct {
+    note_att_node_t *root;
+    note_att_node_t *node_buffer;
+    size_t           node_buffer_len;
+    note_tv_t *      tv_buffer;
+    size_t           tv_buffer_len;
+} note_att_t;
 #ifdef __cplusplus
 }
 #endif
@@ -144,14 +145,16 @@ extern "C"
 extern "C"
 {
 #endif
-    /*!
-     * @brief Function to take a string and decode it as a note_att_t
-     *
-     * @param str Input string to decode as note_att_t
-     * @param att the note_att_t pointer to store the decoded string into.
-     * @return uint8_t The return code for the encoding operation.
-     */
-    uint8_t note_att_decode(char *str, note_att_t *att);
+
+/*!
+ * @brief Function to take a string and decode it as a note_att_t
+ *
+ * @param str Input string to decode as note_att_t
+ * @param att the note_att_t pointer to store the decoded string into.
+ * @return uint8_t The return code for the encoding operation.
+ */
+uint8_t note_att_decode(char *str, note_att_t *att);
+
 #ifdef __cplusplus
 }
 #endif
@@ -160,14 +163,16 @@ extern "C"
 extern "C"
 {
 #endif
-    /*!
-     * @brief Function to take a note_att_t and encode it as a string
-     *
-     * @param att the note_att_t pointer to encode.
-     * @param str Output string for encoded note_att_t
-     * @return uint8_t The return code for the encoding operation.
-     */
-    uint8_t note_att_encode(note_att_t att, char *str, size_t buffer_size);
+
+/*!
+ * @brief Function to take a note_att_t and encode it as a string
+ *
+ * @param att the note_att_t pointer to encode.
+ * @param str Output string for encoded note_att_t
+ * @return uint8_t The return code for the encoding operation.
+ */
+uint8_t note_att_encode(note_att_t att, char *str, size_t buffer_size);
+
 #ifdef __cplusplus
 }
 #endif

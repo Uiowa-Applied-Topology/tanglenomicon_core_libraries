@@ -30,22 +30,18 @@
 
 /****************************** Encode Status *********************************/
 
-/*! @brief Success is a 0. That lets us use hight bits for computation specific
- * codes */
-#define COMP_DEFS_CONFIG_SUCCESS (0u)
+/*! @brief Success is a 0. That lets us use hight bits for computation specific codes */
+#define COMP_DEFS_CONFIG_SUCCESS    (0u)
 
-/*! @brief We use bit 0 to indicate a fail. Specific failures encoded in higher
- * bits. */
-#define COMP_DEFS_CONFIG_FAIL (1u)
+/*! @brief We use bit 0 to indicate a fail. Specific failures encoded in higher bits. */
+#define COMP_DEFS_CONFIG_FAIL       (1u)
 
 /****************************** Decode Status *********************************/
 
-/*! @brief Success is a 0. That lets us use hight bits for computation specific
- * codes */
-#define COMP_DEFS_COMPUTE_SUCCESS (0u)
+/*! @brief Success is a 0. That lets us use hight bits for computation specific codes */
+#define COMP_DEFS_COMPUTE_SUCCESS    (0u)
 
-/*! @brief We use bit 0 to indicate a fail. Specific failures encoded in higher
- * bits. */
-#define COMP_DEFS_COMPUTE_FAIL (1u)
+/*! @brief We use bit 0 to indicate a fail. Specific failures encoded in higher bits. */
+#define COMP_DEFS_COMPUTE_FAIL       (1u)
 
 #endif /* end COMPUTATION_DEFS_H */

@@ -1,4 +1,3 @@
-
 #include "positive_tests.h"
 #include "notation_wptt.h"
 #include "unity.h"
@@ -25,6 +24,7 @@ void test_encode_positive(void)
 }
 
 /****************************** Test 1 Data ***********************************/
+
 /*
  * - A tree with an essential vertex.
  * - A tree with a vertex that has ring number.
@@ -38,6 +38,7 @@ void test_encode_positive(void)
 static void test_encode_positive_knot_1(void)
 {
     uint8_t retval = -1;
+
     /* clang-format off */
     char string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
     "<1 13<2(3(4(5[7 8 9 10])12(11)6))>>";
@@ -119,6 +120,7 @@ static void test_encode_positive_knot_1(void)
 }
 
 /****************************** Test 2 Data ***********************************/
+
 /*
  * - A valid string representing a knot.
  */
@@ -129,8 +131,8 @@ static void test_encode_positive_knot_1(void)
  */
 static void test_encode_positive_knot_2(void)
 {
-
     uint8_t retval = -1;
+
     /* clang-format off */
     char string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
     "[7 8 9 10]";
@@ -176,6 +178,7 @@ static void test_encode_positive_knot_2(void)
 }
 
 /****************************** Test 1 Data ***********************************/
+
 /*
  * - A tree with an essential vertex.
  * - A tree with a vertex that has ring number.
@@ -191,6 +194,7 @@ static void test_encode_positive_knot_2(void)
 static void test_encode_positive_tangle_1(void)
 {
     uint8_t retval = -1;
+
     /* clang-format off */
     char string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
     "i<1 13<2(3(4(5[7 8 9 10])12(11)6))>>";
@@ -272,6 +276,7 @@ static void test_encode_positive_tangle_1(void)
 }
 
 /****************************** Test 2 Data ***********************************/
+
 /*
  * - A valid string representing a knot.
  * - A valid wptt representing a tangle with each label:
@@ -284,8 +289,8 @@ static void test_encode_positive_tangle_1(void)
  */
 static void test_encode_positive_tangle_2(void)
 {
-
     uint8_t retval = -1;
+
     /* clang-format off */
     char string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
     "x[7 8 9 10]";
@@ -331,6 +336,7 @@ static void test_encode_positive_tangle_2(void)
 }
 
 /****************************** Test 3 Data ***********************************/
+
 /*
  * - A tree with an essential vertex.
  * - A tree with a vertex that has ring number.
@@ -346,6 +352,7 @@ static void test_encode_positive_tangle_2(void)
 static void test_encode_positive_tangle_3(void)
 {
     uint8_t retval = -1;
+
     /* clang-format off */
     char string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
     "y<1 13<2(3(4(5[7 8 9 10])12(11)6))>>";
@@ -427,6 +434,7 @@ static void test_encode_positive_tangle_3(void)
 }
 
 /****************************** Test 4 Data ***********************************/
+
 /*
  * - A valid string representing a knot.
  *
@@ -440,8 +448,8 @@ static void test_encode_positive_tangle_3(void)
  */
 static void test_encode_positive_tangle_4(void)
 {
-
     uint8_t retval = -1;
+
     /* clang-format off */
     char string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
     "z[7 8 9 10]";

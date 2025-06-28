@@ -8,7 +8,7 @@
 /******************************************************************************/
 /*******************************Untested Frameworks****************************/
 /******************************************************************************/
-// We trust that json.hpp works.
+/* We trust that json.hpp works. */
 #include "json.hpp"
 using json = nlohmann::json;
 
@@ -19,10 +19,10 @@ using sj = storage_ns::storage_json_c;
 /******************************************************************************/
 /*******************************Test Data**************************************/
 /******************************************************************************/
-string testfile_good = "{\"[0]\":{\"index\":\"value\"}}";
+string testfile_good      = "{\"[0]\":{\"index\":\"value\"}}";
 string testfile_good_path = "testfile_good.json";
 
-string testfile_malformed = "{";
+string testfile_malformed      = "{";
 string testfile_malformed_path = "testfile_bad.json";
 
 /******************************************************************************/
@@ -32,6 +32,7 @@ string testfile_malformed_path = "testfile_bad.json";
 void setUp(void)
 {
     ofstream *json_file = new ofstream(testfile_malformed_path);
+
     *json_file << setw(4) << testfile_malformed << endl;
     json_file->close();
     delete json_file;
@@ -43,9 +44,9 @@ void setUp(void)
 
 void tearDown(void)
 {
-    // remove(testfile_malformed_path.c_str());
-    // remove(testfile_good_path.c_str());
-    // clean stuff up here
+    /* remove(testfile_malformed_path.c_str()); */
+    /* remove(testfile_good_path.c_str()); */
+    /* clean stuff up here */
 }
 
 /******************************************************************************/
@@ -59,13 +60,14 @@ void tearDown(void)
 void test_create_obj(void)
 {
     sj *test_obj = nullptr;
+
     TEST_ASSERT_TRUE(!test_obj);
     test_obj = new sj(testfile_good_path, false);
     TEST_ASSERT_TRUE(test_obj);
     delete test_obj;
 }
 
-// char *read(char *key, char *index)
+/* char *read(char *key, char *index) */
 
 /*!
  * @brief
@@ -73,9 +75,9 @@ void test_create_obj(void)
  */
 void test_read(void)
 {
-    sj *test_obj = new sj(testfile_good_path, false);
-    char key[] = "[0]";
-    char index[] = "index";
+    sj * test_obj = new sj(testfile_good_path, false);
+    char key[]    = "[0]";
+    char index[]  = "index";
 
     TEST_ASSERT_TRUE(test_obj);
     const char *read_var;
@@ -84,7 +86,7 @@ void test_read(void)
     delete test_obj;
 }
 
-// char *read(char *key, char *index)
+/* char *read(char *key, char *index) */
 
 /*!
  * @brief
@@ -97,14 +99,14 @@ void test_read_malformed(void)
         sj *test_obj = new sj(testfile_malformed_path, false);
         TEST_ASSERT_TRUE(true);
     }
-    catch (json::parse_error &e)
+    catch (json::parse_error&e)
     {
         TEST_FAIL();
         TEST_FAIL_MESSAGE("This should pass initialization.");
     }
 }
 
-// int write(char *key, char *index, char *value)
+/* int write(char *key, char *index, char *value) */
 
 /*!
  * @brief
@@ -112,17 +114,18 @@ void test_read_malformed(void)
  */
 void test_write_newkey(void)
 {
-    char key[] = "[1] ";
-    char index[] = "index";
-    char value[] = "value1";
-    sj *test_obj = new sj(testfile_good_path, false);
+    char key[]    = "[1] ";
+    char index[]  = "index";
+    char value[]  = "value1";
+    sj * test_obj = new sj(testfile_good_path, false);
+
     TEST_ASSERT_TRUE(test_obj);
     int write_res = test_obj->write(key, index, value);
     TEST_ASSERT_EQUAL(write_res, STORE_DEFS_WRITE_SUCCESS);
     delete test_obj;
 }
 
-// int write(char *key, char *index, char *value)
+/* int write(char *key, char *index, char *value) */
 
 /*!
  * @brief
@@ -130,17 +133,18 @@ void test_write_newkey(void)
  */
 void test_write_newindex(void)
 {
-    char key[] = "[0]";
-    char index[] = "index2";
-    char value[] = "value2";
-    sj *test_obj = new sj(testfile_good_path, false);
+    char key[]    = "[0]";
+    char index[]  = "index2";
+    char value[]  = "value2";
+    sj * test_obj = new sj(testfile_good_path, false);
+
     TEST_ASSERT_TRUE(test_obj);
     int write_res = test_obj->write(key, index, value);
     TEST_ASSERT_EQUAL(write_res, STORE_DEFS_WRITE_SUCCESS);
     delete test_obj;
 }
 
-// int write(char *key, char *index, char *value)
+/* int write(char *key, char *index, char *value) */
 
 /*!
  * @brief
@@ -148,10 +152,11 @@ void test_write_newindex(void)
  */
 void test_write_updateindex(void)
 {
-    char key[] = "[0]";
-    char index[] = "index";
-    char value[] = "value2";
-    sj *test_obj = new sj(testfile_good_path, false);
+    char key[]    = "[0]";
+    char index[]  = "index";
+    char value[]  = "value2";
+    sj * test_obj = new sj(testfile_good_path, false);
+
     TEST_ASSERT_TRUE(test_obj);
     int write_res = test_obj->write(key, index, value);
     TEST_ASSERT_EQUAL(write_res, STORE_DEFS_WRITE_SUCCESS);
