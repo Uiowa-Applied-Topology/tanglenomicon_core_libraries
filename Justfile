@@ -74,15 +74,14 @@ test_dbg: bootstrap
     ctest -C {{buildTrgt_dbg}}
 
 
-do-clang-format:
-    find ./source -iname "*.c"   -exec  sh -c 'clang-format -i "$0" || kill $PPID' \{\} \;
-    find ./source -iname "*.h"   -exec  sh -c 'clang-format -i "$0" || kill $PPID' \{\} \;
-    find ./source -iname "*.cpp" -exec  sh -c 'clang-format -i "$0" || kill $PPID' \{\} \;
-
-check-clang-format:
-    find ./source -iname "*.c"   -exec sh -c 'clang-format --Werror --dry-run "$0" || kill $PPID' \{\} \;
-    find ./source -iname "*.h"   -exec sh -c 'clang-format --Werror --dry-run "$0" || kill $PPID' \{\} \;
-    find ./source -iname "*.cpp" -exec sh -c 'clang-format --Werror --dry-run "$0" || kill $PPID' \{\} \;
+do-uncrustify:
+    find ./source -iname "*.c"   -exec  sh -c 'uncrustify -c .uncrustify.cfg --replace "$0" || kill $PPID' \{\} \;
+    find ./source -iname "*.h"   -exec  sh -c 'uncrustify -c .uncrustify.cfg --replace "$0" || kill $PPID' \{\} \;
+    find ./source -iname "*.cpp" -exec  sh -c 'uncrustify -c .uncrustify.cfg --replace "$0" || kill $PPID' \{\} \;
+check-uncrustify:
+    find ./source -iname "*.c"   -exec  sh -c 'uncrustify -c .uncrustify.cfg --check "$0" || kill $PPID' \{\} \;
+    find ./source -iname "*.h"   -exec  sh -c 'uncrustify -c .uncrustify.cfg --check "$0" || kill $PPID' \{\} \;
+    find ./source -iname "*.cpp" -exec  sh -c 'uncrustify -c .uncrustify.cfg --check "$0" || kill $PPID' \{\} \;
 
 check-prettier:
     prettier README.md --check

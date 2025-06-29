@@ -25,11 +25,9 @@ typedef uint8_t (*char_handler_funptr_t)(char **str);
 /*!
  * @brief The type for the elements of the decode dictionary.
  */
-typedef struct note_wptt_decode_char_dic_t
-{
-    char *char_class;
+typedef struct note_wptt_decode_char_dic_t {
+    char *                char_class;
     char_handler_funptr_t funptr;
-
 } note_wptt_decode_char_dic_t;
 
 /******************************************************************************/
@@ -39,40 +37,40 @@ typedef struct note_wptt_decode_char_dic_t
 /*!
  * @brief The character for the identity label.
  */
-#define NOTE_wptt_V4_LABEL_I_STR ('i')
+#define NOTE_wptt_V4_LABEL_I_STR      ('i')
 
 /*!
  * @brief The character for the x rotation label.
  */
-#define NOTE_wptt_V4_LABEL_X_STR ('x')
+#define NOTE_wptt_V4_LABEL_X_STR      ('x')
 
 /*!
  * @brief The character for the y rotation label.
  */
-#define NOTE_wptt_V4_LABEL_Y_STR ('y')
+#define NOTE_wptt_V4_LABEL_Y_STR      ('y')
 
 /*!
  * @brief The character for the z rotation label.
  */
-#define NOTE_wptt_V4_LABEL_Z_STR ('z')
+#define NOTE_wptt_V4_LABEL_Z_STR      ('z')
 
 /*!
  * @brief The size of the decode stack.
  *
  */
-#define NOTE_wptt_STACK_SIZE (UTIL_TANG_DEFS_MAX_CROSSINGNUM)
+#define NOTE_wptt_STACK_SIZE          (UTIL_TANG_DEFS_MAX_CROSSINGNUM)
 
 /*!
  * @brief The size of the dictionary of decode functions.
  *
  */
-#define NOTE_wptt_DECODE_DICT_SIZE (6u)
+#define NOTE_wptt_DECODE_DICT_SIZE    (6u)
 
 /*!
  * @brief The number base used for str->int functions.
  *
  */
-#define NOTE_wptt_INT_BASE (10u)
+#define NOTE_wptt_INT_BASE            (10u)
 
 /******************************************************************************/
 /************************** Private Function Declarations *********************/
@@ -132,11 +130,11 @@ STATIC_INLINE_UINT8 note_wptt_encode_process_active_node(
 /******************************************************************************/
 /************************** Local Variables ***********************************/
 /******************************************************************************/
+
 /*!
- * @brief The wptt stack used in the encode and decode functions. This needs
- *        to be initialized at the beginning of the using function.
+ * @brief The wptt stack used in the encode and decode functions. This needs to be initialized at the beginning of the using function.
  */
-static note_wptt_node_t *wptt_node_stack[NOTE_wptt_STACK_SIZE] = {NULL};
+static note_wptt_node_t *wptt_node_stack[NOTE_wptt_STACK_SIZE] = { NULL };
 
 /*!
  * @brief The current number of elements on the wptt stack.
@@ -149,8 +147,7 @@ static size_t wptt_stack_len = 0;
 static note_wptt_node_buffer_t *decode_buffer = NULL;
 
 /*!
- * @brief The stack containing the current child index used in the encode path
- *        functions.
+ * @brief The stack containing the current child index used in the encode path functions.
  */
 uint8_t child_idx_stack[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
 /******************************************************************************/
@@ -163,19 +160,21 @@ uint8_t child_idx_stack[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
 uint8_t note_wptt_decode(char *str, note_wptt_t *wptt)
 {
     uint8_t retval = NOTE_DEFS_DECODE_SUCCESS;
+
     /*Clear the buffer and stack*/
-    decode_buffer = NULL;
+    decode_buffer      = NULL;
     wptt_node_stack[0] = NULL;
-    wptt_stack_len = 0;
+    wptt_stack_len     = 0;
 
     /*Initialize the character checking dictionary*/
     const note_wptt_decode_char_dic_t charcheck_dict[] = {
-        {"(", &note_wptt_decode_opn_p_handler},
-        {"<", &note_wptt_decode_opn_a_handler},
-        {"[", &note_wptt_decode_opn_b_handler},
-        {")>", &note_wptt_decode_cls_handler},
-        {" ", &note_wptt_decode_space_handler},
-        {"-0123456789", &note_wptt_decode_weight_handler}};
+        { "(",           &note_wptt_decode_opn_p_handler  },
+        { "<",           &note_wptt_decode_opn_a_handler  },
+        { "[",           &note_wptt_decode_opn_b_handler  },
+        { ")>",          &note_wptt_decode_cls_handler    },
+        { " ",           &note_wptt_decode_space_handler  },
+        { "-0123456789", &note_wptt_decode_weight_handler }
+    };
 
     /*Do basic error checking.*/
     if (strlen(str) <= 2)
@@ -201,7 +200,7 @@ uint8_t note_wptt_decode(char *str, note_wptt_t *wptt)
         decode_buffer = &(wptt->node_buffer);
 
         /*Initialize wptt root from buffer*/
-        wptt->root = &(decode_buffer->buffer[0]);
+        wptt->root        = &(decode_buffer->buffer[0]);
         wptt->root->order = NOTE_wptt_ORDER_FORWARD;
 
         /*Check if the string has a V_4 label*/
@@ -220,7 +219,7 @@ uint8_t note_wptt_decode(char *str, note_wptt_t *wptt)
             for (i = 0u; i < NOTE_wptt_DECODE_DICT_SIZE; i++)
             {
                 if (true == note_wptt_decode_check_charset(
-                                charcheck_dict[i].char_class, str[0]))
+                        charcheck_dict[i].char_class, str[0]))
                 {
                     retval |= charcheck_dict[i].funptr(&str);
                     break;
@@ -242,11 +241,12 @@ uint8_t note_wptt_decode(char *str, note_wptt_t *wptt)
  */
 uint8_t note_wptt_encode(note_wptt_t wptt, char *str, size_t buffer_size)
 {
-    uint8_t retval = NOTE_DEFS_ENCODE_SUCCESS;
+    uint8_t     retval = NOTE_DEFS_ENCODE_SUCCESS;
     const char *buffer_end_p;
     const char *buffer_start_p;
-    wptt_node_stack[0] = wptt.root;
-    wptt_stack_len = 0x1u;
+
+    wptt_node_stack[0]  = wptt.root;
+    wptt_stack_len      = 0x1u;
     child_idx_stack[0u] = 0;
 
     /*Do basic error checking.*/
@@ -262,14 +262,13 @@ uint8_t note_wptt_encode(note_wptt_t wptt, char *str, size_t buffer_size)
     }
     else
     {
-        buffer_end_p = str + (buffer_size - 1);
+        buffer_end_p   = str + (buffer_size - 1);
         buffer_start_p = str;
-        retval |= note_wptt_encode_insert_label(wptt.label, &str, buffer_end_p);
+        retval        |= note_wptt_encode_insert_label(wptt.label, &str, buffer_end_p);
         /*While stack is not empty and string buffer has space*/
         while ((0 < wptt_stack_len) && (str < buffer_end_p) &&
                (NOTE_DEFS_ENCODE_SUCCESS == retval))
         {
-
             note_wptt_node_t *active_node_p = wptt_node_stack[wptt_stack_len - 1];
 
             /*Do basic error checking.*/
@@ -350,6 +349,7 @@ uint8_t note_wptt_encode(note_wptt_t wptt, char *str, size_t buffer_size)
 STATIC_INLINE note_wptt_V4_label_e note_wptt_decode_get_v4_label(char label)
 {
     note_wptt_V4_label_e retval = NOTE_wptt_V4_LABEL_UNINIT;
+
     /*Check if the string has a V_4 label*/
     switch (label)
     {
@@ -358,21 +358,25 @@ STATIC_INLINE note_wptt_V4_label_e note_wptt_decode_get_v4_label(char label)
         retval = NOTE_wptt_V4_LABEL_I;
         break;
     }
+
     case NOTE_wptt_V4_LABEL_X_STR:
     {
         retval = NOTE_wptt_V4_LABEL_X;
         break;
     }
+
     case NOTE_wptt_V4_LABEL_Y_STR:
     {
         retval = NOTE_wptt_V4_LABEL_Y;
         break;
     }
+
     case NOTE_wptt_V4_LABEL_Z_STR:
     {
         retval = NOTE_wptt_V4_LABEL_Z;
         break;
     }
+
     default:
     {
         retval = NOTE_wptt_V4_LABEL_NONE;
@@ -382,8 +386,7 @@ STATIC_INLINE note_wptt_V4_label_e note_wptt_decode_get_v4_label(char label)
 }
 
 /*!
- * @brief Determine if a character from the input string is one of the valid
- * characters.
+ * @brief Determine if a character from the input string is one of the valid characters.
  * @param valid_chars The list of valid characters.
  * @param str_char A character form the input string.
  * @return The truthiness of if the character is one of the valid characters.
@@ -391,8 +394,9 @@ STATIC_INLINE note_wptt_V4_label_e note_wptt_decode_get_v4_label(char label)
 STATIC_INLINE bool note_wptt_decode_check_charset(const char *valid_chars,
                                                   const char str_char)
 {
-    bool retval = false;
+    bool   retval = false;
     size_t i;
+
     for (i = 0; i < strlen(valid_chars); i++)
     {
         if (str_char == valid_chars[i])
@@ -405,11 +409,9 @@ STATIC_INLINE bool note_wptt_decode_check_charset(const char *valid_chars,
 }
 
 /*!
- * @brief Dictionary function to consume and advance the to the the next
- * character of the input string.
+ * @brief Dictionary function to consume and advance the to the the next character of the input string.
  *
- * @param str A pointer to the pointer a the current character of the input
- * string.
+ * @param str A pointer to the pointer a the current character of the input string.
  * @return A status flag indicating successful completion of the subroutine.
  */
 /* cppcheck-suppress constParameterPointer*/
@@ -422,16 +424,15 @@ STATIC_INLINE_UINT8 note_wptt_decode_space_handler(char **str)
 }
 
 /*!
- * @brief Dictionary function to initialize and push a child node onto the
- * stack.
+ * @brief Dictionary function to initialize and push a child node onto the stack.
  *
- * @param str A pointer to the pointer a the current character of the input
- * string.
+ * @param str A pointer to the pointer a the current character of the input string.
  * @return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_decode_opn_p_handler(char **str)
 {
     uint8_t retval = NOTE_DEFS_DECODE_SUCCESS;
+
     retval |= note_wptt_decode_push_node();
     retval |= note_wptt_decode_add_child();
     (*str)++;
@@ -441,15 +442,15 @@ STATIC_INLINE_UINT8 note_wptt_decode_opn_p_handler(char **str)
 /*!
  * @brief Dictionary function to process and create a stick subtree.
  *
- * @param str A pointer to the pointer a the current character of the input
- * string.
+ * @param str A pointer to the pointer a the current character of the input string.
  * @return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_decode_opn_b_handler(char **str)
 {
     uint8_t retval = NOTE_DEFS_DECODE_SUCCESS;
-    int8_t weights[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {0};
-    size_t num_of_weights = 0;
+    int8_t  weights[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { 0 };
+    size_t  num_of_weights = 0;
+
     (*str)++;
     while ((']' != (*str)[0]) && ('\0' != (*str)[0]) &&
            (NOTE_DEFS_DECODE_SUCCESS == retval))
@@ -472,7 +473,7 @@ STATIC_INLINE_UINT8 note_wptt_decode_opn_b_handler(char **str)
 
     if ((']' == (*str)[0]) && (NOTE_DEFS_DECODE_SUCCESS == retval))
     {
-        size_t i;
+        size_t  i;
         uint8_t pre_stick_stack_len = wptt_stack_len;
         (*str)++;
         for (i = 1; i < num_of_weights; i++)
@@ -497,16 +498,15 @@ STATIC_INLINE_UINT8 note_wptt_decode_opn_b_handler(char **str)
 }
 
 /*!
- * @brief Dictionary function to initialize and push a child node onto the stack
- * with a ring number.
+ * @brief Dictionary function to initialize and push a child node onto the stack with a ring number.
  *
- * @param str A pointer to the pointer a the current character of the input
- * string.
+ * @param str A pointer to the pointer a the current character of the input string.
  * @return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_decode_opn_a_handler(char **str)
 {
     uint8_t retval = NOTE_DEFS_DECODE_SUCCESS;
+
     retval |= note_wptt_decode_push_node();
     retval |= note_wptt_decode_add_child();
     (*str)++;
@@ -535,33 +535,31 @@ STATIC_INLINE_UINT8 note_wptt_decode_opn_a_handler(char **str)
 }
 
 /*!
- * @brief Dictionary function to pop a node off of the wptt stack and advance
- * to the next character of the string.
+ * @brief Dictionary function to pop a node off of the wptt stack and advance to the next character of the string.
  *
- * @param str A pointer to the pointer a the current character of the input
- * string.
+ * @param str A pointer to the pointer a the current character of the input string.
  * @return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_decode_cls_handler(char **str)
 {
     uint8_t retval = NOTE_DEFS_DECODE_SUCCESS;
+
     wptt_stack_len--;
     (*str)++;
     return retval;
 }
 
 /*!
- * @brief Dictionary function to process an integer weight and advance the input
- * string.
+ * @brief Dictionary function to process an integer weight and advance the input string.
  *
- * @param str A pointer to the pointer a the current character of the input
- * string.
+ * @param str A pointer to the pointer a the current character of the input string.
  * @return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_decode_weight_handler(char **str)
 {
-    uint8_t retval = NOTE_DEFS_DECODE_SUCCESS;
+    uint8_t           retval        = NOTE_DEFS_DECODE_SUCCESS;
     note_wptt_node_t *active_node_p = wptt_node_stack[wptt_stack_len - 1];
+
     active_node_p->weights[active_node_p->number_of_children] = strtol(
         *str, str, NOTE_wptt_INT_BASE);
     if (' ' == (*str)[0])
@@ -587,7 +585,7 @@ STATIC_INLINE_UINT8 note_wptt_decode_push_node()
     if ((decode_buffer->idx) + 1 < (decode_buffer->size) &&
         (wptt_stack_len + 1 < NOTE_wptt_STACK_SIZE))
     {
-        size_t i;
+        size_t            i;
         note_wptt_node_t *new_node = &decode_buffer->buffer[decode_buffer->idx];
         retval = NOTE_DEFS_DECODE_SUCCESS;
         /*Clear out new node*/
@@ -601,7 +599,7 @@ STATIC_INLINE_UINT8 note_wptt_decode_push_node()
             new_node->children[i] = NULL;
         }
         new_node->number_of_children = 0;
-        new_node->number_of_rings = 0;
+        new_node->number_of_rings    = 0;
         new_node->order = NOTE_wptt_ORDER_FORWARD;
 
         /*Push new node to stack*/
@@ -616,8 +614,7 @@ STATIC_INLINE_UINT8 note_wptt_decode_push_node()
 }
 
 /*!
- * @brief Makes the active node on the wptt stack a child of the node below it
- * on the stack.
+ * @brief Makes the active node on the wptt stack a child of the node below it on the stack.
  *
  * @return A status flag indicating successful completion of the subroutine.
  */
@@ -625,6 +622,7 @@ STATIC_INLINE_UINT8 note_wptt_decode_add_child()
 {
     uint8_t retval = NOTE_STATUS_BLDR(
         NOTE_DEFS_ENCODE_FAIL, NOTE_wptt_ENCODE_OVRUNDR_ERROR);
+
     /*Check if there is open space on the stack*/
     if ((0 < wptt_stack_len) && (wptt_stack_len < NOTE_wptt_STACK_SIZE))
     {
@@ -656,6 +654,7 @@ STATIC_INLINE bool note_wptt_encode_stick_check(note_wptt_node_t *active_node_p)
 {
     bool retval = false;
     note_wptt_node_t *child_node = active_node_p;
+
     while ((child_node != NULL) && (0 < child_node->number_of_children) &&
            (child_node->number_of_children < 2) &&
            (0 == child_node->number_of_rings) && (0 == child_node->weights[0]))
@@ -681,6 +680,7 @@ STATIC_INLINE_UINT8 note_wptt_encode_get_child_ordered_idx(
     const note_wptt_node_t *active_node_p)
 {
     size_t ordered_child_idx = 0;
+
     if (NOTE_wptt_ORDER_FORWARD == active_node_p->order)
     {
         ordered_child_idx = child_idx_stack[wptt_stack_len - 1];
@@ -706,11 +706,12 @@ STATIC_INLINE_UINT8 note_wptt_encode_insert_stick(note_wptt_node_t *active_node_
                                                   char **str_p,
                                                   const char *buffer_end_p)
 {
-    uint8_t retval = NOTE_DEFS_ENCODE_FAIL;
-    uint8_t weights[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = {0};
-    uint8_t weight_idx = 0;
+    uint8_t           retval = NOTE_DEFS_ENCODE_FAIL;
+    uint8_t           weights[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { 0 };
+    uint8_t           weight_idx = 0;
     note_wptt_node_t *child_node = active_node_p;
-    size_t i = 0;
+    size_t            i          = 0;
+
     retval = note_wptt_encode_insert_char('[', str_p, buffer_end_p);
 
     /*Collect interior weights*/
@@ -748,32 +749,38 @@ STATIC_INLINE_UINT8 note_wptt_encode_insert_label(note_wptt_V4_label_e label,
                                                   const char *buffer_end_p)
 {
     uint8_t retval = NOTE_DEFS_ENCODE_SUCCESS;
+
     switch (label)
     {
     case NOTE_wptt_V4_LABEL_NONE:
     {
         break;
     }
+
     case NOTE_wptt_V4_LABEL_I:
     {
         retval |= note_wptt_encode_insert_char('i', str_p, buffer_end_p);
         break;
     }
+
     case NOTE_wptt_V4_LABEL_X:
     {
         retval |= note_wptt_encode_insert_char('x', str_p, buffer_end_p);
         break;
     }
+
     case NOTE_wptt_V4_LABEL_Y:
     {
         retval |= note_wptt_encode_insert_char('y', str_p, buffer_end_p);
         break;
     }
+
     case NOTE_wptt_V4_LABEL_Z:
     {
         retval |= note_wptt_encode_insert_char('z', str_p, buffer_end_p);
         break;
     }
+
     default:
     {
         retval = NOTE_STATUS_BLDR(
@@ -797,6 +804,7 @@ STATIC_INLINE_UINT8 note_wptt_encode_insert_space(char **str_p,
                                                   const char *buffer_end_p)
 {
     uint8_t retval = NOTE_DEFS_ENCODE_FAIL;
+
     /*Check if there is room in string buffer*/
     if (((*str_p + 1) < buffer_end_p) && (buffer_start_p < (*str_p)))
     {
@@ -829,6 +837,7 @@ STATIC_INLINE_UINT8 note_wptt_encode_insert_char(char new_char,
                                                  const char *buffer_end_p)
 {
     uint8_t retval = NOTE_DEFS_ENCODE_FAIL;
+
     if ((*str_p + 1) < buffer_end_p)
     {
         (*str_p)[0] = new_char;
@@ -844,8 +853,7 @@ STATIC_INLINE_UINT8 note_wptt_encode_insert_char(char new_char,
 }
 
 /*!
- * @brief Insert the base 10 string representation of an integer into the output
- * string.
+ * @brief Insert the base 10 string representation of an integer into the output string.
  *
  * @param new_int An integer to insert.
  * @param str_p A pointer to the pointer of current index of the output string.
@@ -856,9 +864,9 @@ STATIC_INLINE_UINT8 note_wptt_encode_insert_int(int8_t new_int,
                                                 char **str_p,
                                                 const char *buffer_end_p)
 {
-    uint8_t retval = NOTE_DEFS_ENCODE_FAIL;
-    size_t local_offset = 0;
-    char local_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
+    uint8_t retval       = NOTE_DEFS_ENCODE_FAIL;
+    size_t  local_offset = 0;
+    char    local_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
 
     sprintf(local_str, "%d", new_int);
     local_offset = strlen(local_str);
@@ -867,7 +875,7 @@ STATIC_INLINE_UINT8 note_wptt_encode_insert_int(int8_t new_int,
     {
         strcpy(*str_p, local_str);
         (*str_p) += local_offset;
-        retval = NOTE_DEFS_ENCODE_SUCCESS;
+        retval    = NOTE_DEFS_ENCODE_SUCCESS;
     }
     else
     {
@@ -882,8 +890,7 @@ STATIC_INLINE_UINT8 note_wptt_encode_insert_int(int8_t new_int,
  *
  * @param active_node The node under investigation.
  * @param str_p A pointer to the pointer of current index of the output string.
- * @param ordered_child_idx The next child index in the order of the active
- * node.
+ * @param ordered_child_idx The next child index in the order of the active node.
  * @param buffer_start_p A pointer to the start of the output string buffer.
  * @param buffer_end_p A pointer to the end of the output string buffer.
  * @return A status flag indicating successful completion of the subroutine.
@@ -896,6 +903,7 @@ STATIC_INLINE_UINT8 note_wptt_encode_complete_active_node(
     const char *buffer_end_p)
 {
     uint8_t retval = NOTE_DEFS_ENCODE_SUCCESS;
+
     /*Insert final weight*/
     if (0 != active_node_p->weights[ordered_child_idx])
     {
@@ -922,8 +930,7 @@ STATIC_INLINE_UINT8 note_wptt_encode_complete_active_node(
  *
  * @param active_node The node under investigation.
  * @param str_p A pointer to the pointer of current index of the output string.
- * @param ordered_child_idx The next child index in the order of the active
- * node.
+ * @param ordered_child_idx The next child index in the order of the active node.
  * @param buffer_start_p A pointer to the start of the output string buffer.
  * @param buffer_end_p A pointer to the end of the output string buffer.
  * @return A status flag indicating successful completion of the subroutine.
@@ -935,8 +942,8 @@ STATIC_INLINE_UINT8 note_wptt_encode_process_active_node(
     const char *buffer_start_p,
     const char *buffer_end_p)
 {
-    uint8_t retval = NOTE_DEFS_ENCODE_SUCCESS;
-    bool found_stick = note_wptt_encode_stick_check(active_node);
+    uint8_t retval      = NOTE_DEFS_ENCODE_SUCCESS;
+    bool    found_stick = note_wptt_encode_stick_check(active_node);
 
     /*Check if node has more children and start new node*/
     /* cppcheck-suppress negativeIndex */

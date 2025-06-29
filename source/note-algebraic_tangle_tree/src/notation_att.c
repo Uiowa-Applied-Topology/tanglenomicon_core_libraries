@@ -56,8 +56,8 @@ STATIC_INLINE_UINT8 note_att_process_tv(const char *str, note_att_t *att);
  */
 uint8_t note_att_decode(char *str, note_att_t *att)
 {
-
     uint8_t retval = NOTE_DEFS_DECODE_SUCCESS;
+
     if ((str == NULL) || (att == NULL))
     {
         retval = NOTE_DEFS_DECODE_FAIL;
@@ -69,9 +69,9 @@ uint8_t note_att_decode(char *str, note_att_t *att)
     }
     else
     {
-        att->root = &(att->node_buffer[0]);
+        att->root        = &(att->node_buffer[0]);
         note_att_str_idx = 0u;
-        note_att_tv_idx = 0u;
+        note_att_tv_idx  = 0u;
         if (str[0] == '+')
         {
             NOTE_ATT_SET_OP(att->root->operation, NOTE_ATT_OP_PLUS);
@@ -95,8 +95,8 @@ uint8_t note_att_decode(char *str, note_att_t *att)
  */
 uint8_t note_att_encode(note_att_t att, char *str, size_t buffer_size)
 {
-
     uint8_t retval = NOTE_DEFS_ENCODE_FAIL;
+
     if (str == NULL)
     {
         retval = NOTE_DEFS_ENCODE_FAIL;
@@ -147,7 +147,7 @@ STATIC_INLINE_UINT8 note_att_traverse(note_att_node_t *node,
     }
 
     buffer_size -= strlen(str);
-    str += strlen(str);
+    str         += strlen(str);
 
     if (retval != NOTE_ATT_TRAVERSE_FAIL)
     {
@@ -174,7 +174,6 @@ STATIC_INLINE_UINT8 note_att_traverse(note_att_node_t *node,
         }
         else if (node->R_tv != NULL)
         {
-
             retval = note_att_add_tv(node->R_tv, str, buffer_size);
         }
         else
@@ -197,6 +196,7 @@ STATIC_INLINE_UINT8 note_att_add_tv(const note_tv_t *tv,
                                     size_t buffer_size)
 {
     uint8_t ret_val = NOTE_ATT_TRAVERSE_FAIL;
+
     if (tv != NULL)
     {
         uint8_t result = NOTE_DEFS_ENCODE_FAIL;
@@ -211,8 +211,7 @@ STATIC_INLINE_UINT8 note_att_add_tv(const note_tv_t *tv,
 
 /*!
  * @brief Walk the string converting it to an algebraic tangle tree.
- * @param att The store-storage_interface location for the algebraic tangle
- * tree.
+ * @param att The store-storage_interface location for the algebraic tangle tree.
  * @param node
  * @param str
  * @param att_node_idx
@@ -223,17 +222,18 @@ STATIC_INLINE_UINT8 note_att_traverse_string(note_att_t *att,
                                              char *str,
                                              size_t att_node_idx)
 {
-    uint8_t ret_val = NOTE_ATT_TRAVERSE_SUCCESS;
-    size_t new_att_gen = 0x0u;
+    uint8_t ret_val     = NOTE_ATT_TRAVERSE_SUCCESS;
+    size_t  new_att_gen = 0x0u;
+
     node->L_child = NULL;
     node->R_child = NULL;
-    node->L_tv = NULL;
-    node->R_tv = NULL;
-    // +[4 3 3 5 6]v+[3 3 3][2 2 3]
+    node->L_tv    = NULL;
+    node->R_tv    = NULL;
+    /* +[4 3 3 5 6]v+[3 3 3][2 2 3] */
     if (str[note_att_str_idx] == '[')
     {
         node->L_tv = &(att->tv_buffer[note_att_tv_idx]);
-        ret_val = note_att_process_tv(str, att);
+        ret_val    = note_att_process_tv(str, att);
         note_att_tv_idx++;
     }
     else
@@ -260,7 +260,7 @@ STATIC_INLINE_UINT8 note_att_traverse_string(note_att_t *att,
     if ((str[note_att_str_idx] == '[') && (ret_val == NOTE_ATT_TRAVERSE_SUCCESS))
     {
         node->R_tv = &(att->tv_buffer[note_att_tv_idx]);
-        ret_val = note_att_process_tv(str, att);
+        ret_val    = note_att_process_tv(str, att);
         note_att_tv_idx++;
     }
     else
@@ -269,12 +269,10 @@ STATIC_INLINE_UINT8 note_att_traverse_string(note_att_t *att,
         node->R_child = &(att->node_buffer[att_node_idx + new_att_gen]);
         if (str[note_att_str_idx] == '+')
         {
-
             NOTE_ATT_SET_OP(node->R_child->operation, NOTE_ATT_OP_PLUS);
         }
         else if (str[note_att_str_idx] == 'v')
         {
-
             NOTE_ATT_SET_OP(node->R_child->operation, NOTE_ATT_OP_VEE);
         }
         else
@@ -298,8 +296,9 @@ STATIC_INLINE_UINT8 note_att_traverse_string(note_att_t *att,
 STATIC_INLINE_UINT8 note_att_process_tv(const char *str, note_att_t *att)
 {
     uint8_t ret_val = NOTE_ATT_TRAVERSE_FAIL;
-    char string_buffer[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10];
-    size_t i;
+    char    string_buffer[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10];
+    size_t  i;
+
     for (i = 0; i < strlen(str); i++)
     {
         string_buffer[i] = str[note_att_str_idx + i];
@@ -308,7 +307,7 @@ STATIC_INLINE_UINT8 note_att_process_tv(const char *str, note_att_t *att)
             string_buffer[i + 1] = '\0';
             note_tv_decode(string_buffer, &att->tv_buffer[note_att_tv_idx]);
             note_att_str_idx += i + 1;
-            ret_val = NOTE_ATT_TRAVERSE_SUCCESS;
+            ret_val           = NOTE_ATT_TRAVERSE_SUCCESS;
             break;
         }
     }

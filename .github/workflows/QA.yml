@@ -29,10 +29,10 @@ jobs:
                   nix develop --command \
                       just check-prettier
 
-            - name: Clang-format
+            - name: C-format
               run: |
                   nix develop --command \
-                      just check-clang-format
+                      just check-uncrustify
 
             - name: Build
               run: |

@@ -1,10 +1,11 @@
-//
-// Created by joe on 4/25/25.
-//
+/* */
+/* Created by joe on 4/25/25. */
+/* */
 #include "utils.h"
 
 static bool nodes_walk(const note_wptt_node_t *node1,
                        const note_wptt_node_t *node2);
+
 /******************************************************************************/
 /*******************************Test Functions******** ************************/
 /******************************************************************************/
@@ -40,6 +41,7 @@ static bool nodes_walk(const note_wptt_node_t *node1,
     }
     return true;
 }
+
 bool trees_equal(const note_wptt_t *tree1, const note_wptt_t *tree2)
 {
     if ((tree1->label == tree2->label))

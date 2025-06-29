@@ -1,8 +1,7 @@
 /*!
  *  @file comp_rational_data.c
  *
- *  @brief  A module for compute rational tangle data: fraction, algebraic
- * equivlance, and parity.
+ *  @brief  A module for compute rational tangle data: fraction, algebraic equivlance, and parity.
  *
  *
  *  @author    Isabel Darcy
@@ -33,26 +32,20 @@
 /******************************************************************************/
 
 /*!
- * @brief A private function that computes the algebraic equivalence classes for
- * the configured tangle.
+ * @brief A private function that computes the algebraic equivalence classes for the configured tangle.
  *
  * @param p The numerator for the configured tangle.
  * @param q The denominator for the configured tangle.
- * @return uint8_t A condition code for the computation. Indicates failure mode
- * if any.
+ * @return uint8_t A condition code for the computation. Indicates failure mode if any.
  */
 STATIC_INLINE_UINT8 comp_rational_data_alg_eq(uint16_t p, uint16_t q);
 
 /*!
- * @brief A private function that commits to store-storage_interface the
- * algebraic equivalence classes associated to the configured tangle.
+ * @brief A private function that commits to store-storage_interface the algebraic equivalence classes associated to the configured tangle.
  *
- * @param num_eq The equivlance class for the numerator closure of the
- * configured tangle.
- * @param den_eq The equivlance class for the denominator closure of the
- * configured tangle.
- * @return uint8_t A condition code for the computation. Indicates failure mode
- * if any.
+ * @param num_eq The equivlance class for the numerator closure of the configured tangle.
+ * @param den_eq The equivlance class for the denominator closure of the configured tangle.
+ * @return uint8_t A condition code for the computation. Indicates failure mode if any.
  */
 STATIC_INLINE_UINT8 comp_rational_data_write_alg_eq(uint16_t num_eq,
                                                     uint16_t den_eq);
@@ -62,42 +55,33 @@ STATIC_INLINE_UINT8 comp_rational_data_write_alg_eq(uint16_t num_eq,
  *
  * @param p The numerator for the configured tangle.
  * @param q The denominator for the configured tangle.
- * @return uint8_t A condition code for the computation. Indicates failure mode
- * if any.
+ * @return uint8_t A condition code for the computation. Indicates failure mode if any.
  */
 STATIC_INLINE_UINT8 comp_rational_data_parity(uint16_t p, uint16_t q);
 
 /*!
- * @brief A private function that commits to store-storage_interface the parity
- * associated to the configured tangle.
+ * @brief A private function that commits to store-storage_interface the parity associated to the configured tangle.
  *
  * @param parity A string indicating the parity of the configured tangle.
- * @return uint8_t A condition code for the computation. Indicates failure mode
- * if any.
+ * @return uint8_t A condition code for the computation. Indicates failure mode if any.
  */
 STATIC_INLINE_UINT8 comp_rational_data_write_parity(char *parity);
 
 /*!
- * @brief A private function that computes the rational number associated to the
- * configured tangle.
+ * @brief A private function that computes the rational number associated to the configured tangle.
  *
- * @param p A pointer to the store-storage_interface location for the numerator
- * of the configured tangle.
- * @param q A pointer to the store-storage_interface location for the
- * denominator of the configured tangle.
- * @return uint8_t A condition code for the computation. Indicates failure mode
- * if any.
+ * @param p A pointer to the store-storage_interface location for the numerator of the configured tangle.
+ * @param q A pointer to the store-storage_interface location for the denominator of the configured tangle.
+ * @return uint8_t A condition code for the computation. Indicates failure mode if any.
  */
 STATIC_INLINE_UINT8 comp_rational_data_rat_num(uint16_t *p, uint16_t *q);
 
 /*!
- * @brief A private function that commits to store-storage_interface the
- * rational number associated to the configured tangle.
+ * @brief A private function that commits to store-storage_interface the rational number associated to the configured tangle.
  *
  * @param p The numerator for the configured tangle.
  * @param q The denominator for the configured tangle.
- * @return uint8_t A condition code for the computation. Indicates failure mode
- * if any.
+ * @return uint8_t A condition code for the computation. Indicates failure mode if any.
  */
 STATIC_INLINE_UINT8 comp_rational_data_write_rat_num(uint16_t p, uint16_t q);
 
@@ -115,11 +99,11 @@ static comp_rational_data_config_t *comp_rational_data_localcfg = NULL;
  * @brief The local result of the rational comp module.
  *
  */
-static comp_rational_data_result_t comp_rational_data_localrestult = {0,
-                                                                      0,
-                                                                      NULL,
-                                                                      0,
-                                                                      0};
+static comp_rational_data_result_t comp_rational_data_localrestult = { 0,
+                                                                       0,
+                                                                       NULL,
+                                                                       0,
+                                                                       0 };
 
 /*!
  * @brief The local computation status of the rational comp module.
@@ -136,8 +120,8 @@ static bool comp_rational_data_executed = false;
  */
 uint8_t comp_rational_data_config(comp_rational_data_config_t *config_arg)
 {
-
     uint8_t ret_val = COMP_DEFS_CONFIG_FAIL;
+
     /*Ensure the cfg is not empty.*/
     if (config_arg == NULL)
     {
@@ -158,10 +142,10 @@ uint8_t comp_rational_data_config(comp_rational_data_config_t *config_arg)
 
         /* Clear the return value*/
         comp_rational_data_localrestult.den_algebraic_equ = 0;
-        comp_rational_data_localrestult.denominator = 0;
+        comp_rational_data_localrestult.denominator       = 0;
         comp_rational_data_localrestult.num_algebraic_equ = 0;
-        comp_rational_data_localrestult.numerator = 0;
-        comp_rational_data_localrestult.parity = NULL;
+        comp_rational_data_localrestult.numerator         = 0;
+        comp_rational_data_localrestult.parity            = NULL;
 
         /*clear the executed status*/
         comp_rational_data_executed = false;
@@ -176,9 +160,10 @@ uint8_t comp_rational_data_config(comp_rational_data_config_t *config_arg)
  */
 uint8_t comp_rational_data_compute()
 {
-    uint8_t ret_val = COMP_DEFS_COMPUTE_SUCCESS;
+    uint8_t  ret_val = COMP_DEFS_COMPUTE_SUCCESS;
     uint16_t p;
     uint16_t q;
+
     /*Ensure the cfg is not empty.*/
     if (comp_rational_data_localcfg == NULL)
     {
@@ -191,8 +176,8 @@ uint8_t comp_rational_data_compute()
     else
     {
         comp_rational_data_executed = true;
-        /*All code paths need the stringified twist vector as a key. We encode
-         * here.*/
+
+        /*All code paths need the stringified twist vector as a key. We encode here.*/
         note_tv_encode(*(comp_rational_data_localcfg->tv_n),
                        comp_rational_data_localcfg->tv_str_buff,
                        comp_rational_data_localcfg->tv_str_buff_len);
@@ -212,8 +197,8 @@ uint8_t comp_rational_data_compute()
  */
 const comp_rational_data_result_t *comp_rational_data_result()
 {
-
     const comp_rational_data_result_t *ret_val = NULL;
+
     ;
     if (comp_rational_data_localcfg == NULL)
     {
@@ -251,20 +236,20 @@ STATIC_INLINE_UINT8 comp_rational_data_write_alg_eq(uint16_t num_eq,
                                                     uint16_t den_eq)
 {
     uint8_t ret_val = COMP_DEFS_COMPUTE_SUCCESS;
-    char *value = COMP_RATIONAL_DAT_STORAGE_UKEY;
-    char local_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
+    char *  value   = COMP_RATIONAL_DAT_STORAGE_UKEY;
+    char    local_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
 
     value = "numerator_eq";
-    /* Decode to get the string representation for the numerator equivalence
-     * class and store.*/
+
+    /* Decode to get the string representation for the numerator equivalence class and store.*/
     sprintf(local_str, "%u", num_eq);
     comp_rational_data_localcfg->storage_write(
         comp_rational_data_localcfg->tv_str_buff, value, local_str);
     comp_rational_data_localrestult.num_algebraic_equ = num_eq;
 
     value = "denominator_eq";
-    /* Decode to get the string representation for the denominator equivalence
-     * class and store.*/
+
+    /* Decode to get the string representation for the denominator equivalence class and store.*/
     sprintf(local_str, "%u", den_eq);
     comp_rational_data_localcfg->storage_write(
         comp_rational_data_localcfg->tv_str_buff, value, local_str);
@@ -278,6 +263,7 @@ STATIC_INLINE_UINT8 comp_rational_data_write_alg_eq(uint16_t num_eq,
 STATIC_INLINE_UINT8 comp_rational_data_parity(uint16_t p, uint16_t q)
 {
     uint8_t ret_val = COMP_DEFS_COMPUTE_FAIL;
+
     /*Parity computation is described in docs.*/
     /*Check if p,q are even*/
     if (!((p % 2 == 0) && (q % 2 == 0)))
@@ -315,7 +301,7 @@ STATIC_INLINE_UINT8 comp_rational_data_parity(uint16_t p, uint16_t q)
 STATIC_INLINE_UINT8 comp_rational_data_write_parity(char *parity)
 {
     uint8_t ret_val = COMP_DEFS_COMPUTE_SUCCESS;
-    char *value = COMP_RATIONAL_DAT_STORAGE_UKEY;
+    char *  value   = COMP_RATIONAL_DAT_STORAGE_UKEY;
 
     value = "parity";
     /* Store parity.*/
@@ -329,7 +315,6 @@ STATIC_INLINE_UINT8 comp_rational_data_write_parity(char *parity)
  */
 STATIC_INLINE_UINT8 comp_rational_data_rat_num(uint16_t *p, uint16_t *q)
 {
-
     uint8_t ret_val = COMP_DEFS_COMPUTE_SUCCESS;
     /*p_{i-1}*/
     uint16_t pimo = 0;
@@ -339,7 +324,7 @@ STATIC_INLINE_UINT8 comp_rational_data_rat_num(uint16_t *p, uint16_t *q)
     uint16_t qimo = 1;
     /*q_{i}*/
     uint16_t qi = 0;
-    size_t i = 0;
+    size_t   i  = 0;
 
     /*Rational number computation is described in docs.*/
 
@@ -369,8 +354,8 @@ STATIC_INLINE_UINT8 comp_rational_data_rat_num(uint16_t *p, uint16_t *q)
 STATIC_INLINE_UINT8 comp_rational_data_write_rat_num(uint16_t p, uint16_t q)
 {
     uint8_t ret_val = COMP_DEFS_COMPUTE_SUCCESS;
-    char local_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
-    char *value = COMP_RATIONAL_DAT_STORAGE_UKEY;
+    char    local_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
+    char *  value = COMP_RATIONAL_DAT_STORAGE_UKEY;
 
     value = "numerator";
     /* Decode to get the string representation for the numerator and store.*/

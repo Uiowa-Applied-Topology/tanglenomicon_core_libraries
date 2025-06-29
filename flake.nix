@@ -168,6 +168,7 @@
               svg2pdf
               taglib
               tectonic
+              uncrustify
               uv
               wget
               zip

@@ -12,15 +12,12 @@
 /******************************* Stubs ****************************************/
 /******************************************************************************/
 
-#define STR_TERMINAL_CHAR (0x7Fu)
+#define STR_TERMINAL_CHAR    (0x7Fu)
 
-char key_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u]
-             [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
-char index_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u]
-               [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
-char value_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u]
-               [UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
-size_t key_idx = 0;
+char   key_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u][UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
+char   index_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u][UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
+char   value_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u][UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
+size_t key_idx   = 0;
 size_t index_idx = 0;
 size_t value_idx = 0;
 
@@ -29,6 +26,7 @@ uint8_t stub_write_dedup_success(const char *key,
                                  const char *value)
 {
     size_t i = 0;
+
     for (i = 0; i < key_idx; i++)
     {
         if (strcmp(key_buff[i], key) == 0)
@@ -236,9 +234,13 @@ char mont_trees[UTIL_TANG_DEFS_MAX_CROSSINGNUM*5][UTIL_TANG_DEFS_MAX_CROSSINGNUM
 /*******************************Test prep**************************************/
 /******************************************************************************/
 
-void setUp(void) {}
+void setUp(void)
+{
+}
 
-void tearDown(void) {}
+void tearDown(void)
+{
+}
 
 /******************************************************************************/
 /*******************************Test cases*************************************/
@@ -251,11 +253,13 @@ void tearDown(void) {}
 STATIC_INLINE void test_config(void)
 {
     uint8_t ret_val = gen_montesinos_config(&tc_write_success);
+
     TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_CONFIG_SUCCESS);
     ret_val = gen_montesinos_config(NULL);
     TEST_ASSERT_EQUAL_UINT8(
         ret_val, GEN_MONTESINOS_CONFIG_IS_NULL | GEN_DEFS_CONFIG_FAIL);
 }
+
 /*!
  * @brief
  * @param
@@ -263,12 +267,12 @@ STATIC_INLINE void test_config(void)
 STATIC_INLINE void test_generate(void)
 {
     uint8_t ret_val = gen_montesinos_config(&tc_write_success);
-    size_t j, i;
+    size_t  j, i;
 
     TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_CONFIG_SUCCESS);
     ret_val = gen_montesinos_generate();
     TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_GENERATION_SUCCESS);
-    //@@@TODO check the buffers
+    /*@@@TODO check the buffers */
 
     TEST_ASSERT_EQUAL_UINT8(24, key_idx);
     for (i = 0; i < 24; i++)
@@ -301,8 +305,8 @@ STATIC_INLINE void test_generate(void)
  */
 STATIC_INLINE void test_generate_fail(void)
 {
-
     uint8_t ret_val = gen_montesinos_config(&tc_write_fail);
+
     TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_CONFIG_SUCCESS);
     ret_val = gen_montesinos_generate();
     TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_GENERATION_FAIL);

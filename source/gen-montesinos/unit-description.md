@@ -67,8 +67,8 @@ N/A
 
 #### Montesinos Generator Config Structure
 
-The config structure contains the data needed for generating a set of algebraic
-tangle trees from a collection of lists of twist vectors.
+The config structure contains the data needed for generating a set of algebraic tangle trees from a
+collection of lists of twist vectors.
 
 This includes:
 
@@ -96,9 +96,8 @@ stateDiagram-v2
 
 #### Generate Function
 
-The generation function carries out the Montesinos tangle generation until the
-inputs are exhausted. The function may contain sub machines that can be broken
-out into functions in the implementation.
+The generation function carries out the Montesinos tangle generation until the inputs are exhausted.
+The function may contain sub machines that can be broken out into functions in the implementation.
 
 This process is described in the following state machines:
 
@@ -148,8 +147,8 @@ join_while --> while
 
 #### Process Loop State
 
-The process loop state function handles the construction and writign of an
-algebraic tangle tree in the generation process.
+The process loop state function handles the construction and writign of an algebraic tangle tree in
+the generation process.
 
 This process is described in the following state machines:
 

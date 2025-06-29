@@ -58,8 +58,8 @@ N/A
 
 #### Rational Generator Config Structure
 
-The config structure contains the data needed for generating twist vectors up to
-a given crossing number. This includes:
+The config structure contains the data needed for generating twist vectors up to a given crossing
+number. This includes:
 
 - An integer representation of the target crossing number.
 - A notation structure for a twist vector.
@@ -83,9 +83,9 @@ stateDiagram-v2
 
 #### Generate Function
 
-The generation function carries out the rational tangle generation until the
-target crossing number is met. The function may contain sub machines that can be
-broken out into functions in the implementation.
+The generation function carries out the rational tangle generation until the target crossing number
+is met. The function may contain sub machines that can be broken out into functions in the
+implementation.
 
 This process is described in the following state machines:
 

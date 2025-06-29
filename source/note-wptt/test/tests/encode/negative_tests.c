@@ -1,6 +1,6 @@
-//
-// Created by joe on 4/25/25.
-//
+/* */
+/* Created by joe on 4/25/25. */
+/* */
 #include "negative_tests.h"
 #include "notation_wptt.h"
 #include "unity.h"
@@ -24,14 +24,15 @@ void test_encode_negative(void)
 }
 
 /****************************** Test 1 Data ***********************************/
+
 /*
  *
  * - An UNINIT label is present
  */
 void test_encode_negative_1()
 {
-
     uint8_t retval = -1;
+
     /* clang-format off */
 
     note_wptt_node_t S_7 = {
@@ -109,15 +110,17 @@ void test_encode_negative_1()
         note_wptt, test_string, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
     TEST_ASSERT_EQUAL(NOTE_DEFS_ENCODE_FAIL, 0x01u & retval);
 }
+
 /****************************** Test 2 Data ***********************************/
+
 /*
  *
  * - A NULL root is present
  */
 void test_encode_negative_2()
 {
-
     uint8_t retval = -1;
+
     /* clang-format off */
 
 
@@ -135,14 +138,15 @@ void test_encode_negative_2()
 }
 
 /****************************** Test 3 Data ***********************************/
+
 /*
  *
  * - A NULL child is present
  */
 void test_encode_negative_3()
 {
-
     uint8_t retval = -1;
+
     /* clang-format off */
 
     note_wptt_node_t P_1 = {
@@ -166,14 +170,15 @@ void test_encode_negative_3()
 }
 
 /****************************** Test 4 Data ***********************************/
+
 /*
  *
  * - A NULL pointer buffer is passed to the function
  */
 void test_encode_negative_4()
 {
-
     uint8_t retval = -1;
+
     /* clang-format off */
 
     note_wptt_node_t S_7 = {

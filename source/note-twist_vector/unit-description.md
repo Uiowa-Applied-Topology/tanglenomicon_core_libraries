@@ -40,9 +40,8 @@ The twist vector notation component does not use any external libraries.
 
 #### Notation structure
 
-The interface structure contains an array of integers, each entry of the twist
-vector is stored into the array. The indexing of the array is as in
-@se-tv-math-index.
+The interface structure contains an array of integers, each entry of the twist vector is stored into
+the array. The indexing of the array is as in @se-tv-math-index.
 
 ```{math}
 :label: se-tv-math-index
@@ -55,8 +54,8 @@ x_{n-1} &x_n\\ \hline \end{array}
 
 #### Decode Function
 
-The decode function takes in the linearized string form of the twist vector and
-encodes it as a `note_tv_t`.
+The decode function takes in the linearized string form of the twist vector and encodes it as a
+`note_tv_t`.
 
 This process is described in the following state machines:
 
@@ -83,8 +82,8 @@ stateDiagram-v2
 
 #### Encode Function
 
-The encode function takes in a `note_tv_t` and encodes it into the linearized
-string form of the twist vector.
+The encode function takes in a `note_tv_t` and encodes it into the linearized string form of the
+twist vector.
 
 ```mermaid
 stateDiagram-v2
@@ -119,8 +118,8 @@ stateDiagram-v2
 
 #### Twist Vector Reverse
 
-This function reverses the order of the twist vector storage array. They makes
-the increment read order match the theoretical indexing of the twist vector.
+This function reverses the order of the twist vector storage array. They makes the increment read
+order match the theoretical indexing of the twist vector.
 
 ```mermaid
 stateDiagram-v2

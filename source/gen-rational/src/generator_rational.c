@@ -28,7 +28,7 @@
  * @brief Number of combination functions used by the module.
  *
  */
-#define GEN_RATIONAL_PERM_FUNS_LEN (2u)
+#define GEN_RATIONAL_PERM_FUNS_LEN    (2u)
 
 /******************************************************************************/
 /************************** Typedefs ******************************************/
@@ -39,9 +39,7 @@
 /******************************************************************************/
 
 /*!
- * @brief A function to process a template describing the ' ', and '+' for a
- * twist vector. A template is a bitfield where 1 is $+$ and 0 is ' '.
- * Example: 0101 -> [1 1+1 1+1] -> [1 2 2]
+ * @brief A function to process a template describing the ' ', and '+' for a twist vector. A template is a bitfield where 1 is $+$ and 0 is ' '. Example: 0101 -> [1 1+1 1+1] -> [1 2 2]
  *
  * @param template Template to work on.
  * @return uint8_t Success/Fail flag.
@@ -49,8 +47,7 @@
 STATIC_INLINE_UINT8 gen_rational_proc_template(uint8_t template);
 
 /*!
- * @brief A function to write the twist vector in cfg to the
- * store-storage_interface device in cfg.
+ * @brief A function to write the twist vector in cfg to the store-storage_interface device in cfg.
  *
  * @param cfg Configuration to work on.
  * @return uint8_t Success/Fail flag.
@@ -58,10 +55,7 @@ STATIC_INLINE_UINT8 gen_rational_proc_template(uint8_t template);
 STATIC_INLINE_UINT8 gen_rational_write();
 
 /*!
- * @brief The canonical form for twist vector is given as odd length. When we
- * get something in the even class of twist vectors we can 'oddify' it by
- * prepending a 0. This function handles prepending the zero and then writing to
- * the cfg store-storage_interface device.
+ * @brief The canonical form for twist vector is given as odd length. When we get something in the even class of twist vectors we can 'oddify' it by prepending a 0. This function handles prepending the zero and then writing to the cfg store-storage_interface device.
  *
  * @param cfg Configuration to work on.
  * @return uint8_t Success/Fail flag.
@@ -88,6 +82,7 @@ static gen_rational_config_t *gen_rational_localcfg = NULL;
 uint8_t gen_rational_config(gen_rational_config_t *config_arg)
 {
     uint8_t ret_val = GEN_DEFS_CONFIG_FAIL;
+
     if (config_arg == NULL)
     {
         ret_val |= GEN_RATIONAL_CONFIG_IS_NULL;
@@ -116,7 +111,6 @@ uint8_t gen_rational_config(gen_rational_config_t *config_arg)
  */
 uint8_t gen_rational_generate()
 {
-
     uint8_t ret_val = GEN_DEFS_GENERATION_FAIL;
 
     if (gen_rational_localcfg == NULL)
@@ -150,11 +144,12 @@ uint8_t gen_rational_generate()
  */
 static uint8_t gen_rational_proc_template(uint8_t template)
 {
-    uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
-    uint8_t counter = gen_rational_localcfg->crossingNumber;
-    size_t *tv_len = &(gen_rational_localcfg->tv_n->tv_length);
-    uint8_t *tv = gen_rational_localcfg->tv_n->twist_vector;
-    size_t i = 0u;
+    uint8_t  ret_val = GEN_DEFS_GENERATION_SUCCESS;
+    uint8_t  counter = gen_rational_localcfg->crossingNumber;
+    size_t * tv_len  = &(gen_rational_localcfg->tv_n->tv_length);
+    uint8_t *tv      = gen_rational_localcfg->tv_n->twist_vector;
+    size_t   i       = 0u;
+
     for (i = 0u; i < UTIL_TANG_DEFS_MAX_CROSSINGNUM; i++)
     {
         tv[i] = 1;
@@ -191,11 +186,10 @@ static uint8_t gen_rational_proc_template(uint8_t template)
  */
 uint8_t gen_rational_evenperm_shift_write()
 {
-
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
     /* Set function inputs to match the cfg data*/
-    uint8_t *tv = gen_rational_localcfg->tv_n->twist_vector;
-    size_t *len = &(gen_rational_localcfg->tv_n->tv_length);
+    uint8_t *tv  = gen_rational_localcfg->tv_n->twist_vector;
+    size_t * len = &(gen_rational_localcfg->tv_n->tv_length);
 
     /* Increase tv_length by 1 to account for leading 0.*/
     (*len)++;
@@ -219,12 +213,13 @@ uint8_t gen_rational_evenperm_shift_write()
     }
     return ret_val;
 }
+
 /*
  *  Documentation at declaration
  */
 uint8_t gen_rational_write()
 {
-    uint8_t ret_val = GEN_DEFS_GENERATION_FAIL;
+    uint8_t ret_val      = GEN_DEFS_GENERATION_FAIL;
     uint8_t write_status = STORE_DEFS_WRITE_FAIL;
 
     note_tv_encode(*(gen_rational_localcfg->tv_n),
