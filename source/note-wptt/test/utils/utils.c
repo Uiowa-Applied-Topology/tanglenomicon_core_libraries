@@ -42,7 +42,7 @@ static bool nodes_walk(const note_wptt_node_t *node1,
     return true;
 }
 
-bool trees_equal(const note_wptt_t *tree1, const note_wptt_t *tree2)
+bool test_util_trees_equal(const note_wptt_t *tree1, const note_wptt_t *tree2)
 {
     if ((tree1->label == tree2->label))
     {

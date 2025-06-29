@@ -440,6 +440,7 @@ A valid tangle wptt (with label) is fed to the encode function.
 - A wptt with an essential vertex.
 - A wptt with a vertex that has ring number.
 - A wptt with a vertex with more than one weight.
+- A wptt with a vertex that has reverse order.
 
 **Expected Output:**
 

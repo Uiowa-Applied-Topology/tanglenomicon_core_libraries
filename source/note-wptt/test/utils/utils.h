@@ -5,6 +5,6 @@
 #define UTILS_H
 #include "notation_wptt.h"
 
-bool trees_equal(const note_wptt_t *tree1, const note_wptt_t *tree2);
+bool test_util_trees_equal(const note_wptt_t *tree1, const note_wptt_t *tree2);
 
 #endif /* UTILS_H */

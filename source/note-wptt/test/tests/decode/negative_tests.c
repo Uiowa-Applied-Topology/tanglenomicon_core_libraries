@@ -5,7 +5,7 @@
 #include "notation_wptt.h"
 #include "unity.h"
 
-extern bool trees_equal(const note_wptt_t *tree1, const note_wptt_t *tree2);
+extern bool test_util_trees_equal(const note_wptt_t *tree1, const note_wptt_t *tree2);
 static void test_decode_negative_test_1(void);
 static void test_decode_negative_test_2(void);
 static void test_decode_negative_test_3(void);
@@ -34,8 +34,8 @@ void test_decode_negative_test_1()
                                        UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                        0 };
     note_wptt_t             note_wptt = { NULL,
-                                          buffer,
-                                          NOTE_wptt_V4_LABEL_UNINIT };
+                                          &buffer,
+                                          NOTE_WPTT_V4_LABEL_UNINIT };
 
     retval = note_wptt_decode(string, &note_wptt);
     TEST_ASSERT_EQUAL(NOTE_DEFS_DECODE_FAIL, 0x01u & retval);
@@ -56,8 +56,8 @@ void test_decode_negative_test_2()
                                        UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                        0 };
     note_wptt_t             note_wptt = { NULL,
-                                          buffer,
-                                          NOTE_wptt_V4_LABEL_UNINIT };
+                                          &buffer,
+                                          NOTE_WPTT_V4_LABEL_UNINIT };
 
     retval = note_wptt_decode(string, &note_wptt);
     TEST_ASSERT_EQUAL(NOTE_DEFS_DECODE_FAIL, 0x01u & retval);
@@ -79,8 +79,8 @@ void test_decode_negative_test_3()
                                        UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                        0 };
     note_wptt_t             note_wptt = { NULL,
-                                          buffer,
-                                          NOTE_wptt_V4_LABEL_UNINIT };
+                                          &buffer,
+                                          NOTE_WPTT_V4_LABEL_UNINIT };
 
     retval = note_wptt_decode(string, &note_wptt);
     TEST_ASSERT_EQUAL(NOTE_DEFS_DECODE_FAIL, 0x01u & retval);
@@ -101,8 +101,8 @@ void test_decode_negative_test_4()
                                        UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                        0 };
     note_wptt_t             note_wptt = { NULL,
-                                          buffer,
-                                          NOTE_wptt_V4_LABEL_UNINIT };
+                                          &buffer,
+                                          NOTE_WPTT_V4_LABEL_UNINIT };
 
     retval = note_wptt_decode(string, &note_wptt);
     TEST_ASSERT_EQUAL(NOTE_DEFS_DECODE_FAIL, 0x01u & retval);
