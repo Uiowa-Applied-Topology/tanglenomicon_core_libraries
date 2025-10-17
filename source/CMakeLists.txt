@@ -7,6 +7,7 @@ add_subdirectory(defs)
 # Add Computation Components
 ################################################################################
 add_subdirectory(comp-rational_data)
+add_subdirectory(comp-rlitt_grafting)
 
 ################################################################################
 # Add Generation Components
