@@ -29,6 +29,11 @@ jobs:
                   nix develop --command \
                       just check-prettier
 
+            - name: CMake-format
+              run: |
+                  nix develop --command \
+                      just check-cmakeformat
+
             - name: C-format
               run: |
                   nix develop --command \

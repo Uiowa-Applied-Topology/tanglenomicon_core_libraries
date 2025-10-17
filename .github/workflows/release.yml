@@ -30,6 +30,11 @@ jobs:
                   nix develop --command \
                       just check-prettier
 
+            - name: CMake-format
+              run: |
+                  nix develop --command \
+                      just check-cmakeformat
+
             - name: C-format
               run: |
                   nix develop --command \
@@ -45,7 +50,6 @@ jobs:
                   nix develop --command \
                     just test_all
 
-
             - name: Zip Docs
               run: |
                   nix develop --command \
@@ -55,4 +59,4 @@ jobs:
               uses: softprops/action-gh-release@v2
               with:
                   files: |
-                      ./Library_Documentation.zip
+                      ./library_documentation.zip

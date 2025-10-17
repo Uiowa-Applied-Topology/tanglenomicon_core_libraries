@@ -171,6 +171,7 @@
               wget
               zip
               zlib
+              cmake-format
             ];
 
             shellHook = ''
