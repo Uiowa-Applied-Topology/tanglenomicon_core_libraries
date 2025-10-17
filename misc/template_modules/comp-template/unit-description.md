@@ -6,7 +6,7 @@ contact: example@example.com
 abstract: A unit description for computation of template.
 ---
 
-# Unit Description: Template
+# Unit Description
 
 ```{note}
 A block diagram for the component under development
@@ -64,7 +64,7 @@ A description of the language the feature is implemented in.
 A list of interfaces implemented by the feature.
 ```
 
--   [Computation Interface](../../docs/unit_description/computation-interface.md)
+- [Computation Interface](../../docs/unit_description/computation-interface.md)
 
 ## Uses
 

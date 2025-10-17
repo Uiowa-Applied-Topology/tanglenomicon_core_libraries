@@ -3,7 +3,7 @@ date: 2024-09-18
 authors:
     - author
 contact: example@example.com
-abstract: A use case description for the template Notation.
+abstract: A use case description for generation of template.
 ---
 
 # Use Case
@@ -13,13 +13,13 @@ abstract: A use case description for the template Notation.
 ### Mathematical Description
 
 ```{note}
-A mathematical description of the notation.
+A mathematical description of the generation being done.
 ```
 
 ### Computational Description
 
 ```{note}
-Any computational (computer) description for the notation.
+Any generational (computer) description for the generation being done.
 ```
 
 ## Bibliography

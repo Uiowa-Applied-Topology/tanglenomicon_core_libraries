@@ -3,7 +3,7 @@ date: 2024-09-18
 authors:
     - Joe Starr
 contact: example@example.com
-abstract: A unit description for notation of template.
+abstract: A unit description for generation of template.
 ---
 
 # Unit Description
@@ -14,26 +14,39 @@ A block diagram for the component under development
 
 ```mermaid
 classDiagram
-    note_template --|> notation
-    note_template *-- note_template_t
-    note_template_t *-- note_template_node_t
-    note_template_node_t *-- note_template_node_enum
+    gen_template --|> generation
+    gen_template_config_t --|> notation_template
+    gen_template_config_t --|> gen_config_t
+    gen_template_result_t --|> gen_result_t
+    gen_template *-- gen_template_config_t
+    gen_template *-- gen_template_result_t
 
-    class note_template_t {
-        <<struct>>
-        note_template_node_t* root
-    }
-
-    class note_template_node_enum {
-        <<enum>>
-    }
-
-    class note_template_node_t {
-        <<struct>>
-    }
-
-    class notation {
+    class generation {
         <<interface>>
+    }
+
+    class gen_template {
+    <<>>
+    }
+
+    class notation_template{
+    <<>>
+    }
+
+    class gen_template_config_t {
+    <<struct>>
+    - notation_template
+
+    }
+    class gen_template_result_t {
+    <<struct>>
+    - notation_template
+
+    }
+
+    class gen_config_t {
+    <<interface>>
+
     }
 
 
@@ -51,18 +64,18 @@ A description of the language the feature is implemented in.
 A list of interfaces implemented by the feature.
 ```
 
-- [Notations Interface](../../docs/unit_description/notation-interface.md)
+- [generation Interface](../../docs/unit_description/generation-interface.md)
 
 ## Uses
 
 ```{note}
-A list of compnents and libraries used by the feature.
+A list of components and libraries used by the feature.
 ```
 
 ## External Libraries
 
 ```{note}
-A list of external compnents and libraries used by the feature.
+A list of external components and libraries used by the feature.
 ```
 
 ## Functionality
@@ -71,22 +84,30 @@ A list of external compnents and libraries used by the feature.
 
 #### Structures
 
-##### notation structure
+##### config structure
 
 ```
-A struct description of the notation structure.
+A struct description of the generation config.
 ```
 
-#### encode function
+##### result structure
+
+```
+A struct description of the generation config.
+```
+
+#### Functions
+
+##### gen_config function
 
 ```{note}
-A function description for the encode interface.
+A function description for the config interface.
 ```
 
-#### decode function
+##### gen_generate function
 
 ```{note}
-A function description for the decode interface.
+A function description for the compute interface.
 ```
 
 ### Private
@@ -137,7 +158,7 @@ A list/description of input for the test.
 ###### Expected Output:
 
 ```{note}
-A description of what ourput is expected to be for the test.
+A description of what output is expected to be for the test.
 ```
 
 #### Negative Tests
@@ -159,6 +180,16 @@ A description of the goal of the unit test and how it will be carried out.
 
 ```{note}
 A list/description of input for the test.
+```
+
+## Doxygen Documentation
+
+```{doxygenfile} template.h
+
+```
+
+```{doxygenfile} template.c
+
 ```
 
 ## Bibliography
