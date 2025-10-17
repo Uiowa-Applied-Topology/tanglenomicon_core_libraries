@@ -22,6 +22,7 @@
 #include <cstdint>
 #else
 #include "stdlib.h"
+#include "stdint.h"
 #endif
 
 /******************************************************************************/
