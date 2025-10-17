@@ -1,4 +1,4 @@
-# Use Case: Rational Tangle Generator
+# Use Case
 
 ```mermaid
 classDiagram

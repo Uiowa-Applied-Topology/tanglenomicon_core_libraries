@@ -40,7 +40,10 @@ extern "C"
  */
 typedef struct {
     /*@@@TODO: We should think about how much memory this is going to use.*/
-    uint8_t twist_vector[UTIL_TANG_DEFS_MAX_CROSSINGNUM]; /*! An array of ints. We pick uint8, that's 0-255 here since 256 is larger than any reasonable single integral subtangle in a rational tangle. */
+    uint8_t twist_vector[UTIL_TANG_DEFS_MAX_CROSSINGNUM]; /*! An array of ints. We pick uint8,
+                                                          * that's 0-255 here since 256 is larger
+                                                          * than any reasonable single integral
+                                                          * subtangle in a rational tangle. */
     size_t  tv_length;                                    /*! The length of the note-twist_vector*/
 } note_tv_t;
 #ifdef __cplusplus

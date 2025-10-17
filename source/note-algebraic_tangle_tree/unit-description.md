@@ -1,4 +1,4 @@
-# Unit Description: Algebraic Tangle Tree Notation
+# Unit Description
 
 ## Class Diagram
 

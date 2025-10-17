@@ -1,4 +1,4 @@
-# Use Case: Montesinos Tangle Generator
+# Use Case
 
 ```mermaid
 classDiagram

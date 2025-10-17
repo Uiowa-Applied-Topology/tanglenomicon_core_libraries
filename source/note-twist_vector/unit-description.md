@@ -1,4 +1,4 @@
-# Unit Description: Twist Vector Notation
+# Unit Description
 
 ## Class Diagram
 

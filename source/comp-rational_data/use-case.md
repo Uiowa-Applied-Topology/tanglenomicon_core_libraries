@@ -3,11 +3,11 @@ date: 2024-09-18
 status: test
 authors:
     - Joe Starr
-contact: joe@joe-starr.com
+contact: support@joe-starr.com
 abstract: A use case description for defs on rational tangle data.
 ---
 
-# Use Case: Rational Data Computation
+# Use Case
 
 ## Functionality
 
@@ -35,9 +35,9 @@ The parity of a rational tangle describes it's fixed point connectivity
 :align: center
 
 
-| ![../../../media/0.svg](../../../media/312.svg){w=100px}   | ![../../../media/0.svg](../../../media/321.svg){w=100px} | ![../../../media/0.svg](../../../media/322.svg){w=100px}      |
+| ![./media/0.svg](./media/312.svg){w=100px}   | ![./media/0.svg](./media/321.svg){w=100px} | ![./media/0.svg](./media/322.svg){w=100px}      |
 |----------------------------------------|--------------------------------------|-------------------------------------------|
-| ![../../../media/inf.svg](../../../media/inf.svg){w=100px} | ![../../../media/0.svg](../../../media/0.svg){w=100px}   | ![../../../media/0.svg](../../../media/parity_1.svg){w=100px} |
+| ![./media/inf.svg](./media/inf.svg){w=100px} | ![./media/0.svg](./media/0.svg){w=100px}   | ![./media/0.svg](./media/parity_1.svg){w=100px} |
 
 ```
 ````

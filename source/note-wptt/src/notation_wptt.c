@@ -1,7 +1,7 @@
 /*!
  *  @file notation_wptt.c
  *
- *  @brief  Notation module for template.
+ *  @brief  Notation module for weighted planar tangle trees.
  *
  *
  *  @author    Joe Starr
@@ -67,7 +67,7 @@ typedef struct note_wptt_decode_char_dic_t {
 #define NOTE_WPTT_DECODE_DICT_SIZE    (6u)
 
 /*!
- * @brief The number base used for str->int functions.
+ * @brief The number base used for string->int functions.
  *
  */
 #define NOTE_WPTT_INT_BASE            (10u)
@@ -129,7 +129,8 @@ STATIC_INLINE_UINT8 note_wptt_encode_process_active_node(note_wptt_node_t *activ
 /******************************************************************************/
 
 /*!
- * @brief The wptt stack used in the encode and decode functions. This needs to be initialized at the beginning of the using function.
+ * @brief The wptt stack used in the encode and decode functions. This needs to be initialized at
+ *the beginning of the using function.
  */
 static note_wptt_node_t *wptt_node_stack[NOTE_WPTT_STACK_SIZE] = { NULL };
 
@@ -394,7 +395,8 @@ STATIC_INLINE bool note_wptt_decode_check_charset(const char *valid_chars,
 }
 
 /*!
- * @brief Dictionary function to consume and advance the to the the next character of the input string.
+ * @brief Dictionary function to consume and advance the to the the next character of the input
+ *string.
  *
  * @param str A pointer to the pointer a the current character of the input string.
  * @return A status flag indicating successful completion of the subroutine.
@@ -427,7 +429,7 @@ STATIC_INLINE_UINT8 note_wptt_decode_opn_p_handler(char **str)
 /*!
  * @brief Dictionary function to process and create a stick subtree.
  *
- * @param str A pointer to the pointer a the current character of the input string.
+ * @param str A pointer to the pointer for the current character of the input string.
  * @return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_decode_opn_b_handler(char **str)
@@ -525,7 +527,8 @@ STATIC_INLINE_UINT8 note_wptt_decode_opn_a_handler(char **str)
 }
 
 /*!
- * @brief Dictionary function to pop a node off of the wptt stack and advance to the next character of the string.
+ * @brief Dictionary function to pop a node off of the wptt stack and advance to the next character
+ *of the string.
  *
  * @param str A pointer to the pointer a the current character of the input string.
  * @return A status flag indicating successful completion of the subroutine.
@@ -903,8 +906,11 @@ STATIC_INLINE_UINT8 note_wptt_encode_complete_active_node(
     /*Insert final weight*/
     if (0 != active_node_p->weights[ordered_child_idx])
     {
-        retval |= note_wptt_encode_insert_space(str_p, buffer_start_p, buffer_end_p);
-        retval |= note_wptt_encode_insert_int(active_node_p->weights[ordered_child_idx], str_p,
+        retval |= note_wptt_encode_insert_space(str_p,
+                                                buffer_start_p,
+                                                buffer_end_p);
+        retval |= note_wptt_encode_insert_int(active_node_p->weights[ordered_child_idx],
+                                              str_p,
                                               buffer_end_p);
     }
 
@@ -976,7 +982,8 @@ STATIC_INLINE_UINT8 note_wptt_encode_process_active_node(
             (false == found_stick))
         {
             retval |= note_wptt_encode_insert_space(str_p, buffer_start_p, buffer_end_p);
-            retval |= note_wptt_encode_insert_int(active_node->weights[ordered_child_idx], str_p,
+            retval |= note_wptt_encode_insert_int(active_node->weights[ordered_child_idx],
+                                                  str_p,
                                                   buffer_end_p);
         }
 

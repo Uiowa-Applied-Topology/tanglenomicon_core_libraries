@@ -66,7 +66,8 @@ uint8_t note_tv_decode(char *str, note_tv_t *twistv)
 
     twistv->tv_length = tv_idx;
 
-    /* The tv string stores values in the opposite direction as the ary. This could be done simultaneously with two counters this is more maintainable.
+    /* The tv string stores values in the opposite direction as the ary. This could be done
+     * simultaneously with two counters this is more maintainable.
      */
     note_tv_tvrev(twistv);
 

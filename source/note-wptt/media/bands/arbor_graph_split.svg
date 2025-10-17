@@ -1,0 +1,20 @@
+
+<svg xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" viewBox="0 0 82.473416 42.496583" version="1.1" id="svg1" inkscape:version="1.3.2 (091e20ef0f, 2023-11-25)" sodipodi:docname="arbor_graph_split.svg">
+  <sodipodi:namedview id="namedview1" pagecolor="#282a36" bordercolor="#000000" borderopacity="0.25" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#44475a" inkscape:document-units="mm" showgrid="true" inkscape:zoom="11.313709" inkscape:cx="53.430754" inkscape:cy="18.296387" inkscape:window-width="1920" inkscape:window-height="1126" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" inkscape:current-layer="layer1">
+    <inkscape:grid id="grid1" units="mm" originx="-9.0187603" originy="-32.650914" spacingx="0.99999998" spacingy="1" empcolor="#0099e5" empopacity="0.30196078" color="#0099e5" opacity="0.14901961" empspacing="5" dotted="false" gridanglex="30" gridanglez="30" visible="true"/>
+  </sodipodi:namedview>
+  <defs id="defs1"/>
+  <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1" transform="translate(-9.0187616,-32.650915)">
+    <g id="g5" inkscape:label="graph" transform="translate(0,-1.0550802)">
+      <path style="fill:none;stroke:#111111;stroke-width:1.065;stroke-dasharray:none;stroke-opacity:1" d="m 10,34.999999 6.994962,6.994962 m 3.913084,3.913082 9.091955,9.091955 -6.94825,6.94825 M 17.264386,67.735613 10,74.999998" id="path1" sodipodi:nodetypes="ccccccc" class="stroke-foreground"/>
+      <path style="fill:none;stroke:#111111;stroke-width:1.065;stroke-dasharray:none;stroke-opacity:1" d="m 30,54.999998 h 12.749191 m 13.645641,0 h 13.60517 l 8.607859,-8.607859 m 4.250927,-4.250927 7.141213,-7.141214" id="path2" sodipodi:nodetypes="ccccccc" class="stroke-foreground"/>
+      <path style="fill:none;stroke:#111111;stroke-width:1.065;stroke-dasharray:none;stroke-opacity:1" d="m 70.000002,54.999998 6.473131,6.473131 m 4.868264,4.868265 8.752148,8.752148" id="path3" sodipodi:nodetypes="cccc" class="stroke-foreground"/>
+      <ellipse style="fill:#111111;fill-opacity:1;stroke:none;stroke-width:0.0762529;stroke-dasharray:none;stroke-opacity:1" id="path5-19" cx="10.260721" cy="35.078659" rx="1.1805601" ry="1.1647059" class="fill-foreground"/>
+      <ellipse style="fill:#111111;fill-opacity:1;stroke:none;stroke-width:0.0762529;stroke-dasharray:none;stroke-opacity:1" id="path5-19-4" cx="29.720825" cy="54.976238" rx="1.1805601" ry="1.1647059" class="fill-foreground"/>
+      <ellipse style="fill:#111111;fill-opacity:1;stroke:none;stroke-width:0.0762529;stroke-dasharray:none;stroke-opacity:1" id="path5-19-6" cx="10.199322" cy="74.804779" rx="1.1805601" ry="1.1647059" class="fill-foreground"/>
+      <ellipse style="fill:#111111;fill-opacity:1;stroke:none;stroke-width:0.0762529;stroke-dasharray:none;stroke-opacity:1" id="path5-19-3" cx="70.173149" cy="54.996258" rx="1.1805601" ry="1.1647059" class="fill-foreground"/>
+      <ellipse style="fill:#111111;fill-opacity:1;stroke:none;stroke-width:0.0762529;stroke-dasharray:none;stroke-opacity:1" id="path5-19-1" cx="90.311623" cy="75.037872" rx="1.1805601" ry="1.1647059" class="fill-foreground"/>
+      <ellipse style="fill:#111111;fill-opacity:1;stroke:none;stroke-width:0.0762529;stroke-dasharray:none;stroke-opacity:1" id="path5-19-7" cx="90.18792" cy="34.870701" rx="1.1805601" ry="1.1647059" class="fill-foreground"/>
+    </g>
+  </g>
+</svg>

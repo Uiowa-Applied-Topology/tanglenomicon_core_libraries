@@ -1,4 +1,4 @@
-# @@@TODO Use Case: Twist Vector Notation
+# Use Case
 
 ```mermaid
 classDiagram

@@ -125,7 +125,7 @@ extern "C"
 #endif
 
 /*!
- * @brief Type defining the $V_4$ label for an wptt
+ * @brief Type defining the $V_4$ label for a wptt
  */
 typedef enum note_wptt_V4_label_e {
     NOTE_WPTT_V4_LABEL_UNINIT,
@@ -145,7 +145,7 @@ extern "C"
 #endif
 
 /*!
- * @brief Type defining the order direction of a node in an wptt.
+ * @brief Type defining the order direction of a node in a wptt.
  */
 typedef enum note_wptt_order_e {
     NOTE_WPTT_ORDER_UNINIT,
@@ -162,7 +162,7 @@ extern "C"
 #endif
 
 /*!
- * @brief Type defining a the data of an wptt node.
+ * @brief Type defining the data of a wptt node.
  */
 typedef struct note_wptt_node_t {
     struct note_wptt_node_t *children[NOTE_WPTT_DECODE_MAX_CHILDREN];
@@ -198,7 +198,7 @@ extern "C"
 #endif
 
 /*!
- * @brief Type defining the notation for an wptt.
+ * @brief Type defining the notation for a wptt.
  */
 typedef struct {
     note_wptt_node_t *       root;
@@ -238,7 +238,8 @@ extern "C"
 
 /*!
  * @brief Function to take a string and decode it as a note_wptt_t. NOTE:
- * This function modifies the input WPTT. The input is normalized so all nodes have "forward" order. This does not change the topology.
+ * This function modifies the input WPTT. The input is normalized so all nodes have "forward" order.
+ *This does not change the topology.
  *
  * @param str Input string to encode as note_wptt_t
  * @param att the note_wptt_t pointer to store the encoded string into.

@@ -32,7 +32,8 @@
 /******************************************************************************/
 
 /*!
- * @brief A private function that computes the algebraic equivalence classes for the configured tangle.
+ * @brief A private function that computes the algebraic equivalence classes for the configured
+ *tangle.
  *
  * @param p The numerator for the configured tangle.
  * @param q The denominator for the configured tangle.
@@ -41,7 +42,8 @@
 STATIC_INLINE_UINT8 comp_rational_data_alg_eq(uint16_t p, uint16_t q);
 
 /*!
- * @brief A private function that commits to store-storage_interface the algebraic equivalence classes associated to the configured tangle.
+ * @brief A private function that commits to store-storage_interface the algebraic equivalence
+ *classes associated to the configured tangle.
  *
  * @param num_eq The equivlance class for the numerator closure of the configured tangle.
  * @param den_eq The equivlance class for the denominator closure of the configured tangle.
@@ -60,7 +62,8 @@ STATIC_INLINE_UINT8 comp_rational_data_write_alg_eq(uint16_t num_eq,
 STATIC_INLINE_UINT8 comp_rational_data_parity(uint16_t p, uint16_t q);
 
 /*!
- * @brief A private function that commits to store-storage_interface the parity associated to the configured tangle.
+ * @brief A private function that commits to store-storage_interface the parity associated to the
+ *configured tangle.
  *
  * @param parity A string indicating the parity of the configured tangle.
  * @return uint8_t A condition code for the computation. Indicates failure mode if any.
@@ -70,14 +73,17 @@ STATIC_INLINE_UINT8 comp_rational_data_write_parity(char *parity);
 /*!
  * @brief A private function that computes the rational number associated to the configured tangle.
  *
- * @param p A pointer to the store-storage_interface location for the numerator of the configured tangle.
- * @param q A pointer to the store-storage_interface location for the denominator of the configured tangle.
+ * @param p A pointer to the store-storage_interface location for the numerator of the configured
+ *tangle.
+ * @param q A pointer to the store-storage_interface location for the denominator of the configured
+ *tangle.
  * @return uint8_t A condition code for the computation. Indicates failure mode if any.
  */
 STATIC_INLINE_UINT8 comp_rational_data_rat_num(uint16_t *p, uint16_t *q);
 
 /*!
- * @brief A private function that commits to store-storage_interface the rational number associated to the configured tangle.
+ * @brief A private function that commits to store-storage_interface the rational number associated
+ *to the configured tangle.
  *
  * @param p The numerator for the configured tangle.
  * @param q The denominator for the configured tangle.
