@@ -17,6 +17,7 @@ add_subdirectory(comp-rlitt_positivity)
 ################################################################################
 add_subdirectory(gen-rational)
 add_subdirectory(gen-montesinos)
+add_subdirectory(gen-rlitt)
 
 ################################################################################
 # Add Notation Components
