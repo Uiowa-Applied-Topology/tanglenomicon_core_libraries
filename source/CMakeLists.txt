@@ -9,6 +9,7 @@ add_subdirectory(defs)
 add_subdirectory(comp-rational_data)
 add_subdirectory(comp-rlitt_grafting)
 add_subdirectory(comp-rlitt_ringshift)
+add_subdirectory(comp-rlitt_positivity)
 
 ################################################################################
 # Add Generation Components
