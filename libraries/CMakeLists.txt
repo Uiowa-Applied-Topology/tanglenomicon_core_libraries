@@ -4,3 +4,7 @@ block(SCOPE_FOR VARIABLES)
     add_subdirectory(json)
     add_subdirectory(unit_test_framework)
 endblock()
+
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}")
+include(FindLizard.cmake)
+find_package(Lizard)

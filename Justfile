@@ -95,3 +95,6 @@ do-prettier:
 
 zip: html
     zip -r ./Library_Documentation.zip ./docs/.build/html
+
+compile_commands:
+    cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1

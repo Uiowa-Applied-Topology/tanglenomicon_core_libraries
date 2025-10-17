@@ -33,6 +33,7 @@ find_package(
 find_program(CYTHON "cython")
 
 
+
 if (DOXYGEN_FOUND)
     set(DOXY_BUILD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/docs/.build/doxygen)
     set(DOXYFILE ${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile)
@@ -61,6 +62,9 @@ else (CPPCHECK_OFF)
     set(CMAKE_C_CPPCHECK ${cppcheck_exe} --std=c90 ${cppcheck_opts})
     set(CMAKE_CXX_CPPCHECK ${cppcheck_exe} --std=c++20 ${cppcheck_opts})
 endif (CPPCHECK_OFF)
+
+add_subdirectory(libraries)
+
 ################################################################################
 # Start Compiler Defines
 ################################################################################
@@ -74,7 +78,6 @@ add_compile_definitions(UTIL_TANG_DEFS_MAX_CROSSINGNUM=40)
 enable_testing()
 include(CTest)
 
-add_subdirectory(libraries)
 add_subdirectory(misc/test_stubs)
 add_subdirectory(source)
 
