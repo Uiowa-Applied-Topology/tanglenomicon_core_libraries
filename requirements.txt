@@ -26,3 +26,5 @@ sphinx-material
 tqdm
 rich
 sphinx-collections
+lizard
+sphinx_rtd_theme
