@@ -75,6 +75,7 @@ enable_testing()
 include(CTest)
 
 add_subdirectory(libraries)
+add_subdirectory(misc/test_stubs)
 add_subdirectory(source)
 
 ################################################################################
