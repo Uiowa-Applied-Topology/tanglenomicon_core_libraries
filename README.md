@@ -7,16 +7,16 @@
 
 # Tanglenomicon Core Libraries
 
-The Tanglenomicon core libraries consists of a collection of libraries for computation and
-generation of knot/tangle data. Each library should be considered its own project with its own
-life-cycle however libraries are loosely coupled by a common cmake interface.
+The Tanglenomicon core libraries repository consists of a collection of libraries for computation
+and generation of knot/tangle data. Each library should be considered its own project with its own
+life-cycle however libraries are loosely coupled by a common CMake interface.
 
-The libraries found here are primarily C/C++ and is expected to make a selection between the two, C
-modules are expected to be C++ linkable. There's no target OS but ubuntu linux with nix is the CI
-OS. Each library will adhere to a common design which allows them flexibility and platform and
-language agnosticism. The design allows a library, maybe "calculate jones polynomial", to be
-runnable in a jupyter notebook during undergraduate knot theory class, or wrapped in matlab
-interfaces for scientific computing, or on a university cluster for high performance use cases.
+The libraries found here are primarily C, the C modules are expected to be C++ linkable. There's no
+target OS, but Ubuntu Linux with Nix is the CI OS. Each library will adhere to a common design that
+allows them flexibility and platform and language agnosticism. The design allows a library, maybe
+"calculate Jones polynomial", to be runnable in a Jupyter notebook during undergraduate knot theory
+class, or wrapped in MATLAB interfaces for scientific computing, or on a university cluster for
+high-performance use cases.
 
 We're targeting a "write once deploy anywhere" design.
 
@@ -29,12 +29,12 @@ makes sense.
 
 ## Version control
 
-Version control will be git based with research git as the source of truth. Work items will have a
-branch per work item. Merging a work item will be managed by Gitlab merge requests.
+Version control will be git based with research Git as the source of truth. Work items will have a
+branch per work item. Merging a work item will be managed by merge requests.
 
 ### Release Schedule
 
-A release will be created at the completion of each feature lifecycle.
+A release will be created at the completion of each feature life cycle.
 
 #### Release Tagging
 
@@ -47,20 +47,12 @@ vMAJOR.MINOR.PATCH
 Since a release is created for every feature implemented the project version may look odd `v0.20.0`
 this is OKAY.
 
-```{note}
-It is required that every feature module in the project maintian it's own sematic
-versioning. It is suggusted to check for compatability of used libraries at compile time.
-```
+> [!note] It is required that every feature module in the project maintain its own semantic
+> versioning. It is suggested to check for compatibility of used libraries at compile time.
 
-## Software Lifecycle
+## Software Life Cycle
 
-We're taking a feature centric waterfall approach with design, implementation, integration, and
-testing phases.
-
-Feature centric we mean work on one feature at a time, some examples for feature scope are rational
-tangle generation, JSON storage, or Conway notation.
-
-Waterfall means we complete a full life cycle for each library.
+We're taking a V-model approach with design, implementation, integration, and testing phases.
 
 ```mermaid
 graph TD
@@ -77,8 +69,8 @@ graph TD
     F -->|Validation| D
 ```
 
-This methodology allows us to have high traceability, meaning we can track our features through the
-development cycle. This allows us to justify every decision we made in the process.
+This methodology allows us to have high traceability through the development process. Allowing us to
+justify every decision made in the process.
 
 ## Project Structure
 
@@ -88,7 +80,7 @@ Project structure will follow a fairly "normal" project structure as follows:
 📦tanglenomicon_core
  ┣ 📂.github
  ┃ ┗ 📂workflows
- ┃ ┃ ┗ 📜\<github workflows\>
+ ┃   ┗ 📜\<github workflows\>
  ┣ 📂data
  ┃ ┗ 📜\<Static data files\>
  ┣ 📂docs
@@ -120,21 +112,21 @@ Project structure will follow a fairly "normal" project structure as follows:
  ┗ 📜requirements.txt
 ```
 
-## Define a Unit: A unit in this project shall be a library
+## Define a Unit: A unit in this project shall be a monorepo member of the source directory
 
 ## Quality
 
-This repository is a collection of libraries for The Tanglenomicon project. This requires a high
-level of quality, with the primary design goal of libraries never failing in an undetectable way.
+This repository is a collection of libraries for The Tanglenomicon project. The primary quality goal
+of libraries is to never fail in an undetectable way.
 
 ### Unit testing
 
 Every unit is expected to have a unit test suite. Unit test suites are expected to flex every public
-interface of their unit. Code coverage is optional but encouraged.
+interface of that unit. Code coverage is optional but encouraged.
 
 ### Integration testing
 
-Integration tests are expected for every bundled "runner".
+Integration testing is not expected.
 
 ## Requirements
 
@@ -164,20 +156,27 @@ flowchart LR
 
 ```
 
-General use case descriptions of each of these blocks can be found here:
+These common use cases along with their associated unit descriptions are found below:
 
-- [Runners](/use_cases/runners/index.md)
-- [Generators](/use_cases/generators/index.md)
-- [Computations](/use_cases/computations/index.md)
-- [Notations](/use_cases/notations/index.md)
-- [Storage](/use_cases/storage/index.md)
+#### Computation
 
-A functional description for individual libraries are phrased in the following use cases:
+- [Use Case](./interface/computation/use-case.md)
+- [Unit Description](./interface/computation/unit-description.md)
 
-```{toctree}
-:titlesonly:
-use_cases/index.md
-```
+#### Generator
+
+- [Use Case](./interface/generator/use-case.md)
+- [Unit Description](./interface/generator/unit-description.md)
+
+#### Notation
+
+- [Use Case](./interface/notation/use-case.md)
+- [Unit Description](./interface/notation/unit-description.md)
+
+#### Storage
+
+- [Use Case](./interface/storage/use-case.md)
+- [Unit Description](./interface/storage/unit-description.md)
 
 ### Non-functional Requirements
 
@@ -188,47 +187,40 @@ Not applicable.
 ### Languages/Frameworks
 
 The runnable and data wrangler libraries will be written in C/C++ using clang for compiling and
-cmake as a build system. The runners are written with various tooling including C/C++, python, and
-javascript.
+cmake as a build system. The runners are written with various tooling including C/C++, Python, and
+JavaScript.
 
 Unit testing of runnable and data wrangler libraries will use the
 [Unity](http://www.throwtheswitch.org/unity) and [Cmock](http://www.throwtheswitch.org/cmock)
 libraries for unity testing. Test indexing is handled by
-[ctest](https://cmake.org/cmake/help/latest/module/CTest.html).
-
-Integration testing of runners is handled by whatever standard test tooling is appropriate.
+[CTest](https://cmake.org/cmake/help/latest/module/CTest.html).
 
 #### Code Style Guide
 
 The C/C++ code in this repository shall be formatted by the bundled clang-format configuration.
 Doxygen comments are expected to be formatted.
 
-Python code in this repository shall be formatted with black.
-
 ### Tools
 
 - git
-- vscode
-- clion
 - mermaid.js
 - Unity
 - clang
 - cmake
-- ctest
-- doxygen
+- CTest
+- Doxygen
 - Cmock
-- python3
-- MyStmd
+- Python
 - sphinx
-- pytest
+- Pytest
 
 # Design and Documentation
 
-C/C++ code is documented with [Doxygen](https://www.doxygen.nl/), the doxygen comments shall be
-parsed and output as xml. General documentation shall be recorded as markdown files in each module's
+C/C++ code is documented with [Doxygen](https://www.doxygen.nl/), the Doxygen comments shall be
+parsed and output as XML. General documentation shall be recorded as markdown files in each module's
 directory. Documentation shall be aggregated using the
-[sphinx](https://www.sphinx-doc.org/en/master/) framework. Sphinx shall then use
-[breathe](https://github.com/breathe-doc/breathe) to parse doxygen xml into the general
+[Sphinx](https://www.sphinx-doc.org/en/master/) framework. Sphinx shall then use
+[Breathe](https://github.com/breathe-doc/breathe) to parse Doxygen XML into the general
 documentation.
 
 ## Colors
@@ -236,32 +228,61 @@ documentation.
 Diagrams included in documentation for features (use case and unit descriptions) is expected to use
 the [COLORS](https://clrs.cc) color palette.
 
-```
+```css
 /* Colors */
-Navy    : #001F3F
-Blue    : #0074D9
-Aqua    : #7FDBFF
-Teal    : #39CCCC
-Olive   : #3D9970
-Green   : #2ECC40
-Lime    : #01FF70
-Yellow  : #FFDC00
-Orange  : #FF851B
-Red     : #FF4136
-Fuchsia : #F012BE
-Purple  : #B10DC9
-Maroon  : #85144B
-White   : #FFFFFF
-Silver  : #DDDDDD
-Gray    : #AAAAAA
-Black   : #111111
+.navy {
+    color: #001f3f;
+}
+.blue {
+    color: #0074d9;
+}
+.aqua {
+    color: #7fdbff;
+}
+.teal {
+    color: #39cccc;
+}
+.olive {
+    color: #3d9970;
+}
+.green {
+    color: #2ecc40;
+}
+.lime {
+    color: #01ff70;
+}
+.yellow {
+    color: #ffdc00;
+}
+.orange {
+    color: #ff851b;
+}
+.red {
+    color: #ff4136;
+}
+.fuchsia {
+    color: #f012be;
+}
+.purple {
+    color: #b10dc9;
+}
+.maroon {
+    color: #85144b;
+}
+.white {
+    color: #ffffff;
+}
+.silver {
+    color: #dddddd;
+}
+.gray {
+    color: #aaaaaa;
+}
+.black {
+    color: #111111;
+}
 ```
 
-## Units
+```
 
-Unit descriptions are as follows:
-
-```{toctree}
-:titlesonly:
-unit_description/index.md
 ```

@@ -10,9 +10,12 @@
 /******************************* Stubs ****************************************/
 /******************************************************************************/
 
-char   key_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u][UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
-char   index_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u][UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
-char   value_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u][UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
+char key_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u]
+[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
+char index_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u]
+[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
+char value_buff[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u]
+[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 100u];
 size_t key_idx   = 0;
 size_t index_idx = 0;
 size_t value_idx = 0;
@@ -40,7 +43,7 @@ STATIC_INLINE_UINT8 stub_write_fail(const char *key,
     key_idx++;
     index_idx++;
     value_idx++;
-    return STORE_DEFS_WRITE_SUCCESS;
+    return STORE_DEFS_WRITE_FAIL;
 }
 
 STATIC_INLINE const char *stub_read(const char *key, const char *index)
@@ -55,34 +58,22 @@ note_tv_t tv;
 char      tv_str[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];
 
 /* this is tv: 1 3 2*/
-note_tv_t tv_oe = { { 2, 3, 1 },
-                    3 };
-char      output_oe[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 5][UTIL_TANG_DEFS_MAX_CROSSINGNUM *
-                                                        2u] = { "9",
-                                                                "4",
-                                                                "1",
-                                                                "4",
-                                                                UTIL_TANG_DEFS_INF_TANG_STR };
+note_tv_t tv_oe = { { 2, 3, 1 }, 3 };
+char      output_oe[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 5]
+[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u] =
+{ "9", "4", "1", "4", UTIL_TANG_DEFS_INF_TANG_STR };
 
 /* this is tv: 2 3 1*/
-note_tv_t tv_oo = { { 1, 3, 2 },
-                    3 };
-char      output_oo[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 5][UTIL_TANG_DEFS_MAX_CROSSINGNUM *
-                                                        2u] = { "9",
-                                                                "7",
-                                                                "2",
-                                                                "7",
-                                                                UTIL_TANG_DEFS_ONE_TANG_STR };
+note_tv_t tv_oo = { { 1, 3, 2 }, 3 };
+char      output_oo[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 5]
+[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u] =
+{ "9", "7", "2", "7", UTIL_TANG_DEFS_ONE_TANG_STR };
 
 /* this is tv: 3 2 1*/
-note_tv_t tv_eo = { { 1, 2, 3 },
-                    3 };
-char      output_eo[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 5][UTIL_TANG_DEFS_MAX_CROSSINGNUM *
-                                                        2u] = { "10",
-                                                                "7",
-                                                                "3",
-                                                                "7",
-                                                                UTIL_TANG_DEFS_ZERO_TANG_STR };
+note_tv_t tv_eo = { { 1, 2, 3 }, 3 };
+char      output_eo[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 5]
+[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u] =
+{ "10", "7", "3", "7", UTIL_TANG_DEFS_ZERO_TANG_STR };
 
 size_t output_len = 5;
 /* clang-format off */

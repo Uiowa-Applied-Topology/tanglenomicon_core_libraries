@@ -73,6 +73,11 @@ test_dbg: bootstrap
     cd {{buildDir_dbg}} && \
     ctest -C {{buildTrgt_dbg}}
 
+do-cmakeformat:
+    find . -name 'CMakeLists.txt' -exec cmake-format -i {} \;
+
+check-cmakeformat:
+    find . -name 'CMakeLists.txt' -exec cmake-format --check {} \;
 
 do-uncrustify:
     find ./source -iname "*.c"   -exec  sh -c 'uncrustify -c .uncrustify.cfg --replace "$0" || kill $PPID' \{\} \;
@@ -94,4 +99,7 @@ do-prettier:
     prettier -w "source/**/*.md"
 
 zip: html
-    zip -r ./Library_Documentation.zip ./docs/.build/html
+    zip -r ./library_documentation.zip ./docs/.build/html
+
+compile_commands:
+    cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1

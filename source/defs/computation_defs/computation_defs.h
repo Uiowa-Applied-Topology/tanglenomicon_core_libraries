@@ -44,4 +44,12 @@
 /*! @brief We use bit 0 to indicate a fail. Specific failures encoded in higher bits. */
 #define COMP_DEFS_COMPUTE_FAIL       (1u)
 
+/****************************** Flag Builder Macro ****************************/
+
+/*!
+ * @brief A function like macro for building bitfield flags
+ *
+ */
+#define COMP_STATUS_BLDR(FLAG, HIGH_BITS)    ((FLAG) | (HIGH_BITS))
+
 #endif /* end COMPUTATION_DEFS_H */

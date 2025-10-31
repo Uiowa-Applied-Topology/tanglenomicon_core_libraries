@@ -6,7 +6,7 @@ contact: example@example.com
 abstract: A use case description for computation of template.
 ---
 
-# Use Case: template
+# Use Case
 
 ## Functionality
 

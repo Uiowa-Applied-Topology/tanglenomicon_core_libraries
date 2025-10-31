@@ -3,11 +3,11 @@ date: 2024-09-18
 status: test
 authors:
     - Joe Starr
-contact: joe@joe-starr.com
+contact: support@joe-starr.com
 abstract: A use case description for the Weighted Planar Trees Notation.
 ---
 
-# Use Case: Arborescent Weighted Planar Tree Notation (wptt)
+# Use Case
 
 ## Functionality
 
@@ -27,8 +27,8 @@ square matching the green band.
 
 ```{prf:example} Two bands
 :label: UC-N-APN-E-4
-![band 1](../../../media/bands/bnd_sum_1.svg)
-![band 2](../../../media/bands/bnd_sum_2.svg)
+![band 1](./media/bands/bnd_sum_1.svg)
+![band 2](./media/bands/bnd_sum_2.svg)
 ```
 
 ###### Plumbing bands
@@ -51,11 +51,11 @@ a local picture for plumbing can be seen in {prf:ref}`UC-N-APN-E-5`.
 :widths: 50 50
 :width: 100%
 
-*   -   ```{image} ../../../media/bands/bnd_sum_sum.svg
+*   -   ```{image} ./media/bands/bnd_sum_sum.svg
             :width: 100%
             :align: center
         ```
-    -   ```{image} ../../../media/bands/bnd_sum_patch.svg
+    -   ```{image} ./media/bands/bnd_sum_patch.svg
             :width: 100%
             :align: center
         ```
@@ -78,7 +78,7 @@ are determined by relative position of plumbing squares.
 
 *   -   ````{prf:example}
         :label: UC-N-APN-E-6
-        ```{image} ../../../media/bands/arbor_band_with_twist.svg
+        ```{image} ./media/bands/arbor_band_with_twist.svg
             :width: 20em
             :align: center
         ```
@@ -87,7 +87,7 @@ are determined by relative position of plumbing squares.
         ````
     -   ````{prf:example}
         :label: UC-N-APN-E-25
-        ```{image} ../../../media/bands/arbor_band_with_twist_2.svg
+        ```{image} ./media/bands/arbor_band_with_twist_2.svg
             :width: 20em
             :align: center
         ```
@@ -111,10 +111,10 @@ boundary, seen in {prf:ref}`UC-N-APN-E-10`.
 :width: 100%
 
 *   -   ```{prf:example} Bands plumbed
-        ![band 1](../../../media/bands/arbor_bands.svg)
+        ![band 1](./media/bands/arbor_bands.svg)
         ```
     -   ```{prf:example} An arborescent knot
-        ![band 1](../../../media/bands/arbor_bound.svg)
+        ![band 1](./media/bands/arbor_bound.svg)
         ```
 ````
 
@@ -183,7 +183,7 @@ plumbing squares.
 
 ````{prf:example} The local view of a vertex
 :label: UC-N-APN-E-8
-```{image} ../../../media/bands/arbor_graph_split_local.svg
+```{image} ./media/bands/arbor_graph_split_local.svg
             :width: 20em
             :align: center
 ```
@@ -197,7 +197,7 @@ plane tree can be seen in {prf:ref}`UC-N-APN-E-7`.
 
 ````{prf:example} The local view of a vertex with weight
 :label: UC-N-APN-E-7
-```{image} ../../../media/bands/arbor_graph_split_local_with_band.svg
+```{image} ./media/bands/arbor_graph_split_local_with_band.svg
             :align: center
 ```
 ````
@@ -215,11 +215,11 @@ tree**.
 :widths: 50 50
 :width: 100%
 
-*   -   ```{image} ../../../media/bands/arbor_graph.svg
+*   -   ```{image} ./media/bands/arbor_graph.svg
             :width: 100%
             :align: center
         ```
-    -   ```{image} ../../../media/bands/arbor_bands.svg
+    -   ```{image} ./media/bands/arbor_bands.svg
             :width: 100%
             :align: center
         ```
@@ -243,11 +243,11 @@ Conway circle for a two string tangle.
 :widths: 50 50
 :width: 100%
 
-*   -   ```{image} ../../../media/bands/arbor_graph_tangle.svg
+*   -   ```{image} ./media/bands/arbor_graph_tangle.svg
             :width: 100%
             :align: center
         ```
-    -   ```{image} ../../../media/bands/arbor_tangle.svg
+    -   ```{image} ./media/bands/arbor_tangle.svg
             :width: 100%
             :align: center
         ```
@@ -263,14 +263,14 @@ We will now describe a special subtree of a weighted planar tree, locally appear
 
 ```{prf:example} Ring graph
 :label: UC-N-APN-E-17
-![band 1](../../../media/bands/arbor_graph_ring.svg)
+![band 1](./media/bands/arbor_graph_ring.svg)
 ```
 
 Now, resolving the plumbing, we arrive at bands as in {prf:ref}`UC-N-APN-E-12`.
 
 ```{prf:example} Plumbed ring bands
 :label: UC-N-APN-E-12
-![band 1](../../../media/bands/arbor_ring.svg)
+![band 1](./media/bands/arbor_ring.svg)
 ```
 
 Notice that the boundary of these plumbed bands has three components, as seen in
@@ -278,7 +278,7 @@ Notice that the boundary of these plumbed bands has three components, as seen in
 
 ```{prf:example} Ring boundary
 :label: UC-N-APN-E-13
-![band 1](../../../media/bands/arbor_ring_no_bnd.svg)
+![band 1](./media/bands/arbor_ring_no_bnd.svg)
 ```
 
 With an obvious flype and inversion of the Conway circle given by the non-plumbed square, we can
@@ -288,7 +288,7 @@ infinity tangle with a ring.
 
 ```{prf:example} Ring Tangle
 :label: UC-N-APN-E-14
-![band 1](../../../media/bands/arbor_ring_tangle.svg)
+![band 1](./media/bands/arbor_ring_tangle.svg)
 ```
 
 In practice, trees with ring subtrees appear frequently, often with multiple subtrees attached to a
@@ -297,7 +297,7 @@ situation, as the rings only impact data local to the ring subtree.
 
 ```{prf:example} Typical tree
 :label: UC-N-APN-E-15
-![band 1](../../../media/bands/arbor_ring_number_typical.svg)
+![band 1](./media/bands/arbor_ring_number_typical.svg)
 ```
 
 To simplify our notation where rings are concerned, we simply forget any subtrees that form ring
@@ -306,7 +306,7 @@ with the count, as shown in {prf:ref}`UC-N-APN-E-16`, we call such a tree "abbre
 
 ```{prf:example} Abreviated
 :label: UC-N-APN-E-16
-![band 1](../../../media/bands/arbor_ring_number.svg)
+![band 1](./media/bands/arbor_ring_number.svg)
 ```
 
 ##### Essential vertices
@@ -332,7 +332,7 @@ We see in {prf:ref}`UC-N-APN-E-18` essential vertices in orange and non-essentia
 
 ```{prf:example} Abreviated
 :label: UC-N-APN-E-18
-![band 1](../../../media/bands/arbor_ring_essential.svg)
+![band 1](./media/bands/arbor_ring_essential.svg)
 ```
 
 ##### Sticks
@@ -352,7 +352,7 @@ in {prf:ref}`UC-N-APN-E-19`.
 
 ```{prf:example} Sticks of a tree
 :label: UC-N-APN-E-19
-![band 1](../../../media/bands/arbor_ring_noessential.svg)
+![band 1](./media/bands/arbor_ring_noessential.svg)
 ```
 
 By construction, a stick of a tree has 0,1, or 2 free bonds, we call a stick with; 0 free bonds
@@ -367,7 +367,7 @@ Bonahon and Seibenman prove a correspondence between sticks and rational tangles
 takes the form of the vignette seen below where each free bond forms a boundary
 component.
 
-![Band 1](../../../media/bands/rational_vignette.svg)
+![Band 1](./media/bands/rational_vignette.svg)
 
 :::
 <!-- prettier-ignore-end -->
@@ -392,7 +392,7 @@ children of $v$. As we saw in the construction of weighted planar trees, there i
 $\Gamma$. If $v$ has a parent, the lowest index bond of $v$ points to its parent, further when
 realizing $\Gamma_v$ in the plane, $c_1$ points up.
 
-```{figure} ../../../media/bands/arbor_graph_split_local_1.svg
+```{figure} ./media/bands/arbor_graph_split_local_1.svg
 :label: wpt-linear-fig-local
 The local view of a vertex
 ```
@@ -403,7 +403,7 @@ listing the weights and children in sequence. We imagine an arm sweeping out fro
 bond picking up the data of each weight as it sweeps through, this can be seen in
 {prf:ref}`wpt-linear-fig-COMPASS`.
 
-```{figure} ../../../media/bands/moves/f3/f3_local_ccw_1.svg
+```{figure} ./media/bands/moves/f3/f3_local_ccw_1.svg
 :label: wpt-linear-fig-COMPASS
 @@@ TODO
 ```
@@ -428,7 +428,7 @@ planar tree, and $v$ an arbitrarily select a vertex from $\Gamma$ as the root
 tree, the vertex currently being linearized will be called the **object vertex**. Beginning with the
 root as an object vertex, we descend the tree in a depth-first order.
 
-```{figure} ../../../media/bands/watt_rooted.svg
+```{figure} ./media/bands/watt_rooted.svg
 :label: wpt-rli-fig-22
 Rooted tree
 ```
@@ -446,7 +446,7 @@ the object vertex.
 ##### Case 2: The Child is Non-essential
 
 When the child vertex is non-essential we are descending a stick of $\Gamma$ which can take two
-forms, open and half-open.
+forms, open, and half-open.
 
 ###### Case 1a: The Stick is Open
 
@@ -467,7 +467,7 @@ vertex with the matching $\LN\RP$ or $\LN\RS$, and return to the parent lineariz
 parents have been exhausted. An example of a tree encoded with this strategy can be seen in
 {prf:ref}`wpt-rli-fig-23`.
 
-```{figure} ../../../media/bands/watt_walk.svg
+```{figure} ./media/bands/watt_walk.svg
 :label: wpt-rli-fig-23
 Encoded tree subtrees are indicated by color.
 ```

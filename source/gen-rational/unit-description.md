@@ -1,4 +1,4 @@
-# Unit Description: Rational Tangle Generator
+# Unit Description
 
 ## Class Diagram
 
@@ -56,10 +56,10 @@ N/A
 
 ### Public Structures
 
-#### Rational Generator Config Structure
+#### Rational Generator Configuration Structure
 
-The config structure contains the data needed for generating twist vectors up to a given crossing
-number. This includes:
+The configuration structure contains the data needed for generating twist vectors up to a given
+crossing number. This includes:
 
 - An integer representation of the target crossing number.
 - A notation structure for a twist vector.
@@ -67,9 +67,9 @@ number. This includes:
 
 ### Public Functions
 
-#### Config Function
+#### Configuration Function
 
-The config function configures the local instance variable of the generator.
+The configuration function sets the local configuration variable of the generator.
 
 This process is described in the following state machines:
 
@@ -84,7 +84,7 @@ stateDiagram-v2
 #### Generate Function
 
 The generation function carries out the rational tangle generation until the target crossing number
-is met. The function may contain sub machines that can be broken out into functions in the
+is met. The function may contain sub-machines that can be broken out into functions in the
 implementation.
 
 This process is described in the following state machines:
@@ -132,13 +132,13 @@ if_done --> [*]: if i == 2**(N-1)
 
 ## Validation
 
-### Config interface
+### Configuration interface
 
 #### Positive Tests
 
 ```{test-card} Valid Config
 
-A valid config for the generator is passed to the function.
+A valid configuration for the generator is passed to the function.
 
 **Inputs:**
 
@@ -154,7 +154,7 @@ A positive response.
 
 ```{test-card} Null Config
 
-A null config for the generator is passed to the function.
+A null configuration for the generator is passed to the function.
 
 **Inputs:**
 
@@ -166,13 +166,13 @@ A negative response.
 
 ```
 
-```{test-card} A Config with null twist vector
+```{test-card} A Configuration with null twist vector
 
-A config with a null twist vector is passed to the function.
+A configuration with a null twist vector is passed to the function.
 
 **Inputs:**
 
-- A config with a null twist vector.
+- A configuration with a null twist vector.
 
 **Expected Output:**
 
@@ -180,13 +180,13 @@ A negative response.
 
 ```
 
-```{test-card} A Config with null string buffer
+```{test-card} A Configuration with null string buffer
 
-A config with a null string buffer is passed to the function.
+A configuration with a null string buffer is passed to the function.
 
 **Inputs:**
 
-- A config with a null string buffer.
+- A configuration with a null string buffer.
 
 **Expected Output:**
 
@@ -196,9 +196,9 @@ A negative response.
 
 ### Generate interface
 
-```{test-card} Valid Config and generation
+```{test-card} Valid Configuration and generation
 
-A valid config is set and the generation is called.
+A valid configuration is set and the generation is called.
 
 **Inputs:**
 
@@ -225,4 +225,24 @@ The twist vectors:
 - [1 4 0]
 - [5]
 
+```
+
+## Doxygen Documentation
+
+```{doxygenfile} generator_rational.h
+
+```
+
+```{doxygenfile} generator_rational.c
+
+```
+
+## Bibliography
+
+```{bibliography}
+   :filter: docname in docnames
+```
+
+```{raw} latex
+    \newpage
 ```

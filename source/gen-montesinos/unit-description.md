@@ -1,4 +1,4 @@
-# Unit Description: Montesinos Tangle Generator
+# Unit Description
 
 ## Class Diagram
 
@@ -65,10 +65,10 @@ N/A
 
 ### Public Structures
 
-#### Montesinos Generator Config Structure
+#### Montesinos Generator Configuration Structure
 
-The config structure contains the data needed for generating a set of algebraic tangle trees from a
-collection of lists of twist vectors.
+The configuration structure contains the data needed for generating a set of algebraic tangle trees
+from a collection of lists of twist vectors.
 
 This includes:
 
@@ -79,9 +79,9 @@ This includes:
 
 ### Public Functions
 
-#### Config Function
+#### Configuration Function
 
-The config function configures the local instance variable of the generator.
+The configuration function sets the local configuration variable of the generator.
 
 This process is described in the following state machines:
 
@@ -97,7 +97,7 @@ stateDiagram-v2
 #### Generate Function
 
 The generation function carries out the Montesinos tangle generation until the inputs are exhausted.
-The function may contain sub machines that can be broken out into functions in the implementation.
+The function may contain sub-machines that can be broken out into functions in the implementation.
 
 This process is described in the following state machines:
 
@@ -175,13 +175,13 @@ stateDiagram-v2
 
 ## Validation
 
-### Config interface
+### Configuration interface
 
 #### Positive Tests
 
 ```{test-card} Valid Config
 
-A valid config for the generator is passed to the function.
+A valid configuration for the generator is passed to the function.
 
 **Inputs:**
 
@@ -197,7 +197,7 @@ A positive response.
 
 ```{test-card} Null Config
 
-A null config for the generator is passed to the function.
+A null configuration for the generator is passed to the function.
 
 **Inputs:**
 
@@ -211,9 +211,9 @@ A negative response.
 
 ### Generate interface
 
-```{test-card} Valid Config and generation
+```{test-card} Valid Configuration and generation
 
-A valid config is set and the generation is called.
+A valid configuration is set and the generation is called.
 
 **Inputs:**
 
@@ -259,4 +259,24 @@ The algebraic tangle trees:
 -  +[3 3 0]+[2 2 1][3 3 2]
 -  +[3 3 0]+[2 2 1][4 4 2]
 
+```
+
+## Doxygen Documentation
+
+```{doxygenfile} generator_montesinos.h
+
+```
+
+```{doxygenfile} generator_montesinos.c
+
+```
+
+## Bibliography
+
+```{bibliography}
+   :filter: docname in docnames
+```
+
+```{raw} latex
+    \newpage
 ```

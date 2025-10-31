@@ -23,7 +23,8 @@
 #ifdef _WIN32
 #ifndef _CRT_SECURE_NO_WARNINGS
 
-/*! For portability we're using the old style "unsafe" string interfaces. We can suppress warning on windows. */
+/*! For portability we're using the old style "unsafe" string interfaces. We can suppress warning on
+ * windows. */
 #define _CRT_SECURE_NO_WARNINGS    (1u)
 #else
 #if (_CRT_SECURE_NO_WARNINGS != 1u)
@@ -34,7 +35,8 @@
 #endif
 #ifndef _CRT_DEPRECATE_TEXT
 
-/*! For portability we're using the old style "unsafe" string interfaces. We can suppress warning on windows. */
+/*! For portability we're using the old style "unsafe" string interfaces. We can suppress warning on
+ * windows. */
 #define _CRT_DEPRECATE_TEXT    (1u)
 #else
 #if (_CRT_DEPRECATE_TEXT != 1u)

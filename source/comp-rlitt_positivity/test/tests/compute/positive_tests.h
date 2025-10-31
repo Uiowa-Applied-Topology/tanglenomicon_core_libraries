@@ -1,0 +1,9 @@
+/* */
+/* Created by joe on 6/23/25. */
+/* */
+
+#ifndef TEST_COMP_RLITT_POSITIVITY_COMPUTE_POSITIVE_TESTS_H
+#define TEST_COMP_RLITT_POSITIVITY_COMPUTE_POSITIVE_TESTS_H
+void test_compute_positive(void);
+
+#endif /* TEST_COMP_RLITT_POSITIVITY_COMPUTE_POSITIVE_TESTS_H*/

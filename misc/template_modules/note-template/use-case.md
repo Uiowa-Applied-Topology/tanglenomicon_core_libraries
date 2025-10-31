@@ -6,7 +6,7 @@ contact: example@example.com
 abstract: A use case description for the template Notation.
 ---
 
-# Use Case: template
+# Use Case
 
 ## Functionality
 

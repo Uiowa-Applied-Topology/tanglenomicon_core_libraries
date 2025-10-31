@@ -1,12 +1,12 @@
 ---
 date: 2024-09-18
 authors:
-  - Joe Starr
+    - Joe Starr
 contact: example@example.com
 abstract: A unit description for notation of template.
 ---
 
-# Unit Description: Template
+# Unit Description
 
 ```{note}
 A block diagram for the component under development
@@ -160,7 +160,6 @@ A description of the goal of the unit test and how it will be carried out.
 ```{note}
 A list/description of input for the test.
 ```
-
 
 ## Bibliography
 

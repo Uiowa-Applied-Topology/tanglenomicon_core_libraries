@@ -2,11 +2,11 @@
 date: 2024-09-18
 authors:
     - Joe Starr
-contact: example@example.com
+contact: support@joe-starr.com
 abstract: A unit description for the arborescent planar tangle tree notation.
 ---
 
-# Unit Description: Arborescent Weighted Planar Tangle Tree Notation
+# Unit Description
 
 ```mermaid
 classDiagram
@@ -440,6 +440,7 @@ A valid tangle wptt (with label) is fed to the encode function.
 - A wptt with an essential vertex.
 - A wptt with a vertex that has ring number.
 - A wptt with a vertex with more than one weight.
+- A wptt with a vertex that has reverse order.
 
 **Expected Output:**
 

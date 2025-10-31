@@ -39,7 +39,8 @@
 /******************************************************************************/
 
 /*!
- * @brief A function to process a template describing the ' ', and '+' for a twist vector. A template is a bitfield where 1 is $+$ and 0 is ' '. Example: 0101 -> [1 1+1 1+1] -> [1 2 2]
+ * @brief A function to process a template describing the ' ', and '+' for a twist vector. A
+ *template is a bitfield where 1 is $+$ and 0 is ' '. Example: 0101 -> [1 1+1 1+1] -> [1 2 2]
  *
  * @param template Template to work on.
  * @return uint8_t Success/Fail flag.
@@ -55,7 +56,9 @@ STATIC_INLINE_UINT8 gen_rational_proc_template(uint8_t template);
 STATIC_INLINE_UINT8 gen_rational_write();
 
 /*!
- * @brief The canonical form for twist vector is given as odd length. When we get something in the even class of twist vectors we can 'oddify' it by prepending a 0. This function handles prepending the zero and then writing to the cfg store-storage_interface device.
+ * @brief The canonical form for twist vector is given as odd length. When we get something in the
+ *even class of twist vectors we can 'oddify' it by prepending a 0. This function handles prepending
+ *the zero and then writing to the cfg store-storage_interface device.
  *
  * @param cfg Configuration to work on.
  * @return uint8_t Success/Fail flag.

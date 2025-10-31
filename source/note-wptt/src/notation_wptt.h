@@ -8,8 +8,8 @@
  *
  */
 
-#ifndef NOTATION_wptt_H
-#define NOTATION_wptt_H
+#ifndef NOTATION_WPTT_H
+#define NOTATION_WPTT_H
 
 /******************************************************************************/
 /*******************************Includes***************************************/
@@ -27,12 +27,17 @@
 /*!
  * @brief The maximum number of weights in a node.
  */
-#define NOTE_wptt_DECODE_MAX_WEIGHTS     (UTIL_TANG_DEFS_MAX_CROSSINGNUM)
+#define NOTE_WPTT_DECODE_MAX_WEIGHTS     (UTIL_TANG_DEFS_MAX_CROSSINGNUM + 1)
 
 /*!
  * @brief The maximum number of children in a node.
  */
-#define NOTE_wptt_DECODE_MAX_CHILDREN    (UTIL_TANG_DEFS_MAX_CROSSINGNUM)
+#define NOTE_WPTT_DECODE_MAX_CHILDREN    (UTIL_TANG_DEFS_MAX_CROSSINGNUM)
+
+/*!
+ * @brief The maximum number of children in a node.
+ */
+#define NOTE_WPTT_MAX_STR_LEN            ((UTIL_TANG_DEFS_MAX_CROSSINGNUM + 1) * 5u)
 
 /*******************************Decode Flags***********************************/
 
@@ -41,7 +46,6 @@
  | Flag\bit               | 7   | 6   | 5   | 4   | 3   | 2   | 1   | 0   |
  | ---------------------- | --- | --- | --- | --- | --- | --- | --- | --- |
  | Success                | 0   | 0   | 0   | 0   | 0   | 0   | 0   | 0   |
- | Success                | 0   | 0   | 0   | 0   | 0   | 0   | 0   | 1   |
  | Decode String Error    | 0   | 0   | 0   | 0   | 0   | 0   | 1   | 0   |
  | Decode Dest Error      | 0   | 0   | 0   | 0   | 0   | 1   | 0   | 0   |
  | Malformed String Error | 0   | 0   | 0   | 0   | 1   | 0   | 0   | 0   |
@@ -53,31 +57,31 @@
  * @brief Decode path error flag indicating an empty string.
  *
  */
-#define NOTE_wptt_DECODE_EMPTY_STR        (0x01u << 0x01u)
+#define NOTE_WPTT_DECODE_EMPTY_STR        (0x01u << 0x01u)
 
 /*!
  * @brief Decode path error flag indicating a null destination.
  *
  */
-#define NOTE_wptt_DECODE_NULL_DEST        (0x01u << 0x02u)
+#define NOTE_WPTT_DECODE_NULL_DEST        (0x01u << 0x02u)
 
 /*!
  * @brief Decode path error flag indicating a malformed string.
  *
  */
-#define NOTE_wptt_DECODE_BAD_STR          (0x01u << 0x03u)
+#define NOTE_WPTT_DECODE_BAD_STR          (0x01u << 0x03u)
 
 /*!
  * @brief Decode path error flag indicating a node buffer error.
  *
  */
-#define NOTE_wptt_DECODE_BUFFER_ERROR     (0x01u << 0x04u)
+#define NOTE_WPTT_DECODE_BUFFER_ERROR     (0x01u << 0x04u)
 
 /*!
  * @brief Decode path error flag indicating an over/under flow error.
  *
  */
-#define NOTE_wptt_DECODE_OVRUNDR_ERROR    (0x01u << 0x05u)
+#define NOTE_WPTT_DECODE_OVRUNDR_ERROR    (0x01u << 0x05u)
 
 /*******************************Decode Flags***********************************/
 
@@ -86,9 +90,8 @@
  | Flag\bit                   | 7   | 6   | 5   | 4   | 3   | 2   | 1   | 0   |
  | -------------------------- | --- | --- | --- | --- | --- | --- | --- | --- |
  | Success                    | 0   | 0   | 0   | 0   | 0   | 0   | 0   | 0   |
- | Success                    | 0   | 0   | 0   | 0   | 0   | 0   | 0   | 1   |
  | Encode String Buf Error    | 0   | 0   | 0   | 0   | 0   | 0   | 1   | 0   |
- | Malformed wptt Error      | 0   | 0   | 0   | 0   | 0   | 1   | 0   | 0   |
+ | Malformed wptt Error       | 0   | 0   | 0   | 0   | 0   | 1   | 0   | 0   |
  | Over/Underflow Error       | 0   | 0   | 0   | 0   | 1   | 0   | 0   | 0   |
  | `
  |
@@ -98,19 +101,19 @@
  * @brief Encode path error flag indicating an error with the string buffer.
  *
  */
-#define NOTE_wptt_ENCODE_STR_BUF          (0x01u << 0x01u)
+#define NOTE_WPTT_ENCODE_STR_BUF          (0x01u << 0x01u)
 
 /*!
  * @brief Encode path error flag indicating a malformed wptt tree.
  *
  */
-#define NOTE_wptt_ENCODE_MALFORMED        (0x01u << 0x02u)
+#define NOTE_WPTT_ENCODE_MALFORMED        (0x01u << 0x02u)
 
 /*!
  * @brief Encode path error flag indicating an over/under flow error.
  *
  */
-#define NOTE_wptt_ENCODE_OVRUNDR_ERROR    (0x01u << 0x03u)
+#define NOTE_WPTT_ENCODE_OVRUNDR_ERROR    (0x01u << 0x03u)
 
 /******************************************************************************/
 /*******************************Typedefs***************************************/
@@ -122,15 +125,15 @@ extern "C"
 #endif
 
 /*!
- * @brief Type defining the $V_4$ label for an wptt
+ * @brief Type defining the $V_4$ label for a wptt
  */
 typedef enum note_wptt_V4_label_e {
-    NOTE_wptt_V4_LABEL_UNINIT,
-    NOTE_wptt_V4_LABEL_NONE,
-    NOTE_wptt_V4_LABEL_I,
-    NOTE_wptt_V4_LABEL_X,
-    NOTE_wptt_V4_LABEL_Y,
-    NOTE_wptt_V4_LABEL_Z
+    NOTE_WPTT_V4_LABEL_UNINIT,
+    NOTE_WPTT_V4_LABEL_NONE,
+    NOTE_WPTT_V4_LABEL_I,
+    NOTE_WPTT_V4_LABEL_X,
+    NOTE_WPTT_V4_LABEL_Y,
+    NOTE_WPTT_V4_LABEL_Z
 } note_wptt_V4_label_e;
 #ifdef __cplusplus
 }
@@ -142,12 +145,12 @@ extern "C"
 #endif
 
 /*!
- * @brief Type defining the order direction of a node in an wptt.
+ * @brief Type defining the order direction of a node in a wptt.
  */
 typedef enum note_wptt_order_e {
-    NOTE_wptt_ORDER_UNINIT,
-    NOTE_wptt_ORDER_FORWARD,
-    NOTE_wptt_ORDER_REVERSE
+    NOTE_WPTT_ORDER_UNINIT,
+    NOTE_WPTT_ORDER_FORWARD,
+    NOTE_WPTT_ORDER_REVERSE
 } note_wptt_order_e;
 #ifdef __cplusplus
 }
@@ -159,11 +162,11 @@ extern "C"
 #endif
 
 /*!
- * @brief Type defining a the data of an wptt node.
+ * @brief Type defining the data of a wptt node.
  */
 typedef struct note_wptt_node_t {
-    struct note_wptt_node_t *children[NOTE_wptt_DECODE_MAX_CHILDREN];
-    int8_t                   weights[NOTE_wptt_DECODE_MAX_WEIGHTS];
+    struct note_wptt_node_t *children[NOTE_WPTT_DECODE_MAX_CHILDREN];
+    int8_t                   weights[NOTE_WPTT_DECODE_MAX_WEIGHTS + 1];
     size_t                   number_of_children;
     uint8_t                  number_of_rings;
     note_wptt_order_e        order;
@@ -195,12 +198,12 @@ extern "C"
 #endif
 
 /*!
- * @brief Type defining the notation for an wptt.
+ * @brief Type defining the notation for a wptt.
  */
 typedef struct {
-    note_wptt_node_t *      root;
-    note_wptt_node_buffer_t node_buffer;
-    note_wptt_V4_label_e    label;
+    note_wptt_node_t *       root;
+    note_wptt_node_buffer_t *node_buffer;
+    note_wptt_V4_label_e     label;
 } note_wptt_t;
 #ifdef __cplusplus
 }
@@ -234,7 +237,9 @@ extern "C"
 #endif
 
 /*!
- * @brief Function to take a string and decode it as a note_wptt_t
+ * @brief Function to take a string and decode it as a note_wptt_t. NOTE:
+ * This function modifies the input WPTT. The input is normalized so all nodes have "forward" order.
+ *This does not change the topology.
  *
  * @param str Input string to encode as note_wptt_t
  * @param att the note_wptt_t pointer to store the encoded string into.
@@ -246,4 +251,4 @@ uint8_t note_wptt_encode(note_wptt_t wptt, char *str, size_t buffer_size);
 }
 #endif
 
-#endif /* end NOTATION_wptt_H */
+#endif /* end NOTATION_WPTT_H */

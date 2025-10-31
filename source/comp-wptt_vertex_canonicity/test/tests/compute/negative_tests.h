@@ -1,0 +1,9 @@
+/* */
+/* Created by joe on 6/23/25. */
+/* */
+
+#ifndef TEST_COMP_VERTEX_CANONICIY_COMPUTE_NEGATIVE_TESTS_H
+#define TEST_COMP_VERTEX_CANONICIY_COMPUTE_NEGATIVE_TESTS_H
+void test_compute_negative(void);
+
+#endif /* TEST_COMP_VERTEX_CANONICIY_COMPUTE_NEGATIVE_TESTS_H */

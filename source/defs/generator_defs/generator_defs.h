@@ -50,4 +50,12 @@
 /*! @brief We use bit 0 to indicate a fail. Specific failures encoded in higher bits. */
 #define GEN_DEFS_GENERATION_FAIL       (1u)
 
+/****************************** Flag Builder Macro ****************************/
+
+/*!
+ * @brief A function like macro for building bitfield flags
+ *
+ */
+#define GEN_STATUS_BLDR(FLAG, HIGH_BITS)    ((FLAG) | (HIGH_BITS))
+
 #endif /* end GENERATOR_DEFS_H */

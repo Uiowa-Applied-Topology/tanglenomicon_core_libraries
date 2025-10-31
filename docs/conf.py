@@ -1,10 +1,13 @@
 """Documentation for DE-Book."""
+
 import sys
 from pathlib import Path
 from shutil import copyfile, copytree, rmtree
-from sphinxcontrib.collections.drivers import Driver
-from sphinxcontrib.collections.api import register_driver
-sys.path.append(str(Path('_ext').resolve()))
+
+from sphinx_collections.api import register_driver
+from sphinx_collections.drivers import Driver
+
+sys.path.append(str(Path("_ext").resolve()))
 
 # Configuration file for the Sphinx documentation builder.
 #
@@ -36,8 +39,9 @@ extensions = [
     "sphinx_proof",
     "sphinxcontrib.inkscapeconverter",
     "sphinx_material",
-    "sphinxcontrib.collections",
-    "custom_admonitions"
+    "sphinx_collections",
+    "custom_admonitions",
+    "sphinx_rtd_theme",
 ]
 templates_path = ["_templates"]
 exclude_patterns = []
@@ -52,7 +56,7 @@ intersphinx_mapping = {
 }
 
 # -- Bibtex settings ---------------------------------------------------
-bibtex_bibfiles = ["./refs/zotero.bib", "./refs/manual.bib"]
+bibtex_bibfiles = ["ref.bib"]
 
 # -- Breathe settings ---------------------------------------------------
 breathe_projects = {"Core_Libraries": "./.build/doxygen/xml"}
@@ -82,22 +86,6 @@ myst_url_schemes = {
     "mailto": None,
     "ftp": None,
     "wiki": "https://en.wikipedia.org/wiki/{{path}}#{{fragment}}",
-    "doi": "https://doi.org/{{path}}",
-    "gh-pr": {
-        "url": "https://github.com/executablebooks/MyST-Parser/pull/{{path}}#{{fragment}}",
-        "title": "PR #{{path}}",
-        "classes": ["github"],
-    },
-    "gh-issue": {
-        "url": "https://github.com/executablebooks/MyST-Parser/issue/{{path}}#{{fragment}}",
-        "title": "Issue #{{path}}",
-        "classes": ["github"],
-    },
-    "gh-user": {
-        "url": "https://github.com/{{path}}",
-        "title": "@{{path}}",
-        "classes": ["github"],
-    },
 }
 myst_number_code_blocks = ["typescript"]
 myst_heading_anchors = 2
@@ -112,30 +100,12 @@ myst_substitutions = {
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 # user starts in dark mode
 default_dark_mode = True
-html_theme = "sphinx_material"
+html_theme = "sphinx_rtd_theme"
 
-# Material theme options (see theme.conf for more information)
 html_theme_options = {
-    # Set the name of the project to appear in the navigation.
-    "nav_title": "The Tanglenomicon: Core Libraries",
-    # Set the color and the accent color
-    "theme_color": "001f3f",
-    "color_primary": "#001f3f",
-    "color_accent": "#7FDBFF",
-    # Set the repo location to get a badge with stats
-    "repo_url": "https://github.com/Uiowa-Applied-Topology/tanglenomicon_core_libraries",
-    "repo_name": "tanglenomicon_core_libraries",
-    "html_minify": True,
-    "css_minify": True,
-    "logo_icon": "",
+    "source_url": "https://github.com/Uiowa-Applied-Topology/tanglenomicon_core_libraries",
+    "source_icon": "github",
 }
-html_sidebars = {
-    "**": [
-        "globaltoc.html",
-        "localtoc.html",
-    ]
-}
-html_show_sourcelink = False
 # -- Mermaid settings ---------------------------------------------------
 
 mermaid_d3_zoom = True
@@ -207,62 +177,56 @@ autodoc_inherit_docstrings = True
 
 class CopyDocsDriver(Driver):
     def run(self):
+        global bibtex_bibfiles
         self.info("Copy folder...")
-        source = Path(self.config['source'])
-        target = Path(self.config['target'])
+        source = Path(self.config["source"])
+        target = Path(self.config["target"])
         print(source)
         if not source.exists():
             self.error("Source {} does not exist".format(source))
             return
         try:
-            for use_case in source.glob(f"**/{self.config['file-name']}.md"):
-                dest = target.joinpath(
-                    use_case.relative_to(source))
+            for use_case in source.glob(f"**/*.md"):
+                dest = target.joinpath(use_case.relative_to(source))
                 dest.parent.mkdir(parents=True, exist_ok=True)
                 copyfile(use_case, str(dest))
                 ...
-            for use_case in source.glob(f"**/{self.config['file-name']}"):
-                dest = target.joinpath(
-                    use_case.relative_to(source))
-                dest.parent.mkdir(parents=True, exist_ok=True)
-                copytree(use_case, str(dest))
-                ...
+            for idx_file in source.glob(f"**/index.md"):
+                if (media_dir := idx_file.parent / "media").exists():
+                    dest = target.joinpath(media_dir.relative_to(source))
+                    copytree(media_dir, str(dest))
+            ...
         except IOError as e:
             self.error("Problems during copying folder.", e)
 
     def clean(self):
-        target = Path(self.config['target'])
+        target = Path(self.config["target"])
         try:
             for dir in Path(target).glob("./**/"):
                 rmtree(dir)
                 self.info("Folder deleted: {}".format(dir))
-            for file in Path(target).glob(
-                    f"./**/{self.config['file-name']}.md"):
+            for file in Path(target).glob(f"./**/*"):
                 file.unlink()
                 self.info("File deleted: {}".format(file))
+            ...
         except FileNotFoundError:
             pass  # Already cleaned? I'm okay with it.
         except IOError as e:
-            self.error("Problems during cleaning for collection {}".format(
-                self.config["name"]), e)
+            self.error(
+                "Problems during cleaning for collection {}".format(
+                    self.config["name"]
+                ),
+                e,
+            )
 
 
-register_driver('my_driver', CopyDocsDriver)
+register_driver("my_driver", CopyDocsDriver)
 
 collections = {
-    'use-cases': {
-        'driver': 'my_driver',
-        'source': 'source',
-        'target': '../use_cases/.cp_from_source',
-        'active': True,
-        'file-name': "use-case",
+    "use-cases": {
+        "driver": "my_driver",
+        "source": "source",
+        "target": ".",
+        "active": True,
     },
-    'unit-descriptions': {
-        'driver': 'my_driver',
-        'source': 'source',
-        'target': '../unit_description/.cp_from_source',
-        'active': True,
-        'file-name': "unit-description",
-    },
-
 }

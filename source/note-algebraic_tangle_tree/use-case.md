@@ -3,11 +3,11 @@ date: 2024-09-18
 status: test
 authors:
     - Joe Starr
-contact: joe@joe-starr.com
+contact: support@joe-starr.com
 abstract: A use case description for the Algebraic Tangle Tree Notation.
 ---
 
-# Use Case: Algebraic Tangle Tree Notation
+# Use Case
 
 ## Functionality
 
