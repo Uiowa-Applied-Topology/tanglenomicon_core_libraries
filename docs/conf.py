@@ -4,8 +4,8 @@ import sys
 from pathlib import Path
 from shutil import copyfile, copytree, rmtree
 
-from sphinxcontrib.collections.api import register_driver
-from sphinxcontrib.collections.drivers import Driver
+from sphinx_collections.api import register_driver
+from sphinx_collections.drivers import Driver
 
 sys.path.append(str(Path("_ext").resolve()))
 
@@ -39,7 +39,7 @@ extensions = [
     "sphinx_proof",
     "sphinxcontrib.inkscapeconverter",
     "sphinx_material",
-    "sphinxcontrib.collections",
+    "sphinx_collections",
     "custom_admonitions",
     "sphinx_rtd_theme",
 ]
