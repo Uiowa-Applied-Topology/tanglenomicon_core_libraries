@@ -8,19 +8,7 @@ abstract: A use case description for computation of Arborescent Tangle Grafting 
 
 # Use Case
 
-## Functionality
-
-### Mathematical Description
-
-```{note}
-A mathematical description of the computation being done.
-```
-
-### Computational Description
-
-```{note}
-Any computational (computer) description for the computation being done.
-```
+The RLITT ring shift use case is described in the thesis by Starr.
 
 ## Bibliography
 
