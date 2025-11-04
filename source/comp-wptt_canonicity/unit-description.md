@@ -11,12 +11,13 @@ abstract: A unit description for computation of weighted planar tangle tree cano
 ```mermaid
 classDiagram
     comp_wptt_canonicity  --|> computation
-    comp_wptt_canonicity _config_t --|> notation_wptt_canonicity
-    comp_wptt_canonicity _config_t --|> comp_config_t
-    comp_wptt_canonicity _result_t --|> comp_result_t
+    comp_wptt_canonicity_config_t --|> notation_wptt_canonicity
+    comp_wptt_canonicity_config_t --|> comp_config_t
+    comp_wptt_canonicity_result_t --|> comp_result_t
     comp_wptt_canonicity  *-- comp_wptt_canonicity _config_t
     comp_wptt_canonicity  *-- comp_wptt_canonicity _result_t
-    comp_wptt_canonicity _config_t *-- comp_wptt_canonicity_positivity_e
+    comp_wptt_canonicity_config_t *-- comp_wptt_canonicity_positivity_e
+    comp_wptt_canonicity_result_t *-- comp_wptt_canonicity_canon_e
 
     class computation {
         <<interface>>
@@ -30,7 +31,7 @@ classDiagram
     <<>>
     }
 
-    class comp_wptt_canonicity _config_t {
+    class comp_wptt_canonicity_config_t {
     <<struct>>
     + notation_wptt *tree
     + comp_wptt_canonicity_positivity_e positivity
@@ -43,9 +44,16 @@ classDiagram
      negative,
     }
 
-    class comp_wptt_canonicity _result_t {
+    class comp_wptt_canonicity_canon_e {
+    <<Enumeration>>
+     uninit,
+     positive,
+     negative,
+    }
+
+    class comp_wptt_canonicity_result_t {
     <<struct>>
-    + bool is_canon
+    +comp_wptt_canonicity_canon_e is_canon
 
     }
 
