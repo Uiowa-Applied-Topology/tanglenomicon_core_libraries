@@ -1,9 +1,9 @@
 ---
 date: 2024-09-18
 authors:
-    - author
-contact: example@example.com
-abstract: A use case description for computation of template.
+    - Joe Starr
+contact: joe@joe-starr.com
+abstract: A use case description for computation of Weighted Planar Tangle Tree Canonicty.
 ---
 
 # Use Case
@@ -12,15 +12,7 @@ abstract: A use case description for computation of template.
 
 ### Mathematical Description
 
-```{note}
-A mathematical description of the computation being done.
-```
-
-### Computational Description
-
-```{note}
-Any computational (computer) description for the computation being done.
-```
+Information on the use case for determining WPTT canonicty can be found in the thesis by Starr.
 
 ## Bibliography
 

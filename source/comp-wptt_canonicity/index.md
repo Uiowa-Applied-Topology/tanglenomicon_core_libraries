@@ -1,6 +1,6 @@
-(comp-example)=
+(comp-wptt_canonicity)=
 
-# Computation Example
+# Computation Weighted Planar Tangle Tree Canonicity
 
 ```{toctree}
 ./use-case.md
