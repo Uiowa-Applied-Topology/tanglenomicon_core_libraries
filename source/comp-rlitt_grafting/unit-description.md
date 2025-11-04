@@ -88,8 +88,8 @@ This includes:
 
 #### Result Structure
 
-The configuration structure contains a weighted planar tangle tree that is the result of
-rlitt_grafting the configured rootstock to the configured scion.
+The configuration structure contains a weighted planar tangle tree that is the result
+of grafting the configured rootstock to the configured scion.
 
 ### Public Functions
 
@@ -218,7 +218,7 @@ returns successfully. The result written to the write interface is correct
 
 **Expected Output:**
 
-- A positve response.
+- A positive response.
 - A correct output on the write interface.
 
 ```
@@ -234,7 +234,7 @@ executed and returns successfully.
 
 **Expected Output:**
 
-- A positve response.
+- A positive response.
 
 ```
 
@@ -270,7 +270,7 @@ interface.
 
 **Expected Output:**
 
-- A positve response.
+- A positive response.
 - The result is correct.
 ```
 
