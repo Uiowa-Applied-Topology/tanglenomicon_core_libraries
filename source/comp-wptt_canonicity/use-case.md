@@ -12,7 +12,7 @@ abstract: A use case description for computation of Weighted Planar Tangle Tree 
 
 ### Mathematical Description
 
-Information on the use case for determining WPTT canonicty can be found in the thesis by Starr.
+Information on the use case for determining WPTT canonicity can be found in the thesis by Starr.
 
 ## Bibliography
 
