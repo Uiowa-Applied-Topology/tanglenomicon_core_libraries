@@ -11,6 +11,7 @@ add_subdirectory(comp-rlitt_grafting)
 add_subdirectory(comp-wptt_vertex_canonicity)
 add_subdirectory(comp-rlitt_positivity)
 add_subdirectory(comp-rlitt_pure_vignette)
+add_subdirectory(comp-wptt_canonicity)
 
 # ##############################################################################
 # Add Generation Components
