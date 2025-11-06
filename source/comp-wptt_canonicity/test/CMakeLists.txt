@@ -7,7 +7,7 @@ target_link_libraries(
   tang_defs
   notation_wptt
   comp_wptt_canonicity
-  comp-wptt_vertex_canonicity
+  comp_wptt_vertex_canonicity
   Unity
   Cmock)
 

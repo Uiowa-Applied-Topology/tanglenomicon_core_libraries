@@ -4,7 +4,7 @@
  *  @brief  A wptt_canonicity module
  *
  *
- *  @author    wptt_canonicity
+ *  @author   Joe Starr
  *
  */
 
@@ -68,7 +68,7 @@ uint8_t comp_wptt_canonicity_config(comp_wptt_canonicity_config_t *config_arg)
         comp_wptt_canonicity_localcfg = config_arg;
 
         /* Clear the return value*/
-        comp_wptt_canonicity_localrestult.is_canon = COMP_WPTT_CANONICITY_CAN_UNINIT;
+        comp_wptt_canonicity_localrestult.is_canonical = COMP_WPTT_CANONICITY_CAN_UNINIT;
 
         /*clear the executed status*/
         comp_wptt_canonicity_executed = false;
@@ -97,6 +97,7 @@ uint8_t comp_wptt_canonicity_compute()
     }
     else
     {
+        ret_val = COMP_DEFS_COMPUTE_SUCCESS;
         comp_wptt_canonicity_walk_tree();
         /*@@@TODO: Implement the computation*/
         if (NULL != comp_wptt_canonicity_localcfg->storage_write)
@@ -215,8 +216,7 @@ STATIC_INLINE_UINT8 comp_wptt_canonicity_walk_tree()
                      * state of the stack. The count starts at 1 since the root is going to be added
                      * to the stack before the main loop.
                      */
-                    size_t            stack_count  = 1;
-                    uint8_t           stick_length = 0u;
+                    size_t            stack_count = 1;
                     note_wptt_node_t *stack[COMP_WPTT_CANONICITY_STACK_SIZE]          = { NULL };
                     size_t            childidx_stack[COMP_WPTT_CANONICITY_STACK_SIZE] = { 0 };
 
@@ -250,8 +250,7 @@ STATIC_INLINE_UINT8 comp_wptt_canonicity_walk_tree()
 
                             if (COMP_DEFS_COMPUTE_SUCCESS == ret_val)
                             {
-                                const comp_wptt_vert_canon_result_t *vrt_result =
-                                    comp_wptt_vert_canon_result();
+                                vrt_result = comp_wptt_vert_canon_result();
                                 if (COMP_WPTT_VERT_CANON_IS_NONCANONICAL ==
                                     vrt_result->is_canonical)
                                 {
