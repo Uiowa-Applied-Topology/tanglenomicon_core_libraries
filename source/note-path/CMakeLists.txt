@@ -1,4 +1,4 @@
-add_library(notation_path STATIC src/notation_wptt.c)
+add_library(notation_path STATIC src/notation_path.c)
 
 target_include_directories(notation_path PUBLIC src)
 target_link_libraries(notation_path tang_defs notation_defs)
