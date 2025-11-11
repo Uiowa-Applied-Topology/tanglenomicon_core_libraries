@@ -1,7 +1,7 @@
 /*!
- *  @file notation_path.h
+ *  @file notation_plpath.h
  *
- *  @brief  Notation module for Arborescent Weighted Planar Tree Notation (path) notation.
+ *  @brief  Notation module for Arborescent Weighted Planar Tree Notation (plpath) notation.
  *
  *
  *  @author    Joe Starr
@@ -54,31 +54,31 @@
  */
 
 /*!
- * @brief Decode path error flag indicating an empty string.
+ * @brief Decode plpath error flag indicating an empty string.
  *
  */
 #define NOTE_PATH_DECODE_EMPTY_STR        (0x01u << 0x01u)
 
 /*!
- * @brief Decode path error flag indicating a null destination.
+ * @brief Decode plpath error flag indicating a null destination.
  *
  */
 #define NOTE_PATH_DECODE_NULL_DEST        (0x01u << 0x02u)
 
 /*!
- * @brief Decode path error flag indicating a malformed string.
+ * @brief Decode plpath error flag indicating a malformed string.
  *
  */
 #define NOTE_PATH_DECODE_BAD_STR          (0x01u << 0x03u)
 
 /*!
- * @brief Decode path error flag indicating a node buffer error.
+ * @brief Decode plpath error flag indicating a node buffer error.
  *
  */
 #define NOTE_PATH_DECODE_BUFFER_ERROR     (0x01u << 0x04u)
 
 /*!
- * @brief Decode path error flag indicating an over/under flow error.
+ * @brief Decode plpath error flag indicating an over/under flow error.
  *
  */
 #define NOTE_PATH_DECODE_OVRUNDR_ERROR    (0x01u << 0x05u)
@@ -91,26 +91,26 @@
  | -------------------------- | --- | --- | --- | --- | --- | --- | --- | --- |
  | Success                    | 0   | 0   | 0   | 0   | 0   | 0   | 0   | 0   |
  | Encode String Buf Error    | 0   | 0   | 0   | 0   | 0   | 0   | 1   | 0   |
- | Malformed path Error       | 0   | 0   | 0   | 0   | 0   | 1   | 0   | 0   |
+ | Malformed plpath Error       | 0   | 0   | 0   | 0   | 0   | 1   | 0   | 0   |
  | Over/Underflow Error       | 0   | 0   | 0   | 0   | 1   | 0   | 0   | 0   |
  | `
  |
  */
 
 /*!
- * @brief Encode path error flag indicating an error with the string buffer.
+ * @brief Encode plpath error flag indicating an error with the string buffer.
  *
  */
 #define NOTE_PATH_ENCODE_STR_BUF          (0x01u << 0x01u)
 
 /*!
- * @brief Encode path error flag indicating a malformed path tree.
+ * @brief Encode plpath error flag indicating a malformed path tree.
  *
  */
 #define NOTE_PATH_ENCODE_MALFORMED        (0x01u << 0x02u)
 
 /*!
- * @brief Encode path error flag indicating an over/under flow error.
+ * @brief Encode plpath error flag indicating an over/under flow error.
  *
  */
 #define NOTE_PATH_ENCODE_OVRUNDR_ERROR    (0x01u << 0x03u)
@@ -125,19 +125,18 @@ extern "C"
 #endif
 
 /*!
- * @brief Type defining the $V_4$ label for a path
+ * @brief Type defining the data of a plpath node.
  */
-typedef enum note_path_V4_label_e {
-    NOTE_PATH_V4_LABEL_UNINIT,
-    NOTE_PATH_V4_LABEL_NONE,
-    NOTE_PATH_V4_LABEL_I,
-    NOTE_PATH_V4_LABEL_X,
-    NOTE_PATH_V4_LABEL_Y,
-    NOTE_PATH_V4_LABEL_Z
-} note_path_V4_label_e;
+typedef struct note_plpath_point_t {
+    double x;
+    double y;
+    double z;
+} note_plpath_point_t;
 #ifdef __cplusplus
 }
 #endif
+
+/******************************************************************************/
 
 #ifdef __cplusplus
 extern "C"
@@ -145,16 +144,17 @@ extern "C"
 #endif
 
 /*!
- * @brief Type defining the order direction of a node in a path.
+ * @brief Type defining the data of a plpath node.
  */
-typedef enum note_path_order_e {
-    NOTE_PATH_ORDER_UNINIT,
-    NOTE_PATH_ORDER_FORWARD,
-    NOTE_PATH_ORDER_REVERSE
-} note_path_order_e;
+typedef struct note_plpath_segment_t {
+    note_plpath_point_t *points;
+    size_t             point_count;
+} note_plpath_segment_t;
 #ifdef __cplusplus
 }
 #endif
+
+/******************************************************************************/
 
 #ifdef __cplusplus
 extern "C"
@@ -162,18 +162,18 @@ extern "C"
 #endif
 
 /*!
- * @brief Type defining the data of a path node.
+ * @brief Type defining the data of a buffer of plpath nodes.
  */
-typedef struct note_path_node_t {
-    struct note_path_node_t *children[NOTE_PATH_DECODE_MAX_CHILDREN];
-    int8_t                   weights[NOTE_PATH_DECODE_MAX_WEIGHTS + 1];
-    size_t                   number_of_children;
-    uint8_t                  number_of_rings;
-    note_path_order_e        order;
-} note_path_node_t;
+typedef struct note_plpath_point_buffer_t {
+    note_plpath_point_t *buffer;
+    size_t             size;
+    size_t             idx;
+} note_plpath_point_buffer_t;
 #ifdef __cplusplus
 }
 #endif
+
+/******************************************************************************/
 
 #ifdef __cplusplus
 extern "C"
@@ -181,30 +181,13 @@ extern "C"
 #endif
 
 /*!
- * @brief Type defining the data of a buffer of path nodes.
- */
-typedef struct note_path_node_buffer_t {
-    note_path_node_t *buffer;
-    size_t            size;
-    size_t            idx;
-} note_path_node_buffer_t;
-#ifdef __cplusplus
-}
-#endif
-
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
-/*!
- * @brief Type defining the notation for a path.
+ * @brief Type defining the notation for a plpath.
  */
 typedef struct {
-    note_path_node_t *       root;
-    note_path_node_buffer_t *node_buffer;
-    note_path_V4_label_e     label;
-} note_path_t;
+    note_plpath_segment_t *     segments;
+    size_t                    segement_count;
+    note_plpath_point_buffer_t *buffer;
+} note_plpath_t;
 #ifdef __cplusplus
 }
 #endif
@@ -219,13 +202,13 @@ extern "C"
 #endif
 
 /*!
- * @brief Function to take a note_path_t and decode it as a string
+ * @brief Function to take a note_plpath_t and decode it as a string
  *
- * @param att the note_path_t pointer to decode.
- * @param str Output string for decoded note_path_t
+ * @param att the note_plpath_t pointer to decode.
+ * @param str Output string for decoded note_plpath_t
  * @return uint8_t The return code for the decoding operation.
  */
-uint8_t note_path_decode(char *str, note_path_t *wptt);
+uint8_t note_plpath_decode(char *str, note_path_t *path);
 
 #ifdef __cplusplus
 }
@@ -237,15 +220,15 @@ extern "C"
 #endif
 
 /*!
- * @brief Function to take a string and decode it as a note_path_t. NOTE:
+ * @brief Function to take a string and decode it as a note_plpath_t. NOTE:
  * This function modifies the input PATH. The input is normalized so all nodes have "forward" order.
  *This does not change the topology.
  *
- * @param str Input string to encode as note_path_t
- * @param att the note_path_t pointer to store the encoded string into.
+ * @param str Input string to encode as note_plpath_t
+ * @param att the note_plpath_t pointer to store the encoded string into.
  * @return uint8_t The return code for the encoding operation.
  */
-uint8_t note_path_encode(note_path_t wptt, char *str, size_t buffer_size);
+uint8_t note_plpath_encode(note_path_t path, char *str, size_t buffer_size);
 
 #ifdef __cplusplus
 }

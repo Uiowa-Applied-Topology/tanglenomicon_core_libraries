@@ -1,4 +1,4 @@
-(note-path)=
+(note-plpath)=
 
 # Notation Weighted Planar Tangle Tree
 

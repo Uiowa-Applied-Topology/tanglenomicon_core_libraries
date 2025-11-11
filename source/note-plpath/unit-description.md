@@ -10,28 +10,28 @@ abstract: A unit description for the arborescent planar tangle tree notation.
 
 ```mermaid
 classDiagram
-    note_path --|> notation
-    note_path *-- note_wptt_t
-    note_path_t *-- note_wptt_node_t
-    note_path_node_t *-- note_wptt_order_e
-    note_path_t *-- note_wptt_V4_label_e
+    note_plpath --|> notation
+    note_plpath *-- note_wptt_t
+    note_plpath_t *-- note_wptt_node_t
+    note_plpath_node_t *-- note_wptt_order_e
+    note_plpath_t *-- note_wptt_V4_label_e
 
-    class note_path_t {
+    class note_plpath_t {
         <<struct>>
-        note_path_node_t* root
-        note_path_node_t* node_buffer
-        note_path_V4_label_e label
+        note_plpath_node_t* root
+        note_plpath_node_t* node_buffer
+        note_plpath_V4_label_e label
         size_t node_buffer_len
     }
 
-    class note_path_order_e {
+    class note_plpath_order_e {
         <<enum>>
         uninit,
         forward,
         reverse
     }
 
-    class note_path_V4_label_e {
+    class note_plpath_V4_label_e {
         <<enum>>
         uninit,
         none,
@@ -41,13 +41,13 @@ classDiagram
         z
     }
 
-    class note_path_node_t {
+    class note_plpath_node_t {
         <<struct>>
-        note_path_node_t* children[MAX_CN]
+        note_plpath_node_t* children[MAX_CN]
         uint8_t weights[MAX_CN]
         size_t number_of_children
         uint8_t number_of_rings
-        note_path_order_t order
+        note_plpath_order_t order
     }
 
     class notation {
@@ -67,11 +67,11 @@ C
 
 ## Uses
 
-The path notation component does not use any other components.
+The plpath notation component does not use any other components.
 
 ## External Libraries
 
-The path notation component does not use any external libraries.
+The plpath notation component does not use any external libraries.
 
 ## Functionality
 
@@ -84,15 +84,15 @@ The path notation component does not use any external libraries.
 The interface structure for the component is designed to match the non memory allocating design
 goals of non-runner components. That means this notation structure contains:
 
-- A pointer to the root of the path
-- A buffer of/for nodes in the path
+- A pointer to the root of the plpath
+- A buffer of/for nodes in the plpath
 - A length for the buffer supplied to the component instance
-- A $V_4$ label for the path
+- A $V_4$ label for the plpath
 
 ##### Node structure
 
 We saw in the use-case description an outline for the important data that needs to be encoded in a
-path data structure. This data is summarized as:
+plpath data structure. This data is summarized as:
 
 - Children and their cyclic order
 - Weights and their location in the cyclic order
@@ -127,8 +127,8 @@ This allows components to invert read order, read from $(n-1)\to 0$, at runtime.
 
 ##### decode function
 
-The decode function takes in the linearized string form of the path and decodes it as a
-`note_path_node_t`.
+The decode function takes in the linearized string form of the plpath and decodes it as a
+`note_plpath_node_t`.
 
 This process is described in the following state machines:
 
@@ -156,8 +156,8 @@ stateDiagram-v2
 
 ##### encode function
 
-The encode function takes in a `note_path_node_t` and encodes it into the linearized string form of
-the path.
+The encode function takes in a `note_plpath_node_t` and encodes it into the linearized string form of
+the plpath.
 
 ```mermaid
 stateDiagram-v2
@@ -202,12 +202,12 @@ The component has no private structures.
 
 #### Functions
 
-##### decode path
+##### decode plpath
 
 ###### Char checker
 
 This function checks a character passed to it and updates the current notation instance with one of
-seven execution paths. These paths are based on the class the character falls into:
+seven execution plpaths. These paths are based on the class the character falls into:
 
 - A delimiter
     - An opening delimiter
@@ -265,7 +265,7 @@ stateDiagram-v2
 ###### Move active node down
 
 This function moves the active node to be a child of the current node. Functionally, this is the
-same as descending the path.
+same as descending the plpath.
 
 ```mermaid
 stateDiagram-v2
@@ -281,7 +281,7 @@ stateDiagram-v2
 ###### Move root up
 
 This function moves the active node to be a parent of the current node. Functionally, this is the
-same as ascending the path.
+same as ascending the plpath.
 
 ```mermaid
 stateDiagram-v2
@@ -294,7 +294,7 @@ stateDiagram-v2
     scr --> [*]
 ```
 
-##### Encode path
+##### Encode plpath
 
 ###### Handle stack
 
@@ -407,17 +407,17 @@ The function reports an error.
 
 #### Positive Tests
 
-```{test-card} A valid knot path is fed to the function
+```{test-card} A valid knot plpath is fed to the function
 
-A valid knot path (with no label) is fed to the encode function.
+A valid knot plpath (with no label) is fed to the encode function.
 
 **Inputs:**
 
-- A valid path representing a knot.
-- A stick path.
-- A path with an essential vertex.
-- A path with a vertex that has ring number.
-- A path with a vertex with more than one weight.
+- A valid plpath representing a knot.
+- A stick plpath.
+- A plpath with an essential vertex.
+- A plpath with a vertex that has ring number.
+- A plpath with a vertex with more than one weight.
 
 **Expected Output:**
 
@@ -425,22 +425,22 @@ The function produces the corresponding encoded string.
 
 ```
 
-```{test-card} A valid tangle path is fed to the function
+```{test-card} A valid tangle plpath is fed to the function
 
-A valid tangle path (with label) is fed to the encode function.
+A valid tangle plpath (with label) is fed to the encode function.
 
 **Inputs:**
 
-- A valid path representing a tangle with each label:
+- A valid plpath representing a tangle with each label:
     - i
     - x
     - y
     - z
-- A stick path.
-- A path with an essential vertex.
-- A path with a vertex that has ring number.
-- A path with a vertex with more than one weight.
-- A path with a vertex that has reverse order.
+- A stick plpath.
+- A plpath with an essential vertex.
+- A plpath with a vertex that has ring number.
+- A plpath with a vertex with more than one weight.
+- A plpath with a vertex that has reverse order.
 
 **Expected Output:**
 
@@ -451,9 +451,9 @@ The function produces the corresponding encoded string.
 
 #### Negative Tests
 
-```{test-card} A malformed path is passed to the function
+```{test-card} A malformed plpath is passed to the function
 
-A malformed path is passed to the function.
+A malformed plpath is passed to the function.
 
 **Inputs:**
 
@@ -482,11 +482,11 @@ The function will produce an error.
 
 ## Doxygen Documentation
 
-```{doxygenfile} notation_path.h
+```{doxygenfile} notation_plpath.h
 
 ```
 
-```{doxygenfile} notation_path.c
+```{doxygenfile} notation_plpath.c
 
 ```
 

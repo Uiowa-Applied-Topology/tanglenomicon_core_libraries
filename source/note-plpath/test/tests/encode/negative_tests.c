@@ -2,10 +2,10 @@
 /* Created by joe on 4/25/25. */
 /* */
 #include "negative_tests.h"
-#include "notation_path.h"
+#include "notation_plpath.h"
 #include "unity.h"
 
-extern bool test_util_trees_equal(const note_path_t *tree1, const note_wptt_t *tree2);
+extern bool test_util_trees_equal(const note_plpath_t *tree1, const note_wptt_t *tree2);
 static void test_encode_negative_1(void);
 static void test_encode_negative_2(void);
 static void test_encode_negative_3(void);
@@ -35,70 +35,70 @@ void test_encode_negative_1()
 
     /* clang-format off */
 
-    note_path_node_t S_7 = {
+    note_plpath_node_t S_7 = {
                             {NULL},
                             {7},
                             0,
                             0,
                             NOTE_WPTT_ORDER_FORWARD};
-    note_path_node_t S_8 = {
+    note_plpath_node_t S_8 = {
                             {&S_7},
                             {0, 8},
                             1,
                             0,
                             NOTE_WPTT_ORDER_FORWARD};
-    note_path_node_t S_9 = {
+    note_plpath_node_t S_9 = {
                             {&S_8},
                             {0, 9},
                             1,
                             0,
                             NOTE_WPTT_ORDER_FORWARD};
-    note_path_node_t S_10 = {
+    note_plpath_node_t S_10 = {
                             {&S_9},
                             {0, 10},
                             1,
                             0,
                             NOTE_WPTT_ORDER_FORWARD};
-    note_path_node_t S_5 = {
+    note_plpath_node_t S_5 = {
                             {&S_10},
                             {5},
                             1,
                             0,
                             NOTE_WPTT_ORDER_FORWARD};
-    note_path_node_t P_12 = {
+    note_plpath_node_t P_12 = {
                             {NULL},
                             {11},
                             0,
                             0,
                             NOTE_WPTT_ORDER_FORWARD};
-    note_path_node_t P_46 = {
+    note_plpath_node_t P_46 = {
                             {&S_5, &P_12},
                             {4, 12, 6},
                             2,
                             0,
                             NOTE_WPTT_ORDER_FORWARD};
 
-    note_path_node_t P_3 = {
+    note_plpath_node_t P_3 = {
                             {&P_46},
                             {3},
                             1,
                             0,
                             NOTE_WPTT_ORDER_FORWARD};
 
-    note_path_node_t P_2 = {
+    note_plpath_node_t P_2 = {
                             {&P_3},
                             {0},
                             1,
                             2,
                             NOTE_WPTT_ORDER_FORWARD};
-    note_path_node_t P_1 = {
+    note_plpath_node_t P_1 = {
                             {&P_2},
                             {13},
                             1,
                             1,
                             NOTE_WPTT_ORDER_FORWARD};
 
-    note_path_t note_wptt = {
+    note_plpath_t note_wptt = {
                             &P_1,
                             NULL,
                             NOTE_WPTT_V4_LABEL_UNINIT,
@@ -106,7 +106,7 @@ void test_encode_negative_1()
 
     /* clang-format on */
     char test_string[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u] = "";
-    retval = note_path_encode(note_wptt, test_string, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
+    retval = note_plpath_encode(note_wptt, test_string, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
     TEST_ASSERT_EQUAL(NOTE_DEFS_ENCODE_FAIL, 0x01u & retval);
 }
 
@@ -123,7 +123,7 @@ void test_encode_negative_2()
     /* clang-format off */
 
 
-    note_path_t note_wptt = {
+    note_plpath_t note_wptt = {
                             NULL,
                             NULL,
                             NOTE_WPTT_V4_LABEL_X,
@@ -131,7 +131,7 @@ void test_encode_negative_2()
 
     /* clang-format on */
     char test_string[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u] = "";
-    retval = note_path_encode(note_wptt, test_string, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
+    retval = note_plpath_encode(note_wptt, test_string, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
     TEST_ASSERT_EQUAL(NOTE_DEFS_ENCODE_FAIL, 0x01u & retval);
 }
 
@@ -147,14 +147,14 @@ void test_encode_negative_3()
 
     /* clang-format off */
 
-    note_path_node_t P_1 = {
+    note_plpath_node_t P_1 = {
                             {NULL},
                             {13},
                             1,
                             1,
                             NOTE_WPTT_ORDER_FORWARD};
 
-    note_path_t note_wptt = {
+    note_plpath_t note_wptt = {
                             &P_1,
                             NULL,
                             NOTE_WPTT_V4_LABEL_UNINIT,
@@ -162,7 +162,7 @@ void test_encode_negative_3()
 
     /* clang-format on */
     char test_string[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u] = "";
-    retval = note_path_encode(note_wptt, test_string, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
+    retval = note_plpath_encode(note_wptt, test_string, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
     TEST_ASSERT_EQUAL(NOTE_DEFS_ENCODE_FAIL, 0x01u & retval);
 }
 
@@ -178,76 +178,76 @@ void test_encode_negative_4()
 
     /* clang-format off */
 
-    note_path_node_t S_7 = {
+    note_plpath_node_t S_7 = {
                             {NULL},
                             {7},
                             0,
                             0,
                             NOTE_WPTT_ORDER_FORWARD};
-    note_path_node_t S_8 = {
+    note_plpath_node_t S_8 = {
                             {&S_7},
                             {0, 8},
                             1,
                             0,
                             NOTE_WPTT_ORDER_FORWARD};
-    note_path_node_t S_9 = {
+    note_plpath_node_t S_9 = {
                             {&S_8},
                             {0, 9},
                             1,
                             0,
                             NOTE_WPTT_ORDER_FORWARD};
-    note_path_node_t S_10 = {
+    note_plpath_node_t S_10 = {
                             {&S_9},
                             {0, 10},
                             1,
                             0,
                             NOTE_WPTT_ORDER_FORWARD};
-    note_path_node_t S_5 = {
+    note_plpath_node_t S_5 = {
                             {&S_10},
                             {5},
                             1,
                             0,
                             NOTE_WPTT_ORDER_FORWARD};
-    note_path_node_t P_12 = {
+    note_plpath_node_t P_12 = {
                             {NULL},
                             {11},
                             0,
                             0,
                             NOTE_WPTT_ORDER_FORWARD};
-    note_path_node_t P_46 = {
+    note_plpath_node_t P_46 = {
                             {&S_5, &P_12},
                             {4, 12, 6},
                             2,
                             0,
                             NOTE_WPTT_ORDER_FORWARD};
 
-    note_path_node_t P_3 = {
+    note_plpath_node_t P_3 = {
                             {&P_46},
                             {3},
                             1,
                             0,
                             NOTE_WPTT_ORDER_FORWARD};
 
-    note_path_node_t P_2 = {
+    note_plpath_node_t P_2 = {
                             {&P_3},
                             {0},
                             1,
                             2,
                             NOTE_WPTT_ORDER_FORWARD};
-    note_path_node_t P_1 = {
+    note_plpath_node_t P_1 = {
                             {&P_2},
                             {13},
                             1,
                             1,
                             NOTE_WPTT_ORDER_FORWARD};
 
-    note_path_t note_wptt = {
+    note_plpath_t note_wptt = {
                             &P_1,
                             NULL,
                             NOTE_WPTT_V4_LABEL_NONE,
                             };
 
     /* clang-format on */
-    retval = note_path_encode(note_wptt, NULL, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
+    retval = note_plpath_encode(note_wptt, NULL, UTIL_TANG_DEFS_MAX_CROSSINGNUM * 10u);
     TEST_ASSERT_EQUAL(NOTE_DEFS_ENCODE_FAIL, 0x01u & retval);
 }
