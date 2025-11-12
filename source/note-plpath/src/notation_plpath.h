@@ -148,7 +148,7 @@ extern "C"
  */
 typedef struct note_plpath_segment_t {
     note_plpath_point_t *points;
-    size_t             point_count;
+    size_t               point_count;
 } note_plpath_segment_t;
 #ifdef __cplusplus
 }
@@ -166,8 +166,8 @@ extern "C"
  */
 typedef struct note_plpath_point_buffer_t {
     note_plpath_point_t *buffer;
-    size_t             size;
-    size_t             idx;
+    size_t               size;
+    size_t               idx;
 } note_plpath_point_buffer_t;
 #ifdef __cplusplus
 }
@@ -185,7 +185,7 @@ extern "C"
  */
 typedef struct {
     note_plpath_segment_t *     segments;
-    size_t                    segement_count;
+    size_t                      segement_count;
     note_plpath_point_buffer_t *buffer;
 } note_plpath_t;
 #ifdef __cplusplus
@@ -208,7 +208,7 @@ extern "C"
  * @param str Output string for decoded note_plpath_t
  * @return uint8_t The return code for the decoding operation.
  */
-uint8_t note_plpath_decode(char *str, note_path_t *path);
+uint8_t note_plpath_decode(char *str, note_plpath_t *path);
 
 #ifdef __cplusplus
 }
@@ -228,7 +228,7 @@ extern "C"
  * @param att the note_plpath_t pointer to store the encoded string into.
  * @return uint8_t The return code for the encoding operation.
  */
-uint8_t note_plpath_encode(note_path_t path, char *str, size_t buffer_size);
+uint8_t note_plpath_encode(note_plpath_t path, char *str, size_t buffer_size);
 
 #ifdef __cplusplus
 }

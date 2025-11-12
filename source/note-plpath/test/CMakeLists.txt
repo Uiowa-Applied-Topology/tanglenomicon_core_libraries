@@ -8,7 +8,7 @@ add_executable(
   utils/utils.c
   tests/turn_around_test.c)
 
-target_link_libraries(test_notation_plpath_app notation_defs notation_wptt Unity
-                      Cmock)
+target_link_libraries(test_notation_plpath_app notation_defs notation_plpath
+                      Unity Cmock)
 
 add_test(NAME test_notation_plpath COMMAND test_notation_wptt_app)
