@@ -1,6 +1,6 @@
 (note-plpath)=
 
-# Notation Weighted Planar Tangle Tree
+# Notation Piecewise Linear Path
 
 ```{toctree}
 ./use-case.md

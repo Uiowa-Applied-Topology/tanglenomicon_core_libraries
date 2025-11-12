@@ -11,43 +11,37 @@ abstract: A unit description for the arborescent planar tangle tree notation.
 ```mermaid
 classDiagram
     note_plpath --|> notation
-    note_plpath *-- note_wptt_t
-    note_plpath_t *-- note_wptt_node_t
-    note_plpath_node_t *-- note_wptt_order_e
-    note_plpath_t *-- note_wptt_V4_label_e
-
+    note_plpath *-- note_plpath_t
+    note_plpath_t *-- note_plpath_segment_t
+    note_plpath_t *-- note_plpath_point_buffer_t
+    note_plpath_segment_t *-- note_plpath_point_t
+    note_plpath_point_buffer_t *-- note_plpath_point_t
     class note_plpath_t {
         <<struct>>
-        note_plpath_node_t* root
-        note_plpath_node_t* node_buffer
-        note_plpath_V4_label_e label
-        size_t node_buffer_len
+        note_plpath_segment_t* segments
+        size_t segement_count
+        note_plpath_point_buffer_t* point_buffer
     }
 
-    class note_plpath_order_e {
-        <<enum>>
-        uninit,
-        forward,
-        reverse
-    }
 
-    class note_plpath_V4_label_e {
-        <<enum>>
-        uninit,
-        none,
-        i,
-        x,
-        y,
-        z
-    }
-
-    class note_plpath_node_t {
+    class note_plpath_segment_t {
         <<struct>>
-        note_plpath_node_t* children[MAX_CN]
-        uint8_t weights[MAX_CN]
-        size_t number_of_children
-        uint8_t number_of_rings
-        note_plpath_order_t order
+        note_plpath_point_t* points
+        size_t point_count
+    }
+    
+    class note_plpath_point_buffer_t {
+        <<struct>>
+        note_plpath_point_t* points
+        size_t size
+        size_t idx  
+    }
+
+    class note_plpath_point_t {
+        <<struct>>
+        double x
+        double y
+        double z
     }
 
     class notation {
@@ -67,11 +61,11 @@ C
 
 ## Uses
 
-The plpath notation component does not use any other components.
+The piecewise linear path notation component does not use any other components.
 
 ## External Libraries
 
-The plpath notation component does not use any external libraries.
+The piecewise linear path notation component does not use any external libraries.
 
 ## Functionality
 
@@ -84,15 +78,15 @@ The plpath notation component does not use any external libraries.
 The interface structure for the component is designed to match the non memory allocating design
 goals of non-runner components. That means this notation structure contains:
 
-- A pointer to the root of the plpath
-- A buffer of/for nodes in the plpath
+- A pointer to the root of the piecewise linear path
+- A buffer of/for nodes in the piecewise linear path
 - A length for the buffer supplied to the component instance
-- A $V_4$ label for the plpath
+- A $V_4$ label for the piecewise linear path
 
 ##### Node structure
 
 We saw in the use-case description an outline for the important data that needs to be encoded in a
-plpath data structure. This data is summarized as:
+piecewise linear path data structure. This data is summarized as:
 
 - Children and their cyclic order
 - Weights and their location in the cyclic order
@@ -125,39 +119,36 @@ This allows components to invert read order, read from $(n-1)\to 0$, at runtime.
 
 #### Functions
 
-##### decode function
+##### Decode Function
 
-The decode function takes in the linearized string form of the plpath and decodes it as a
-`note_plpath_node_t`.
+The decode function takes in a string of the following form:
+
+```
+x,y,z
+x,y,z
+x,y,z
+
+x,y,z
+x,y,z
+x,y,z
+```
+
+Where $x,y,z$ are string representations of floating point numbers and  `\n\n` indicates the
+beginning of a new segment of the collection of PL paths. 
+
 
 This process is described in the following state machines:
 
 ```mermaid
 stateDiagram-v2
-    state "Init" as vj
-    state "🔵 stack array" as vj
-    state "🔵 stack index" as vj
-    state "🔵 char pointer" as vj
-    state "read label from $$\,V_4$$" as rl
-    state "Handle Root Init" as ri
-    state if_end_of_string <<choice>>
-    state "Execute char checker" as rn
-    state "Move char pointer to</br> next char in string" as nc
     [*] --> vj
-    vj --> rl
-    rl --> ri
-    ri --> if_end_of_string
-    if_end_of_string --> nc: is not end of string
-    nc --> rn
-    rn --> if_end_of_string
-    if_end_of_string --> [*]: is end of sting
-
+     vj --> [*]
 ```
 
-##### encode function
+##### Encode Function
 
-The encode function takes in a `note_plpath_node_t` and encodes it into the linearized string form of
-the plpath.
+The encode function takes in a `note_plpath_node_t` and encodes it into the linearized string form
+of the plpath.
 
 ```mermaid
 stateDiagram-v2
@@ -202,9 +193,9 @@ The component has no private structures.
 
 #### Functions
 
-##### decode plpath
+##### Decode Piecewise Linear Path
 
-###### Char checker
+###### Char Checker
 
 This function checks a character passed to it and updates the current notation instance with one of
 seven execution plpaths. These paths are based on the class the character falls into:
@@ -294,7 +285,7 @@ stateDiagram-v2
     scr --> [*]
 ```
 
-##### Encode plpath
+##### Encode piecewise linear path
 
 ###### Handle stack
 
@@ -407,17 +398,17 @@ The function reports an error.
 
 #### Positive Tests
 
-```{test-card} A valid knot plpath is fed to the function
+```{test-card} A valid knot piecewise linear pathis fed to the function
 
-A valid knot plpath (with no label) is fed to the encode function.
+A valid knot piecewise linear path(with no label) is fed to the encode function.
 
 **Inputs:**
 
-- A valid plpath representing a knot.
+- A valid piecewise linear pathrepresenting a knot.
 - A stick plpath.
-- A plpath with an essential vertex.
-- A plpath with a vertex that has ring number.
-- A plpath with a vertex with more than one weight.
+- A piecewise linear pathwith an essential vertex.
+- A piecewise linear pathwith a vertex that has ring number.
+- A piecewise linear pathwith a vertex with more than one weight.
 
 **Expected Output:**
 
@@ -425,22 +416,22 @@ The function produces the corresponding encoded string.
 
 ```
 
-```{test-card} A valid tangle plpath is fed to the function
+```{test-card} A valid tangle piecewise linear pathis fed to the function
 
-A valid tangle plpath (with label) is fed to the encode function.
+A valid tangle piecewise linear path(with label) is fed to the encode function.
 
 **Inputs:**
 
-- A valid plpath representing a tangle with each label:
+- A valid piecewise linear pathrepresenting a tangle with each label:
     - i
     - x
     - y
     - z
 - A stick plpath.
-- A plpath with an essential vertex.
-- A plpath with a vertex that has ring number.
-- A plpath with a vertex with more than one weight.
-- A plpath with a vertex that has reverse order.
+- A piecewise linear pathwith an essential vertex.
+- A piecewise linear pathwith a vertex that has ring number.
+- A piecewise linear pathwith a vertex with more than one weight.
+- A piecewise linear pathwith a vertex that has reverse order.
 
 **Expected Output:**
 
@@ -451,9 +442,9 @@ The function produces the corresponding encoded string.
 
 #### Negative Tests
 
-```{test-card} A malformed plpath is passed to the function
+```{test-card} A malformed piecewise linear pathis passed to the function
 
-A malformed plpath is passed to the function.
+A malformed piecewise linear pathis passed to the function.
 
 **Inputs:**
 

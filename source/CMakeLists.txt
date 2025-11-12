@@ -25,7 +25,7 @@ add_subdirectory(gen-rlitt)
 add_subdirectory(note-twist_vector)
 add_subdirectory(note-algebraic_tangle_tree)
 add_subdirectory(note-wptt)
-add_subdirectory(note-path)
+add_subdirectory(note-plpath)
 
 # ##############################################################################
 # Add Storage Components
