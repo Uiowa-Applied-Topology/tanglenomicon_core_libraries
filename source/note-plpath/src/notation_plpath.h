@@ -8,17 +8,15 @@
  *
  */
 
-#ifndef NOTATION_PATH_H
-#define NOTATION_PATH_H
+#ifndef NOTATION_PLPATH_H
+#define NOTATION_PLPATH_H
 
 /******************************************************************************/
 /*******************************Includes***************************************/
 /******************************************************************************/
-#include "notation_defs.h"
-#include "stdbool.h"
-#include "stdint.h"
-#include "stdlib.h"
-#include "string.h"
+#include <stdbool.h>
+#include <stdint.h>
+#include <stdlib.h>
 
 /******************************************************************************/
 /*******************************Defines ***************************************/
@@ -27,7 +25,7 @@
 /*!
  * @brief The maximum number of weights in a node.
  */
-#define NOTE_PATH_DECODE_MAX_WEIGHTS     (UTIL_TANG_DEFS_MAX_CROSSINGNUM + 1)
+#define NOTE_PATH_DECODE_MAX_SEGMENTS    (UTIL_TANG_DEFS_MAX_CROSSINGNUM + 1)
 
 /*!
  * @brief The maximum number of children in a node.
@@ -128,28 +126,11 @@ extern "C"
  * @brief Type defining the data of a plpath node.
  */
 typedef struct note_plpath_point_t {
-    double x;
-    double y;
-    double z;
+    double                      x;
+    double                      y;
+    double                      z;
+    struct note_plpath_point_t *next_point;
 } note_plpath_point_t;
-#ifdef __cplusplus
-}
-#endif
-
-/******************************************************************************/
-
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
-/*!
- * @brief Type defining the data of a plpath node.
- */
-typedef struct note_plpath_segment_t {
-    note_plpath_point_t *points;
-    size_t               point_count;
-} note_plpath_segment_t;
 #ifdef __cplusplus
 }
 #endif
@@ -184,7 +165,7 @@ extern "C"
  * @brief Type defining the notation for a plpath.
  */
 typedef struct {
-    note_plpath_segment_t *     segments;
+    note_plpath_point_t *       segments[NOTE_PATH_DECODE_MAX_SEGMENTS];
     size_t                      segement_count;
     note_plpath_point_buffer_t *buffer;
 } note_plpath_t;
@@ -234,4 +215,4 @@ uint8_t note_plpath_encode(note_plpath_t path, char *str, size_t buffer_size);
 }
 #endif
 
-#endif /* end NOTATION_PATH_H */
+#endif /* end NOTATION_PLPATH_H */

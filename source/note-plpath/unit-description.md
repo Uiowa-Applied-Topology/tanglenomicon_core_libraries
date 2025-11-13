@@ -14,11 +14,10 @@ classDiagram
     note_plpath *-- note_plpath_t
     note_plpath_t *-- note_plpath_segment_t
     note_plpath_t *-- note_plpath_point_buffer_t
-    note_plpath_segment_t *-- note_plpath_point_t
     note_plpath_point_buffer_t *-- note_plpath_point_t
     class note_plpath_t {
         <<struct>>
-        note_plpath_segment_t* segments
+        note_plpath_point_t segments[]
         size_t segement_count
         note_plpath_point_buffer_t* point_buffer
     }
@@ -42,6 +41,7 @@ classDiagram
         double x
         double y
         double z
+        note_plpath_point_t * next_point
     }
 
     class notation {
@@ -92,17 +92,8 @@ that segments of a path may intersect (or self intersect).
 ##### Point Structure
 
 The point structure contains a three tuple of doubles representing the $x,y,z$ coordinate of a point
-on the path.
+on the path. The structure also contains a pointer to the "next" point in the segment.  
 
-##### Segment Structure
-
-A segment represents a single connected component of a path. Segments are encoded as a collection of
-points, which are assumed to be connected by shortest path line segments.
-
-The structure contains the following
-
-- An array of points in the path
-- The size of the array of points
 
 #### Functions
 

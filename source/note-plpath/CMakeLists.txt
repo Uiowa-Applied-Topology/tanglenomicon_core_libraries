@@ -8,3 +8,4 @@ add_lizard_target(notation_plpath_lizard ALL ARGUMENTS --warnings_only)
 set_target_properties(notation_plpath
                       PROPERTIES IMPORTED_LINK_INTERFACE_LANGUAGES "C")
 add_subdirectory(test)
+set_property(TARGET notation_plpath PROPERTY C_STANDARD 99)
