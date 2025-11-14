@@ -10,6 +10,7 @@ buildDir_dbg := "./.build_dbg"
 
 # Set up development environment
 bootstrap build_dir=buildDir:
+    git submodule update --init --recursive
     if test ! -e docs/.build/doxygen; then \
       mkdir -p docs/.build/doxygen; \
     fi
