@@ -1,0 +1,561 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit Description &mdash; Tanglenomicon Core Libraries 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/proof.css?v=b4b7a797" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+      <script type="module">mermaid.initialize({
+  securityLevel: 'loose',
+  theme: 'dark',
+});</script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+const load = async () => {
+    await mermaid.run();
+    const all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+    if(mermaids_to_add_zoom > 0) {
+        var svgs = d3.selectAll(".mermaid svg");
+        if(all_mermaids.length !== mermaids_processed.length) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else if(svgs.size() !== mermaids_to_add_zoom) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else {
+            svgs.each(function() {
+                var svg = d3.select(this);
+                svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                var inner = svg.select("g");
+                var zoom = d3.zoom().on("zoom", function(event) {
+                    inner.attr("transform", event.transform);
+                });
+                svg.call(zoom);
+            });
+        }
+    }
+};
+
+window.addEventListener("load", load);
+</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Notation Weighted Planar Tangle Tree" href="../note-wptt/index.html" />
+    <link rel="prev" title="Use Case" href="use-case.html" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                macros: {
+                    "\\N": "\\mathbb{N}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\Q": "\\mathbb{Q}",
+                    "\\R": "\\mathbb{R}",
+                    "\\LN": "\\left.",
+                    "\\RN": "\\right.",
+                    "\\LP": "\\left(",
+                    "\\RP": "\\right)",
+                    "\\LS": "\\left\\lbrace",
+                    "\\RS": "\\right\\rbrace",
+                    "\\LA": "\\left\\langle",
+                    "\\RA": "\\right\\rangle",
+                    "\\LB": "\\left[",
+                    "\\RB": "\\right]",
+                    "\\MM": "\\ \\middle|\\ ",
+                    "\\exp": "\\text{exp}",
+                    "\\abs": "\\left\\vert#1\\right\\vert",
+                    "\\msr": "m\\left(#1\\right)",
+                    "\\inv": " #1^{-1}",
+                    "\\bkt": "\\LA \\img{ #1}\\RA",
+                }
+            }
+        );
+    });
+</script>
+
+
+<style>
+
+</style>
+ 
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Tanglenomicon Core Libraries
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Generic Interfaces</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../comp-rational_data/index.html">Computation Rational Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_grafting/index.html">Computation Right Leaning Identity Tangle Tree Grafting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_positivity/index.html">Computation Right Leaning Identity Tangle Tree Positivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-wptt_vertex_canonicity/index.html">Computation Weighted Planar Tangle Tree Vertex Canonicity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-montesinos/index.html">Generator Montesinos Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rational/index.html">Generator Rational Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rlitt/index.html">Generator Right Leaning Identity Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Notation Twist Vector</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="use-case.html">Use Case</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Unit Description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#class-diagram">Class Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#language">Language</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implements">Implements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#external-libraries">External Libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functionality">Functionality</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#public-structures">Public Structures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#public-functions">Public Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#private-functions-decode-path">Private Functions decode path</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#validation">Validation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#decode-interface">Decode interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#encode-interface">Encode interface</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#doxygen-documentation">Doxygen Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv414note_tv_decodePcP9note_tv_t"><code class="docutils literal notranslate"><span class="pre">note_tv_decode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv414note_tv_encode9note_tv_tPc6size_t"><code class="docutils literal notranslate"><span class="pre">note_tv_encode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49note_tv_t"><code class="docutils literal notranslate"><span class="pre">note_tv_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.NOTE_TV_INT_BASE"><code class="docutils literal notranslate"><span class="pre">NOTE_TV_INT_BASE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bibliography">Bibliography</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../note-wptt/index.html">Notation Weighted Planar Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-cpp_storage_interface/index.html">Storage C++ Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-json/index.html">Storage JSON</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tanglenomicon Core Libraries</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Notation Twist Vector</a></li>
+      <li class="breadcrumb-item active">Unit Description</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/_collections/note-twist_vector/unit-description.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="unit-description">
+<h1>Unit Description<a class="headerlink" href="#unit-description" title="Link to this heading"></a></h1>
+<section id="class-diagram">
+<h2>Class Diagram<a class="headerlink" href="#class-diagram" title="Link to this heading"></a></h2>
+<pre  class="mermaid">
+        classDiagram
+    note_tv --|&gt; notation
+    note_tv *-- note_tv_t
+
+    class note_tv_t {
+        &lt;&lt;struct&gt;&gt;
+        uint8_t twist_vec[MAX_CN]
+        size_t tv_length[MAX_CN]
+    }
+
+    class notation {
+        &lt;&lt;interface&gt;&gt;
+    }
+    </pre></section>
+<section id="language">
+<h2>Language<a class="headerlink" href="#language" title="Link to this heading"></a></h2>
+<p>C</p>
+</section>
+<section id="implements">
+<h2>Implements<a class="headerlink" href="#implements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#../../notation-interface.md"><span class="xref myst">Notations Interface</span></a></p></li>
+</ul>
+</section>
+<section id="uses">
+<h2>Uses<a class="headerlink" href="#uses" title="Link to this heading"></a></h2>
+<p>The twist vector notation component does not use any other components.</p>
+</section>
+<section id="external-libraries">
+<h2>External Libraries<a class="headerlink" href="#external-libraries" title="Link to this heading"></a></h2>
+<p>The twist vector notation component does not use any external libraries.</p>
+</section>
+<section id="functionality">
+<h2>Functionality<a class="headerlink" href="#functionality" title="Link to this heading"></a></h2>
+<section id="public-structures">
+<h3>Public Structures<a class="headerlink" href="#public-structures" title="Link to this heading"></a></h3>
+<section id="notation-structure">
+<h4>Notation structure<a class="headerlink" href="#notation-structure" title="Link to this heading"></a></h4>
+<p>The interface structure contains an array of integers, each entry of the twist vector is stored into
+the array. The indexing of the array is as in &#64;se-tv-math-index.</p>
+<div class="math notranslate nohighlight" id="equation-se-tv-math-index">
+<span class="eqno">(1)<a class="headerlink" href="#equation-se-tv-math-index" title="Link to this equation"></a></span>\[\begin{split} [ x_n\ x_{n-1}\ \cdots\ x_0]\to \begin{array}{|c|c|c|c|} \hline
+\text{0x0000}&amp; &amp; &amp;\text{0x0000}+n\cdot \text{size\_t}\\\hline x_0&amp;\cdots &amp;
+x_{n-1} &amp;x_n\\ \hline \end{array}\end{split}\]</div>
+</section>
+</section>
+<section id="public-functions">
+<h3>Public Functions<a class="headerlink" href="#public-functions" title="Link to this heading"></a></h3>
+<section id="decode-function">
+<h4>Decode Function<a class="headerlink" href="#decode-function" title="Link to this heading"></a></h4>
+<p>The decode function takes in the linearized string form of the twist vector and encodes it as a
+<code class="docutils literal notranslate"><span class="pre">note_tv_t</span></code>.</p>
+<p>This process is described in the following state machines:</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+    state &quot;Init&quot; as vj
+    state &quot;• tv_index to 0&quot; as vj
+    state &quot;• str_end to point at end of input string&quot; as vj
+    state &quot;Move input str pointer past opening [&quot; as rl
+    state &quot;Read int from imput string&quot; as rc
+    state &quot;Increment tv_index&quot; as itvi
+    state &quot;Reverse order of list&quot; as ro
+    state if_end_of_string &lt;&lt;choice&gt;&gt;
+    [*] --&gt; vj
+    vj --&gt; rl
+    rl --&gt; rc
+    rc --&gt; itvi
+    itvi --&gt; if_end_of_string
+    if_end_of_string --&gt; rc: is not end of string
+    if_end_of_string --&gt; ro: is end of sting
+    ro--&gt;[*]
+
+    </pre></section>
+<section id="encode-function">
+<h4>Encode Function<a class="headerlink" href="#encode-function" title="Link to this heading"></a></h4>
+<p>The encode function takes in a <code class="docutils literal notranslate"><span class="pre">note_tv_t</span></code> and encodes it into the linearized string form of the
+twist vector.</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+    state &quot;Init&quot; as vj
+    state &quot;• local_str_buffer[MAX_CN]&quot; as vj
+    state &quot;• local_str_ptr to beginning of str&quot; as vj
+    state &quot;• interator i to tv_length&quot; as vj
+    state &quot;Place opening [&quot; as pob
+    state &quot;Place closing ]&quot; as pcb
+    state &quot;Place space&quot; as ps
+    state &quot;Place int into string&quot; as piis
+    state &quot;Decrement i&quot; as di
+    state &quot;Move local_str_ptr forward&quot; as mspf
+    state &quot;Convert int to string&quot; as cits
+    state if_tv_empty &lt;&lt;choice&gt;&gt;
+
+    [*] --&gt; vj
+    vj --&gt; pob
+    pob --&gt; mspf
+    mspf --&gt; if_tv_empty
+    if_tv_empty --&gt; cits: i is not zero
+    cits --&gt; piis
+    piis --&gt; ps
+    ps --&gt; di
+    di --&gt; mspf
+    if_tv_empty --&gt; pcb: i is zero
+
+    pcb --&gt; [*]
+    </pre></section>
+</section>
+<section id="private-functions-decode-path">
+<h3>Private Functions decode path<a class="headerlink" href="#private-functions-decode-path" title="Link to this heading"></a></h3>
+<section id="twist-vector-reverse">
+<h4>Twist Vector Reverse<a class="headerlink" href="#twist-vector-reverse" title="Link to this heading"></a></h4>
+<p>This function reverses the order of the twist vector storage array. They makes the increment read
+order match the theoretical indexing of the twist vector.</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+    state &quot;Init&quot; as rn
+    state &quot;• left_p to start of array&quot; as rn
+    state &quot;• right_p to end of array&quot; as rn
+    state &quot;Set placeholder to left_p int&quot; as spl
+    state &quot;Set left_p to right_p int&quot; as slr
+    state &quot;Set right_p to placeholder int&quot; as srp
+    state &quot;Increment left_p &quot; as ilp
+    state &quot;Decrement right_p &quot; as drp
+    state if_at_middle &lt;&lt;choice&gt;&gt;
+
+    [*] --&gt; rn
+    rn --&gt; if_at_middle
+    if_at_middle --&gt; spl: If left_p != right_p
+    spl --&gt; slr
+    slr --&gt; srp
+    srp --&gt; ilp
+    ilp --&gt; drp
+    drp --&gt; if_at_middle
+    if_at_middle --&gt; [*]: If left_p == right_p
+
+    </pre></section>
+</section>
+</section>
+<section id="validation">
+<h2>Validation<a class="headerlink" href="#validation" title="Link to this heading"></a></h2>
+<section id="decode-interface">
+<h3>Decode interface<a class="headerlink" href="#decode-interface" title="Link to this heading"></a></h3>
+<div class="admonition-valid-string-representing-a-twist-vector admonition">
+<p class="admonition-title">Valid string representing a twist vector</p>
+<p>A valid string representing a twist vector is fed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid string representing a twist vector.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A correct and valid decoding of the string</p>
+</div>
+</section>
+<section id="encode-interface">
+<h3>Encode interface<a class="headerlink" href="#encode-interface" title="Link to this heading"></a></h3>
+<div class="admonition-valid-twist-vector admonition">
+<p class="admonition-title">Valid twist vector</p>
+<p>A valid twist vector is fed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A correct and valid twist vector.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A valid string representing the twist vector.</p>
+</div>
+</section>
+</section>
+<section id="doxygen-documentation">
+<h2>Doxygen Documentation<a class="headerlink" href="#doxygen-documentation" title="Link to this heading"></a></h2>
+<p>Notation module for twist vector notation. </p>
+<p><dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Isabel Darcy </p>
+</dd>
+<dt><strong>Author</strong></dt><dd><p>Zachary Bryhtan </p>
+</dd>
+<dt><strong>Author</strong></dt><dd><p>Joe Starr </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414note_tv_decodePcP9note_tv_t">
+<span id="_CPPv314note_tv_decodePcP9note_tv_t"></span><span id="_CPPv214note_tv_decodePcP9note_tv_t"></span><span id="note_tv_decode__cP.note_tv_tP"></span><span class="target" id="notation__tv_8h_1adc94cdd4954c3e3792014cf915aceb84"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_tv_decode</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str</span></span>, <a class="reference internal" href="#_CPPv49note_tv_t" title="note_tv_t"><span class="n"><span class="pre">note_tv_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">twistv</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414note_tv_decodePcP9note_tv_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Function to take a string and decode it as a <a class="reference internal" href="#structnote__tv__t"><span class="std std-ref">note_tv_t</span></a>. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>str</strong> – Input string to encode as <a class="reference internal" href="#structnote__tv__t"><span class="std std-ref">note_tv_t</span></a></p></li>
+<li><p><strong>twistv</strong> – the <a class="reference internal" href="#structnote__tv__t"><span class="std std-ref">note_tv_t</span></a> pointer to store the string into. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>uint8_t The return code for the encoding operation. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414note_tv_encode9note_tv_tPc6size_t">
+<span id="_CPPv314note_tv_encode9note_tv_tPc6size_t"></span><span id="_CPPv214note_tv_encode9note_tv_tPc6size_t"></span><span id="note_tv_encode__note_tv_t.cP.s"></span><span class="target" id="notation__tv_8h_1a4f09e0a1279b6009875b52584fe4b01e"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_tv_encode</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49note_tv_t" title="note_tv_t"><span class="n"><span class="pre">note_tv_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">twistv</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">buffer_size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414note_tv_encode9note_tv_tPc6size_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Function to take a <a class="reference internal" href="#structnote__tv__t"><span class="std std-ref">note_tv_t</span></a> and encode it as a string. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>twistv</strong> – the <a class="reference internal" href="#structnote__tv__t"><span class="std std-ref">note_tv_t</span></a> pointer to encode. </p></li>
+<li><p><strong>str</strong> – Output string for encoded <a class="reference internal" href="#structnote__tv__t"><span class="std std-ref">note_tv_t</span></a></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>uint8_t The return code for the encoding operation. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv49note_tv_t">
+<span id="_CPPv39note_tv_t"></span><span id="_CPPv29note_tv_t"></span><span id="note_tv_t"></span><span class="target" id="structnote__tv__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_tv_t</span></span></span><a class="headerlink" href="#_CPPv49note_tv_t" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;notation_tv.h&gt;</em></div>
+<p>The core structure for twist vectors. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N9note_tv_t12twist_vectorE">
+<span id="_CPPv3N9note_tv_t12twist_vectorE"></span><span id="_CPPv2N9note_tv_t12twist_vectorE"></span><span id="note_tv_t::twist_vector__uint8_tA"></span><span class="target" id="structnote__tv__t_1a638f554cff263f653728bd3d6dd966d4"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twist_vector</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">UTIL_TANG_DEFS_MAX_CROSSINGNUM</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N9note_tv_t12twist_vectorE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N9note_tv_t9tv_lengthE">
+<span id="_CPPv3N9note_tv_t9tv_lengthE"></span><span id="_CPPv2N9note_tv_t9tv_lengthE"></span><span id="note_tv_t::tv_length__s"></span><span class="target" id="structnote__tv__t_1a0f055339b2c1a75348f17c32d926932f"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tv_length</span></span></span><a class="headerlink" href="#_CPPv4N9note_tv_t9tv_lengthE" title="Link to this definition"></a><br /></dt>
+<dd><p>An array of ints. We pick uint8, that’s 0-255 here since 256 is larger than any reasonable single integral subtangle in a rational tangle. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>Notation module for twist vectors. </p>
+<p><dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Isabel Darcy </p>
+</dd>
+<dt><strong>Author</strong></dt><dd><p>Zachary Bryhtan </p>
+</dd>
+<dt><strong>Author</strong></dt><dd><p>Joe Starr </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NOTE_TV_INT_BASE">
+<span class="target" id="notation__tv_8c_1aeeef838a26897f34905d0cd4ee1f21d6"></span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_TV_INT_BASE</span></span></span><a class="headerlink" href="#c.NOTE_TV_INT_BASE" title="Link to this definition"></a><br /></dt>
+<dd><p>The number base used for str-&gt;int functions. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="notation__tv_8c_1ab7652372182cc4321943a2a8fb0f6fd5"></span><span class="sig-name descname"><span class="pre">STATIC_INLINE</span> <span class="pre">note_tv_t</span> <span class="pre">*</span> <span class="pre">note_tv_tvrev</span> <span class="pre">(note_tv_t</span> <span class="pre">*tv)</span></span></dt>
+<dd><p>A function to reverse the order of the twist vector. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tv</strong> – Twist vector to work on. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#structnote__tv__t"><span class="std std-ref">note_tv_t</span></a> a pointer to the reversed object, needed for nesting. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="notation__tv_8c_1adc94cdd4954c3e3792014cf915aceb84"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_tv_decode</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str</span></span>, <a class="reference internal" href="#_CPPv49note_tv_t" title="note_tv_t"><span class="n"><span class="pre">note_tv_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">twistv</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Function to take a string and decode it as a <a class="reference internal" href="#structnote__tv__t"><span class="std std-ref">note_tv_t</span></a>. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>str</strong> – Input string to encode as <a class="reference internal" href="#structnote__tv__t"><span class="std std-ref">note_tv_t</span></a></p></li>
+<li><p><strong>twistv</strong> – the <a class="reference internal" href="#structnote__tv__t"><span class="std std-ref">note_tv_t</span></a> pointer to store the string into. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>uint8_t The return code for the encoding operation. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="notation__tv_8c_1a4f09e0a1279b6009875b52584fe4b01e"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_tv_encode</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49note_tv_t" title="note_tv_t"><span class="n"><span class="pre">note_tv_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">twistv</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">buffer_size</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Function to take a <a class="reference internal" href="#structnote__tv__t"><span class="std std-ref">note_tv_t</span></a> and encode it as a string. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>twistv</strong> – the <a class="reference internal" href="#structnote__tv__t"><span class="std std-ref">note_tv_t</span></a> pointer to encode. </p></li>
+<li><p><strong>str</strong> – Output string for encoded <a class="reference internal" href="#structnote__tv__t"><span class="std std-ref">note_tv_t</span></a></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>uint8_t The return code for the encoding operation. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</section>
+<section id="bibliography">
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading"></a></h2>
+<span class="target" id="id1"></span></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="use-case.html" class="btn btn-neutral float-left" title="Use Case" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../note-wptt/index.html" class="btn btn-neutral float-right" title="Notation Weighted Planar Tangle Tree" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, temp.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

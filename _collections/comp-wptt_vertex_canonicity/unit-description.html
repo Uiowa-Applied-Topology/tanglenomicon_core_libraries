@@ -1,0 +1,1044 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit Description &mdash; Tanglenomicon Core Libraries 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/proof.css?v=b4b7a797" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+      <script type="module">mermaid.initialize({
+  securityLevel: 'loose',
+  theme: 'dark',
+});</script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+const load = async () => {
+    await mermaid.run();
+    const all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+    if(mermaids_to_add_zoom > 0) {
+        var svgs = d3.selectAll(".mermaid svg");
+        if(all_mermaids.length !== mermaids_processed.length) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else if(svgs.size() !== mermaids_to_add_zoom) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else {
+            svgs.each(function() {
+                var svg = d3.select(this);
+                svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                var inner = svg.select("g");
+                var zoom = d3.zoom().on("zoom", function(event) {
+                    inner.attr("transform", event.transform);
+                });
+                svg.call(zoom);
+            });
+        }
+    }
+};
+
+window.addEventListener("load", load);
+</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Generator Montesinos Tangles" href="../gen-montesinos/index.html" />
+    <link rel="prev" title="Use Case" href="use-case.html" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                macros: {
+                    "\\N": "\\mathbb{N}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\Q": "\\mathbb{Q}",
+                    "\\R": "\\mathbb{R}",
+                    "\\LN": "\\left.",
+                    "\\RN": "\\right.",
+                    "\\LP": "\\left(",
+                    "\\RP": "\\right)",
+                    "\\LS": "\\left\\lbrace",
+                    "\\RS": "\\right\\rbrace",
+                    "\\LA": "\\left\\langle",
+                    "\\RA": "\\right\\rangle",
+                    "\\LB": "\\left[",
+                    "\\RB": "\\right]",
+                    "\\MM": "\\ \\middle|\\ ",
+                    "\\exp": "\\text{exp}",
+                    "\\abs": "\\left\\vert#1\\right\\vert",
+                    "\\msr": "m\\left(#1\\right)",
+                    "\\inv": " #1^{-1}",
+                    "\\bkt": "\\LA \\img{ #1}\\RA",
+                }
+            }
+        );
+    });
+</script>
+
+
+<style>
+
+</style>
+ 
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Tanglenomicon Core Libraries
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Generic Interfaces</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../comp-rational_data/index.html">Computation Rational Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_grafting/index.html">Computation Right Leaning Identity Tangle Tree Grafting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_positivity/index.html">Computation Right Leaning Identity Tangle Tree Positivity</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Computation Weighted Planar Tangle Tree Vertex Canonicity</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="use-case.html">Use Case</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Unit Description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#class-diagram">Class Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#language">Language</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implements">Implements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#libraries">Libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functionality">Functionality</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#public-structures">Public Structures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#public-functions">Public Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#validation">Validation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Configuration Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Compute Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Result Function</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#doxygen-documentation">Doxygen Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_WPTT_VERT_CANON_CONFIG_PARAM"><code class="docutils literal notranslate"><span class="pre">COMP_WPTT_VERT_CANON_CONFIG_PARAM</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_WPTT_VERT_CANON_CONFIG_IS_NULL"><code class="docutils literal notranslate"><span class="pre">COMP_WPTT_VERT_CANON_CONFIG_IS_NULL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_WPTT_VERT_CANON_COMPUTE_CFG_ERROR"><code class="docutils literal notranslate"><span class="pre">COMP_WPTT_VERT_CANON_COMPUTE_CFG_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_WPTT_VERT_CANON_COMPUTE_ALREADY_COMPUTED"><code class="docutils literal notranslate"><span class="pre">COMP_WPTT_VERT_CANON_COMPUTE_ALREADY_COMPUTED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv433comp_wptt_vert_canon_positivity_e"><code class="docutils literal notranslate"><span class="pre">comp_wptt_vert_canon_positivity_e</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv428comp_wptt_vert_canon_canon_e"><code class="docutils literal notranslate"><span class="pre">comp_wptt_vert_canon_canon_e</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv427comp_wptt_vert_canon_configP29comp_wptt_vert_canon_config_t"><code class="docutils literal notranslate"><span class="pre">comp_wptt_vert_canon_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv428comp_wptt_vert_canon_computev"><code class="docutils literal notranslate"><span class="pre">comp_wptt_vert_canon_compute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv427comp_wptt_vert_canon_resultv"><code class="docutils literal notranslate"><span class="pre">comp_wptt_vert_canon_result()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv429comp_wptt_vert_canon_result_t"><code class="docutils literal notranslate"><span class="pre">comp_wptt_vert_canon_result_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv429comp_wptt_vert_canon_config_t"><code class="docutils literal notranslate"><span class="pre">comp_wptt_vert_canon_config_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_WPTT_VERT_CANON_STACK_SIZE"><code class="docutils literal notranslate"><span class="pre">COMP_WPTT_VERT_CANON_STACK_SIZE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv429comp_wptt_vert_canon_localcfg"><code class="docutils literal notranslate"><span class="pre">comp_wptt_vert_canon_localcfg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv433comp_wptt_vert_canon_localrestult"><code class="docutils literal notranslate"><span class="pre">comp_wptt_vert_canon_localrestult</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv429comp_wptt_vert_canon_executed"><code class="docutils literal notranslate"><span class="pre">comp_wptt_vert_canon_executed</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bibliography">Bibliography</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-montesinos/index.html">Generator Montesinos Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rational/index.html">Generator Rational Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rlitt/index.html">Generator Right Leaning Identity Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-twist_vector/index.html">Notation Twist Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-wptt/index.html">Notation Weighted Planar Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-cpp_storage_interface/index.html">Storage C++ Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-json/index.html">Storage JSON</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tanglenomicon Core Libraries</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Computation Weighted Planar Tangle Tree Vertex Canonicity</a></li>
+      <li class="breadcrumb-item active">Unit Description</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/_collections/comp-wptt_vertex_canonicity/unit-description.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="topic abstract" role="doc-abstract">
+<p class="topic-title">Abstract</p>
+<p>A unit description for computation of arborescent tangle vertex canonicity.</p>
+</div>
+<section id="unit-description">
+<h1>Unit Description<a class="headerlink" href="#unit-description" title="Link to this heading"></a></h1>
+<section id="class-diagram">
+<h2>Class Diagram<a class="headerlink" href="#class-diagram" title="Link to this heading"></a></h2>
+<pre  class="mermaid">
+        classDiagram
+    comp_wptt_vertex_canonicity ..|&gt; computation
+    comp_wptt_vertex_canonicity_config_t ..|&gt; notation_wptt
+    comp_wptt_vertex_canonicity_config_t ..|&gt; comp_config_t
+    comp_wptt_vertex_canonicity *-- comp_wptt_vertex_canonicity_config_t
+    comp_wptt_vertex_canonicity_result_t ..|&gt; notation_wptt
+    comp_wptt_vertex_canonicity_result_t ..|&gt; comp_result_t
+    comp_wptt_vertex_canonicity *-- comp_wptt_vertex_canonicity_result_t
+    comp_wptt_vertex_canonicity_result_t *-- comp_wptt_vertex_canonicity_positivity_e
+
+    class computation {
+    &lt;&lt;External Interface&gt;&gt;
+    }
+
+    class comp_wptt_vertex_canonicity {
+    &lt;&lt;External&gt;&gt;
+    }
+
+    class notation_wptt{
+    &lt;&lt;External&gt;&gt;
+    }
+
+    class comp_wptt_vertex_canonicity_config_t {
+    + notation_node_wptt *vertex
+    + notation_node_wptt *parent
+    + comp_wptt_vertex_canonicity_positivity_e positivity
+    }
+
+    class comp_config_t {
+    &lt;&lt;External Interface&gt;&gt;
+    }
+
+    class comp_wptt_vertex_canonicity_result_t {
+    + bool is_canonical
+    }
+
+    class comp_wptt_vertex_canonicity_positivity_e {
+    &lt;&lt;Enumeration&gt;&gt;
+     uninit,
+     positive,
+     negative,
+    }
+
+    class comp_result_t {
+    &lt;&lt;External Interface&gt;&gt;
+    }
+
+    </pre></section>
+<section id="language">
+<h2>Language<a class="headerlink" href="#language" title="Link to this heading"></a></h2>
+<p>C</p>
+</section>
+<section id="implements">
+<h2>Implements<a class="headerlink" href="#implements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#computation-interface"><span class="xref myst">Computation Interface</span></a></p></li>
+</ul>
+</section>
+<section id="uses">
+<h2>Uses<a class="headerlink" href="#uses" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../note-wptt/index.html#note-wptt"><span class="std std-ref">Notation Weighted Planar Tangle Tree</span></a></p></li>
+</ul>
+</section>
+<section id="libraries">
+<h2>Libraries<a class="headerlink" href="#libraries" title="Link to this heading"></a></h2>
+<p>None</p>
+</section>
+<section id="functionality">
+<h2>Functionality<a class="headerlink" href="#functionality" title="Link to this heading"></a></h2>
+<section id="public-structures">
+<h3>Public Structures<a class="headerlink" href="#public-structures" title="Link to this heading"></a></h3>
+<section id="configuration-structure">
+<h4>Configuration Structure<a class="headerlink" href="#configuration-structure" title="Link to this heading"></a></h4>
+<p>The configuration structure contains the data needed for computing the canonicity of a vertex of an
+input arborescent tangle.</p>
+<p>This includes:</p>
+<ul class="simple">
+<li><p>A pointer to the tree containing the vertex. This is used only for output to the write interface.</p></li>
+<li><p>A pointer to the vertex to examine.</p></li>
+<li><p>A pointer to the parent of the vertex being examined.</p></li>
+<li><p>The positivity condition to check.</p></li>
+</ul>
+</section>
+<section id="result-structure">
+<h4>Result Structure<a class="headerlink" href="#result-structure" title="Link to this heading"></a></h4>
+<p>The result structure contains the enumerated value of the neutrality of the input tree.</p>
+</section>
+</section>
+<section id="public-functions">
+<h3>Public Functions<a class="headerlink" href="#public-functions" title="Link to this heading"></a></h3>
+<section id="configuration-function">
+<h4>Configuration Function<a class="headerlink" href="#configuration-function" title="Link to this heading"></a></h4>
+<p>The configuration function sets the local configuration variable of the computation.</p>
+<p>This process is described in the following state machines:</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+  state &quot;Initialize local config&quot; as Sc
+
+    [*] --&gt; Sc
+    Sc --&gt; [*]
+
+    </pre></section>
+<section id="compute-function">
+<h4>Compute Function<a class="headerlink" href="#compute-function" title="Link to this heading"></a></h4>
+<p>The compute function carries out the arborescent tangle vertex canonicity computation. The function
+may contain sub-machines that can be broken out into functions in the implementation. The walk the
+tree function should be implemented with a stack-based iterative approach.</p>
+<p>This process is described in the following state machines:</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+    state &quot;Set result to false&quot; as false
+    state &quot;Set result to true&quot; as true
+    state is_stick &lt;&lt;choice&gt;&gt;
+    state is_weight &lt;&lt;choice&gt;&gt;
+    state is_positive &lt;&lt;choice&gt;&gt;
+    state is_root &lt;&lt;choice&gt;&gt;
+    [*] --&gt; is_weight
+    is_weight --&gt; false: else
+    is_weight --&gt; is_root: Vertex satisfies the weight condition
+    is_root --&gt; false: else
+    is_root --&gt; is_stick: Vertex is the root
+    is_stick --&gt; false: else
+    is_stick --&gt; is_positive: Vertex satisfies the sitck condition
+    is_positive --&gt; false: else
+    is_positive --&gt; true: Vertex satisfies the positivity condition
+    true --&gt; [*]
+    false --&gt; [*]
+
+    </pre></section>
+<section id="result-function">
+<h4>Result Function<a class="headerlink" href="#result-function" title="Link to this heading"></a></h4>
+<p>When this function is invoked, the result of the vertex canonicity computation process is reported.</p>
+</section>
+</section>
+</section>
+<section id="validation">
+<h2>Validation<a class="headerlink" href="#validation" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>Configuration Function<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<section id="positive-tests">
+<h4>Positive Tests<a class="headerlink" href="#positive-tests" title="Link to this heading"></a></h4>
+<div class="admonition-valid-config admonition">
+<p class="admonition-title">Valid Config</p>
+<p>A valid configuration for the computation is passed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid config.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A positive response.</p>
+</div>
+</section>
+<section id="negative-tests">
+<h4>Negative Tests<a class="headerlink" href="#negative-tests" title="Link to this heading"></a></h4>
+<div class="admonition-null-config admonition">
+<p class="admonition-title">Null Config</p>
+<p>A null configuration for the computation is passed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A null config.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+<div class="admonition-null-configuration-parameters admonition">
+<p class="admonition-title">Null Configuration Parameters</p>
+<p>A configuration with various null parameters is passed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A configuration with null tree.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+</section>
+</section>
+<section id="id2">
+<h3>Compute Function<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<section id="id3">
+<h4>Positive Tests<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<div class="admonition-a-valid-configuration-with-null-write-interface admonition">
+<p class="admonition-title">A valid configuration with null write interface</p>
+<p>A valid configuration is set for the component with null write. The computation is
+executed and returns successfully.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration is set.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<ul class="simple">
+<li><p>A positive response.</p></li>
+</ul>
+</div>
+<div class="admonition-identified-vertex-is-canonical admonition">
+<p class="admonition-title">Identified vertex is canonical</p>
+<p>A valid configuration with write function is set for the component. The indentified vertex is canonical. The computation is executed and returns successfully.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration is set.</p></li>
+<li><p>The indentified vertex is canonical:</p>
+<ul>
+<li><p>Is the root</p></li>
+<li><p>Is away from root</p></li>
+</ul>
+</li>
+<li><p>The positivity is set to:</p>
+<ul>
+<li><p>positive</p></li>
+<li><p>negative</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<ul class="simple">
+<li><p>A positive response.</p></li>
+<li><p>True written to buffer</p></li>
+</ul>
+</div>
+<div class="admonition-identified-vertex-violates-the-alternating-stick-condition admonition">
+<p class="admonition-title">Identified vertex violates the alternating stick condition</p>
+<p>A valid configuration with write function is set for the component. The indentified vertex fails to be
+canonical by violating the alternating portion of the stick condition. The computation is executed
+and returns successfully.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration is set.</p></li>
+<li><p>The indentified vertex is not canonical by violating:</p>
+<ul>
+<li><p>vertex is $v_0$ and $w_0&lt;0$ with $w_1&lt;0$</p></li>
+<li><p>vertex is $v_0$ and $w_0&gt;0$ with $w_1&gt;0$</p></li>
+<li><p>vertex is $v_i$ with $i\neq 0$ and $w_{i}&gt;0$ with $w_{i+1}&gt;0$</p></li>
+<li><p>vertex is $v_i$ with $i\neq 0$ and $w_{i}&lt;0$ with $w_{i+1}&lt;0$</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<ul class="simple">
+<li><p>A positive response.</p></li>
+<li><p>False written to buffer.</p></li>
+</ul>
+</div>
+<div class="admonition-identified-vertex-is-not-canonical admonition">
+<p class="admonition-title">Identified vertex is not canonical</p>
+<p>A valid configuration with write function is set for the component. The indentified vertex fails to be canonical in each of the conditions. The computation is executed and returns successfully.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration is set.</p></li>
+<li><p>The indentified vertex is not canonical by violating:</p>
+<ul>
+<li><p>Stick condition and vertex is distance 2 from root</p></li>
+<li><p>Stick condition and vertex is distance 1 from root</p></li>
+<li><p>Weight condition and vertex is the root</p></li>
+<li><p>Weight condition and vertex is not the root</p></li>
+<li><p>Positivity condition</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<ul class="simple">
+<li><p>A positive response.</p></li>
+<li><p>False written to buffer.</p></li>
+</ul>
+</div>
+<div class="admonition-identified-vertex-is-not-canonical admonition">
+<p class="admonition-title">Identified vertex is not canonical</p>
+<p>A valid configuration with write function is set for the component. The indentified vertex fails to be canonical in each of the conditions. The computation is executed and returns successfully.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration is set.</p></li>
+<li><p>The indentified vertex is not canonical by violating:</p>
+<ul>
+<li><p>Stick condition and vertex is distance 2 from root</p></li>
+<li><p>Stick condition and vertex is distance 1 from root</p></li>
+<li><p>Weight condition and vertex is the root</p></li>
+<li><p>Weight condition and vertex is not the root</p></li>
+<li><p>Positivity condition</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<ul class="simple">
+<li><p>A positive response.</p></li>
+<li><p>False written to buffer.</p></li>
+</ul>
+</div>
+<div class="admonition-identified-vertex-is-not-canonical admonition">
+<p class="admonition-title">Identified vertex is not canonical</p>
+<p>A valid configuration with write function is set for the component. The indentified vertex fails to be canonical in each of the conditions. The computation is executed and returns successfully.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration is set.</p></li>
+<li><p>The indentified vertex is not canonical by violating:</p>
+<ul>
+<li><p>Stick condition and vertex is distance 2 from root</p></li>
+<li><p>Stick condition and vertex is distance 1 from root</p></li>
+<li><p>Weight condition and vertex is the root</p></li>
+<li><p>Weight condition and vertex is not the root</p></li>
+<li><p>Positivity condition</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<ul class="simple">
+<li><p>A positive response.</p></li>
+<li><p>False written to buffer.</p></li>
+</ul>
+</div>
+<div class="admonition-identified-vertex-is-not-canonical admonition">
+<p class="admonition-title">Identified vertex is not canonical</p>
+<p>A valid configuration with write function is set for the component. The indentified vertex fails to be canonical in each of the conditions. The computation is executed and returns successfully.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration is set.</p></li>
+<li><p>The indentified vertex is not canonical by violating:</p>
+<ul>
+<li><p>Stick condition and vertex is distance 2 from root</p></li>
+<li><p>Stick condition and vertex is distance 1 from root</p></li>
+<li><p>Weight condition and vertex is the root</p></li>
+<li><p>Weight condition and vertex is not the root</p></li>
+<li><p>Positivity condition</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<ul class="simple">
+<li><p>A positive response.</p></li>
+<li><p>False written to buffer.</p></li>
+</ul>
+</div>
+<div class="admonition-identified-vertex-is-not-canonical admonition">
+<p class="admonition-title">Identified vertex is not canonical</p>
+<p>A valid configuration with write function is set for the component. The indentified vertex fails to be canonical in each of the conditions. The computation is executed and returns successfully.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration is set.</p></li>
+<li><p>The indentified vertex is not canonical by violating:</p>
+<ul>
+<li><p>Stick condition and vertex is distance 2 from root</p></li>
+<li><p>Stick condition and vertex is distance 1 from root</p></li>
+<li><p>Weight condition and vertex is the root</p></li>
+<li><p>Weight condition and vertex is not the root</p></li>
+<li><p>Positivity condition</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<ul class="simple">
+<li><p>A positive response.</p></li>
+<li><p>False written to buffer.</p></li>
+</ul>
+</div>
+<div class="admonition-identified-vertex-is-not-canonical admonition">
+<p class="admonition-title">Identified vertex is not canonical</p>
+<p>A valid configuration with write function is set for the component. The indentified vertex fails to be canonical in each of the conditions. The computation is executed and returns successfully.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration is set.</p></li>
+<li><p>The indentified vertex is not canonical by violating:</p>
+<ul>
+<li><p>Stick condition and vertex is distance 2 from root</p></li>
+<li><p>Stick condition and vertex is distance 1 from root</p></li>
+<li><p>Weight condition and vertex is the root</p></li>
+<li><p>Weight condition and vertex is not the root</p></li>
+<li><p>Positivity condition</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<ul class="simple">
+<li><p>A positive response.</p></li>
+<li><p>False written to buffer.</p></li>
+</ul>
+</div>
+</section>
+<section id="id4">
+<h4>Negative Tests<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<div class="admonition-not-configured admonition">
+<p class="admonition-title">Not Configured</p>
+<p>The compute interface is called before configuration.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>None.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+<div class="admonition-index-out-of-bounds admonition">
+<p class="admonition-title">Index out of bounds</p>
+<p>The configured vertex index is out of the bounds of the condigured tree.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A configuration set with invalid index.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+</section>
+</section>
+<section id="id5">
+<h3>Result Function<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<section id="id6">
+<h4>Positive Tests<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
+<div class="admonition-a-valid-configuration-and-computation admonition">
+<p class="admonition-title">A valid configuration and computation</p>
+<p>A valid configuration is set for the component. The computation is executed and
+returns successfully. The resulting value is correct when read from the result
+interface.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration is set which evaluates to canonical.</p></li>
+<li><p>A valid configuration is set which evaluates to non-canonical.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<ul class="simple">
+<li><p>A positive response.</p></li>
+<li><p>The result is correct.</p></li>
+</ul>
+</div>
+</section>
+<section id="id7">
+<h4>Negative Tests<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
+<div class="admonition-computation-not-executed admonition">
+<p class="admonition-title">Computation not executed</p>
+<p>The result interface is called before compute has been run.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>None.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="doxygen-documentation">
+<h2>Doxygen Documentation<a class="headerlink" href="#doxygen-documentation" title="Link to this heading"></a></h2>
+<p>A module for computing the canonicity of a vertex of a wptt. </p>
+<p><dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Joe Starr </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_WPTT_VERT_CANON_CONFIG_PARAM">
+<span class="target" id="comp__wptt__vertex__canonicity_8h_1ac027be4d5f50cbad5e635e36145f9f9a"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_WPTT_VERT_CANON_CONFIG_PARAM</span></span></span><a class="headerlink" href="#c.COMP_WPTT_VERT_CANON_CONFIG_PARAM" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to issue in rootstock. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_WPTT_VERT_CANON_CONFIG_IS_NULL">
+<span class="target" id="comp__wptt__vertex__canonicity_8h_1acc2f08fa18a370e8ed299a6530a86b46"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_WPTT_VERT_CANON_CONFIG_IS_NULL</span></span></span><a class="headerlink" href="#c.COMP_WPTT_VERT_CANON_CONFIG_IS_NULL" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to null config. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_WPTT_VERT_CANON_COMPUTE_CFG_ERROR">
+<span class="target" id="comp__wptt__vertex__canonicity_8h_1a9897e50d9209a71f88262a5283105f7f"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_WPTT_VERT_CANON_COMPUTE_CFG_ERROR</span></span></span><a class="headerlink" href="#c.COMP_WPTT_VERT_CANON_COMPUTE_CFG_ERROR" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to null config. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_WPTT_VERT_CANON_COMPUTE_ALREADY_COMPUTED">
+<span class="target" id="comp__wptt__vertex__canonicity_8h_1a9285e18ee72952b42ba8c8c4985fee3e"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_WPTT_VERT_CANON_COMPUTE_ALREADY_COMPUTED</span></span></span><a class="headerlink" href="#c.COMP_WPTT_VERT_CANON_COMPUTE_ALREADY_COMPUTED" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to null config. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__wptt__vertex__canonicity_8h_1a0db216ee4122acbb1d5ddcde8401d1c4"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv433comp_wptt_vert_canon_positivity_e" title="comp_wptt_vert_canon_positivity_e"><span class="n"><span class="pre">comp_wptt_vert_canon_positivity_e</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_wptt_vert_canon_positivity_e</span></span></span><br /></dt>
+<dd><p>Type defining the order direction of a node in a wptt. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__wptt__vertex__canonicity_8h_1a148b4d64f93b8440e2081ff671bcdf4b"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv428comp_wptt_vert_canon_canon_e" title="comp_wptt_vert_canon_canon_e"><span class="n"><span class="pre">comp_wptt_vert_canon_canon_e</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_wptt_vert_canon_canon_e</span></span></span><br /></dt>
+<dd><p>Type defining the order direction of a node in a wptt. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-enums">Enums</p>
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv433comp_wptt_vert_canon_positivity_e">
+<span id="_CPPv333comp_wptt_vert_canon_positivity_e"></span><span id="_CPPv233comp_wptt_vert_canon_positivity_e"></span><span class="target" id="comp__wptt__vertex__canonicity_8h_1afac128a8eee6022babd24a5f74e34eda"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_wptt_vert_canon_positivity_e</span></span></span><a class="headerlink" href="#_CPPv433comp_wptt_vert_canon_positivity_e" title="Link to this definition"></a><br /></dt>
+<dd><p>Type defining the order direction of a node in a wptt. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N33comp_wptt_vert_canon_positivity_e31COMP_WPTT_VERT_CANON_POS_UNINITE">
+<span id="_CPPv3N33comp_wptt_vert_canon_positivity_e31COMP_WPTT_VERT_CANON_POS_UNINITE"></span><span id="_CPPv2N33comp_wptt_vert_canon_positivity_e31COMP_WPTT_VERT_CANON_POS_UNINITE"></span><span class="target" id="comp__wptt__vertex__canonicity_8h_1afac128a8eee6022babd24a5f74e34edaa7e56cb00178a4dc6f2b25a4aa6c4e024"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">COMP_WPTT_VERT_CANON_POS_UNINIT</span></span></span><a class="headerlink" href="#_CPPv4N33comp_wptt_vert_canon_positivity_e31COMP_WPTT_VERT_CANON_POS_UNINITE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N33comp_wptt_vert_canon_positivity_e28COMP_WPTT_VERT_CANON_POS_POSE">
+<span id="_CPPv3N33comp_wptt_vert_canon_positivity_e28COMP_WPTT_VERT_CANON_POS_POSE"></span><span id="_CPPv2N33comp_wptt_vert_canon_positivity_e28COMP_WPTT_VERT_CANON_POS_POSE"></span><span class="target" id="comp__wptt__vertex__canonicity_8h_1afac128a8eee6022babd24a5f74e34edaa276838eab267e65c68dfeb4187d3239b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">COMP_WPTT_VERT_CANON_POS_POS</span></span></span><a class="headerlink" href="#_CPPv4N33comp_wptt_vert_canon_positivity_e28COMP_WPTT_VERT_CANON_POS_POSE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N33comp_wptt_vert_canon_positivity_e28COMP_WPTT_VERT_CANON_POS_NEGE">
+<span id="_CPPv3N33comp_wptt_vert_canon_positivity_e28COMP_WPTT_VERT_CANON_POS_NEGE"></span><span id="_CPPv2N33comp_wptt_vert_canon_positivity_e28COMP_WPTT_VERT_CANON_POS_NEGE"></span><span class="target" id="comp__wptt__vertex__canonicity_8h_1afac128a8eee6022babd24a5f74e34edaac549c1b65a021a31b2951ec329167b02"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">COMP_WPTT_VERT_CANON_POS_NEG</span></span></span><a class="headerlink" href="#_CPPv4N33comp_wptt_vert_canon_positivity_e28COMP_WPTT_VERT_CANON_POS_NEGE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv428comp_wptt_vert_canon_canon_e">
+<span id="_CPPv328comp_wptt_vert_canon_canon_e"></span><span id="_CPPv228comp_wptt_vert_canon_canon_e"></span><span class="target" id="comp__wptt__vertex__canonicity_8h_1a1675321c25dc8841f06bdfdd3f00718a"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_wptt_vert_canon_canon_e</span></span></span><a class="headerlink" href="#_CPPv428comp_wptt_vert_canon_canon_e" title="Link to this definition"></a><br /></dt>
+<dd><p>Type defining the order direction of a node in a wptt. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N28comp_wptt_vert_canon_canon_e31COMP_WPTT_VERT_CANON_CAN_UNINITE">
+<span id="_CPPv3N28comp_wptt_vert_canon_canon_e31COMP_WPTT_VERT_CANON_CAN_UNINITE"></span><span id="_CPPv2N28comp_wptt_vert_canon_canon_e31COMP_WPTT_VERT_CANON_CAN_UNINITE"></span><span class="target" id="comp__wptt__vertex__canonicity_8h_1a1675321c25dc8841f06bdfdd3f00718aad17cd1c0e8255a55774da92d90e01f96"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">COMP_WPTT_VERT_CANON_CAN_UNINIT</span></span></span><a class="headerlink" href="#_CPPv4N28comp_wptt_vert_canon_canon_e31COMP_WPTT_VERT_CANON_CAN_UNINITE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N28comp_wptt_vert_canon_canon_e33COMP_WPTT_VERT_CANON_IS_CANONICALE">
+<span id="_CPPv3N28comp_wptt_vert_canon_canon_e33COMP_WPTT_VERT_CANON_IS_CANONICALE"></span><span id="_CPPv2N28comp_wptt_vert_canon_canon_e33COMP_WPTT_VERT_CANON_IS_CANONICALE"></span><span class="target" id="comp__wptt__vertex__canonicity_8h_1a1675321c25dc8841f06bdfdd3f00718aaf7141698905ccd57ee10e9832220b91e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">COMP_WPTT_VERT_CANON_IS_CANONICAL</span></span></span><a class="headerlink" href="#_CPPv4N28comp_wptt_vert_canon_canon_e33COMP_WPTT_VERT_CANON_IS_CANONICALE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N28comp_wptt_vert_canon_canon_e36COMP_WPTT_VERT_CANON_IS_NONCANONICALE">
+<span id="_CPPv3N28comp_wptt_vert_canon_canon_e36COMP_WPTT_VERT_CANON_IS_NONCANONICALE"></span><span id="_CPPv2N28comp_wptt_vert_canon_canon_e36COMP_WPTT_VERT_CANON_IS_NONCANONICALE"></span><span class="target" id="comp__wptt__vertex__canonicity_8h_1a1675321c25dc8841f06bdfdd3f00718aa704d5dd6f1a54a41bc168382ab75f2cf"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">COMP_WPTT_VERT_CANON_IS_NONCANONICAL</span></span></span><a class="headerlink" href="#_CPPv4N28comp_wptt_vert_canon_canon_e36COMP_WPTT_VERT_CANON_IS_NONCANONICALE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv427comp_wptt_vert_canon_configP29comp_wptt_vert_canon_config_t">
+<span id="_CPPv327comp_wptt_vert_canon_configP29comp_wptt_vert_canon_config_t"></span><span id="_CPPv227comp_wptt_vert_canon_configP29comp_wptt_vert_canon_config_t"></span><span id="comp_wptt_vert_canon_config__comp_wptt_vert_canon_config_tP"></span><span class="target" id="comp__wptt__vertex__canonicity_8h_1aa2564ebc2a1fddee3e05a53bb89bc21a"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_wptt_vert_canon_config</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv429comp_wptt_vert_canon_config_t" title="comp_wptt_vert_canon_config_t"><span class="n"><span class="pre">comp_wptt_vert_canon_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">config_arg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427comp_wptt_vert_canon_configP29comp_wptt_vert_canon_config_t" title="Link to this definition"></a><br /></dt>
+<dd><p>The public configuration function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config_arg</strong> – The config to set. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv428comp_wptt_vert_canon_computev">
+<span id="_CPPv328comp_wptt_vert_canon_computev"></span><span id="_CPPv228comp_wptt_vert_canon_computev"></span><span id="comp_wptt_vert_canon_compute"></span><span class="target" id="comp__wptt__vertex__canonicity_8h_1a935164674f6d155ec05091576e079f5d"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_wptt_vert_canon_compute</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428comp_wptt_vert_canon_computev" title="Link to this definition"></a><br /></dt>
+<dd><p>A public function, calling this executes the computation on the configured tangle. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>uint8_t Generation status info. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv427comp_wptt_vert_canon_resultv">
+<span id="_CPPv327comp_wptt_vert_canon_resultv"></span><span id="_CPPv227comp_wptt_vert_canon_resultv"></span><span id="comp_wptt_vert_canon_result"></span><span class="target" id="comp__wptt__vertex__canonicity_8h_1a4d5e0ff1d61256ab84dfac69d0643906"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv429comp_wptt_vert_canon_result_t" title="comp_wptt_vert_canon_result_t"><span class="n"><span class="pre">comp_wptt_vert_canon_result_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">comp_wptt_vert_canon_result</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427comp_wptt_vert_canon_resultv" title="Link to this definition"></a><br /></dt>
+<dd><p>A public function, calling this retrieves the results of the last computation. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#structcomp__wptt__vert__canon__result__t"><span class="std std-ref">comp_wptt_vert_canon_result_t</span></a> Computation results. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv429comp_wptt_vert_canon_result_t">
+<span id="_CPPv329comp_wptt_vert_canon_result_t"></span><span id="_CPPv229comp_wptt_vert_canon_result_t"></span><span id="comp_wptt_vert_canon_result_t"></span><span class="target" id="structcomp__wptt__vert__canon__result__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_wptt_vert_canon_result_t</span></span></span><a class="headerlink" href="#_CPPv429comp_wptt_vert_canon_result_t" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;comp_wptt_vertex_canonicity.h&gt;</em></div>
+<p>The type definition for configuring the root_neut_rlitt computation. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N29comp_wptt_vert_canon_result_t12is_canonicalE">
+<span id="_CPPv3N29comp_wptt_vert_canon_result_t12is_canonicalE"></span><span id="_CPPv2N29comp_wptt_vert_canon_result_t12is_canonicalE"></span><span id="comp_wptt_vert_canon_result_t::is_canonical__comp_wptt_vert_canon_canon_e"></span><span class="target" id="structcomp__wptt__vert__canon__result__t_1a3f113c526f085f77fd48bf9ec614e7a5"></span><a class="reference internal" href="#_CPPv428comp_wptt_vert_canon_canon_e" title="comp_wptt_vert_canon_canon_e"><span class="n"><span class="pre">comp_wptt_vert_canon_canon_e</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_canonical</span></span></span><a class="headerlink" href="#_CPPv4N29comp_wptt_vert_canon_result_t12is_canonicalE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv429comp_wptt_vert_canon_config_t">
+<span id="_CPPv329comp_wptt_vert_canon_config_t"></span><span id="_CPPv229comp_wptt_vert_canon_config_t"></span><span id="comp_wptt_vert_canon_config_t"></span><span class="target" id="structcomp__wptt__vert__canon__config__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_wptt_vert_canon_config_t</span></span></span><a class="headerlink" href="#_CPPv429comp_wptt_vert_canon_config_t" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;comp_wptt_vertex_canonicity.h&gt;</em></div>
+<p>The type definition for configuring the root_neut_rlitt computation. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N29comp_wptt_vert_canon_config_t13storage_writeE">
+<span id="_CPPv3N29comp_wptt_vert_canon_config_t13storage_writeE"></span><span id="_CPPv2N29comp_wptt_vert_canon_config_t13storage_writeE"></span><span id="comp_wptt_vert_canon_config_t::storage_write__storage_write_funptr_t"></span><span class="target" id="structcomp__wptt__vert__canon__config__t_1a106cb8504100e5e0e1b3bce4be5d70f3"></span><span class="n"><span class="pre">storage_write_funptr_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">storage_write</span></span></span><a class="headerlink" href="#_CPPv4N29comp_wptt_vert_canon_config_t13storage_writeE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N29comp_wptt_vert_canon_config_t4wpttE">
+<span id="_CPPv3N29comp_wptt_vert_canon_config_t4wpttE"></span><span id="_CPPv2N29comp_wptt_vert_canon_config_t4wpttE"></span><span id="comp_wptt_vert_canon_config_t::wptt__note_wptt_tCP"></span><span class="target" id="structcomp__wptt__vert__canon__config__t_1a55977a3c14db84c765870853943958ab"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../note-wptt/unit-description.html#_CPPv411note_wptt_t" title="note_wptt_t"><span class="n"><span class="pre">note_wptt_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">wptt</span></span></span><a class="headerlink" href="#_CPPv4N29comp_wptt_vert_canon_config_t4wpttE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N29comp_wptt_vert_canon_config_t6vertexE">
+<span id="_CPPv3N29comp_wptt_vert_canon_config_t6vertexE"></span><span id="_CPPv2N29comp_wptt_vert_canon_config_t6vertexE"></span><span id="comp_wptt_vert_canon_config_t::vertex__note_wptt_node_tCP"></span><span class="target" id="structcomp__wptt__vert__canon__config__t_1a2325ab4bfe146e4408dd50f85db04a58"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../note-wptt/unit-description.html#_CPPv416note_wptt_node_t" title="note_wptt_node_t"><span class="n"><span class="pre">note_wptt_node_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">vertex</span></span></span><a class="headerlink" href="#_CPPv4N29comp_wptt_vert_canon_config_t6vertexE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N29comp_wptt_vert_canon_config_t6parentE">
+<span id="_CPPv3N29comp_wptt_vert_canon_config_t6parentE"></span><span id="_CPPv2N29comp_wptt_vert_canon_config_t6parentE"></span><span id="comp_wptt_vert_canon_config_t::parent__note_wptt_node_tCP"></span><span class="target" id="structcomp__wptt__vert__canon__config__t_1a3a2f9218fc8078187be8e22383ae14f9"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../note-wptt/unit-description.html#_CPPv416note_wptt_node_t" title="note_wptt_node_t"><span class="n"><span class="pre">note_wptt_node_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">parent</span></span></span><a class="headerlink" href="#_CPPv4N29comp_wptt_vert_canon_config_t6parentE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N29comp_wptt_vert_canon_config_t14parent_is_rootE">
+<span id="_CPPv3N29comp_wptt_vert_canon_config_t14parent_is_rootE"></span><span id="_CPPv2N29comp_wptt_vert_canon_config_t14parent_is_rootE"></span><span id="comp_wptt_vert_canon_config_t::parent_is_root__b"></span><span class="target" id="structcomp__wptt__vert__canon__config__t_1a0ed35263c26802dd789955a7f428f228"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">parent_is_root</span></span></span><a class="headerlink" href="#_CPPv4N29comp_wptt_vert_canon_config_t14parent_is_rootE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N29comp_wptt_vert_canon_config_t10positivityE">
+<span id="_CPPv3N29comp_wptt_vert_canon_config_t10positivityE"></span><span id="_CPPv2N29comp_wptt_vert_canon_config_t10positivityE"></span><span id="comp_wptt_vert_canon_config_t::positivity__comp_wptt_vert_canon_positivity_e"></span><span class="target" id="structcomp__wptt__vert__canon__config__t_1a805afe02e6e569be00b83aef7c9b790f"></span><a class="reference internal" href="#_CPPv433comp_wptt_vert_canon_positivity_e" title="comp_wptt_vert_canon_positivity_e"><span class="n"><span class="pre">comp_wptt_vert_canon_positivity_e</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">positivity</span></span></span><a class="headerlink" href="#_CPPv4N29comp_wptt_vert_canon_config_t10positivityE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_WPTT_VERT_CANON_STACK_SIZE">
+<span class="target" id="comp__wptt__vertex__canonicity_8c_1a832db067cdfa10b4fbf549c9fae1f6bf"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_WPTT_VERT_CANON_STACK_SIZE</span></span></span><a class="headerlink" href="#c.COMP_WPTT_VERT_CANON_STACK_SIZE" title="Link to this definition"></a><br /></dt>
+<dd><p>The local configuration of the WPTT vertex canonicity module. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__wptt__vertex__canonicity_8c_1a9faa731af476bb89f4bdd8ba546ff675"></span><span class="sig-name descname"><span class="pre">STATIC_INLINE</span> <span class="pre">bool</span> <span class="pre">comp_wptt_vert_canon_weights</span> <span class="pre">(const</span> <span class="pre">note_wptt_node_t</span> <span class="pre">*vertex)</span></span></dt>
+<dd><p>Check the weight condition of the vertex. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>vertex</strong> – The object vertex. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True when canonical false otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__wptt__vertex__canonicity_8c_1af08f4edfaf7306d6885670d25b0e1450"></span><span class="sig-name descname"><span class="pre">STATIC_INLINE</span> <span class="pre">bool</span> <span class="pre">comp_wptt_vert_canon_stick</span> <span class="pre">(const</span> <span class="pre">note_wptt_node_t</span> <span class="pre">*vertex,</span> <span class="pre">const</span> <span class="pre">note_wptt_node_t</span> <span class="pre">*parent,</span> <span class="pre">bool</span> <span class="pre">parent_is_root)</span></span></dt>
+<dd><p>Compute the canonicity of the object vertex against the stick condition. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vertex</strong> – The object vertex. </p></li>
+<li><p><strong>parent</strong> – The parent vertex (if any). </p></li>
+<li><p><strong>parent_is_root</strong> – A flag indicating if the object vertex is near the root. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if canonical false otherwise. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__wptt__vertex__canonicity_8c_1ab9d44c2e4cf4039241c35b63e6de7e68"></span><span class="sig-name descname"><span class="pre">STATIC_INLINE</span> <span class="pre">bool</span> <span class="pre">comp_wptt_vert_canon_positivity</span> <span class="pre">(const</span> <span class="pre">note_wptt_node_t</span> <span class="pre">*vertex,</span> <span class="pre">const</span> <span class="pre">note_wptt_node_t</span> <span class="pre">*parent)</span></span></dt>
+<dd><p>Compute the canonicity of the object vertex against the positivity condition. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vertex</strong> – The object vertex. </p></li>
+<li><p><strong>parent</strong> – The parent vertex. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if canonical false otherwise. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__wptt__vertex__canonicity_8c_1aa2564ebc2a1fddee3e05a53bb89bc21a"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_wptt_vert_canon_config</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv429comp_wptt_vert_canon_config_t" title="comp_wptt_vert_canon_config_t"><span class="n"><span class="pre">comp_wptt_vert_canon_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">config_arg</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>The public configuration function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config_arg</strong> – The config to set. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__wptt__vertex__canonicity_8c_1a935164674f6d155ec05091576e079f5d"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_wptt_vert_canon_compute</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>A public function, calling this executes the computation on the configured tangle. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>uint8_t Generation status info. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__wptt__vertex__canonicity_8c_1a4d5e0ff1d61256ab84dfac69d0643906"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv429comp_wptt_vert_canon_result_t" title="comp_wptt_vert_canon_result_t"><span class="n"><span class="pre">comp_wptt_vert_canon_result_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">comp_wptt_vert_canon_result</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>A public function, calling this retrieves the results of the last computation. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#structcomp__wptt__vert__canon__result__t"><span class="std std-ref">comp_wptt_vert_canon_result_t</span></a> Computation results. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__wptt__vertex__canonicity_8c_1a7673d723592510e7ad583e2769662e2f"></span><span class="sig-name descname"><span class="pre">STATIC_INLINE</span> <span class="pre">bool</span> <span class="pre">comp_wptt_vert_canon_stick_parent</span> <span class="pre">(const</span> <span class="pre">note_wptt_node_t</span> <span class="pre">*parent,</span> <span class="pre">int</span> <span class="pre">active_weight,</span> <span class="pre">size_t</span> <span class="pre">number_of_children)</span></span></dt>
+<dd><p>Check the stick condition of the vertex looking up. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parent</strong> – The parent vertex. </p></li>
+<li><p><strong>active_weight</strong> – The weight carried by the object vertex. </p></li>
+<li><p><strong>number_of_children</strong> – The number of children of the object vertex. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if canonical false otherwise. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__wptt__vertex__canonicity_8c_1afa731098154f75b8d9e2468cba14d278"></span><span class="sig-name descname"><span class="pre">STATIC_INLINE</span> <span class="pre">bool</span> <span class="pre">comp_wptt_vert_canon_stick_child</span> <span class="pre">(const</span> <span class="pre">note_wptt_node_t</span> <span class="pre">*child,</span> <span class="pre">size_t</span> <span class="pre">number_of_children,</span> <span class="pre">int</span> <span class="pre">active_weight)</span></span></dt>
+<dd><p>Check the stick condition of the vertex looking down. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>child</strong> – The child vertex of the object vertex. </p></li>
+<li><p><strong>number_of_children</strong> – The number of children of the object vertex. </p></li>
+<li><p><strong>active_weight</strong> – The weight carried by the object vertex. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if canonical false otherwise. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv429comp_wptt_vert_canon_localcfg">
+<span id="_CPPv329comp_wptt_vert_canon_localcfg"></span><span id="_CPPv229comp_wptt_vert_canon_localcfg"></span><span id="comp_wptt_vert_canon_localcfg__comp_wptt_vert_canon_config_tP"></span><span class="target" id="comp__wptt__vertex__canonicity_8c_1afa974fe3c2baec74d337220bb00dad82"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv429comp_wptt_vert_canon_config_t" title="comp_wptt_vert_canon_config_t"><span class="n"><span class="pre">comp_wptt_vert_canon_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">comp_wptt_vert_canon_localcfg</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">NULL</span></span><a class="headerlink" href="#_CPPv429comp_wptt_vert_canon_localcfg" title="Link to this definition"></a><br /></dt>
+<dd><p>The local configuration of the WPTT vertex canonicity module. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv433comp_wptt_vert_canon_localrestult">
+<span id="_CPPv333comp_wptt_vert_canon_localrestult"></span><span id="_CPPv233comp_wptt_vert_canon_localrestult"></span><span id="comp_wptt_vert_canon_localrestult__comp_wptt_vert_canon_result_t"></span><span class="target" id="comp__wptt__vertex__canonicity_8c_1ab8ffd213b67e2f5ebf657a86f01e0d92"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv429comp_wptt_vert_canon_result_t" title="comp_wptt_vert_canon_result_t"><span class="n"><span class="pre">comp_wptt_vert_canon_result_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_wptt_vert_canon_localrestult</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv433comp_wptt_vert_canon_localrestult" title="Link to this definition"></a><br /></dt>
+<dd><p>The local result of the WPTT vertex canonicity module. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv429comp_wptt_vert_canon_executed">
+<span id="_CPPv329comp_wptt_vert_canon_executed"></span><span id="_CPPv229comp_wptt_vert_canon_executed"></span><span id="comp_wptt_vert_canon_executed__b"></span><span class="target" id="comp__wptt__vertex__canonicity_8c_1acf78657e5017fcd5c0c9ba046ff565a4"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_wptt_vert_canon_executed</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv429comp_wptt_vert_canon_executed" title="Link to this definition"></a><br /></dt>
+<dd><p>The local computation status of the WPTT vertex canonicity module. </p>
+</dd></dl>
+
+</div>
+</section>
+<section id="bibliography">
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading"></a></h2>
+<span class="target" id="id8"></span></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="use-case.html" class="btn btn-neutral float-left" title="Use Case" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../gen-montesinos/index.html" class="btn btn-neutral float-right" title="Generator Montesinos Tangles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, temp.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

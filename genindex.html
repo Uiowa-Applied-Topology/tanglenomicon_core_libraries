@@ -1,0 +1,881 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Index &mdash; Tanglenomicon Core Libraries 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+      <script type="module">mermaid.initialize({
+  securityLevel: 'loose',
+  theme: 'dark',
+});</script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+const load = async () => {
+    await mermaid.run();
+    const all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+    if(mermaids_to_add_zoom > 0) {
+        var svgs = d3.selectAll(".mermaid svg");
+        if(all_mermaids.length !== mermaids_processed.length) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else if(svgs.size() !== mermaids_to_add_zoom) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else {
+            svgs.each(function() {
+                var svg = d3.select(this);
+                svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                var inner = svg.select("g");
+                var zoom = d3.zoom().on("zoom", function(event) {
+                    inner.attr("transform", event.transform);
+                });
+                svg.call(zoom);
+            });
+        }
+    }
+};
+
+window.addEventListener("load", load);
+</script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                macros: {
+                    "\\N": "\\mathbb{N}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\Q": "\\mathbb{Q}",
+                    "\\R": "\\mathbb{R}",
+                    "\\LN": "\\left.",
+                    "\\RN": "\\right.",
+                    "\\LP": "\\left(",
+                    "\\RP": "\\right)",
+                    "\\LS": "\\left\\lbrace",
+                    "\\RS": "\\right\\rbrace",
+                    "\\LA": "\\left\\langle",
+                    "\\RA": "\\right\\rangle",
+                    "\\LB": "\\left[",
+                    "\\RB": "\\right]",
+                    "\\MM": "\\ \\middle|\\ ",
+                    "\\exp": "\\text{exp}",
+                    "\\abs": "\\left\\vert#1\\right\\vert",
+                    "\\msr": "m\\left(#1\\right)",
+                    "\\inv": " #1^{-1}",
+                    "\\bkt": "\\LA \\img{ #1}\\RA",
+                }
+            }
+        );
+    });
+</script>
+
+
+<style>
+
+</style>
+ 
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Tanglenomicon Core Libraries
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="interface/index.html">Generic Interfaces</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="_collections/comp-rational_data/index.html">Computation Rational Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/comp-rlitt_grafting/index.html">Computation Right Leaning Identity Tangle Tree Grafting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/comp-rlitt_positivity/index.html">Computation Right Leaning Identity Tangle Tree Positivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/comp-wptt_vertex_canonicity/index.html">Computation Weighted Planar Tangle Tree Vertex Canonicity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/gen-montesinos/index.html">Generator Montesinos Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/gen-rational/index.html">Generator Rational Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/gen-rlitt/index.html">Generator Right Leaning Identity Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/note-twist_vector/index.html">Notation Twist Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/note-wptt/index.html">Notation Weighted Planar Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/store-cpp_storage_interface/index.html">Storage C++ Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/store-json/index.html">Storage JSON</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Tanglenomicon Core Libraries</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Index</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ 
+</div>
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv421char_handler_funptr_t">char_handler_funptr_t (C++ type)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv415child_idx_stack">child_idx_stack (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#c.COMP_RATIONAL_DAT_CONFIG_BUFFER">COMP_RATIONAL_DAT_CONFIG_BUFFER (C macro)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#c.COMP_RATIONAL_DAT_CONFIG_IS_NULL">COMP_RATIONAL_DAT_CONFIG_IS_NULL (C macro)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#c.COMP_RATIONAL_DAT_CONFIG_STR_BUFFER">COMP_RATIONAL_DAT_CONFIG_STR_BUFFER (C macro)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#c.COMP_RATIONAL_DAT_STORAGE_UKEY">COMP_RATIONAL_DAT_STORAGE_UKEY (C macro)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv425comp_rational_data_alg_eq8uint16_t8uint16_t">comp_rational_data_alg_eq (C++ function)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv426comp_rational_data_computev">comp_rational_data_compute (C++ function)</a>, <a href="_collections/comp-rational_data/unit-description.html#_CPPv426comp_rational_data_computev">[1]</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv425comp_rational_data_configP27comp_rational_data_config_t">comp_rational_data_config (C++ function)</a>, <a href="_collections/comp-rational_data/unit-description.html#_CPPv425comp_rational_data_configP27comp_rational_data_config_t">[1]</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv427comp_rational_data_config_t">comp_rational_data_config_t (C++ struct)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv4N27comp_rational_data_config_t13storage_writeE">comp_rational_data_config_t::storage_write (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv4N27comp_rational_data_config_t4tv_nE">comp_rational_data_config_t::tv_n (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv4N27comp_rational_data_config_t11tv_str_buffE">comp_rational_data_config_t::tv_str_buff (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv4N27comp_rational_data_config_t15tv_str_buff_lenE">comp_rational_data_config_t::tv_str_buff_len (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv427comp_rational_data_executed">comp_rational_data_executed (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv427comp_rational_data_localcfg">comp_rational_data_localcfg (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv431comp_rational_data_localrestult">comp_rational_data_localrestult (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv425comp_rational_data_parity8uint16_t8uint16_t">comp_rational_data_parity (C++ function)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv426comp_rational_data_rat_numP8uint16_tP8uint16_t">comp_rational_data_rat_num (C++ function)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv425comp_rational_data_resultv">comp_rational_data_result (C++ function)</a>, <a href="_collections/comp-rational_data/unit-description.html#_CPPv425comp_rational_data_resultv">[1]</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv427comp_rational_data_result_t">comp_rational_data_result_t (C++ struct)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv4N27comp_rational_data_result_t17den_algebraic_equE">comp_rational_data_result_t::den_algebraic_equ (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv4N27comp_rational_data_result_t11denominatorE">comp_rational_data_result_t::denominator (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv4N27comp_rational_data_result_t17num_algebraic_equE">comp_rational_data_result_t::num_algebraic_equ (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv4N27comp_rational_data_result_t9numeratorE">comp_rational_data_result_t::numerator (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv4N27comp_rational_data_result_t6parityE">comp_rational_data_result_t::parity (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv431comp_rational_data_write_alg_eq8uint16_t8uint16_t">comp_rational_data_write_alg_eq (C++ function)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv431comp_rational_data_write_parityPc">comp_rational_data_write_parity (C++ function)</a>
+</li>
+      <li><a href="_collections/comp-rational_data/unit-description.html#_CPPv432comp_rational_data_write_rat_num8uint16_t8uint16_t">comp_rational_data_write_rat_num (C++ function)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv427comp_rlitt_grafting_computev">comp_rlitt_grafting_compute (C++ function)</a>, <a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv427comp_rlitt_grafting_computev">[1]</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#c.COMP_RLITT_GRAFTING_COMPUTE_ALREADY_COMPUTED">COMP_RLITT_GRAFTING_COMPUTE_ALREADY_COMPUTED (C macro)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#c.COMP_RLITT_GRAFTING_COMPUTE_CFG_ERROR">COMP_RLITT_GRAFTING_COMPUTE_CFG_ERROR (C macro)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#c.COMP_RLITT_GRAFTING_COMPUTE_COPYERROR">COMP_RLITT_GRAFTING_COMPUTE_COPYERROR (C macro)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#c.COMP_RLITT_GRAFTING_COMPUTE_GRAFTING_RLITT">COMP_RLITT_GRAFTING_COMPUTE_GRAFTING_RLITT (C macro)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#c.COMP_RLITT_GRAFTING_COMPUTE_ROOTSTOCK">COMP_RLITT_GRAFTING_COMPUTE_ROOTSTOCK (C macro)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv426comp_rlitt_grafting_configP28comp_rlitt_grafting_config_t">comp_rlitt_grafting_config (C++ function)</a>, <a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv426comp_rlitt_grafting_configP28comp_rlitt_grafting_config_t">[1]</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#c.COMP_RLITT_GRAFTING_CONFIG_BUFFER">COMP_RLITT_GRAFTING_CONFIG_BUFFER (C macro)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#c.COMP_RLITT_GRAFTING_CONFIG_IS_NULL">COMP_RLITT_GRAFTING_CONFIG_IS_NULL (C macro)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#c.COMP_RLITT_GRAFTING_CONFIG_ROOTSTOCK">COMP_RLITT_GRAFTING_CONFIG_ROOTSTOCK (C macro)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#c.COMP_RLITT_GRAFTING_CONFIG_SCION">COMP_RLITT_GRAFTING_CONFIG_SCION (C macro)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv428comp_rlitt_grafting_config_t">comp_rlitt_grafting_config_t (C++ struct)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv4N28comp_rlitt_grafting_config_t11output_wpttE">comp_rlitt_grafting_config_t::output_wptt (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv4N28comp_rlitt_grafting_config_t18rlitt_grafting_idxE">comp_rlitt_grafting_config_t::rlitt_grafting_idx (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv4N28comp_rlitt_grafting_config_t9rootstockE">comp_rlitt_grafting_config_t::rootstock (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv4N28comp_rlitt_grafting_config_t5scionE">comp_rlitt_grafting_config_t::scion (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv4N28comp_rlitt_grafting_config_t13storage_writeE">comp_rlitt_grafting_config_t::storage_write (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv429comp_rlitt_grafting_copy_treePK11note_wptt_t">comp_rlitt_grafting_copy_tree (C++ function)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv428comp_rlitt_grafting_executed">comp_rlitt_grafting_executed (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv425comp_rlitt_grafting_graftP16note_wptt_node_t">comp_rlitt_grafting_graft (C++ function)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv428comp_rlitt_grafting_localcfg">comp_rlitt_grafting_localcfg (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv430comp_rlitt_grafting_localnodes">comp_rlitt_grafting_localnodes (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv432comp_rlitt_grafting_localrestult">comp_rlitt_grafting_localrestult (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv431comp_rlitt_grafting_nodes_count">comp_rlitt_grafting_nodes_count (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv429comp_rlitt_grafting_nodes_idx">comp_rlitt_grafting_nodes_idx (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv426comp_rlitt_grafting_resultv">comp_rlitt_grafting_result (C++ function)</a>, <a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv426comp_rlitt_grafting_resultv">[1]</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv428comp_rlitt_grafting_result_t">comp_rlitt_grafting_result_t (C++ struct)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#_CPPv4N28comp_rlitt_grafting_result_t12grafted_wpttE">comp_rlitt_grafting_result_t::grafted_wptt (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_grafting/unit-description.html#c.COMP_RLITT_GRAFTING_STACK_SIZE">COMP_RLITT_GRAFTING_STACK_SIZE (C macro)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv429comp_rlitt_positivity_computev">comp_rlitt_positivity_compute (C++ function)</a>, <a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv429comp_rlitt_positivity_computev">[1]</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#c.COMP_RLITT_POSITIVITY_COMPUTE_ALREADY_COMPUTED">COMP_RLITT_POSITIVITY_COMPUTE_ALREADY_COMPUTED (C macro)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#c.COMP_RLITT_POSITIVITY_COMPUTE_CFG_ERROR">COMP_RLITT_POSITIVITY_COMPUTE_CFG_ERROR (C macro)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv428comp_rlitt_positivity_configP30comp_rlitt_positivity_config_t">comp_rlitt_positivity_config (C++ function)</a>, <a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv428comp_rlitt_positivity_configP30comp_rlitt_positivity_config_t">[1]</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#c.COMP_RLITT_POSITIVITY_CONFIG_IS_NULL">COMP_RLITT_POSITIVITY_CONFIG_IS_NULL (C macro)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#c.COMP_RLITT_POSITIVITY_CONFIG_NULLTREE">COMP_RLITT_POSITIVITY_CONFIG_NULLTREE (C macro)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#c.COMP_RLITT_POSITIVITY_CONFIG_SCION">COMP_RLITT_POSITIVITY_CONFIG_SCION (C macro)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv430comp_rlitt_positivity_config_t">comp_rlitt_positivity_config_t (C++ struct)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv4N30comp_rlitt_positivity_config_t13storage_writeE">comp_rlitt_positivity_config_t::storage_write (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv4N30comp_rlitt_positivity_config_t4wpttE">comp_rlitt_positivity_config_t::wptt (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv430comp_rlitt_positivity_executed">comp_rlitt_positivity_executed (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv429comp_rlitt_positivity_flvrs_e">comp_rlitt_positivity_flvrs_e (C++ enum)</a>
+
+      <ul>
+        <li><a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv429comp_rlitt_positivity_flvrs_e">(C++ type)</a>
+</li>
+      </ul></li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv4N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_NEGE">comp_rlitt_positivity_flvrs_e::COMP_RLITT_POSITIVITY_FLVR_NEG (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv4N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_NEUE">comp_rlitt_positivity_flvrs_e::COMP_RLITT_POSITIVITY_FLVR_NEU (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv4N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_POSE">comp_rlitt_positivity_flvrs_e::COMP_RLITT_POSITIVITY_FLVR_POS (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv4N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_UNDE">comp_rlitt_positivity_flvrs_e::COMP_RLITT_POSITIVITY_FLVR_UND (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv4N29comp_rlitt_positivity_flvrs_e33COMP_RLITT_POSITIVITY_FLVR_UNINITE">comp_rlitt_positivity_flvrs_e::COMP_RLITT_POSITIVITY_FLVR_UNINIT (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv430comp_rlitt_positivity_localcfg">comp_rlitt_positivity_localcfg (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv434comp_rlitt_positivity_localrestult">comp_rlitt_positivity_localrestult (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv428comp_rlitt_positivity_resultv">comp_rlitt_positivity_result (C++ function)</a>, <a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv428comp_rlitt_positivity_resultv">[1]</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv430comp_rlitt_positivity_result_t">comp_rlitt_positivity_result_t (C++ struct)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv4N30comp_rlitt_positivity_result_t10positivityE">comp_rlitt_positivity_result_t::positivity (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#c.COMP_RLITT_POSITIVITY_STACK_SIZE">COMP_RLITT_POSITIVITY_STACK_SIZE (C macro)</a>
+</li>
+      <li><a href="_collections/comp-rlitt_positivity/unit-description.html#_CPPv431comp_rlitt_positivity_walk_treePK11note_wptt_t">comp_rlitt_positivity_walk_tree (C++ function)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv428comp_wptt_vert_canon_canon_e">comp_wptt_vert_canon_canon_e (C++ enum)</a>
+
+      <ul>
+        <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv428comp_wptt_vert_canon_canon_e">(C++ type)</a>
+</li>
+      </ul></li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv4N28comp_wptt_vert_canon_canon_e31COMP_WPTT_VERT_CANON_CAN_UNINITE">comp_wptt_vert_canon_canon_e::COMP_WPTT_VERT_CANON_CAN_UNINIT (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv4N28comp_wptt_vert_canon_canon_e33COMP_WPTT_VERT_CANON_IS_CANONICALE">comp_wptt_vert_canon_canon_e::COMP_WPTT_VERT_CANON_IS_CANONICAL (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv4N28comp_wptt_vert_canon_canon_e36COMP_WPTT_VERT_CANON_IS_NONCANONICALE">comp_wptt_vert_canon_canon_e::COMP_WPTT_VERT_CANON_IS_NONCANONICAL (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv428comp_wptt_vert_canon_computev">comp_wptt_vert_canon_compute (C++ function)</a>, <a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv428comp_wptt_vert_canon_computev">[1]</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#c.COMP_WPTT_VERT_CANON_COMPUTE_ALREADY_COMPUTED">COMP_WPTT_VERT_CANON_COMPUTE_ALREADY_COMPUTED (C macro)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#c.COMP_WPTT_VERT_CANON_COMPUTE_CFG_ERROR">COMP_WPTT_VERT_CANON_COMPUTE_CFG_ERROR (C macro)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv427comp_wptt_vert_canon_configP29comp_wptt_vert_canon_config_t">comp_wptt_vert_canon_config (C++ function)</a>, <a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv427comp_wptt_vert_canon_configP29comp_wptt_vert_canon_config_t">[1]</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#c.COMP_WPTT_VERT_CANON_CONFIG_IS_NULL">COMP_WPTT_VERT_CANON_CONFIG_IS_NULL (C macro)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#c.COMP_WPTT_VERT_CANON_CONFIG_PARAM">COMP_WPTT_VERT_CANON_CONFIG_PARAM (C macro)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv429comp_wptt_vert_canon_config_t">comp_wptt_vert_canon_config_t (C++ struct)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv4N29comp_wptt_vert_canon_config_t6parentE">comp_wptt_vert_canon_config_t::parent (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv4N29comp_wptt_vert_canon_config_t14parent_is_rootE">comp_wptt_vert_canon_config_t::parent_is_root (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv4N29comp_wptt_vert_canon_config_t10positivityE">comp_wptt_vert_canon_config_t::positivity (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv4N29comp_wptt_vert_canon_config_t13storage_writeE">comp_wptt_vert_canon_config_t::storage_write (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv4N29comp_wptt_vert_canon_config_t6vertexE">comp_wptt_vert_canon_config_t::vertex (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv4N29comp_wptt_vert_canon_config_t4wpttE">comp_wptt_vert_canon_config_t::wptt (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv429comp_wptt_vert_canon_executed">comp_wptt_vert_canon_executed (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv429comp_wptt_vert_canon_localcfg">comp_wptt_vert_canon_localcfg (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv433comp_wptt_vert_canon_localrestult">comp_wptt_vert_canon_localrestult (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv433comp_wptt_vert_canon_positivity_e">comp_wptt_vert_canon_positivity_e (C++ enum)</a>
+
+      <ul>
+        <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv433comp_wptt_vert_canon_positivity_e">(C++ type)</a>
+</li>
+      </ul></li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv4N33comp_wptt_vert_canon_positivity_e28COMP_WPTT_VERT_CANON_POS_NEGE">comp_wptt_vert_canon_positivity_e::COMP_WPTT_VERT_CANON_POS_NEG (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv4N33comp_wptt_vert_canon_positivity_e28COMP_WPTT_VERT_CANON_POS_POSE">comp_wptt_vert_canon_positivity_e::COMP_WPTT_VERT_CANON_POS_POS (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv4N33comp_wptt_vert_canon_positivity_e31COMP_WPTT_VERT_CANON_POS_UNINITE">comp_wptt_vert_canon_positivity_e::COMP_WPTT_VERT_CANON_POS_UNINIT (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv427comp_wptt_vert_canon_resultv">comp_wptt_vert_canon_result (C++ function)</a>, <a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv427comp_wptt_vert_canon_resultv">[1]</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv429comp_wptt_vert_canon_result_t">comp_wptt_vert_canon_result_t (C++ struct)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#_CPPv4N29comp_wptt_vert_canon_result_t12is_canonicalE">comp_wptt_vert_canon_result_t::is_canonical (C++ member)</a>
+</li>
+      <li><a href="_collections/comp-wptt_vertex_canonicity/unit-description.html#c.COMP_WPTT_VERT_CANON_STACK_SIZE">COMP_WPTT_VERT_CANON_STACK_SIZE (C macro)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv413decode_buffer">decode_buffer (C++ member)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_collections/gen-montesinos/unit-description.html#_CPPv421gen_montesinos_configP23gen_montesinos_config_t">gen_montesinos_config (C++ function)</a>, <a href="_collections/gen-montesinos/unit-description.html#_CPPv421gen_montesinos_configP23gen_montesinos_config_t">[1]</a>
+</li>
+      <li><a href="_collections/gen-montesinos/unit-description.html#c.GEN_MONTESINOS_CONFIG_BUFFER">GEN_MONTESINOS_CONFIG_BUFFER (C macro)</a>
+</li>
+      <li><a href="_collections/gen-montesinos/unit-description.html#c.GEN_MONTESINOS_CONFIG_IS_NULL">GEN_MONTESINOS_CONFIG_IS_NULL (C macro)</a>
+</li>
+      <li><a href="_collections/gen-montesinos/unit-description.html#c.GEN_MONTESINOS_CONFIG_STR_BUFFER">GEN_MONTESINOS_CONFIG_STR_BUFFER (C macro)</a>
+</li>
+      <li><a href="_collections/gen-montesinos/unit-description.html#_CPPv423gen_montesinos_config_t">gen_montesinos_config_t (C++ struct)</a>
+</li>
+      <li><a href="_collections/gen-montesinos/unit-description.html#_CPPv4N23gen_montesinos_config_t5att_nE">gen_montesinos_config_t::att_n (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-montesinos/unit-description.html#_CPPv4N23gen_montesinos_config_t13storage_writeE">gen_montesinos_config_t::storage_write (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-montesinos/unit-description.html#_CPPv4N23gen_montesinos_config_t8str_buffE">gen_montesinos_config_t::str_buff (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-montesinos/unit-description.html#_CPPv4N23gen_montesinos_config_t12str_buff_lenE">gen_montesinos_config_t::str_buff_len (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-montesinos/unit-description.html#_CPPv4N23gen_montesinos_config_t11tv_set_lensE">gen_montesinos_config_t::tv_set_lens (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-montesinos/unit-description.html#_CPPv4N23gen_montesinos_config_t7tv_setsE">gen_montesinos_config_t::tv_sets (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-montesinos/unit-description.html#_CPPv4N23gen_montesinos_config_t11tv_sets_lenE">gen_montesinos_config_t::tv_sets_len (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-montesinos/unit-description.html#_CPPv423gen_montesinos_generatev">gen_montesinos_generate (C++ function)</a>, <a href="_collections/gen-montesinos/unit-description.html#_CPPv423gen_montesinos_generatev">[1]</a>
+</li>
+      <li><a href="_collections/gen-montesinos/unit-description.html#_CPPv423gen_montesinos_localcfg">gen_montesinos_localcfg (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-montesinos/unit-description.html#_CPPv428gen_montesinos_process_listsv">gen_montesinos_process_lists (C++ function)</a>
+</li>
+      <li><a href="_collections/gen-montesinos/unit-description.html#_CPPv433gen_montesinos_process_loop_statePK6size_t">gen_montesinos_process_loop_state (C++ function)</a>
+</li>
+      <li><a href="_collections/gen-montesinos/unit-description.html#c.GEN_MONTESINOS_STORAGE_UKEY">GEN_MONTESINOS_STORAGE_UKEY (C macro)</a>
+</li>
+      <li><a href="_collections/gen-rational/unit-description.html#c.GEN_RATIONAL_COMBINATION_FAIL">GEN_RATIONAL_COMBINATION_FAIL (C macro)</a>
+</li>
+      <li><a href="_collections/gen-rational/unit-description.html#_CPPv419gen_rational_configP21gen_rational_config_t">gen_rational_config (C++ function)</a>, <a href="_collections/gen-rational/unit-description.html#_CPPv419gen_rational_configP21gen_rational_config_t">[1]</a>
+</li>
+      <li><a href="_collections/gen-rational/unit-description.html#c.GEN_RATIONAL_CONFIG_BUFFER">GEN_RATIONAL_CONFIG_BUFFER (C macro)</a>
+</li>
+      <li><a href="_collections/gen-rational/unit-description.html#c.GEN_RATIONAL_CONFIG_IS_NULL">GEN_RATIONAL_CONFIG_IS_NULL (C macro)</a>
+</li>
+      <li><a href="_collections/gen-rational/unit-description.html#c.GEN_RATIONAL_CONFIG_STR_BUFFER">GEN_RATIONAL_CONFIG_STR_BUFFER (C macro)</a>
+</li>
+      <li><a href="_collections/gen-rational/unit-description.html#_CPPv421gen_rational_config_t">gen_rational_config_t (C++ struct)</a>
+</li>
+      <li><a href="_collections/gen-rational/unit-description.html#_CPPv4N21gen_rational_config_t14crossingNumberE">gen_rational_config_t::crossingNumber (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-rational/unit-description.html#_CPPv4N21gen_rational_config_t13storage_writeE">gen_rational_config_t::storage_write (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-rational/unit-description.html#_CPPv4N21gen_rational_config_t4tv_nE">gen_rational_config_t::tv_n (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-rational/unit-description.html#_CPPv4N21gen_rational_config_t11tv_str_buffE">gen_rational_config_t::tv_str_buff (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-rational/unit-description.html#_CPPv4N21gen_rational_config_t15tv_str_buff_lenE">gen_rational_config_t::tv_str_buff_len (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-rational/unit-description.html#_CPPv433gen_rational_evenperm_shift_writev">gen_rational_evenperm_shift_write (C++ function)</a>
+</li>
+      <li><a href="_collections/gen-rational/unit-description.html#_CPPv421gen_rational_generatev">gen_rational_generate (C++ function)</a>, <a href="_collections/gen-rational/unit-description.html#_CPPv421gen_rational_generatev">[1]</a>
+</li>
+      <li><a href="_collections/gen-rational/unit-description.html#_CPPv421gen_rational_localcfg">gen_rational_localcfg (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-rational/unit-description.html#c.GEN_RATIONAL_PERM_FUNS_LEN">GEN_RATIONAL_PERM_FUNS_LEN (C macro)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_collections/gen-rational/unit-description.html#_CPPv426gen_rational_proc_template7uint8_t">gen_rational_proc_template (C++ function)</a>
+</li>
+      <li><a href="_collections/gen-rational/unit-description.html#c.GEN_RATIONAL_STORAGE_UKEY">GEN_RATIONAL_STORAGE_UKEY (C macro)</a>
+</li>
+      <li><a href="_collections/gen-rational/unit-description.html#_CPPv418gen_rational_writev">gen_rational_write (C++ function)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#_CPPv416gen_rlitt_configP18gen_rlitt_config_t">gen_rlitt_config (C++ function)</a>, <a href="_collections/gen-rlitt/unit-description.html#_CPPv416gen_rlitt_configP18gen_rlitt_config_t">[1]</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#c.GEN_RLITT_CONFIG_IS_NULL">GEN_RLITT_CONFIG_IS_NULL (C macro)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#c.GEN_RLITT_CONFIG_ROOTSTOCKS_ERROR">GEN_RLITT_CONFIG_ROOTSTOCKS_ERROR (C macro)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#c.GEN_RLITT_CONFIG_SCIONS_ERROR">GEN_RLITT_CONFIG_SCIONS_ERROR (C macro)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#_CPPv418gen_rlitt_config_t">gen_rlitt_config_t (C++ struct)</a>
+
+      <ul>
+        <li><a href="_collections/gen-rlitt/unit-description.html#_CPPv418gen_rlitt_config_t">(C++ type)</a>
+</li>
+      </ul></li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#_CPPv4N18gen_rlitt_config_t10rootstocksE">gen_rlitt_config_t::rootstocks (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#_CPPv4N18gen_rlitt_config_t14rootstocks_lenE">gen_rlitt_config_t::rootstocks_len (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#_CPPv4N18gen_rlitt_config_t6scionsE">gen_rlitt_config_t::scions (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#_CPPv4N18gen_rlitt_config_t10scions_lenE">gen_rlitt_config_t::scions_len (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#_CPPv4N18gen_rlitt_config_t13storage_writeE">gen_rlitt_config_t::storage_write (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#_CPPv418gen_rlitt_executed">gen_rlitt_executed (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#_CPPv418gen_rlitt_generatev">gen_rlitt_generate (C++ function)</a>, <a href="_collections/gen-rlitt/unit-description.html#_CPPv418gen_rlitt_generatev">[1]</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#c.GEN_RLITT_GENERATE_ALREADY_COMPUTED">GEN_RLITT_GENERATE_ALREADY_COMPUTED (C macro)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#c.GEN_RLITT_GENERATE_CFG_ERROR">GEN_RLITT_GENERATE_CFG_ERROR (C macro)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#c.GEN_RLITT_GENERATE_GRAFTING">GEN_RLITT_GENERATE_GRAFTING (C macro)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#c.GEN_RLITT_GENERATE_NEUTRALITY">GEN_RLITT_GENERATE_NEUTRALITY (C macro)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#c.GEN_RLITT_GENERATE_PRINT_ERROR">GEN_RLITT_GENERATE_PRINT_ERROR (C macro)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#c.GEN_RLITT_GENERATE_ROOTSTOCK">GEN_RLITT_GENERATE_ROOTSTOCK (C macro)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#c.GEN_RLITT_GENERATE_SCION">GEN_RLITT_GENERATE_SCION (C macro)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#c.GEN_RLITT_GENERATE_SHIFT">GEN_RLITT_GENERATE_SHIFT (C macro)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#_CPPv426gen_rlitt_grafting_handler6size_t6size_t">gen_rlitt_grafting_handler (C++ function)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#_CPPv418gen_rlitt_localcfg">gen_rlitt_localcfg (C++ member)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#_CPPv422gen_rlitt_positivity_e">gen_rlitt_positivity_e (C++ enum)</a>
+
+      <ul>
+        <li><a href="_collections/gen-rlitt/unit-description.html#_CPPv422gen_rlitt_positivity_e">(C++ type)</a>
+</li>
+      </ul></li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#_CPPv4N22gen_rlitt_positivity_e13GEN_RLITT_NEGE">gen_rlitt_positivity_e::GEN_RLITT_NEG (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#_CPPv4N22gen_rlitt_positivity_e13GEN_RLITT_NEUE">gen_rlitt_positivity_e::GEN_RLITT_NEU (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#_CPPv4N22gen_rlitt_positivity_e13GEN_RLITT_POSE">gen_rlitt_positivity_e::GEN_RLITT_POS (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#_CPPv4N22gen_rlitt_positivity_e16GEN_RLITT_UNINITE">gen_rlitt_positivity_e::GEN_RLITT_UNINIT (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/gen-rlitt/unit-description.html#_CPPv422gen_rlitt_store_tanglePK11note_wptt_tPK11note_wptt_tPK11note_wptt_tPKc">gen_rlitt_store_tangle (C++ function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#c.MUT_RLITT_RINGSHIFT_COMPUTE_ALREADY_COMPUTED">MUT_RLITT_RINGSHIFT_COMPUTE_ALREADY_COMPUTED (C macro)</a>
+</li>
+      <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#c.MUT_RLITT_RINGSHIFT_COMPUTE_CFG_ERROR">MUT_RLITT_RINGSHIFT_COMPUTE_CFG_ERROR (C macro)</a>
+</li>
+      <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#_CPPv426mut_rlitt_ringshift_configP28mut_rlitt_ringshift_config_t">mut_rlitt_ringshift_config (C++ function)</a>, <a href="_collections/mut-rlitt_ringshift/unit-description.html#_CPPv426mut_rlitt_ringshift_configP28mut_rlitt_ringshift_config_t">[1]</a>
+</li>
+      <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#c.MUT_RLITT_RINGSHIFT_CONFIG_IS_NULL">MUT_RLITT_RINGSHIFT_CONFIG_IS_NULL (C macro)</a>
+</li>
+      <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#_CPPv428mut_rlitt_ringshift_config_t">mut_rlitt_ringshift_config_t (C++ struct)</a>
+</li>
+      <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#_CPPv4N28mut_rlitt_ringshift_config_t4wpttE">mut_rlitt_ringshift_config_t::wptt (C++ member)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#c.MUT_RLITT_RINGSHIFT_CONFIG_WPTT">MUT_RLITT_RINGSHIFT_CONFIG_WPTT (C macro)</a>
+</li>
+      <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#_CPPv428mut_rlitt_ringshift_executed">mut_rlitt_ringshift_executed (C++ member)</a>
+</li>
+      <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#_CPPv428mut_rlitt_ringshift_localcfg">mut_rlitt_ringshift_localcfg (C++ member)</a>
+</li>
+      <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#_CPPv430mut_rlitt_ringshift_localnodes">mut_rlitt_ringshift_localnodes (C++ member)</a>
+</li>
+      <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#_CPPv426mut_rlitt_ringshift_mutatev">mut_rlitt_ringshift_mutate (C++ function)</a>, <a href="_collections/mut-rlitt_ringshift/unit-description.html#_CPPv426mut_rlitt_ringshift_mutatev">[1]</a>
+</li>
+      <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#_CPPv434mut_rlitt_ringshift_ringshift_treeP11note_wptt_t">mut_rlitt_ringshift_ringshift_tree (C++ function)</a>
+</li>
+      <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#c.MUT_RLITT_RINGSHIFT_STACK_SIZE">MUT_RLITT_RINGSHIFT_STACK_SIZE (C macro)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv415note_att_add_tvPK9note_tv_tPc6size_t">note_att_add_tv (C++ function)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#c.NOTE_ATT_CHK_OP">NOTE_ATT_CHK_OP (C macro)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#c.NOTE_ATT_CLR_OP">NOTE_ATT_CLR_OP (C macro)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv415note_att_decodePcP10note_att_t">note_att_decode (C++ function)</a>, <a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv415note_att_decodePcP10note_att_t">[1]</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv415note_att_encode10note_att_tPc6size_t">note_att_encode (C++ function)</a>, <a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv415note_att_encode10note_att_tPc6size_t">[1]</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv415note_att_node_t">note_att_node_t (C++ struct)</a>
+
+      <ul>
+        <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv415note_att_node_t">(C++ type)</a>
+</li>
+      </ul></li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv4N15note_att_node_t7L_childE">note_att_node_t::L_child (C++ member)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv4N15note_att_node_t4L_tvE">note_att_node_t::L_tv (C++ member)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv4N15note_att_node_t9operationE">note_att_node_t::operation (C++ member)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv4N15note_att_node_t7R_childE">note_att_node_t::R_child (C++ member)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv4N15note_att_node_t4R_tvE">note_att_node_t::R_tv (C++ member)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#c.NOTE_ATT_OP_PLUS">NOTE_ATT_OP_PLUS (C macro)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#c.NOTE_ATT_OP_SHIFT_LEN">NOTE_ATT_OP_SHIFT_LEN (C macro)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#c.NOTE_ATT_OP_UNINIT">NOTE_ATT_OP_UNINIT (C macro)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#c.NOTE_ATT_OP_VEE">NOTE_ATT_OP_VEE (C macro)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv419note_att_process_tvPKcP10note_att_t">note_att_process_tv (C++ function)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#c.NOTE_ATT_SET_OP">NOTE_ATT_SET_OP (C macro)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv416note_att_str_idx">note_att_str_idx (C++ member)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv410note_att_t">note_att_t (C++ struct)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv4N10note_att_t11node_bufferE">note_att_t::node_buffer (C++ member)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv4N10note_att_t15node_buffer_lenE">note_att_t::node_buffer_len (C++ member)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv4N10note_att_t4rootE">note_att_t::root (C++ member)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv4N10note_att_t9tv_bufferE">note_att_t::tv_buffer (C++ member)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv4N10note_att_t13tv_buffer_lenE">note_att_t::tv_buffer_len (C++ member)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv417note_att_traverseP15note_att_node_tPc6size_t">note_att_traverse (C++ function)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#c.NOTE_ATT_TRAVERSE_FAIL">NOTE_ATT_TRAVERSE_FAIL (C macro)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv424note_att_traverse_stringP10note_att_tP15note_att_node_tPc6size_t">note_att_traverse_string (C++ function)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#c.NOTE_ATT_TRAVERSE_SUCCESS">NOTE_ATT_TRAVERSE_SUCCESS (C macro)</a>
+</li>
+      <li><a href="_collections/note-algebraic_tangle_tree/unit-description.html#_CPPv415note_att_tv_idx">note_att_tv_idx (C++ member)</a>
+</li>
+      <li><a href="_collections/note-twist_vector/unit-description.html#_CPPv414note_tv_decodePcP9note_tv_t">note_tv_decode (C++ function)</a>, <a href="_collections/note-twist_vector/unit-description.html#_CPPv414note_tv_decodePcP9note_tv_t">[1]</a>
+</li>
+      <li><a href="_collections/note-twist_vector/unit-description.html#_CPPv414note_tv_encode9note_tv_tPc6size_t">note_tv_encode (C++ function)</a>, <a href="_collections/note-twist_vector/unit-description.html#_CPPv414note_tv_encode9note_tv_tPc6size_t">[1]</a>
+</li>
+      <li><a href="_collections/note-twist_vector/unit-description.html#c.NOTE_TV_INT_BASE">NOTE_TV_INT_BASE (C macro)</a>
+</li>
+      <li><a href="_collections/note-twist_vector/unit-description.html#_CPPv49note_tv_t">note_tv_t (C++ struct)</a>
+</li>
+      <li><a href="_collections/note-twist_vector/unit-description.html#_CPPv4N9note_tv_t9tv_lengthE">note_tv_t::tv_length (C++ member)</a>
+</li>
+      <li><a href="_collections/note-twist_vector/unit-description.html#_CPPv4N9note_tv_t12twist_vectorE">note_tv_t::twist_vector (C++ member)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv416note_wptt_decodePcP11note_wptt_t">note_wptt_decode (C++ function)</a>, <a href="_collections/note-wptt/unit-description.html#_CPPv416note_wptt_decodePcP11note_wptt_t">[1]</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv426note_wptt_decode_add_childv">note_wptt_decode_add_child (C++ function)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#c.NOTE_WPTT_DECODE_BAD_STR">NOTE_WPTT_DECODE_BAD_STR (C macro)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#c.NOTE_WPTT_DECODE_BUFFER_ERROR">NOTE_WPTT_DECODE_BUFFER_ERROR (C macro)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv427note_wptt_decode_char_dic_t">note_wptt_decode_char_dic_t (C++ struct)</a>
+
+      <ul>
+        <li><a href="_collections/note-wptt/unit-description.html#_CPPv427note_wptt_decode_char_dic_t">(C++ type)</a>
+</li>
+      </ul></li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N27note_wptt_decode_char_dic_t10char_classE">note_wptt_decode_char_dic_t::char_class (C++ member)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N27note_wptt_decode_char_dic_t6funptrE">note_wptt_decode_char_dic_t::funptr (C++ member)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv428note_wptt_decode_cls_handlerPPc">note_wptt_decode_cls_handler (C++ function)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#c.NOTE_WPTT_DECODE_DICT_SIZE">NOTE_WPTT_DECODE_DICT_SIZE (C macro)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#c.NOTE_WPTT_DECODE_EMPTY_STR">NOTE_WPTT_DECODE_EMPTY_STR (C macro)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#c.NOTE_WPTT_DECODE_MAX_CHILDREN">NOTE_WPTT_DECODE_MAX_CHILDREN (C macro)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#c.NOTE_WPTT_DECODE_MAX_WEIGHTS">NOTE_WPTT_DECODE_MAX_WEIGHTS (C macro)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#c.NOTE_WPTT_DECODE_NULL_DEST">NOTE_WPTT_DECODE_NULL_DEST (C macro)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv430note_wptt_decode_opn_a_handlerPPc">note_wptt_decode_opn_a_handler (C++ function)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv430note_wptt_decode_opn_b_handlerPPc">note_wptt_decode_opn_b_handler (C++ function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv430note_wptt_decode_opn_p_handlerPPc">note_wptt_decode_opn_p_handler (C++ function)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#c.NOTE_WPTT_DECODE_OVRUNDR_ERROR">NOTE_WPTT_DECODE_OVRUNDR_ERROR (C macro)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv426note_wptt_decode_push_nodev">note_wptt_decode_push_node (C++ function)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv430note_wptt_decode_space_handlerPPc">note_wptt_decode_space_handler (C++ function)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv431note_wptt_decode_weight_handlerPPc">note_wptt_decode_weight_handler (C++ function)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv416note_wptt_encode11note_wptt_tPc6size_t">note_wptt_encode (C++ function)</a>, <a href="_collections/note-wptt/unit-description.html#_CPPv416note_wptt_encode11note_wptt_tPc6size_t">[1]</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv437note_wptt_encode_complete_active_nodePK16note_wptt_node_tPPc6size_tPKcPKc">note_wptt_encode_complete_active_node (C++ function)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv428note_wptt_encode_insert_charcPPcPKc">note_wptt_encode_insert_char (C++ function)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv427note_wptt_encode_insert_int6int8_tPPcPKc">note_wptt_encode_insert_int (C++ function)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv429note_wptt_encode_insert_label20note_wptt_V4_label_ePPcPKc">note_wptt_encode_insert_label (C++ function)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv429note_wptt_encode_insert_spacePPcPKcPKc">note_wptt_encode_insert_space (C++ function)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv429note_wptt_encode_insert_stickP16note_wptt_node_tPPcPKc">note_wptt_encode_insert_stick (C++ function)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#c.NOTE_WPTT_ENCODE_MALFORMED">NOTE_WPTT_ENCODE_MALFORMED (C macro)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#c.NOTE_WPTT_ENCODE_OVRUNDR_ERROR">NOTE_WPTT_ENCODE_OVRUNDR_ERROR (C macro)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv436note_wptt_encode_process_active_nodeP16note_wptt_node_tPPc6size_tPKcPKc">note_wptt_encode_process_active_node (C++ function)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#c.NOTE_WPTT_ENCODE_STR_BUF">NOTE_WPTT_ENCODE_STR_BUF (C macro)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#c.NOTE_WPTT_INT_BASE">NOTE_WPTT_INT_BASE (C macro)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#c.NOTE_WPTT_MAX_STR_LEN">NOTE_WPTT_MAX_STR_LEN (C macro)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv423note_wptt_node_buffer_t">note_wptt_node_buffer_t (C++ struct)</a>
+
+      <ul>
+        <li><a href="_collections/note-wptt/unit-description.html#_CPPv423note_wptt_node_buffer_t">(C++ type)</a>
+</li>
+      </ul></li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N23note_wptt_node_buffer_t6bufferE">note_wptt_node_buffer_t::buffer (C++ member)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N23note_wptt_node_buffer_t3idxE">note_wptt_node_buffer_t::idx (C++ member)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N23note_wptt_node_buffer_t4sizeE">note_wptt_node_buffer_t::size (C++ member)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv416note_wptt_node_t">note_wptt_node_t (C++ struct)</a>
+
+      <ul>
+        <li><a href="_collections/note-wptt/unit-description.html#_CPPv416note_wptt_node_t">(C++ type)</a>
+</li>
+      </ul></li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N16note_wptt_node_t8childrenE">note_wptt_node_t::children (C++ member)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N16note_wptt_node_t18number_of_childrenE">note_wptt_node_t::number_of_children (C++ member)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N16note_wptt_node_t15number_of_ringsE">note_wptt_node_t::number_of_rings (C++ member)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N16note_wptt_node_t5orderE">note_wptt_node_t::order (C++ member)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N16note_wptt_node_t7weightsE">note_wptt_node_t::weights (C++ member)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv417note_wptt_order_e">note_wptt_order_e (C++ enum)</a>
+
+      <ul>
+        <li><a href="_collections/note-wptt/unit-description.html#_CPPv417note_wptt_order_e">(C++ type)</a>
+</li>
+      </ul></li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N17note_wptt_order_e23NOTE_WPTT_ORDER_FORWARDE">note_wptt_order_e::NOTE_WPTT_ORDER_FORWARD (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N17note_wptt_order_e23NOTE_WPTT_ORDER_REVERSEE">note_wptt_order_e::NOTE_WPTT_ORDER_REVERSE (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N17note_wptt_order_e22NOTE_WPTT_ORDER_UNINITE">note_wptt_order_e::NOTE_WPTT_ORDER_UNINIT (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#c.NOTE_WPTT_STACK_SIZE">NOTE_WPTT_STACK_SIZE (C macro)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv411note_wptt_t">note_wptt_t (C++ struct)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N11note_wptt_t5labelE">note_wptt_t::label (C++ member)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N11note_wptt_t11node_bufferE">note_wptt_t::node_buffer (C++ member)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N11note_wptt_t4rootE">note_wptt_t::root (C++ member)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv420note_wptt_V4_label_e">note_wptt_V4_label_e (C++ enum)</a>
+
+      <ul>
+        <li><a href="_collections/note-wptt/unit-description.html#_CPPv420note_wptt_V4_label_e">(C++ type)</a>
+</li>
+      </ul></li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_IE">note_wptt_V4_label_e::NOTE_WPTT_V4_LABEL_I (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N20note_wptt_V4_label_e23NOTE_WPTT_V4_LABEL_NONEE">note_wptt_V4_label_e::NOTE_WPTT_V4_LABEL_NONE (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N20note_wptt_V4_label_e25NOTE_WPTT_V4_LABEL_UNINITE">note_wptt_V4_label_e::NOTE_WPTT_V4_LABEL_UNINIT (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_XE">note_wptt_V4_label_e::NOTE_WPTT_V4_LABEL_X (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_YE">note_wptt_V4_label_e::NOTE_WPTT_V4_LABEL_Y (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv4N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_ZE">note_wptt_V4_label_e::NOTE_WPTT_V4_LABEL_Z (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#c.NOTE_WPTT_V4_LABEL_I_STR">NOTE_WPTT_V4_LABEL_I_STR (C macro)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#c.NOTE_WPTT_V4_LABEL_X_STR">NOTE_WPTT_V4_LABEL_X_STR (C macro)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#c.NOTE_WPTT_V4_LABEL_Y_STR">NOTE_WPTT_V4_LABEL_Y_STR (C macro)</a>
+</li>
+      <li><a href="_collections/note-wptt/unit-description.html#c.NOTE_WPTT_V4_LABEL_Z_STR">NOTE_WPTT_V4_LABEL_Z_STR (C macro)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv415wptt_node_stack">wptt_node_stack (C++ member)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv414wptt_stack_len">wptt_stack_len (C++ member)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, temp.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

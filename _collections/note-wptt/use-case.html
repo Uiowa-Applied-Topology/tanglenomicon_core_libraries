@@ -1,0 +1,653 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Use Case &mdash; Tanglenomicon Core Libraries 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/proof.css?v=b4b7a797" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Unit Description" href="unit-description.html" />
+    <link rel="prev" title="Notation Weighted Planar Tangle Tree" href="index.html" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                macros: {
+                    "\\N": "\\mathbb{N}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\Q": "\\mathbb{Q}",
+                    "\\R": "\\mathbb{R}",
+                    "\\LN": "\\left.",
+                    "\\RN": "\\right.",
+                    "\\LP": "\\left(",
+                    "\\RP": "\\right)",
+                    "\\LS": "\\left\\lbrace",
+                    "\\RS": "\\right\\rbrace",
+                    "\\LA": "\\left\\langle",
+                    "\\RA": "\\right\\rangle",
+                    "\\LB": "\\left[",
+                    "\\RB": "\\right]",
+                    "\\MM": "\\ \\middle|\\ ",
+                    "\\exp": "\\text{exp}",
+                    "\\abs": "\\left\\vert#1\\right\\vert",
+                    "\\msr": "m\\left(#1\\right)",
+                    "\\inv": " #1^{-1}",
+                    "\\bkt": "\\LA \\img{ #1}\\RA",
+                }
+            }
+        );
+    });
+</script>
+
+
+<style>
+
+</style>
+ 
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Tanglenomicon Core Libraries
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Generic Interfaces</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../comp-rational_data/index.html">Computation Rational Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_grafting/index.html">Computation Right Leaning Identity Tangle Tree Grafting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_positivity/index.html">Computation Right Leaning Identity Tangle Tree Positivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-wptt_vertex_canonicity/index.html">Computation Weighted Planar Tangle Tree Vertex Canonicity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-montesinos/index.html">Generator Montesinos Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rational/index.html">Generator Rational Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rlitt/index.html">Generator Right Leaning Identity Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-twist_vector/index.html">Notation Twist Vector</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Notation Weighted Planar Tangle Tree</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Use Case</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#functionality">Functionality</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mathematical-description">Mathematical description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#computational-description">Computational Description</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bibliography">Bibliography</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html">Unit Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../store-cpp_storage_interface/index.html">Storage C++ Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-json/index.html">Storage JSON</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tanglenomicon Core Libraries</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Notation Weighted Planar Tangle Tree</a></li>
+      <li class="breadcrumb-item active">Use Case</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/_collections/note-wptt/use-case.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="topic abstract" role="doc-abstract">
+<p class="topic-title">Abstract</p>
+<p>A use case description for the Weighted Planar Trees Notation.</p>
+</div>
+<section id="use-case">
+<h1>Use Case<a class="headerlink" href="#use-case" title="Link to this heading"></a></h1>
+<section id="functionality">
+<h2>Functionality<a class="headerlink" href="#functionality" title="Link to this heading"></a></h2>
+<section id="mathematical-description">
+<h3>Mathematical description<a class="headerlink" href="#mathematical-description" title="Link to this heading"></a></h3>
+<section id="notation-for-arborescent-knots">
+<h4>Notation for arborescent knots<a class="headerlink" href="#notation-for-arborescent-knots" title="Link to this heading"></a></h4>
+<section id="bands-and-plumbing-squares">
+<h5>Bands and Plumbing Squares<a class="headerlink" href="#bands-and-plumbing-squares" title="Link to this heading"></a></h5>
+<p>Our first step in describing a notation for the arborescent knots
+<span id="id1">[<a class="reference internal" href="#id6" title="Francis Bonahon and Laurence C Siebenmann. New Geometric Splittings of Classical Knots and the Classiﬁcation and Symmetries of Arborescent Knots. 2016. URL: https://dornsife.usc.edu/francis-bonahon/wp-content/uploads/sites/205/2023/06/BonSieb-compressed.pdf.">BS16</a>]</span> is describing a plumbing operation on bands. A band with
+a plumbing square is a band $S^1x[0,1]$, along with an oriented square on the band such that two of
+the sides of the square intersect the boundary of the band. Two examples of bands with plumbing
+squares can be seen in <a class="reference internal" href="#UC-N-APN-E-4">Example 6</a>, note in the pink band the square should be viewed as
+looking through the surface of the band. That is, a half rotation of the band will yield a plumbing
+square matching the green band.</p>
+<div class="proof example admonition" id="UC-N-APN-E-4">
+<p class="admonition-title"><span class="caption-number">Example 6 </span> (Two bands)</p>
+<section class="example-content" id="proof-content">
+<p><img alt="band 1" src="../../_images/bnd_sum_1.svg" />
+<img alt="band 2" src="../../_images/bnd_sum_2.svg" /></p>
+</section>
+</div></section>
+<section id="plumbing-bands">
+<h5>Plumbing bands<a class="headerlink" href="#plumbing-bands" title="Link to this heading"></a></h5>
+<p>We will now glue the bands seen <a class="reference internal" href="#UC-N-APN-E-4">Example 6</a> together with an operation called plumbing.
+Consider the orientation given in the green band’s plumbing square. We will call the red arrow $x$
+and the orange arrow $y$, similarly for the pink band $x^\prime$ and $y^\prime$.</p>
+<p>We plumb the bands together along their plumbing squares, with the requirement that the orientation
+labels are mapped $x\to y^\prime$ and $y\to x^\prime$. Finally, we then forget the boundaries of the
+plumbing square, leaving only the joined boundaries of the bands. The result of plumbing as well as
+a local picture for plumbing can be seen in <a class="reference internal" href="#UC-N-APN-E-5">Example 7</a>.</p>
+<!-- prettier-ignore-start -->
+<div class="proof example admonition" id="UC-N-APN-E-5">
+<p class="admonition-title"><span class="caption-number">Example 7 </span> (Plumbed bands)</p>
+<section class="example-content" id="proof-content">
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/bnd_sum_sum.svg"><img alt="../../_images/bnd_sum_sum.svg" class="align-center" src="../../_images/bnd_sum_sum.svg" style="width: 100%;" />
+</a>
+</td>
+<td><a class="reference internal image-reference" href="../../_images/bnd_sum_patch.svg"><img alt="../../_images/bnd_sum_patch.svg" class="align-center" src="../../_images/bnd_sum_patch.svg" style="width: 100%;" />
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+</div><!-- prettier-ignore-end -->
+<p>To complete our band construction for knots, before plumbing, we add a series of half-twists into
+our bands with plumbing squares, seen in <a class="reference internal" href="#UC-N-APN-E-6">Example 8</a> and <a class="reference internal" href="#UC-N-APN-E-25">Example 9</a>. When
+forming the half twists, we have two options for direction, we call one positive and one negative. A
+positive twist results in the “closer” boundary component having a positive slope, likewise for
+negative twists. It is important to note that the twists appear in unique regions of the band, which
+are determined by relative position of plumbing squares.</p>
+<!-- prettier-ignore-start -->
+<table class="docutils align-default" style="width: 100%">
+<tbody>
+<tr class="row-odd"><td><div class="proof example admonition" id="UC-N-APN-E-6">
+<p class="admonition-title"><span class="caption-number">Example 8 </span></p>
+<section class="example-content" id="proof-content">
+<a class="reference internal image-reference" href="../../_images/arbor_band_with_twist.svg"><img alt="../../_images/arbor_band_with_twist.svg" class="align-center" src="../../_images/arbor_band_with_twist.svg" style="width: 20em;" />
+</a>
+<p><br/><br/>
+Band with two negative half twists<br/> and three plumbing squares.</p>
+</section>
+</div></td>
+<td><div class="proof example admonition" id="UC-N-APN-E-25">
+<p class="admonition-title"><span class="caption-number">Example 9 </span></p>
+<section class="example-content" id="proof-content">
+<a class="reference internal image-reference" href="../../_images/arbor_band_with_twist_2.svg"><img alt="../../_images/arbor_band_with_twist_2.svg" class="align-center" src="../../_images/arbor_band_with_twist_2.svg" style="width: 20em;" />
+</a>
+<p><br/><br/>
+Band with three positive half twists <br/>and one plumbing square.</p>
+</section>
+</div></td>
+</tr>
+</tbody>
+</table>
+<!-- prettier-ignore-end -->
+<p>Combining these half twisted bands together with plumbing yields objects similar to those seen in
+<code class="xref prf prf-ref docutils literal notranslate"><span class="pre">UC-N-APN-E-10</span></code>. We require that no sequence of plumbing forms a cycle. Finally, turning
+<code class="xref prf prf-ref docutils literal notranslate"><span class="pre">UC-N-APN-E-10</span></code> into a knot is as simple as forgetting the two cell leaving only the
+boundary, seen in <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">UC-N-APN-E-10</span></code>.</p>
+<!-- prettier-ignore-start -->
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="proof example admonition" id="example-4">
+<p class="admonition-title"><span class="caption-number">Example 10 </span> (Bands plumbed)</p>
+<section class="example-content" id="proof-content">
+<p><img alt="band 1" src="../../_images/arbor_bands.svg" /></p>
+</section>
+</div></td>
+<td><div class="proof example admonition" id="example-5">
+<p class="admonition-title"><span class="caption-number">Example 11 </span> (An arborescent knot)</p>
+<section class="example-content" id="proof-content">
+<p><img alt="band 1" src="../../_images/arbor_bound.svg" /></p>
+</section>
+</div></td>
+</tr>
+</tbody>
+</table>
+<!-- prettier-ignore-end -->
+</section>
+<section id="weighted-planar-trees">
+<h5>Weighted Planar Trees<a class="headerlink" href="#weighted-planar-trees" title="Link to this heading"></a></h5>
+<p>This section will describe a combinatorial recipe for constructing knots from a collection of
+plumbing bands. This recipe will take the form of a tree, in the graph theoretic sense, a structure
+describing the collection of plumbing bands and how they are plumbed together. Before we begin
+constructing this combinatorial notation we, need to define some labels for the relative positions
+of bands in the smooth setting. This language will be reused when we transition to the more
+combinatorial setting.</p>
+<div class="proof definition admonition" id="apn-def-1">
+<p class="admonition-title"><span class="caption-number">Definition 1 </span> (Relationships of Bands)</p>
+<section class="definition-content" id="proof-content">
+<p>Given a band $B$ with plumbing squares, we call the set $C$ of bands
+plumbed to $B$ the <strong>children</strong> of $B$. Additionally, for $c\in C$ we call $B$
+the <strong>parent</strong> of $c$ and the collection of $C-\LS c \RS$ the
+<strong>siblings of $C$</strong>.</p>
+</section>
+</div><p>Our goal is to take arborescent knots in the smooth setting built from plumbed bands and distill the
+essential information into a combinatorial context. The essential information we need to encode from
+the smooth setting is as follows:</p>
+<ul class="simple">
+<li><p>The parent child relationship of bands</p></li>
+<li><p>The relative positions of plumbing squares and twists on a band</p></li>
+</ul>
+<p>Tackling first the encoding of parent child relationships. There are many combinatorial structures
+that can encode data similar to our required. Perhaps the most commonly used structure that can
+encode this data is an abstract graph, and since our data is acyclic, specifically an abstract tree.
+The data for the parent child relationships can be encoded by mapping bands to vertices and plumbing
+relationships to edges.</p>
+<p>Unfortunately, since an abstract tree doesn’t maintain an order for child vertices, it fails for the
+second piece of essential information. To solve this problem, we will define a modified version of
+an abstract tree, the <strong>rooted plane tree</strong>.</p>
+<div class="proof definition admonition" id="apn-def-2">
+<p class="admonition-title"><span class="caption-number">Definition 3 </span> (Rooted Plane Tree)</p>
+<section class="definition-content" id="proof-content">
+<p>A <strong>rooted plane tree</strong> is an abstract tree with imbued with a strict total
+order on the vertices. We call the least vertex the <strong>root</strong> of the tree.</p>
+</section>
+</div><p>The set of vertices in a tree is discrete, so we can order the set with positive integer labels.
+Observe that in a rooted plane tree for each vertex $v$, the children of $v$ have an order inherited
+from the total order. For convenience, we will now place a convention on the order of a rooted plane
+tree. Let $\Gamma$ be a rooted plane tree, $r$ be the root of $\Gamma$, and $v_i\neq r$ be a vertex,
+with parent $p$. Further assume $v_i$ has order $i$, $p$ has order $j$ and the children
+$c_1,,\cdots,,c_n$ of $v$ have order $k_1,,\cdots,,k_n$. We require that an order on a rooted
+plane tree satisfy the following:</p>
+<ul class="simple">
+<li><p>$r$ has order $1$</p></li>
+<li><p>$j&lt;i&lt;k_1&lt;\cdots k_n$</p></li>
+</ul>
+<p>With this order requirement, a non-root vertex has a clear cyclic order starting from the parent
+vertex and increasing. This yields a unique embedding of $\Gamma$ into the plane.</p>
+<p>The additional structure of rooted plane trees gives us a method for encoding relative positions of
+plumbing squares. The final data we need to record is the position and count of half twists relative
+to plumbing squares. We start by considering the local picture around a vertex
+<a class="reference internal" href="#UC-N-APN-E-8">Example 12</a> consisting of a vertex and a collection of bonds (half-edges) associated to
+plumbing squares.</p>
+<div class="proof example admonition" id="UC-N-APN-E-8">
+<p class="admonition-title"><span class="caption-number">Example 12 </span> (The local view of a vertex)</p>
+<section class="example-content" id="proof-content">
+<a class="reference internal image-reference" href="../../_images/arbor_graph_split_local.svg"><img alt="../../_images/arbor_graph_split_local.svg" class="align-center" src="../../_images/arbor_graph_split_local.svg" style="width: 20em;" />
+</a>
+</section>
+</div><p>We observed earlier that the half twists on a band must lay in a unique region determined by
+position relative to plumbing squares. This placement can be recreated in a rooted plane tree by
+annotating the local view of a vertex in <a class="reference internal" href="#UC-N-APN-E-8">Example 12</a> with an integer placed in the
+spaces between bonds. The relationship between a plumbing band and a weighted vertex in a rooted
+plane tree can be seen in <a class="reference internal" href="#UC-N-APN-E-7">Example 13</a>.</p>
+<div class="proof example admonition" id="UC-N-APN-E-7">
+<p class="admonition-title"><span class="caption-number">Example 13 </span> (The local view of a vertex with weight)</p>
+<section class="example-content" id="proof-content">
+<img alt="../../_images/arbor_graph_split_local_with_band.svg" class="align-center" src="../../_images/arbor_graph_split_local_with_band.svg" />
+</section>
+</div><p>We can see a full example of a tree with its associated plumbed construction in
+<a class="reference internal" href="#UC-N-APN-E-27">Example 14</a>. We call this fully realized combinatorial recipe a <strong>Weighted Planar
+tree</strong>.</p>
+<!-- prettier-ignore-start -->
+<div class="proof example admonition" id="UC-N-APN-E-27">
+<p class="admonition-title"><span class="caption-number">Example 14 </span> (Weighted Planar Trees and Plumbed Bands)</p>
+<section class="example-content" id="proof-content">
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/arbor_graph.svg"><img alt="../../_images/arbor_graph.svg" class="align-center" src="../../_images/arbor_graph.svg" style="width: 100%;" />
+</a>
+</td>
+<td><a class="reference internal image-reference" href="../../_images/arbor_bands.svg"><img alt="../../_images/arbor_bands.svg" class="align-center" src="../../_images/arbor_bands.svg" style="width: 100%;" />
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+</div><!-- prettier-ignore-end -->
+</section>
+<section id="weighted-planar-tangle-trees">
+<h5>Weighted Planar Tangle Trees<a class="headerlink" href="#weighted-planar-tangle-trees" title="Link to this heading"></a></h5>
+<p>Our construction to this point has been concerned exclusively with the notation for knots, we will
+now give a modification of this notation for tangles. A tree, as in <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">UC-N-APN-E-9</span></code>, can be
+modified to represent a tangle by allowing a “free” bond to be attached to a vertex, that is, to
+allow one band to have a non-plumbed plumbing square. We can realize the non-plumbed square, a
+Conway circle for a two string tangle.</p>
+<div class="proof example admonition" id="UC-N-APN-E-11">
+<p class="admonition-title"><span class="caption-number">Example 15 </span> (Plane tree and plumbed bands)</p>
+<section class="example-content" id="proof-content">
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/arbor_graph_tangle.svg"><img alt="../../_images/arbor_graph_tangle.svg" class="align-center" src="../../_images/arbor_graph_tangle.svg" style="width: 100%;" />
+</a>
+</td>
+<td><a class="reference internal image-reference" href="../../_images/arbor_tangle.svg"><img alt="../../_images/arbor_tangle.svg" class="align-center" src="../../_images/arbor_tangle.svg" style="width: 100%;" />
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+</div></section>
+<section id="anatomy-of-a-tree">
+<h5>Anatomy of a tree<a class="headerlink" href="#anatomy-of-a-tree" title="Link to this heading"></a></h5>
+</section>
+<section id="rings">
+<h5>Rings<a class="headerlink" href="#rings" title="Link to this heading"></a></h5>
+<p>We will now describe a special subtree of a weighted planar tree, locally appearing as
+<a class="reference internal" href="#UC-N-APN-E-17">Example 16</a>.</p>
+<div class="proof example admonition" id="UC-N-APN-E-17">
+<p class="admonition-title"><span class="caption-number">Example 16 </span> (Ring graph)</p>
+<section class="example-content" id="proof-content">
+<p><img alt="band 1" src="../../_images/arbor_graph_ring.svg" /></p>
+</section>
+</div><p>Now, resolving the plumbing, we arrive at bands as in <a class="reference internal" href="#UC-N-APN-E-12">Example 17</a>.</p>
+<div class="proof example admonition" id="UC-N-APN-E-12">
+<p class="admonition-title"><span class="caption-number">Example 17 </span> (Plumbed ring bands)</p>
+<section class="example-content" id="proof-content">
+<p><img alt="band 1" src="../../_images/arbor_ring.svg" /></p>
+</section>
+</div><p>Notice that the boundary of these plumbed bands has three components, as seen in
+<a class="reference internal" href="#UC-N-APN-E-13">Example 18</a>.</p>
+<div class="proof example admonition" id="UC-N-APN-E-13">
+<p class="admonition-title"><span class="caption-number">Example 18 </span> (Ring boundary)</p>
+<section class="example-content" id="proof-content">
+<p><img alt="band 1" src="../../_images/arbor_ring_no_bnd.svg" /></p>
+</section>
+</div><p>With an obvious flype and inversion of the Conway circle given by the non-plumbed square, we can
+arrange our plumbed bands into the standard tangle projection seen in <a class="reference internal" href="#UC-N-APN-E-14">Example 19</a>. This
+tangle projection tells us that the subtree in <a class="reference internal" href="#UC-N-APN-E-11">Example 15</a> is one of the zero or
+infinity tangle with a ring.</p>
+<div class="proof example admonition" id="UC-N-APN-E-14">
+<p class="admonition-title"><span class="caption-number">Example 19 </span> (Ring Tangle)</p>
+<section class="example-content" id="proof-content">
+<p><img alt="band 1" src="../../_images/arbor_ring_tangle.svg" /></p>
+</section>
+</div><p>In practice, trees with ring subtrees appear frequently, often with multiple subtrees attached to a
+single vertex, as seen in the <a class="reference internal" href="#UC-N-APN-E-15">Example 20</a>. This leaves us in a clunky notational
+situation, as the rings only impact data local to the ring subtree.</p>
+<div class="proof example admonition" id="UC-N-APN-E-15">
+<p class="admonition-title"><span class="caption-number">Example 20 </span> (Typical tree)</p>
+<section class="example-content" id="proof-content">
+<p><img alt="band 1" src="../../_images/arbor_ring_number_typical.svg" /></p>
+</section>
+</div><p>To simplify our notation where rings are concerned, we simply forget any subtrees that form ring
+tangles. We instead note the count of number of ring subtrees at each vertex, augmenting the vertex
+with the count, as shown in <a class="reference internal" href="#UC-N-APN-E-16">Example 21</a>, we call such a tree “abbreviated.”</p>
+<div class="proof example admonition" id="UC-N-APN-E-16">
+<p class="admonition-title"><span class="caption-number">Example 21 </span> (Abreviated)</p>
+<section class="example-content" id="proof-content">
+<p><img alt="band 1" src="../../_images/arbor_ring_number.svg" /></p>
+</section>
+</div></section>
+</section>
+<section id="essential-vertices">
+<h4>Essential vertices<a class="headerlink" href="#essential-vertices" title="Link to this heading"></a></h4>
+<p>Shifting away from special subtrees for a moment, we again consider a local picture of a vertex. It
+is useful during computation on weighted planar trees to partition vertices into two classes,
+essential vertices and non-essential vertices.</p>
+<div class="proof definition admonition" id="apn-def-2">
+<p class="admonition-title"><span class="caption-number">Definition 3 </span> (Essential vertex)</p>
+<section class="definition-content" id="proof-content">
+<p>We define an <strong>essential vertex</strong> as any vertex with valence
+greater than $3$ or ring number greater than $1$. A vertex is called
+non-essential if it has valence $0,1,2$ and no rings.</p>
+</section>
+</div><div class="proof definition admonition" id="apn-def-3">
+<p class="admonition-title"><span class="caption-number">Definition 5 </span> (Non-essential vertex)</p>
+<section class="definition-content" id="proof-content">
+<p>A vertex is called
+non-essential if it has valence $0,1,2$ and no rings.</p>
+</section>
+</div><p>We see in <a class="reference internal" href="#UC-N-APN-E-18">Example 22</a> essential vertices in orange and non-essential in red.</p>
+<div class="proof example admonition" id="UC-N-APN-E-18">
+<p class="admonition-title"><span class="caption-number">Example 22 </span> (Abreviated)</p>
+<section class="example-content" id="proof-content">
+<p><img alt="band 1" src="../../_images/arbor_ring_essential.svg" /></p>
+</section>
+</div></section>
+<section id="sticks">
+<h4>Sticks<a class="headerlink" href="#sticks" title="Link to this heading"></a></h4>
+<p>The final important portion in the anatomy of a tree is to describe the sticks of a tree.</p>
+<div class="proof definition admonition" id="apn-def-3">
+<p class="admonition-title"><span class="caption-number">Definition 5 </span> (Sticks of a weighted planar tree)</p>
+<section class="definition-content" id="proof-content">
+<p>Let $\Gamma$ be a weighted planar tree and $\LS e_i\RS$ be the set of essential
+vertices of $\Gamma$ including their bonds. We call the collection subtrees
+$\Gamma_s=\Gamma \setminus \LS e_i\RS$ the <strong>sticks</strong> of $\Gamma$ and every
+connected component of $\Gamma_s$ a <strong>stick</strong>.</p>
+</section>
+</div><p>As an example, consider the tree seen in <a class="reference internal" href="#UC-N-APN-E-18">Example 22</a>, the sticks of which can be seen
+in <a class="reference internal" href="#UC-N-APN-E-19">Example 23</a>.</p>
+<div class="proof example admonition" id="UC-N-APN-E-19">
+<p class="admonition-title"><span class="caption-number">Example 23 </span> (Sticks of a tree)</p>
+<section class="example-content" id="proof-content">
+<p><img alt="band 1" src="../../_images/arbor_ring_noessential.svg" /></p>
+</section>
+</div><p>By construction, a stick of a tree has 0,1, or 2 free bonds, we call a stick with; 0 free bonds
+closed, 1 free bond half-open, and 2 free bonds open.</p>
+<!-- prettier-ignore-start -->
+<div class="dropdown admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Correspondence between sticks and rational tangles</p>
+<p>Bonahon and Seibenman prove a correspondence between sticks and rational tangles
+<span id="id2">[<a class="reference internal" href="#id6" title="Francis Bonahon and Laurence C Siebenmann. New Geometric Splittings of Classical Knots and the Classiﬁcation and Symmetries of Arborescent Knots. 2016. URL: https://dornsife.usc.edu/francis-bonahon/wp-content/uploads/sites/205/2023/06/BonSieb-compressed.pdf.">BS16</a>]</span> particularly when a stick is open it
+takes the form of the vignette seen below where each free bond forms a boundary
+component.</p>
+<p><img alt="Band 1" src="../../_images/rational_vignette.svg" /></p>
+</div>
+<!-- prettier-ignore-end -->
+</section>
+<section id="an-encoding-strategy-for-arborescent-knots-and-tangles">
+<h4>An Encoding Strategy for Arborescent Knots and Tangles<a class="headerlink" href="#an-encoding-strategy-for-arborescent-knots-and-tangles" title="Link to this heading"></a></h4>
+<p>The various flavors of weighted planar tree we have seen thus far are a useful tool for manipulation
+of arborescent tangles by human or machine. Unfortunately, the tree structure is quite difficult to
+store directly in a computer database. We will rectify this by introducing a linearization strategy
+for weighted planar trees. We can adjust the following linearization strategy for use with weighted
+planar tangle trees by prepending a label $\alpha$ from $V_4$.</p>
+<!-- prettier-ignore-start -->
+<section id="linearizing-a-vertex">
+<span id="linearize-a-vertex"></span><h5>Linearizing a vertex<a class="headerlink" href="#linearizing-a-vertex" title="Link to this heading"></a></h5>
+<!-- prettier-ignore-end -->
+<p>We start by describing the linearization of a single vertex. Let $\Gamma$ be a weighted planar tree
+and $\Gamma_v$ be a vertex $v$ of $\Gamma$ along with its bonds and weights, see
+<code class="xref prf prf-ref docutils literal notranslate"><span class="pre">wpt-linear-fig-local</span></code>. Let $c_1,,\cdots,,c_n$ be the ordered bonds connected to the
+children of $v$. As we saw in the construction of weighted planar trees, there is a total order on
+$\Gamma$. If $v$ has a parent, the lowest index bond of $v$ points to its parent, further when
+realizing $\Gamma_v$ in the plane, $c_1$ points up.</p>
+<figure class="align-default" id="id7">
+<img alt="../../_images/arbor_graph_split_local_1.svg" src="../../_images/arbor_graph_split_local_1.svg" />
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">The local view of a vertex</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>The order of children induces a cyclic order in the plane starting with the parent bond, in the up
+position. Leveraging this, our strategy for linearizing $\Gamma_v$ is to follow the cyclic order,
+listing the weights and children in sequence. We imagine an arm sweeping out from the lowest index
+bond picking up the data of each weight as it sweeps through, this can be seen in
+<code class="xref prf prf-ref docutils literal notranslate"><span class="pre">wpt-linear-fig-COMPASS</span></code>.</p>
+<figure class="align-default" id="id8">
+<img alt="../../_images/f3_local_ccw_1.svg" src="../../_images/f3_local_ccw_1.svg" />
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">&#64;&#64;&#64; TODO</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="walking-the-tree">
+<h5>Walking the tree<a class="headerlink" href="#walking-the-tree" title="Link to this heading"></a></h5>
+<p>To expand the local method to capture the whole weighted planar tree, we need a method to move from
+$\Gamma_v$ to a child while recording this descent. We will descend the tree in a depth-first order.
+Annotating each local linearization with four sets of delimiters that indicate the change in depth
+in the tree. Each delimiter also communicates extra information about the subtree it is delimiting.
+The four sets of delimiters are as follows:</p>
+<ul class="simple">
+<li><p>$\LB\RB$: Corresponds to a half open stick and is interpreted as a twist vector for a rational
+tangle. Note that, to align with the traditional notation, the twist vector is written in depth
+first post order.</p></li>
+<li><p>$\LP\RP$: Corresponds to a vertex not on a half open stick with no ring number.</p></li>
+<li><p>$\LA\RA$: Corresponds to a vertex not on a half open stick with ring number.</p></li>
+</ul>
+<p>We will now walk through an example of the linearization algorithm. Let $\Gamma$ be a weighted
+planar tree, and $v$ an arbitrarily select a vertex from $\Gamma$ as the root
+<code class="xref prf prf-ref docutils literal notranslate"><span class="pre">wpt-rli-fig-22</span></code>. We assume that all sticks of $\Gamma$ be proper stick. As we walk the
+tree, the vertex currently being linearized will be called the <strong>object vertex</strong>. Beginning with the
+root as an object vertex, we descend the tree in a depth-first order.</p>
+<figure class="align-default" id="id9">
+<img alt="../../_images/watt_rooted.svg" src="../../_images/watt_rooted.svg" />
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Rooted tree</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Appending $\LP\RN$ or $\LA\RN$ depending on if the object vertex has a ring number and noting the
+ring number, if any. Next, we sweep out the local picture, as discussed in
+<code class="xref prf prf-ref docutils literal notranslate"><span class="pre">linearize_a_vertex</span></code>. However, when we encounter a child bond, we descend to the child. We
+have two cases to consider, the child is essential or non-essential.</p>
+</section>
+<section id="case-1-the-child-is-essential">
+<h5>Case 1: The Child is Essential<a class="headerlink" href="#case-1-the-child-is-essential" title="Link to this heading"></a></h5>
+<p>If the child is essential, we restart the algorithm from the beginning with the essential vertex as
+the object vertex.</p>
+</section>
+<section id="case-2-the-child-is-non-essential">
+<h5>Case 2: The Child is Non-essential<a class="headerlink" href="#case-2-the-child-is-non-essential" title="Link to this heading"></a></h5>
+<p>When the child vertex is non-essential we are descending a stick of $\Gamma$ which can take two
+forms, open, and half-open.</p>
+<section id="case-1a-the-stick-is-open">
+<h6>Case 1a: The Stick is Open<a class="headerlink" href="#case-1a-the-stick-is-open" title="Link to this heading"></a></h6>
+<p>When the stick is open, we note each level by the local linearization seen in
+<code class="xref prf prf-ref docutils literal notranslate"><span class="pre">linearize_a_vertex</span></code>. We delimit the levels of the stick by the delimiters $\LP\RP$ with
+weights placed in the right most sections. Since the sick is open, the bottom of the sick is an
+essential vertex. We restart the algorithm from the beginning with the essential vertex as the
+object vertex.</p>
+</section>
+<section id="case-2a-the-stick-is-half-open">
+<h6>Case 2a: The Stick is Half-open<a class="headerlink" href="#case-2a-the-stick-is-half-open" title="Link to this heading"></a></h6>
+<p>When the stick is half-open, we append that stick as the twist vector for the corresponding rational
+tangle. We delimit the stick with $\LB\RB$ with all weights positive and separated by spaces where
+the leaf is the right most entry.</p>
+<p>When we have exhausted the children for the object vertex, we close our linearization for that
+vertex with the matching $\LN\RP$ or $\LN\RS$, and return to the parent linearization until all
+parents have been exhausted. An example of a tree encoded with this strategy can be seen in
+<code class="xref prf prf-ref docutils literal notranslate"><span class="pre">wpt-rli-fig-23</span></code>.</p>
+<figure class="align-default" id="id10">
+<img alt="../../_images/watt_walk.svg" src="../../_images/watt_walk.svg" />
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Encoded tree subtrees are indicated by color.</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+</section>
+<section id="computational-description">
+<h3>Computational Description<a class="headerlink" href="#computational-description" title="Link to this heading"></a></h3>
+<p>There are no special computational considerations for this use-case.</p>
+</section>
+</section>
+<section id="bibliography">
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading"></a></h2>
+<div class="docutils container" id="id3">
+<div role="list" class="citation-list">
+<div class="citation" id="id6" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>BS16<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>)</span>
+<p>Francis Bonahon and Laurence C Siebenmann. New Geometric Splittings of Classical Knots and the Classiﬁcation and Symmetries of Arborescent Knots. 2016. URL: <a class="reference external" href="https://dornsife.usc.edu/francis-bonahon/wp-content/uploads/sites/205/2023/06/BonSieb-compressed.pdf">https://dornsife.usc.edu/francis-bonahon/wp-content/uploads/sites/205/2023/06/BonSieb-compressed.pdf</a>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Notation Weighted Planar Tangle Tree" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="unit-description.html" class="btn btn-neutral float-right" title="Unit Description" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, temp.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,261 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computation Right Leaning Identity Tangle Tree Positivity &mdash; Tanglenomicon Core Libraries 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/proof.css?v=b4b7a797" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Use Case" href="use-case.html" />
+    <link rel="prev" title="Unit Description" href="../comp-rlitt_grafting/unit-description.html" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                macros: {
+                    "\\N": "\\mathbb{N}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\Q": "\\mathbb{Q}",
+                    "\\R": "\\mathbb{R}",
+                    "\\LN": "\\left.",
+                    "\\RN": "\\right.",
+                    "\\LP": "\\left(",
+                    "\\RP": "\\right)",
+                    "\\LS": "\\left\\lbrace",
+                    "\\RS": "\\right\\rbrace",
+                    "\\LA": "\\left\\langle",
+                    "\\RA": "\\right\\rangle",
+                    "\\LB": "\\left[",
+                    "\\RB": "\\right]",
+                    "\\MM": "\\ \\middle|\\ ",
+                    "\\exp": "\\text{exp}",
+                    "\\abs": "\\left\\vert#1\\right\\vert",
+                    "\\msr": "m\\left(#1\\right)",
+                    "\\inv": " #1^{-1}",
+                    "\\bkt": "\\LA \\img{ #1}\\RA",
+                }
+            }
+        );
+    });
+</script>
+
+
+<style>
+
+</style>
+ 
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Tanglenomicon Core Libraries
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Generic Interfaces</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../comp-rational_data/index.html">Computation Rational Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_grafting/index.html">Computation Right Leaning Identity Tangle Tree Grafting</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Computation Right Leaning Identity Tangle Tree Positivity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="use-case.html">Use Case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html">Unit Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-wptt_vertex_canonicity/index.html">Computation Weighted Planar Tangle Tree Vertex Canonicity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-montesinos/index.html">Generator Montesinos Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rational/index.html">Generator Rational Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rlitt/index.html">Generator Right Leaning Identity Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-twist_vector/index.html">Notation Twist Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-wptt/index.html">Notation Weighted Planar Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-cpp_storage_interface/index.html">Storage C++ Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-json/index.html">Storage JSON</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tanglenomicon Core Libraries</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Computation Right Leaning Identity Tangle Tree Positivity</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/_collections/comp-rlitt_positivity/index.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="computation-right-leaning-identity-tangle-tree-positivity">
+<span id="comp-rlitt-positivity"></span><h1>Computation Right Leaning Identity Tangle Tree Positivity<a class="headerlink" href="#computation-right-leaning-identity-tangle-tree-positivity" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="use-case.html">Use Case</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="use-case.html#bibliography">Bibliography</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="unit-description.html">Unit Description</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html#class-diagram">Class Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html#language">Language</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html#implements">Implements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html#uses">Uses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html#libraries">Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html#functionality">Functionality</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#public-structures">Public Structures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#configuration-structure">Configuration Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#result-structure">Result Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#public-functions">Public Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#configuration-function">Configuration Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#compute-function">Compute Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#result-function">Result Function</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html#validation">Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#id1">Configuration Function</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#positive-tests">Positive Tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#negative-tests">Negative Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#id2">Compute Function</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#id3">Positive Tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#id4">Negative Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#id5">Result Function</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#id6">Positive Tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#id7">Negative Tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html#doxygen-documentation">Doxygen Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.COMP_RLITT_POSITIVITY_CONFIG_NULLTREE"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_POSITIVITY_CONFIG_NULLTREE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.COMP_RLITT_POSITIVITY_CONFIG_SCION"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_POSITIVITY_CONFIG_SCION</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.COMP_RLITT_POSITIVITY_CONFIG_IS_NULL"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_POSITIVITY_CONFIG_IS_NULL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.COMP_RLITT_POSITIVITY_COMPUTE_CFG_ERROR"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_POSITIVITY_COMPUTE_CFG_ERROR</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.COMP_RLITT_POSITIVITY_COMPUTE_ALREADY_COMPUTED"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_POSITIVITY_COMPUTE_ALREADY_COMPUTED</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv429comp_rlitt_positivity_flvrs_e"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_positivity_flvrs_e</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#_CPPv4N29comp_rlitt_positivity_flvrs_e33COMP_RLITT_POSITIVITY_FLVR_UNINITE"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_POSITIVITY_FLVR_UNINIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#_CPPv4N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_POSE"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_POSITIVITY_FLVR_POS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#_CPPv4N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_NEGE"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_POSITIVITY_FLVR_NEG</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#_CPPv4N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_NEUE"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_POSITIVITY_FLVR_NEU</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#_CPPv4N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_UNDE"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_POSITIVITY_FLVR_UND</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv428comp_rlitt_positivity_configP30comp_rlitt_positivity_config_t"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_positivity_config()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv429comp_rlitt_positivity_computev"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_positivity_compute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv428comp_rlitt_positivity_resultv"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_positivity_result()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv430comp_rlitt_positivity_result_t"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_positivity_result_t</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#_CPPv4N30comp_rlitt_positivity_result_t10positivityE"><code class="docutils literal notranslate"><span class="pre">positivity</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv430comp_rlitt_positivity_config_t"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_positivity_config_t</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#_CPPv4N30comp_rlitt_positivity_config_t13storage_writeE"><code class="docutils literal notranslate"><span class="pre">storage_write</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#_CPPv4N30comp_rlitt_positivity_config_t4wpttE"><code class="docutils literal notranslate"><span class="pre">wptt</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.COMP_RLITT_POSITIVITY_STACK_SIZE"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_POSITIVITY_STACK_SIZE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv431comp_rlitt_positivity_walk_treePK11note_wptt_t"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_positivity_walk_tree()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv430comp_rlitt_positivity_localcfg"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_positivity_localcfg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv434comp_rlitt_positivity_localrestult"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_positivity_localrestult</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv430comp_rlitt_positivity_executed"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_positivity_executed</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html#bibliography">Bibliography</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../comp-rlitt_grafting/unit-description.html" class="btn btn-neutral float-left" title="Unit Description" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="use-case.html" class="btn btn-neutral float-right" title="Use Case" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, temp.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,826 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit Description &mdash; Tanglenomicon Core Libraries 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/proof.css?v=b4b7a797" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+      <script type="module">mermaid.initialize({
+  securityLevel: 'loose',
+  theme: 'dark',
+});</script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+const load = async () => {
+    await mermaid.run();
+    const all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+    if(mermaids_to_add_zoom > 0) {
+        var svgs = d3.selectAll(".mermaid svg");
+        if(all_mermaids.length !== mermaids_processed.length) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else if(svgs.size() !== mermaids_to_add_zoom) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else {
+            svgs.each(function() {
+                var svg = d3.select(this);
+                svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                var inner = svg.select("g");
+                var zoom = d3.zoom().on("zoom", function(event) {
+                    inner.attr("transform", event.transform);
+                });
+                svg.call(zoom);
+            });
+        }
+    }
+};
+
+window.addEventListener("load", load);
+</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Computation Right Leaning Identity Tangle Tree Positivity" href="../comp-rlitt_positivity/index.html" />
+    <link rel="prev" title="Use Case" href="use-case.html" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                macros: {
+                    "\\N": "\\mathbb{N}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\Q": "\\mathbb{Q}",
+                    "\\R": "\\mathbb{R}",
+                    "\\LN": "\\left.",
+                    "\\RN": "\\right.",
+                    "\\LP": "\\left(",
+                    "\\RP": "\\right)",
+                    "\\LS": "\\left\\lbrace",
+                    "\\RS": "\\right\\rbrace",
+                    "\\LA": "\\left\\langle",
+                    "\\RA": "\\right\\rangle",
+                    "\\LB": "\\left[",
+                    "\\RB": "\\right]",
+                    "\\MM": "\\ \\middle|\\ ",
+                    "\\exp": "\\text{exp}",
+                    "\\abs": "\\left\\vert#1\\right\\vert",
+                    "\\msr": "m\\left(#1\\right)",
+                    "\\inv": " #1^{-1}",
+                    "\\bkt": "\\LA \\img{ #1}\\RA",
+                }
+            }
+        );
+    });
+</script>
+
+
+<style>
+
+</style>
+ 
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Tanglenomicon Core Libraries
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Generic Interfaces</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../comp-rational_data/index.html">Computation Rational Data</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Computation Right Leaning Identity Tangle Tree Grafting</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="use-case.html">Use Case</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Unit Description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#class-diagram">Class Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#language">Language</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implements">Implements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#libraries">Libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functionality">Functionality</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#public-structures">Public Structures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#public-functions">Public Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#private-functions">Private Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#validation">Validation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Configuration Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Compute Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#results-function">Results Function</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#doxygen-documentation">Doxygen Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_RLITT_GRAFTING_CONFIG_ROOTSTOCK"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_GRAFTING_CONFIG_ROOTSTOCK</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_RLITT_GRAFTING_CONFIG_SCION"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_GRAFTING_CONFIG_SCION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_RLITT_GRAFTING_CONFIG_IS_NULL"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_GRAFTING_CONFIG_IS_NULL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_RLITT_GRAFTING_CONFIG_BUFFER"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_GRAFTING_CONFIG_BUFFER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_RLITT_GRAFTING_COMPUTE_ROOTSTOCK"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_GRAFTING_COMPUTE_ROOTSTOCK</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_RLITT_GRAFTING_COMPUTE_GRAFTING_RLITT"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_GRAFTING_COMPUTE_GRAFTING_RLITT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_RLITT_GRAFTING_COMPUTE_CFG_ERROR"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_GRAFTING_COMPUTE_CFG_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_RLITT_GRAFTING_COMPUTE_COPYERROR"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_GRAFTING_COMPUTE_COPYERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_RLITT_GRAFTING_COMPUTE_ALREADY_COMPUTED"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_GRAFTING_COMPUTE_ALREADY_COMPUTED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv426comp_rlitt_grafting_configP28comp_rlitt_grafting_config_t"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_grafting_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv427comp_rlitt_grafting_computev"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_grafting_compute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv426comp_rlitt_grafting_resultv"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_grafting_result()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv428comp_rlitt_grafting_result_t"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_grafting_result_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv428comp_rlitt_grafting_config_t"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_grafting_config_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_RLITT_GRAFTING_STACK_SIZE"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_GRAFTING_STACK_SIZE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv429comp_rlitt_grafting_copy_treePK11note_wptt_t"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_grafting_copy_tree()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv425comp_rlitt_grafting_graftP16note_wptt_node_t"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_grafting_graft()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv430comp_rlitt_grafting_localnodes"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_grafting_localnodes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv429comp_rlitt_grafting_nodes_idx"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_grafting_nodes_idx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv431comp_rlitt_grafting_nodes_count"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_grafting_nodes_count</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv428comp_rlitt_grafting_localcfg"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_grafting_localcfg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv432comp_rlitt_grafting_localrestult"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_grafting_localrestult</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv428comp_rlitt_grafting_executed"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_grafting_executed</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bibliography">Bibliography</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_positivity/index.html">Computation Right Leaning Identity Tangle Tree Positivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-wptt_vertex_canonicity/index.html">Computation Weighted Planar Tangle Tree Vertex Canonicity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-montesinos/index.html">Generator Montesinos Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rational/index.html">Generator Rational Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rlitt/index.html">Generator Right Leaning Identity Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-twist_vector/index.html">Notation Twist Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-wptt/index.html">Notation Weighted Planar Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-cpp_storage_interface/index.html">Storage C++ Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-json/index.html">Storage JSON</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tanglenomicon Core Libraries</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Computation Right Leaning Identity Tangle Tree Grafting</a></li>
+      <li class="breadcrumb-item active">Unit Description</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/_collections/comp-rlitt_grafting/unit-description.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="topic abstract" role="doc-abstract">
+<p class="topic-title">Abstract</p>
+<p>A unit description for computation of arborescent tangle grafting.</p>
+</div>
+<section id="unit-description">
+<h1>Unit Description<a class="headerlink" href="#unit-description" title="Link to this heading"></a></h1>
+<section id="class-diagram">
+<h2>Class Diagram<a class="headerlink" href="#class-diagram" title="Link to this heading"></a></h2>
+<pre  class="mermaid">
+        classDiagram
+    comp_rlitt_grafting --|&gt; computation
+    comp_rlitt_grafting_config_t --|&gt; notation_wptt
+    comp_rlitt_grafting_config_t --|&gt; comp_config_t
+    comp_rlitt_grafting *-- comp_rlitt_grafting_config_t
+    comp_rlitt_grafting_result_t --|&gt; notation_wptt
+    comp_rlitt_grafting_result_t --|&gt; comp_result_t
+    comp_rlitt_grafting *-- comp_rlitt_grafting_result_t
+
+    class computation {
+        &lt;&lt;interface&gt;&gt;
+    }
+
+    class comp_rlitt_grafting {
+&lt;&lt;&gt;&gt;
+- notation_wptt node_buffer[MAX_CN]
+}
+
+class notation_wptt{
+&lt;&lt;&gt;&gt;
+}
+
+class comp_rlitt_grafting_config_t {
+&lt;&lt;struct&gt;&gt;
++ notation_wptt *rootstock
++ notation_wptt *scion
++ uint8 grating_idx
+}
+
+class comp_config_t {
+&lt;&lt;interface&gt;&gt;
+}
+
+class comp_rlitt_grafting_result_t {
+&lt;&lt;struct&gt;&gt;
++ notation_wptt result
+}
+
+class comp_result_t {
+&lt;&lt;interface&gt;&gt;
+}
+
+
+    </pre></section>
+<section id="language">
+<h2>Language<a class="headerlink" href="#language" title="Link to this heading"></a></h2>
+<p>C</p>
+</section>
+<section id="implements">
+<h2>Implements<a class="headerlink" href="#implements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#computation-interface"><span class="xref myst">Computation Interface</span></a></p></li>
+</ul>
+</section>
+<section id="uses">
+<h2>Uses<a class="headerlink" href="#uses" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../note-wptt/index.html#note-wptt"><span class="std std-ref">Notation Weighted Planar Tangle Tree</span></a></p></li>
+</ul>
+</section>
+<section id="libraries">
+<h2>Libraries<a class="headerlink" href="#libraries" title="Link to this heading"></a></h2>
+<p>None</p>
+</section>
+<section id="functionality">
+<h2>Functionality<a class="headerlink" href="#functionality" title="Link to this heading"></a></h2>
+<section id="public-structures">
+<h3>Public Structures<a class="headerlink" href="#public-structures" title="Link to this heading"></a></h3>
+<section id="configuration-structure">
+<h4>Configuration Structure<a class="headerlink" href="#configuration-structure" title="Link to this heading"></a></h4>
+<p>The configuration structure contains the data needed for computing the rlitt_grafting of two input
+arborescent tangles.</p>
+<p>This includes:</p>
+<ul class="simple">
+<li><p>Rootstock pointer to a read-only notation structure for a WPTT.</p></li>
+<li><p>Scion pointer to a read-only notation structure for a WPTT.</p></li>
+</ul>
+</section>
+<section id="result-structure">
+<h4>Result Structure<a class="headerlink" href="#result-structure" title="Link to this heading"></a></h4>
+<p>The configuration structure contains a weighted planar tangle tree that is the result of
+rlitt_grafting the configured rootstock to the configured scion.</p>
+</section>
+</section>
+<section id="public-functions">
+<h3>Public Functions<a class="headerlink" href="#public-functions" title="Link to this heading"></a></h3>
+<section id="configuration-function">
+<h4>Configuration Function<a class="headerlink" href="#configuration-function" title="Link to this heading"></a></h4>
+<p>The configuration function sets the local configuration variable of the computation.</p>
+<p>This process is described in the following state machines:</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+  state &quot;Init local config&quot; as Sc
+
+    [*] --&gt; Sc
+    Sc --&gt; [*]
+
+    </pre></section>
+<section id="compute-function">
+<h4>Compute Function<a class="headerlink" href="#compute-function" title="Link to this heading"></a></h4>
+<p>The compute function carries out the arborescent tangle rlitt_grafting computation. The function may
+contain sub-machines that can be broken out into functions in the implementation.</p>
+<p>This process is described in the following state machines:</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+    copy_normalize_tree: Copy and normalize
+    copy_normalize_tree: rootstock into buffer
+    graft: Graft at vertex i
+
+    [*] --&gt; copy_normalize_tree
+    copy_normalize_tree --&gt; graft
+    graft --&gt; [*]
+    </pre></section>
+</section>
+<section id="private-functions">
+<h3>Private Functions<a class="headerlink" href="#private-functions" title="Link to this heading"></a></h3>
+<section id="graft-scion-to-rootstock">
+<h4>Graft Scion to Rootstock<a class="headerlink" href="#graft-scion-to-rootstock" title="Link to this heading"></a></h4>
+<p>This function carries out the</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+    find_node: Identify the ith node
+    set_count: Increment child count
+    add_node: Add root of scion
+    add_node: to the child list
+    move_weight: Move last weight right
+    move_weight: one and replace with 0
+
+    [*] --&gt; find_node
+    find_node --&gt; set_count
+    set_count --&gt; add_node
+    add_node --&gt; move_weight
+    move_weight --&gt; [*]
+    </pre></section>
+<section id="result-function">
+<h4>Result Function<a class="headerlink" href="#result-function" title="Link to this heading"></a></h4>
+<p>When this function is invoked, the result of the rlitt_grafting computation process is reported.</p>
+</section>
+</section>
+</section>
+<section id="validation">
+<h2>Validation<a class="headerlink" href="#validation" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>Configuration Function<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<section id="positive-tests">
+<h4>Positive Tests<a class="headerlink" href="#positive-tests" title="Link to this heading"></a></h4>
+<div class="admonition-valid-config admonition">
+<p class="admonition-title">Valid Config</p>
+<p>A valid configuration for the computation is passed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid config.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A positive response.</p>
+</div>
+</section>
+<section id="negative-tests">
+<h4>Negative Tests<a class="headerlink" href="#negative-tests" title="Link to this heading"></a></h4>
+<div class="admonition-null-config admonition">
+<p class="admonition-title">Null Config</p>
+<p>A null configuration for the computation is passed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A null config.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+<div class="admonition-null-configuration-parameters admonition">
+<p class="admonition-title">Null Configuration Parameters</p>
+<p>A configuration with various null parameters is passed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A configuration with null rootstock.</p></li>
+<li><p>A configuration with null scion.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+</section>
+</section>
+<section id="id2">
+<h3>Compute Function<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<section id="id3">
+<h4>Positive Tests<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<div class="admonition-a-valid-config admonition">
+<p class="admonition-title">A valid config</p>
+<p>A valid configuration is set for the component. The computation is executed and
+returns successfully. The result written to the write interface is correct</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration is set.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<ul class="simple">
+<li><p>A positive response.</p></li>
+<li><p>A correct output on the write interface.</p></li>
+</ul>
+</div>
+<div class="admonition-a-valid-configuration-with-null-write-interface admonition">
+<p class="admonition-title">A valid configuration with null write interface</p>
+<p>A valid configuration is set for the component with null write. The computation is
+executed and returns successfully.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration is set.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<ul class="simple">
+<li><p>A positive response.</p></li>
+</ul>
+</div>
+</section>
+<section id="id4">
+<h4>Negative Tests<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<div class="admonition-not-configured admonition">
+<p class="admonition-title">Not Configured</p>
+<p>The compute interface is called before configuration.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>None.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+</section>
+</section>
+<section id="results-function">
+<h3>Results Function<a class="headerlink" href="#results-function" title="Link to this heading"></a></h3>
+<section id="id5">
+<h4>Positive Tests<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
+<div class="admonition-a-valid-configuration-and-computation admonition">
+<p class="admonition-title">A valid configuration and computation</p>
+<p>A valid configuration is set for the component. The computation is executed and
+returns successfully. The resulting value is correct when read from the result
+interface.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration is set.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<ul class="simple">
+<li><p>A positive response.</p></li>
+<li><p>The result is correct.</p></li>
+</ul>
+</div>
+</section>
+<section id="id6">
+<h4>Negative Tests<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
+<div class="admonition-computation-not-executed admonition">
+<p class="admonition-title">Computation not executed</p>
+<p>The result interface is called before compute has been run.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>None.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="doxygen-documentation">
+<h2>Doxygen Documentation<a class="headerlink" href="#doxygen-documentation" title="Link to this heading"></a></h2>
+<p>A module for compute rlitt_grafting. </p>
+<p><dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Joe Starr </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_RLITT_GRAFTING_CONFIG_ROOTSTOCK">
+<span class="target" id="comp__rlitt__grafting_8h_1a484e8a2599b84c937eb7973565a77671"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_GRAFTING_CONFIG_ROOTSTOCK</span></span></span><a class="headerlink" href="#c.COMP_RLITT_GRAFTING_CONFIG_ROOTSTOCK" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to issue in rootstock. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_RLITT_GRAFTING_CONFIG_SCION">
+<span class="target" id="comp__rlitt__grafting_8h_1a30bde6ed3fb8d8604f6ff22d38fb7057"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_GRAFTING_CONFIG_SCION</span></span></span><a class="headerlink" href="#c.COMP_RLITT_GRAFTING_CONFIG_SCION" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to issue in scion. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_RLITT_GRAFTING_CONFIG_IS_NULL">
+<span class="target" id="comp__rlitt__grafting_8h_1aa23005f9d4ae54f32180a360554116d7"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_GRAFTING_CONFIG_IS_NULL</span></span></span><a class="headerlink" href="#c.COMP_RLITT_GRAFTING_CONFIG_IS_NULL" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to null config. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_RLITT_GRAFTING_CONFIG_BUFFER">
+<span class="target" id="comp__rlitt__grafting_8h_1ad5c2861e193901937de795c109297539"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_GRAFTING_CONFIG_BUFFER</span></span></span><a class="headerlink" href="#c.COMP_RLITT_GRAFTING_CONFIG_BUFFER" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to error in config buffer. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_RLITT_GRAFTING_COMPUTE_ROOTSTOCK">
+<span class="target" id="comp__rlitt__grafting_8h_1a6de2b6852d5a63b1f7ec5d576fa6908c"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_GRAFTING_COMPUTE_ROOTSTOCK</span></span></span><a class="headerlink" href="#c.COMP_RLITT_GRAFTING_COMPUTE_ROOTSTOCK" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to issue in rootstock. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_RLITT_GRAFTING_COMPUTE_GRAFTING_RLITT">
+<span class="target" id="comp__rlitt__grafting_8h_1a9d5df0b806b746003b1f29bc82fac8da"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_GRAFTING_COMPUTE_GRAFTING_RLITT</span></span></span><a class="headerlink" href="#c.COMP_RLITT_GRAFTING_COMPUTE_GRAFTING_RLITT" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to issue in the grafting operation. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_RLITT_GRAFTING_COMPUTE_CFG_ERROR">
+<span class="target" id="comp__rlitt__grafting_8h_1a6de6018ebda32af159a1fab0e56eb642"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_GRAFTING_COMPUTE_CFG_ERROR</span></span></span><a class="headerlink" href="#c.COMP_RLITT_GRAFTING_COMPUTE_CFG_ERROR" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to config error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_RLITT_GRAFTING_COMPUTE_COPYERROR">
+<span class="target" id="comp__rlitt__grafting_8h_1ac29d2afe5a71d48fcde8be695f859ef8"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_GRAFTING_COMPUTE_COPYERROR</span></span></span><a class="headerlink" href="#c.COMP_RLITT_GRAFTING_COMPUTE_COPYERROR" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to error in copying. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_RLITT_GRAFTING_COMPUTE_ALREADY_COMPUTED">
+<span class="target" id="comp__rlitt__grafting_8h_1a89e5e32274ba00a425095429573c6ee3"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_GRAFTING_COMPUTE_ALREADY_COMPUTED</span></span></span><a class="headerlink" href="#c.COMP_RLITT_GRAFTING_COMPUTE_ALREADY_COMPUTED" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to config having previously been processed. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426comp_rlitt_grafting_configP28comp_rlitt_grafting_config_t">
+<span id="_CPPv326comp_rlitt_grafting_configP28comp_rlitt_grafting_config_t"></span><span id="_CPPv226comp_rlitt_grafting_configP28comp_rlitt_grafting_config_t"></span><span id="comp_rlitt_grafting_config__comp_rlitt_grafting_config_tP"></span><span class="target" id="comp__rlitt__grafting_8h_1ac72743b28a68f0a6271f23be72dcde41"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_grafting_config</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv428comp_rlitt_grafting_config_t" title="comp_rlitt_grafting_config_t"><span class="n"><span class="pre">comp_rlitt_grafting_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">config_arg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426comp_rlitt_grafting_configP28comp_rlitt_grafting_config_t" title="Link to this definition"></a><br /></dt>
+<dd><p>The public configuration function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config_arg</strong> – The config to set. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv427comp_rlitt_grafting_computev">
+<span id="_CPPv327comp_rlitt_grafting_computev"></span><span id="_CPPv227comp_rlitt_grafting_computev"></span><span id="comp_rlitt_grafting_compute"></span><span class="target" id="comp__rlitt__grafting_8h_1a5881619757a63e501848405b23133fe5"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_grafting_compute</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427comp_rlitt_grafting_computev" title="Link to this definition"></a><br /></dt>
+<dd><p>A public function, calling this executes the computation on the configured tangle. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>uint8_t computation status info. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426comp_rlitt_grafting_resultv">
+<span id="_CPPv326comp_rlitt_grafting_resultv"></span><span id="_CPPv226comp_rlitt_grafting_resultv"></span><span id="comp_rlitt_grafting_result"></span><span class="target" id="comp__rlitt__grafting_8h_1add0b35c6f472666a2e4c755f72569646"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv428comp_rlitt_grafting_result_t" title="comp_rlitt_grafting_result_t"><span class="n"><span class="pre">comp_rlitt_grafting_result_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_grafting_result</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426comp_rlitt_grafting_resultv" title="Link to this definition"></a><br /></dt>
+<dd><p>A public function, calling this retrieves the results of the last computation. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#structcomp__rlitt__grafting__result__t"><span class="std std-ref">comp_rlitt_grafting_result_t</span></a> Computation results. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv428comp_rlitt_grafting_result_t">
+<span id="_CPPv328comp_rlitt_grafting_result_t"></span><span id="_CPPv228comp_rlitt_grafting_result_t"></span><span id="comp_rlitt_grafting_result_t"></span><span class="target" id="structcomp__rlitt__grafting__result__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_grafting_result_t</span></span></span><a class="headerlink" href="#_CPPv428comp_rlitt_grafting_result_t" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;comp_rlitt_grafting.h&gt;</em></div>
+<p>The type definition for the result reporting of the rlitt_grafting computation. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N28comp_rlitt_grafting_result_t12grafted_wpttE">
+<span id="_CPPv3N28comp_rlitt_grafting_result_t12grafted_wpttE"></span><span id="_CPPv2N28comp_rlitt_grafting_result_t12grafted_wpttE"></span><span id="comp_rlitt_grafting_result_t::grafted_wptt__note_wptt_tP"></span><span class="target" id="structcomp__rlitt__grafting__result__t_1a98564b6cf4fb36024bd6eb06f12d85d3"></span><a class="reference internal" href="../note-wptt/unit-description.html#_CPPv411note_wptt_t" title="note_wptt_t"><span class="n"><span class="pre">note_wptt_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">grafted_wptt</span></span></span><a class="headerlink" href="#_CPPv4N28comp_rlitt_grafting_result_t12grafted_wpttE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv428comp_rlitt_grafting_config_t">
+<span id="_CPPv328comp_rlitt_grafting_config_t"></span><span id="_CPPv228comp_rlitt_grafting_config_t"></span><span id="comp_rlitt_grafting_config_t"></span><span class="target" id="structcomp__rlitt__grafting__config__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_grafting_config_t</span></span></span><a class="headerlink" href="#_CPPv428comp_rlitt_grafting_config_t" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;comp_rlitt_grafting.h&gt;</em></div>
+<p>The type definition for configuring the rlitt_grafting computation. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N28comp_rlitt_grafting_config_t13storage_writeE">
+<span id="_CPPv3N28comp_rlitt_grafting_config_t13storage_writeE"></span><span id="_CPPv2N28comp_rlitt_grafting_config_t13storage_writeE"></span><span id="comp_rlitt_grafting_config_t::storage_write__storage_write_funptr_t"></span><span class="target" id="structcomp__rlitt__grafting__config__t_1af3f5195f5750b7698031b977aaba15e4"></span><span class="n"><span class="pre">storage_write_funptr_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">storage_write</span></span></span><a class="headerlink" href="#_CPPv4N28comp_rlitt_grafting_config_t13storage_writeE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N28comp_rlitt_grafting_config_t9rootstockE">
+<span id="_CPPv3N28comp_rlitt_grafting_config_t9rootstockE"></span><span id="_CPPv2N28comp_rlitt_grafting_config_t9rootstockE"></span><span id="comp_rlitt_grafting_config_t::rootstock__note_wptt_tCP"></span><span class="target" id="structcomp__rlitt__grafting__config__t_1a2b59d908e0389e5ccec96b3e58485d8f"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../note-wptt/unit-description.html#_CPPv411note_wptt_t" title="note_wptt_t"><span class="n"><span class="pre">note_wptt_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">rootstock</span></span></span><a class="headerlink" href="#_CPPv4N28comp_rlitt_grafting_config_t9rootstockE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N28comp_rlitt_grafting_config_t5scionE">
+<span id="_CPPv3N28comp_rlitt_grafting_config_t5scionE"></span><span id="_CPPv2N28comp_rlitt_grafting_config_t5scionE"></span><span id="comp_rlitt_grafting_config_t::scion__note_wptt_tCP"></span><span class="target" id="structcomp__rlitt__grafting__config__t_1adadba3580d11a7fc9b354aa956f80487"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../note-wptt/unit-description.html#_CPPv411note_wptt_t" title="note_wptt_t"><span class="n"><span class="pre">note_wptt_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">scion</span></span></span><a class="headerlink" href="#_CPPv4N28comp_rlitt_grafting_config_t5scionE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N28comp_rlitt_grafting_config_t18rlitt_grafting_idxE">
+<span id="_CPPv3N28comp_rlitt_grafting_config_t18rlitt_grafting_idxE"></span><span id="_CPPv2N28comp_rlitt_grafting_config_t18rlitt_grafting_idxE"></span><span id="comp_rlitt_grafting_config_t::rlitt_grafting_idx__s"></span><span class="target" id="structcomp__rlitt__grafting__config__t_1ac06d4bd7d091343874e6375e72d737dd"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rlitt_grafting_idx</span></span></span><a class="headerlink" href="#_CPPv4N28comp_rlitt_grafting_config_t18rlitt_grafting_idxE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N28comp_rlitt_grafting_config_t11output_wpttE">
+<span id="_CPPv3N28comp_rlitt_grafting_config_t11output_wpttE"></span><span id="_CPPv2N28comp_rlitt_grafting_config_t11output_wpttE"></span><span id="comp_rlitt_grafting_config_t::output_wptt__note_wptt_tP"></span><span class="target" id="structcomp__rlitt__grafting__config__t_1a45ad8fc8580a6abb5b48f4e94a123cd4"></span><a class="reference internal" href="../note-wptt/unit-description.html#_CPPv411note_wptt_t" title="note_wptt_t"><span class="n"><span class="pre">note_wptt_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">output_wptt</span></span></span><a class="headerlink" href="#_CPPv4N28comp_rlitt_grafting_config_t11output_wpttE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<p>A rlitt_grafting module. </p>
+<p><dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Joe Starr </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_RLITT_GRAFTING_STACK_SIZE">
+<span class="target" id="comp__rlitt__grafting_8c_1a26b13f193ffd5dad109d1a5c3bd859f5"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_GRAFTING_STACK_SIZE</span></span></span><a class="headerlink" href="#c.COMP_RLITT_GRAFTING_STACK_SIZE" title="Link to this definition"></a><br /></dt>
+<dd><p>The maximum size of the stack used for walking the trees. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv429comp_rlitt_grafting_copy_treePK11note_wptt_t">
+<span id="_CPPv329comp_rlitt_grafting_copy_treePK11note_wptt_t"></span><span id="_CPPv229comp_rlitt_grafting_copy_treePK11note_wptt_t"></span><span id="comp_rlitt_grafting_copy_tree__note_wptt_tCP"></span><span class="target" id="comp__rlitt__grafting_8c_1a4d4cb0a6ea77bb190f6267ee6b4f92bd"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_grafting_copy_tree</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../note-wptt/unit-description.html#_CPPv411note_wptt_t" title="note_wptt_t"><span class="n"><span class="pre">note_wptt_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">tree</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429comp_rlitt_grafting_copy_treePK11note_wptt_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Copies a given tree into the output buffer. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tree</strong> – The tree to copy into the output buffer. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A flag indicating success of the copy. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__rlitt__grafting_8c_1ab52c70313222160b0d648a9be74bf41c"></span><span class="sig-name descname"><span class="pre">STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">comp_rlitt_grafting_copy_nodevals</span> <span class="pre">(const</span> <span class="pre">note_wptt_node_t</span> <span class="pre">*src,</span> <span class="pre">note_wptt_node_t</span> <span class="pre">*dest)</span></span></dt>
+<dd><p>Copies values of a vertex to a new vertex. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src</strong> – The source vertex. </p></li>
+<li><p><strong>dest</strong> – The destination vertex. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv425comp_rlitt_grafting_graftP16note_wptt_node_t">
+<span id="_CPPv325comp_rlitt_grafting_graftP16note_wptt_node_t"></span><span id="_CPPv225comp_rlitt_grafting_graftP16note_wptt_node_t"></span><span id="comp_rlitt_grafting_graft__note_wptt_node_tP"></span><span class="target" id="comp__rlitt__grafting_8c_1a3b86683c276ab2e4162bcb4df2323d02"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_grafting_graft</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="../note-wptt/unit-description.html#_CPPv416note_wptt_node_t" title="note_wptt_node_t"><span class="n"><span class="pre">note_wptt_node_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">scion</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425comp_rlitt_grafting_graftP16note_wptt_node_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Graft a scion onto the idx element of the rootstock. </p>
+<p>We copied the rootstock into a new buffer so that buffer is in index order. We can directly access the ith element for grafting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>scion</strong> – The scion for processing. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A status indicator for the operation </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__rlitt__grafting_8c_1ac72743b28a68f0a6271f23be72dcde41"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_grafting_config</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv428comp_rlitt_grafting_config_t" title="comp_rlitt_grafting_config_t"><span class="n"><span class="pre">comp_rlitt_grafting_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">config_arg</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>The public configuration function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config_arg</strong> – The config to set. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__rlitt__grafting_8c_1a5881619757a63e501848405b23133fe5"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_grafting_compute</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>A public function, calling this executes the computation on the configured tangle. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>uint8_t computation status info. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__rlitt__grafting_8c_1add0b35c6f472666a2e4c755f72569646"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv428comp_rlitt_grafting_result_t" title="comp_rlitt_grafting_result_t"><span class="n"><span class="pre">comp_rlitt_grafting_result_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_grafting_result</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>A public function, calling this retrieves the results of the last computation. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#structcomp__rlitt__grafting__result__t"><span class="std std-ref">comp_rlitt_grafting_result_t</span></a> Computation results. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv430comp_rlitt_grafting_localnodes">
+<span id="_CPPv330comp_rlitt_grafting_localnodes"></span><span id="_CPPv230comp_rlitt_grafting_localnodes"></span><span id="comp_rlitt_grafting_localnodes__note_wptt_node_tP"></span><span class="target" id="comp__rlitt__grafting_8c_1a3badd4e57c86726cae621fb8a9373612"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="../note-wptt/unit-description.html#_CPPv416note_wptt_node_t" title="note_wptt_node_t"><span class="n"><span class="pre">note_wptt_node_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_grafting_localnodes</span></span></span><a class="headerlink" href="#_CPPv430comp_rlitt_grafting_localnodes" title="Link to this definition"></a><br /></dt>
+<dd><p>The local configuration of the rlitt grafting module. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv429comp_rlitt_grafting_nodes_idx">
+<span id="_CPPv329comp_rlitt_grafting_nodes_idx"></span><span id="_CPPv229comp_rlitt_grafting_nodes_idx"></span><span id="comp_rlitt_grafting_nodes_idx__s"></span><span class="target" id="comp__rlitt__grafting_8c_1aa13472fe4d054cc15f77c425aa25bd78"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_grafting_nodes_idx</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv429comp_rlitt_grafting_nodes_idx" title="Link to this definition"></a><br /></dt>
+<dd><p>The local configuration of the rlitt grafting module. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv431comp_rlitt_grafting_nodes_count">
+<span id="_CPPv331comp_rlitt_grafting_nodes_count"></span><span id="_CPPv231comp_rlitt_grafting_nodes_count"></span><span id="comp_rlitt_grafting_nodes_count__s"></span><span class="target" id="comp__rlitt__grafting_8c_1a94b9610b1838edad653b3ba3d1778770"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_grafting_nodes_count</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv431comp_rlitt_grafting_nodes_count" title="Link to this definition"></a><br /></dt>
+<dd><p>The local configuration of the rlitt grafting module. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv428comp_rlitt_grafting_localcfg">
+<span id="_CPPv328comp_rlitt_grafting_localcfg"></span><span id="_CPPv228comp_rlitt_grafting_localcfg"></span><span id="comp_rlitt_grafting_localcfg__comp_rlitt_grafting_config_tP"></span><span class="target" id="comp__rlitt__grafting_8c_1a07af3dae54a067fb2bd38cb1b69df00d"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv428comp_rlitt_grafting_config_t" title="comp_rlitt_grafting_config_t"><span class="n"><span class="pre">comp_rlitt_grafting_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_grafting_localcfg</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">NULL</span></span><a class="headerlink" href="#_CPPv428comp_rlitt_grafting_localcfg" title="Link to this definition"></a><br /></dt>
+<dd><p>The local configuration of the rlitt grafting module. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv432comp_rlitt_grafting_localrestult">
+<span id="_CPPv332comp_rlitt_grafting_localrestult"></span><span id="_CPPv232comp_rlitt_grafting_localrestult"></span><span id="comp_rlitt_grafting_localrestult__comp_rlitt_grafting_result_t"></span><span class="target" id="comp__rlitt__grafting_8c_1aa9765425b15618b3978fb2920c06aedb"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv428comp_rlitt_grafting_result_t" title="comp_rlitt_grafting_result_t"><span class="n"><span class="pre">comp_rlitt_grafting_result_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_grafting_localrestult</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="n"><span class="pre">NULL</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv432comp_rlitt_grafting_localrestult" title="Link to this definition"></a><br /></dt>
+<dd><p>The local result of the rlitt grafting module. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv428comp_rlitt_grafting_executed">
+<span id="_CPPv328comp_rlitt_grafting_executed"></span><span id="_CPPv228comp_rlitt_grafting_executed"></span><span id="comp_rlitt_grafting_executed__b"></span><span class="target" id="comp__rlitt__grafting_8c_1a0c30aa6862d27291469933890ecd121e"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_grafting_executed</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv428comp_rlitt_grafting_executed" title="Link to this definition"></a><br /></dt>
+<dd><p>The local computation status of the rlitt grafting module. </p>
+</dd></dl>
+
+</div>
+</section>
+<section id="bibliography">
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading"></a></h2>
+<span class="target" id="id7"></span></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="use-case.html" class="btn btn-neutral float-left" title="Use Case" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../comp-rlitt_positivity/index.html" class="btn btn-neutral float-right" title="Computation Right Leaning Identity Tangle Tree Positivity" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, temp.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

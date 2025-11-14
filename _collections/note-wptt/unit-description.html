@@ -1,0 +1,1501 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit Description &mdash; Tanglenomicon Core Libraries 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/proof.css?v=b4b7a797" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+      <script type="module">mermaid.initialize({
+  securityLevel: 'loose',
+  theme: 'dark',
+});</script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+const load = async () => {
+    await mermaid.run();
+    const all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+    if(mermaids_to_add_zoom > 0) {
+        var svgs = d3.selectAll(".mermaid svg");
+        if(all_mermaids.length !== mermaids_processed.length) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else if(svgs.size() !== mermaids_to_add_zoom) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else {
+            svgs.each(function() {
+                var svg = d3.select(this);
+                svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                var inner = svg.select("g");
+                var zoom = d3.zoom().on("zoom", function(event) {
+                    inner.attr("transform", event.transform);
+                });
+                svg.call(zoom);
+            });
+        }
+    }
+};
+
+window.addEventListener("load", load);
+</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Storage C++ Interface" href="../store-cpp_storage_interface/index.html" />
+    <link rel="prev" title="Use Case" href="use-case.html" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                macros: {
+                    "\\N": "\\mathbb{N}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\Q": "\\mathbb{Q}",
+                    "\\R": "\\mathbb{R}",
+                    "\\LN": "\\left.",
+                    "\\RN": "\\right.",
+                    "\\LP": "\\left(",
+                    "\\RP": "\\right)",
+                    "\\LS": "\\left\\lbrace",
+                    "\\RS": "\\right\\rbrace",
+                    "\\LA": "\\left\\langle",
+                    "\\RA": "\\right\\rangle",
+                    "\\LB": "\\left[",
+                    "\\RB": "\\right]",
+                    "\\MM": "\\ \\middle|\\ ",
+                    "\\exp": "\\text{exp}",
+                    "\\abs": "\\left\\vert#1\\right\\vert",
+                    "\\msr": "m\\left(#1\\right)",
+                    "\\inv": " #1^{-1}",
+                    "\\bkt": "\\LA \\img{ #1}\\RA",
+                }
+            }
+        );
+    });
+</script>
+
+
+<style>
+
+</style>
+ 
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Tanglenomicon Core Libraries
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Generic Interfaces</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../comp-rational_data/index.html">Computation Rational Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_grafting/index.html">Computation Right Leaning Identity Tangle Tree Grafting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_positivity/index.html">Computation Right Leaning Identity Tangle Tree Positivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-wptt_vertex_canonicity/index.html">Computation Weighted Planar Tangle Tree Vertex Canonicity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-montesinos/index.html">Generator Montesinos Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rational/index.html">Generator Rational Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rlitt/index.html">Generator Right Leaning Identity Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-twist_vector/index.html">Notation Twist Vector</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Notation Weighted Planar Tangle Tree</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="use-case.html">Use Case</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Unit Description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#language">Language</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implements">Implements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#external-libraries">External Libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functionality">Functionality</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#public">Public</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#private">Private</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#validation">Validation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#decode-interface">Decode interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#encode-interface">Encode interface</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#doxygen-documentation">Doxygen Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#c.NOTE_WPTT_DECODE_MAX_WEIGHTS"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_DECODE_MAX_WEIGHTS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.NOTE_WPTT_DECODE_MAX_CHILDREN"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_DECODE_MAX_CHILDREN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.NOTE_WPTT_MAX_STR_LEN"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_MAX_STR_LEN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.NOTE_WPTT_DECODE_EMPTY_STR"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_DECODE_EMPTY_STR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.NOTE_WPTT_DECODE_NULL_DEST"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_DECODE_NULL_DEST</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.NOTE_WPTT_DECODE_BAD_STR"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_DECODE_BAD_STR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.NOTE_WPTT_DECODE_BUFFER_ERROR"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_DECODE_BUFFER_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.NOTE_WPTT_DECODE_OVRUNDR_ERROR"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_DECODE_OVRUNDR_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.NOTE_WPTT_ENCODE_STR_BUF"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_ENCODE_STR_BUF</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.NOTE_WPTT_ENCODE_MALFORMED"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_ENCODE_MALFORMED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.NOTE_WPTT_ENCODE_OVRUNDR_ERROR"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_ENCODE_OVRUNDR_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv416note_wptt_node_t"><code class="docutils literal notranslate"><span class="pre">note_wptt_node_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv423note_wptt_node_buffer_t"><code class="docutils literal notranslate"><span class="pre">note_wptt_node_buffer_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv420note_wptt_V4_label_e"><code class="docutils literal notranslate"><span class="pre">note_wptt_V4_label_e</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv417note_wptt_order_e"><code class="docutils literal notranslate"><span class="pre">note_wptt_order_e</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv416note_wptt_decodePcP11note_wptt_t"><code class="docutils literal notranslate"><span class="pre">note_wptt_decode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv416note_wptt_encode11note_wptt_tPc6size_t"><code class="docutils literal notranslate"><span class="pre">note_wptt_encode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N16note_wptt_node_t8childrenE"><code class="docutils literal notranslate"><span class="pre">children</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N16note_wptt_node_t7weightsE"><code class="docutils literal notranslate"><span class="pre">weights</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N16note_wptt_node_t18number_of_childrenE"><code class="docutils literal notranslate"><span class="pre">number_of_children</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N16note_wptt_node_t15number_of_ringsE"><code class="docutils literal notranslate"><span class="pre">number_of_rings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N16note_wptt_node_t5orderE"><code class="docutils literal notranslate"><span class="pre">order</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N23note_wptt_node_buffer_t6bufferE"><code class="docutils literal notranslate"><span class="pre">buffer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N23note_wptt_node_buffer_t4sizeE"><code class="docutils literal notranslate"><span class="pre">size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N23note_wptt_node_buffer_t3idxE"><code class="docutils literal notranslate"><span class="pre">idx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv411note_wptt_t"><code class="docutils literal notranslate"><span class="pre">note_wptt_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.NOTE_WPTT_V4_LABEL_I_STR"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_V4_LABEL_I_STR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.NOTE_WPTT_V4_LABEL_X_STR"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_V4_LABEL_X_STR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.NOTE_WPTT_V4_LABEL_Y_STR"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_V4_LABEL_Y_STR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.NOTE_WPTT_V4_LABEL_Z_STR"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_V4_LABEL_Z_STR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.NOTE_WPTT_STACK_SIZE"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_STACK_SIZE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.NOTE_WPTT_DECODE_DICT_SIZE"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_DECODE_DICT_SIZE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.NOTE_WPTT_INT_BASE"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_INT_BASE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv421char_handler_funptr_t"><code class="docutils literal notranslate"><span class="pre">char_handler_funptr_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv427note_wptt_decode_char_dic_t"><code class="docutils literal notranslate"><span class="pre">note_wptt_decode_char_dic_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv426note_wptt_decode_push_nodev"><code class="docutils literal notranslate"><span class="pre">note_wptt_decode_push_node()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv426note_wptt_decode_add_childv"><code class="docutils literal notranslate"><span class="pre">note_wptt_decode_add_child()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv430note_wptt_decode_space_handlerPPc"><code class="docutils literal notranslate"><span class="pre">note_wptt_decode_space_handler()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv430note_wptt_decode_opn_p_handlerPPc"><code class="docutils literal notranslate"><span class="pre">note_wptt_decode_opn_p_handler()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv430note_wptt_decode_opn_a_handlerPPc"><code class="docutils literal notranslate"><span class="pre">note_wptt_decode_opn_a_handler()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv430note_wptt_decode_opn_b_handlerPPc"><code class="docutils literal notranslate"><span class="pre">note_wptt_decode_opn_b_handler()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv428note_wptt_decode_cls_handlerPPc"><code class="docutils literal notranslate"><span class="pre">note_wptt_decode_cls_handler()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv431note_wptt_decode_weight_handlerPPc"><code class="docutils literal notranslate"><span class="pre">note_wptt_decode_weight_handler()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv429note_wptt_encode_insert_label20note_wptt_V4_label_ePPcPKc"><code class="docutils literal notranslate"><span class="pre">note_wptt_encode_insert_label()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv428note_wptt_encode_insert_charcPPcPKc"><code class="docutils literal notranslate"><span class="pre">note_wptt_encode_insert_char()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv427note_wptt_encode_insert_int6int8_tPPcPKc"><code class="docutils literal notranslate"><span class="pre">note_wptt_encode_insert_int()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv429note_wptt_encode_insert_spacePPcPKcPKc"><code class="docutils literal notranslate"><span class="pre">note_wptt_encode_insert_space()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv429note_wptt_encode_insert_stickP16note_wptt_node_tPPcPKc"><code class="docutils literal notranslate"><span class="pre">note_wptt_encode_insert_stick()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv437note_wptt_encode_complete_active_nodePK16note_wptt_node_tPPc6size_tPKcPKc"><code class="docutils literal notranslate"><span class="pre">note_wptt_encode_complete_active_node()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv436note_wptt_encode_process_active_nodeP16note_wptt_node_tPPc6size_tPKcPKc"><code class="docutils literal notranslate"><span class="pre">note_wptt_encode_process_active_node()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv415wptt_node_stack"><code class="docutils literal notranslate"><span class="pre">wptt_node_stack</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv414wptt_stack_len"><code class="docutils literal notranslate"><span class="pre">wptt_stack_len</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv413decode_buffer"><code class="docutils literal notranslate"><span class="pre">decode_buffer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv415child_idx_stack"><code class="docutils literal notranslate"><span class="pre">child_idx_stack</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N27note_wptt_decode_char_dic_t10char_classE"><code class="docutils literal notranslate"><span class="pre">char_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N27note_wptt_decode_char_dic_t6funptrE"><code class="docutils literal notranslate"><span class="pre">funptr</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bibliography">Bibliography</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../store-cpp_storage_interface/index.html">Storage C++ Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-json/index.html">Storage JSON</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tanglenomicon Core Libraries</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Notation Weighted Planar Tangle Tree</a></li>
+      <li class="breadcrumb-item active">Unit Description</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/_collections/note-wptt/unit-description.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="topic abstract" role="doc-abstract">
+<p class="topic-title">Abstract</p>
+<p>A unit description for the arborescent planar tangle tree notation.</p>
+</div>
+<section id="unit-description">
+<h1>Unit Description<a class="headerlink" href="#unit-description" title="Link to this heading"></a></h1>
+<pre  class="mermaid">
+        classDiagram
+    note_wptt --|&gt; notation
+    note_wptt *-- note_wptt_t
+    note_wptt_t *-- note_wptt_node_t
+    note_wptt_node_t *-- note_wptt_order_e
+    note_wptt_t *-- note_wptt_V4_label_e
+
+    class note_wptt_t {
+        &lt;&lt;struct&gt;&gt;
+        note_wptt_node_t* root
+        note_wptt_node_t* node_buffer
+        note_wptt_V4_label_e label
+        size_t node_buffer_len
+    }
+
+    class note_wptt_order_e {
+        &lt;&lt;enum&gt;&gt;
+        uninit,
+        forward,
+        reverse
+    }
+
+    class note_wptt_V4_label_e {
+        &lt;&lt;enum&gt;&gt;
+        uninit,
+        none,
+        i,
+        x,
+        y,
+        z
+    }
+
+    class note_wptt_node_t {
+        &lt;&lt;struct&gt;&gt;
+        note_wptt_node_t* children[MAX_CN]
+        uint8_t weights[MAX_CN]
+        size_t number_of_children
+        uint8_t number_of_rings
+        note_wptt_order_t order
+    }
+
+    class notation {
+        &lt;&lt;interface&gt;&gt;
+    }
+
+
+    </pre><section id="language">
+<h2>Language<a class="headerlink" href="#language" title="Link to this heading"></a></h2>
+<p>C</p>
+</section>
+<section id="implements">
+<h2>Implements<a class="headerlink" href="#implements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#../../notation-interface.md"><span class="xref myst">Notations Interface</span></a></p></li>
+</ul>
+</section>
+<section id="uses">
+<h2>Uses<a class="headerlink" href="#uses" title="Link to this heading"></a></h2>
+<p>The wptt notation component does not use any other components.</p>
+</section>
+<section id="external-libraries">
+<h2>External Libraries<a class="headerlink" href="#external-libraries" title="Link to this heading"></a></h2>
+<p>The wptt notation component does not use any external libraries.</p>
+</section>
+<section id="functionality">
+<h2>Functionality<a class="headerlink" href="#functionality" title="Link to this heading"></a></h2>
+<section id="public">
+<h3>Public<a class="headerlink" href="#public" title="Link to this heading"></a></h3>
+<section id="structures">
+<h4>Structures<a class="headerlink" href="#structures" title="Link to this heading"></a></h4>
+<section id="notation-structure">
+<h5>Notation structure<a class="headerlink" href="#notation-structure" title="Link to this heading"></a></h5>
+<p>The interface structure for the component is designed to match the non memory allocating design
+goals of non-runner components. That means this notation structure contains:</p>
+<ul class="simple">
+<li><p>A pointer to the root of the wptt</p></li>
+<li><p>A buffer of/for nodes in the wptt</p></li>
+<li><p>A length for the buffer supplied to the component instance</p></li>
+<li><p>A $V_4$ label for the wptt</p></li>
+</ul>
+</section>
+<section id="node-structure">
+<h5>Node structure<a class="headerlink" href="#node-structure" title="Link to this heading"></a></h5>
+<p>We saw in the use-case description an outline for the important data that needs to be encoded in a
+wptt data structure. This data is summarized as:</p>
+<ul class="simple">
+<li><p>Children and their cyclic order</p></li>
+<li><p>Weights and their location in the cyclic order</p></li>
+<li><p>Number of rings</p></li>
+</ul>
+<p>Each of these items are easy to encode in a C structure. The children (except parent linkage) are
+encoded as an array of pointers to the children. Additionally, this array implicitly encodes a
+cyclic order of the children by the order in the array. Weights are encoded likewise in an array.
+Weight index is interpreted as “after” the same child weight in order as seen below.</p>
+<div class="proof example admonition" id="example-0">
+<p class="admonition-title"><span class="caption-number">Example 24 </span> (Interleaved index)</p>
+<section class="example-content" id="proof-content">
+<p>For child array $[c_0,c_1,\cdots,c_{n-1}]$ and weight array
+$[w_0,w_1,\cdots,w_{n-1}]$. The order as described in the
+<a class="reference internal" href="use-case.html#linearize-a-vertex"><span class="std std-ref">use-case</span></a> is given as:</p>
+<ul class="simple">
+<li><p>Forward $$w_0c_0w_1c_1\cdots w_{n-1}c_{n-1}w_{n}$$ Forward it the assumed
+default.</p></li>
+<li><p>Reverse $$w_{n}c_{n-1}w_{n-1}\cdots,w_1c_1w_0, $$</p></li>
+</ul>
+</section>
+</div><p>Finally, read order is encoded as a simple enum consisting of:</p>
+<ul class="simple">
+<li><p>uninit</p></li>
+<li><p>forward</p></li>
+<li><p>reverse</p></li>
+</ul>
+<p>This allows components to invert read order, read from $(n-1)\to 0$, at runtime.</p>
+</section>
+</section>
+<section id="functions">
+<h4>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h4>
+<section id="decode-function">
+<h5>decode function<a class="headerlink" href="#decode-function" title="Link to this heading"></a></h5>
+<p>The decode function takes in the linearized string form of the wptt and decodes it as a
+<code class="docutils literal notranslate"><span class="pre">note_wptt_node_t</span></code>.</p>
+<p>This process is described in the following state machines:</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+    state &quot;Init&quot; as vj
+    state &quot;🔵 stack array&quot; as vj
+    state &quot;🔵 stack index&quot; as vj
+    state &quot;🔵 char pointer&quot; as vj
+    state &quot;read label from $$\,V_4$$&quot; as rl
+    state &quot;Handle Root Init&quot; as ri
+    state if_end_of_string &lt;&lt;choice&gt;&gt;
+    state &quot;Execute char checker&quot; as rn
+    state &quot;Move char pointer to&lt;/br&gt; next char in string&quot; as nc
+    [*] --&gt; vj
+    vj --&gt; rl
+    rl --&gt; ri
+    ri --&gt; if_end_of_string
+    if_end_of_string --&gt; nc: is not end of string
+    nc --&gt; rn
+    rn --&gt; if_end_of_string
+    if_end_of_string --&gt; [*]: is end of sting
+
+    </pre></section>
+<section id="encode-function">
+<h5>encode function<a class="headerlink" href="#encode-function" title="Link to this heading"></a></h5>
+<p>The encode function takes in a <code class="docutils literal notranslate"><span class="pre">note_wptt_node_t</span></code> and encodes it into the linearized string form of
+the wptt.</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+    state &quot;Init&quot; as vj
+    state &quot;🔵 stack parent array&quot; as vj
+    state &quot;🔵 stack child_idx array&quot; as vj
+    state &quot;🔵 stack_idx as 0&quot; as vj
+    state &quot;🔵 active node as root&quot; as vj
+    state &quot;Push to stack&quot; as prts
+    state &quot;🔴 root&quot; as prts
+    state &quot;🔴 0 to child_idk&quot; as prts
+    state &quot;Stringify $$\,V_4$$ label&quot; as sl
+    state &quot;Execute handle stack&quot; as handle_stack
+    state &quot;Execute handle stringify&quot; as handle_stringify
+    state &quot;stack_idx--&quot; as simm2
+    state &quot;Stringify weight at&lt;/br&gt;child_idx of active node&quot; as sw
+    state if_root_labeled_done &lt;&lt;choice&gt;&gt;
+    state if_children_exhausted &lt;&lt;choice&gt;&gt;
+    state if_stack_idx_exhausted &lt;&lt;choice&gt;&gt;
+
+    [*] --&gt; vj
+    if_children_exhausted --&gt; handle_stack: else
+    if_stack_idx_exhausted --&gt; [*]: if stack_idx &lt; 0
+    vj --&gt; if_root_labeled_done
+    handle_stack --&gt; handle_stringify
+    if_root_labeled_done --&gt; prts: Tree does not have a label
+    if_root_labeled_done --&gt; sl: Tree has a label
+    sl --&gt; prts
+    prts --&gt; sw
+    sw --&gt; if_children_exhausted
+    if_children_exhausted --&gt; if_stack_idx_exhausted: if child_idx &gt; active node number_of_children
+    if_stack_idx_exhausted --&gt; simm2: else
+    simm2 --&gt; sw
+    handle_stringify --&gt; sw
+    </pre></section>
+</section>
+</section>
+<section id="private">
+<h3>Private<a class="headerlink" href="#private" title="Link to this heading"></a></h3>
+<section id="id1">
+<h4>Structures<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+<p>The component has no private structures.</p>
+</section>
+<section id="id2">
+<h4>Functions<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<section id="decode-path">
+<h5>decode path<a class="headerlink" href="#decode-path" title="Link to this heading"></a></h5>
+<section id="char-checker">
+<h6>Char checker<a class="headerlink" href="#char-checker" title="Link to this heading"></a></h6>
+<p>This function checks a character passed to it and updates the current notation instance with one of
+seven execution paths. These paths are based on the class the character falls into:</p>
+<ul class="simple">
+<li><p>A delimiter</p>
+<ul>
+<li><p>An opening delimiter</p>
+<ul>
+<li><p>$\langle$</p></li>
+<li><p>$[$</p></li>
+<li><p>$($</p></li>
+</ul>
+</li>
+<li><p>A closing delimiter</p>
+<ul>
+<li><p>$\rangle$</p></li>
+<li><p>$)$</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>An integer beginning with “0-9” or “-”</p></li>
+<li><p>A space character</p></li>
+</ul>
+<pre  class="mermaid">
+        stateDiagram-v2
+    state &quot;Get ring number&quot; as rn
+    state &quot;Twist Vector&quot; as tv
+    state &quot;Read TV&quot; as tv
+    state &quot;Move char ptr to end of tv&quot; as tv
+    state &quot;Read integer weight&quot; as ri
+    state &quot;Execute move active node up&quot; as mru
+    state &quot;Execute move active node down&quot; as mrd
+    state if_is_valid &lt;&lt;choice&gt;&gt;
+
+    cdc
+    cdc: Close Delimiter Checker
+    state cdc{
+        state if_next_char_is_Closedelim &lt;&lt;choice&gt;&gt;
+
+    [*]  --&gt; if_next_char_is_Closedelim
+    if_next_char_is_Closedelim --&gt; mru: next char is delimiter $$\,\rangle$$
+    if_next_char_is_Closedelim  --&gt; mru: next char is delimiter $$\,)$$
+    mru --&gt; [*]
+    }
+    odc
+    odc: Open Delimiter Checker
+    state odc{
+        state if_next_char_is_opendelim &lt;&lt;choice&gt;&gt;
+    [*] --&gt; if_next_char_is_opendelim
+    if_next_char_is_opendelim --&gt; tv: next char is delimiter $$\,[$$
+    if_next_char_is_opendelim --&gt; rn: next char is delimiter $$\,\langle$$
+    if_next_char_is_opendelim --&gt; mrd: next char is delimiter $$\,($$
+    tv --&gt; [*]
+    rn --&gt; [*]
+    mrd --&gt; [*]
+    }
+    [*] --&gt; if_is_valid
+    if_is_valid --&gt; odc: Next char is valid
+    if_is_valid --&gt; [*]: else
+    odc --&gt; cdc
+    cdc --&gt; ri: next char is a number 0-9 or -
+    ri --&gt; [*]
+
+    </pre></section>
+<section id="move-active-node-down">
+<h6>Move active node down<a class="headerlink" href="#move-active-node-down" title="Link to this heading"></a></h6>
+<p>This function moves the active node to be a child of the current node. Functionally, this is the
+same as descending the wptt.</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+    state &quot;Init new active node as child&lt;/br&gt; of current active node&quot; as child
+    state &quot;Add active node to stack&quot; as st
+    state &quot;Increment stack index&quot; as isi
+    [*] --&gt; st
+    st --&gt; child
+    child --&gt; isi
+    isi --&gt; [*]
+    </pre></section>
+<section id="move-root-up">
+<h6>Move root up<a class="headerlink" href="#move-root-up" title="Link to this heading"></a></h6>
+<p>This function moves the active node to be a parent of the current node. Functionally, this is the
+same as ascending the wptt.</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+
+    state &quot;Decrement stack index&quot; as dsi
+    state &quot;Set current subtree root to &lt;/br&gt; stack array at stack index&quot; as scr
+
+    [*] --&gt; dsi
+    dsi --&gt; scr
+    scr --&gt; [*]
+    </pre></section>
+</section>
+<section id="encode-path">
+<h5>Encode path<a class="headerlink" href="#encode-path" title="Link to this heading"></a></h5>
+<section id="handle-stack">
+<h6>Handle stack<a class="headerlink" href="#handle-stack" title="Link to this heading"></a></h6>
+<pre  class="mermaid">
+        stateDiagram-v2
+
+    state &quot;Push to stack&quot; as pants
+    state &quot;🔴 child node at child_idk node&quot; as pants
+    state &quot;🔴 0 to child_idx&quot; as pants
+    state &quot;stack_idx++&quot; as sipp
+    state &quot;child_idx[stack_idx]++&quot; as cipp
+    [*] --&gt; pants
+    pants --&gt; cipp
+    cipp --&gt; sipp
+    sipp --&gt; [*]
+    </pre></section>
+<section id="handle-stringify">
+<h6>Handle stringify<a class="headerlink" href="#handle-stringify" title="Link to this heading"></a></h6>
+<pre  class="mermaid">
+        stateDiagram-v2
+
+       state &quot;Stringify $$\,\langle$$ and ring number&quot; as rn
+    state &quot;Stringify $$\,($$&quot; as par
+    state &quot;stack_idx--&quot; as simm
+    state &quot;Stringify stick as twist vector&quot; as stv
+    state if_has_rings &lt;&lt;choice&gt;&gt;
+    state if_stickcheck &lt;&lt;choice&gt;&gt;
+    [*] --&gt; if_stickcheck
+    if_stickcheck --&gt; stv: Active node is on a stick
+    stv --&gt; simm
+    simm --&gt; [*]
+    if_stickcheck --&gt; if_has_rings: else
+    if_has_rings --&gt; par: else
+    if_has_rings --&gt; rn: Active node has rings
+    par --&gt; [*]
+    rn --&gt; [*]
+    </pre></section>
+</section>
+</section>
+</section>
+</section>
+<section id="validation">
+<h2>Validation<a class="headerlink" href="#validation" title="Link to this heading"></a></h2>
+<section id="decode-interface">
+<h3>Decode interface<a class="headerlink" href="#decode-interface" title="Link to this heading"></a></h3>
+<section id="positive-tests">
+<h4>Positive Tests<a class="headerlink" href="#positive-tests" title="Link to this heading"></a></h4>
+<div class="admonition-valid-string-representing-a-knot admonition">
+<p class="admonition-title">Valid string representing a knot</p>
+<p>A valid string representing a knot (no free bond) is fed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid string representing a knot.</p></li>
+<li><p>A stick tree.</p></li>
+<li><p>A tree with an essential vertex.</p></li>
+<li><p>A tree with a vertex that has ring number.</p></li>
+<li><p>A tree with a vertex with more than one weight.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A valid decoding of the string</p>
+</div>
+<div class="admonition-valid-string-representing-a-tangle admonition">
+<p class="admonition-title">Valid string representing a tangle</p>
+<p>A valid string representing a tangle (with free bond) is fed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid string representing a tangle with each label:</p>
+<ul>
+<li><p>i</p></li>
+<li><p>x</p></li>
+<li><p>y</p></li>
+<li><p>z</p></li>
+</ul>
+</li>
+<li><p>A stick tree.</p></li>
+<li><p>A tree with an essential vertex.</p></li>
+<li><p>A tree with a vertex that has ring number.</p></li>
+<li><p>A tree with a vertex with more than one weight.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A valid decoding of the string</p>
+</div>
+</section>
+<section id="negative-tests">
+<h4>Negative Tests<a class="headerlink" href="#negative-tests" title="Link to this heading"></a></h4>
+<div class="admonition-a-malformed-tree-is-fed-to-the-function admonition">
+<p class="admonition-title">A malformed tree is fed to the function</p>
+<p>Various malformed trees are fed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<p>Malformed strings with the following characteristics:</p>
+<ul class="simple">
+<li><p>A missing closing delimiter.</p></li>
+<li><p>An unexpected character is in the string.</p></li>
+<li><p>The string has more weights than possible.</p></li>
+<li><p>An empty string.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>The function reports an error.</p>
+</div>
+</section>
+</section>
+<section id="encode-interface">
+<h3>Encode interface<a class="headerlink" href="#encode-interface" title="Link to this heading"></a></h3>
+<section id="id3">
+<h4>Positive Tests<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<div class="admonition-a-valid-knot-wptt-is-fed-to-the-function admonition">
+<p class="admonition-title">A valid knot wptt is fed to the function</p>
+<p>A valid knot wptt (with no label) is fed to the encode function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid wptt representing a knot.</p></li>
+<li><p>A stick wptt.</p></li>
+<li><p>A wptt with an essential vertex.</p></li>
+<li><p>A wptt with a vertex that has ring number.</p></li>
+<li><p>A wptt with a vertex with more than one weight.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>The function produces the corresponding encoded string.</p>
+</div>
+<div class="admonition-a-valid-tangle-wptt-is-fed-to-the-function admonition">
+<p class="admonition-title">A valid tangle wptt is fed to the function</p>
+<p>A valid tangle wptt (with label) is fed to the encode function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid wptt representing a tangle with each label:</p>
+<ul>
+<li><p>i</p></li>
+<li><p>x</p></li>
+<li><p>y</p></li>
+<li><p>z</p></li>
+</ul>
+</li>
+<li><p>A stick wptt.</p></li>
+<li><p>A wptt with an essential vertex.</p></li>
+<li><p>A wptt with a vertex that has ring number.</p></li>
+<li><p>A wptt with a vertex with more than one weight.</p></li>
+<li><p>A wptt with a vertex that has reverse order.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>The function produces the corresponding encoded string.</p>
+</div>
+</section>
+<section id="id4">
+<h4>Negative Tests<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<div class="admonition-a-malformed-wptt-is-passed-to-the-function admonition">
+<p class="admonition-title">A malformed wptt is passed to the function</p>
+<p>A malformed wptt is passed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A NULL child is present</p></li>
+<li><p>A NULL root is present</p></li>
+<li><p>An UNINIT label is present</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>The function will produce an error.</p>
+</div>
+<div class="admonition-a-null-string-buffer-is-passed admonition">
+<p class="admonition-title">A NULL string buffer is passed</p>
+<p>The output string buffer is a NULL pointer.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A NULL pointer buffer is passed to the function</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>The function will produce an error.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="doxygen-documentation">
+<h2>Doxygen Documentation<a class="headerlink" href="#doxygen-documentation" title="Link to this heading"></a></h2>
+<p>Notation module for Arborescent Weighted Planar Tree Notation (wptt) notation. </p>
+<p><dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Joe Starr </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NOTE_WPTT_DECODE_MAX_WEIGHTS">
+<span class="target" id="notation__wptt_8h_1a7a261dc03009cc500a503669d038a5ab"></span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_DECODE_MAX_WEIGHTS</span></span></span><a class="headerlink" href="#c.NOTE_WPTT_DECODE_MAX_WEIGHTS" title="Link to this definition"></a><br /></dt>
+<dd><p>The maximum number of weights in a node. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NOTE_WPTT_DECODE_MAX_CHILDREN">
+<span class="target" id="notation__wptt_8h_1a6c576e5b50c062402f5918fef43d1b54"></span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_DECODE_MAX_CHILDREN</span></span></span><a class="headerlink" href="#c.NOTE_WPTT_DECODE_MAX_CHILDREN" title="Link to this definition"></a><br /></dt>
+<dd><p>The maximum number of children in a node. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NOTE_WPTT_MAX_STR_LEN">
+<span class="target" id="notation__wptt_8h_1a15b37dce29e4717eaec6ae1d900e45fc"></span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_MAX_STR_LEN</span></span></span><a class="headerlink" href="#c.NOTE_WPTT_MAX_STR_LEN" title="Link to this definition"></a><br /></dt>
+<dd><p>The maximum number of children in a node. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NOTE_WPTT_DECODE_EMPTY_STR">
+<span class="target" id="notation__wptt_8h_1ad7efa09a4e0be7bc4a9c9034fea21b41"></span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_DECODE_EMPTY_STR</span></span></span><a class="headerlink" href="#c.NOTE_WPTT_DECODE_EMPTY_STR" title="Link to this definition"></a><br /></dt>
+<dd><p>Decode path error flag indicating an empty string. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NOTE_WPTT_DECODE_NULL_DEST">
+<span class="target" id="notation__wptt_8h_1a7f472ae578c2813bab7cad7a9dd71ad7"></span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_DECODE_NULL_DEST</span></span></span><a class="headerlink" href="#c.NOTE_WPTT_DECODE_NULL_DEST" title="Link to this definition"></a><br /></dt>
+<dd><p>Decode path error flag indicating a null destination. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NOTE_WPTT_DECODE_BAD_STR">
+<span class="target" id="notation__wptt_8h_1ae1acc372149c8b8e43198bd14667161a"></span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_DECODE_BAD_STR</span></span></span><a class="headerlink" href="#c.NOTE_WPTT_DECODE_BAD_STR" title="Link to this definition"></a><br /></dt>
+<dd><p>Decode path error flag indicating a malformed string. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NOTE_WPTT_DECODE_BUFFER_ERROR">
+<span class="target" id="notation__wptt_8h_1a22ae162418678aa12a223c3084576ccc"></span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_DECODE_BUFFER_ERROR</span></span></span><a class="headerlink" href="#c.NOTE_WPTT_DECODE_BUFFER_ERROR" title="Link to this definition"></a><br /></dt>
+<dd><p>Decode path error flag indicating a node buffer error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NOTE_WPTT_DECODE_OVRUNDR_ERROR">
+<span class="target" id="notation__wptt_8h_1a463629486532bd8c5e74d6a8bb2e8060"></span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_DECODE_OVRUNDR_ERROR</span></span></span><a class="headerlink" href="#c.NOTE_WPTT_DECODE_OVRUNDR_ERROR" title="Link to this definition"></a><br /></dt>
+<dd><p>Decode path error flag indicating an over/under flow error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NOTE_WPTT_ENCODE_STR_BUF">
+<span class="target" id="notation__wptt_8h_1aa9799cdfcc8691a5ce34e0769bf3e373"></span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_ENCODE_STR_BUF</span></span></span><a class="headerlink" href="#c.NOTE_WPTT_ENCODE_STR_BUF" title="Link to this definition"></a><br /></dt>
+<dd><p>Encode path error flag indicating an error with the string buffer. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NOTE_WPTT_ENCODE_MALFORMED">
+<span class="target" id="notation__wptt_8h_1aeb46c4d6e8d0128c27b59c4297bc9acb"></span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_ENCODE_MALFORMED</span></span></span><a class="headerlink" href="#c.NOTE_WPTT_ENCODE_MALFORMED" title="Link to this definition"></a><br /></dt>
+<dd><p>Encode path error flag indicating a malformed wptt tree. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NOTE_WPTT_ENCODE_OVRUNDR_ERROR">
+<span class="target" id="notation__wptt_8h_1a162a7ddc70433f5fc97deb18c1caec9e"></span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_ENCODE_OVRUNDR_ERROR</span></span></span><a class="headerlink" href="#c.NOTE_WPTT_ENCODE_OVRUNDR_ERROR" title="Link to this definition"></a><br /></dt>
+<dd><p>Encode path error flag indicating an over/under flow error. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="notation__wptt_8h_1a113c8870dba2ebf7cb1a018d5bafcff0"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv420note_wptt_V4_label_e" title="note_wptt_V4_label_e"><span class="n"><span class="pre">note_wptt_V4_label_e</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_V4_label_e</span></span></span><br /></dt>
+<dd><p>Type defining the $V_4$ label for a wptt. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="notation__wptt_8h_1a44f266c6d674e0dd38a9ac6ff32d6f6f"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv417note_wptt_order_e" title="note_wptt_order_e"><span class="n"><span class="pre">note_wptt_order_e</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_order_e</span></span></span><br /></dt>
+<dd><p>Type defining the order direction of a node in a wptt. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv416note_wptt_node_t">
+<span id="_CPPv316note_wptt_node_t"></span><span id="_CPPv216note_wptt_node_t"></span><span id="note_wptt_node_t"></span><span class="target" id="notation__wptt_8h_1a2a42ba495337441a6e0157ce21960bca"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv416note_wptt_node_t" title="note_wptt_node_t"><span class="n"><span class="pre">note_wptt_node_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_node_t</span></span></span><a class="headerlink" href="#_CPPv416note_wptt_node_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Type defining the data of a wptt node. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv423note_wptt_node_buffer_t">
+<span id="_CPPv323note_wptt_node_buffer_t"></span><span id="_CPPv223note_wptt_node_buffer_t"></span><span id="note_wptt_node_buffer_t"></span><span class="target" id="notation__wptt_8h_1ad4031b64b70b1fa9d157c4ba2bf304c6"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv423note_wptt_node_buffer_t" title="note_wptt_node_buffer_t"><span class="n"><span class="pre">note_wptt_node_buffer_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_node_buffer_t</span></span></span><a class="headerlink" href="#_CPPv423note_wptt_node_buffer_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Type defining the data of a buffer of wptt nodes. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-enums">Enums</p>
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv420note_wptt_V4_label_e">
+<span id="_CPPv320note_wptt_V4_label_e"></span><span id="_CPPv220note_wptt_V4_label_e"></span><span class="target" id="notation__wptt_8h_1a91a95c52187ca30f23d094066eb50c71"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_V4_label_e</span></span></span><a class="headerlink" href="#_CPPv420note_wptt_V4_label_e" title="Link to this definition"></a><br /></dt>
+<dd><p>Type defining the $V_4$ label for a wptt. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N20note_wptt_V4_label_e25NOTE_WPTT_V4_LABEL_UNINITE">
+<span id="_CPPv3N20note_wptt_V4_label_e25NOTE_WPTT_V4_LABEL_UNINITE"></span><span id="_CPPv2N20note_wptt_V4_label_e25NOTE_WPTT_V4_LABEL_UNINITE"></span><span class="target" id="notation__wptt_8h_1a91a95c52187ca30f23d094066eb50c71a42b6302f38e5e5e89be420579e4a61d7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_V4_LABEL_UNINIT</span></span></span><a class="headerlink" href="#_CPPv4N20note_wptt_V4_label_e25NOTE_WPTT_V4_LABEL_UNINITE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N20note_wptt_V4_label_e23NOTE_WPTT_V4_LABEL_NONEE">
+<span id="_CPPv3N20note_wptt_V4_label_e23NOTE_WPTT_V4_LABEL_NONEE"></span><span id="_CPPv2N20note_wptt_V4_label_e23NOTE_WPTT_V4_LABEL_NONEE"></span><span class="target" id="notation__wptt_8h_1a91a95c52187ca30f23d094066eb50c71ae4110d941f7dd542e8b23081493c1aa3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_V4_LABEL_NONE</span></span></span><a class="headerlink" href="#_CPPv4N20note_wptt_V4_label_e23NOTE_WPTT_V4_LABEL_NONEE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_IE">
+<span id="_CPPv3N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_IE"></span><span id="_CPPv2N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_IE"></span><span class="target" id="notation__wptt_8h_1a91a95c52187ca30f23d094066eb50c71a29fa71ae8160c6a895e08221e2691fb5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_V4_LABEL_I</span></span></span><a class="headerlink" href="#_CPPv4N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_IE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_XE">
+<span id="_CPPv3N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_XE"></span><span id="_CPPv2N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_XE"></span><span class="target" id="notation__wptt_8h_1a91a95c52187ca30f23d094066eb50c71afaa7e8717ea010a21d59faa7fcacc42b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_V4_LABEL_X</span></span></span><a class="headerlink" href="#_CPPv4N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_XE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_YE">
+<span id="_CPPv3N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_YE"></span><span id="_CPPv2N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_YE"></span><span class="target" id="notation__wptt_8h_1a91a95c52187ca30f23d094066eb50c71a6f9bd6159815a7d76ad36cc58fba7e6f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_V4_LABEL_Y</span></span></span><a class="headerlink" href="#_CPPv4N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_YE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_ZE">
+<span id="_CPPv3N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_ZE"></span><span id="_CPPv2N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_ZE"></span><span class="target" id="notation__wptt_8h_1a91a95c52187ca30f23d094066eb50c71a9f7860d5862a21a9a0e22ca556fa93c8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_V4_LABEL_Z</span></span></span><a class="headerlink" href="#_CPPv4N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_ZE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv417note_wptt_order_e">
+<span id="_CPPv317note_wptt_order_e"></span><span id="_CPPv217note_wptt_order_e"></span><span class="target" id="notation__wptt_8h_1a90206d08f24765ca981386c4af6c0fa5"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_order_e</span></span></span><a class="headerlink" href="#_CPPv417note_wptt_order_e" title="Link to this definition"></a><br /></dt>
+<dd><p>Type defining the order direction of a node in a wptt. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N17note_wptt_order_e22NOTE_WPTT_ORDER_UNINITE">
+<span id="_CPPv3N17note_wptt_order_e22NOTE_WPTT_ORDER_UNINITE"></span><span id="_CPPv2N17note_wptt_order_e22NOTE_WPTT_ORDER_UNINITE"></span><span class="target" id="notation__wptt_8h_1a90206d08f24765ca981386c4af6c0fa5ac14ddcf3ee9627769d5de126b8067fa3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_ORDER_UNINIT</span></span></span><a class="headerlink" href="#_CPPv4N17note_wptt_order_e22NOTE_WPTT_ORDER_UNINITE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N17note_wptt_order_e23NOTE_WPTT_ORDER_FORWARDE">
+<span id="_CPPv3N17note_wptt_order_e23NOTE_WPTT_ORDER_FORWARDE"></span><span id="_CPPv2N17note_wptt_order_e23NOTE_WPTT_ORDER_FORWARDE"></span><span class="target" id="notation__wptt_8h_1a90206d08f24765ca981386c4af6c0fa5a8d822e3ce7bb8e7d9628eb0ee4b80522"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_ORDER_FORWARD</span></span></span><a class="headerlink" href="#_CPPv4N17note_wptt_order_e23NOTE_WPTT_ORDER_FORWARDE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N17note_wptt_order_e23NOTE_WPTT_ORDER_REVERSEE">
+<span id="_CPPv3N17note_wptt_order_e23NOTE_WPTT_ORDER_REVERSEE"></span><span id="_CPPv2N17note_wptt_order_e23NOTE_WPTT_ORDER_REVERSEE"></span><span class="target" id="notation__wptt_8h_1a90206d08f24765ca981386c4af6c0fa5a08343e14484a3fd7467cc95e3c9af57b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_ORDER_REVERSE</span></span></span><a class="headerlink" href="#_CPPv4N17note_wptt_order_e23NOTE_WPTT_ORDER_REVERSEE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv416note_wptt_decodePcP11note_wptt_t">
+<span id="_CPPv316note_wptt_decodePcP11note_wptt_t"></span><span id="_CPPv216note_wptt_decodePcP11note_wptt_t"></span><span id="note_wptt_decode__cP.note_wptt_tP"></span><span class="target" id="notation__wptt_8h_1a47f83db76d5efd9740a84ed92b0e4ac4"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_decode</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str</span></span>, <a class="reference internal" href="#_CPPv411note_wptt_t" title="note_wptt_t"><span class="n"><span class="pre">note_wptt_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">wptt</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416note_wptt_decodePcP11note_wptt_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Function to take a <a class="reference internal" href="#structnote__wptt__t"><span class="std std-ref">note_wptt_t</span></a> and decode it as a string. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>att</strong> – the <a class="reference internal" href="#structnote__wptt__t"><span class="std std-ref">note_wptt_t</span></a> pointer to decode. </p></li>
+<li><p><strong>str</strong> – Output string for decoded <a class="reference internal" href="#structnote__wptt__t"><span class="std std-ref">note_wptt_t</span></a></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>uint8_t The return code for the decoding operation. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv416note_wptt_encode11note_wptt_tPc6size_t">
+<span id="_CPPv316note_wptt_encode11note_wptt_tPc6size_t"></span><span id="_CPPv216note_wptt_encode11note_wptt_tPc6size_t"></span><span id="note_wptt_encode__note_wptt_t.cP.s"></span><span class="target" id="notation__wptt_8h_1a715e0584ec4fc87493d63fbd2221d827"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_encode</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411note_wptt_t" title="note_wptt_t"><span class="n"><span class="pre">note_wptt_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">wptt</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">buffer_size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416note_wptt_encode11note_wptt_tPc6size_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Function to take a string and decode it as a <a class="reference internal" href="#structnote__wptt__t"><span class="std std-ref">note_wptt_t</span></a>. NOTE: This function modifies the input WPTT. The input is normalized so all nodes have “forward” order. This does not change the topology. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>str</strong> – Input string to encode as <a class="reference internal" href="#structnote__wptt__t"><span class="std std-ref">note_wptt_t</span></a></p></li>
+<li><p><strong>att</strong> – the <a class="reference internal" href="#structnote__wptt__t"><span class="std std-ref">note_wptt_t</span></a> pointer to store the encoded string into. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>uint8_t The return code for the encoding operation. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnote__wptt__node__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_node_t</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;notation_wptt.h&gt;</em></div>
+<p>Type defining the data of a wptt node. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16note_wptt_node_t8childrenE">
+<span id="_CPPv3N16note_wptt_node_t8childrenE"></span><span id="_CPPv2N16note_wptt_node_t8childrenE"></span><span id="note_wptt_node_t::children__note_wptt_node_tPA"></span><span class="target" id="structnote__wptt__node__t_1a51f66b06d45fbe776134370c8866af9e"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv416note_wptt_node_t" title="note_wptt_node_t"><span class="n"><span class="pre">note_wptt_node_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">children</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">NOTE_WPTT_DECODE_MAX_CHILDREN</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N16note_wptt_node_t8childrenE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16note_wptt_node_t7weightsE">
+<span id="_CPPv3N16note_wptt_node_t7weightsE"></span><span id="_CPPv2N16note_wptt_node_t7weightsE"></span><span id="note_wptt_node_t::weights__int8_tA"></span><span class="target" id="structnote__wptt__node__t_1a8626550f057fc3987d73d164e8f9b37d"></span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">weights</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">NOTE_WPTT_DECODE_MAX_WEIGHTS</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N16note_wptt_node_t7weightsE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16note_wptt_node_t18number_of_childrenE">
+<span id="_CPPv3N16note_wptt_node_t18number_of_childrenE"></span><span id="_CPPv2N16note_wptt_node_t18number_of_childrenE"></span><span id="note_wptt_node_t::number_of_children__s"></span><span class="target" id="structnote__wptt__node__t_1aba8b24806e804bf21ae1eaaa8901b548"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">number_of_children</span></span></span><a class="headerlink" href="#_CPPv4N16note_wptt_node_t18number_of_childrenE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16note_wptt_node_t15number_of_ringsE">
+<span id="_CPPv3N16note_wptt_node_t15number_of_ringsE"></span><span id="_CPPv2N16note_wptt_node_t15number_of_ringsE"></span><span id="note_wptt_node_t::number_of_rings__uint8_t"></span><span class="target" id="structnote__wptt__node__t_1a9de1d68f208068e99b1c47d252709c9f"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">number_of_rings</span></span></span><a class="headerlink" href="#_CPPv4N16note_wptt_node_t15number_of_ringsE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16note_wptt_node_t5orderE">
+<span id="_CPPv3N16note_wptt_node_t5orderE"></span><span id="_CPPv2N16note_wptt_node_t5orderE"></span><span id="note_wptt_node_t::order__note_wptt_order_e"></span><span class="target" id="structnote__wptt__node__t_1a64b5f6b7a17f8a306a18ab873c7de78b"></span><a class="reference internal" href="#_CPPv417note_wptt_order_e" title="note_wptt_order_e"><span class="n"><span class="pre">note_wptt_order_e</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">order</span></span></span><a class="headerlink" href="#_CPPv4N16note_wptt_node_t5orderE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnote__wptt__node__buffer__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_node_buffer_t</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;notation_wptt.h&gt;</em></div>
+<p>Type defining the data of a buffer of wptt nodes. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N23note_wptt_node_buffer_t6bufferE">
+<span id="_CPPv3N23note_wptt_node_buffer_t6bufferE"></span><span id="_CPPv2N23note_wptt_node_buffer_t6bufferE"></span><span id="note_wptt_node_buffer_t::buffer__note_wptt_node_tP"></span><span class="target" id="structnote__wptt__node__buffer__t_1a294c345c0766279a210c92abd6748782"></span><a class="reference internal" href="#_CPPv416note_wptt_node_t" title="note_wptt_node_t"><span class="n"><span class="pre">note_wptt_node_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">buffer</span></span></span><a class="headerlink" href="#_CPPv4N23note_wptt_node_buffer_t6bufferE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N23note_wptt_node_buffer_t4sizeE">
+<span id="_CPPv3N23note_wptt_node_buffer_t4sizeE"></span><span id="_CPPv2N23note_wptt_node_buffer_t4sizeE"></span><span id="note_wptt_node_buffer_t::size__s"></span><span class="target" id="structnote__wptt__node__buffer__t_1ad34d1701987a0695eac5896815bc4ce0"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size</span></span></span><a class="headerlink" href="#_CPPv4N23note_wptt_node_buffer_t4sizeE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N23note_wptt_node_buffer_t3idxE">
+<span id="_CPPv3N23note_wptt_node_buffer_t3idxE"></span><span id="_CPPv2N23note_wptt_node_buffer_t3idxE"></span><span id="note_wptt_node_buffer_t::idx__s"></span><span class="target" id="structnote__wptt__node__buffer__t_1a7b6bbbee5a66f9c1af76d4a9cd042721"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">idx</span></span></span><a class="headerlink" href="#_CPPv4N23note_wptt_node_buffer_t3idxE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv411note_wptt_t">
+<span id="_CPPv311note_wptt_t"></span><span id="_CPPv211note_wptt_t"></span><span id="note_wptt_t"></span><span class="target" id="structnote__wptt__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_t</span></span></span><a class="headerlink" href="#_CPPv411note_wptt_t" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;notation_wptt.h&gt;</em></div>
+<p>Type defining the notation for a wptt. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N11note_wptt_t4rootE">
+<span id="_CPPv3N11note_wptt_t4rootE"></span><span id="_CPPv2N11note_wptt_t4rootE"></span><span id="note_wptt_t::root__note_wptt_node_tP"></span><span class="target" id="structnote__wptt__t_1aa6dbb6366d472d82748793af251ac2f6"></span><a class="reference internal" href="#_CPPv416note_wptt_node_t" title="note_wptt_node_t"><span class="n"><span class="pre">note_wptt_node_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">root</span></span></span><a class="headerlink" href="#_CPPv4N11note_wptt_t4rootE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N11note_wptt_t11node_bufferE">
+<span id="_CPPv3N11note_wptt_t11node_bufferE"></span><span id="_CPPv2N11note_wptt_t11node_bufferE"></span><span id="note_wptt_t::node_buffer__note_wptt_node_buffer_tP"></span><span class="target" id="structnote__wptt__t_1a41bdc1bd58ab9d08b2ff98cd7b5509e8"></span><a class="reference internal" href="#_CPPv423note_wptt_node_buffer_t" title="note_wptt_node_buffer_t"><span class="n"><span class="pre">note_wptt_node_buffer_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">node_buffer</span></span></span><a class="headerlink" href="#_CPPv4N11note_wptt_t11node_bufferE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N11note_wptt_t5labelE">
+<span id="_CPPv3N11note_wptt_t5labelE"></span><span id="_CPPv2N11note_wptt_t5labelE"></span><span id="note_wptt_t::label__note_wptt_V4_label_e"></span><span class="target" id="structnote__wptt__t_1ab2577bd7fddc6f6467d6eb625903cdbf"></span><a class="reference internal" href="#_CPPv420note_wptt_V4_label_e" title="note_wptt_V4_label_e"><span class="n"><span class="pre">note_wptt_V4_label_e</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">label</span></span></span><a class="headerlink" href="#_CPPv4N11note_wptt_t5labelE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<p>Notation module for weighted planar tangle trees. </p>
+<p><dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Joe Starr </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NOTE_WPTT_V4_LABEL_I_STR">
+<span class="target" id="notation__wptt_8c_1aab06f7156eb38916b87b596dc681af4d"></span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_V4_LABEL_I_STR</span></span></span><a class="headerlink" href="#c.NOTE_WPTT_V4_LABEL_I_STR" title="Link to this definition"></a><br /></dt>
+<dd><p>The character for the identity label. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NOTE_WPTT_V4_LABEL_X_STR">
+<span class="target" id="notation__wptt_8c_1a3baf03f1d3482a4b24aa8fe901a5e1b0"></span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_V4_LABEL_X_STR</span></span></span><a class="headerlink" href="#c.NOTE_WPTT_V4_LABEL_X_STR" title="Link to this definition"></a><br /></dt>
+<dd><p>The character for the x rotation label. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NOTE_WPTT_V4_LABEL_Y_STR">
+<span class="target" id="notation__wptt_8c_1a9fc920d231bbbb2b4ad49f151b8ff32b"></span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_V4_LABEL_Y_STR</span></span></span><a class="headerlink" href="#c.NOTE_WPTT_V4_LABEL_Y_STR" title="Link to this definition"></a><br /></dt>
+<dd><p>The character for the y rotation label. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NOTE_WPTT_V4_LABEL_Z_STR">
+<span class="target" id="notation__wptt_8c_1ad5fefe1bde0cc546e7adc2f63a6398b5"></span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_V4_LABEL_Z_STR</span></span></span><a class="headerlink" href="#c.NOTE_WPTT_V4_LABEL_Z_STR" title="Link to this definition"></a><br /></dt>
+<dd><p>The character for the z rotation label. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NOTE_WPTT_STACK_SIZE">
+<span class="target" id="notation__wptt_8c_1a174a6b5c3c7321368ad12c3c8c58d02a"></span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_STACK_SIZE</span></span></span><a class="headerlink" href="#c.NOTE_WPTT_STACK_SIZE" title="Link to this definition"></a><br /></dt>
+<dd><p>The size of the decode stack. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NOTE_WPTT_DECODE_DICT_SIZE">
+<span class="target" id="notation__wptt_8c_1af9b564ce62366b47195fa22808b04a54"></span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_DECODE_DICT_SIZE</span></span></span><a class="headerlink" href="#c.NOTE_WPTT_DECODE_DICT_SIZE" title="Link to this definition"></a><br /></dt>
+<dd><p>The size of the dictionary of decode functions. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NOTE_WPTT_INT_BASE">
+<span class="target" id="notation__wptt_8c_1a5dd9839c149750a82f070e51af8ac0e1"></span><span class="sig-name descname"><span class="n"><span class="pre">NOTE_WPTT_INT_BASE</span></span></span><a class="headerlink" href="#c.NOTE_WPTT_INT_BASE" title="Link to this definition"></a><br /></dt>
+<dd><p>The number base used for string-&gt;int functions. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv421char_handler_funptr_t">
+<span id="_CPPv321char_handler_funptr_t"></span><span id="_CPPv221char_handler_funptr_t"></span><span id="char_handler_funptr_t"></span><span class="target" id="notation__wptt_8c_1a08730c8dbbb1f7e0b38c8886a01a1289"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">char_handler_funptr_t</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">str</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv421char_handler_funptr_t" title="Link to this definition"></a><br /></dt>
+<dd><p>The function pointer type for decode dictionary functions. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv427note_wptt_decode_char_dic_t">
+<span id="_CPPv327note_wptt_decode_char_dic_t"></span><span id="_CPPv227note_wptt_decode_char_dic_t"></span><span id="note_wptt_decode_char_dic_t"></span><span class="target" id="notation__wptt_8c_1a993c34a41e7ab2b7c4af90368c13508e"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv427note_wptt_decode_char_dic_t" title="note_wptt_decode_char_dic_t"><span class="n"><span class="pre">note_wptt_decode_char_dic_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_decode_char_dic_t</span></span></span><a class="headerlink" href="#_CPPv427note_wptt_decode_char_dic_t" title="Link to this definition"></a><br /></dt>
+<dd><p>The type for the elements of the decode dictionary. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426note_wptt_decode_push_nodev">
+<span id="_CPPv326note_wptt_decode_push_nodev"></span><span id="_CPPv226note_wptt_decode_push_nodev"></span><span id="note_wptt_decode_push_node"></span><span class="target" id="notation__wptt_8c_1a7efb3456affe409f1610c3a02ff20776"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_decode_push_node</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426note_wptt_decode_push_nodev" title="Link to this definition"></a><br /></dt>
+<dd><p>Initializes and pushes a node to the wptt stack. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A status flag indicating successful completion of the subroutine. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="notation__wptt_8c_1a7671be6aa26df5a411fb52651ec9bda2"></span><span class="sig-name descname"><span class="pre">STATIC_INLINE</span> <span class="pre">note_wptt_V4_label_e</span> <span class="pre">note_wptt_decode_get_v4_label</span> <span class="pre">(char</span> <span class="pre">label)</span></span></dt>
+<dd><p>Get the label for the input string. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>label</strong> – The first char of the input string. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The designator for the label. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="notation__wptt_8c_1a21cdf3782a03b783aa6279b48ac68f37"></span><span class="sig-name descname"><span class="pre">STATIC_INLINE</span> <span class="pre">bool</span> <span class="pre">note_wptt_decode_check_charset</span> <span class="pre">(const</span> <span class="pre">char</span> <span class="pre">*valid_chars,</span> <span class="pre">const</span> <span class="pre">char</span> <span class="pre">str_char)</span></span></dt>
+<dd><p>Determine if a character from the input string is one of the valid characters. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>valid_chars</strong> – The list of valid characters. </p></li>
+<li><p><strong>str_char</strong> – A character form the input string. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The truthiness of if the character is one of the valid characters. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426note_wptt_decode_add_childv">
+<span id="_CPPv326note_wptt_decode_add_childv"></span><span id="_CPPv226note_wptt_decode_add_childv"></span><span id="note_wptt_decode_add_child"></span><span class="target" id="notation__wptt_8c_1a9c72ef30eca581c114d12ae552abe0a2"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_decode_add_child</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426note_wptt_decode_add_childv" title="Link to this definition"></a><br /></dt>
+<dd><p>Makes the active node on the wptt stack a child of the node below it on the stack. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A status flag indicating successful completion of the subroutine. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv430note_wptt_decode_space_handlerPPc">
+<span id="_CPPv330note_wptt_decode_space_handlerPPc"></span><span id="_CPPv230note_wptt_decode_space_handlerPPc"></span><span id="note_wptt_decode_space_handler__cPP"></span><span class="target" id="notation__wptt_8c_1aeb31868259488b299eb49e5c742daf5d"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_decode_space_handler</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430note_wptt_decode_space_handlerPPc" title="Link to this definition"></a><br /></dt>
+<dd><p>Dictionary function to consume and advance the to the the next character of the input string. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>str</strong> – A pointer to the pointer a the current character of the input string. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A status flag indicating successful completion of the subroutine. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv430note_wptt_decode_opn_p_handlerPPc">
+<span id="_CPPv330note_wptt_decode_opn_p_handlerPPc"></span><span id="_CPPv230note_wptt_decode_opn_p_handlerPPc"></span><span id="note_wptt_decode_opn_p_handler__cPP"></span><span class="target" id="notation__wptt_8c_1a2fbaaa75081738fad3cde687d46455c2"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_decode_opn_p_handler</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430note_wptt_decode_opn_p_handlerPPc" title="Link to this definition"></a><br /></dt>
+<dd><p>Dictionary function to initialize and push a child node onto the stack. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>str</strong> – A pointer to the pointer a the current character of the input string. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A status flag indicating successful completion of the subroutine. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv430note_wptt_decode_opn_a_handlerPPc">
+<span id="_CPPv330note_wptt_decode_opn_a_handlerPPc"></span><span id="_CPPv230note_wptt_decode_opn_a_handlerPPc"></span><span id="note_wptt_decode_opn_a_handler__cPP"></span><span class="target" id="notation__wptt_8c_1aeef50a745d1ad69f4a0eb3dbd8cba9df"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_decode_opn_a_handler</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430note_wptt_decode_opn_a_handlerPPc" title="Link to this definition"></a><br /></dt>
+<dd><p>Dictionary function to initialize and push a child node onto the stack with a ring number. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>str</strong> – A pointer to the pointer a the current character of the input string. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A status flag indicating successful completion of the subroutine. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv430note_wptt_decode_opn_b_handlerPPc">
+<span id="_CPPv330note_wptt_decode_opn_b_handlerPPc"></span><span id="_CPPv230note_wptt_decode_opn_b_handlerPPc"></span><span id="note_wptt_decode_opn_b_handler__cPP"></span><span class="target" id="notation__wptt_8c_1a5c1b2543981949b9e55261bcfcb6d485"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_decode_opn_b_handler</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430note_wptt_decode_opn_b_handlerPPc" title="Link to this definition"></a><br /></dt>
+<dd><p>Dictionary function to process and create a stick subtree. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>str</strong> – A pointer to the pointer for the current character of the input string. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A status flag indicating successful completion of the subroutine. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv428note_wptt_decode_cls_handlerPPc">
+<span id="_CPPv328note_wptt_decode_cls_handlerPPc"></span><span id="_CPPv228note_wptt_decode_cls_handlerPPc"></span><span id="note_wptt_decode_cls_handler__cPP"></span><span class="target" id="notation__wptt_8c_1a49a22271b88f7576ce511f458feb8782"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_decode_cls_handler</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428note_wptt_decode_cls_handlerPPc" title="Link to this definition"></a><br /></dt>
+<dd><p>Dictionary function to pop a node off of the wptt stack and advance to the next character of the string. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>str</strong> – A pointer to the pointer a the current character of the input string. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A status flag indicating successful completion of the subroutine. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv431note_wptt_decode_weight_handlerPPc">
+<span id="_CPPv331note_wptt_decode_weight_handlerPPc"></span><span id="_CPPv231note_wptt_decode_weight_handlerPPc"></span><span id="note_wptt_decode_weight_handler__cPP"></span><span class="target" id="notation__wptt_8c_1afb1785f51ad0653afd346e132c8bb572"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_decode_weight_handler</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431note_wptt_decode_weight_handlerPPc" title="Link to this definition"></a><br /></dt>
+<dd><p>Dictionary function to process an integer weight and advance the input string. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>str</strong> – A pointer to the pointer a the current character of the input string. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A status flag indicating successful completion of the subroutine. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="notation__wptt_8c_1aba9672bda554b1041d1390a7a062fd5d"></span><span class="sig-name descname"><span class="pre">STATIC_INLINE</span> <span class="pre">bool</span> <span class="pre">note_wptt_encode_stick_check</span> <span class="pre">(note_wptt_node_t</span> <span class="pre">*active_node_p)</span></span></dt>
+<dd><p>Determine whether the active node is the root of stick. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>active_node</strong> – A wptt node and potential stick root. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The truthiness of whether the active node is the root of stick. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="notation__wptt_8c_1a241272e30e6fb92f6bc0550d0283c36b"></span><span class="sig-name descname"><span class="pre">STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">note_wptt_encode_normalize_node_order</span> <span class="pre">(note_wptt_node_t</span> <span class="pre">*active_node_p)</span></span></dt>
+<dd><p>Determine the next child index by the order of the active node. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>active_node</strong> – The node under investigation. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The next ordered child index. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv429note_wptt_encode_insert_label20note_wptt_V4_label_ePPcPKc">
+<span id="_CPPv329note_wptt_encode_insert_label20note_wptt_V4_label_ePPcPKc"></span><span id="_CPPv229note_wptt_encode_insert_label20note_wptt_V4_label_ePPcPKc"></span><span id="note_wptt_encode_insert_label__note_wptt_V4_label_e.cPP.cCP"></span><span class="target" id="notation__wptt_8c_1af25543aca731091249a3f780352ccf3d"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_encode_insert_label</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv420note_wptt_V4_label_e" title="note_wptt_V4_label_e"><span class="n"><span class="pre">note_wptt_V4_label_e</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">label</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str_p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buffer_end_p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429note_wptt_encode_insert_label20note_wptt_V4_label_ePPcPKc" title="Link to this definition"></a><br /></dt>
+<dd><p>Insert the V4 label into the output string. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> – The V4 of a wptt. </p></li>
+<li><p><strong>str_p</strong> – A pointer to the pointer of current index of the output string. </p></li>
+<li><p><strong>buffer_end_p</strong> – A pointer to the end of the output string buffer. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A status flag indicating successful completion of the subroutine. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv428note_wptt_encode_insert_charcPPcPKc">
+<span id="_CPPv328note_wptt_encode_insert_charcPPcPKc"></span><span id="_CPPv228note_wptt_encode_insert_charcPPcPKc"></span><span id="note_wptt_encode_insert_char__c.cPP.cCP"></span><span class="target" id="notation__wptt_8c_1a45a55f408a32b771f6b34c3567904741"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_encode_insert_char</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">new_char</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str_p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buffer_end_p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428note_wptt_encode_insert_charcPPcPKc" title="Link to this definition"></a><br /></dt>
+<dd><p>Insert a character into the output string. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new_char</strong> – A character to insert. </p></li>
+<li><p><strong>str_p</strong> – A pointer to the pointer of current index of the output string. </p></li>
+<li><p><strong>buffer_end_p</strong> – A pointer to the end of the output string buffer. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A status flag indicating successful completion of the subroutine. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv427note_wptt_encode_insert_int6int8_tPPcPKc">
+<span id="_CPPv327note_wptt_encode_insert_int6int8_tPPcPKc"></span><span id="_CPPv227note_wptt_encode_insert_int6int8_tPPcPKc"></span><span id="note_wptt_encode_insert_int__int8_t.cPP.cCP"></span><span class="target" id="notation__wptt_8c_1a93341457c99d42830bf563417a51c605"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_encode_insert_int</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">new_int</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str_p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buffer_end_p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427note_wptt_encode_insert_int6int8_tPPcPKc" title="Link to this definition"></a><br /></dt>
+<dd><p>Insert the base 10 string representation of an integer into the output string. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new_int</strong> – An integer to insert. </p></li>
+<li><p><strong>str_p</strong> – A pointer to the pointer of current index of the output string. </p></li>
+<li><p><strong>buffer_end_p</strong> – A pointer to the end of the output string buffer. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A status flag indicating successful completion of the subroutine. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv429note_wptt_encode_insert_spacePPcPKcPKc">
+<span id="_CPPv329note_wptt_encode_insert_spacePPcPKcPKc"></span><span id="_CPPv229note_wptt_encode_insert_spacePPcPKcPKc"></span><span id="note_wptt_encode_insert_space__cPP.cCP.cCP"></span><span class="target" id="notation__wptt_8c_1ab8c7a2ad89776c2ebe1853d9cae91bef"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_encode_insert_space</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str_p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buffer_start_p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buffer_end_p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429note_wptt_encode_insert_spacePPcPKcPKc" title="Link to this definition"></a><br /></dt>
+<dd><p>Insert a space into the output string to delimit two integers. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>str_p</strong> – A pointer to the pointer of current index of the output string. </p></li>
+<li><p><strong>buffer_start_p</strong> – A pointer to the start of the output string buffer. </p></li>
+<li><p><strong>buffer_end_p</strong> – A pointer to the end of the output string buffer. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A status flag indicating successful completion of the subroutine. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv429note_wptt_encode_insert_stickP16note_wptt_node_tPPcPKc">
+<span id="_CPPv329note_wptt_encode_insert_stickP16note_wptt_node_tPPcPKc"></span><span id="_CPPv229note_wptt_encode_insert_stickP16note_wptt_node_tPPcPKc"></span><span id="note_wptt_encode_insert_stick__note_wptt_node_tP.cPP.cCP"></span><span class="target" id="notation__wptt_8c_1a509247da76dd3d5afc84b81fd8513939"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_encode_insert_stick</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv416note_wptt_node_t" title="note_wptt_node_t"><span class="n"><span class="pre">note_wptt_node_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">active_node_p</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str_p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buffer_end_p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429note_wptt_encode_insert_stickP16note_wptt_node_tPPcPKc" title="Link to this definition"></a><br /></dt>
+<dd><p>Process and insert a stick subtree into the output string. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>active_node</strong> – The node under investigation. </p></li>
+<li><p><strong>str_p</strong> – A pointer to the pointer of current index of the output string. </p></li>
+<li><p><strong>buffer_end_p</strong> – A pointer to the end of the output string buffer. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A status flag indicating successful completion of the subroutine. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv437note_wptt_encode_complete_active_nodePK16note_wptt_node_tPPc6size_tPKcPKc">
+<span id="_CPPv337note_wptt_encode_complete_active_nodePK16note_wptt_node_tPPc6size_tPKcPKc"></span><span id="_CPPv237note_wptt_encode_complete_active_nodePK16note_wptt_node_tPPc6size_tPKcPKc"></span><span id="note_wptt_encode_complete_active_node__note_wptt_node_tCP.cPP.s.cCP.cCP"></span><span class="target" id="notation__wptt_8c_1a705adce436b5ba88e218f37aa336b7f5"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_encode_complete_active_node</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv416note_wptt_node_t" title="note_wptt_node_t"><span class="n"><span class="pre">note_wptt_node_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">active_node_p</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str_p</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ordered_child_idx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buffer_start_p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buffer_end_p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv437note_wptt_encode_complete_active_nodePK16note_wptt_node_tPPc6size_tPKcPKc" title="Link to this definition"></a><br /></dt>
+<dd><p>Cap off the string representation of a node. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>active_node</strong> – The node under investigation. </p></li>
+<li><p><strong>str_p</strong> – A pointer to the pointer of current index of the output string. </p></li>
+<li><p><strong>ordered_child_idx</strong> – The next child index in the order of the active node. </p></li>
+<li><p><strong>buffer_start_p</strong> – A pointer to the start of the output string buffer. </p></li>
+<li><p><strong>buffer_end_p</strong> – A pointer to the end of the output string buffer. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A status flag indicating successful completion of the subroutine. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv436note_wptt_encode_process_active_nodeP16note_wptt_node_tPPc6size_tPKcPKc">
+<span id="_CPPv336note_wptt_encode_process_active_nodeP16note_wptt_node_tPPc6size_tPKcPKc"></span><span id="_CPPv236note_wptt_encode_process_active_nodeP16note_wptt_node_tPPc6size_tPKcPKc"></span><span id="note_wptt_encode_process_active_node__note_wptt_node_tP.cPP.s.cCP.cCP"></span><span class="target" id="notation__wptt_8c_1ab45c72a5783bff8ccc8a36c3c169f83d"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_encode_process_active_node</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv416note_wptt_node_t" title="note_wptt_node_t"><span class="n"><span class="pre">note_wptt_node_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">active_node</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str_p</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ordered_child_idx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buffer_start_p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buffer_end_p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436note_wptt_encode_process_active_nodeP16note_wptt_node_tPPc6size_tPKcPKc" title="Link to this definition"></a><br /></dt>
+<dd><p>Determine the next action in the processing of the active node. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>active_node</strong> – The node under investigation. </p></li>
+<li><p><strong>str_p</strong> – A pointer to the pointer of current index of the output string. </p></li>
+<li><p><strong>ordered_child_idx</strong> – The next child index in the order of the active node. </p></li>
+<li><p><strong>buffer_start_p</strong> – A pointer to the start of the output string buffer. </p></li>
+<li><p><strong>buffer_end_p</strong> – A pointer to the end of the output string buffer. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A status flag indicating successful completion of the subroutine. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="notation__wptt_8c_1a47f83db76d5efd9740a84ed92b0e4ac4"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_decode</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str</span></span>, <a class="reference internal" href="#_CPPv411note_wptt_t" title="note_wptt_t"><span class="n"><span class="pre">note_wptt_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">wptt</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Function to take a <a class="reference internal" href="#structnote__wptt__t"><span class="std std-ref">note_wptt_t</span></a> and decode it as a string. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>att</strong> – the <a class="reference internal" href="#structnote__wptt__t"><span class="std std-ref">note_wptt_t</span></a> pointer to decode. </p></li>
+<li><p><strong>str</strong> – Output string for decoded <a class="reference internal" href="#structnote__wptt__t"><span class="std std-ref">note_wptt_t</span></a></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>uint8_t The return code for the decoding operation. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="notation__wptt_8c_1a715e0584ec4fc87493d63fbd2221d827"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_encode</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411note_wptt_t" title="note_wptt_t"><span class="n"><span class="pre">note_wptt_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">wptt</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">str</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">buffer_size</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Function to take a string and decode it as a <a class="reference internal" href="#structnote__wptt__t"><span class="std std-ref">note_wptt_t</span></a>. NOTE: This function modifies the input WPTT. The input is normalized so all nodes have “forward” order. This does not change the topology. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>str</strong> – Input string to encode as <a class="reference internal" href="#structnote__wptt__t"><span class="std std-ref">note_wptt_t</span></a></p></li>
+<li><p><strong>att</strong> – the <a class="reference internal" href="#structnote__wptt__t"><span class="std std-ref">note_wptt_t</span></a> pointer to store the encoded string into. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>uint8_t The return code for the encoding operation. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv415wptt_node_stack">
+<span id="_CPPv315wptt_node_stack"></span><span id="_CPPv215wptt_node_stack"></span><span id="wptt_node_stack__note_wptt_node_tPA"></span><span class="target" id="notation__wptt_8c_1a15ba1f068435bf26b2b39b8d1114d841"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv416note_wptt_node_t" title="note_wptt_node_t"><span class="n"><span class="pre">note_wptt_node_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">wptt_node_stack</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">NOTE_WPTT_STACK_SIZE</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="n"><span class="pre">NULL</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv415wptt_node_stack" title="Link to this definition"></a><br /></dt>
+<dd><p>The wptt stack used in the encode and decode functions. This needs to be initialized at the beginning of the using function. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv414wptt_stack_len">
+<span id="_CPPv314wptt_stack_len"></span><span id="_CPPv214wptt_stack_len"></span><span id="wptt_stack_len__s"></span><span class="target" id="notation__wptt_8c_1a7afe81477e5b819e4e0e68ddfb978557"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">wptt_stack_len</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv414wptt_stack_len" title="Link to this definition"></a><br /></dt>
+<dd><p>The current number of elements on the wptt stack. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv413decode_buffer">
+<span id="_CPPv313decode_buffer"></span><span id="_CPPv213decode_buffer"></span><span id="decode_buffer__note_wptt_node_buffer_tP"></span><span class="target" id="notation__wptt_8c_1accb8fbce8a6b42109788dab7fa749362"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv423note_wptt_node_buffer_t" title="note_wptt_node_buffer_t"><span class="n"><span class="pre">note_wptt_node_buffer_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">decode_buffer</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">NULL</span></span><a class="headerlink" href="#_CPPv413decode_buffer" title="Link to this definition"></a><br /></dt>
+<dd><p>Pointer to a buffer of wptt nodes. Used by decode path functions. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv415child_idx_stack">
+<span id="_CPPv315child_idx_stack"></span><span id="_CPPv215child_idx_stack"></span><span id="child_idx_stack__uint8_tA"></span><span class="target" id="notation__wptt_8c_1a3ce8c7211253730296fb0dbc3bb9d535"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">child_idx_stack</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">UTIL_TANG_DEFS_MAX_CROSSINGNUM</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv415child_idx_stack" title="Link to this definition"></a><br /></dt>
+<dd><p>The stack containing the current child index used in the encode path functions. </p>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnote__wptt__decode__char__dic__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">note_wptt_decode_char_dic_t</span></span></span><br /></dt>
+<dd><p>The type for the elements of the decode dictionary. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N27note_wptt_decode_char_dic_t10char_classE">
+<span id="_CPPv3N27note_wptt_decode_char_dic_t10char_classE"></span><span id="_CPPv2N27note_wptt_decode_char_dic_t10char_classE"></span><span id="note_wptt_decode_char_dic_t::char_class__cP"></span><span class="target" id="structnote__wptt__decode__char__dic__t_1a89ee34294875c828e1aca6e6a3890bd4"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">char_class</span></span></span><a class="headerlink" href="#_CPPv4N27note_wptt_decode_char_dic_t10char_classE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N27note_wptt_decode_char_dic_t6funptrE">
+<span id="_CPPv3N27note_wptt_decode_char_dic_t6funptrE"></span><span id="_CPPv2N27note_wptt_decode_char_dic_t6funptrE"></span><span id="note_wptt_decode_char_dic_t::funptr__char_handler_funptr_t"></span><span class="target" id="structnote__wptt__decode__char__dic__t_1a20d57ac40f658ad321db70a99d3638a1"></span><a class="reference internal" href="#_CPPv421char_handler_funptr_t" title="char_handler_funptr_t"><span class="n"><span class="pre">char_handler_funptr_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">funptr</span></span></span><a class="headerlink" href="#_CPPv4N27note_wptt_decode_char_dic_t6funptrE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="bibliography">
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading"></a></h2>
+<span class="target" id="id5"></span><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="use-case.html" class="btn btn-neutral float-left" title="Use Case" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../store-cpp_storage_interface/index.html" class="btn btn-neutral float-right" title="Storage C++ Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, temp.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

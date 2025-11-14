@@ -1,0 +1,623 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit Description &mdash; Tanglenomicon Core Libraries 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/proof.css?v=b4b7a797" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+      <script type="module">mermaid.initialize({
+  securityLevel: 'loose',
+  theme: 'dark',
+});</script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+const load = async () => {
+    await mermaid.run();
+    const all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+    if(mermaids_to_add_zoom > 0) {
+        var svgs = d3.selectAll(".mermaid svg");
+        if(all_mermaids.length !== mermaids_processed.length) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else if(svgs.size() !== mermaids_to_add_zoom) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else {
+            svgs.each(function() {
+                var svg = d3.select(this);
+                svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                var inner = svg.select("g");
+                var zoom = d3.zoom().on("zoom", function(event) {
+                    inner.attr("transform", event.transform);
+                });
+                svg.call(zoom);
+            });
+        }
+    }
+};
+
+window.addEventListener("load", load);
+</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Computation Right Leaning Identity Tangle Tree Grafting" href="../comp-rlitt_grafting/index.html" />
+    <link rel="prev" title="Use Case" href="use-case.html" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                macros: {
+                    "\\N": "\\mathbb{N}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\Q": "\\mathbb{Q}",
+                    "\\R": "\\mathbb{R}",
+                    "\\LN": "\\left.",
+                    "\\RN": "\\right.",
+                    "\\LP": "\\left(",
+                    "\\RP": "\\right)",
+                    "\\LS": "\\left\\lbrace",
+                    "\\RS": "\\right\\rbrace",
+                    "\\LA": "\\left\\langle",
+                    "\\RA": "\\right\\rangle",
+                    "\\LB": "\\left[",
+                    "\\RB": "\\right]",
+                    "\\MM": "\\ \\middle|\\ ",
+                    "\\exp": "\\text{exp}",
+                    "\\abs": "\\left\\vert#1\\right\\vert",
+                    "\\msr": "m\\left(#1\\right)",
+                    "\\inv": " #1^{-1}",
+                    "\\bkt": "\\LA \\img{ #1}\\RA",
+                }
+            }
+        );
+    });
+</script>
+
+
+<style>
+
+</style>
+ 
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Tanglenomicon Core Libraries
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Generic Interfaces</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Computation Rational Data</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="use-case.html">Use Case</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Unit Description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#language">Language</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implements">Implements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#external-libraries">External Libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#doxygen-documentation">Doxygen Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_RATIONAL_DAT_STORAGE_UKEY"><code class="docutils literal notranslate"><span class="pre">COMP_RATIONAL_DAT_STORAGE_UKEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_RATIONAL_DAT_CONFIG_IS_NULL"><code class="docutils literal notranslate"><span class="pre">COMP_RATIONAL_DAT_CONFIG_IS_NULL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_RATIONAL_DAT_CONFIG_BUFFER"><code class="docutils literal notranslate"><span class="pre">COMP_RATIONAL_DAT_CONFIG_BUFFER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_RATIONAL_DAT_CONFIG_STR_BUFFER"><code class="docutils literal notranslate"><span class="pre">COMP_RATIONAL_DAT_CONFIG_STR_BUFFER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv425comp_rational_data_configP27comp_rational_data_config_t"><code class="docutils literal notranslate"><span class="pre">comp_rational_data_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv426comp_rational_data_computev"><code class="docutils literal notranslate"><span class="pre">comp_rational_data_compute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv425comp_rational_data_resultv"><code class="docutils literal notranslate"><span class="pre">comp_rational_data_result()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv427comp_rational_data_result_t"><code class="docutils literal notranslate"><span class="pre">comp_rational_data_result_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv427comp_rational_data_config_t"><code class="docutils literal notranslate"><span class="pre">comp_rational_data_config_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv425comp_rational_data_alg_eq8uint16_t8uint16_t"><code class="docutils literal notranslate"><span class="pre">comp_rational_data_alg_eq()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv431comp_rational_data_write_alg_eq8uint16_t8uint16_t"><code class="docutils literal notranslate"><span class="pre">comp_rational_data_write_alg_eq()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv425comp_rational_data_parity8uint16_t8uint16_t"><code class="docutils literal notranslate"><span class="pre">comp_rational_data_parity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv431comp_rational_data_write_parityPc"><code class="docutils literal notranslate"><span class="pre">comp_rational_data_write_parity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv426comp_rational_data_rat_numP8uint16_tP8uint16_t"><code class="docutils literal notranslate"><span class="pre">comp_rational_data_rat_num()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv432comp_rational_data_write_rat_num8uint16_t8uint16_t"><code class="docutils literal notranslate"><span class="pre">comp_rational_data_write_rat_num()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv427comp_rational_data_localcfg"><code class="docutils literal notranslate"><span class="pre">comp_rational_data_localcfg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv431comp_rational_data_localrestult"><code class="docutils literal notranslate"><span class="pre">comp_rational_data_localrestult</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv427comp_rational_data_executed"><code class="docutils literal notranslate"><span class="pre">comp_rational_data_executed</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bibliography">Bibliography</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_grafting/index.html">Computation Right Leaning Identity Tangle Tree Grafting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_positivity/index.html">Computation Right Leaning Identity Tangle Tree Positivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-wptt_vertex_canonicity/index.html">Computation Weighted Planar Tangle Tree Vertex Canonicity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-montesinos/index.html">Generator Montesinos Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rational/index.html">Generator Rational Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rlitt/index.html">Generator Right Leaning Identity Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-twist_vector/index.html">Notation Twist Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-wptt/index.html">Notation Weighted Planar Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-cpp_storage_interface/index.html">Storage C++ Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-json/index.html">Storage JSON</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tanglenomicon Core Libraries</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Computation Rational Data</a></li>
+      <li class="breadcrumb-item active">Unit Description</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/_collections/comp-rational_data/unit-description.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="unit-description">
+<h1>Unit Description<a class="headerlink" href="#unit-description" title="Link to this heading"></a></h1>
+<pre  class="mermaid">
+        classDiagram
+    comp_rational_data --|&gt; computation
+    comp_rational_data_config_t --|&gt; notation_tv
+    comp_rational_data_config_t --|&gt; comp_config_t
+    comp_rational_data_config_t --|&gt; comp_rational_data_result_t
+    comp_rational_data_result_t --|&gt; comp_result_t
+    comp_rational_data *-- comp_rational_data_config_t
+
+    class computation {
+        &lt;&lt;interface&gt;&gt;
+    }
+
+    class comp_rational_data {
+&lt;&lt;&gt;&gt;
+}
+
+class notation_tv{
+&lt;&lt;&gt;&gt;
+}
+
+class comp_rational_data_config_t {
+&lt;&lt;struct&gt;&gt;
+- notation_tv
+- notation_tv
+
+}
+
+class comp_rational_data_result_t {
+&lt;&lt;struct&gt;&gt;
+- numerator
+- denominator
+- parity
+- num_algebraic_equ
+- den_algebraic_equ
+}
+
+class comp_config_t {
+&lt;&lt;interface&gt;&gt;
+
+}
+class comp_result_t {
+&lt;&lt;interface&gt;&gt;
+
+}
+
+
+    </pre><section id="language">
+<h2>Language<a class="headerlink" href="#language" title="Link to this heading"></a></h2>
+<p>C</p>
+</section>
+<section id="implements">
+<h2>Implements<a class="headerlink" href="#implements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../interface/index.html#interface-computation"><span class="std std-ref">Computation Interface</span></a></p></li>
+</ul>
+</section>
+<section id="uses">
+<h2>Uses<a class="headerlink" href="#uses" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../note-twist_vector/index.html#note-twist-vector"><span class="std std-ref">Notation Twist Vector</span></a></p></li>
+</ul>
+</section>
+<section id="external-libraries">
+<h2>External Libraries<a class="headerlink" href="#external-libraries" title="Link to this heading"></a></h2>
+<p>None</p>
+</section>
+<section id="doxygen-documentation">
+<h2>Doxygen Documentation<a class="headerlink" href="#doxygen-documentation" title="Link to this heading"></a></h2>
+<p>A module for compute rational tangle data: fraction, algebraic equivlance, and parity. </p>
+<p><dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Isabel Darcy </p>
+</dd>
+<dt><strong>Author</strong></dt><dd><p>Joe Starr </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_RATIONAL_DAT_STORAGE_UKEY">
+<span class="target" id="comp__rational__data_8h_1ae213bf86d4a31c00cf7f1f93df67c9ef"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RATIONAL_DAT_STORAGE_UKEY</span></span></span><a class="headerlink" href="#c.COMP_RATIONAL_DAT_STORAGE_UKEY" title="Link to this definition"></a><br /></dt>
+<dd><p>The key for the rational data computation. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_RATIONAL_DAT_CONFIG_IS_NULL">
+<span class="target" id="comp__rational__data_8h_1aba1c1e81dec82873b58826cb0c8845bc"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RATIONAL_DAT_CONFIG_IS_NULL</span></span></span><a class="headerlink" href="#c.COMP_RATIONAL_DAT_CONFIG_IS_NULL" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to null config. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_RATIONAL_DAT_CONFIG_BUFFER">
+<span class="target" id="comp__rational__data_8h_1ac7d3b03338f75723029dd616920f2373"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RATIONAL_DAT_CONFIG_BUFFER</span></span></span><a class="headerlink" href="#c.COMP_RATIONAL_DAT_CONFIG_BUFFER" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to issue in buffer. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_RATIONAL_DAT_CONFIG_STR_BUFFER">
+<span class="target" id="comp__rational__data_8h_1abfd47fcafd85a88d2193b47f44243d69"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RATIONAL_DAT_CONFIG_STR_BUFFER</span></span></span><a class="headerlink" href="#c.COMP_RATIONAL_DAT_CONFIG_STR_BUFFER" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to issue in string buffer. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv425comp_rational_data_configP27comp_rational_data_config_t">
+<span id="_CPPv325comp_rational_data_configP27comp_rational_data_config_t"></span><span id="_CPPv225comp_rational_data_configP27comp_rational_data_config_t"></span><span id="comp_rational_data_config__comp_rational_data_config_tP"></span><span class="target" id="comp__rational__data_8h_1a264db52038b7b39b9ef555a0367a61b4"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rational_data_config</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv427comp_rational_data_config_t" title="comp_rational_data_config_t"><span class="n"><span class="pre">comp_rational_data_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">config_arg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425comp_rational_data_configP27comp_rational_data_config_t" title="Link to this definition"></a><br /></dt>
+<dd><p>The public configuration function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config_arg</strong> – The config to set. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426comp_rational_data_computev">
+<span id="_CPPv326comp_rational_data_computev"></span><span id="_CPPv226comp_rational_data_computev"></span><span id="comp_rational_data_compute"></span><span class="target" id="comp__rational__data_8h_1a820c7fb4c13ffe648e340f39115dcf4d"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rational_data_compute</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426comp_rational_data_computev" title="Link to this definition"></a><br /></dt>
+<dd><p>A public function, calling this executes the computation on the configured tangle. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>uint8_t computation status info. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv425comp_rational_data_resultv">
+<span id="_CPPv325comp_rational_data_resultv"></span><span id="_CPPv225comp_rational_data_resultv"></span><span id="comp_rational_data_result"></span><span class="target" id="comp__rational__data_8h_1ae16731fa6f5ef624636ce61f464cb4c7"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv427comp_rational_data_result_t" title="comp_rational_data_result_t"><span class="n"><span class="pre">comp_rational_data_result_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">comp_rational_data_result</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425comp_rational_data_resultv" title="Link to this definition"></a><br /></dt>
+<dd><p>A public function, calling this retrieves the results of the last computation. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#structcomp__rational__data__result__t"><span class="std std-ref">comp_rational_data_result_t</span></a> Computation results. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv427comp_rational_data_result_t">
+<span id="_CPPv327comp_rational_data_result_t"></span><span id="_CPPv227comp_rational_data_result_t"></span><span id="comp_rational_data_result_t"></span><span class="target" id="structcomp__rational__data__result__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rational_data_result_t</span></span></span><a class="headerlink" href="#_CPPv427comp_rational_data_result_t" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;comp_rational_data.h&gt;</em></div>
+<p>The type definition for configuring the rational data computation. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N27comp_rational_data_result_t9numeratorE">
+<span id="_CPPv3N27comp_rational_data_result_t9numeratorE"></span><span id="_CPPv2N27comp_rational_data_result_t9numeratorE"></span><span id="comp_rational_data_result_t::numerator__i"></span><span class="target" id="structcomp__rational__data__result__t_1ac8743d0aa033518e0f80c25e2b6171a0"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">numerator</span></span></span><a class="headerlink" href="#_CPPv4N27comp_rational_data_result_t9numeratorE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N27comp_rational_data_result_t11denominatorE">
+<span id="_CPPv3N27comp_rational_data_result_t11denominatorE"></span><span id="_CPPv2N27comp_rational_data_result_t11denominatorE"></span><span id="comp_rational_data_result_t::denominator__i"></span><span class="target" id="structcomp__rational__data__result__t_1ac8f600ded4f557083e15a55516b2a4ba"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">denominator</span></span></span><a class="headerlink" href="#_CPPv4N27comp_rational_data_result_t11denominatorE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N27comp_rational_data_result_t6parityE">
+<span id="_CPPv3N27comp_rational_data_result_t6parityE"></span><span id="_CPPv2N27comp_rational_data_result_t6parityE"></span><span id="comp_rational_data_result_t::parity__cP"></span><span class="target" id="structcomp__rational__data__result__t_1a6252509af131a3a171623a6abbf41aee"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">parity</span></span></span><a class="headerlink" href="#_CPPv4N27comp_rational_data_result_t6parityE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N27comp_rational_data_result_t17num_algebraic_equE">
+<span id="_CPPv3N27comp_rational_data_result_t17num_algebraic_equE"></span><span id="_CPPv2N27comp_rational_data_result_t17num_algebraic_equE"></span><span id="comp_rational_data_result_t::num_algebraic_equ__i"></span><span class="target" id="structcomp__rational__data__result__t_1a4c7f35bb4e01086868873a538bf53fdd"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">num_algebraic_equ</span></span></span><a class="headerlink" href="#_CPPv4N27comp_rational_data_result_t17num_algebraic_equE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N27comp_rational_data_result_t17den_algebraic_equE">
+<span id="_CPPv3N27comp_rational_data_result_t17den_algebraic_equE"></span><span id="_CPPv2N27comp_rational_data_result_t17den_algebraic_equE"></span><span id="comp_rational_data_result_t::den_algebraic_equ__i"></span><span class="target" id="structcomp__rational__data__result__t_1ade60f5939184d365c8076a5950dfa892"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">den_algebraic_equ</span></span></span><a class="headerlink" href="#_CPPv4N27comp_rational_data_result_t17den_algebraic_equE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv427comp_rational_data_config_t">
+<span id="_CPPv327comp_rational_data_config_t"></span><span id="_CPPv227comp_rational_data_config_t"></span><span id="comp_rational_data_config_t"></span><span class="target" id="structcomp__rational__data__config__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rational_data_config_t</span></span></span><a class="headerlink" href="#_CPPv427comp_rational_data_config_t" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;comp_rational_data.h&gt;</em></div>
+<p>The type definition for configuring the rational data computation. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N27comp_rational_data_config_t13storage_writeE">
+<span id="_CPPv3N27comp_rational_data_config_t13storage_writeE"></span><span id="_CPPv2N27comp_rational_data_config_t13storage_writeE"></span><span id="comp_rational_data_config_t::storage_write__storage_write_funptr_t"></span><span class="target" id="structcomp__rational__data__config__t_1a0e91b05d9ec61ab0bfa58ff8e354408c"></span><span class="n"><span class="pre">storage_write_funptr_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">storage_write</span></span></span><a class="headerlink" href="#_CPPv4N27comp_rational_data_config_t13storage_writeE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N27comp_rational_data_config_t4tv_nE">
+<span id="_CPPv3N27comp_rational_data_config_t4tv_nE"></span><span id="_CPPv2N27comp_rational_data_config_t4tv_nE"></span><span id="comp_rational_data_config_t::tv_n__note_tv_tP"></span><span class="target" id="structcomp__rational__data__config__t_1a73125a70f45f0aeb94e6e3233a137511"></span><a class="reference internal" href="../note-twist_vector/unit-description.html#_CPPv49note_tv_t" title="note_tv_t"><span class="n"><span class="pre">note_tv_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">tv_n</span></span></span><a class="headerlink" href="#_CPPv4N27comp_rational_data_config_t4tv_nE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N27comp_rational_data_config_t11tv_str_buffE">
+<span id="_CPPv3N27comp_rational_data_config_t11tv_str_buffE"></span><span id="_CPPv2N27comp_rational_data_config_t11tv_str_buffE"></span><span id="comp_rational_data_config_t::tv_str_buff__cP"></span><span class="target" id="structcomp__rational__data__config__t_1a4aea0e9ec3e77dea0c200abec9ea4c8d"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">tv_str_buff</span></span></span><a class="headerlink" href="#_CPPv4N27comp_rational_data_config_t11tv_str_buffE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N27comp_rational_data_config_t15tv_str_buff_lenE">
+<span id="_CPPv3N27comp_rational_data_config_t15tv_str_buff_lenE"></span><span id="_CPPv2N27comp_rational_data_config_t15tv_str_buff_lenE"></span><span id="comp_rational_data_config_t::tv_str_buff_len__s"></span><span class="target" id="structcomp__rational__data__config__t_1a1b98cb6de56b99879996fad1da6897bb"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tv_str_buff_len</span></span></span><a class="headerlink" href="#_CPPv4N27comp_rational_data_config_t15tv_str_buff_lenE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<p>A module for compute rational tangle data: fraction, algebraic equivlance, and parity. </p>
+<p><dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Isabel Darcy </p>
+</dd>
+<dt><strong>Author</strong></dt><dd><p>Joe Starr </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv425comp_rational_data_alg_eq8uint16_t8uint16_t">
+<span id="_CPPv325comp_rational_data_alg_eq8uint16_t8uint16_t"></span><span id="_CPPv225comp_rational_data_alg_eq8uint16_t8uint16_t"></span><span id="comp_rational_data_alg_eq__uint16_t.uint16_t"></span><span class="target" id="comp__rational__data_8c_1a39b1b706f15feb3f49295b08951f9fe4"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rational_data_alg_eq</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">p</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425comp_rational_data_alg_eq8uint16_t8uint16_t" title="Link to this definition"></a><br /></dt>
+<dd><p>A private function that computes the algebraic equivalence classes for the configured tangle. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> – The numerator for the configured tangle. </p></li>
+<li><p><strong>q</strong> – The denominator for the configured tangle. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>uint8_t A condition code for the computation. Indicates failure mode if any. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv431comp_rational_data_write_alg_eq8uint16_t8uint16_t">
+<span id="_CPPv331comp_rational_data_write_alg_eq8uint16_t8uint16_t"></span><span id="_CPPv231comp_rational_data_write_alg_eq8uint16_t8uint16_t"></span><span id="comp_rational_data_write_alg_eq__uint16_t.uint16_t"></span><span class="target" id="comp__rational__data_8c_1ab5308b79dbeefb63ff43193e15c06c9b"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rational_data_write_alg_eq</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">num_eq</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">den_eq</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431comp_rational_data_write_alg_eq8uint16_t8uint16_t" title="Link to this definition"></a><br /></dt>
+<dd><p>A private function that commits to store-storage_interface the algebraic equivalence classes associated to the configured tangle. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_eq</strong> – The equivlance class for the numerator closure of the configured tangle. </p></li>
+<li><p><strong>den_eq</strong> – The equivlance class for the denominator closure of the configured tangle. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>uint8_t A condition code for the computation. Indicates failure mode if any. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv425comp_rational_data_parity8uint16_t8uint16_t">
+<span id="_CPPv325comp_rational_data_parity8uint16_t8uint16_t"></span><span id="_CPPv225comp_rational_data_parity8uint16_t8uint16_t"></span><span id="comp_rational_data_parity__uint16_t.uint16_t"></span><span class="target" id="comp__rational__data_8c_1a5a5f24abeeb1a37dda7c575e81036a9f"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rational_data_parity</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">p</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425comp_rational_data_parity8uint16_t8uint16_t" title="Link to this definition"></a><br /></dt>
+<dd><p>A private function that computes the parity for the configured tangle. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> – The numerator for the configured tangle. </p></li>
+<li><p><strong>q</strong> – The denominator for the configured tangle. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>uint8_t A condition code for the computation. Indicates failure mode if any. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv431comp_rational_data_write_parityPc">
+<span id="_CPPv331comp_rational_data_write_parityPc"></span><span id="_CPPv231comp_rational_data_write_parityPc"></span><span id="comp_rational_data_write_parity__cP"></span><span class="target" id="comp__rational__data_8c_1a11fd88a3fa994438462be10333a54420"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rational_data_write_parity</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">parity</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431comp_rational_data_write_parityPc" title="Link to this definition"></a><br /></dt>
+<dd><p>A private function that commits to store-storage_interface the parity associated to the configured tangle. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parity</strong> – A string indicating the parity of the configured tangle. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>uint8_t A condition code for the computation. Indicates failure mode if any. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426comp_rational_data_rat_numP8uint16_tP8uint16_t">
+<span id="_CPPv326comp_rational_data_rat_numP8uint16_tP8uint16_t"></span><span id="_CPPv226comp_rational_data_rat_numP8uint16_tP8uint16_t"></span><span id="comp_rational_data_rat_num__uint16_tP.uint16_tP"></span><span class="target" id="comp__rational__data_8c_1aecdfa40a87ea945d31aaca28c2541f24"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rational_data_rat_num</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">p</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426comp_rational_data_rat_numP8uint16_tP8uint16_t" title="Link to this definition"></a><br /></dt>
+<dd><p>A private function that computes the rational number associated to the configured tangle. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> – A pointer to the store-storage_interface location for the numerator of the configured tangle. </p></li>
+<li><p><strong>q</strong> – A pointer to the store-storage_interface location for the denominator of the configured tangle. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>uint8_t A condition code for the computation. Indicates failure mode if any. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv432comp_rational_data_write_rat_num8uint16_t8uint16_t">
+<span id="_CPPv332comp_rational_data_write_rat_num8uint16_t8uint16_t"></span><span id="_CPPv232comp_rational_data_write_rat_num8uint16_t8uint16_t"></span><span id="comp_rational_data_write_rat_num__uint16_t.uint16_t"></span><span class="target" id="comp__rational__data_8c_1abb805e349b09d02a5400af2ccf4b5468"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rational_data_write_rat_num</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">p</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432comp_rational_data_write_rat_num8uint16_t8uint16_t" title="Link to this definition"></a><br /></dt>
+<dd><p>A private function that commits to store-storage_interface the rational number associated to the configured tangle. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> – The numerator for the configured tangle. </p></li>
+<li><p><strong>q</strong> – The denominator for the configured tangle. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>uint8_t A condition code for the computation. Indicates failure mode if any. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__rational__data_8c_1a264db52038b7b39b9ef555a0367a61b4"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rational_data_config</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv427comp_rational_data_config_t" title="comp_rational_data_config_t"><span class="n"><span class="pre">comp_rational_data_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">config_arg</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>The public configuration function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config_arg</strong> – The config to set. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__rational__data_8c_1a820c7fb4c13ffe648e340f39115dcf4d"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rational_data_compute</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>A public function, calling this executes the computation on the configured tangle. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>uint8_t computation status info. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__rational__data_8c_1ae16731fa6f5ef624636ce61f464cb4c7"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv427comp_rational_data_result_t" title="comp_rational_data_result_t"><span class="n"><span class="pre">comp_rational_data_result_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">comp_rational_data_result</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>A public function, calling this retrieves the results of the last computation. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#structcomp__rational__data__result__t"><span class="std std-ref">comp_rational_data_result_t</span></a> Computation results. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv427comp_rational_data_localcfg">
+<span id="_CPPv327comp_rational_data_localcfg"></span><span id="_CPPv227comp_rational_data_localcfg"></span><span id="comp_rational_data_localcfg__comp_rational_data_config_tP"></span><span class="target" id="comp__rational__data_8c_1a2687ac3f5c8cc3b1ab220c5bb58f4f11"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv427comp_rational_data_config_t" title="comp_rational_data_config_t"><span class="n"><span class="pre">comp_rational_data_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">comp_rational_data_localcfg</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">NULL</span></span><a class="headerlink" href="#_CPPv427comp_rational_data_localcfg" title="Link to this definition"></a><br /></dt>
+<dd><p>The local configuration of the rational comp module. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv431comp_rational_data_localrestult">
+<span id="_CPPv331comp_rational_data_localrestult"></span><span id="_CPPv231comp_rational_data_localrestult"></span><span id="comp_rational_data_localrestult__comp_rational_data_result_t"></span><span class="target" id="comp__rational__data_8c_1adf3a9118336cb6e3c2df6be2bc9a1744"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv427comp_rational_data_result_t" title="comp_rational_data_result_t"><span class="n"><span class="pre">comp_rational_data_result_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rational_data_localrestult</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">NULL</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv431comp_rational_data_localrestult" title="Link to this definition"></a><br /></dt>
+<dd><p>The local result of the rational comp module. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv427comp_rational_data_executed">
+<span id="_CPPv327comp_rational_data_executed"></span><span id="_CPPv227comp_rational_data_executed"></span><span id="comp_rational_data_executed__b"></span><span class="target" id="comp__rational__data_8c_1a014bd8844b2d84489882e8f1c433cc66"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rational_data_executed</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv427comp_rational_data_executed" title="Link to this definition"></a><br /></dt>
+<dd><p>The local computation status of the rational comp module. </p>
+</dd></dl>
+
+</div>
+</section>
+<section id="bibliography">
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading"></a></h2>
+<span class="target" id="id1"></span></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="use-case.html" class="btn btn-neutral float-left" title="Use Case" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../comp-rlitt_grafting/index.html" class="btn btn-neutral float-right" title="Computation Right Leaning Identity Tangle Tree Grafting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, temp.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

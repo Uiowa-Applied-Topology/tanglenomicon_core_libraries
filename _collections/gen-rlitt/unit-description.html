@@ -1,0 +1,798 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit Description &mdash; Tanglenomicon Core Libraries 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/proof.css?v=b4b7a797" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+      <script type="module">mermaid.initialize({
+  securityLevel: 'loose',
+  theme: 'dark',
+});</script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+const load = async () => {
+    await mermaid.run();
+    const all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+    if(mermaids_to_add_zoom > 0) {
+        var svgs = d3.selectAll(".mermaid svg");
+        if(all_mermaids.length !== mermaids_processed.length) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else if(svgs.size() !== mermaids_to_add_zoom) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else {
+            svgs.each(function() {
+                var svg = d3.select(this);
+                svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                var inner = svg.select("g");
+                var zoom = d3.zoom().on("zoom", function(event) {
+                    inner.attr("transform", event.transform);
+                });
+                svg.call(zoom);
+            });
+        }
+    }
+};
+
+window.addEventListener("load", load);
+</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Mutator Right Leaning Identity Tangle Tree Ring Shift" href="../mut-rlitt_ringshift/index.html" />
+    <link rel="prev" title="Use Case" href="use-case.html" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                macros: {
+                    "\\N": "\\mathbb{N}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\Q": "\\mathbb{Q}",
+                    "\\R": "\\mathbb{R}",
+                    "\\LN": "\\left.",
+                    "\\RN": "\\right.",
+                    "\\LP": "\\left(",
+                    "\\RP": "\\right)",
+                    "\\LS": "\\left\\lbrace",
+                    "\\RS": "\\right\\rbrace",
+                    "\\LA": "\\left\\langle",
+                    "\\RA": "\\right\\rangle",
+                    "\\LB": "\\left[",
+                    "\\RB": "\\right]",
+                    "\\MM": "\\ \\middle|\\ ",
+                    "\\exp": "\\text{exp}",
+                    "\\abs": "\\left\\vert#1\\right\\vert",
+                    "\\msr": "m\\left(#1\\right)",
+                    "\\inv": " #1^{-1}",
+                    "\\bkt": "\\LA \\img{ #1}\\RA",
+                }
+            }
+        );
+    });
+</script>
+
+
+<style>
+
+</style>
+ 
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Tanglenomicon Core Libraries
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Generic Interfaces</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../comp-rational_data/index.html">Computation Rational Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_grafting/index.html">Computation Right Leaning Identity Tangle Tree Grafting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_positivity/index.html">Computation Right Leaning Identity Tangle Tree Positivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-wptt_vertex_canonicity/index.html">Computation Weighted Planar Tangle Tree Vertex Canonicity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-montesinos/index.html">Generator Montesinos Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rational/index.html">Generator Rational Tangles</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Generator Right Leaning Identity Tangle Tree</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="use-case.html">Use Case</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Unit Description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#class-diagram">Class Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#language">Language</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implements">Implements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#libraries">Libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functionality">Functionality</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#public-structures">Public Structures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#public-functions">Public Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#validation">Validation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Configuration Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Generate Function</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#doxygen-documentation">Doxygen Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#c.GEN_RLITT_CONFIG_IS_NULL"><code class="docutils literal notranslate"><span class="pre">GEN_RLITT_CONFIG_IS_NULL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.GEN_RLITT_CONFIG_ROOTSTOCKS_ERROR"><code class="docutils literal notranslate"><span class="pre">GEN_RLITT_CONFIG_ROOTSTOCKS_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.GEN_RLITT_CONFIG_SCIONS_ERROR"><code class="docutils literal notranslate"><span class="pre">GEN_RLITT_CONFIG_SCIONS_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.GEN_RLITT_GENERATE_ROOTSTOCK"><code class="docutils literal notranslate"><span class="pre">GEN_RLITT_GENERATE_ROOTSTOCK</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.GEN_RLITT_GENERATE_SCION"><code class="docutils literal notranslate"><span class="pre">GEN_RLITT_GENERATE_SCION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.GEN_RLITT_GENERATE_GRAFTING"><code class="docutils literal notranslate"><span class="pre">GEN_RLITT_GENERATE_GRAFTING</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.GEN_RLITT_GENERATE_NEUTRALITY"><code class="docutils literal notranslate"><span class="pre">GEN_RLITT_GENERATE_NEUTRALITY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.GEN_RLITT_GENERATE_ALREADY_COMPUTED"><code class="docutils literal notranslate"><span class="pre">GEN_RLITT_GENERATE_ALREADY_COMPUTED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.GEN_RLITT_GENERATE_SHIFT"><code class="docutils literal notranslate"><span class="pre">GEN_RLITT_GENERATE_SHIFT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.GEN_RLITT_GENERATE_PRINT_ERROR"><code class="docutils literal notranslate"><span class="pre">GEN_RLITT_GENERATE_PRINT_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.GEN_RLITT_GENERATE_CFG_ERROR"><code class="docutils literal notranslate"><span class="pre">GEN_RLITT_GENERATE_CFG_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv418gen_rlitt_config_t"><code class="docutils literal notranslate"><span class="pre">gen_rlitt_config_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv422gen_rlitt_positivity_e"><code class="docutils literal notranslate"><span class="pre">gen_rlitt_positivity_e</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv416gen_rlitt_configP18gen_rlitt_config_t"><code class="docutils literal notranslate"><span class="pre">gen_rlitt_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv418gen_rlitt_generatev"><code class="docutils literal notranslate"><span class="pre">gen_rlitt_generate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N18gen_rlitt_config_t13storage_writeE"><code class="docutils literal notranslate"><span class="pre">storage_write</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N18gen_rlitt_config_t10rootstocksE"><code class="docutils literal notranslate"><span class="pre">rootstocks</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N18gen_rlitt_config_t14rootstocks_lenE"><code class="docutils literal notranslate"><span class="pre">rootstocks_len</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N18gen_rlitt_config_t6scionsE"><code class="docutils literal notranslate"><span class="pre">scions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N18gen_rlitt_config_t10scions_lenE"><code class="docutils literal notranslate"><span class="pre">scions_len</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv422gen_rlitt_store_tanglePK11note_wptt_tPK11note_wptt_tPK11note_wptt_tPKc"><code class="docutils literal notranslate"><span class="pre">gen_rlitt_store_tangle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv426gen_rlitt_grafting_handler6size_t6size_t"><code class="docutils literal notranslate"><span class="pre">gen_rlitt_grafting_handler()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv418gen_rlitt_localcfg"><code class="docutils literal notranslate"><span class="pre">gen_rlitt_localcfg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv418gen_rlitt_executed"><code class="docutils literal notranslate"><span class="pre">gen_rlitt_executed</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bibliography">Bibliography</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-twist_vector/index.html">Notation Twist Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-wptt/index.html">Notation Weighted Planar Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-cpp_storage_interface/index.html">Storage C++ Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-json/index.html">Storage JSON</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tanglenomicon Core Libraries</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Generator Right Leaning Identity Tangle Tree</a></li>
+      <li class="breadcrumb-item active">Unit Description</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/_collections/gen-rlitt/unit-description.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="topic abstract" role="doc-abstract">
+<p class="topic-title">Abstract</p>
+<p>A unit description for the generator of right leaning identity tangle trees.</p>
+</div>
+<section id="unit-description">
+<h1>Unit Description<a class="headerlink" href="#unit-description" title="Link to this heading"></a></h1>
+<section id="class-diagram">
+<h2>Class Diagram<a class="headerlink" href="#class-diagram" title="Link to this heading"></a></h2>
+<pre  class="mermaid">
+        classDiagram
+    generator_rlitt ..|&gt; generator
+    generator_rlitt_config_t ..|&gt; generator_config_t
+    generator_rlitt_config_t *-- note_wptt
+    generator_rlitt *-- generator_rlitt_config_t
+
+    class generator {
+        &lt;&lt;External Interface&gt;&gt;
+    }
+
+    class generator_rlitt {
+&lt;&lt;External&gt;&gt;
+}
+
+
+class generator_rlitt_config_t {
++ note_wptt rootstock[]
++ size_t rootstock_len
++ note_wptt scion[]
++ size_t scion_len
+}
+
+class generator_config_t {
+&lt;&lt;External Interface&gt;&gt;
+
+}
+
+class note_wptt {
+&lt;&lt;External&gt;&gt;
+}
+
+    </pre></section>
+<section id="language">
+<h2>Language<a class="headerlink" href="#language" title="Link to this heading"></a></h2>
+<p>C</p>
+</section>
+<section id="implements">
+<h2>Implements<a class="headerlink" href="#implements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../interface/index.html#interface-generator"><span class="std std-ref">Generator Interface</span></a></p></li>
+</ul>
+</section>
+<section id="uses">
+<h2>Uses<a class="headerlink" href="#uses" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../note-wptt/index.html#note-wptt"><span class="std std-ref">Notation arborescent weighted planar tangle tree</span></a></p></li>
+<li><p><a class="reference internal" href="../comp-rlitt_grafting/index.html#comp-rlitt-grafting"><span class="std std-ref">Computation Right Leaning Identify Tangle Tree Grafting</span></a></p></li>
+<li><p><a class="reference internal" href="#comp-rlitt_ringshift"><span class="xref myst">Computation Right Leaning Identify Tangle Tree Ring Shift</span></a></p></li>
+<li><p><a class="reference internal" href="#comp-rlitt_positivitiy"><span class="xref myst">Computation Right Leaning Identify Tangle Tree Positivity</span></a></p></li>
+<li><p><a class="reference internal" href="../comp-wptt_vertex_canonicity/index.html#comp-wptt-vertex-canonicity"><span class="std std-ref">Computation Weighted Planar Tangle Tree Vertex Canonicity</span></a></p></li>
+</ul>
+</section>
+<section id="libraries">
+<h2>Libraries<a class="headerlink" href="#libraries" title="Link to this heading"></a></h2>
+<p>None</p>
+</section>
+<section id="functionality">
+<h2>Functionality<a class="headerlink" href="#functionality" title="Link to this heading"></a></h2>
+<section id="public-structures">
+<h3>Public Structures<a class="headerlink" href="#public-structures" title="Link to this heading"></a></h3>
+<section id="arborescent-generator-configuration-structure">
+<h4>Arborescent Generator Configuration Structure<a class="headerlink" href="#arborescent-generator-configuration-structure" title="Link to this heading"></a></h4>
+<p>The configuration structure contains the data needed for generating a set of arborescent tangles
+from a collection of arborescent rootstock and collection of arborescent good scions.</p>
+<p>This includes:</p>
+<ul class="simple">
+<li><p>An array of WPTT rootstocks.</p></li>
+<li><p>A length for the array of WPTT rootstocks.</p></li>
+<li><p>An array of WPTT rootstock.</p></li>
+<li><p>An array of WPTT scions, these are assumed to be good.</p></li>
+<li><p>A length for the array of WPTT scions.</p></li>
+<li><p>An array of WPTT scions.</p></li>
+</ul>
+</section>
+</section>
+<section id="public-functions">
+<h3>Public Functions<a class="headerlink" href="#public-functions" title="Link to this heading"></a></h3>
+<section id="configuration-function">
+<h4>Configuration Function<a class="headerlink" href="#configuration-function" title="Link to this heading"></a></h4>
+<p>The configuration function sets the local configuration variable of the generator.</p>
+<p>This process is described in the following state machines:</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+  state &quot;Initialize local config&quot; as Sc
+
+    [*] --&gt; Sc
+    Sc --&gt; [*]
+
+    </pre></section>
+<section id="generate-function">
+<h4>Generate Function<a class="headerlink" href="#generate-function" title="Link to this heading"></a></h4>
+<p>The generation function carries out the arborescent tangle generation until the inputs are
+exhausted.</p>
+<p>The grafting operation is carried out by a call to the computation
+<a class="reference internal" href="../comp-rlitt_grafting/index.html#comp-rlitt-grafting"><span class="std std-ref">grafting component</span></a>, canonicity is determined by the
+<a class="reference internal" href="../comp-wptt_vertex_canonicity/index.html#comp-wptt-vertex-canonicity"><span class="std std-ref">vertex canonicity computation component</span></a>, normalization of rings is
+carried out by the <a class="reference internal" href="#comp-rlitt_ringshift"><span class="xref myst">ring shift component</span></a>, and the positivity determination
+is carried out by the <a class="reference internal" href="#comp-rlitt_positivitiy"><span class="xref myst">positivity computation component</span></a>.</p>
+<p>This process is described in the following state machines:</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+    outer_for: &quot;for each rootstock&quot;
+    state outer_for {
+        inner_for: &quot;for each scion&quot;
+        state inner_for {
+            graft: Graft scion to rootstock formeing $$\ \Gamma$$
+            pos: Identify the neutrality of $$\ \Gamma$$
+            rep: Report $$\Gamma$$ and its neutrality
+            [*] --&gt; graft
+            graft --&gt; pos
+            pos --&gt; rep
+            rep --&gt; [*]
+        }
+        [*] --&gt; inner_for
+        inner_for --&gt; [*]
+    }
+
+
+    [*] --&gt; outer_for
+    outer_for--&gt;[*]
+    </pre></section>
+</section>
+</section>
+<section id="validation">
+<h2>Validation<a class="headerlink" href="#validation" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>Configuration Function<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<section id="positive-tests">
+<h4>Positive Tests<a class="headerlink" href="#positive-tests" title="Link to this heading"></a></h4>
+<div class="admonition-valid-config admonition">
+<p class="admonition-title">Valid Config</p>
+<p>A valid configuration for the generator is passed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid config.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A positive response.</p>
+</div>
+</section>
+<section id="negative-tests">
+<h4>Negative Tests<a class="headerlink" href="#negative-tests" title="Link to this heading"></a></h4>
+<div class="admonition-null-config admonition">
+<p class="admonition-title">Null Config</p>
+<p>A null configuration for the generator is passed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A null config.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+<div class="admonition-null-configuration-parameters admonition">
+<p class="admonition-title">Null Configuration Parameters</p>
+<p>A configuration with various null parameters is passed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A configuration with null rootstock.</p></li>
+<li><p>A configuration with 0 rootstock_len.</p></li>
+<li><p>A configuration with null scion.</p></li>
+<li><p>A configuration with 0 scion_len.</p></li>
+<li><p>A configuration with null str_buffer.</p></li>
+<li><p>A configuration with 0 str_buffer_len.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+</section>
+</section>
+<section id="id2">
+<h3>Generate Function<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<section id="id3">
+<h4>Positive Tests<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<div class="admonition-valid-configuration-and-generation admonition">
+<p class="admonition-title">Valid Configuration and generation</p>
+<p>A valid configuration is set and the generation is called.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>The rootstock list</p>
+<ul>
+<li><p>$\iota\LB 1\RB$</p></li>
+<li><p>$\iota\LP\LB2\RB \LB3\RB 4\RP$</p></li>
+</ul>
+</li>
+<li><p>The scion list</p>
+<ul>
+<li><p>$\iota\LB 5\RB$</p></li>
+<li><p>$\iota\LP\LB6\RB \LB7\RB 8\RP$</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>The algebraic tangle trees:</p>
+<ul class="simple">
+<li><p>$\iota\LB5\ 1\RB$</p></li>
+<li><p>$\iota\LP\LP\LB 6\RB\LB 7\RB 8\RP 1\RP$</p></li>
+<li><p>$\iota\LP\LB2\RB\LB3\RB\LB5\RB 4\RP$</p></li>
+<li><p>$\iota\LP\LB2\RB\LB3\RB\LP\LB6\RB\LB7\RB8\RP4\RP$</p></li>
+</ul>
+</div>
+<div class="admonition-generation-of-low-crossing-number admonition">
+<p class="admonition-title">Generation of low crossing number</p>
+<p>A valid configuration is set and the generation is called to comput up to 5 crossings.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>All tangles up to $4$ crossings.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>All tangles up to $5$ crossings.</p>
+</div>
+</section>
+<section id="id4">
+<h4>Negative Tests<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<div class="admonition-not-configured admonition">
+<p class="admonition-title">Not Configured</p>
+<p>The generate interface is called before configuration.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>None.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="doxygen-documentation">
+<h2>Doxygen Documentation<a class="headerlink" href="#doxygen-documentation" title="Link to this heading"></a></h2>
+<p>Generator module for rlitt generator. </p>
+<p><dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Joe Starr </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.GEN_RLITT_CONFIG_IS_NULL">
+<span class="target" id="generator__rlitt_8h_1a0148103eeeca727703019ca6a61e8795"></span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RLITT_CONFIG_IS_NULL</span></span></span><a class="headerlink" href="#c.GEN_RLITT_CONFIG_IS_NULL" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to issue in rootstock. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.GEN_RLITT_CONFIG_ROOTSTOCKS_ERROR">
+<span class="target" id="generator__rlitt_8h_1a26e913d6a849a9e388c524a0a65c3cc2"></span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RLITT_CONFIG_ROOTSTOCKS_ERROR</span></span></span><a class="headerlink" href="#c.GEN_RLITT_CONFIG_ROOTSTOCKS_ERROR" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to issue in scion. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.GEN_RLITT_CONFIG_SCIONS_ERROR">
+<span class="target" id="generator__rlitt_8h_1acdb68ec68da4f6cad5193442c3e57c74"></span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RLITT_CONFIG_SCIONS_ERROR</span></span></span><a class="headerlink" href="#c.GEN_RLITT_CONFIG_SCIONS_ERROR" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to null config. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.GEN_RLITT_GENERATE_ROOTSTOCK">
+<span class="target" id="generator__rlitt_8h_1a87bf4ec2c097ea7f05f3b54b2dcecfa9"></span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RLITT_GENERATE_ROOTSTOCK</span></span></span><a class="headerlink" href="#c.GEN_RLITT_GENERATE_ROOTSTOCK" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to issue in rootstock. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.GEN_RLITT_GENERATE_SCION">
+<span class="target" id="generator__rlitt_8h_1ad6acdb0e03092c6c403e77543ed0d2ff"></span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RLITT_GENERATE_SCION</span></span></span><a class="headerlink" href="#c.GEN_RLITT_GENERATE_SCION" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to issue in scion. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.GEN_RLITT_GENERATE_GRAFTING">
+<span class="target" id="generator__rlitt_8h_1a8dd38cf55927f4f65258a377051e9e15"></span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RLITT_GENERATE_GRAFTING</span></span></span><a class="headerlink" href="#c.GEN_RLITT_GENERATE_GRAFTING" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to null config. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.GEN_RLITT_GENERATE_NEUTRALITY">
+<span class="target" id="generator__rlitt_8h_1a3a1eb608fe88b3c31c74cf11acd4d799"></span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RLITT_GENERATE_NEUTRALITY</span></span></span><a class="headerlink" href="#c.GEN_RLITT_GENERATE_NEUTRALITY" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to null config. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.GEN_RLITT_GENERATE_ALREADY_COMPUTED">
+<span class="target" id="generator__rlitt_8h_1a1ab2242bdbe4ef719e5f37313f1de59e"></span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RLITT_GENERATE_ALREADY_COMPUTED</span></span></span><a class="headerlink" href="#c.GEN_RLITT_GENERATE_ALREADY_COMPUTED" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to null config. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.GEN_RLITT_GENERATE_SHIFT">
+<span class="target" id="generator__rlitt_8h_1a37df3d75f8b9c685f8701668d9859c2c"></span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RLITT_GENERATE_SHIFT</span></span></span><a class="headerlink" href="#c.GEN_RLITT_GENERATE_SHIFT" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to null config. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.GEN_RLITT_GENERATE_PRINT_ERROR">
+<span class="target" id="generator__rlitt_8h_1ab05292b28c10ee570169ce85b06739c8"></span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RLITT_GENERATE_PRINT_ERROR</span></span></span><a class="headerlink" href="#c.GEN_RLITT_GENERATE_PRINT_ERROR" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to null config. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.GEN_RLITT_GENERATE_CFG_ERROR">
+<span class="target" id="generator__rlitt_8h_1a45c2a234d365d5b188f085fc7a3b168f"></span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RLITT_GENERATE_CFG_ERROR</span></span></span><a class="headerlink" href="#c.GEN_RLITT_GENERATE_CFG_ERROR" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to null config. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="generator__rlitt_8h_1aa6655f39e9d07c2999156dbde4ea65ec"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv422gen_rlitt_positivity_e" title="gen_rlitt_positivity_e"><span class="n"><span class="pre">gen_rlitt_positivity_e</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gen_rlitt_positivity_e</span></span></span><br /></dt>
+<dd><p>Type defining the $V_4$ label for a wptt. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv418gen_rlitt_config_t">
+<span id="_CPPv318gen_rlitt_config_t"></span><span id="_CPPv218gen_rlitt_config_t"></span><span id="gen_rlitt_config_t"></span><span class="target" id="generator__rlitt_8h_1a65ba051e7d1f5c5aaf3946bd0ad80813"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv418gen_rlitt_config_t" title="gen_rlitt_config_t"><span class="n"><span class="pre">gen_rlitt_config_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gen_rlitt_config_t</span></span></span><a class="headerlink" href="#_CPPv418gen_rlitt_config_t" title="Link to this definition"></a><br /></dt>
+<dd><p>The type definition for configuring the rlitt generation. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-enums">Enums</p>
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv422gen_rlitt_positivity_e">
+<span id="_CPPv322gen_rlitt_positivity_e"></span><span id="_CPPv222gen_rlitt_positivity_e"></span><span class="target" id="generator__rlitt_8h_1a7337858f6015a20183507a5005c99a74"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gen_rlitt_positivity_e</span></span></span><a class="headerlink" href="#_CPPv422gen_rlitt_positivity_e" title="Link to this definition"></a><br /></dt>
+<dd><p>Type defining the $V_4$ label for a wptt. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N22gen_rlitt_positivity_e16GEN_RLITT_UNINITE">
+<span id="_CPPv3N22gen_rlitt_positivity_e16GEN_RLITT_UNINITE"></span><span id="_CPPv2N22gen_rlitt_positivity_e16GEN_RLITT_UNINITE"></span><span class="target" id="generator__rlitt_8h_1a7337858f6015a20183507a5005c99a74a81b7c4137d5c72cd35ab90ecfe9826c6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RLITT_UNINIT</span></span></span><a class="headerlink" href="#_CPPv4N22gen_rlitt_positivity_e16GEN_RLITT_UNINITE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N22gen_rlitt_positivity_e13GEN_RLITT_POSE">
+<span id="_CPPv3N22gen_rlitt_positivity_e13GEN_RLITT_POSE"></span><span id="_CPPv2N22gen_rlitt_positivity_e13GEN_RLITT_POSE"></span><span class="target" id="generator__rlitt_8h_1a7337858f6015a20183507a5005c99a74af9b339c47cd4dee232c4c63d3ece2012"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RLITT_POS</span></span></span><a class="headerlink" href="#_CPPv4N22gen_rlitt_positivity_e13GEN_RLITT_POSE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N22gen_rlitt_positivity_e13GEN_RLITT_NEGE">
+<span id="_CPPv3N22gen_rlitt_positivity_e13GEN_RLITT_NEGE"></span><span id="_CPPv2N22gen_rlitt_positivity_e13GEN_RLITT_NEGE"></span><span class="target" id="generator__rlitt_8h_1a7337858f6015a20183507a5005c99a74a8e37076ebda3e1a3d52cb8a2885291d7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RLITT_NEG</span></span></span><a class="headerlink" href="#_CPPv4N22gen_rlitt_positivity_e13GEN_RLITT_NEGE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N22gen_rlitt_positivity_e13GEN_RLITT_NEUE">
+<span id="_CPPv3N22gen_rlitt_positivity_e13GEN_RLITT_NEUE"></span><span id="_CPPv2N22gen_rlitt_positivity_e13GEN_RLITT_NEUE"></span><span class="target" id="generator__rlitt_8h_1a7337858f6015a20183507a5005c99a74a15c099ad420a7b74704c202a0b9a7a91"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RLITT_NEU</span></span></span><a class="headerlink" href="#_CPPv4N22gen_rlitt_positivity_e13GEN_RLITT_NEUE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv416gen_rlitt_configP18gen_rlitt_config_t">
+<span id="_CPPv316gen_rlitt_configP18gen_rlitt_config_t"></span><span id="_CPPv216gen_rlitt_configP18gen_rlitt_config_t"></span><span id="gen_rlitt_config__gen_rlitt_config_tP"></span><span class="target" id="generator__rlitt_8h_1aec8c38e36943f3465b3529652650f7c6"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gen_rlitt_config</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv418gen_rlitt_config_t" title="gen_rlitt_config_t"><span class="n"><span class="pre">gen_rlitt_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">config_arg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416gen_rlitt_configP18gen_rlitt_config_t" title="Link to this definition"></a><br /></dt>
+<dd><p>The public configuration function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config_arg</strong> – The config to set. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv418gen_rlitt_generatev">
+<span id="_CPPv318gen_rlitt_generatev"></span><span id="_CPPv218gen_rlitt_generatev"></span><span id="gen_rlitt_generate"></span><span class="target" id="generator__rlitt_8h_1a0dbff0c1b8f1a5d4f90fef465bf6ff59"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gen_rlitt_generate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418gen_rlitt_generatev" title="Link to this definition"></a><br /></dt>
+<dd><p>The public generation function. When called the module will work against the current config. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>uint8_t Generation status info. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structgen__rlitt__config__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gen_rlitt_config_t</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;generator_rlitt.h&gt;</em></div>
+<p>The type definition for configuring the rlitt generation. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N18gen_rlitt_config_t13storage_writeE">
+<span id="_CPPv3N18gen_rlitt_config_t13storage_writeE"></span><span id="_CPPv2N18gen_rlitt_config_t13storage_writeE"></span><span id="gen_rlitt_config_t::storage_write__storage_write_funptr_t"></span><span class="target" id="structgen__rlitt__config__t_1a6937704ac6fc6302676e0960beaf8723"></span><span class="n"><span class="pre">storage_write_funptr_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">storage_write</span></span></span><a class="headerlink" href="#_CPPv4N18gen_rlitt_config_t13storage_writeE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N18gen_rlitt_config_t10rootstocksE">
+<span id="_CPPv3N18gen_rlitt_config_t10rootstocksE"></span><span id="_CPPv2N18gen_rlitt_config_t10rootstocksE"></span><span id="gen_rlitt_config_t::rootstocks__note_wptt_tCPP"></span><span class="target" id="structgen__rlitt__config__t_1ae7dcf70427c2347fddf81e5835fb722e"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../note-wptt/unit-description.html#_CPPv411note_wptt_t" title="note_wptt_t"><span class="n"><span class="pre">note_wptt_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">rootstocks</span></span></span><a class="headerlink" href="#_CPPv4N18gen_rlitt_config_t10rootstocksE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N18gen_rlitt_config_t14rootstocks_lenE">
+<span id="_CPPv3N18gen_rlitt_config_t14rootstocks_lenE"></span><span id="_CPPv2N18gen_rlitt_config_t14rootstocks_lenE"></span><span id="gen_rlitt_config_t::rootstocks_len__s"></span><span class="target" id="structgen__rlitt__config__t_1a65e3836df481388093c48125a2d00383"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rootstocks_len</span></span></span><a class="headerlink" href="#_CPPv4N18gen_rlitt_config_t14rootstocks_lenE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N18gen_rlitt_config_t6scionsE">
+<span id="_CPPv3N18gen_rlitt_config_t6scionsE"></span><span id="_CPPv2N18gen_rlitt_config_t6scionsE"></span><span id="gen_rlitt_config_t::scions__note_wptt_tCPP"></span><span class="target" id="structgen__rlitt__config__t_1a04cc23034b6c801c87610a45764ca4c1"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../note-wptt/unit-description.html#_CPPv411note_wptt_t" title="note_wptt_t"><span class="n"><span class="pre">note_wptt_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">scions</span></span></span><a class="headerlink" href="#_CPPv4N18gen_rlitt_config_t6scionsE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N18gen_rlitt_config_t10scions_lenE">
+<span id="_CPPv3N18gen_rlitt_config_t10scions_lenE"></span><span id="_CPPv2N18gen_rlitt_config_t10scions_lenE"></span><span id="gen_rlitt_config_t::scions_len__s"></span><span class="target" id="structgen__rlitt__config__t_1a350163bc5e60c835118fd44059f576b1"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">scions_len</span></span></span><a class="headerlink" href="#_CPPv4N18gen_rlitt_config_t10scions_lenE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<p>generator module for rlitt. </p>
+<p><dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Joe Starr </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="generator__rlitt_8c_1a9e537e0d3f65b2f319468b28f37dde97"></span><span class="sig-name descname"><span class="pre">STATIC_INLINE</span> <span class="pre">const</span> <span class="pre">char</span> <span class="pre">*</span> <span class="pre">gen_rlitt_get_posstr</span> <span class="pre">(comp_rlitt_positivity_flvrs_e</span> <span class="pre">positivity)</span></span></dt>
+<dd><p>Compute the string representation for the positivity of a tree. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>positivity</strong> – The positivity of a tree. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The string representation of the positivity. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv422gen_rlitt_store_tanglePK11note_wptt_tPK11note_wptt_tPK11note_wptt_tPKc">
+<span id="_CPPv322gen_rlitt_store_tanglePK11note_wptt_tPK11note_wptt_tPK11note_wptt_tPKc"></span><span id="_CPPv222gen_rlitt_store_tanglePK11note_wptt_tPK11note_wptt_tPK11note_wptt_tPKc"></span><span id="gen_rlitt_store_tangle__note_wptt_tCP.note_wptt_tCP.note_wptt_tCP.cCP"></span><span class="target" id="generator__rlitt_8c_1a90129722c617d1a5b008bda25ff5850e"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gen_rlitt_store_tangle</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../note-wptt/unit-description.html#_CPPv411note_wptt_t" title="note_wptt_t"><span class="n"><span class="pre">note_wptt_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">result</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../note-wptt/unit-description.html#_CPPv411note_wptt_t" title="note_wptt_t"><span class="n"><span class="pre">note_wptt_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">rootstock</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../note-wptt/unit-description.html#_CPPv411note_wptt_t" title="note_wptt_t"><span class="n"><span class="pre">note_wptt_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">scion</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">positivity</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422gen_rlitt_store_tanglePK11note_wptt_tPK11note_wptt_tPK11note_wptt_tPKc" title="Link to this definition"></a><br /></dt>
+<dd><p>Store the grafted tangle. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>result</strong> – the grafted tangle. </p></li>
+<li><p><strong>rootstock</strong> – the rootstock for the grafted tangle. </p></li>
+<li><p><strong>scion</strong> – the scion for the grafted tangle. </p></li>
+<li><p><strong>positivity</strong> – the positivity string for the grafted tangle. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The success flag for the operation. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="generator__rlitt_8c_1a0ee017e9b426badd5079d5c1f7495c82"></span><span class="sig-name descname"><span class="pre">STATIC_INLINE</span> <span class="pre">bool</span> <span class="pre">gen_rlitt_root_canon</span> <span class="pre">(const</span> <span class="pre">note_wptt_node_t</span> <span class="pre">*root,</span> <span class="pre">comp_wptt_vert_canon_positivity_e</span> <span class="pre">positivity)</span></span></dt>
+<dd><p>Determine if the vertices adjacent to the root are canonical. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>root</strong> – The root vertex for the tree to verify. </p></li>
+<li><p><strong>positivity</strong> – The positivity condition to verify, positive or negative. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True when the vertices adjacent to the root are canonical, false otherwise. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426gen_rlitt_grafting_handler6size_t6size_t">
+<span id="_CPPv326gen_rlitt_grafting_handler6size_t6size_t"></span><span id="_CPPv226gen_rlitt_grafting_handler6size_t6size_t"></span><span id="gen_rlitt_grafting_handler__s.s"></span><span class="target" id="generator__rlitt_8c_1ab461c990802890664a1ceb5bb89e0c84"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gen_rlitt_grafting_handler</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">rootstock_idx</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">scion_idx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426gen_rlitt_grafting_handler6size_t6size_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Process the grafting of a rootstock and a scion into one or two resulting trees. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rootstock_idx</strong> – The index for the rootstock. </p></li>
+<li><p><strong>scion_idx</strong> – The index for the scion. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The success status of this generation step. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="generator__rlitt_8c_1aec8c38e36943f3465b3529652650f7c6"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gen_rlitt_config</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv418gen_rlitt_config_t" title="gen_rlitt_config_t"><span class="n"><span class="pre">gen_rlitt_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">config_arg</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>The public configuration function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config_arg</strong> – The config to set. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="generator__rlitt_8c_1a0dbff0c1b8f1a5d4f90fef465bf6ff59"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gen_rlitt_generate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>The public generation function. When called the module will work against the current config. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>uint8_t Generation status info. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv418gen_rlitt_localcfg">
+<span id="_CPPv318gen_rlitt_localcfg"></span><span id="_CPPv218gen_rlitt_localcfg"></span><span id="gen_rlitt_localcfg__gen_rlitt_config_tP"></span><span class="target" id="generator__rlitt_8c_1a78906f519aa8be9ef1ef823470e283cb"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv418gen_rlitt_config_t" title="gen_rlitt_config_t"><span class="n"><span class="pre">gen_rlitt_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">gen_rlitt_localcfg</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">NULL</span></span><a class="headerlink" href="#_CPPv418gen_rlitt_localcfg" title="Link to this definition"></a><br /></dt>
+<dd><p>The local configuration of the rlitt gen module. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv418gen_rlitt_executed">
+<span id="_CPPv318gen_rlitt_executed"></span><span id="_CPPv218gen_rlitt_executed"></span><span id="gen_rlitt_executed__b"></span><span class="target" id="generator__rlitt_8c_1a34545f33373babb154569726f493f0e8"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gen_rlitt_executed</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv418gen_rlitt_executed" title="Link to this definition"></a><br /></dt>
+<dd><p>The local configuration of the rlitt gen module. </p>
+</dd></dl>
+
+</div>
+</section>
+<section id="bibliography">
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading"></a></h2>
+<span class="target" id="id5"></span></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="use-case.html" class="btn btn-neutral float-left" title="Use Case" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../mut-rlitt_ringshift/index.html" class="btn btn-neutral float-right" title="Mutator Right Leaning Identity Tangle Tree Ring Shift" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, temp.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

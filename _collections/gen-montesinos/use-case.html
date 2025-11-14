@@ -1,0 +1,395 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Use Case &mdash; Tanglenomicon Core Libraries 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/proof.css?v=b4b7a797" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+      <script type="module">mermaid.initialize({
+  securityLevel: 'loose',
+  theme: 'dark',
+});</script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+const load = async () => {
+    await mermaid.run();
+    const all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+    if(mermaids_to_add_zoom > 0) {
+        var svgs = d3.selectAll(".mermaid svg");
+        if(all_mermaids.length !== mermaids_processed.length) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else if(svgs.size() !== mermaids_to_add_zoom) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else {
+            svgs.each(function() {
+                var svg = d3.select(this);
+                svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                var inner = svg.select("g");
+                var zoom = d3.zoom().on("zoom", function(event) {
+                    inner.attr("transform", event.transform);
+                });
+                svg.call(zoom);
+            });
+        }
+    }
+};
+
+window.addEventListener("load", load);
+</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Unit Description" href="unit-description.html" />
+    <link rel="prev" title="Generator Montesinos Tangles" href="index.html" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                macros: {
+                    "\\N": "\\mathbb{N}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\Q": "\\mathbb{Q}",
+                    "\\R": "\\mathbb{R}",
+                    "\\LN": "\\left.",
+                    "\\RN": "\\right.",
+                    "\\LP": "\\left(",
+                    "\\RP": "\\right)",
+                    "\\LS": "\\left\\lbrace",
+                    "\\RS": "\\right\\rbrace",
+                    "\\LA": "\\left\\langle",
+                    "\\RA": "\\right\\rangle",
+                    "\\LB": "\\left[",
+                    "\\RB": "\\right]",
+                    "\\MM": "\\ \\middle|\\ ",
+                    "\\exp": "\\text{exp}",
+                    "\\abs": "\\left\\vert#1\\right\\vert",
+                    "\\msr": "m\\left(#1\\right)",
+                    "\\inv": " #1^{-1}",
+                    "\\bkt": "\\LA \\img{ #1}\\RA",
+                }
+            }
+        );
+    });
+</script>
+
+
+<style>
+
+</style>
+ 
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Tanglenomicon Core Libraries
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Generic Interfaces</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../comp-rational_data/index.html">Computation Rational Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_grafting/index.html">Computation Right Leaning Identity Tangle Tree Grafting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_positivity/index.html">Computation Right Leaning Identity Tangle Tree Positivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-wptt_vertex_canonicity/index.html">Computation Weighted Planar Tangle Tree Vertex Canonicity</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Generator Montesinos Tangles</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Use Case</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#language">Language</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implements">Implements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#libraries">Libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functionality">Functionality</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#config">Config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generate">Generate</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cite">Cite</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html">Unit Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rational/index.html">Generator Rational Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rlitt/index.html">Generator Right Leaning Identity Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-twist_vector/index.html">Notation Twist Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-wptt/index.html">Notation Weighted Planar Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-cpp_storage_interface/index.html">Storage C++ Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-json/index.html">Storage JSON</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tanglenomicon Core Libraries</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Generator Montesinos Tangles</a></li>
+      <li class="breadcrumb-item active">Use Case</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/_collections/gen-montesinos/use-case.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="use-case">
+<h1>Use Case<a class="headerlink" href="#use-case" title="Link to this heading"></a></h1>
+<pre  class="mermaid">
+        classDiagram
+    generator_mont --|&gt; generator
+    generator_mont_config_t --|&gt; generator_config_t
+    generator_mont_config_t *-- generator_mont_rat_tang_set
+    generator_mont_config_t *-- note_att
+    generator_mont_rat_tang_set *-- note_tv
+    generator_mont *-- generator_mont_config_t
+
+    class generator {
+        &lt;&lt;interface&gt;&gt;
+    }
+
+    class generator_mont {
+&lt;&lt;&gt;&gt;
+}
+
+class generator_mont_config_t {
+&lt;&lt;struct&gt;&gt;
++ note_att
++ gen_mont_rat_tang_set []
+}
+
+class generator_config_t {
+&lt;&lt;interface&gt;&gt;
+
+}
+
+class generator_mont_rat_tang_set{
++ note_tv []
++ num_rat_tangs
+}
+
+class note_att{
+&lt;&lt;&gt;&gt;
+}
+
+class note_tv{
+&lt;&lt;&gt;&gt;
+}
+
+    </pre><section id="language">
+<h2>Language<a class="headerlink" href="#language" title="Link to this heading"></a></h2>
+<p>C</p>
+</section>
+<section id="implements">
+<h2>Implements<a class="headerlink" href="#implements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#../../docs/use_cases/generator-interface.md"><span class="xref myst">Generator Interface</span></a></p></li>
+</ul>
+</section>
+<section id="uses">
+<h2>Uses<a class="headerlink" href="#uses" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../note-twist_vector/use-case.html"><span class="doc std std-doc">Twist Vector Notation</span></a></p></li>
+<li><p><a class="reference internal" href="../note-algebraic_tangle_tree/use-case.html"><span class="doc std std-doc">Algebraic Tangle Tree Notation</span></a></p></li>
+</ul>
+</section>
+<section id="libraries">
+<h2>Libraries<a class="headerlink" href="#libraries" title="Link to this heading"></a></h2>
+<p>N/A</p>
+</section>
+<section id="functionality">
+<h2>Functionality<a class="headerlink" href="#functionality" title="Link to this heading"></a></h2>
+<p>A canonical description of a Montesinos Knots is given by Bonahon and Siebenmann in Theorem 11.6 of
+“New Geometric Splittings of Classical Knots and the Classiﬁcation and Symmetries of Arborescent
+Knots” <a class="reference external" href="https://dornsife.usc.edu/assets/sites/1191/docs/preprints/bonsieb.pdf">${}^{[1]}$</a>. The
+given construction can be modified to describe a canonical Montesinos Tangle. That is a tangle with
+$n$ rational sub-tangles summed together with $+$, with potentially $1$ integral tangle as the final
+sub-tangle. This means our generation strategy for Montesinos tangles is to take combinations of our
+rational tangles (non-integral), where the crossing numbers of the components sum to the target
+crossing number.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><img alt="Mont" src="../media/mont.svg" /></p>
+<p>Algebraically:
+$[1 2 0]+[2 1 0]+[2 2 0]$</p>
+<p>att:
+$+[1 2 0]+[2 1 0][2 2 0]$</p>
+</div>
+<p>This module generates att of unique Montesinos tangles. A normal flows go as:</p>
+<section id="config">
+<h3>Config<a class="headerlink" href="#config" title="Link to this heading"></a></h3>
+<pre  class="mermaid">
+        stateDiagram-v2
+  state &quot;Init local config&quot; as Sc
+
+	[*] --&gt; Sc
+	Sc --&gt; [*]
+
+    </pre></section>
+<section id="generate">
+<h3>Generate<a class="headerlink" href="#generate" title="Link to this heading"></a></h3>
+<pre  class="mermaid">
+        stateDiagram-v2
+	state &quot;Set prt=0&quot; as init1
+	state &quot;Set stack[0]=0&quot; as init2
+	state &quot;ptr++&quot; as ptr_inc
+	state &quot;ptr--&quot; as ptr_dec
+	state &quot;stack[ptr]++&quot; as st_inc1
+	state &quot;stack[ptr]++&quot; as st_inc2
+
+	state &quot;stack[ptr]=0&quot; as st_zero
+	state &quot;Process Loop State&quot; as ds
+	state join_while &lt;&lt;join&gt;&gt;
+  state while &lt;&lt;choice&gt;&gt;
+  state for_loop_is_done &lt;&lt;choice&gt;&gt;
+  state should_move_ptr &lt;&lt;choice&gt;&gt;
+
+	[*] --&gt; init1
+	init1 --&gt; init2
+	init2 --&gt; while
+	while --&gt; for_loop_is_done : if outer most loop not done
+	while --&gt; [*] : if outer most loop done
+
+	for_loop_is_done --&gt; should_move_ptr : if current inner loop not done
+	for_loop_is_done --&gt; ptr_dec : if current inner loop done
+
+
+	should_move_ptr --&gt; ptr_inc: if inner loop needs to be started
+	should_move_ptr --&gt; st_inc1: if current loop is inner most
+
+	ptr_dec --&gt; st_inc2
+	ptr_inc --&gt; st_zero
+	st_zero --&gt; join_while
+	st_inc1 --&gt; ds
+	ds --&gt; join_while
+	st_inc2 --&gt; join_while
+join_while --&gt; while
+
+
+
+    </pre><section id="process-loop-state">
+<h4>Process Loop State<a class="headerlink" href="#process-loop-state" title="Link to this heading"></a></h4>
+<pre  class="mermaid">
+        stateDiagram-v2
+	state &quot;Convert notation and store&quot; as print
+	state &quot;insert tangle into att&quot; as itiatt
+	state &quot;for each tangle in state&quot; as fetis{
+	  [*] --&gt; itiatt
+	  itiatt --&gt;[*]
+	  }
+
+		[*] --&gt; fetis
+		fetis --&gt; print
+		print --&gt; [*]
+
+
+
+	note left of fetis
+	            It's assumed state is inherited from parent diagram
+	end note
+    </pre></section>
+</section>
+</section>
+<section id="cite">
+<h2>Cite<a class="headerlink" href="#cite" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>F. Bonahon and L. C. Siebenmann, “New Geometric Splittings of Classical Knots and the
+Classiﬁcation and Symmetries of Arborescent Knots”. Version: January 26, 2016
+<a class="reference external" href="https://dornsife.usc.edu/assets/sites/1191/docs/preprints/bonsieb.pdf">pdf</a></p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Generator Montesinos Tangles" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="unit-description.html" class="btn btn-neutral float-right" title="Unit Description" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, temp.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

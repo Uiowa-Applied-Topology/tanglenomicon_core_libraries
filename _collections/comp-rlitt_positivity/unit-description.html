@@ -1,0 +1,904 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit Description &mdash; Tanglenomicon Core Libraries 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/proof.css?v=b4b7a797" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+      <script type="module">mermaid.initialize({
+  securityLevel: 'loose',
+  theme: 'dark',
+});</script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+const load = async () => {
+    await mermaid.run();
+    const all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+    if(mermaids_to_add_zoom > 0) {
+        var svgs = d3.selectAll(".mermaid svg");
+        if(all_mermaids.length !== mermaids_processed.length) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else if(svgs.size() !== mermaids_to_add_zoom) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else {
+            svgs.each(function() {
+                var svg = d3.select(this);
+                svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                var inner = svg.select("g");
+                var zoom = d3.zoom().on("zoom", function(event) {
+                    inner.attr("transform", event.transform);
+                });
+                svg.call(zoom);
+            });
+        }
+    }
+};
+
+window.addEventListener("load", load);
+</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Computation Weighted Planar Tangle Tree Vertex Canonicity" href="../comp-wptt_vertex_canonicity/index.html" />
+    <link rel="prev" title="Use Case" href="use-case.html" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                macros: {
+                    "\\N": "\\mathbb{N}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\Q": "\\mathbb{Q}",
+                    "\\R": "\\mathbb{R}",
+                    "\\LN": "\\left.",
+                    "\\RN": "\\right.",
+                    "\\LP": "\\left(",
+                    "\\RP": "\\right)",
+                    "\\LS": "\\left\\lbrace",
+                    "\\RS": "\\right\\rbrace",
+                    "\\LA": "\\left\\langle",
+                    "\\RA": "\\right\\rangle",
+                    "\\LB": "\\left[",
+                    "\\RB": "\\right]",
+                    "\\MM": "\\ \\middle|\\ ",
+                    "\\exp": "\\text{exp}",
+                    "\\abs": "\\left\\vert#1\\right\\vert",
+                    "\\msr": "m\\left(#1\\right)",
+                    "\\inv": " #1^{-1}",
+                    "\\bkt": "\\LA \\img{ #1}\\RA",
+                }
+            }
+        );
+    });
+</script>
+
+
+<style>
+
+</style>
+ 
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Tanglenomicon Core Libraries
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Generic Interfaces</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../comp-rational_data/index.html">Computation Rational Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_grafting/index.html">Computation Right Leaning Identity Tangle Tree Grafting</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Computation Right Leaning Identity Tangle Tree Positivity</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="use-case.html">Use Case</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Unit Description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#class-diagram">Class Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#language">Language</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implements">Implements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#libraries">Libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functionality">Functionality</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#public-structures">Public Structures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#public-functions">Public Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#validation">Validation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Configuration Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Compute Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Result Function</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#doxygen-documentation">Doxygen Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_RLITT_POSITIVITY_CONFIG_NULLTREE"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_POSITIVITY_CONFIG_NULLTREE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_RLITT_POSITIVITY_CONFIG_SCION"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_POSITIVITY_CONFIG_SCION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_RLITT_POSITIVITY_CONFIG_IS_NULL"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_POSITIVITY_CONFIG_IS_NULL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_RLITT_POSITIVITY_COMPUTE_CFG_ERROR"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_POSITIVITY_COMPUTE_CFG_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_RLITT_POSITIVITY_COMPUTE_ALREADY_COMPUTED"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_POSITIVITY_COMPUTE_ALREADY_COMPUTED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv429comp_rlitt_positivity_flvrs_e"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_positivity_flvrs_e</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv428comp_rlitt_positivity_configP30comp_rlitt_positivity_config_t"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_positivity_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv429comp_rlitt_positivity_computev"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_positivity_compute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv428comp_rlitt_positivity_resultv"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_positivity_result()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv430comp_rlitt_positivity_result_t"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_positivity_result_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv430comp_rlitt_positivity_config_t"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_positivity_config_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.COMP_RLITT_POSITIVITY_STACK_SIZE"><code class="docutils literal notranslate"><span class="pre">COMP_RLITT_POSITIVITY_STACK_SIZE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv431comp_rlitt_positivity_walk_treePK11note_wptt_t"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_positivity_walk_tree()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv430comp_rlitt_positivity_localcfg"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_positivity_localcfg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv434comp_rlitt_positivity_localrestult"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_positivity_localrestult</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv430comp_rlitt_positivity_executed"><code class="docutils literal notranslate"><span class="pre">comp_rlitt_positivity_executed</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bibliography">Bibliography</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-wptt_vertex_canonicity/index.html">Computation Weighted Planar Tangle Tree Vertex Canonicity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-montesinos/index.html">Generator Montesinos Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rational/index.html">Generator Rational Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rlitt/index.html">Generator Right Leaning Identity Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-twist_vector/index.html">Notation Twist Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-wptt/index.html">Notation Weighted Planar Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-cpp_storage_interface/index.html">Storage C++ Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-json/index.html">Storage JSON</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tanglenomicon Core Libraries</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Computation Right Leaning Identity Tangle Tree Positivity</a></li>
+      <li class="breadcrumb-item active">Unit Description</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/_collections/comp-rlitt_positivity/unit-description.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="topic abstract" role="doc-abstract">
+<p class="topic-title">Abstract</p>
+<p>A unit description for computation of arborescent tangle positivity.</p>
+</div>
+<section id="unit-description">
+<h1>Unit Description<a class="headerlink" href="#unit-description" title="Link to this heading"></a></h1>
+<section id="class-diagram">
+<h2>Class Diagram<a class="headerlink" href="#class-diagram" title="Link to this heading"></a></h2>
+<pre  class="mermaid">
+        classDiagram
+    comp_rlitt_positivity ..|&gt; computation
+    comp_rlitt_positivity_config_t ..|&gt; notation_wptt
+    comp_rlitt_positivity_config_t ..|&gt; comp_config_t
+    comp_rlitt_positivity *-- comp_rlitt_positivity_config_t
+    comp_rlitt_positivity_result_t ..|&gt; notation_wptt
+    comp_rlitt_positivity_result_t ..|&gt; comp_result_t
+    comp_rlitt_positivity *-- comp_rlitt_positivity_result_t
+    comp_rlitt_positivity_result_t *-- comp_rlitt_positivity_flvrs_e
+
+    class computation {
+        &lt;&lt;External Interface&gt;&gt;
+    }
+
+    class comp_rlitt_positivity {
+    &lt;&lt;External&gt;&gt;
+    }
+
+    class notation_wptt{
+    &lt;&lt;External&gt;&gt;
+    }
+
+    class comp_rlitt_positivity_config_t {
+
+    + notation_wptt *tree
+    }
+
+    class comp_config_t {
+    &lt;&lt;External Interface&gt;&gt;
+    }
+
+    class comp_rlitt_positivity_result_t {
+
+    + comp_rlitt_positivity_flvrs_e result
+    }
+    class comp_rlitt_positivity_flvrs_e {
+    &lt;&lt;Enumeration&gt;&gt;
+     uninit,
+     positive,
+     negative,
+     neutral,
+     undefined
+    }
+
+    class comp_result_t {
+    &lt;&lt;External Interface&gt;&gt;
+    }
+
+
+    </pre></section>
+<section id="language">
+<h2>Language<a class="headerlink" href="#language" title="Link to this heading"></a></h2>
+<p>C</p>
+</section>
+<section id="implements">
+<h2>Implements<a class="headerlink" href="#implements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#computation-interface"><span class="xref myst">Computation Interface</span></a></p></li>
+</ul>
+</section>
+<section id="uses">
+<h2>Uses<a class="headerlink" href="#uses" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../note-wptt/index.html#note-wptt"><span class="std std-ref">Notation Weighted Planar Tangle Tree</span></a></p></li>
+</ul>
+</section>
+<section id="libraries">
+<h2>Libraries<a class="headerlink" href="#libraries" title="Link to this heading"></a></h2>
+<p>None</p>
+</section>
+<section id="functionality">
+<h2>Functionality<a class="headerlink" href="#functionality" title="Link to this heading"></a></h2>
+<section id="public-structures">
+<h3>Public Structures<a class="headerlink" href="#public-structures" title="Link to this heading"></a></h3>
+<section id="configuration-structure">
+<h4>Configuration Structure<a class="headerlink" href="#configuration-structure" title="Link to this heading"></a></h4>
+<p>The configuration structure contains the data needed for computing the positivity of an input WPTT.</p>
+<p>This includes:</p>
+<ul class="simple">
+<li><p>A pointer to a read-only notation structure for a WPTT.</p></li>
+</ul>
+</section>
+<section id="result-structure">
+<h4>Result Structure<a class="headerlink" href="#result-structure" title="Link to this heading"></a></h4>
+<p>The result structure contains the enumerated value identifying the positivity of the input tree.</p>
+</section>
+</section>
+<section id="public-functions">
+<h3>Public Functions<a class="headerlink" href="#public-functions" title="Link to this heading"></a></h3>
+<section id="configuration-function">
+<h4>Configuration Function<a class="headerlink" href="#configuration-function" title="Link to this heading"></a></h4>
+<p>The configuration function sets the local configuration variable of the computation.</p>
+<p>This process is described in the following state machines:</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+  state &quot;Initialize local configuration&quot; as Sc
+
+    [*] --&gt; Sc
+    Sc --&gt; [*]
+
+    </pre></section>
+<section id="compute-function">
+<h4>Compute Function<a class="headerlink" href="#compute-function" title="Link to this heading"></a></h4>
+<p>The compute function carries out the arborescent tangle positivity computation. The function may
+contain sub-machines that can be broken out into functions in the implementation. The walk the tree
+function should be implemented with a stack-based iterative approach.</p>
+<p>This process is described in the following state machines:</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+    state &quot;Initialize&lt;br/&gt;• Set tree as neutral&lt;br/• Set stick length to 0&lt;br/&gt;• Set stick has -2 to false&lt;br/&gt;• Set stick has 2 to false&quot; as init
+
+    walk: Walk the tree and execute for each vertex visited
+
+    state walk{
+        state nciz &lt;&lt;choice&gt;&gt;
+        state mtew &lt;&lt;choice&gt;&gt;
+        state nn &lt;&lt;choice&gt;&gt;
+        state np &lt;&lt;choice&gt;&gt;
+        state &quot;Set positive&quot; as sp
+        state &quot;Set negative&quot; as sn
+        state &quot;Set undefined and exit the outer routine&quot; as su
+        state join_undef &lt;&lt;join&gt;&gt;
+
+        state nr &lt;&lt;choice&gt;&gt;
+        state wit &lt;&lt;choice&gt;&gt;
+        state &quot;Increment stick length&quot; as isl
+        state &quot;Set stick to have 2&quot; as sstht
+        state &quot;Set stick to have -2&quot; as ssthmt
+
+        state slo &lt;&lt;choice&gt;&gt;
+        state hpm2 &lt;&lt;choice&gt;&gt;
+
+        [*] --&gt; nciz
+        nciz --&gt; mtew : number of children is 0 and stick length is 0
+        mtew --&gt; np: weight is -2
+        mtew --&gt; [*]: else
+        mtew --&gt; nn: weight is 2
+        np --&gt; join_undef: else
+        np --&gt; sn: Tree not already marked negative
+        nn --&gt; join_undef: else
+        nn --&gt; sp: Tree not already marked positive
+        su --&gt; [*]
+        sp --&gt; [*]
+        sn --&gt; [*]
+
+        nciz --&gt; isl: Number of children is 1
+        isl --&gt; nr
+        nr --&gt; [*]:else
+        nr --&gt; wit: Vertex is not the root vertex
+        wit --&gt; sstht: Weight is 2
+        sstht --&gt; [*]
+        wit --&gt; ssthmt: Weight is -2
+        wit --&gt; [*]: else
+        ssthmt --&gt; [*]
+
+        nciz --&gt; slo: else
+        slo --&gt; [*]: else
+        slo --&gt; hpm2: Sitck has lenght 1
+        hpm2 --&gt; nn: Stick has a weight of 2
+        hpm2 --&gt; np: Stick has a weight of -2
+        hpm2 --&gt; [*]
+        join_undef --&gt; su
+        }
+
+    [*] --&gt; init
+    init --&gt; walk
+    walk --&gt; [*]
+    </pre></section>
+<section id="result-function">
+<h4>Result Function<a class="headerlink" href="#result-function" title="Link to this heading"></a></h4>
+<p>When this function is invoked, the result of the positivity computation process is reported.</p>
+</section>
+</section>
+</section>
+<section id="validation">
+<h2>Validation<a class="headerlink" href="#validation" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>Configuration Function<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<section id="positive-tests">
+<h4>Positive Tests<a class="headerlink" href="#positive-tests" title="Link to this heading"></a></h4>
+<div class="admonition-valid-configuration admonition">
+<p class="admonition-title">Valid Configuration</p>
+<p>A valid configuration for the computation is passed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A positive response.</p>
+</div>
+</section>
+<section id="negative-tests">
+<h4>Negative Tests<a class="headerlink" href="#negative-tests" title="Link to this heading"></a></h4>
+<div class="admonition-null-configuration admonition">
+<p class="admonition-title">Null Configuration</p>
+<p>A null configuration for the computation is passed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A null configuration.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+<div class="admonition-null-configuration-parameters admonition">
+<p class="admonition-title">Null configuration Parameters</p>
+<p>A configuration with various null parameters is passed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A configuration with null tree.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+</section>
+</section>
+<section id="id2">
+<h3>Compute Function<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<section id="id3">
+<h4>Positive Tests<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<div class="admonition-a-valid-configuration admonition">
+<p class="admonition-title">A valid configuration</p>
+<p>A valid configuration is set for the component. The computation is executed and
+returns successfully. The result written to the write interface is correct.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration is set.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<ul class="simple">
+<li><p>A positive response.</p></li>
+<li><p>A correct output on the write interface.</p></li>
+</ul>
+</div>
+<div class="admonition-a-valid-configuration-with-null-write-interface admonition">
+<p class="admonition-title">A valid configuration with null write interface</p>
+<p>A valid configuration is set for the component with null write. The computation is
+executed and returns successfully.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration is set.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<ul class="simple">
+<li><p>A positive response.</p></li>
+</ul>
+</div>
+<div class="admonition-correct-handling-of-the-root admonition">
+<p class="admonition-title">Correct handling of the root</p>
+<p>A valid configuration is set for the component. The computation is executed and
+returns successfully. The result written to the write interface is correct.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration is set, the configured tree is integral with the following weights:</p>
+<ul>
+<li><p>2</p></li>
+<li><p>-2</p></li>
+<li><p>3</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<ul class="simple">
+<li><p>A positive response.</p></li>
+<li><p>A correct output on the write interface.</p></li>
+</ul>
+</div>
+<div class="admonition-correct-handling-of-a-leaf-vertex admonition">
+<p class="admonition-title">Correct handling of a leaf vertex</p>
+<p>A valid configuration is set for the component. The computation is executed and
+returns successfully. The result written to the write interface is correct.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration is set, the following trees are configured:</p>
+<ul>
+<li><p>i([2][3])</p></li>
+<li><p>i([-2][3])</p></li>
+<li><p>i([3][3])</p></li>
+<li><p>i([2][-2])</p></li>
+<li><p>i([2][-2 -2])</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<ul class="simple">
+<li><p>A positive response.</p></li>
+<li><p>A correct output on the write interface.</p></li>
+</ul>
+</div>
+<div class="admonition-correct-handling-of-an-internal-vertex admonition">
+<p class="admonition-title">Correct handling of an internal vertex</p>
+<p>A valid configuration is set for the component. The computation is executed and
+returns successfully. The result written to the write interface is correct.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration is set, the following trees are configured:</p>
+<ul>
+<li><p>i(<a class="reference internal" href="#(%5B3%5D%5B3%5D)2"><span class="xref myst">3</span></a>)</p></li>
+<li><p>i(<a class="reference internal" href="#(%5B3%5D%5B3%5D)-2"><span class="xref myst">3</span></a>)</p></li>
+<li><p>i(<a class="reference internal" href="#(%5B3%5D%5B3%5D)3"><span class="xref myst">3</span></a>)</p></li>
+<li><p>i((([3][3])2)(([3][3])-2))</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<ul class="simple">
+<li><p>A positive response.</p></li>
+<li><p>A correct output on the write interface.</p></li>
+</ul>
+</div>
+</section>
+<section id="id4">
+<h4>Negative Tests<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<div class="admonition-not-configured admonition">
+<p class="admonition-title">Not Configured</p>
+<p>The compute interface is called before configuration.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>None.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+</section>
+</section>
+<section id="id5">
+<h3>Result Function<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<section id="id6">
+<h4>Positive Tests<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
+<div class="admonition-a-valid-configuration-and-computation admonition">
+<p class="admonition-title">A valid configuration and computation</p>
+<p>A valid configuration is set for the component. The computation is executed and
+returns successfully. The resulting value is correct when read from the result
+interface.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration is set with the following trees:</p>
+<ul>
+<li><p>i([2][3])</p></li>
+<li><p>i([-2][3])</p></li>
+<li><p>i([3][3])</p></li>
+<li><p>i([2][-2])</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<ul class="simple">
+<li><p>A positive response.</p></li>
+<li><p>The result is correct.</p></li>
+</ul>
+</div>
+</section>
+<section id="id7">
+<h4>Negative Tests<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
+<div class="admonition-computation-not-executed admonition">
+<p class="admonition-title">Computation not executed</p>
+<p>The result interface is called before compute has been run.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>None.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="doxygen-documentation">
+<h2>Doxygen Documentation<a class="headerlink" href="#doxygen-documentation" title="Link to this heading"></a></h2>
+<p>A module for compute rlitt_positivity. </p>
+<p><dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Joe Starr </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_RLITT_POSITIVITY_CONFIG_NULLTREE">
+<span class="target" id="comp__rlitt__positivity_8h_1ad75b7a98990a100c1f61d966010c221a"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_POSITIVITY_CONFIG_NULLTREE</span></span></span><a class="headerlink" href="#c.COMP_RLITT_POSITIVITY_CONFIG_NULLTREE" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to issue in rootstock. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_RLITT_POSITIVITY_CONFIG_SCION">
+<span class="target" id="comp__rlitt__positivity_8h_1a5a8c924b5fc5e1fa6a95042644b70b8b"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_POSITIVITY_CONFIG_SCION</span></span></span><a class="headerlink" href="#c.COMP_RLITT_POSITIVITY_CONFIG_SCION" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to issue in scion. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_RLITT_POSITIVITY_CONFIG_IS_NULL">
+<span class="target" id="comp__rlitt__positivity_8h_1af21cb38e2bd8b9c9874a33efe5220c61"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_POSITIVITY_CONFIG_IS_NULL</span></span></span><a class="headerlink" href="#c.COMP_RLITT_POSITIVITY_CONFIG_IS_NULL" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to null config. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_RLITT_POSITIVITY_COMPUTE_CFG_ERROR">
+<span class="target" id="comp__rlitt__positivity_8h_1a9c8083b87266fabedaa6d9f6d07e44b1"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_POSITIVITY_COMPUTE_CFG_ERROR</span></span></span><a class="headerlink" href="#c.COMP_RLITT_POSITIVITY_COMPUTE_CFG_ERROR" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to config error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_RLITT_POSITIVITY_COMPUTE_ALREADY_COMPUTED">
+<span class="target" id="comp__rlitt__positivity_8h_1ad9c0ec22c7eff839e8c7a60305ca33ae"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_POSITIVITY_COMPUTE_ALREADY_COMPUTED</span></span></span><a class="headerlink" href="#c.COMP_RLITT_POSITIVITY_COMPUTE_ALREADY_COMPUTED" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to config already having been processed. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__rlitt__positivity_8h_1aa4eb1527e206f44eb01a4370ffea568e"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv429comp_rlitt_positivity_flvrs_e" title="comp_rlitt_positivity_flvrs_e"><span class="n"><span class="pre">comp_rlitt_positivity_flvrs_e</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_positivity_flvrs_e</span></span></span><br /></dt>
+<dd><p>Type defining the positivity states for a WPTT. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-enums">Enums</p>
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv429comp_rlitt_positivity_flvrs_e">
+<span id="_CPPv329comp_rlitt_positivity_flvrs_e"></span><span id="_CPPv229comp_rlitt_positivity_flvrs_e"></span><span class="target" id="comp__rlitt__positivity_8h_1a6dfb6d3d56cb4dff7b30115995dd1ec3"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_positivity_flvrs_e</span></span></span><a class="headerlink" href="#_CPPv429comp_rlitt_positivity_flvrs_e" title="Link to this definition"></a><br /></dt>
+<dd><p>Type defining the positivity states for a WPTT. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N29comp_rlitt_positivity_flvrs_e33COMP_RLITT_POSITIVITY_FLVR_UNINITE">
+<span id="_CPPv3N29comp_rlitt_positivity_flvrs_e33COMP_RLITT_POSITIVITY_FLVR_UNINITE"></span><span id="_CPPv2N29comp_rlitt_positivity_flvrs_e33COMP_RLITT_POSITIVITY_FLVR_UNINITE"></span><span class="target" id="comp__rlitt__positivity_8h_1a6dfb6d3d56cb4dff7b30115995dd1ec3a4fb0220d3f5f32eb6658d5b6b9292469"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_POSITIVITY_FLVR_UNINIT</span></span></span><a class="headerlink" href="#_CPPv4N29comp_rlitt_positivity_flvrs_e33COMP_RLITT_POSITIVITY_FLVR_UNINITE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_POSE">
+<span id="_CPPv3N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_POSE"></span><span id="_CPPv2N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_POSE"></span><span class="target" id="comp__rlitt__positivity_8h_1a6dfb6d3d56cb4dff7b30115995dd1ec3a8b2d44b5ceadb5c2a19bda3343c59af0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_POSITIVITY_FLVR_POS</span></span></span><a class="headerlink" href="#_CPPv4N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_POSE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_NEGE">
+<span id="_CPPv3N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_NEGE"></span><span id="_CPPv2N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_NEGE"></span><span class="target" id="comp__rlitt__positivity_8h_1a6dfb6d3d56cb4dff7b30115995dd1ec3a8596070a98d527bd04614dcf9e6a8e01"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_POSITIVITY_FLVR_NEG</span></span></span><a class="headerlink" href="#_CPPv4N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_NEGE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_NEUE">
+<span id="_CPPv3N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_NEUE"></span><span id="_CPPv2N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_NEUE"></span><span class="target" id="comp__rlitt__positivity_8h_1a6dfb6d3d56cb4dff7b30115995dd1ec3ad4730b7c51ff77558a5550dcc7e22d72"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_POSITIVITY_FLVR_NEU</span></span></span><a class="headerlink" href="#_CPPv4N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_NEUE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_UNDE">
+<span id="_CPPv3N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_UNDE"></span><span id="_CPPv2N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_UNDE"></span><span class="target" id="comp__rlitt__positivity_8h_1a6dfb6d3d56cb4dff7b30115995dd1ec3ac89d2232c969a5bd8e86bc1d963e0638"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_POSITIVITY_FLVR_UND</span></span></span><a class="headerlink" href="#_CPPv4N29comp_rlitt_positivity_flvrs_e30COMP_RLITT_POSITIVITY_FLVR_UNDE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv428comp_rlitt_positivity_configP30comp_rlitt_positivity_config_t">
+<span id="_CPPv328comp_rlitt_positivity_configP30comp_rlitt_positivity_config_t"></span><span id="_CPPv228comp_rlitt_positivity_configP30comp_rlitt_positivity_config_t"></span><span id="comp_rlitt_positivity_config__comp_rlitt_positivity_config_tP"></span><span class="target" id="comp__rlitt__positivity_8h_1a9a022f460165b21d6d542b443f91495a"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_positivity_config</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv430comp_rlitt_positivity_config_t" title="comp_rlitt_positivity_config_t"><span class="n"><span class="pre">comp_rlitt_positivity_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">config_arg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428comp_rlitt_positivity_configP30comp_rlitt_positivity_config_t" title="Link to this definition"></a><br /></dt>
+<dd><p>The public configuration function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config_arg</strong> – The config to set. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv429comp_rlitt_positivity_computev">
+<span id="_CPPv329comp_rlitt_positivity_computev"></span><span id="_CPPv229comp_rlitt_positivity_computev"></span><span id="comp_rlitt_positivity_compute"></span><span class="target" id="comp__rlitt__positivity_8h_1aa6be6d80dcfa48ef452a81d6c4dfd429"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_positivity_compute</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429comp_rlitt_positivity_computev" title="Link to this definition"></a><br /></dt>
+<dd><p>A public function, calling this executes the computation on the configured tangle. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>uint8_t Generation status info. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv428comp_rlitt_positivity_resultv">
+<span id="_CPPv328comp_rlitt_positivity_resultv"></span><span id="_CPPv228comp_rlitt_positivity_resultv"></span><span id="comp_rlitt_positivity_result"></span><span class="target" id="comp__rlitt__positivity_8h_1a637b7cee11061841004b63547085ceb1"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv430comp_rlitt_positivity_result_t" title="comp_rlitt_positivity_result_t"><span class="n"><span class="pre">comp_rlitt_positivity_result_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_positivity_result</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428comp_rlitt_positivity_resultv" title="Link to this definition"></a><br /></dt>
+<dd><p>A public function, calling this retrieves the results of the last computation. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#structcomp__rlitt__positivity__result__t"><span class="std std-ref">comp_rlitt_positivity_result_t</span></a> Computation results. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv430comp_rlitt_positivity_result_t">
+<span id="_CPPv330comp_rlitt_positivity_result_t"></span><span id="_CPPv230comp_rlitt_positivity_result_t"></span><span id="comp_rlitt_positivity_result_t"></span><span class="target" id="structcomp__rlitt__positivity__result__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_positivity_result_t</span></span></span><a class="headerlink" href="#_CPPv430comp_rlitt_positivity_result_t" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;comp_rlitt_positivity.h&gt;</em></div>
+<p>The type definition for reporting the results of rlitt_positivity computation. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N30comp_rlitt_positivity_result_t10positivityE">
+<span id="_CPPv3N30comp_rlitt_positivity_result_t10positivityE"></span><span id="_CPPv2N30comp_rlitt_positivity_result_t10positivityE"></span><span id="comp_rlitt_positivity_result_t::positivity__comp_rlitt_positivity_flvrs_e"></span><span class="target" id="structcomp__rlitt__positivity__result__t_1a6f47dcca0a19c26e809a18e206c69156"></span><a class="reference internal" href="#_CPPv429comp_rlitt_positivity_flvrs_e" title="comp_rlitt_positivity_flvrs_e"><span class="n"><span class="pre">comp_rlitt_positivity_flvrs_e</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">positivity</span></span></span><a class="headerlink" href="#_CPPv4N30comp_rlitt_positivity_result_t10positivityE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv430comp_rlitt_positivity_config_t">
+<span id="_CPPv330comp_rlitt_positivity_config_t"></span><span id="_CPPv230comp_rlitt_positivity_config_t"></span><span id="comp_rlitt_positivity_config_t"></span><span class="target" id="structcomp__rlitt__positivity__config__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_positivity_config_t</span></span></span><a class="headerlink" href="#_CPPv430comp_rlitt_positivity_config_t" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;comp_rlitt_positivity.h&gt;</em></div>
+<p>The type definition for configuring the rlitt_positivity computation. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N30comp_rlitt_positivity_config_t13storage_writeE">
+<span id="_CPPv3N30comp_rlitt_positivity_config_t13storage_writeE"></span><span id="_CPPv2N30comp_rlitt_positivity_config_t13storage_writeE"></span><span id="comp_rlitt_positivity_config_t::storage_write__storage_write_funptr_t"></span><span class="target" id="structcomp__rlitt__positivity__config__t_1a983ffe8fd7d73554a097e33ff4322f30"></span><span class="n"><span class="pre">storage_write_funptr_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">storage_write</span></span></span><a class="headerlink" href="#_CPPv4N30comp_rlitt_positivity_config_t13storage_writeE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N30comp_rlitt_positivity_config_t4wpttE">
+<span id="_CPPv3N30comp_rlitt_positivity_config_t4wpttE"></span><span id="_CPPv2N30comp_rlitt_positivity_config_t4wpttE"></span><span id="comp_rlitt_positivity_config_t::wptt__note_wptt_tCP"></span><span class="target" id="structcomp__rlitt__positivity__config__t_1afa3f5a5422eae1e3bb22d27eeafc80a4"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../note-wptt/unit-description.html#_CPPv411note_wptt_t" title="note_wptt_t"><span class="n"><span class="pre">note_wptt_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">wptt</span></span></span><a class="headerlink" href="#_CPPv4N30comp_rlitt_positivity_config_t4wpttE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<p>A rlitt_positivity module. </p>
+<p><dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Joe Starr </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.COMP_RLITT_POSITIVITY_STACK_SIZE">
+<span class="target" id="comp__rlitt__positivity_8c_1ae586e31bb5f1c96c9e6f45c5e7599c17"></span><span class="sig-name descname"><span class="n"><span class="pre">COMP_RLITT_POSITIVITY_STACK_SIZE</span></span></span><a class="headerlink" href="#c.COMP_RLITT_POSITIVITY_STACK_SIZE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv431comp_rlitt_positivity_walk_treePK11note_wptt_t">
+<span id="_CPPv331comp_rlitt_positivity_walk_treePK11note_wptt_t"></span><span id="_CPPv231comp_rlitt_positivity_walk_treePK11note_wptt_t"></span><span id="comp_rlitt_positivity_walk_tree__note_wptt_tCP"></span><span class="target" id="comp__rlitt__positivity_8c_1a446203b5cc90b19ac63ef0d0e1571dce"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_positivity_walk_tree</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../note-wptt/unit-description.html#_CPPv411note_wptt_t" title="note_wptt_t"><span class="n"><span class="pre">note_wptt_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">tree</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431comp_rlitt_positivity_walk_treePK11note_wptt_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Walk the input tree and determine positivity of each vertex. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tree</strong> – The tree to walk. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A status indicator for the function. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__rlitt__positivity_8c_1a2df9cfdc721d0a3a9ec108960c35571f"></span><span class="sig-name descname"><span class="pre">STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">comp_rlitt_positivity_proc_leaf</span> <span class="pre">(int8_t</span> <span class="pre">weight)</span></span></dt>
+<dd><p>Processes a leaf vertex (has parent and no children) to determine its positivity. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>weight</strong> – The weight of the leaf vertex. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__rlitt__positivity_8c_1a4e7e7d68a7c0c7c32d8e162ab5cb0850"></span><span class="sig-name descname"><span class="pre">STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">comp_rlitt_positivity_proc_internal</span> <span class="pre">(size_t</span> <span class="pre">stick_length,</span> <span class="pre">bool</span> <span class="pre">stick_has_p2,</span> <span class="pre">bool</span> <span class="pre">stick_has_m2)</span></span></dt>
+<dd><p>Processes an internal vertex (has parent and children) to determine its positivity. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stick_length</strong> – The current length of the stick being traversed </p></li>
+<li><p><strong>stick_has_p2</strong> – Indicates if the stick being traversed contains a weight of +2. </p></li>
+<li><p><strong>stick_has_m2</strong> – Indicates if the stick being traversed contains a weight of -2. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__rlitt__positivity_8c_1a9a022f460165b21d6d542b443f91495a"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_positivity_config</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv430comp_rlitt_positivity_config_t" title="comp_rlitt_positivity_config_t"><span class="n"><span class="pre">comp_rlitt_positivity_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">config_arg</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>The public configuration function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config_arg</strong> – The config to set. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__rlitt__positivity_8c_1aa6be6d80dcfa48ef452a81d6c4dfd429"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_positivity_compute</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>A public function, calling this executes the computation on the configured tangle. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>uint8_t Generation status info. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="comp__rlitt__positivity_8c_1a637b7cee11061841004b63547085ceb1"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv430comp_rlitt_positivity_result_t" title="comp_rlitt_positivity_result_t"><span class="n"><span class="pre">comp_rlitt_positivity_result_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_positivity_result</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>A public function, calling this retrieves the results of the last computation. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#structcomp__rlitt__positivity__result__t"><span class="std std-ref">comp_rlitt_positivity_result_t</span></a> Computation results. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv430comp_rlitt_positivity_localcfg">
+<span id="_CPPv330comp_rlitt_positivity_localcfg"></span><span id="_CPPv230comp_rlitt_positivity_localcfg"></span><span id="comp_rlitt_positivity_localcfg__comp_rlitt_positivity_config_tP"></span><span class="target" id="comp__rlitt__positivity_8c_1a19ab50c4f7ee5d9f22a4259f76cfafb3"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv430comp_rlitt_positivity_config_t" title="comp_rlitt_positivity_config_t"><span class="n"><span class="pre">comp_rlitt_positivity_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_positivity_localcfg</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">NULL</span></span><a class="headerlink" href="#_CPPv430comp_rlitt_positivity_localcfg" title="Link to this definition"></a><br /></dt>
+<dd><p>The local configuration of the RLITT positivity computation module. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv434comp_rlitt_positivity_localrestult">
+<span id="_CPPv334comp_rlitt_positivity_localrestult"></span><span id="_CPPv234comp_rlitt_positivity_localrestult"></span><span id="comp_rlitt_positivity_localrestult__comp_rlitt_positivity_result_t"></span><span class="target" id="comp__rlitt__positivity_8c_1acd9bec8361e4b8747e4f6f87cb3921d0"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv430comp_rlitt_positivity_result_t" title="comp_rlitt_positivity_result_t"><span class="n"><span class="pre">comp_rlitt_positivity_result_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_positivity_localrestult</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv434comp_rlitt_positivity_localrestult" title="Link to this definition"></a><br /></dt>
+<dd><p>The local result of the RLITT positivity computation module. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv430comp_rlitt_positivity_executed">
+<span id="_CPPv330comp_rlitt_positivity_executed"></span><span id="_CPPv230comp_rlitt_positivity_executed"></span><span id="comp_rlitt_positivity_executed__b"></span><span class="target" id="comp__rlitt__positivity_8c_1ab81fb5c52d3146513cad4b0725996ce0"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp_rlitt_positivity_executed</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv430comp_rlitt_positivity_executed" title="Link to this definition"></a><br /></dt>
+<dd><p>The local computation status of the RLITT positivity computation module. </p>
+</dd></dl>
+
+</div>
+</section>
+<section id="bibliography">
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading"></a></h2>
+<span class="target" id="id8"></span></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="use-case.html" class="btn btn-neutral float-left" title="Use Case" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../comp-wptt_vertex_canonicity/index.html" class="btn btn-neutral float-right" title="Computation Weighted Planar Tangle Tree Vertex Canonicity" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, temp.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

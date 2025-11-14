@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notation Weighted Planar Tangle Tree &mdash; Tanglenomicon Core Libraries 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/proof.css?v=b4b7a797" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Use Case" href="use-case.html" />
+    <link rel="prev" title="Unit Description" href="../note-twist_vector/unit-description.html" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                macros: {
+                    "\\N": "\\mathbb{N}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\Q": "\\mathbb{Q}",
+                    "\\R": "\\mathbb{R}",
+                    "\\LN": "\\left.",
+                    "\\RN": "\\right.",
+                    "\\LP": "\\left(",
+                    "\\RP": "\\right)",
+                    "\\LS": "\\left\\lbrace",
+                    "\\RS": "\\right\\rbrace",
+                    "\\LA": "\\left\\langle",
+                    "\\RA": "\\right\\rangle",
+                    "\\LB": "\\left[",
+                    "\\RB": "\\right]",
+                    "\\MM": "\\ \\middle|\\ ",
+                    "\\exp": "\\text{exp}",
+                    "\\abs": "\\left\\vert#1\\right\\vert",
+                    "\\msr": "m\\left(#1\\right)",
+                    "\\inv": " #1^{-1}",
+                    "\\bkt": "\\LA \\img{ #1}\\RA",
+                }
+            }
+        );
+    });
+</script>
+
+
+<style>
+
+</style>
+ 
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Tanglenomicon Core Libraries
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Generic Interfaces</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../comp-rational_data/index.html">Computation Rational Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_grafting/index.html">Computation Right Leaning Identity Tangle Tree Grafting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_positivity/index.html">Computation Right Leaning Identity Tangle Tree Positivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-wptt_vertex_canonicity/index.html">Computation Weighted Planar Tangle Tree Vertex Canonicity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-montesinos/index.html">Generator Montesinos Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rational/index.html">Generator Rational Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rlitt/index.html">Generator Right Leaning Identity Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-twist_vector/index.html">Notation Twist Vector</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Notation Weighted Planar Tangle Tree</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="use-case.html">Use Case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html">Unit Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../store-cpp_storage_interface/index.html">Storage C++ Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-json/index.html">Storage JSON</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tanglenomicon Core Libraries</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Notation Weighted Planar Tangle Tree</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/_collections/note-wptt/index.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="notation-weighted-planar-tangle-tree">
+<span id="note-wptt"></span><h1>Notation Weighted Planar Tangle Tree<a class="headerlink" href="#notation-weighted-planar-tangle-tree" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="use-case.html">Use Case</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="use-case.html#functionality">Functionality</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="use-case.html#mathematical-description">Mathematical description</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="use-case.html#notation-for-arborescent-knots">Notation for arborescent knots</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="use-case.html#bands-and-plumbing-squares">Bands and Plumbing Squares</a></li>
+<li class="toctree-l5"><a class="reference internal" href="use-case.html#plumbing-bands">Plumbing bands</a></li>
+<li class="toctree-l5"><a class="reference internal" href="use-case.html#weighted-planar-trees">Weighted Planar Trees</a></li>
+<li class="toctree-l5"><a class="reference internal" href="use-case.html#weighted-planar-tangle-trees">Weighted Planar Tangle Trees</a></li>
+<li class="toctree-l5"><a class="reference internal" href="use-case.html#anatomy-of-a-tree">Anatomy of a tree</a></li>
+<li class="toctree-l5"><a class="reference internal" href="use-case.html#rings">Rings</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="use-case.html#essential-vertices">Essential vertices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="use-case.html#sticks">Sticks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="use-case.html#an-encoding-strategy-for-arborescent-knots-and-tangles">An Encoding Strategy for Arborescent Knots and Tangles</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="use-case.html#linearizing-a-vertex">Linearizing a vertex</a></li>
+<li class="toctree-l5"><a class="reference internal" href="use-case.html#walking-the-tree">Walking the tree</a></li>
+<li class="toctree-l5"><a class="reference internal" href="use-case.html#case-1-the-child-is-essential">Case 1: The Child is Essential</a></li>
+<li class="toctree-l5"><a class="reference internal" href="use-case.html#case-2-the-child-is-non-essential">Case 2: The Child is Non-essential</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="use-case.html#case-1a-the-stick-is-open">Case 1a: The Stick is Open</a></li>
+<li class="toctree-l6"><a class="reference internal" href="use-case.html#case-2a-the-stick-is-half-open">Case 2a: The Stick is Half-open</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="use-case.html#computational-description">Computational Description</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="use-case.html#bibliography">Bibliography</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="unit-description.html">Unit Description</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html#language">Language</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html#implements">Implements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html#uses">Uses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html#external-libraries">External Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html#functionality">Functionality</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#public">Public</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#structures">Structures</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="unit-description.html#notation-structure">Notation structure</a></li>
+<li class="toctree-l5"><a class="reference internal" href="unit-description.html#node-structure">Node structure</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#functions">Functions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="unit-description.html#decode-function">decode function</a></li>
+<li class="toctree-l5"><a class="reference internal" href="unit-description.html#encode-function">encode function</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#private">Private</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#id1">Structures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#id2">Functions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="unit-description.html#decode-path">decode path</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="unit-description.html#char-checker">Char checker</a></li>
+<li class="toctree-l6"><a class="reference internal" href="unit-description.html#move-active-node-down">Move active node down</a></li>
+<li class="toctree-l6"><a class="reference internal" href="unit-description.html#move-root-up">Move root up</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="unit-description.html#encode-path">Encode path</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="unit-description.html#handle-stack">Handle stack</a></li>
+<li class="toctree-l6"><a class="reference internal" href="unit-description.html#handle-stringify">Handle stringify</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html#validation">Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#decode-interface">Decode interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#positive-tests">Positive Tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#negative-tests">Negative Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#encode-interface">Encode interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#id3">Positive Tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#id4">Negative Tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html#doxygen-documentation">Doxygen Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.NOTE_WPTT_DECODE_MAX_WEIGHTS"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_DECODE_MAX_WEIGHTS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.NOTE_WPTT_DECODE_MAX_CHILDREN"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_DECODE_MAX_CHILDREN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.NOTE_WPTT_MAX_STR_LEN"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_MAX_STR_LEN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.NOTE_WPTT_DECODE_EMPTY_STR"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_DECODE_EMPTY_STR</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.NOTE_WPTT_DECODE_NULL_DEST"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_DECODE_NULL_DEST</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.NOTE_WPTT_DECODE_BAD_STR"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_DECODE_BAD_STR</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.NOTE_WPTT_DECODE_BUFFER_ERROR"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_DECODE_BUFFER_ERROR</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.NOTE_WPTT_DECODE_OVRUNDR_ERROR"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_DECODE_OVRUNDR_ERROR</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.NOTE_WPTT_ENCODE_STR_BUF"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_ENCODE_STR_BUF</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.NOTE_WPTT_ENCODE_MALFORMED"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_ENCODE_MALFORMED</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.NOTE_WPTT_ENCODE_OVRUNDR_ERROR"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_ENCODE_OVRUNDR_ERROR</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv416note_wptt_node_t"><code class="docutils literal notranslate"><span class="pre">note_wptt_node_t</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv423note_wptt_node_buffer_t"><code class="docutils literal notranslate"><span class="pre">note_wptt_node_buffer_t</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv420note_wptt_V4_label_e"><code class="docutils literal notranslate"><span class="pre">note_wptt_V4_label_e</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#_CPPv4N20note_wptt_V4_label_e25NOTE_WPTT_V4_LABEL_UNINITE"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_V4_LABEL_UNINIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#_CPPv4N20note_wptt_V4_label_e23NOTE_WPTT_V4_LABEL_NONEE"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_V4_LABEL_NONE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#_CPPv4N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_IE"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_V4_LABEL_I</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#_CPPv4N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_XE"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_V4_LABEL_X</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#_CPPv4N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_YE"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_V4_LABEL_Y</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#_CPPv4N20note_wptt_V4_label_e20NOTE_WPTT_V4_LABEL_ZE"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_V4_LABEL_Z</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv417note_wptt_order_e"><code class="docutils literal notranslate"><span class="pre">note_wptt_order_e</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#_CPPv4N17note_wptt_order_e22NOTE_WPTT_ORDER_UNINITE"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_ORDER_UNINIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#_CPPv4N17note_wptt_order_e23NOTE_WPTT_ORDER_FORWARDE"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_ORDER_FORWARD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#_CPPv4N17note_wptt_order_e23NOTE_WPTT_ORDER_REVERSEE"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_ORDER_REVERSE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv416note_wptt_decodePcP11note_wptt_t"><code class="docutils literal notranslate"><span class="pre">note_wptt_decode()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv416note_wptt_encode11note_wptt_tPc6size_t"><code class="docutils literal notranslate"><span class="pre">note_wptt_encode()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv4N16note_wptt_node_t8childrenE"><code class="docutils literal notranslate"><span class="pre">children</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv4N16note_wptt_node_t7weightsE"><code class="docutils literal notranslate"><span class="pre">weights</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv4N16note_wptt_node_t18number_of_childrenE"><code class="docutils literal notranslate"><span class="pre">number_of_children</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv4N16note_wptt_node_t15number_of_ringsE"><code class="docutils literal notranslate"><span class="pre">number_of_rings</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv4N16note_wptt_node_t5orderE"><code class="docutils literal notranslate"><span class="pre">order</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv4N23note_wptt_node_buffer_t6bufferE"><code class="docutils literal notranslate"><span class="pre">buffer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv4N23note_wptt_node_buffer_t4sizeE"><code class="docutils literal notranslate"><span class="pre">size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv4N23note_wptt_node_buffer_t3idxE"><code class="docutils literal notranslate"><span class="pre">idx</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv411note_wptt_t"><code class="docutils literal notranslate"><span class="pre">note_wptt_t</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#_CPPv4N11note_wptt_t4rootE"><code class="docutils literal notranslate"><span class="pre">root</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#_CPPv4N11note_wptt_t11node_bufferE"><code class="docutils literal notranslate"><span class="pre">node_buffer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unit-description.html#_CPPv4N11note_wptt_t5labelE"><code class="docutils literal notranslate"><span class="pre">label</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.NOTE_WPTT_V4_LABEL_I_STR"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_V4_LABEL_I_STR</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.NOTE_WPTT_V4_LABEL_X_STR"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_V4_LABEL_X_STR</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.NOTE_WPTT_V4_LABEL_Y_STR"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_V4_LABEL_Y_STR</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.NOTE_WPTT_V4_LABEL_Z_STR"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_V4_LABEL_Z_STR</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.NOTE_WPTT_STACK_SIZE"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_STACK_SIZE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.NOTE_WPTT_DECODE_DICT_SIZE"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_DECODE_DICT_SIZE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#c.NOTE_WPTT_INT_BASE"><code class="docutils literal notranslate"><span class="pre">NOTE_WPTT_INT_BASE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv421char_handler_funptr_t"><code class="docutils literal notranslate"><span class="pre">char_handler_funptr_t</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv427note_wptt_decode_char_dic_t"><code class="docutils literal notranslate"><span class="pre">note_wptt_decode_char_dic_t</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv426note_wptt_decode_push_nodev"><code class="docutils literal notranslate"><span class="pre">note_wptt_decode_push_node()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv426note_wptt_decode_add_childv"><code class="docutils literal notranslate"><span class="pre">note_wptt_decode_add_child()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv430note_wptt_decode_space_handlerPPc"><code class="docutils literal notranslate"><span class="pre">note_wptt_decode_space_handler()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv430note_wptt_decode_opn_p_handlerPPc"><code class="docutils literal notranslate"><span class="pre">note_wptt_decode_opn_p_handler()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv430note_wptt_decode_opn_a_handlerPPc"><code class="docutils literal notranslate"><span class="pre">note_wptt_decode_opn_a_handler()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv430note_wptt_decode_opn_b_handlerPPc"><code class="docutils literal notranslate"><span class="pre">note_wptt_decode_opn_b_handler()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv428note_wptt_decode_cls_handlerPPc"><code class="docutils literal notranslate"><span class="pre">note_wptt_decode_cls_handler()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv431note_wptt_decode_weight_handlerPPc"><code class="docutils literal notranslate"><span class="pre">note_wptt_decode_weight_handler()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv429note_wptt_encode_insert_label20note_wptt_V4_label_ePPcPKc"><code class="docutils literal notranslate"><span class="pre">note_wptt_encode_insert_label()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv428note_wptt_encode_insert_charcPPcPKc"><code class="docutils literal notranslate"><span class="pre">note_wptt_encode_insert_char()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv427note_wptt_encode_insert_int6int8_tPPcPKc"><code class="docutils literal notranslate"><span class="pre">note_wptt_encode_insert_int()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv429note_wptt_encode_insert_spacePPcPKcPKc"><code class="docutils literal notranslate"><span class="pre">note_wptt_encode_insert_space()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv429note_wptt_encode_insert_stickP16note_wptt_node_tPPcPKc"><code class="docutils literal notranslate"><span class="pre">note_wptt_encode_insert_stick()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv437note_wptt_encode_complete_active_nodePK16note_wptt_node_tPPc6size_tPKcPKc"><code class="docutils literal notranslate"><span class="pre">note_wptt_encode_complete_active_node()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv436note_wptt_encode_process_active_nodeP16note_wptt_node_tPPc6size_tPKcPKc"><code class="docutils literal notranslate"><span class="pre">note_wptt_encode_process_active_node()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv415wptt_node_stack"><code class="docutils literal notranslate"><span class="pre">wptt_node_stack</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv414wptt_stack_len"><code class="docutils literal notranslate"><span class="pre">wptt_stack_len</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv413decode_buffer"><code class="docutils literal notranslate"><span class="pre">decode_buffer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv415child_idx_stack"><code class="docutils literal notranslate"><span class="pre">child_idx_stack</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv4N27note_wptt_decode_char_dic_t10char_classE"><code class="docutils literal notranslate"><span class="pre">char_class</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit-description.html#_CPPv4N27note_wptt_decode_char_dic_t6funptrE"><code class="docutils literal notranslate"><span class="pre">funptr</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unit-description.html#bibliography">Bibliography</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../note-twist_vector/unit-description.html" class="btn btn-neutral float-left" title="Unit Description" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="use-case.html" class="btn btn-neutral float-right" title="Use Case" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, temp.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,673 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit Description &mdash; Tanglenomicon Core Libraries 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/proof.css?v=b4b7a797" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+      <script type="module">mermaid.initialize({
+  securityLevel: 'loose',
+  theme: 'dark',
+});</script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+const load = async () => {
+    await mermaid.run();
+    const all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+    if(mermaids_to_add_zoom > 0) {
+        var svgs = d3.selectAll(".mermaid svg");
+        if(all_mermaids.length !== mermaids_processed.length) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else if(svgs.size() !== mermaids_to_add_zoom) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else {
+            svgs.each(function() {
+                var svg = d3.select(this);
+                svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                var inner = svg.select("g");
+                var zoom = d3.zoom().on("zoom", function(event) {
+                    inner.attr("transform", event.transform);
+                });
+                svg.call(zoom);
+            });
+        }
+    }
+};
+
+window.addEventListener("load", load);
+</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Generator Right Leaning Identity Tangle Tree" href="../gen-rlitt/index.html" />
+    <link rel="prev" title="Use Case" href="use-case.html" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                macros: {
+                    "\\N": "\\mathbb{N}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\Q": "\\mathbb{Q}",
+                    "\\R": "\\mathbb{R}",
+                    "\\LN": "\\left.",
+                    "\\RN": "\\right.",
+                    "\\LP": "\\left(",
+                    "\\RP": "\\right)",
+                    "\\LS": "\\left\\lbrace",
+                    "\\RS": "\\right\\rbrace",
+                    "\\LA": "\\left\\langle",
+                    "\\RA": "\\right\\rangle",
+                    "\\LB": "\\left[",
+                    "\\RB": "\\right]",
+                    "\\MM": "\\ \\middle|\\ ",
+                    "\\exp": "\\text{exp}",
+                    "\\abs": "\\left\\vert#1\\right\\vert",
+                    "\\msr": "m\\left(#1\\right)",
+                    "\\inv": " #1^{-1}",
+                    "\\bkt": "\\LA \\img{ #1}\\RA",
+                }
+            }
+        );
+    });
+</script>
+
+
+<style>
+
+</style>
+ 
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Tanglenomicon Core Libraries
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Generic Interfaces</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../comp-rational_data/index.html">Computation Rational Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_grafting/index.html">Computation Right Leaning Identity Tangle Tree Grafting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_positivity/index.html">Computation Right Leaning Identity Tangle Tree Positivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-wptt_vertex_canonicity/index.html">Computation Weighted Planar Tangle Tree Vertex Canonicity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-montesinos/index.html">Generator Montesinos Tangles</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Generator Rational Tangles</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="use-case.html">Use Case</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Unit Description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#class-diagram">Class Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#language">Language</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implements">Implements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#libraries">Libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functionality">Functionality</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#public-structures">Public Structures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#public-functions">Public Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#validation">Validation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-interface">Configuration interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generate-interface">Generate interface</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#doxygen-documentation">Doxygen Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#c.GEN_RATIONAL_STORAGE_UKEY"><code class="docutils literal notranslate"><span class="pre">GEN_RATIONAL_STORAGE_UKEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.GEN_RATIONAL_CONFIG_IS_NULL"><code class="docutils literal notranslate"><span class="pre">GEN_RATIONAL_CONFIG_IS_NULL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.GEN_RATIONAL_CONFIG_BUFFER"><code class="docutils literal notranslate"><span class="pre">GEN_RATIONAL_CONFIG_BUFFER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.GEN_RATIONAL_CONFIG_STR_BUFFER"><code class="docutils literal notranslate"><span class="pre">GEN_RATIONAL_CONFIG_STR_BUFFER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.GEN_RATIONAL_COMBINATION_FAIL"><code class="docutils literal notranslate"><span class="pre">GEN_RATIONAL_COMBINATION_FAIL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv419gen_rational_configP21gen_rational_config_t"><code class="docutils literal notranslate"><span class="pre">gen_rational_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv421gen_rational_generatev"><code class="docutils literal notranslate"><span class="pre">gen_rational_generate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv421gen_rational_config_t"><code class="docutils literal notranslate"><span class="pre">gen_rational_config_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.GEN_RATIONAL_PERM_FUNS_LEN"><code class="docutils literal notranslate"><span class="pre">GEN_RATIONAL_PERM_FUNS_LEN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv426gen_rational_proc_template7uint8_t"><code class="docutils literal notranslate"><span class="pre">gen_rational_proc_template()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv418gen_rational_writev"><code class="docutils literal notranslate"><span class="pre">gen_rational_write()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv433gen_rational_evenperm_shift_writev"><code class="docutils literal notranslate"><span class="pre">gen_rational_evenperm_shift_write()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv421gen_rational_localcfg"><code class="docutils literal notranslate"><span class="pre">gen_rational_localcfg</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bibliography">Bibliography</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rlitt/index.html">Generator Right Leaning Identity Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-twist_vector/index.html">Notation Twist Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-wptt/index.html">Notation Weighted Planar Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-cpp_storage_interface/index.html">Storage C++ Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-json/index.html">Storage JSON</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tanglenomicon Core Libraries</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Generator Rational Tangles</a></li>
+      <li class="breadcrumb-item active">Unit Description</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/_collections/gen-rational/unit-description.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="unit-description">
+<h1>Unit Description<a class="headerlink" href="#unit-description" title="Link to this heading"></a></h1>
+<section id="class-diagram">
+<h2>Class Diagram<a class="headerlink" href="#class-diagram" title="Link to this heading"></a></h2>
+<pre  class="mermaid">
+        classDiagram
+    generator_rational --|&gt; generator
+    gen_rational_config_t --|&gt; gen_config_t
+    gen_rational_config_t *-- notation_tv
+    generator_rational *-- gen_rational_config_t
+
+    class generator {
+        &lt;&lt;interface&gt;&gt;
+    }
+
+    class generator_rational {
+&lt;&lt;&gt;&gt;
+}
+
+class gen_rational_config_t {
+&lt;&lt;struct&gt;&gt;
+uint8_t crossingNumber;
+note_tv_t *tv_n;
+char *tv_str_buff;
+size_t tv_str_buff_len;
+}
+
+class gen_config_t {
+&lt;&lt;interface&gt;&gt;
+
+}
+
+class notation_tv{
+&lt;&lt;&gt;&gt;
+}
+
+    </pre></section>
+<section id="language">
+<h2>Language<a class="headerlink" href="#language" title="Link to this heading"></a></h2>
+<p>C</p>
+</section>
+<section id="implements">
+<h2>Implements<a class="headerlink" href="#implements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#../../generator-interface.md"><span class="xref myst">Generator Interface</span></a></p></li>
+</ul>
+</section>
+<section id="uses">
+<h2>Uses<a class="headerlink" href="#uses" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../note-twist_vector/unit-description.html"><span class="std std-doc">Notation Twist Vector</span></a></p></li>
+</ul>
+</section>
+<section id="libraries">
+<h2>Libraries<a class="headerlink" href="#libraries" title="Link to this heading"></a></h2>
+<p>N/A</p>
+</section>
+<section id="functionality">
+<h2>Functionality<a class="headerlink" href="#functionality" title="Link to this heading"></a></h2>
+<section id="public-structures">
+<h3>Public Structures<a class="headerlink" href="#public-structures" title="Link to this heading"></a></h3>
+<section id="rational-generator-configuration-structure">
+<h4>Rational Generator Configuration Structure<a class="headerlink" href="#rational-generator-configuration-structure" title="Link to this heading"></a></h4>
+<p>The configuration structure contains the data needed for generating twist vectors up to a given
+crossing number. This includes:</p>
+<ul class="simple">
+<li><p>An integer representation of the target crossing number.</p></li>
+<li><p>A notation structure for a twist vector.</p></li>
+<li><p>A string buffer for holding the stringified twist vector.</p></li>
+</ul>
+</section>
+</section>
+<section id="public-functions">
+<h3>Public Functions<a class="headerlink" href="#public-functions" title="Link to this heading"></a></h3>
+<section id="configuration-function">
+<h4>Configuration Function<a class="headerlink" href="#configuration-function" title="Link to this heading"></a></h4>
+<p>The configuration function sets the local configuration variable of the generator.</p>
+<p>This process is described in the following state machines:</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+    state &quot;Init local config&quot; as Sc
+    [*] --&gt; Sc
+    Sc --&gt; [*]
+
+    </pre></section>
+<section id="generate-function">
+<h4>Generate Function<a class="headerlink" href="#generate-function" title="Link to this heading"></a></h4>
+<p>The generation function carries out the rational tangle generation until the target crossing number
+is met. The function may contain sub-machines that can be broken out into functions in the
+implementation.</p>
+<p>This process is described in the following state machines:</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+    state if_done &lt;&lt;choice&gt;&gt;
+    state &quot;Init &quot; as State_i
+    state &quot;• i as 0 &quot; as State_i
+state State_ipp: i++
+state &quot;Construct TV from i as a bitfield&quot; as tv_calc{
+state &quot;Init&quot; as State_temp
+state &quot;• temp as i&quot; as State_temp
+state &quot;• j as 0&quot; as State_temp
+state &quot;• count as N&quot; as State_temp
+State_jpp: j++
+State_cntmm: count--
+State_sum_tv: TV[j]++
+State_rsh: right shift temp by 1
+state if_lsb &lt;&lt;choice&gt;&gt;
+state if_cnteo &lt;&lt;choice&gt;&gt;
+State_store_tv: Store TV
+
+[*] --&gt; State_temp
+State_temp --&gt; if_cnteo
+if_cnteo --&gt; State_cntmm: if cnt&gt;0
+if_cnteo --&gt; State_store_tv: if cnt==0
+State_store_tv --&gt; [*]
+
+State_cntmm --&gt;if_lsb
+if_lsb --&gt; State_sum_tv: if (tmplt &amp; 0x01u)==1u
+State_sum_tv --&gt; State_rsh
+if_lsb --&gt; State_jpp: if (tmplt &amp; 0x01u)==0u
+State_jpp --&gt; State_rsh
+State_rsh --&gt; if_cnteo
+}
+[*] --&gt; State_i
+State_i --&gt; if_done
+if_done --&gt; tv_calc: if i &lt; 2**(N-1)
+tv_calc --&gt; State_ipp
+State_ipp --&gt; if_done
+if_done --&gt; [*]: if i == 2**(N-1)
+
+    </pre></section>
+</section>
+</section>
+<section id="validation">
+<h2>Validation<a class="headerlink" href="#validation" title="Link to this heading"></a></h2>
+<section id="configuration-interface">
+<h3>Configuration interface<a class="headerlink" href="#configuration-interface" title="Link to this heading"></a></h3>
+<section id="positive-tests">
+<h4>Positive Tests<a class="headerlink" href="#positive-tests" title="Link to this heading"></a></h4>
+<div class="admonition-valid-config admonition">
+<p class="admonition-title">Valid Config</p>
+<p>A valid configuration for the generator is passed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid config.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A positive response.</p>
+</div>
+</section>
+<section id="negative-tests">
+<h4>Negative Tests<a class="headerlink" href="#negative-tests" title="Link to this heading"></a></h4>
+<div class="admonition-null-config admonition">
+<p class="admonition-title">Null Config</p>
+<p>A null configuration for the generator is passed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A null config.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+<div class="admonition-a-configuration-with-null-twist-vector admonition">
+<p class="admonition-title">A Configuration with null twist vector</p>
+<p>A configuration with a null twist vector is passed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A configuration with a null twist vector.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+<div class="admonition-a-configuration-with-null-string-buffer admonition">
+<p class="admonition-title">A Configuration with null string buffer</p>
+<p>A configuration with a null string buffer is passed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A configuration with a null string buffer.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+</section>
+</section>
+<section id="generate-interface">
+<h3>Generate interface<a class="headerlink" href="#generate-interface" title="Link to this heading"></a></h3>
+<div class="admonition-valid-configuration-and-generation admonition">
+<p class="admonition-title">Valid Configuration and generation</p>
+<p>A valid configuration is set and the generation is called.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A target crossing number of 5</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>The twist vectors:</p>
+<ul class="simple">
+<li><p>[1 1 1 1 1]</p></li>
+<li><p>[2 1 1 1 0]</p></li>
+<li><p>[1 2 1 1 0]</p></li>
+<li><p>[1 1 2 1 0]</p></li>
+<li><p>[1 1 1 2 0]</p></li>
+<li><p>[3 1 1]</p></li>
+<li><p>[1 3 1]</p></li>
+<li><p>[1 1 3]</p></li>
+<li><p>[2 2 1]</p></li>
+<li><p>[2 1 2]</p></li>
+<li><p>[1 2 2]</p></li>
+<li><p>[3 2 0]</p></li>
+<li><p>[2 3 0]</p></li>
+<li><p>[4 1 0]</p></li>
+<li><p>[1 4 0]</p></li>
+<li><p>[5]</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="doxygen-documentation">
+<h2>Doxygen Documentation<a class="headerlink" href="#doxygen-documentation" title="Link to this heading"></a></h2>
+<p>A module for generating rational tangles. </p>
+<p><dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Isabel Darcy </p>
+</dd>
+<dt><strong>Author</strong></dt><dd><p>Zachary Bryhtan </p>
+</dd>
+<dt><strong>Author</strong></dt><dd><p>Joe Starr </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.GEN_RATIONAL_STORAGE_UKEY">
+<span class="target" id="generator__rational_8h_1a65890965c54333a5772b745cf927a744"></span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RATIONAL_STORAGE_UKEY</span></span></span><a class="headerlink" href="#c.GEN_RATIONAL_STORAGE_UKEY" title="Link to this definition"></a><br /></dt>
+<dd><p>The key for. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.GEN_RATIONAL_CONFIG_IS_NULL">
+<span class="target" id="generator__rational_8h_1a1864f2a540da2abe4fbdc953410fbb14"></span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RATIONAL_CONFIG_IS_NULL</span></span></span><a class="headerlink" href="#c.GEN_RATIONAL_CONFIG_IS_NULL" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to null config. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.GEN_RATIONAL_CONFIG_BUFFER">
+<span class="target" id="generator__rational_8h_1abaf0b567c97ddd0125d229afeced45c1"></span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RATIONAL_CONFIG_BUFFER</span></span></span><a class="headerlink" href="#c.GEN_RATIONAL_CONFIG_BUFFER" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to issue in buffer. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.GEN_RATIONAL_CONFIG_STR_BUFFER">
+<span class="target" id="generator__rational_8h_1a5e7dd18d2b0c581b9c0e58b721d19c5f"></span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RATIONAL_CONFIG_STR_BUFFER</span></span></span><a class="headerlink" href="#c.GEN_RATIONAL_CONFIG_STR_BUFFER" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to issue in string buffer. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.GEN_RATIONAL_COMBINATION_FAIL">
+<span class="target" id="generator__rational_8h_1ab1c1c9661bed9b67beff75f0fd4f6b60"></span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RATIONAL_COMBINATION_FAIL</span></span></span><a class="headerlink" href="#c.GEN_RATIONAL_COMBINATION_FAIL" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to generate due to combination failure. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419gen_rational_configP21gen_rational_config_t">
+<span id="_CPPv319gen_rational_configP21gen_rational_config_t"></span><span id="_CPPv219gen_rational_configP21gen_rational_config_t"></span><span id="gen_rational_config__gen_rational_config_tP"></span><span class="target" id="generator__rational_8h_1ae9c1a6e1c4b9ed2b6671c32ee280610b"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gen_rational_config</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv421gen_rational_config_t" title="gen_rational_config_t"><span class="n"><span class="pre">gen_rational_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">config_arg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419gen_rational_configP21gen_rational_config_t" title="Link to this definition"></a><br /></dt>
+<dd><p>The public configuration function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config_arg</strong> – The config to set. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421gen_rational_generatev">
+<span id="_CPPv321gen_rational_generatev"></span><span id="_CPPv221gen_rational_generatev"></span><span id="gen_rational_generate"></span><span class="target" id="generator__rational_8h_1ac6e8b6baf10006e3b68ac1aa36f245da"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gen_rational_generate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421gen_rational_generatev" title="Link to this definition"></a><br /></dt>
+<dd><p>The public generation function. When called the module will work against the current config. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>uint8_t Generation status info. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv421gen_rational_config_t">
+<span id="_CPPv321gen_rational_config_t"></span><span id="_CPPv221gen_rational_config_t"></span><span id="gen_rational_config_t"></span><span class="target" id="structgen__rational__config__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gen_rational_config_t</span></span></span><a class="headerlink" href="#_CPPv421gen_rational_config_t" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;generator_rational.h&gt;</em></div>
+<p>The type definition for configuring the rational generation. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N21gen_rational_config_t14crossingNumberE">
+<span id="_CPPv3N21gen_rational_config_t14crossingNumberE"></span><span id="_CPPv2N21gen_rational_config_t14crossingNumberE"></span><span id="gen_rational_config_t::crossingNumber__uint8_t"></span><span class="target" id="structgen__rational__config__t_1a1c2be410d8848c1a7dd7ae99b1bcbed3"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">crossingNumber</span></span></span><a class="headerlink" href="#_CPPv4N21gen_rational_config_t14crossingNumberE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N21gen_rational_config_t13storage_writeE">
+<span id="_CPPv3N21gen_rational_config_t13storage_writeE"></span><span id="_CPPv2N21gen_rational_config_t13storage_writeE"></span><span id="gen_rational_config_t::storage_write__storage_write_funptr_t"></span><span class="target" id="structgen__rational__config__t_1acf9bea370a0e114fe2f177038eeecb7b"></span><span class="n"><span class="pre">storage_write_funptr_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">storage_write</span></span></span><a class="headerlink" href="#_CPPv4N21gen_rational_config_t13storage_writeE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N21gen_rational_config_t4tv_nE">
+<span id="_CPPv3N21gen_rational_config_t4tv_nE"></span><span id="_CPPv2N21gen_rational_config_t4tv_nE"></span><span id="gen_rational_config_t::tv_n__note_tv_tP"></span><span class="target" id="structgen__rational__config__t_1a63547216834f1af1ad8278464e787dde"></span><a class="reference internal" href="../note-twist_vector/unit-description.html#_CPPv49note_tv_t" title="note_tv_t"><span class="n"><span class="pre">note_tv_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">tv_n</span></span></span><a class="headerlink" href="#_CPPv4N21gen_rational_config_t4tv_nE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N21gen_rational_config_t11tv_str_buffE">
+<span id="_CPPv3N21gen_rational_config_t11tv_str_buffE"></span><span id="_CPPv2N21gen_rational_config_t11tv_str_buffE"></span><span id="gen_rational_config_t::tv_str_buff__cP"></span><span class="target" id="structgen__rational__config__t_1a4fa0c975ccaee5bc4f4a876131aaee95"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">tv_str_buff</span></span></span><a class="headerlink" href="#_CPPv4N21gen_rational_config_t11tv_str_buffE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N21gen_rational_config_t15tv_str_buff_lenE">
+<span id="_CPPv3N21gen_rational_config_t15tv_str_buff_lenE"></span><span id="_CPPv2N21gen_rational_config_t15tv_str_buff_lenE"></span><span id="gen_rational_config_t::tv_str_buff_len__s"></span><span class="target" id="structgen__rational__config__t_1a1b1a17f2b87209bb8c7edebe7757952c"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tv_str_buff_len</span></span></span><a class="headerlink" href="#_CPPv4N21gen_rational_config_t15tv_str_buff_lenE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<p>A module for generating rational tangles. </p>
+<p><dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Isabel Darcy </p>
+</dd>
+<dt><strong>Author</strong></dt><dd><p>Zachary Bryhtan </p>
+</dd>
+<dt><strong>Author</strong></dt><dd><p>Joe Starr </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.GEN_RATIONAL_PERM_FUNS_LEN">
+<span class="target" id="generator__rational_8c_1a7a2060bc8d6b4f763cb329b0076c8c62"></span><span class="sig-name descname"><span class="n"><span class="pre">GEN_RATIONAL_PERM_FUNS_LEN</span></span></span><a class="headerlink" href="#c.GEN_RATIONAL_PERM_FUNS_LEN" title="Link to this definition"></a><br /></dt>
+<dd><p>Number of combination functions used by the module. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426gen_rational_proc_template7uint8_t">
+<span id="_CPPv326gen_rational_proc_template7uint8_t"></span><span id="_CPPv226gen_rational_proc_template7uint8_t"></span><span id="gen_rational_proc_template__uint8_t"></span><span class="target" id="generator__rational_8c_1aae4f15e0a945652a64a71f9cbfbac4af"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gen_rational_proc_template</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">template</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426gen_rational_proc_template7uint8_t" title="Link to this definition"></a><br /></dt>
+<dd><p>A function to process a template describing the ‘ ‘, and ‘+’ for a twist vector. A template is a bitfield where 1 is $+$ and 0 is ‘ ‘. Example: 0101 -&gt; [1 1+1 1+1] -&gt; [1 2 2]. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>template</strong> – Template to work on. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>uint8_t Success/Fail flag. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv418gen_rational_writev">
+<span id="_CPPv318gen_rational_writev"></span><span id="_CPPv218gen_rational_writev"></span><span id="gen_rational_write"></span><span class="target" id="generator__rational_8c_1a5f0298eedd846984b55cff3c3a1032bf"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gen_rational_write</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418gen_rational_writev" title="Link to this definition"></a><br /></dt>
+<dd><p>A function to write the twist vector in cfg to the store-storage_interface device in cfg. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cfg</strong> – Configuration to work on. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>uint8_t Success/Fail flag. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv433gen_rational_evenperm_shift_writev">
+<span id="_CPPv333gen_rational_evenperm_shift_writev"></span><span id="_CPPv233gen_rational_evenperm_shift_writev"></span><span id="gen_rational_evenperm_shift_write"></span><span class="target" id="generator__rational_8c_1af304e6fdba7b8753267cadc669566594"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gen_rational_evenperm_shift_write</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433gen_rational_evenperm_shift_writev" title="Link to this definition"></a><br /></dt>
+<dd><p>The canonical form for twist vector is given as odd length. When we get something in the even class of twist vectors we can ‘oddify’ it by prepending a 0. This function handles prepending the zero and then writing to the cfg store-storage_interface device. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cfg</strong> – Configuration to work on. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>uint8_t Success/Fail flag. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="generator__rational_8c_1ae9c1a6e1c4b9ed2b6671c32ee280610b"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gen_rational_config</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv421gen_rational_config_t" title="gen_rational_config_t"><span class="n"><span class="pre">gen_rational_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">config_arg</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>The public configuration function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config_arg</strong> – The config to set. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="generator__rational_8c_1ac6e8b6baf10006e3b68ac1aa36f245da"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gen_rational_generate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>The public generation function. When called the module will work against the current config. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>uint8_t Generation status info. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv421gen_rational_localcfg">
+<span id="_CPPv321gen_rational_localcfg"></span><span id="_CPPv221gen_rational_localcfg"></span><span id="gen_rational_localcfg__gen_rational_config_tP"></span><span class="target" id="generator__rational_8c_1a13a4930bb88b9845f21c34145c76bc9b"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv421gen_rational_config_t" title="gen_rational_config_t"><span class="n"><span class="pre">gen_rational_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">gen_rational_localcfg</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">NULL</span></span><a class="headerlink" href="#_CPPv421gen_rational_localcfg" title="Link to this definition"></a><br /></dt>
+<dd><p>The local configuration of the rational gen module. </p>
+</dd></dl>
+
+</div>
+</section>
+<section id="bibliography">
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading"></a></h2>
+<span class="target" id="id1"></span></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="use-case.html" class="btn btn-neutral float-left" title="Use Case" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../gen-rlitt/index.html" class="btn btn-neutral float-right" title="Generator Right Leaning Identity Tangle Tree" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, temp.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

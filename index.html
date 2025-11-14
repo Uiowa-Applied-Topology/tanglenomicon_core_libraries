@@ -1,0 +1,578 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tanglenomicon Core Libraries &mdash; Tanglenomicon Core Libraries 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+      <script type="module">mermaid.initialize({
+  securityLevel: 'loose',
+  theme: 'dark',
+});</script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+const load = async () => {
+    await mermaid.run();
+    const all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+    if(mermaids_to_add_zoom > 0) {
+        var svgs = d3.selectAll(".mermaid svg");
+        if(all_mermaids.length !== mermaids_processed.length) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else if(svgs.size() !== mermaids_to_add_zoom) {
+            // try again in a sec, wait for mermaids to load
+            setTimeout(load, 200);
+            return;
+        } else {
+            svgs.each(function() {
+                var svg = d3.select(this);
+                svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                var inner = svg.select("g");
+                var zoom = d3.zoom().on("zoom", function(event) {
+                    inner.attr("transform", event.transform);
+                });
+                svg.call(zoom);
+            });
+        }
+    }
+};
+
+window.addEventListener("load", load);
+</script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Generic Interfaces" href="interface/index.html" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                macros: {
+                    "\\N": "\\mathbb{N}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\Q": "\\mathbb{Q}",
+                    "\\R": "\\mathbb{R}",
+                    "\\LN": "\\left.",
+                    "\\RN": "\\right.",
+                    "\\LP": "\\left(",
+                    "\\RP": "\\right)",
+                    "\\LS": "\\left\\lbrace",
+                    "\\RS": "\\right\\rbrace",
+                    "\\LA": "\\left\\langle",
+                    "\\RA": "\\right\\rangle",
+                    "\\LB": "\\left[",
+                    "\\RB": "\\right]",
+                    "\\MM": "\\ \\middle|\\ ",
+                    "\\exp": "\\text{exp}",
+                    "\\abs": "\\left\\vert#1\\right\\vert",
+                    "\\msr": "m\\left(#1\\right)",
+                    "\\inv": " #1^{-1}",
+                    "\\bkt": "\\LA \\img{ #1}\\RA",
+                }
+            }
+        );
+    });
+</script>
+
+
+<style>
+
+</style>
+ 
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Tanglenomicon Core Libraries
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="interface/index.html">Generic Interfaces</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="_collections/comp-rational_data/index.html">Computation Rational Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/comp-rlitt_grafting/index.html">Computation Right Leaning Identity Tangle Tree Grafting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/comp-rlitt_positivity/index.html">Computation Right Leaning Identity Tangle Tree Positivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/comp-wptt_vertex_canonicity/index.html">Computation Weighted Planar Tangle Tree Vertex Canonicity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/gen-montesinos/index.html">Generator Montesinos Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/gen-rational/index.html">Generator Rational Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/gen-rlitt/index.html">Generator Right Leaning Identity Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/note-twist_vector/index.html">Notation Twist Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/note-wptt/index.html">Notation Weighted Planar Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/store-cpp_storage_interface/index.html">Storage C++ Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/store-json/index.html">Storage JSON</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Tanglenomicon Core Libraries</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Tanglenomicon Core Libraries</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  rel="stylesheet"
+/>
+<p><a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0"><img alt="License: GPL v3" src="https://img.shields.io/badge/License-GPLv3-blue.svg" /></a></p>
+<section id="tanglenomicon-core-libraries">
+<h1>Tanglenomicon Core Libraries<a class="headerlink" href="#tanglenomicon-core-libraries" title="Link to this heading"></a></h1>
+<p>The Tanglenomicon core libraries repository consists of a collection of libraries for computation
+and generation of knot/tangle data. Each library should be considered its own project with its own
+life-cycle however libraries are loosely coupled by a common CMake interface.</p>
+<p>The libraries found here are primarily C, the C modules are expected to be C++ linkable. There’s no
+target OS, but Ubuntu Linux with Nix is the CI OS. Each library will adhere to a common design that
+allows them flexibility and platform and language agnosticism. The design allows a library, maybe
+“calculate Jones polynomial”, to be runnable in a Jupyter notebook during undergraduate knot theory
+class, or wrapped in MATLAB interfaces for scientific computing, or on a university cluster for
+high-performance use cases.</p>
+<p>We’re targeting a “write once deploy anywhere” design.</p>
+</section>
+<section id="planning">
+<h1>Planning<a class="headerlink" href="#planning" title="Link to this heading"></a></h1>
+<section id="tasks">
+<h2>Tasks<a class="headerlink" href="#tasks" title="Link to this heading"></a></h2>
+<p>Tasks will be decomposed per library. Issues/bugs will be tracked per report, combining where it
+makes sense.</p>
+</section>
+<section id="version-control">
+<h2>Version control<a class="headerlink" href="#version-control" title="Link to this heading"></a></h2>
+<p>Version control will be git based with research Git as the source of truth. Work items will have a
+branch per work item. Merging a work item will be managed by merge requests.</p>
+<section id="release-schedule">
+<h3>Release Schedule<a class="headerlink" href="#release-schedule" title="Link to this heading"></a></h3>
+<p>A release will be created at the completion of each feature life cycle.</p>
+<section id="release-tagging">
+<h4>Release Tagging<a class="headerlink" href="#release-tagging" title="Link to this heading"></a></h4>
+<p>The project adopts <a class="reference external" href="https://semver.org">semantic versioning</a> for version labels.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vMAJOR</span><span class="o">.</span><span class="n">MINOR</span><span class="o">.</span><span class="n">PATCH</span>
+</pre></div>
+</div>
+<p>Since a release is created for every feature implemented the project version may look odd <code class="docutils literal notranslate"><span class="pre">v0.20.0</span></code>
+this is OKAY.</p>
+<blockquote>
+<div><p>[!note] It is required that every feature module in the project maintain its own semantic
+versioning. It is suggested to check for compatibility of used libraries at compile time.</p>
+</div></blockquote>
+</section>
+</section>
+</section>
+<section id="software-life-cycle">
+<h2>Software Life Cycle<a class="headerlink" href="#software-life-cycle" title="Link to this heading"></a></h2>
+<p>We’re taking a V-model approach with design, implementation, integration, and testing phases.</p>
+<pre  class="mermaid">
+        graph TD
+    A[Requirements] --&gt; B[Design]
+    B --&gt; D[Unit Design]
+    D --&gt; E[Implementation]
+
+    E --&gt; F[Unit Testing]
+    F --&gt; G[Integration Testing]
+    G --&gt; I[Acceptance Testing]
+
+    I --&gt;|Validation| B
+    G --&gt;|Validation| B
+    F --&gt;|Validation| D
+    </pre><p>This methodology allows us to have high traceability through the development process. Allowing us to
+justify every decision made in the process.</p>
+</section>
+<section id="project-structure">
+<h2>Project Structure<a class="headerlink" href="#project-structure" title="Link to this heading"></a></h2>
+<p>Project structure will follow a fairly “normal” project structure as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>📦tanglenomicon_core
+ ┣ 📂.github
+ ┃ ┗ 📂workflows
+ ┃   ┗ 📜\&lt;github workflows\&gt;
+ ┣ 📂data
+ ┃ ┗ 📜\&lt;Static data files\&gt;
+ ┣ 📂docs
+ ┃ ┣ 📜\&lt;Sphinx files\&gt;
+ ┃ ┗ 📜Doxyfile
+ ┣ 📂libraries \&lt; external libraries\&gt;
+ ┃ ┗ 📜\&lt;C/C++ libraries data files\&gt;
+ ┣ 📂misc
+ ┃ ┗ 📜\&lt; Single use tooling\&gt;
+ ┣ 📂source
+ ┃ ┗  📂\&lt;Module\&gt;
+ ┃    ┣ 📂source
+ ┃    ┃ ┗ 📜\&lt;Module Source Files\&gt;
+ ┃    ┣ 📂test
+ ┃    ┃ ┗ 📜\&lt;Module unit test Files\&gt;
+ ┃    ┣ 📜use-case.md
+ ┃    ┗ 📜unit-description.md
+ ┣ 📂tests
+ ┃ ┣ 📂results
+ ┃ ┃ ┗ 📜.gitkeep
+ ┃ ┗ 📂integration_tests
+ ┃   ┗ 📂 \&lt;integration Test Suites\&gt;
+ ┣ 📜.clang-format
+ ┣ 📜.clang-tidy
+ ┣ 📜.gitignore
+ ┣ 📜CMakeLists.txt
+ ┣ 📜CMakeSettings.json
+ ┣ 📜README.md
+ ┗ 📜requirements.txt
+</pre></div>
+</div>
+</section>
+<section id="define-a-unit-a-unit-in-this-project-shall-be-a-monorepo-member-of-the-source-directory">
+<h2>Define a Unit: A unit in this project shall be a monorepo member of the source directory<a class="headerlink" href="#define-a-unit-a-unit-in-this-project-shall-be-a-monorepo-member-of-the-source-directory" title="Link to this heading"></a></h2>
+</section>
+<section id="quality">
+<h2>Quality<a class="headerlink" href="#quality" title="Link to this heading"></a></h2>
+<p>This repository is a collection of libraries for The Tanglenomicon project. The primary quality goal
+of libraries is to never fail in an undetectable way.</p>
+<section id="unit-testing">
+<h3>Unit testing<a class="headerlink" href="#unit-testing" title="Link to this heading"></a></h3>
+<p>Every unit is expected to have a unit test suite. Unit test suites are expected to flex every public
+interface of that unit. Code coverage is optional but encouraged.</p>
+</section>
+<section id="integration-testing">
+<h3>Integration testing<a class="headerlink" href="#integration-testing" title="Link to this heading"></a></h3>
+<p>Integration testing is not expected.</p>
+</section>
+</section>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<p>Since this repository contains a collection of libraries, this section will describe the high-level
+design for types of libraries/common use cases.</p>
+<section id="functional-requirements">
+<h3>Functional Requirements<a class="headerlink" href="#functional-requirements" title="Link to this heading"></a></h3>
+<pre  class="mermaid">
+        flowchart LR
+    Runner
+    subgraph &quot;Runnables&quot;
+        Generator
+        Computation
+    end
+    subgraph &quot;Data Wranglers&quot;
+        Notation
+        Storage
+        Mutator
+    end
+    Runner --&gt;|Runs| Generator
+    Runner --&gt;|Runs| Computation
+    Generator --&gt;|Uses| Mutator
+    Computation --&gt;|Uses| Mutator
+    Generator --&gt;|Uses| Notation
+    Computation --&gt;|Uses| Notation
+    Generator --&gt;|Uses| Storage
+    Computation --&gt;|Uses| Storage
+
+
+    </pre><p>These common use cases along with their associated unit descriptions are found below:</p>
+<section id="computation">
+<h4>Computation<a class="headerlink" href="#computation" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><a class="reference internal" href="interface/computation/use-case.html"><span class="std std-doc">Use Case</span></a></p></li>
+<li><p><a class="reference internal" href="interface/computation/unit-description.html"><span class="std std-doc">Unit Description</span></a></p></li>
+</ul>
+</section>
+<section id="generator">
+<h4>Generator<a class="headerlink" href="#generator" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><a class="reference internal" href="interface/generator/use-case.html"><span class="std std-doc">Use Case</span></a></p></li>
+<li><p><a class="reference internal" href="interface/generator/unit-description.html"><span class="std std-doc">Unit Description</span></a></p></li>
+</ul>
+</section>
+<section id="mutator">
+<h4>Mutator<a class="headerlink" href="#mutator" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><a class="reference internal" href="interface/mutator/use-case.html"><span class="std std-doc">Use Case</span></a></p></li>
+<li><p><a class="reference internal" href="interface/mutator/unit-description.html"><span class="std std-doc">Unit Description</span></a></p></li>
+</ul>
+</section>
+<section id="notation">
+<h4>Notation<a class="headerlink" href="#notation" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><a class="reference internal" href="interface/notation/use-case.html"><span class="std std-doc">Use Case</span></a></p></li>
+<li><p><a class="reference internal" href="interface/notation/unit-description.html"><span class="std std-doc">Unit Description</span></a></p></li>
+</ul>
+</section>
+<section id="storage">
+<h4>Storage<a class="headerlink" href="#storage" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><a class="reference internal" href="interface/storage/use-case.html"><span class="std std-doc">Use Case</span></a></p></li>
+<li><p><a class="reference internal" href="interface/storage/unit-description.html"><span class="std std-doc">Unit Description</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="non-functional-requirements">
+<h3>Non-functional Requirements<a class="headerlink" href="#non-functional-requirements" title="Link to this heading"></a></h3>
+<p>Not applicable.</p>
+</section>
+</section>
+<section id="technologies">
+<h2>Technologies<a class="headerlink" href="#technologies" title="Link to this heading"></a></h2>
+<section id="languages-frameworks">
+<h3>Languages/Frameworks<a class="headerlink" href="#languages-frameworks" title="Link to this heading"></a></h3>
+<p>The runnable and data wrangler libraries will be written in C/C++ using clang for compiling and
+cmake as a build system. The runners are written with various tooling including C/C++, Python, and
+JavaScript.</p>
+<p>Unit testing of runnable and data wrangler libraries will use the
+<a class="reference external" href="http://www.throwtheswitch.org/unity">Unity</a> and <a class="reference external" href="http://www.throwtheswitch.org/cmock">Cmock</a>
+libraries for unity testing. Test indexing is handled by
+<a class="reference external" href="https://cmake.org/cmake/help/latest/module/CTest.html">CTest</a>.</p>
+<section id="code-style-guide">
+<h4>Code Style Guide<a class="headerlink" href="#code-style-guide" title="Link to this heading"></a></h4>
+<p>The C/C++ code in this repository shall be formatted by the bundled clang-format configuration.
+Doxygen comments are expected to be formatted.</p>
+</section>
+</section>
+<section id="tools">
+<h3>Tools<a class="headerlink" href="#tools" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>git</p></li>
+<li><p>mermaid.js</p></li>
+<li><p>Unity</p></li>
+<li><p>clang</p></li>
+<li><p>cmake</p></li>
+<li><p>CTest</p></li>
+<li><p>Doxygen</p></li>
+<li><p>Cmock</p></li>
+<li><p>Python</p></li>
+<li><p>sphinx</p></li>
+<li><p>Pytest</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="design-and-documentation">
+<h1>Design and Documentation<a class="headerlink" href="#design-and-documentation" title="Link to this heading"></a></h1>
+<p>C/C++ code is documented with <a class="reference external" href="https://www.doxygen.nl/">Doxygen</a>, the Doxygen comments shall be
+parsed and output as XML. General documentation shall be recorded as markdown files in each module’s
+directory. Documentation shall be aggregated using the
+<a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a> framework. Sphinx shall then use
+<a class="reference external" href="https://github.com/breathe-doc/breathe">Breathe</a> to parse Doxygen XML into the general
+documentation.</p>
+<section id="colors">
+<h2>Colors<a class="headerlink" href="#colors" title="Link to this heading"></a></h2>
+<p>Diagrams included in documentation for features (use case and unit descriptions) is expected to use
+the <a class="reference external" href="https://clrs.cc">COLORS</a> color palette.</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="c">/* Colors */</span>
+<span class="p">.</span><span class="nc">navy</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#001f3f</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">blue</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#0074d9</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">aqua</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#7fdbff</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">teal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#39cccc</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">olive</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#3d9970</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">green</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#2ecc40</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">lime</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#01ff70</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">yellow</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#ffdc00</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">orange</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#ff851b</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">red</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#ff4136</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">fuchsia</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#f012be</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">purple</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#b10dc9</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">maroon</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#85144b</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">white</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#ffffff</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">silver</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#dddddd</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">gray</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#aaaaaa</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">black</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#111111</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+<section id="libraries">
+<h1>Libraries<a class="headerlink" href="#libraries" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="_collections/comp-rational_data/index.html">Computation Rational Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_collections/comp-rational_data/use-case.html">Use Case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_collections/comp-rational_data/unit-description.html">Unit Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/comp-rlitt_grafting/index.html">Computation Right Leaning Identity Tangle Tree Grafting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_collections/comp-rlitt_grafting/use-case.html">Use Case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_collections/comp-rlitt_grafting/unit-description.html">Unit Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/comp-rlitt_positivity/index.html">Computation Right Leaning Identity Tangle Tree Positivity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_collections/comp-rlitt_positivity/use-case.html">Use Case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_collections/comp-rlitt_positivity/unit-description.html">Unit Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/comp-wptt_vertex_canonicity/index.html">Computation Weighted Planar Tangle Tree Vertex Canonicity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_collections/comp-wptt_vertex_canonicity/use-case.html">Use Case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_collections/comp-wptt_vertex_canonicity/unit-description.html">Unit Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/gen-montesinos/index.html">Generator Montesinos Tangles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_collections/gen-montesinos/use-case.html">Use Case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_collections/gen-montesinos/unit-description.html">Unit Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/gen-rational/index.html">Generator Rational Tangles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_collections/gen-rational/use-case.html">Use Case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_collections/gen-rational/unit-description.html">Unit Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/gen-rlitt/index.html">Generator Right Leaning Identity Tangle Tree</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_collections/gen-rlitt/use-case.html">Use Case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_collections/gen-rlitt/unit-description.html">Unit Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_collections/mut-rlitt_ringshift/use-case.html">Use Case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_collections/mut-rlitt_ringshift/unit-description.html">Unit Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_collections/note-algebraic_tangle_tree/use-case.html">Use Case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_collections/note-algebraic_tangle_tree/unit-description.html">Unit Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/note-twist_vector/index.html">Notation Twist Vector</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_collections/note-twist_vector/use-case.html">Use Case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_collections/note-twist_vector/unit-description.html">Unit Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/note-wptt/index.html">Notation Weighted Planar Tangle Tree</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_collections/note-wptt/use-case.html">Use Case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_collections/note-wptt/unit-description.html">Unit Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/store-cpp_storage_interface/index.html">Storage C++ Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/store-json/index.html">Storage JSON</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_collections/store-json/use-case.html">Use Case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_collections/store-json/unit-description.html">Unit Description</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="interface/index.html" class="btn btn-neutral float-right" title="Generic Interfaces" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, temp.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
