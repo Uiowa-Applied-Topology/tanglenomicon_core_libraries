@@ -21,7 +21,7 @@ authors:
   - given-names: Ethan
     family-names: Rooke
 doi: 10.5281/zenodo.17612692 
-repository-code: 'https://github.com/Uiowa-Applied-Topology/Core-Libraries'
+repository-code: 'https://github.com/Uiowa-Applied-Topology/tanglenomicon_core_libraries'
 abstract: >-
   The Tanglenomicon core libraries consists of a collection
   of libraries for computation and generation of knot/tangle
