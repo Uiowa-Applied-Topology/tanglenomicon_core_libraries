@@ -68,4 +68,3 @@ void test_mutate_positive(void)
     retval = mut_rlitt_ringshift_mutate();
     TEST_ASSERT_EQUAL(MUT_DEFS_COMPUTE_SUCCESS, retval);
 }
-

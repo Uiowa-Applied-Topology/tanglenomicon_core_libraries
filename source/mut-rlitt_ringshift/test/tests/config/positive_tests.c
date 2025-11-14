@@ -66,4 +66,3 @@ void test_config_positive(void)
     uint8_t ret_val = mut_rlitt_ringshift_config(&cfg);
     TEST_ASSERT_EQUAL_UINT8(ret_val, MUT_DEFS_CONFIG_SUCCESS);
 }
-
