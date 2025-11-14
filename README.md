@@ -3,6 +3,8 @@
   rel="stylesheet"
 />
 
+[![DOI](https://zenodo.org/badge/629675331.svg)](https://doi.org/10.5281/zenodo.17612692)
+
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 # Tanglenomicon Core Libraries

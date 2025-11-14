@@ -20,6 +20,7 @@ authors:
     family-names: Karimi
   - given-names: Ethan
     family-names: Rooke
+doi: 10.5281/zenodo.17612692 
 repository-code: 'https://github.com/Uiowa-Applied-Topology/Core-Libraries'
 abstract: >-
   The Tanglenomicon core libraries consists of a collection
