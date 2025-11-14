@@ -1,12 +1,9 @@
 /*!
  *  @file notation_defs.h
  *
- *  @brief  Common defintions for notation objects.
+ *  @brief  Common definitions for notation objects.
  *
  *
- *  @author    Isabel Darcy
- *  @author    Ethan Rooke
- *  @author    Zachary Bryhtan
  *  @author    Joe Starr
  *
  */

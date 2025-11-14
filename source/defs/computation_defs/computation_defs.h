@@ -1,12 +1,9 @@
 /*!
  *  @file computation_defs.h
  *
- *  @brief  Common defintions for computation objects.
+ *  @brief  Common definitions for computation objects.
  *
  *
- *  @author    Isabel Darcy
- *  @author    Ethan Rooke
- *  @author    Zachary Bryhtan
  *  @author    Joe Starr
  *
  */
