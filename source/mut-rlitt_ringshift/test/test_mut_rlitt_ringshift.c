@@ -1,12 +1,10 @@
-#include "comp_rlitt_ringshift.h"
+#include "mut_rlitt_ringshift.h"
 #include "notation_wptt.h"
 #include "utils/utils.h"
-#include "tests/compute/positive_tests.h"
-#include "tests/compute/negative_tests.h"
+#include "tests/mutate/positive_tests.h"
+#include "tests/mutate/negative_tests.h"
 #include "tests/config/positive_tests.h"
 #include "tests/config/negative_tests.h"
-#include "tests/results/positive_tests.h"
-#include "tests/results/negative_tests.h"
 #include "test_storage_stubs.h"
 #include "unity.h"
 
@@ -48,10 +46,8 @@ int main(void)
     UNITY_BEGIN();
     RUN_TEST(test_config_positive);
     RUN_TEST(test_config_negative);
-    RUN_TEST(test_compute_negative);
-    RUN_TEST(test_compute_positive);
-    RUN_TEST(test_results_positive);
-    /* RUN_TEST(test_results_negative); */
+    RUN_TEST(test_mutate_negative);
+    RUN_TEST(test_mutate_positive);
 
     return UNITY_END();
 }

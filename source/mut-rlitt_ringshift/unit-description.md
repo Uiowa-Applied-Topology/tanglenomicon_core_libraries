@@ -97,62 +97,23 @@ This process is described in the following state machines:
 
 ```mermaid
 stateDiagram-v2
-    copy_ringshift_tree: Copy and ringshift rootstock into buffer
-    graft: Graft at vertex i
+    walk: Walk the tree and execute for each vertex visited
 
-    [*] --> copy_ringshift_tree
-    copy_ringshift_tree --> graft
-    graft --> [*]
+    state walk{
+        state "shift rings of tree to the right" as sr
+        [*]--> sr
+          sr  -->[*]
+    }
+    [*] --> walk
+    walk --> [*]
 ```
 
 ### Private Functions
 
-### Normalize Rootstock
+#### Sort Children
 
-The ringshift rootstock function rearranges the nodes of the rootstock so that each node has
-forwarded order. This is accomplished by reversing the child and weight list, then setting the order
-to forward in every node that has order reverse.
-
-```mermaid
-stateDiagram-v2
-    state is_forward <<choice>>
-    for_nodes: For each node in rootstock
-
-    state for_nodes {
-        reverse_weights: Reverse weights of node
-        reverse_children: Reverse children of node
-        set_order: set order to forward
-        [*] --> reverse_weights
-        reverse_weights --> reverse_children
-        reverse_children --> set_order
-        set_order --> [*]
-    }
-
-    [*] --> is_forward
-    is_forward --> for_nodes : Order is reverse
-    is_forward --> [*] : Order is forward
-    for_nodes --> [*]
-```
-
-#### Graft Scion to Rootstock
-
-This function carries out the
-
-```mermaid
-stateDiagram-v2
-    find_node: Identify the ith node
-    set_count: Increment child count
-    add_node: Add root of scion
-    add_node: to the child list
-    move_weight: Move last weight right
-    move_weight: one and replace with 0
-
-    [*] --> find_node
-    find_node --> set_count
-    set_count --> add_node
-    add_node --> move_weight
-    move_weight --> [*]
-```
+The sort children function uses the C standard qsort function to sort the children vertices of the
+object vertex.
 
 ## Validation
 

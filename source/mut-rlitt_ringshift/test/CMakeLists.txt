@@ -1,13 +1,8 @@
 add_executable(
   test_mut_rlitt_ringshift_app
-  test_mut_rlitt_ringshift.c
-  utils/utils.c
-  tests/config/positive_tests.c
-  tests/config/negative_tests.c
-  tests/compute/positive_tests.c
-  tests/compute/negative_tests.c
-  tests/results/positive_tests.c
-  tests/results/negative_tests.c)
+  test_mut_rlitt_ringshift.c utils/utils.c tests/config/positive_tests.c
+  tests/config/negative_tests.c tests/mutate/positive_tests.c
+  tests/mutate/negative_tests.c)
 
 target_link_libraries(
   test_mut_rlitt_ringshift_app

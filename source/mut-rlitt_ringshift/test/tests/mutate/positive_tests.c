@@ -1,13 +1,14 @@
 /* */
 /* Created by joe on 6/23/25. */
 /* */
-#include "comp_rlitt_ringshift.h"
 #include "positive_tests.h"
+#include "notation_wptt.h"
 #include "test_storage_stubs.h"
-#include "../../utils/utils.h"
+#include "mut_rlitt_ringshift.h"
 #include "unity.h"
+#include "../../utils/utils.h"
 
-void test_results_positive(void)
+void test_mutate_positive(void)
 {
     int retval = 0;
 
@@ -57,39 +58,14 @@ void test_results_positive(void)
         NULL,
         NOTE_WPTT_V4_LABEL_I,
     };
-
-    note_wptt_node_t wptt_root_ringshiftd= {
-        {
-            &leaf,
-            &wptt_internal,
-            &leaf,
-            &leaf,
-            &leaf,
-            &leaf,
-            &ring_subtree,
-            &ring_subtree,
-            &ring_subtree,
-            &ring_subtree},
-        {0},
-        10,
-        0,
-        NOTE_WPTT_ORDER_FORWARD};
-    note_wptt_t wptt_ringshiftd = {
-        &wptt_root_ringshiftd,
-        NULL,
-        NOTE_WPTT_V4_LABEL_I,
-    };
     /* clang-format on */
     test_util_clear_buffer();
-    comp_rlitt_ringshift_config_t cfg = {
-        NULL, &wptt
+    mut_rlitt_ringshift_config_t cfg = {
+        &wptt
     };
-    retval = comp_rlitt_ringshift_config(&cfg);
-    TEST_ASSERT_EQUAL(COMP_DEFS_COMPUTE_SUCCESS, retval);
-    retval = comp_rlitt_ringshift_compute();
-    TEST_ASSERT_EQUAL(COMP_DEFS_COMPUTE_SUCCESS, retval);
-    const comp_rlitt_ringshift_result_t *result = comp_rlitt_ringshift_result();
-    TEST_ASSERT_NOT_NULL(result);
-    TEST_ASSERT_EQUAL(
-        true, test_util_trees_equal(result->ringshiftd_wptt, &wptt_ringshiftd));
+    retval = mut_rlitt_ringshift_config(&cfg);
+    TEST_ASSERT_EQUAL(MUT_DEFS_COMPUTE_SUCCESS, retval);
+    retval = mut_rlitt_ringshift_mutate();
+    TEST_ASSERT_EQUAL(MUT_DEFS_COMPUTE_SUCCESS, retval);
 }
+

@@ -56,18 +56,6 @@ static note_wptt_node_t *mut_rlitt_ringshift_localnodes;
  * @brief The local configuration of the RLITT ring shift computation module.
  *
  */
-static size_t mut_rlitt_ringshift_nodes_idx = 0;
-
-/*!
- * @brief The local configuration of the RLITT ring shift computation module.
- *
- */
-static size_t mut_rlitt_ringshift_nodes_count = 0;
-
-/*!
- * @brief The local configuration of the RLITT ring shift computation module.
- *
- */
 static mut_rlitt_ringshift_config_t *mut_rlitt_ringshift_localcfg = NULL;
 
 /*!
@@ -86,11 +74,7 @@ uint8_t mut_rlitt_ringshift_config(mut_rlitt_ringshift_config_t *config_arg)
 {
     uint8_t ret_val = MUT_DEFS_CONFIG_FAIL;
 
-    mut_rlitt_ringshift_localcfg    = NULL;
-    mut_rlitt_ringshift_localcfg    = NULL;
-    mut_rlitt_ringshift_localnodes  = NULL;
-    mut_rlitt_ringshift_nodes_idx   = 0;
-    mut_rlitt_ringshift_nodes_count = 0;
+    mut_rlitt_ringshift_localcfg = NULL;
 
     /*Ensure the cfg is not empty.*/
     if (config_arg == NULL)

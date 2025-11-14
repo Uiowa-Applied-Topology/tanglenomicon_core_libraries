@@ -83,6 +83,10 @@
 /*************************** Typedefs *****************************************/
 /******************************************************************************/
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 /*!
  * @brief The type definition for configuring the rlitt_ringshift computation.
@@ -91,6 +95,7 @@
 typedef struct {
     note_wptt_t *wptt;
 } mut_rlitt_ringshift_config_t;
+
 #ifdef __cplusplus
 }
 #endif
