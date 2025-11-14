@@ -22,21 +22,21 @@ classDiagram
     }
 
     class mut_ringshift {
-<<>>
-}
+    <<>>
+    }
 
-class notation_wptt{
-<<>>
-}
+    class notation_wptt{
+    <<>>
+    }
 
-class mut_rlitt_ringshift_config_t {
-<<struct>>
-note_wptt * wptt
-}
+    class mut_rlitt_ringshift_config_t {
+    <<struct>>
+    note_wptt * wptt
+    }
 
-class mut_config_t {
-<<interface>>
-}
+    class mut_config_t {
+    <<interface>>
+    }
 
 
 
@@ -181,7 +181,7 @@ returns successfully. The result written to the write interface is correct
 
 **Expected Output:**
 
-- A positve response.
+- A positive response.
 - A correct output on the write interface.
 
 ```
@@ -197,7 +197,7 @@ executed and returns successfully.
 
 **Expected Output:**
 
-- A positve response.
+- A positive response.
 
 ```
 

@@ -365,7 +365,7 @@ interface.
 
 **Expected Output:**
 
-- A positve response.
+- A positive response.
 - The result is correct.
 ```
 
