@@ -1,0 +1,3 @@
+[submodule "libraries/json/lib"]
+	path = libraries/json/lib
+	url = https://github.com/nlohmann/json.git
