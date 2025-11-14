@@ -1,5 +1,5 @@
 /*!
- *  @file comp_rlitt_ringshift.h
+ *  @file mut_rlitt_ringshift.h
  *
  *  @brief  A module for compute rlitt_ringshift
  *
@@ -8,14 +8,14 @@
  *
  */
 
-#ifndef COMPUTATION_RLITT_RINGSHIFT_H
-#define COMPUTATION_RLITT_RINGSHIFT_H
+#ifndef MUTATOR_RLITT_RINGSHIFT_H
+#define MUTATOR_RLITT_RINGSHIFT_H
 
 /******************************************************************************/
 /*************************** Includes *****************************************/
 /******************************************************************************/
 
-#include "computation_defs.h"
+#include "mutator_defs.h"
 #include "storage_defs.h"
 #include "notation_wptt.h"
 #include "stdbool.h"
@@ -43,13 +43,13 @@
  * @brief Failed to configure the module due to issue in rootstock.
  *
  */
-#define COMP_RLITT_RINGSHIFT_CONFIG_WPTT       (0x1u << 1u)
+#define MUT_RLITT_RINGSHIFT_CONFIG_WPTT       (0X1U << 1U)
 
 /*!
  * @brief Failed to configure the module due to null config
  *
  */
-#define COMP_RLITT_RINGSHIFT_CONFIG_IS_NULL    (0x1u << 2u)
+#define MUT_RLITT_RINGSHIFT_CONFIG_IS_NULL    (0X1U << 2U)
 
 /*************************** Compute Flags************************************/
 
@@ -70,48 +70,27 @@
  * @brief Failed to configure the module due to null config.
  *
  */
-#define COMP_RLITT_RINGSHIFT_COMPUTE_CFG_ERROR    (0x1u << 1u)
+#define MUT_RLITT_RINGSHIFT_COMPUTE_CFG_ERROR    (0X1U << 1U)
 
 
 /*!
  * @brief Failed to configure the module due to the config having been previously computed against.
  *
  */
-#define COMP_RLITT_RINGSHIFT_COMPUTE_ALREADY_COMPUTED    (0x1u << 2u)
+#define MUT_RLITT_RINGSHIFT_COMPUTE_ALREADY_COMPUTED    (0X1U << 2U)
 
 /******************************************************************************/
 /*************************** Typedefs *****************************************/
 /******************************************************************************/
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
-/*!
- * @brief The type definition for reporting the rlitt_ringshift computation results.
- *
- */
-typedef struct {
-    note_wptt_t *ringshiftd_wptt;
-} comp_rlitt_ringshift_result_t;
-#ifdef __cplusplus
-}
-#endif
-
-#ifdef __cplusplus
-extern "C"
-{
-#endif
 
 /*!
  * @brief The type definition for configuring the rlitt_ringshift computation.
  *
  */
 typedef struct {
-    storage_write_funptr_t storage_write;
-    note_wptt_t *          wptt;
-} comp_rlitt_ringshift_config_t;
+    note_wptt_t *wptt;
+} mut_rlitt_ringshift_config_t;
 #ifdef __cplusplus
 }
 #endif
@@ -129,7 +108,7 @@ extern "C"
  * @brief The public configuration function.
  * @param config_arg The config to set.
  */
-uint8_t comp_rlitt_ringshift_config(comp_rlitt_ringshift_config_t *config_arg);
+uint8_t mut_rlitt_ringshift_config(mut_rlitt_ringshift_config_t *config_arg);
 
 #ifdef __cplusplus
 }
@@ -144,7 +123,7 @@ extern "C"
  * @brief A public function, calling this executes the computation on the configured tangle.
  * @return uint8_t Generation status info.
  */
-uint8_t comp_rlitt_ringshift_compute();
+uint8_t mut_rlitt_ringshift_mutate();
 
 #ifdef __cplusplus
 }
@@ -159,24 +138,10 @@ extern "C"
  * @brief A public function, calling this executes the computation on the configured tangle.
  * @return uint8_t Generation status info.
  */
-uint8_t comp_rlitt_ringshift_compute();
+uint8_t mut_rlitt_ringshift_compute();
 
 #ifdef __cplusplus
 }
 #endif
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
-/*!
- * @brief A public function, calling this retrieves the results of the last computation
- * @return comp_rlitt_ringshift_result_t Computation results.
- */
-const comp_rlitt_ringshift_result_t *comp_rlitt_ringshift_result();
-
-#ifdef __cplusplus
-}
-#endif
-#endif /* end COMPUTATION_RLITT_RINGSHIFT_H */
+#endif /* end MUTATOR_RLITT_RINGSHIFT_H */

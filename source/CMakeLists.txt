@@ -9,7 +9,6 @@ add_subdirectory(defs)
 add_subdirectory(comp-rational_data)
 add_subdirectory(comp-rlitt_grafting)
 add_subdirectory(comp-wptt_vertex_canonicity)
-add_subdirectory(comp-rlitt_ringshift)
 add_subdirectory(comp-rlitt_positivity)
 
 # ##############################################################################
@@ -18,6 +17,11 @@ add_subdirectory(comp-rlitt_positivity)
 add_subdirectory(gen-rational)
 add_subdirectory(gen-montesinos)
 add_subdirectory(gen-rlitt)
+
+# ##############################################################################
+# Add Mutator Components
+# ##############################################################################
+add_subdirectory(mut-rlitt_ringshift)
 
 # ##############################################################################
 # Add Notation Components

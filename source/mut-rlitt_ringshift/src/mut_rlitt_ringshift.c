@@ -1,5 +1,5 @@
 /*!
- *  @file comp_rlitt_ringshift.c
+ *  @file mut_rlitt_ringshift.c
  *
  *  @brief  A rlitt_ringshift module
  *
@@ -12,7 +12,7 @@
 /************************** Includes ******************************************/
 /******************************************************************************/
 
-#include "comp_rlitt_ringshift.h"
+#include "mut_rlitt_ringshift.h"
 #include "stdbool.h"
 #include "stdint.h"
 #include "stdio.h"
@@ -27,7 +27,7 @@
  * @brief Maximum size of the stacks used for tree traversal
  *
  */
-#define COMP_RLITT_RINGSHIFT_STACK_SIZE    (UTIL_TANG_DEFS_MAX_CROSSINGNUM)
+#define MUT_RLITT_RINGSHIFT_STACK_SIZE    (UTIL_TANG_DEFS_MAX_CROSSINGNUM)
 
 /******************************************************************************/
 /************************** Typedefs ******************************************/
@@ -36,11 +36,11 @@
 /******************************************************************************/
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
-STATIC_INLINE bool comp_rlitt_ringshift_is_ringsubtree(const note_wptt_node_t *node);
-STATIC_INLINE int comp_rlitt_ringshift_ringsubtreecmp(const void *node1,
-                                                      const void *node2);
-STATIC_INLINE void comp_rlitt_ringshift_move_ringsubtrees(note_wptt_node_t *node);
-STATIC_INLINE_UINT8 comp_rlitt_ringshift_ringshift_tree(note_wptt_t *tree);
+STATIC_INLINE bool mut_rlitt_ringshift_is_ringsubtree(const note_wptt_node_t *node);
+STATIC_INLINE int mut_rlitt_ringshift_ringsubtreecmp(const void *node1,
+                                                     const void *node2);
+STATIC_INLINE void mut_rlitt_ringshift_move_ringsubtrees(note_wptt_node_t *node);
+STATIC_INLINE_UINT8 mut_rlitt_ringshift_ringshift_tree(note_wptt_t *tree);
 
 /******************************************************************************/
 /************************** Local Variables ***********************************/
@@ -50,37 +50,31 @@ STATIC_INLINE_UINT8 comp_rlitt_ringshift_ringshift_tree(note_wptt_t *tree);
  * @brief The local configuration of the RLITT ring shift computation module.
  *
  */
-static note_wptt_node_t *comp_rlitt_ringshift_localnodes;
+static note_wptt_node_t *mut_rlitt_ringshift_localnodes;
 
 /*!
  * @brief The local configuration of the RLITT ring shift computation module.
  *
  */
-static size_t comp_rlitt_ringshift_nodes_idx = 0;
+static size_t mut_rlitt_ringshift_nodes_idx = 0;
 
 /*!
  * @brief The local configuration of the RLITT ring shift computation module.
  *
  */
-static size_t comp_rlitt_ringshift_nodes_count = 0;
+static size_t mut_rlitt_ringshift_nodes_count = 0;
 
 /*!
  * @brief The local configuration of the RLITT ring shift computation module.
  *
  */
-static comp_rlitt_ringshift_config_t *comp_rlitt_ringshift_localcfg = NULL;
-
-/*!
- * @brief The local result of the RLITT ring shift computation module.
- *
- */
-static comp_rlitt_ringshift_result_t comp_rlitt_ringshift_localrestult = { NULL };
+static mut_rlitt_ringshift_config_t *mut_rlitt_ringshift_localcfg = NULL;
 
 /*!
  * @brief The local computation status of the RLITT ring shift computation module.
  *
  */
-static bool comp_rlitt_ringshift_executed = false;
+static bool mut_rlitt_ringshift_executed = false;
 /******************************************************************************/
 /************************** Public Function Definitions ***********************/
 /******************************************************************************/
@@ -88,37 +82,35 @@ static bool comp_rlitt_ringshift_executed = false;
 /*
  *  Documentation in header
  */
-uint8_t comp_rlitt_ringshift_config(comp_rlitt_ringshift_config_t *config_arg)
+uint8_t mut_rlitt_ringshift_config(mut_rlitt_ringshift_config_t *config_arg)
 {
-    uint8_t ret_val = COMP_DEFS_CONFIG_FAIL;
+    uint8_t ret_val = MUT_DEFS_CONFIG_FAIL;
 
-    comp_rlitt_ringshift_localcfg   = NULL;
-    comp_rlitt_ringshift_localcfg   = NULL;
-    comp_rlitt_ringshift_localnodes = NULL;
-    comp_rlitt_ringshift_localrestult.ringshiftd_wptt = NULL;
-    comp_rlitt_ringshift_nodes_idx   = 0;
-    comp_rlitt_ringshift_nodes_count = 0;
+    mut_rlitt_ringshift_localcfg    = NULL;
+    mut_rlitt_ringshift_localcfg    = NULL;
+    mut_rlitt_ringshift_localnodes  = NULL;
+    mut_rlitt_ringshift_nodes_idx   = 0;
+    mut_rlitt_ringshift_nodes_count = 0;
 
     /*Ensure the cfg is not empty.*/
     if (config_arg == NULL)
     {
-        ret_val |= COMP_RLITT_RINGSHIFT_CONFIG_IS_NULL;
-    } /*Ensure the tv is not empty.*/
+        ret_val |= MUT_RLITT_RINGSHIFT_CONFIG_IS_NULL;
+    } /*Ensure the wptt is not empty.*/
     else if (config_arg->wptt == NULL)
     {
-        ret_val |= COMP_RLITT_RINGSHIFT_CONFIG_WPTT;
+        ret_val |= MUT_RLITT_RINGSHIFT_CONFIG_WPTT;
     }
     else
     {
         /* Set the config. */
-        comp_rlitt_ringshift_localcfg = config_arg;
+        mut_rlitt_ringshift_localcfg = config_arg;
 
-        comp_rlitt_ringshift_localrestult.ringshiftd_wptt = comp_rlitt_ringshift_localcfg->wptt;
 
         /*clear the executed status*/
-        comp_rlitt_ringshift_executed = false;
+        mut_rlitt_ringshift_executed = false;
 
-        ret_val = COMP_DEFS_CONFIG_SUCCESS;
+        ret_val = MUT_DEFS_CONFIG_SUCCESS;
     }
     return ret_val;
 }
@@ -126,66 +118,24 @@ uint8_t comp_rlitt_ringshift_config(comp_rlitt_ringshift_config_t *config_arg)
 /*
  *  Documentation in header
  */
-uint8_t comp_rlitt_ringshift_compute()
+uint8_t mut_rlitt_ringshift_mutate()
 {
-    uint8_t ret_val = COMP_DEFS_COMPUTE_FAIL;
+    uint8_t ret_val = MUT_DEFS_COMPUTE_FAIL;
 
     /*Ensure the cfg is not empty.*/
-    if (comp_rlitt_ringshift_localcfg == NULL)
+    if (mut_rlitt_ringshift_localcfg == NULL)
     {
-        ret_val |= COMP_RLITT_RINGSHIFT_COMPUTE_CFG_ERROR;
+        ret_val |= MUT_RLITT_RINGSHIFT_COMPUTE_CFG_ERROR;
     } /*Ensure not previously executed.*/
-    else if (comp_rlitt_ringshift_executed != false)
+    else if (mut_rlitt_ringshift_executed != false)
     {
-        ret_val |= COMP_RLITT_RINGSHIFT_COMPUTE_ALREADY_COMPUTED;
+        ret_val |= MUT_RLITT_RINGSHIFT_COMPUTE_ALREADY_COMPUTED;
     }
     else
     {
-        ret_val = COMP_DEFS_COMPUTE_SUCCESS;
-        comp_rlitt_ringshift_executed = true;
-        ret_val |= comp_rlitt_ringshift_ringshift_tree(comp_rlitt_ringshift_localcfg->wptt);
-
-        if (COMP_DEFS_COMPUTE_SUCCESS == ret_val)
-        {
-            if (comp_rlitt_ringshift_localcfg->storage_write != NULL)
-            {
-                uint8_t write_retval = NOTE_DEFS_ENCODE_SUCCESS;
-                char    wptt_str[NOTE_WPTT_MAX_STR_LEN] = "";
-                write_retval |= note_wptt_encode(*comp_rlitt_ringshift_localcfg->wptt,
-                                                 wptt_str,
-                                                 NOTE_WPTT_MAX_STR_LEN);
-
-                if (write_retval == NOTE_DEFS_ENCODE_SUCCESS)
-                {
-                    comp_rlitt_ringshift_localcfg->storage_write(wptt_str,
-                                                                 "ringshifted",
-                                                                 wptt_str);
-                }
-            }
-        }
-    }
-    return ret_val;
-}
-
-/*
- *  Documentation in header
- */
-const comp_rlitt_ringshift_result_t *comp_rlitt_ringshift_result()
-{
-    const comp_rlitt_ringshift_result_t *ret_val = NULL;
-
-    ;
-    if (comp_rlitt_ringshift_localcfg == NULL)
-    {
-        ret_val = NULL;
-    } /*Ensure not previously executed.*/
-    else if (comp_rlitt_ringshift_executed == false)
-    {
-        ret_val = NULL;
-    }
-    else
-    {
-        ret_val = (const comp_rlitt_ringshift_result_t *)&comp_rlitt_ringshift_localrestult;
+        ret_val = MUT_DEFS_COMPUTE_SUCCESS;
+        mut_rlitt_ringshift_executed = true;
+        ret_val |= mut_rlitt_ringshift_ringshift_tree(mut_rlitt_ringshift_localcfg->wptt);
     }
     return ret_val;
 }
@@ -200,11 +150,11 @@ const comp_rlitt_ringshift_result_t *comp_rlitt_ringshift_result()
  * @param tree The input tree.
  * @return
  */
-STATIC_INLINE_UINT8 comp_rlitt_ringshift_ringshift_tree(note_wptt_t *tree)
+STATIC_INLINE_UINT8 mut_rlitt_ringshift_ringshift_tree(note_wptt_t *tree)
 {
-    uint8_t           ret_val = COMP_DEFS_COMPUTE_SUCCESS;
-    note_wptt_node_t *stack[COMP_RLITT_RINGSHIFT_STACK_SIZE]          = { NULL };
-    size_t            childidx_stack[COMP_RLITT_RINGSHIFT_STACK_SIZE] = { 0 };
+    uint8_t           ret_val = MUT_DEFS_COMPUTE_SUCCESS;
+    note_wptt_node_t *stack[MUT_RLITT_RINGSHIFT_STACK_SIZE]          = { NULL };
+    size_t            childidx_stack[MUT_RLITT_RINGSHIFT_STACK_SIZE] = { 0 };
 
     /* We are going to use count instead of index. This helps with intuiting the state of the stack.
      * The count starts at 1 since the root is going to be added to the stack before the main loop.
@@ -212,7 +162,7 @@ STATIC_INLINE_UINT8 comp_rlitt_ringshift_ringshift_tree(note_wptt_t *tree)
     size_t stack_count = 1;
 
     /* try to shift the root */
-    comp_rlitt_ringshift_move_ringsubtrees(tree->root);
+    mut_rlitt_ringshift_move_ringsubtrees(tree->root);
 
     stack[stack_count - 1] = tree->root;
     while (stack_count != 0)
@@ -221,7 +171,7 @@ STATIC_INLINE_UINT8 comp_rlitt_ringshift_ringshift_tree(note_wptt_t *tree)
         if (active_node_p->number_of_children <= childidx_stack[stack_count - 1])
         {
             /* shift the active vertex. */
-            comp_rlitt_ringshift_move_ringsubtrees(active_node_p);
+            mut_rlitt_ringshift_move_ringsubtrees(active_node_p);
             stack_count--;
         }
         else
@@ -243,7 +193,7 @@ STATIC_INLINE_UINT8 comp_rlitt_ringshift_ringshift_tree(note_wptt_t *tree)
  *
  * @param node The vertex to reverse.
  */
-STATIC_INLINE void comp_rlitt_ringshift_reverse_node(note_wptt_node_t *node)
+STATIC_INLINE void mut_rlitt_ringshift_reverse_node(note_wptt_node_t *node)
 {
     size_t i = 0;
 
@@ -276,7 +226,7 @@ STATIC_INLINE void comp_rlitt_ringshift_reverse_node(note_wptt_node_t *node)
  * @param node the vertex to examine.
  * @return
  */
-STATIC_INLINE bool comp_rlitt_ringshift_is_ringsubtree(const note_wptt_node_t *node)
+STATIC_INLINE bool mut_rlitt_ringshift_is_ringsubtree(const note_wptt_node_t *node)
 {
     bool ret_val = false;
 
@@ -315,11 +265,11 @@ STATIC_INLINE bool comp_rlitt_ringshift_is_ringsubtree(const note_wptt_node_t *n
  * @param node2 The second vertex.
  * @return An integer -1,0,1 indicating the result of the compare.
  */
-STATIC_INLINE int comp_rlitt_ringshift_ringsubtreecmp(const void *node1, const void *node2)
+STATIC_INLINE int mut_rlitt_ringshift_ringsubtreecmp(const void *node1, const void *node2)
 {
-    bool node1_ring = comp_rlitt_ringshift_is_ringsubtree(
+    bool node1_ring = mut_rlitt_ringshift_is_ringsubtree(
         *(const note_wptt_node_t **)node1);
-    bool node2_ring = comp_rlitt_ringshift_is_ringsubtree(
+    bool node2_ring = mut_rlitt_ringshift_is_ringsubtree(
         *(const note_wptt_node_t **)node2);
 
     if (node1_ring != node2_ring)
@@ -338,7 +288,7 @@ STATIC_INLINE int comp_rlitt_ringshift_ringsubtreecmp(const void *node1, const v
  *
  * @param node The vertex to sort the children of.
  */
-STATIC_INLINE void comp_rlitt_ringshift_move_ringsubtrees(note_wptt_node_t *node)
+STATIC_INLINE void mut_rlitt_ringshift_move_ringsubtrees(note_wptt_node_t *node)
 {
     if (node->number_of_children != 0)
     {
@@ -347,6 +297,6 @@ STATIC_INLINE void comp_rlitt_ringshift_move_ringsubtrees(note_wptt_node_t *node
         qsort(node->children,
               node->number_of_children,
               sizeof(note_wptt_node_t *),
-              comp_rlitt_ringshift_ringsubtreecmp);
+              mut_rlitt_ringshift_ringsubtreecmp);
     }
 }

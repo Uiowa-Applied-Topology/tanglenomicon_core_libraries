@@ -3,7 +3,7 @@ date: 2025-06-16
 authors:
     - Joe Starr
 contact: support@joe-starr.com
-abstract: A unit description for computation of arborescent tangle grafting.
+abstract: A unit description description for mutation of the rings of an Arborescent Tangle tree.
 ---
 
 # Unit Description
@@ -12,46 +12,33 @@ abstract: A unit description for computation of arborescent tangle grafting.
 
 ```mermaid
 classDiagram
-    comp_ring shift --|> computation
-    comp_rlitt_ringshift_config_t --|> notation_wptt
-    comp_rlitt_ringshift_config_t --|> comp_config_t
-    comp_ring shift *-- comp_rlitt_ringshift_config_t
-    comp_rlitt_ringshift_result_t --|> notation_wptt
-    comp_rlitt_ringshift_result_t --|> comp_result_t
-    comp_ring shift *-- comp_rlitt_ringshift_result_t
+    mut_ring shift --|> mutator
+    mut_rlitt_ringshift_config_t --|> notation_wptt
+    mut_rlitt_ringshift_config_t --|> mut_config_t
+    mut_ring shift *-- mut_rlitt_ringshift_config_t
 
-    class computation {
+    class mutator{
         <<interface>>
     }
 
-    class comp_ring shift {
+    class mut_ringshift {
 <<>>
-- notation_wptt node_buffer[MAX_CN]
 }
 
 class notation_wptt{
 <<>>
 }
 
-class comp_rlitt_ringshift_config_t {
+class mut_rlitt_ringshift_config_t {
 <<struct>>
-+ notation_wptt *rootstock
-+ notation_wptt *scion
-+ uint8 grating_idx
+note_wptt * wptt
 }
 
-class comp_config_t {
+class mut_config_t {
 <<interface>>
 }
 
-class comp_rlitt_ringshift_result_t {
-<<struct>>
-+ notation_wptt result
-}
 
-class comp_result_t {
-<<interface>>
-}
 
 
 ```
@@ -83,16 +70,6 @@ The configuration structure contains the data needed for computing the tree with
 This includes:
 
 - A pointer to a notation structure for a WPTT.
-
-#### Result Structure
-
-The result structure contains a weighted planar tangle tree that is the result of application of the
-$R^\pm$ moves the configured tree.
-
-```{warning}
-The tree pointed to by the result is the same as the input tree. The $R^\pm$ moves preserve
-topology making this okay mathamatically, however care must be taken computationally.
-```
 
 ### Public Functions
 
@@ -176,10 +153,6 @@ stateDiagram-v2
     add_node --> move_weight
     move_weight --> [*]
 ```
-
-#### Result Function
-
-When this function is invoked, the result of the ring shift computation process is reported.
 
 ## Validation
 
@@ -283,49 +256,13 @@ A negative response.
 
 ```
 
-### Results Function
-
-#### Positive Tests
-
-```{test-card} A valid configuration and computation
-
-A valid configuration is set for the component. The computation is executed and
-returns successfully. The resulting value is correct when read from the result
-interface.
-
-**Inputs:**
-
-- A valid configuration is set.
-
-**Expected Output:**
-
-- A positve response.
-- The result is correct.
-```
-
-#### Negative Tests
-
-```{test-card} Computation not executed
-
-The result interface is called before compute has been run.
-
-**Inputs:**
-
-- None.
-
-**Expected Output:**
-
-A negative response.
-
-```
-
 ## Doxygen Documentation
 
-```{doxygenfile} comp_rlitt_ringshift.h
+```{doxygenfile} mut_rlitt_ringshift.h
 
 ```
 
-```{doxygenfile} comp_rlitt_ringshift.c
+```{doxygenfile} mut_rlitt_ringshift.c
 
 ```
 

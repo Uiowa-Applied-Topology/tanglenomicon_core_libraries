@@ -3,7 +3,7 @@ date: 2025-06-16
 authors:
     - Joe Starr
 contact: support@joe-starr.com
-abstract: A use case description for computation of Arborescent Tangle Grafting Computation.
+abstract: A use case description for mutation of the rings of an Arborescent Tangle tree.
 ---
 
 # Use Case
