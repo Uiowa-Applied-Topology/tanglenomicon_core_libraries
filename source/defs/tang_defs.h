@@ -1,12 +1,9 @@
 /*!
  *  @file tang_defs.h
  *
- *  @brief  Common defintions for the tanglenomicon project.
+ *  @brief  Common definitions for the tanglenomicon project.
  *
  *
- *  @author    Isabel Darcy
- *  @author    Ethan Rooke
- *  @author    Zachary Bryhtan
  *  @author    Joe Starr
  *
  */

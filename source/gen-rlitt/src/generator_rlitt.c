@@ -13,7 +13,7 @@
 #include "comp_rlitt_grafting.h"
 #include "comp_wptt_vertex_canonicity.h"
 #include "comp_rlitt_positivity.h"
-#include "comp_rlitt_ringshift.h"
+#include "mut_rlitt_ringshift.h"
 #include "computation_defs.h"
 #include "generator_defs.h"
 #include "notation_wptt.h"
@@ -183,21 +183,19 @@ STATIC_INLINE_UINT8 gen_rlitt_grafting_handler(size_t rootstock_idx, size_t scio
     if ((COMP_DEFS_COMPUTE_SUCCESS == compute_flag) &&
         (NULL != graft_res))
     {
-        const comp_rlitt_ringshift_result_t *shift_res = NULL;
-        comp_rlitt_ringshift_config_t        shift_cfg;
-        shift_cfg.storage_write = NULL;
-        shift_cfg.wptt          = graft_res->grafted_wptt;
+        note_wptt_t *shifted_wptt;
+        mut_rlitt_ringshift_config_t shift_cfg;
+        shift_cfg.wptt = graft_res->grafted_wptt;
 
         /* Compute the right leaning version of the grafted tree. */
-        compute_flag |= comp_rlitt_ringshift_config(&shift_cfg);
-        compute_flag |= comp_rlitt_ringshift_compute();
-        shift_res     = comp_rlitt_ringshift_result();
+        compute_flag |= mut_rlitt_ringshift_config(&shift_cfg);
+        compute_flag |= mut_rlitt_ringshift_mutate();
+        shifted_wptt  = graft_res->grafted_wptt;
 
         /* Ensure rings shift was successful. */
         if ((COMP_DEFS_COMPUTE_SUCCESS == compute_flag) &&
-            (NULL != shift_res))
+            (NULL != shifted_wptt))
         {
-            note_wptt_t *shifted_wptt = shift_res->ringshiftd_wptt;
             /* Check if the root is plus or minus canonical. */
             if ((true == gen_rlitt_root_canon((const note_wptt_node_t * )shifted_wptt->root,
                                               COMP_WPTT_VERT_CANON_POS_POS)) ||
@@ -208,7 +206,7 @@ STATIC_INLINE_UINT8 gen_rlitt_grafting_handler(size_t rootstock_idx, size_t scio
                 const comp_rlitt_positivity_result_t *positivity_res = NULL;
 
                 positivity_cfg.storage_write = NULL;
-                positivity_cfg.wptt          = shift_res->ringshiftd_wptt;
+                positivity_cfg.wptt          = shifted_wptt;
 
                 /* Compute the positivity of the grafted and shifted tree. */
                 compute_flag  |= comp_rlitt_positivity_config(&positivity_cfg);

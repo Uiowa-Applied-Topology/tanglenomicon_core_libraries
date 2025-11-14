@@ -145,9 +145,12 @@ flowchart LR
     subgraph "Data Wranglers"
         Notation
         Storage
+        Mutator
     end
     Runner -->|Runs| Generator
     Runner -->|Runs| Computation
+    Generator -->|Uses| Mutator
+    Computation -->|Uses| Mutator
     Generator -->|Uses| Notation
     Computation -->|Uses| Notation
     Generator -->|Uses| Storage
@@ -167,6 +170,11 @@ These common use cases along with their associated unit descriptions are found b
 
 - [Use Case](./interface/generator/use-case.md)
 - [Unit Description](./interface/generator/unit-description.md)
+
+#### Mutator
+
+- [Use Case](./interface/mutator/use-case.md)
+- [Unit Description](./interface/mutator/unit-description.md)
 
 #### Notation
 

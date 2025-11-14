@@ -1,12 +1,9 @@
 /*!
  *  @file storage_defs.h
  *
- *  @brief  Common defintions for store-storage_interface objects.
+ *  @brief  Common definitions for store-storage_interface objects.
  *
  *
- *  @author    Isabel Darcy
- *  @author    Ethan Rooke
- *  @author    Zachary Bryhtan
  *  @author    Joe Starr
  *
  */

@@ -5,7 +5,7 @@ target_link_libraries(
   generator_rlitt
   notation_wptt
   comp_rlitt_grafting
-  comp_rlitt_ringshift
+  mut_rlitt_ringshift
   comp_rlitt_positivity
   comp_wptt_vertex_canonicity
   tang_defs

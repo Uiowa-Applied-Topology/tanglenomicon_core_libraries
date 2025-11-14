@@ -1,27 +1,21 @@
 /*!
- *  @file generator_defs.h
+ *  @file computation_defs.h
  *
- *  @brief  Common definitions for generator objects.
+ *  @brief  Common definitions for computation objects.
  *
  *
  *  @author    Joe Starr
  *
  */
 
-#ifndef GENERATOR_DEFS_H
-#define GENERATOR_DEFS_H
+#ifndef MUTATOR_DEFS_H
+#define MUTATOR_DEFS_H
 
 /******************************************************************************/
 /****************************** Includes **************************************/
 /******************************************************************************/
 #include "tang_defs.h"
 #include "stdlib.h"
-#include "stdint.h"
-#include "stddef.h"
-
-/******************************************************************************/
-/****************************** typedef ***************************************/
-/******************************************************************************/
 
 /******************************************************************************/
 /****************************** Macro *****************************************/
@@ -33,19 +27,19 @@
 
 /****************************** Encode Status *********************************/
 
-/*! @brief Success is a 0. That lets us use hight bits for generator specific codes */
-#define GEN_DEFS_CONFIG_SUCCESS    (0u)
+/*! @brief Success is a 0. That lets us use hight bits for computation specific codes */
+#define MUT_DEFS_CONFIG_SUCCESS    (0u)
 
 /*! @brief We use bit 0 to indicate a fail. Specific failures encoded in higher bits. */
-#define GEN_DEFS_CONFIG_FAIL       (1u)
+#define MUT_DEFS_CONFIG_FAIL       (1u)
 
 /****************************** Decode Status *********************************/
 
-/*! @brief Success is a 0. That lets us use hight bits for generator specific codes */
-#define GEN_DEFS_GENERATION_SUCCESS    (0u)
+/*! @brief Success is a 0. That lets us use hight bits for computation specific codes */
+#define MUT_DEFS_COMPUTE_SUCCESS    (0u)
 
 /*! @brief We use bit 0 to indicate a fail. Specific failures encoded in higher bits. */
-#define GEN_DEFS_GENERATION_FAIL       (1u)
+#define MUT_DEFS_COMPUTE_FAIL       (1u)
 
 /****************************** Flag Builder Macro ****************************/
 
@@ -53,6 +47,6 @@
  * @brief A function like macro for building bitfield flags
  *
  */
-#define GEN_STATUS_BLDR(FLAG, HIGH_BITS)    ((FLAG) | (HIGH_BITS))
+#define MUT_STATUS_BLDR(FLAG, HIGH_BITS)    ((FLAG) | (HIGH_BITS))
 
-#endif /* end GENERATOR_DEFS_H */
+#endif /* end MUTATOR_DEFS_H */

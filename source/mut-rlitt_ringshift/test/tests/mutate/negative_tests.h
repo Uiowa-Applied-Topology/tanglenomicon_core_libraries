@@ -1,0 +1,9 @@
+/* */
+/* Created by joe on 6/23/25. */
+/* */
+
+#ifndef TEST_MUT_RLITT_RINGSHIFT_COMPUTE_NEGATIVE_TESTS_H
+#define TEST_MUT_RLITT_RINGSHIFT_COMPUTE_NEGATIVE_TESTS_H
+void test_mutate_negative(void);
+
+#endif /* TEST_MUT_RLITT_RINGSHIFT_COMPUTE_NEGATIVE_TESTS_H */
