@@ -134,19 +134,4 @@ uint8_t mut_rlitt_ringshift_mutate();
 }
 #endif
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
-/*!
- * @brief A public function, calling this executes the computation on the configured tangle.
- * @return uint8_t Generation status info.
- */
-uint8_t mut_rlitt_ringshift_compute();
-
-#ifdef __cplusplus
-}
-#endif
-
 #endif /* end MUTATOR_RLITT_RINGSHIFT_H */
