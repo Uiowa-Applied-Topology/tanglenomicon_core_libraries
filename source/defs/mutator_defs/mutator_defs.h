@@ -36,10 +36,10 @@
 /****************************** Decode Status *********************************/
 
 /*! @brief Success is a 0. That lets us use hight bits for computation specific codes */
-#define MUT_DEFS_COMPUTE_SUCCESS    (0u)
+#define MUT_DEFS_MUTATE_SUCCESS    (0u)
 
 /*! @brief We use bit 0 to indicate a fail. Specific failures encoded in higher bits. */
-#define MUT_DEFS_COMPUTE_FAIL       (1u)
+#define MUT_DEFS_MUTATE_FAIL       (1u)
 
 /****************************** Flag Builder Macro ****************************/
 

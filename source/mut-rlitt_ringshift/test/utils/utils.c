@@ -11,10 +11,10 @@ static bool nodes_walk(const note_wptt_node_t *node1,
 /******************************************************************************/
 /*******************************Test Data******** ************************/
 /******************************************************************************/
-static note_wptt_node_t        note_wptt_node[2 * UTIL_TANG_DEFS_MAX_CROSSINGNUM];
-static note_wptt_node_buffer_t buffer = { note_wptt_node,
-                                          2u * UTIL_TANG_DEFS_MAX_CROSSINGNUM,
-                                          0 };
+static note_wptt_node_t        note_wptt_nodes[2 * UTIL_TANG_DEFS_MAX_CROSSINGNUM];
+static note_wptt_node_buffer_t node_buffer = { note_wptt_nodes,
+                                               2u * UTIL_TANG_DEFS_MAX_CROSSINGNUM,
+                                               0 };
 /******************************************************************************/
 /*******************************Test Functions******** ************************/
 /******************************************************************************/
@@ -62,7 +62,7 @@ bool test_util_trees_equal(const note_wptt_t *tree1, const note_wptt_t *tree2)
 
 note_wptt_node_buffer_t *test_util_get_buffer(void)
 {
-    return &buffer;
+    return &node_buffer;
 }
 
 void test_util_clear_buffer()
@@ -74,14 +74,14 @@ void test_util_clear_buffer()
         size_t j;
         for (j = 0; j < UTIL_TANG_DEFS_MAX_CROSSINGNUM; j++)
         {
-            buffer.buffer[i].children[j] = NULL;
-            buffer.buffer[i].weights[j]  = 0;
+            node_buffer.buffer[i].children[j] = NULL;
+            node_buffer.buffer[i].weights[j]  = 0;
         }
-        buffer.buffer[i].weights[j]         = 0;
-        buffer.buffer[i].number_of_children = 0;
-        buffer.buffer[i].number_of_rings    = 0;
-        buffer.buffer[i].order = NOTE_WPTT_ORDER_UNINIT;
+        node_buffer.buffer[i].weights[j]         = 0;
+        node_buffer.buffer[i].number_of_children = 0;
+        node_buffer.buffer[i].number_of_rings    = 0;
+        node_buffer.buffer[i].order = NOTE_WPTT_ORDER_UNINIT;
     }
-    buffer.idx  = 0;
-    buffer.size = 2 * UTIL_TANG_DEFS_MAX_CROSSINGNUM;
+    node_buffer.idx  = 0;
+    node_buffer.size = 2 * UTIL_TANG_DEFS_MAX_CROSSINGNUM;
 }
