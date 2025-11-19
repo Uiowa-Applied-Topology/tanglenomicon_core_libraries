@@ -25,36 +25,7 @@
       <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
       <script type="module">
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
-const load = async () => {
-    await mermaid.run();
-    const all_mermaids = document.querySelectorAll(".mermaid");
-    const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
-    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
-    if(mermaids_to_add_zoom > 0) {
-        var svgs = d3.selectAll(".mermaid svg");
-        if(all_mermaids.length !== mermaids_processed.length) {
-            // try again in a sec, wait for mermaids to load
-            setTimeout(load, 200);
-            return;
-        } else if(svgs.size() !== mermaids_to_add_zoom) {
-            // try again in a sec, wait for mermaids to load
-            setTimeout(load, 200);
-            return;
-        } else {
-            svgs.each(function() {
-                var svg = d3.select(this);
-                svg.html("<g class='wrapper'>" + svg.html() + "</g>");
-                var inner = svg.select("g");
-                var zoom = d3.zoom().on("zoom", function(event) {
-                    inner.attr("transform", event.transform);
-                });
-                svg.call(zoom);
-            });
-        }
-    }
-};
-
-window.addEventListener("load", load);
+window.addEventListener("load", () => mermaid.run());
 </script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="#" />
@@ -106,7 +77,9 @@ window.addEventListener("load", load);
 
 
 <style>
-
+p.admonition-title{
+    color: #404040 !important;
+}
 </style>
  
 
@@ -143,6 +116,7 @@ window.addEventListener("load", load);
 <li class="toctree-l1"><a class="reference internal" href="_collections/gen-rational/index.html">Generator Rational Tangles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/gen-rlitt/index.html">Generator Right Leaning Identity Tangle Tree</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/mut-wptt_f_moves/index.html">Mutator Weighted Planar Tangle Tree $F_i$ Moves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/note-twist_vector/index.html">Notation Twist Vector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/note-wptt/index.html">Notation Weighted Planar Tangle Tree</a></li>
@@ -180,8 +154,10 @@ window.addEventListener("load", load);
  <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
+ | <a href="#S"><strong>S</strong></a>
  | <a href="#W"><strong>W</strong></a>
  
 </div>
@@ -575,12 +551,54 @@ window.addEventListener("load", load);
   </ul></td>
 </tr></table>
 
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv48localcfg">localcfg (C++ member)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#c.MUT_RLITT_RINGSHIFT_COMPUTE_ALREADY_COMPUTED">MUT_RLITT_RINGSHIFT_COMPUTE_ALREADY_COMPUTED (C macro)</a>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv423mut_f_moves_direction_e">mut_f_moves_direction_e (C++ enum)</a>
+
+      <ul>
+        <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv423mut_f_moves_direction_e">(C++ type)</a>
 </li>
-      <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#c.MUT_RLITT_RINGSHIFT_COMPUTE_CFG_ERROR">MUT_RLITT_RINGSHIFT_COMPUTE_CFG_ERROR (C macro)</a>
+      </ul></li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv4N23mut_f_moves_direction_e18MUT_F_MOVES_DIR_BKE">mut_f_moves_direction_e::MUT_F_MOVES_DIR_BK (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv4N23mut_f_moves_direction_e19MUT_F_MOVES_DIR_FWDE">mut_f_moves_direction_e::MUT_F_MOVES_DIR_FWD (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv4N23mut_f_moves_direction_e22MUT_F_MOVES_DIR_UNINITE">mut_f_moves_direction_e::MUT_F_MOVES_DIR_UNINIT (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv413mut_f_moves_e">mut_f_moves_e (C++ enum)</a>
+
+      <ul>
+        <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv413mut_f_moves_e">(C++ type)</a>
+</li>
+      </ul></li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv4N13mut_f_moves_e13MUT_F_MOVE_F1E">mut_f_moves_e::MUT_F_MOVE_F1 (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv4N13mut_f_moves_e13MUT_F_MOVE_F2E">mut_f_moves_e::MUT_F_MOVE_F2 (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv4N13mut_f_moves_e13MUT_F_MOVE_F3E">mut_f_moves_e::MUT_F_MOVE_F3 (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv4N13mut_f_moves_e17MUT_F_MOVE_UNINITE">mut_f_moves_e::MUT_F_MOVE_UNINIT (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv421mut_f_moves_eqclass_e">mut_f_moves_eqclass_e (C++ enum)</a>
+
+      <ul>
+        <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv421mut_f_moves_eqclass_e">(C++ type)</a>
+</li>
+      </ul></li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv4N21mut_f_moves_eqclass_e25MUT_F_MOVES_EQCLASS_CHILDE">mut_f_moves_eqclass_e::MUT_F_MOVES_EQCLASS_CHILD (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv4N21mut_f_moves_eqclass_e24MUT_F_MOVES_EQCLASS_SELFE">mut_f_moves_eqclass_e::MUT_F_MOVES_EQCLASS_SELF (C++ enumerator)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv4N21mut_f_moves_eqclass_e26MUT_F_MOVES_EQCLASS_UNINITE">mut_f_moves_eqclass_e::MUT_F_MOVES_EQCLASS_UNINIT (C++ enumerator)</a>
 </li>
       <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#_CPPv426mut_rlitt_ringshift_configP28mut_rlitt_ringshift_config_t">mut_rlitt_ringshift_config (C++ function)</a>, <a href="_collections/mut-rlitt_ringshift/unit-description.html#_CPPv426mut_rlitt_ringshift_configP28mut_rlitt_ringshift_config_t">[1]</a>
 </li>
@@ -590,8 +608,6 @@ window.addEventListener("load", load);
 </li>
       <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#_CPPv4N28mut_rlitt_ringshift_config_t4wpttE">mut_rlitt_ringshift_config_t::wptt (C++ member)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#c.MUT_RLITT_RINGSHIFT_CONFIG_WPTT">MUT_RLITT_RINGSHIFT_CONFIG_WPTT (C macro)</a>
 </li>
       <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#_CPPv428mut_rlitt_ringshift_executed">mut_rlitt_ringshift_executed (C++ member)</a>
@@ -602,9 +618,73 @@ window.addEventListener("load", load);
 </li>
       <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#_CPPv426mut_rlitt_ringshift_mutatev">mut_rlitt_ringshift_mutate (C++ function)</a>, <a href="_collections/mut-rlitt_ringshift/unit-description.html#_CPPv426mut_rlitt_ringshift_mutatev">[1]</a>
 </li>
+      <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#c.MUT_RLITT_RINGSHIFT_MUTATE_ALREADY_COMPUTED">MUT_RLITT_RINGSHIFT_MUTATE_ALREADY_COMPUTED (C macro)</a>
+</li>
+      <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#c.MUT_RLITT_RINGSHIFT_MUTATE_CFG_ERROR">MUT_RLITT_RINGSHIFT_MUTATE_CFG_ERROR (C macro)</a>
+</li>
       <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#_CPPv434mut_rlitt_ringshift_ringshift_treeP11note_wptt_t">mut_rlitt_ringshift_ringshift_tree (C++ function)</a>
 </li>
       <li><a href="_collections/mut-rlitt_ringshift/unit-description.html#c.MUT_RLITT_RINGSHIFT_STACK_SIZE">MUT_RLITT_RINGSHIFT_STACK_SIZE (C macro)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv423mut_wptt_f_moves_configP25mut_wptt_f_moves_config_t">mut_wptt_f_moves_config (C++ function)</a>, <a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv423mut_wptt_f_moves_configP25mut_wptt_f_moves_config_t">[1]</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#c.MUT_WPTT_F_MOVES_CONFIG_F1">MUT_WPTT_F_MOVES_CONFIG_F1 (C macro)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#c.MUT_WPTT_F_MOVES_CONFIG_F2">MUT_WPTT_F_MOVES_CONFIG_F2 (C macro)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#c.MUT_WPTT_F_MOVES_CONFIG_F3">MUT_WPTT_F_MOVES_CONFIG_F3 (C macro)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#c.MUT_WPTT_F_MOVES_CONFIG_IS_NULL">MUT_WPTT_F_MOVES_CONFIG_IS_NULL (C macro)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#c.MUT_WPTT_F_MOVES_CONFIG_MOVE">MUT_WPTT_F_MOVES_CONFIG_MOVE (C macro)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv425mut_wptt_f_moves_config_t">mut_wptt_f_moves_config_t (C++ struct)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv4N25mut_wptt_f_moves_config_t9directionE">mut_wptt_f_moves_config_t::direction (C++ member)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv4N25mut_wptt_f_moves_config_t7eqclassE">mut_wptt_f_moves_config_t::eqclass (C++ member)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv4N25mut_wptt_f_moves_config_t4moveE">mut_wptt_f_moves_config_t::move (C++ member)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv4N25mut_wptt_f_moves_config_t8V4_labelE">mut_wptt_f_moves_config_t::V4_label (C++ member)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv4N25mut_wptt_f_moves_config_t6vertexE">mut_wptt_f_moves_config_t::vertex (C++ member)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv4N25mut_wptt_f_moves_config_t10weight_idxE">mut_wptt_f_moves_config_t::weight_idx (C++ member)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#c.MUT_WPTT_F_MOVES_CONFIG_VERTEX">MUT_WPTT_F_MOVES_CONFIG_VERTEX (C macro)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv419mut_wptt_f_moves_F1v">mut_wptt_f_moves_F1 (C++ function)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv419mut_wptt_f_moves_F2v">mut_wptt_f_moves_F2 (C++ function)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv419mut_wptt_f_moves_F3v">mut_wptt_f_moves_F3 (C++ function)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv426mut_wptt_f_moves_F3_nowrapv">mut_wptt_f_moves_F3_nowrap (C++ function)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv424mut_wptt_f_moves_F3_wrap6size_t">mut_wptt_f_moves_F3_wrap (C++ function)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv423mut_wptt_f_moves_mutatev">mut_wptt_f_moves_mutate (C++ function)</a>, <a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv423mut_wptt_f_moves_mutatev">[1]</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#c.MUT_WPTT_F_MOVES_MUTATE_ALREADY_COMPUTED">MUT_WPTT_F_MOVES_MUTATE_ALREADY_COMPUTED (C macro)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#c.MUT_WPTT_F_MOVES_MUTATE_CFG_ERROR">MUT_WPTT_F_MOVES_MUTATE_CFG_ERROR (C macro)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#c.MUT_WPTT_F_MOVES_MUTATE_LABEL_ERROR">MUT_WPTT_F_MOVES_MUTATE_LABEL_ERROR (C macro)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#c.MUT_WPTT_F_MOVES_MUTATE_MOVE_CFG">MUT_WPTT_F_MOVES_MUTATE_MOVE_CFG (C macro)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#c.MUT_WPTT_F_MOVES_MUTATE_MOVE_EQCLASS">MUT_WPTT_F_MOVES_MUTATE_MOVE_EQCLASS (C macro)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#c.MUT_WPTT_F_MOVES_MUTATE_MOVE_F3_ERROR">MUT_WPTT_F_MOVES_MUTATE_MOVE_F3_ERROR (C macro)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#c.MUT_WPTT_F_MOVES_MUTATE_MOVE_WALK_ERROR">MUT_WPTT_F_MOVES_MUTATE_MOVE_WALK_ERROR (C macro)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#c.MUT_WPTT_F_MOVES_STACK_SIZE">MUT_WPTT_F_MOVES_STACK_SIZE (C macro)</a>
+</li>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv421mut_wptt_f_moves_walkP16note_wptt_node_t23should_reverse_funptr_t">mut_wptt_f_moves_walk (C++ function)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -837,13 +917,23 @@ window.addEventListener("load", load);
   </ul></td>
 </tr></table>
 
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv423should_reverse_funptr_t">should_reverse_funptr_t (C++ type)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_collections/note-wptt/unit-description.html#_CPPv415wptt_node_stack">wptt_node_stack (C++ member)</a>
+      <li><a href="_collections/mut-wptt_f_moves/unit-description.html#_CPPv412was_executed">was_executed (C++ member)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_collections/note-wptt/unit-description.html#_CPPv415wptt_node_stack">wptt_node_stack (C++ member)</a>
+</li>
       <li><a href="_collections/note-wptt/unit-description.html#_CPPv414wptt_stack_len">wptt_stack_len (C++ member)</a>
 </li>
   </ul></td>

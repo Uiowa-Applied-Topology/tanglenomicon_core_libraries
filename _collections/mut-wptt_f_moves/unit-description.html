@@ -1,0 +1,1071 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit Description &mdash; Tanglenomicon Core Libraries 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/proof.css?v=b4b7a797" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+      <script type="module">mermaid.initialize({
+  securityLevel: 'loose',
+  theme: 'dark',
+});</script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Notation Algebraic Tangle Trees" href="../note-algebraic_tangle_tree/index.html" />
+    <link rel="prev" title="Use Case" href="use-case.html" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                macros: {
+                    "\\N": "\\mathbb{N}",
+                    "\\Z": "\\mathbb{Z}",
+                    "\\Q": "\\mathbb{Q}",
+                    "\\R": "\\mathbb{R}",
+                    "\\LN": "\\left.",
+                    "\\RN": "\\right.",
+                    "\\LP": "\\left(",
+                    "\\RP": "\\right)",
+                    "\\LS": "\\left\\lbrace",
+                    "\\RS": "\\right\\rbrace",
+                    "\\LA": "\\left\\langle",
+                    "\\RA": "\\right\\rangle",
+                    "\\LB": "\\left[",
+                    "\\RB": "\\right]",
+                    "\\MM": "\\ \\middle|\\ ",
+                    "\\exp": "\\text{exp}",
+                    "\\abs": "\\left\\vert#1\\right\\vert",
+                    "\\msr": "m\\left(#1\\right)",
+                    "\\inv": " #1^{-1}",
+                    "\\bkt": "\\LA \\img{ #1}\\RA",
+                }
+            }
+        );
+    });
+</script>
+
+
+<style>
+p.admonition-title{
+    color: #404040 !important;
+}
+</style>
+ 
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Tanglenomicon Core Libraries
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Generic Interfaces</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../comp-rational_data/index.html">Computation Rational Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_grafting/index.html">Computation Right Leaning Identity Tangle Tree Grafting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-rlitt_positivity/index.html">Computation Right Leaning Identity Tangle Tree Positivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comp-wptt_vertex_canonicity/index.html">Computation Weighted Planar Tangle Tree Vertex Canonicity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-montesinos/index.html">Generator Montesinos Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rational/index.html">Generator Rational Tangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gen-rlitt/index.html">Generator Right Leaning Identity Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Mutator Weighted Planar Tangle Tree $F_i$ Moves</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="use-case.html">Use Case</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Unit Description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#language">Language</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implements">Implements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#external-libraries">External Libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functionality">Functionality</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#public">Public</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#private">Private</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#validation">Validation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Configuration Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mutate-function">Mutate Function</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#doxygen-documentation">Doxygen Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#c.MUT_WPTT_F_MOVES_CONFIG_VERTEX"><code class="docutils literal notranslate"><span class="pre">MUT_WPTT_F_MOVES_CONFIG_VERTEX</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.MUT_WPTT_F_MOVES_CONFIG_IS_NULL"><code class="docutils literal notranslate"><span class="pre">MUT_WPTT_F_MOVES_CONFIG_IS_NULL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.MUT_WPTT_F_MOVES_CONFIG_F1"><code class="docutils literal notranslate"><span class="pre">MUT_WPTT_F_MOVES_CONFIG_F1</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.MUT_WPTT_F_MOVES_CONFIG_F2"><code class="docutils literal notranslate"><span class="pre">MUT_WPTT_F_MOVES_CONFIG_F2</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.MUT_WPTT_F_MOVES_CONFIG_F3"><code class="docutils literal notranslate"><span class="pre">MUT_WPTT_F_MOVES_CONFIG_F3</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.MUT_WPTT_F_MOVES_CONFIG_MOVE"><code class="docutils literal notranslate"><span class="pre">MUT_WPTT_F_MOVES_CONFIG_MOVE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.MUT_WPTT_F_MOVES_MUTATE_CFG_ERROR"><code class="docutils literal notranslate"><span class="pre">MUT_WPTT_F_MOVES_MUTATE_CFG_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.MUT_WPTT_F_MOVES_MUTATE_ALREADY_COMPUTED"><code class="docutils literal notranslate"><span class="pre">MUT_WPTT_F_MOVES_MUTATE_ALREADY_COMPUTED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.MUT_WPTT_F_MOVES_MUTATE_MOVE_CFG"><code class="docutils literal notranslate"><span class="pre">MUT_WPTT_F_MOVES_MUTATE_MOVE_CFG</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.MUT_WPTT_F_MOVES_MUTATE_MOVE_EQCLASS"><code class="docutils literal notranslate"><span class="pre">MUT_WPTT_F_MOVES_MUTATE_MOVE_EQCLASS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.MUT_WPTT_F_MOVES_MUTATE_MOVE_F3_ERROR"><code class="docutils literal notranslate"><span class="pre">MUT_WPTT_F_MOVES_MUTATE_MOVE_F3_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.MUT_WPTT_F_MOVES_MUTATE_MOVE_WALK_ERROR"><code class="docutils literal notranslate"><span class="pre">MUT_WPTT_F_MOVES_MUTATE_MOVE_WALK_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.MUT_WPTT_F_MOVES_MUTATE_LABEL_ERROR"><code class="docutils literal notranslate"><span class="pre">MUT_WPTT_F_MOVES_MUTATE_LABEL_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv413mut_f_moves_e"><code class="docutils literal notranslate"><span class="pre">mut_f_moves_e</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv423mut_f_moves_direction_e"><code class="docutils literal notranslate"><span class="pre">mut_f_moves_direction_e</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv421mut_f_moves_eqclass_e"><code class="docutils literal notranslate"><span class="pre">mut_f_moves_eqclass_e</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv423mut_wptt_f_moves_configP25mut_wptt_f_moves_config_t"><code class="docutils literal notranslate"><span class="pre">mut_wptt_f_moves_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv423mut_wptt_f_moves_mutatev"><code class="docutils literal notranslate"><span class="pre">mut_wptt_f_moves_mutate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv425mut_wptt_f_moves_config_t"><code class="docutils literal notranslate"><span class="pre">mut_wptt_f_moves_config_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.MUT_WPTT_F_MOVES_STACK_SIZE"><code class="docutils literal notranslate"><span class="pre">MUT_WPTT_F_MOVES_STACK_SIZE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv423should_reverse_funptr_t"><code class="docutils literal notranslate"><span class="pre">should_reverse_funptr_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv419mut_wptt_f_moves_F1v"><code class="docutils literal notranslate"><span class="pre">mut_wptt_f_moves_F1()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv419mut_wptt_f_moves_F2v"><code class="docutils literal notranslate"><span class="pre">mut_wptt_f_moves_F2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv419mut_wptt_f_moves_F3v"><code class="docutils literal notranslate"><span class="pre">mut_wptt_f_moves_F3()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv421mut_wptt_f_moves_walkP16note_wptt_node_t23should_reverse_funptr_t"><code class="docutils literal notranslate"><span class="pre">mut_wptt_f_moves_walk()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv424mut_wptt_f_moves_F3_wrap6size_t"><code class="docutils literal notranslate"><span class="pre">mut_wptt_f_moves_F3_wrap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv426mut_wptt_f_moves_F3_nowrapv"><code class="docutils literal notranslate"><span class="pre">mut_wptt_f_moves_F3_nowrap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv412was_executed"><code class="docutils literal notranslate"><span class="pre">was_executed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv48localcfg"><code class="docutils literal notranslate"><span class="pre">localcfg</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bibliography">Bibliography</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-twist_vector/index.html">Notation Twist Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note-wptt/index.html">Notation Weighted Planar Tangle Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-cpp_storage_interface/index.html">Storage C++ Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store-json/index.html">Storage JSON</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tanglenomicon Core Libraries</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Mutator Weighted Planar Tangle Tree $F_i$ Moves</a></li>
+      <li class="breadcrumb-item active">Unit Description</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/_collections/mut-wptt_f_moves/unit-description.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="topic abstract" role="doc-abstract">
+<p class="topic-title">Abstract</p>
+<p>A unit description for mutation of the $F_i$ move mutator.</p>
+</div>
+<section id="unit-description">
+<h1>Unit Description<a class="headerlink" href="#unit-description" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A block diagram for the component under development</p>
+</div>
+<pre  class="mermaid">
+        classDiagram
+    mut_wptt_f_moves --|&gt; mutator
+    mut_wptt_f_moves_config_t --|&gt; mut_config_t
+    mut_wptt_f_moves_config_t *-- notation_wptt
+    mut_wptt_f_moves *-- mut_wptt_f_moves_config_t
+    mut_wptt_f_moves_config_t *-- mut_wptt_f_move_e
+    mut_wptt_f_moves_config_t *-- mut_wptt_f_moves_direction_e
+    mut_wptt_f_moves_config_t *-- mut_wptt_f_moves_eqclass_e
+
+    class mutator {
+        &lt;&lt;interface&gt;&gt;
+    }
+
+    class mut_wptt_f_moves {
+    &lt;&lt;&gt;&gt;
+    }
+
+    class notation_wptt{
+    &lt;&lt;&gt;&gt;
+    }
+
+    class mut_wptt_f_moves_config_t {
+    &lt;&lt;struct&gt;&gt;
+    + note_wptt_node_t wptt
+    + note_wptt_V4_label_e V4_label
+    + mut_wptt_f_move_e move
+    + size_t weight_idx
+    + mut_wptt_f_moves_direction_e shift_dir
+    + mut_wptt_f_moves_eqclass_e eq_class
+    }
+
+    class mut_wptt_f_moves_eqclass_e{
+        &lt;&lt;enum&gt;&gt;
+        uninit,
+        Vertex,
+        Children
+    }
+
+    class mut_wptt_f_moves_direction_e{
+        &lt;&lt;enum&gt;&gt;
+        uninit,
+        Forward,
+        Backward
+    }
+
+    class mut_wptt_f_move_e{
+        &lt;&lt;enum&gt;&gt;
+        uninit,
+        F1,
+        F2,
+        F3
+    }
+
+    class mut_config_t {
+    &lt;&lt;interface&gt;&gt;
+
+    }
+
+
+    </pre><section id="language">
+<h2>Language<a class="headerlink" href="#language" title="Link to this heading"></a></h2>
+<p>C</p>
+</section>
+<section id="implements">
+<h2>Implements<a class="headerlink" href="#implements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#../../docs/unit_description/mutation-interface.md"><span class="xref myst">Mutator Interface</span></a></p></li>
+</ul>
+</section>
+<section id="uses">
+<h2>Uses<a class="headerlink" href="#uses" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../note-wptt/index.html#note-wptt"><span class="std std-ref">Notation Weighted Planar Tangle Tree</span></a></p></li>
+</ul>
+</section>
+<section id="external-libraries">
+<h2>External Libraries<a class="headerlink" href="#external-libraries" title="Link to this heading"></a></h2>
+<p>None</p>
+</section>
+<section id="functionality">
+<h2>Functionality<a class="headerlink" href="#functionality" title="Link to this heading"></a></h2>
+<section id="public">
+<h3>Public<a class="headerlink" href="#public" title="Link to this heading"></a></h3>
+<section id="structures">
+<h4>Structures<a class="headerlink" href="#structures" title="Link to this heading"></a></h4>
+<section id="configuration-structure">
+<h5>Configuration structure<a class="headerlink" href="#configuration-structure" title="Link to this heading"></a></h5>
+<p>The configuration structure contains the data needed for mutating a tree with the $F_1$, $F_2$, and
+$F_3^\prime$ moves.</p>
+<p>This includes:</p>
+<ul class="simple">
+<li><p>A pointer to a node in a WPTT.</p></li>
+<li><p>An indicator for which $F_i$ move to apply.</p></li>
+<li><p>The index for the weight to operate on.</p></li>
+<li><p>An indicator for which direction to shift the weight.</p></li>
+<li><p>An indicator for which equivalence class of vertex to operate on.</p></li>
+</ul>
+</section>
+</section>
+<section id="functions">
+<h4>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h4>
+<section id="configuration-function">
+<h5>Configuration function<a class="headerlink" href="#configuration-function" title="Link to this heading"></a></h5>
+<p>The configuration function configures the local instance variable of the mutator.</p>
+<p>This process is described in the following state machines:</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+  state &quot;Init local config&quot; as Sc
+
+    [*] --&gt; Sc
+    Sc --&gt; [*]
+
+    </pre></section>
+<section id="mutator-function">
+<h5>Mutator function<a class="headerlink" href="#mutator-function" title="Link to this heading"></a></h5>
+<p>The mutator function carries out the arborescent tangle $F_i$ mutations. The function may contain
+submachines that can be broken out into functions in the implementation.</p>
+<p>This process is described in the following state machines:</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+    state move &lt;&lt;choice&gt;&gt;
+    state &quot;Run $$\,F_3^\prime$$&quot; as rf3
+    state &quot;Run $$\,F_2$$&quot; as rf2
+    state &quot;Run $$\,F_1$$&quot; as rf1
+    [*] --&gt; move
+    move --&gt; rf3: Request $$\,F_3^\prime$$
+    move --&gt; rf2: Request $$\,F_2$$
+    move --&gt; rf1: Request $$\,F_1$$
+    move --&gt; [*]: Else
+    rf3 --&gt; [*]
+    rf2 --&gt; [*]
+    rf1 --&gt; [*]
+    </pre></section>
+</section>
+</section>
+<section id="private">
+<h3>Private<a class="headerlink" href="#private" title="Link to this heading"></a></h3>
+<section id="function">
+<h4>Function<a class="headerlink" href="#function" title="Link to this heading"></a></h4>
+<section id="f-1">
+<h5>$F_1$<a class="headerlink" href="#f-1" title="Link to this heading"></a></h5>
+<p>The state machine describing the flow and mutations for the $F_1$ move are as follows:</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+    walk: Walk the tree and execute for each vertex visited
+
+    state walk{
+    state &quot;Reverse order of vertex&quot; as ro
+    [*]--&gt;ro
+    ro --&gt; [*]
+    }
+    [*]--&gt; walk
+    walk --&gt; [*]
+    </pre></section>
+<section id="f-2">
+<h5>$F_2$<a class="headerlink" href="#f-2" title="Link to this heading"></a></h5>
+<p>The state machine describing the flow and mutations for the $F_2$ move are as follows:</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+
+    state at_object &lt;&lt;choice&gt;&gt;
+    state &quot;Walk the tree and reverse&quot; as walk
+    child: For each child
+    state child{
+    state &quot;Walk the tree and reverse&quot; as ro
+    [*]--&gt;ro
+    ro --&gt; [*]
+    }
+    [*]--&gt; at_object
+    at_object--&gt; walk: Current vertex requested
+    at_object --&gt; child: Child vertex requested
+    child --&gt; [*]
+    walk --&gt; [*]
+    </pre></section>
+<section id="f-3-prime">
+<h5>$F_3^\prime$<a class="headerlink" href="#f-3-prime" title="Link to this heading"></a></h5>
+<p>The state machine describing the flow and mutations for the $F_3^\prime$ move are as follows where
+$i$ is assumed to to be the index of the weight $w_i$ to be acted on and $j$ is the index of the
+destination index wrapping where needed:</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+    sib: For each sibling
+    state sib{
+        state &quot;Walk the tree and reverse&quot; as swtt
+        [*]--&gt; swtt
+        swtt --&gt; [*]
+    }
+    state &quot;Walk the tree and reverse&quot; as wtt
+    state is_zero &lt;&lt;choice&gt;&gt;
+    state is_parent &lt;&lt;choice&gt;&gt;
+    state is_odd &lt;&lt;choice&gt;&gt;
+    state &quot;Set w_j+w_i&quot; as sij
+    state &quot;Set w_i=0&quot; as wi0
+    [*] --&gt; is_zero
+    is_zero --&gt; [*]: $$w_i\,$$ is zero
+    is_zero --&gt; sij
+    sij --&gt; wi0
+    wi0 --&gt; is_odd
+    is_odd --&gt; is_parent: w_i%2=2
+    is_parent --&gt; wtt: Else
+    is_parent --&gt; sib: If j==0 or  j == n+1$$
+    sib --&gt; [*]
+    wtt --&gt; [*]
+    is_odd --&gt; [*]: Else
+
+
+
+    </pre></section>
+<section id="walk-the-tree-and-reverse">
+<h5>Walk the tree and reverse<a class="headerlink" href="#walk-the-tree-and-reverse" title="Link to this heading"></a></h5>
+<p>Walk the tree and execute the following for each vertex visited:</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+        state is_odd &lt;&lt;choice&gt;&gt;
+        state &quot;Reverse order of vertex&quot; as ro
+        [*]--&gt; is_odd
+        is_odd --&gt; ro: Is odd stack count
+        is_odd --&gt; [*]: else
+        ro --&gt; [*]
+    </pre></section>
+</section>
+</section>
+</section>
+<section id="validation">
+<h2>Validation<a class="headerlink" href="#validation" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>Configuration Function<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<section id="positive-tests">
+<h4>Positive Tests<a class="headerlink" href="#positive-tests" title="Link to this heading"></a></h4>
+<div class="admonition-valid-config admonition">
+<p class="admonition-title">Valid Config</p>
+<p>A valid configuration for the mutation is passed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid config.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A positive response.</p>
+</div>
+</section>
+<section id="negative-tests">
+<h4>Negative Tests<a class="headerlink" href="#negative-tests" title="Link to this heading"></a></h4>
+<div class="admonition-null-config admonition">
+<p class="admonition-title">Null Config</p>
+<p>A null configuration for the mutation is passed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A null config.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+<div class="admonition-invalid-configuration-parameters admonition">
+<p class="admonition-title">Invalid Configuration Parameters</p>
+<p>A configuration with various null parameters is passed to the function.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A configuration with null vertex.</p></li>
+<li><p>A configuration with an uninitialized move.</p></li>
+<li><p>Configurations for the $F_1$ move with:</p>
+<ul>
+<li><p>Null label</p></li>
+<li><p>Uninitialized label</p></li>
+</ul>
+</li>
+<li><p>Configurations for the $F_2$ move with:</p>
+<ul>
+<li><p>Null label</p></li>
+<li><p>Uninitialized label</p></li>
+<li><p>Uninitialized eqclass</p></li>
+</ul>
+</li>
+<li><p>Configurations for the $F_3^\prime$ move with:</p>
+<ul>
+<li><p>Uninitialized direction</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+</section>
+</section>
+<section id="mutate-function">
+<h3>Mutate Function<a class="headerlink" href="#mutate-function" title="Link to this heading"></a></h3>
+<section id="id2">
+<h4>Positive Tests<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<div class="admonition-a-valid-config admonition">
+<p class="admonition-title">A valid config</p>
+<p>A valid configuration is set for the component. The mutation is executed and
+returns successfully.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>A valid configuration is set for $F_1$.</p></li>
+<li><p>Valid configurations are set for $F_2$:</p>
+<ul>
+<li><p>Eqclass is child.</p></li>
+<li><p>Eqclass is self.</p></li>
+</ul>
+</li>
+<li><p>Valid configurations are set for $F_3^\prime$ with at least one test suming two weights:</p>
+<ul>
+<li><p>Odd weight:</p>
+<ul>
+<li><p>Index is rightmost:</p>
+<ul>
+<li><p>Direction is forward.</p></li>
+<li><p>Direction is backward.</p></li>
+</ul>
+</li>
+<li><p>Index is leftmost:</p>
+<ul>
+<li><p>Direction is forward.</p></li>
+<li><p>Direction is backward.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Even weight:</p>
+<ul>
+<li><p>Index is rightmost:</p>
+<ul>
+<li><p>Direction is forward.</p></li>
+<li><p>Direction is backward.</p></li>
+</ul>
+</li>
+<li><p>Index is leftmost:</p>
+<ul>
+<li><p>Direction is forward.</p></li>
+<li><p>Direction is backward.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<ul class="simple">
+<li><p>A positive response.</p></li>
+<li><p>Mutation is correct.</p></li>
+</ul>
+</div>
+</section>
+<section id="id3">
+<h4>Negative Tests<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<div class="admonition-not-configured admonition">
+<p class="admonition-title">Not Configured</p>
+<p>The mutate interface is called before configuration.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>None.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+<div class="admonition-double-execute admonition">
+<p class="admonition-title">Double Execute</p>
+<p>The mutate interface is called without reconfiguring the module.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>None.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+<div class="admonition-f-3-prime-index-out-of-bounds admonition">
+<p class="admonition-title">$F_3^\prime$ index out of bounds</p>
+<p>The mutate interface is called with a weight index configured outside
+of the size of the number of children.</p>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p>Configuration with weight idx outside bounds.</p></li>
+</ul>
+<p><strong>Expected Output:</strong></p>
+<p>A negative response.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="doxygen-documentation">
+<h2>Doxygen Documentation<a class="headerlink" href="#doxygen-documentation" title="Link to this heading"></a></h2>
+<p>Mutates a tree by one of the $F_i$ moves. </p>
+<p><dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Joe Starr </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MUT_WPTT_F_MOVES_CONFIG_VERTEX">
+<span class="target" id="mut__wptt__f__moves_8h_1aaa856b36652bd071b44409fdef9739c0"></span><span class="sig-name descname"><span class="n"><span class="pre">MUT_WPTT_F_MOVES_CONFIG_VERTEX</span></span></span><a class="headerlink" href="#c.MUT_WPTT_F_MOVES_CONFIG_VERTEX" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to issue with the object vertex. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MUT_WPTT_F_MOVES_CONFIG_IS_NULL">
+<span class="target" id="mut__wptt__f__moves_8h_1a8a0a3d9ca01715423fed2e6f5d6de24b"></span><span class="sig-name descname"><span class="n"><span class="pre">MUT_WPTT_F_MOVES_CONFIG_IS_NULL</span></span></span><a class="headerlink" href="#c.MUT_WPTT_F_MOVES_CONFIG_IS_NULL" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to a null config. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MUT_WPTT_F_MOVES_CONFIG_F1">
+<span class="target" id="mut__wptt__f__moves_8h_1aded551172c225b8bf485bbe4ad8e787e"></span><span class="sig-name descname"><span class="n"><span class="pre">MUT_WPTT_F_MOVES_CONFIG_F1</span></span></span><a class="headerlink" href="#c.MUT_WPTT_F_MOVES_CONFIG_F1" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to F1 config issue. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MUT_WPTT_F_MOVES_CONFIG_F2">
+<span class="target" id="mut__wptt__f__moves_8h_1a16e920a271daa2632dbc210e2d37cda8"></span><span class="sig-name descname"><span class="n"><span class="pre">MUT_WPTT_F_MOVES_CONFIG_F2</span></span></span><a class="headerlink" href="#c.MUT_WPTT_F_MOVES_CONFIG_F2" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to F2 config issue. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MUT_WPTT_F_MOVES_CONFIG_F3">
+<span class="target" id="mut__wptt__f__moves_8h_1a5253b4cf5f94a5b5ee29639775bb0ac9"></span><span class="sig-name descname"><span class="n"><span class="pre">MUT_WPTT_F_MOVES_CONFIG_F3</span></span></span><a class="headerlink" href="#c.MUT_WPTT_F_MOVES_CONFIG_F3" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to F3 config issue. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MUT_WPTT_F_MOVES_CONFIG_MOVE">
+<span class="target" id="mut__wptt__f__moves_8h_1a8d0ac945ac842cca3f437c327ed51144"></span><span class="sig-name descname"><span class="n"><span class="pre">MUT_WPTT_F_MOVES_CONFIG_MOVE</span></span></span><a class="headerlink" href="#c.MUT_WPTT_F_MOVES_CONFIG_MOVE" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to configure the module due to move config issue. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MUT_WPTT_F_MOVES_MUTATE_CFG_ERROR">
+<span class="target" id="mut__wptt__f__moves_8h_1ac0aa46a14c90b26fa1200093ff768538"></span><span class="sig-name descname"><span class="n"><span class="pre">MUT_WPTT_F_MOVES_MUTATE_CFG_ERROR</span></span></span><a class="headerlink" href="#c.MUT_WPTT_F_MOVES_MUTATE_CFG_ERROR" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to run the module due to null config. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MUT_WPTT_F_MOVES_MUTATE_ALREADY_COMPUTED">
+<span class="target" id="mut__wptt__f__moves_8h_1aa5cb03f4d33239c4d8e0f6727de6a93f"></span><span class="sig-name descname"><span class="n"><span class="pre">MUT_WPTT_F_MOVES_MUTATE_ALREADY_COMPUTED</span></span></span><a class="headerlink" href="#c.MUT_WPTT_F_MOVES_MUTATE_ALREADY_COMPUTED" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to run the module due to the config having been previously computed against. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MUT_WPTT_F_MOVES_MUTATE_MOVE_CFG">
+<span class="target" id="mut__wptt__f__moves_8h_1a5e2315372497ccf8079cd0189eca855b"></span><span class="sig-name descname"><span class="n"><span class="pre">MUT_WPTT_F_MOVES_MUTATE_MOVE_CFG</span></span></span><a class="headerlink" href="#c.MUT_WPTT_F_MOVES_MUTATE_MOVE_CFG" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to run the module due to move configuration error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MUT_WPTT_F_MOVES_MUTATE_MOVE_EQCLASS">
+<span class="target" id="mut__wptt__f__moves_8h_1a25743f83c165fa09381534373053b675"></span><span class="sig-name descname"><span class="n"><span class="pre">MUT_WPTT_F_MOVES_MUTATE_MOVE_EQCLASS</span></span></span><a class="headerlink" href="#c.MUT_WPTT_F_MOVES_MUTATE_MOVE_EQCLASS" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to run the module due to eqclass configuration error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MUT_WPTT_F_MOVES_MUTATE_MOVE_F3_ERROR">
+<span class="target" id="mut__wptt__f__moves_8h_1a09416c7308c408066e2e42f57130863e"></span><span class="sig-name descname"><span class="n"><span class="pre">MUT_WPTT_F_MOVES_MUTATE_MOVE_F3_ERROR</span></span></span><a class="headerlink" href="#c.MUT_WPTT_F_MOVES_MUTATE_MOVE_F3_ERROR" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to run the module due to mutation $F_3\prime$ error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MUT_WPTT_F_MOVES_MUTATE_MOVE_WALK_ERROR">
+<span class="target" id="mut__wptt__f__moves_8h_1acb5743fef3b2e01be3ee4c4f16240a6f"></span><span class="sig-name descname"><span class="n"><span class="pre">MUT_WPTT_F_MOVES_MUTATE_MOVE_WALK_ERROR</span></span></span><a class="headerlink" href="#c.MUT_WPTT_F_MOVES_MUTATE_MOVE_WALK_ERROR" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to run the module due to error while walking the tree. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MUT_WPTT_F_MOVES_MUTATE_LABEL_ERROR">
+<span class="target" id="mut__wptt__f__moves_8h_1a0e18f9cd6b258cbec07380bfe346806d"></span><span class="sig-name descname"><span class="n"><span class="pre">MUT_WPTT_F_MOVES_MUTATE_LABEL_ERROR</span></span></span><a class="headerlink" href="#c.MUT_WPTT_F_MOVES_MUTATE_LABEL_ERROR" title="Link to this definition"></a><br /></dt>
+<dd><p>Failed to run the module due to error in label computation. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="mut__wptt__f__moves_8h_1a0d033f68accb40afe868cfd9d5fdbaa8"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv413mut_f_moves_e" title="mut_f_moves_e"><span class="n"><span class="pre">mut_f_moves_e</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mut_f_moves_e</span></span></span><br /></dt>
+<dd><p>Type defining the moves available in the module. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="mut__wptt__f__moves_8h_1a83a17f81c02aeb5af0f28b0930ddde49"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv423mut_f_moves_direction_e" title="mut_f_moves_direction_e"><span class="n"><span class="pre">mut_f_moves_direction_e</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mut_f_moves_direction_e</span></span></span><br /></dt>
+<dd><p>Type defining the direction to shift a weight in the $F_3\prime$ move. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="mut__wptt__f__moves_8h_1a5762892be4f4905148bd5a685f99fc85"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv421mut_f_moves_eqclass_e" title="mut_f_moves_eqclass_e"><span class="n"><span class="pre">mut_f_moves_eqclass_e</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mut_f_moves_eqclass_e</span></span></span><br /></dt>
+<dd><p>Type defining the equivalence class to apply the $F_2$ to. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-enums">Enums</p>
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv413mut_f_moves_e">
+<span id="_CPPv313mut_f_moves_e"></span><span id="_CPPv213mut_f_moves_e"></span><span class="target" id="mut__wptt__f__moves_8h_1adb4c3b919f4db56df9af3a1559e76ca5"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mut_f_moves_e</span></span></span><a class="headerlink" href="#_CPPv413mut_f_moves_e" title="Link to this definition"></a><br /></dt>
+<dd><p>Type defining the moves available in the module. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N13mut_f_moves_e17MUT_F_MOVE_UNINITE">
+<span id="_CPPv3N13mut_f_moves_e17MUT_F_MOVE_UNINITE"></span><span id="_CPPv2N13mut_f_moves_e17MUT_F_MOVE_UNINITE"></span><span class="target" id="mut__wptt__f__moves_8h_1adb4c3b919f4db56df9af3a1559e76ca5ade36b00710e02d97395708e101759e9d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MUT_F_MOVE_UNINIT</span></span></span><a class="headerlink" href="#_CPPv4N13mut_f_moves_e17MUT_F_MOVE_UNINITE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N13mut_f_moves_e13MUT_F_MOVE_F1E">
+<span id="_CPPv3N13mut_f_moves_e13MUT_F_MOVE_F1E"></span><span id="_CPPv2N13mut_f_moves_e13MUT_F_MOVE_F1E"></span><span class="target" id="mut__wptt__f__moves_8h_1adb4c3b919f4db56df9af3a1559e76ca5a1a4a30315a71ac8c9e0e7bd357fba0a3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MUT_F_MOVE_F1</span></span></span><a class="headerlink" href="#_CPPv4N13mut_f_moves_e13MUT_F_MOVE_F1E" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N13mut_f_moves_e13MUT_F_MOVE_F2E">
+<span id="_CPPv3N13mut_f_moves_e13MUT_F_MOVE_F2E"></span><span id="_CPPv2N13mut_f_moves_e13MUT_F_MOVE_F2E"></span><span class="target" id="mut__wptt__f__moves_8h_1adb4c3b919f4db56df9af3a1559e76ca5a9029cccf3186427fd8d9eb3aef8c7a89"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MUT_F_MOVE_F2</span></span></span><a class="headerlink" href="#_CPPv4N13mut_f_moves_e13MUT_F_MOVE_F2E" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N13mut_f_moves_e13MUT_F_MOVE_F3E">
+<span id="_CPPv3N13mut_f_moves_e13MUT_F_MOVE_F3E"></span><span id="_CPPv2N13mut_f_moves_e13MUT_F_MOVE_F3E"></span><span class="target" id="mut__wptt__f__moves_8h_1adb4c3b919f4db56df9af3a1559e76ca5a3854ccd41411907cf5217f068cc32a79"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MUT_F_MOVE_F3</span></span></span><a class="headerlink" href="#_CPPv4N13mut_f_moves_e13MUT_F_MOVE_F3E" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv423mut_f_moves_direction_e">
+<span id="_CPPv323mut_f_moves_direction_e"></span><span id="_CPPv223mut_f_moves_direction_e"></span><span class="target" id="mut__wptt__f__moves_8h_1abd802190d584086f656dca092cdf034a"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mut_f_moves_direction_e</span></span></span><a class="headerlink" href="#_CPPv423mut_f_moves_direction_e" title="Link to this definition"></a><br /></dt>
+<dd><p>Type defining the direction to shift a weight in the $F_3\prime$ move. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N23mut_f_moves_direction_e22MUT_F_MOVES_DIR_UNINITE">
+<span id="_CPPv3N23mut_f_moves_direction_e22MUT_F_MOVES_DIR_UNINITE"></span><span id="_CPPv2N23mut_f_moves_direction_e22MUT_F_MOVES_DIR_UNINITE"></span><span class="target" id="mut__wptt__f__moves_8h_1abd802190d584086f656dca092cdf034aa8b53d6e22fcd42486f1fdff436b1cafd"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MUT_F_MOVES_DIR_UNINIT</span></span></span><a class="headerlink" href="#_CPPv4N23mut_f_moves_direction_e22MUT_F_MOVES_DIR_UNINITE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N23mut_f_moves_direction_e19MUT_F_MOVES_DIR_FWDE">
+<span id="_CPPv3N23mut_f_moves_direction_e19MUT_F_MOVES_DIR_FWDE"></span><span id="_CPPv2N23mut_f_moves_direction_e19MUT_F_MOVES_DIR_FWDE"></span><span class="target" id="mut__wptt__f__moves_8h_1abd802190d584086f656dca092cdf034aa6af0e25073f75a9e557fa654db8c7f4b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MUT_F_MOVES_DIR_FWD</span></span></span><a class="headerlink" href="#_CPPv4N23mut_f_moves_direction_e19MUT_F_MOVES_DIR_FWDE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N23mut_f_moves_direction_e18MUT_F_MOVES_DIR_BKE">
+<span id="_CPPv3N23mut_f_moves_direction_e18MUT_F_MOVES_DIR_BKE"></span><span id="_CPPv2N23mut_f_moves_direction_e18MUT_F_MOVES_DIR_BKE"></span><span class="target" id="mut__wptt__f__moves_8h_1abd802190d584086f656dca092cdf034aad053e2081adfc675e7bbbddb7203340c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MUT_F_MOVES_DIR_BK</span></span></span><a class="headerlink" href="#_CPPv4N23mut_f_moves_direction_e18MUT_F_MOVES_DIR_BKE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv421mut_f_moves_eqclass_e">
+<span id="_CPPv321mut_f_moves_eqclass_e"></span><span id="_CPPv221mut_f_moves_eqclass_e"></span><span class="target" id="mut__wptt__f__moves_8h_1a9c94796a6dcb239a7d4270b2ce1d5e44"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mut_f_moves_eqclass_e</span></span></span><a class="headerlink" href="#_CPPv421mut_f_moves_eqclass_e" title="Link to this definition"></a><br /></dt>
+<dd><p>Type defining the equivalence class to apply the $F_2$ to. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N21mut_f_moves_eqclass_e26MUT_F_MOVES_EQCLASS_UNINITE">
+<span id="_CPPv3N21mut_f_moves_eqclass_e26MUT_F_MOVES_EQCLASS_UNINITE"></span><span id="_CPPv2N21mut_f_moves_eqclass_e26MUT_F_MOVES_EQCLASS_UNINITE"></span><span class="target" id="mut__wptt__f__moves_8h_1a9c94796a6dcb239a7d4270b2ce1d5e44a6f85c51c9bd6658e237915d454a9e46c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MUT_F_MOVES_EQCLASS_UNINIT</span></span></span><a class="headerlink" href="#_CPPv4N21mut_f_moves_eqclass_e26MUT_F_MOVES_EQCLASS_UNINITE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N21mut_f_moves_eqclass_e24MUT_F_MOVES_EQCLASS_SELFE">
+<span id="_CPPv3N21mut_f_moves_eqclass_e24MUT_F_MOVES_EQCLASS_SELFE"></span><span id="_CPPv2N21mut_f_moves_eqclass_e24MUT_F_MOVES_EQCLASS_SELFE"></span><span class="target" id="mut__wptt__f__moves_8h_1a9c94796a6dcb239a7d4270b2ce1d5e44a2728496c3c27458240b06837a31eb261"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MUT_F_MOVES_EQCLASS_SELF</span></span></span><a class="headerlink" href="#_CPPv4N21mut_f_moves_eqclass_e24MUT_F_MOVES_EQCLASS_SELFE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N21mut_f_moves_eqclass_e25MUT_F_MOVES_EQCLASS_CHILDE">
+<span id="_CPPv3N21mut_f_moves_eqclass_e25MUT_F_MOVES_EQCLASS_CHILDE"></span><span id="_CPPv2N21mut_f_moves_eqclass_e25MUT_F_MOVES_EQCLASS_CHILDE"></span><span class="target" id="mut__wptt__f__moves_8h_1a9c94796a6dcb239a7d4270b2ce1d5e44af2d7b493a9d2851028ddb306ef15ff3f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MUT_F_MOVES_EQCLASS_CHILD</span></span></span><a class="headerlink" href="#_CPPv4N21mut_f_moves_eqclass_e25MUT_F_MOVES_EQCLASS_CHILDE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv423mut_wptt_f_moves_configP25mut_wptt_f_moves_config_t">
+<span id="_CPPv323mut_wptt_f_moves_configP25mut_wptt_f_moves_config_t"></span><span id="_CPPv223mut_wptt_f_moves_configP25mut_wptt_f_moves_config_t"></span><span id="mut_wptt_f_moves_config__mut_wptt_f_moves_config_tP"></span><span class="target" id="mut__wptt__f__moves_8h_1adb82142ddb06022ffbad31349d99e7bd"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mut_wptt_f_moves_config</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv425mut_wptt_f_moves_config_t" title="mut_wptt_f_moves_config_t"><span class="n"><span class="pre">mut_wptt_f_moves_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">config_arg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423mut_wptt_f_moves_configP25mut_wptt_f_moves_config_t" title="Link to this definition"></a><br /></dt>
+<dd><p>The public configuration function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config_arg</strong> – The config to set. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv423mut_wptt_f_moves_mutatev">
+<span id="_CPPv323mut_wptt_f_moves_mutatev"></span><span id="_CPPv223mut_wptt_f_moves_mutatev"></span><span id="mut_wptt_f_moves_mutate"></span><span class="target" id="mut__wptt__f__moves_8h_1ac4f367c7809309975efd638829541530"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mut_wptt_f_moves_mutate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423mut_wptt_f_moves_mutatev" title="Link to this definition"></a><br /></dt>
+<dd><p>A public function, calling this executes the mutator on the configured data. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>uint8_t Mutation status info. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv425mut_wptt_f_moves_config_t">
+<span id="_CPPv325mut_wptt_f_moves_config_t"></span><span id="_CPPv225mut_wptt_f_moves_config_t"></span><span id="mut_wptt_f_moves_config_t"></span><span class="target" id="structmut__wptt__f__moves__config__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mut_wptt_f_moves_config_t</span></span></span><a class="headerlink" href="#_CPPv425mut_wptt_f_moves_config_t" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;mut_wptt_f_moves.h&gt;</em></div>
+<p>The type definition for configuring the module. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N25mut_wptt_f_moves_config_t6vertexE">
+<span id="_CPPv3N25mut_wptt_f_moves_config_t6vertexE"></span><span id="_CPPv2N25mut_wptt_f_moves_config_t6vertexE"></span><span id="mut_wptt_f_moves_config_t::vertex__note_wptt_node_tP"></span><span class="target" id="structmut__wptt__f__moves__config__t_1acb33ad917a8cbab6db56f670dece61b9"></span><a class="reference internal" href="../note-wptt/unit-description.html#_CPPv416note_wptt_node_t" title="note_wptt_node_t"><span class="n"><span class="pre">note_wptt_node_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">vertex</span></span></span><a class="headerlink" href="#_CPPv4N25mut_wptt_f_moves_config_t6vertexE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N25mut_wptt_f_moves_config_t8V4_labelE">
+<span id="_CPPv3N25mut_wptt_f_moves_config_t8V4_labelE"></span><span id="_CPPv2N25mut_wptt_f_moves_config_t8V4_labelE"></span><span id="mut_wptt_f_moves_config_t::V4_label__note_wptt_V4_label_eP"></span><span class="target" id="structmut__wptt__f__moves__config__t_1a09fa3104802775fee8397f5066b82f8b"></span><a class="reference internal" href="../note-wptt/unit-description.html#_CPPv420note_wptt_V4_label_e" title="note_wptt_V4_label_e"><span class="n"><span class="pre">note_wptt_V4_label_e</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">V4_label</span></span></span><a class="headerlink" href="#_CPPv4N25mut_wptt_f_moves_config_t8V4_labelE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N25mut_wptt_f_moves_config_t4moveE">
+<span id="_CPPv3N25mut_wptt_f_moves_config_t4moveE"></span><span id="_CPPv2N25mut_wptt_f_moves_config_t4moveE"></span><span id="mut_wptt_f_moves_config_t::move__mut_f_moves_e"></span><span class="target" id="structmut__wptt__f__moves__config__t_1a0296dc459bb7029ed7d7cd74e3e9d77c"></span><a class="reference internal" href="#_CPPv413mut_f_moves_e" title="mut_f_moves_e"><span class="n"><span class="pre">mut_f_moves_e</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">move</span></span></span><a class="headerlink" href="#_CPPv4N25mut_wptt_f_moves_config_t4moveE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N25mut_wptt_f_moves_config_t10weight_idxE">
+<span id="_CPPv3N25mut_wptt_f_moves_config_t10weight_idxE"></span><span id="_CPPv2N25mut_wptt_f_moves_config_t10weight_idxE"></span><span id="mut_wptt_f_moves_config_t::weight_idx__s"></span><span class="target" id="structmut__wptt__f__moves__config__t_1a62d2153bb35d196b9ef5d654baee6f16"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">weight_idx</span></span></span><a class="headerlink" href="#_CPPv4N25mut_wptt_f_moves_config_t10weight_idxE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N25mut_wptt_f_moves_config_t9directionE">
+<span id="_CPPv3N25mut_wptt_f_moves_config_t9directionE"></span><span id="_CPPv2N25mut_wptt_f_moves_config_t9directionE"></span><span id="mut_wptt_f_moves_config_t::direction__mut_f_moves_direction_e"></span><span class="target" id="structmut__wptt__f__moves__config__t_1a576a8fb978b34bb1b8bdd13c2ca53113"></span><a class="reference internal" href="#_CPPv423mut_f_moves_direction_e" title="mut_f_moves_direction_e"><span class="n"><span class="pre">mut_f_moves_direction_e</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">direction</span></span></span><a class="headerlink" href="#_CPPv4N25mut_wptt_f_moves_config_t9directionE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N25mut_wptt_f_moves_config_t7eqclassE">
+<span id="_CPPv3N25mut_wptt_f_moves_config_t7eqclassE"></span><span id="_CPPv2N25mut_wptt_f_moves_config_t7eqclassE"></span><span id="mut_wptt_f_moves_config_t::eqclass__mut_f_moves_eqclass_e"></span><span class="target" id="structmut__wptt__f__moves__config__t_1a15cb505c9bb795469578b48d493d248e"></span><a class="reference internal" href="#_CPPv421mut_f_moves_eqclass_e" title="mut_f_moves_eqclass_e"><span class="n"><span class="pre">mut_f_moves_eqclass_e</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">eqclass</span></span></span><a class="headerlink" href="#_CPPv4N25mut_wptt_f_moves_config_t7eqclassE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<p>Mutates a tree by one of the $F_i$ moves. </p>
+<p><dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Joe Starr </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MUT_WPTT_F_MOVES_STACK_SIZE">
+<span class="target" id="mut__wptt__f__moves_8c_1ab157e0b3f4d895a21501a49dee3741b9"></span><span class="sig-name descname"><span class="n"><span class="pre">MUT_WPTT_F_MOVES_STACK_SIZE</span></span></span><a class="headerlink" href="#c.MUT_WPTT_F_MOVES_STACK_SIZE" title="Link to this definition"></a><br /></dt>
+<dd><p>The maximum stack size for the walk function. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv423should_reverse_funptr_t">
+<span id="_CPPv323should_reverse_funptr_t"></span><span id="_CPPv223should_reverse_funptr_t"></span><span id="should_reverse_funptr_t"></span><span class="target" id="mut__wptt__f__moves_8c_1acf501890119c3cdc494f374ef5c1c68a"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">should_reverse_funptr_t</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">depth</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv423should_reverse_funptr_t" title="Link to this definition"></a><br /></dt>
+<dd><p>The function pointer type for walk reverse checker callback functions. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="mut__wptt__f__moves_8c_1ac2cc3efa6f03031479272a64952eabb8"></span><span class="sig-name descname"><span class="pre">STATIC_INLINE</span> <span class="pre">note_wptt_V4_label_e</span> <span class="pre">mut_wptt_f_moves_V4_mult</span> <span class="pre">(note_wptt_V4_label_e</span> <span class="pre">x,</span> <span class="pre">note_wptt_V4_label_e</span> <span class="pre">y)</span></span></dt>
+<dd><p>Multiply two values of the Klein four group. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Left multiplicand. </p></li>
+<li><p><strong>y</strong> – Right multiplicand. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Resultant element of $K_4$. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419mut_wptt_f_moves_F1v">
+<span id="_CPPv319mut_wptt_f_moves_F1v"></span><span id="_CPPv219mut_wptt_f_moves_F1v"></span><span id="mut_wptt_f_moves_F1"></span><span class="target" id="mut__wptt__f__moves_8c_1a736ebbeb1cdf77607a4d8ed353f630a1"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mut_wptt_f_moves_F1</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419mut_wptt_f_moves_F1v" title="Link to this definition"></a><br /></dt>
+<dd><p>Apply the $F_1$ move to a WPTT at the given vertex. </p>
+<p>If the object vertex is not the root the move is mathematically undefined.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The success flag of the move. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419mut_wptt_f_moves_F2v">
+<span id="_CPPv319mut_wptt_f_moves_F2v"></span><span id="_CPPv219mut_wptt_f_moves_F2v"></span><span id="mut_wptt_f_moves_F2"></span><span class="target" id="mut__wptt__f__moves_8c_1a31cc1e70be221cd7c560bff4f9ca1f18"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mut_wptt_f_moves_F2</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419mut_wptt_f_moves_F2v" title="Link to this definition"></a><br /></dt>
+<dd><p>Apply the $F_2$ move to a WPTT at the given vertex. </p>
+<p>If the object vertex is not the root the move is mathematically undefined.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The success flag of the move. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419mut_wptt_f_moves_F3v">
+<span id="_CPPv319mut_wptt_f_moves_F3v"></span><span id="_CPPv219mut_wptt_f_moves_F3v"></span><span id="mut_wptt_f_moves_F3"></span><span class="target" id="mut__wptt__f__moves_8c_1a1ee0f06812557180f213ba40666f3592"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mut_wptt_f_moves_F3</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419mut_wptt_f_moves_F3v" title="Link to this definition"></a><br /></dt>
+<dd><p>Apply the $F_3^\prime$ move to a WPTT at the given vertex. </p>
+<p>If the move would be applied “upwards” in the tree instead apply $F_3^\prime$ to all siblings in the opposite direction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The success flag of the move. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421mut_wptt_f_moves_walkP16note_wptt_node_t23should_reverse_funptr_t">
+<span id="_CPPv321mut_wptt_f_moves_walkP16note_wptt_node_t23should_reverse_funptr_t"></span><span id="_CPPv221mut_wptt_f_moves_walkP16note_wptt_node_t23should_reverse_funptr_t"></span><span id="mut_wptt_f_moves_walk__note_wptt_node_tP.should_reverse_funptr_t"></span><span class="target" id="mut__wptt__f__moves_8c_1af4f8b28e9961838df40a9331ff4a06eb"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mut_wptt_f_moves_walk</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="../note-wptt/unit-description.html#_CPPv416note_wptt_node_t" title="note_wptt_node_t"><span class="n"><span class="pre">note_wptt_node_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">vertex</span></span>, <a class="reference internal" href="#_CPPv423should_reverse_funptr_t" title="should_reverse_funptr_t"><span class="n"><span class="pre">should_reverse_funptr_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">reverse_checker</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421mut_wptt_f_moves_walkP16note_wptt_node_t23should_reverse_funptr_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Walk the tree, reverse the order of the current vertex when reverse_checker() is true. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vertex</strong> – The vertex to start the walk at. </p></li>
+<li><p><strong>reverse_checker</strong> – The function to determine if order should be reversed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The success flag of the move. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="mut__wptt__f__moves_8c_1a212f5831f5163d71ea9322ccf1061bd5"></span><span class="sig-name descname"><span class="pre">STATIC_INLINE</span> <span class="pre">bool</span> <span class="pre">mut_wptt_f_moves_revall</span> <span class="pre">(size_t</span> <span class="pre">depth)</span></span></dt>
+<dd><p>Callback function for always true. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>depth</strong> – The depth that has been achieved in the tree walk. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The determination of if to reverse the order of the vertex. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="mut__wptt__f__moves_8c_1ac8c417901c7df9bf36a031a8213f556e"></span><span class="sig-name descname"><span class="pre">STATIC_INLINE</span> <span class="pre">bool</span> <span class="pre">mut_wptt_f_moves_revodd</span> <span class="pre">(size_t</span> <span class="pre">depth)</span></span></dt>
+<dd><p>Callback function that reverse order at even distance from the root of the walk. </p>
+<p>An odd depth indicates an even distance from the root the root is depth $0$.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>depth</strong> – The count of edges away from the root of the tree. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The determination of if to reverse the order of the vertex. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv424mut_wptt_f_moves_F3_wrap6size_t">
+<span id="_CPPv324mut_wptt_f_moves_F3_wrap6size_t"></span><span id="_CPPv224mut_wptt_f_moves_F3_wrap6size_t"></span><span id="mut_wptt_f_moves_F3_wrap__s"></span><span class="target" id="mut__wptt__f__moves_8c_1ac95e6a2b5b4505a014ba2ea222db58ee"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mut_wptt_f_moves_F3_wrap</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">target_idx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424mut_wptt_f_moves_F3_wrap6size_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Apply $F_3^\prime$ to the object vertex with wrap around parent. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Indicate the success of the operation. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426mut_wptt_f_moves_F3_nowrapv">
+<span id="_CPPv326mut_wptt_f_moves_F3_nowrapv"></span><span id="_CPPv226mut_wptt_f_moves_F3_nowrapv"></span><span id="mut_wptt_f_moves_F3_nowrap"></span><span class="target" id="mut__wptt__f__moves_8c_1a4339a6ed3e4c82a3208a08f08a77f0bf"></span><span class="n"><span class="pre">STATIC_INLINE_UINT8</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mut_wptt_f_moves_F3_nowrap</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426mut_wptt_f_moves_F3_nowrapv" title="Link to this definition"></a><br /></dt>
+<dd><p>Apply $F_3^\prime$ to the object vertex with no wrap around parent. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Indicate the success of the operation. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="mut__wptt__f__moves_8c_1adb82142ddb06022ffbad31349d99e7bd"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mut_wptt_f_moves_config</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv425mut_wptt_f_moves_config_t" title="mut_wptt_f_moves_config_t"><span class="n"><span class="pre">mut_wptt_f_moves_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">config_arg</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>The public configuration function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config_arg</strong> – The config to set. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="mut__wptt__f__moves_8c_1ac4f367c7809309975efd638829541530"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mut_wptt_f_moves_mutate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>A public function, calling this executes the mutator on the configured data. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>uint8_t Mutation status info. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv412was_executed">
+<span id="_CPPv312was_executed"></span><span id="_CPPv212was_executed"></span><span id="was_executed__uint8_t"></span><span class="target" id="mut__wptt__f__moves_8c_1a97c50ec43397c3637941f27c344ca56e"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">was_executed</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv412was_executed" title="Link to this definition"></a><br /></dt>
+<dd><p>Variable indicating if the configuration has been executed against. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv48localcfg">
+<span id="_CPPv38localcfg"></span><span id="_CPPv28localcfg"></span><span id="localcfg__mut_wptt_f_moves_config_tP"></span><span class="target" id="mut__wptt__f__moves_8c_1ac425c6ef8b7b10f7a6218a0d68b11393"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv425mut_wptt_f_moves_config_t" title="mut_wptt_f_moves_config_t"><span class="n"><span class="pre">mut_wptt_f_moves_config_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">localcfg</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">NULL</span></span><a class="headerlink" href="#_CPPv48localcfg" title="Link to this definition"></a><br /></dt>
+<dd><p>Variable to store the local configuration to execute against. </p>
+</dd></dl>
+
+</div>
+</section>
+<section id="bibliography">
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading"></a></h2>
+<span class="target" id="id4"></span></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="use-case.html" class="btn btn-neutral float-left" title="Use Case" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../note-algebraic_tangle_tree/index.html" class="btn btn-neutral float-right" title="Notation Algebraic Tangle Trees" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, temp.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

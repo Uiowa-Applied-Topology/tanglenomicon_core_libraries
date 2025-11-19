@@ -49,7 +49,7 @@ C
 
 ## Implements
 
-- [Computation Interface](#computation-interface)
+- [Mutator Interface](#mutator-interface)
 
 ## Uses
 
@@ -65,7 +65,7 @@ None
 
 #### Configuration Structure
 
-The configuration structure contains the data needed for computing the tree with $R^\pm$ applied.
+The configuration structure contains the data needed for mutating the tree with $R^\pm$.
 
 This includes:
 
@@ -75,7 +75,7 @@ This includes:
 
 #### Configuration Function
 
-The configuration function configures the local instance variable of the computation.
+The configuration function configures the local instance variable of the mutation.
 
 This process is described in the following state machines:
 
@@ -88,10 +88,10 @@ stateDiagram-v2
 
 ```
 
-#### Compute Function
+#### Mutate Function
 
-The compute function carries out the arborescent tangle ring shift computation. The function may
-contain sub machines that can be broken out into functions in the implementation.
+The mutate function carries out the arborescent tangle ring shift mutation. The function may contain
+submachines that can be broken out into functions in the implementation.
 
 This process is described in the following state machines:
 
@@ -123,7 +123,7 @@ object vertex.
 
 ```{test-card} Valid Config
 
-A valid configuration for the computation is passed to the function.
+A valid configuration for the mutation is passed to the function.
 
 **Inputs:**
 
@@ -139,7 +139,7 @@ A positive response.
 
 ```{test-card} Null Config
 
-A null configuration for the computation is passed to the function.
+A null configuration for the mutation is passed to the function.
 
 **Inputs:**
 
@@ -157,8 +157,7 @@ A configuration with various null parameters is passed to the function.
 
 **Inputs:**
 
-- A configuration with null rootstock.
-- A configuration with null scion.
+- A configuration with null wptt.
 
 **Expected Output:**
 
@@ -166,14 +165,14 @@ A negative response.
 
 ```
 
-### Compute Function
+### Mutate Function
 
 #### Positive Tests
 
 ```{test-card} A valid config
 
-A valid configuration is set for the component. The computation is executed and
-returns successfully. The result written to the write interface is correct
+A valid configuration is set for the component. The mutation is executed and
+returns successfully.
 
 **Inputs:**
 
@@ -182,30 +181,14 @@ returns successfully. The result written to the write interface is correct
 **Expected Output:**
 
 - A positive response.
-- A correct output on the write interface.
-
-```
-
-```{test-card} A valid configuration with null write interface
-
-A valid configuration is set for the component with null write. The computation is
-executed and returns successfully.
-
-**Inputs:**
-
-- A valid configuration is set.
-
-**Expected Output:**
-
-- A positive response.
-
+- Mutation is correct.
 ```
 
 #### Negative Tests
 
 ```{test-card} Not Configured
 
-The compute interface is called before configuration.
+The mutate interface is called before configuration.
 
 **Inputs:**
 

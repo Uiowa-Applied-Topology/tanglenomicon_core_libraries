@@ -25,36 +25,7 @@
       <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
       <script type="module">
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
-const load = async () => {
-    await mermaid.run();
-    const all_mermaids = document.querySelectorAll(".mermaid");
-    const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
-    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
-    if(mermaids_to_add_zoom > 0) {
-        var svgs = d3.selectAll(".mermaid svg");
-        if(all_mermaids.length !== mermaids_processed.length) {
-            // try again in a sec, wait for mermaids to load
-            setTimeout(load, 200);
-            return;
-        } else if(svgs.size() !== mermaids_to_add_zoom) {
-            // try again in a sec, wait for mermaids to load
-            setTimeout(load, 200);
-            return;
-        } else {
-            svgs.each(function() {
-                var svg = d3.select(this);
-                svg.html("<g class='wrapper'>" + svg.html() + "</g>");
-                var inner = svg.select("g");
-                var zoom = d3.zoom().on("zoom", function(event) {
-                    inner.attr("transform", event.transform);
-                });
-                svg.call(zoom);
-            });
-        }
-    }
-};
-
-window.addEventListener("load", load);
+window.addEventListener("load", () => mermaid.run());
 </script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -107,7 +78,9 @@ window.addEventListener("load", load);
 
 
 <style>
-
+p.admonition-title{
+    color: #404040 !important;
+}
 </style>
  
 
@@ -150,6 +123,7 @@ window.addEventListener("load", load);
 <li class="toctree-l1"><a class="reference internal" href="_collections/gen-rational/index.html">Generator Rational Tangles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/gen-rlitt/index.html">Generator Right Leaning Identity Tangle Tree</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/mut-wptt_f_moves/index.html">Mutator Weighted Planar Tangle Tree $F_i$ Moves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/note-twist_vector/index.html">Notation Twist Vector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/note-wptt/index.html">Notation Weighted Planar Tangle Tree</a></li>
@@ -209,7 +183,10 @@ window.addEventListener("load", load);
    <a href="#cap-example-4"><strong>example-4</strong></a> | 
    <a href="#cap-example-5"><strong>example-5</strong></a> | 
    <a href="#cap-theorem-1"><strong>theorem-1</strong></a> | 
-   <a href="#cap-thm-schubert"><strong>thm-schubert</strong></a>
+   <a href="#cap-thm-schubert"><strong>thm-schubert</strong></a> | 
+   <a href="#cap-uc-c-f1-d-f1_t"><strong>uc-c-f1-d-f1_t</strong></a> | 
+   <a href="#cap-uc-c-f2-d-f2_t"><strong>uc-c-f2-d-f2_t</strong></a> | 
+   <a href="#cap-wpt-moves-def-f3p_move"><strong>wpt-moves-def-f3p_move</strong></a>
    </div>
 
    <table class="indextable modindextable">
@@ -371,7 +348,7 @@ window.addEventListener("load", load);
      <tr>
        <td></td>
        <td>
-       <a href="interface/storage/use-case.html#example-0"><code class="xref">example-0</code></a> <em>(interface/storage/use-case)</em></td><td>
+       <a href="_collections/note-wptt/unit-description.html#example-0"><code class="xref">example-0</code></a> <em>(_collections/note-wptt/unit-description)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-example-1"><td></td><td>
@@ -421,6 +398,30 @@ window.addEventListener("load", load);
        <td>
        <a href="_collections/comp-rational_data/use-case.html#thm-schubert"><code class="xref">thm-schubert</code></a> <em>(_collections/comp-rational_data/use-case)</em></td><td>
        <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-uc-c-f1-d-f1_t"><td></td><td>
+       <strong>uc-c-f1-d-f1_t</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="_collections/mut-wptt_f_moves/use-case.html#uc-c-f1-d-f1_t"><code class="xref">uc-c-f1-d-f1_t</code></a> <em>(_collections/mut-wptt_f_moves/use-case)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-uc-c-f2-d-f2_t"><td></td><td>
+       <strong>uc-c-f2-d-f2_t</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="_collections/mut-wptt_f_moves/use-case.html#uc-c-f2-d-f2_t"><code class="xref">uc-c-f2-d-f2_t</code></a> <em>(_collections/mut-wptt_f_moves/use-case)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-wpt-moves-def-f3p_move"><td></td><td>
+       <strong>wpt-moves-def-f3p_move</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="_collections/mut-wptt_f_moves/use-case.html#wpt-moves-def-f3p_move"><code class="xref">wpt-moves-def-f3p_move</code></a> <em>(_collections/mut-wptt_f_moves/use-case)</em></td><td>
+       <em>definition</em></td></tr>
    </table>
 
 
