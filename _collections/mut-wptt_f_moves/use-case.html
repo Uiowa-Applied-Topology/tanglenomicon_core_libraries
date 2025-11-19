@@ -17,22 +17,11 @@
       <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
-      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
-      <script type="module">mermaid.initialize({
-  securityLevel: 'loose',
-  theme: 'dark',
-});</script>
-      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
-      <script type="module">
-import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
-window.addEventListener("load", () => mermaid.run());
-</script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Unit Description" href="unit-description.html" />
-    <link rel="prev" title="Notation Algebraic Tangle Trees" href="index.html" />
+    <link rel="prev" title="Mutator Weighted Planar Tangle Tree $F_i$ Moves" href="index.html" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
 
 <!-- The loading of KaTeX is deferred to speed up page rendering -->
@@ -119,16 +108,20 @@ p.admonition-title{
 <li class="toctree-l1"><a class="reference internal" href="../gen-rational/index.html">Generator Rational Tangles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gen-rlitt/index.html">Generator Right Leaning Identity Tangle Tree</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../mut-wptt_f_moves/index.html">Mutator Weighted Planar Tangle Tree $F_i$ Moves</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Notation Algebraic Tangle Trees</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Mutator Weighted Planar Tangle Tree $F_i$ Moves</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Use Case</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#functionality">Functionality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functionality">Functionality</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mathematical-description">Mathematical Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#computational-description">Computational Description</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#bibliography">Bibliography</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="unit-description.html">Unit Description</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../note-twist_vector/index.html">Notation Twist Vector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../note-wptt/index.html">Notation Weighted Planar Tangle Tree</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../store-cpp_storage_interface/index.html">Storage C++ Interface</a></li>
@@ -149,10 +142,10 @@ p.admonition-title{
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="index.html">Notation Algebraic Tangle Trees</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Mutator Weighted Planar Tangle Tree $F_i$ Moves</a></li>
       <li class="breadcrumb-item active">Use Case</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/_collections/note-algebraic_tangle_tree/use-case.md.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/_collections/mut-wptt_f_moves/use-case.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -162,80 +155,90 @@ p.admonition-title{
              
   <div class="topic abstract" role="doc-abstract">
 <p class="topic-title">Abstract</p>
-<p>A use case description for the Algebraic Tangle Tree Notation.</p>
+<p>A use case description for mutation of a WPTT by $F_i$ move.</p>
 </div>
 <section id="use-case">
 <h1>Use Case<a class="headerlink" href="#use-case" title="Link to this heading"></a></h1>
 <section id="functionality">
 <h2>Functionality<a class="headerlink" href="#functionality" title="Link to this heading"></a></h2>
-<p>An algebraic tangle is any tangle generated from an “algebraic” statement built from the two binary
-operations $+$ and $\vee$ on the four basic tangles ($0,<br />
-\pm1,\ \infty$).</p>
-<div class="proof example admonition" id="example-0">
-<p class="admonition-title"><span class="caption-number">Example 3 </span></p>
-<section class="example-content" id="proof-content">
-<p>$\LP\LP\infty+\infty\RP\vee\LP 0\vee0\RP\RP+\LP1+0\RP+\infty$</p>
+<section id="mathematical-description">
+<h3>Mathematical Description<a class="headerlink" href="#mathematical-description" title="Link to this heading"></a></h3>
+<p>Bonahon and Siebenmann define a collection of moves on
+<a class="reference internal" href="../note-wptt/index.html#note-wptt"><span class="std std-ref">weighted planar tangle trees (WPTT)</span></a> that preserve the isotopy type of the underlying
+tangle. This component realizes three of those moves: $F_3^\prime$, $F_2$, and $F_1$.</p>
+<!-- prettier-ignore-start -->
+<div class="proof definition admonition" id="wpt-moves-def-f3p_move">
+<p class="admonition-title"><span class="caption-number">Definition 1 </span> (Bonahon and Seibenmann Section 12.7.3 <span id="id1">[<a class="reference internal" href="../note-wptt/use-case.html#id6" title="Francis Bonahon and Laurence C Siebenmann. New Geometric Splittings of Classical Knots and the Classiﬁcation and Symmetries of Arborescent Knots. 2016. URL: https://dornsife.usc.edu/francis-bonahon/wp-content/uploads/sites/205/2023/06/BonSieb-compressed.pdf.">BS16</a>]</span>)</p>
+<section class="definition-content" id="proof-content">
+<!-- prettier-ignore-end -->
+<p>The <strong>$F_3^\prime$ move</strong> on a weighted arborescent tree moves a weight $w$ as
+<img alt="$F_3^rime$" src="../../_images/f3p_def.svg" /> and, if $w$ is odd, reverse the cyclic order of weights and
+bonds at all vertices of the purple subtree lying at odd distance (count of edges between two
+vertices) from the vertex shown. Also, when $w$ is odd, apply $\xi$ ( $X$-axis rotation) to all free
+bonds in the purple subtree that are attached to a vertex at even distance from the vertex shown,
+and $\eta$ ($Y$-axis rotation) to those at odd distance. The rotations are relative to the
+orientation of the plumbing square (Conway sphere) of the band being acted on.</p>
 </section>
-</div><p>Since each of $+$ and $\vee$ are binary operations we can interpret these algebraic statements as
-binary trees where each non-leaf vertex corresponds to an operation and each leaf a basic tangle, we
-call these algebraic tangle trees. The concept of a algebraic tree decomposition was given first by
-Caudron <span id="id1">[]</span> and then further refined by Connolly
-<span id="id2">[]</span>.</p>
-<div class="proof example admonition" id="example-1">
-<p class="admonition-title"><span class="caption-number">Example 4 </span></p>
-<section class="example-content" id="proof-content">
-<pre  class="mermaid">
-         flowchart TD
-
-   id0(&quot;+&quot;)--&gt;id1(&quot;∞&quot;)
-   id0(&quot;+&quot;)--&gt;id2(&quot;∞&quot;)
-
-   id6(&quot;+&quot;)--&gt;id7(&quot;1&quot;)
-   id6(&quot;+&quot;)--&gt;id8(&quot;0&quot;)
-
-   id3(&quot;v&quot;)--&gt;id4(&quot;0&quot;)
-   id3(&quot;v&quot;)--&gt;id5(&quot;0&quot;)
-
-   id9(&quot;v&quot;)--&gt;id0
-   id9(&quot;v&quot;)--&gt;id3
-
-   id10(&quot;+&quot;)--&gt;id9
-   id10(&quot;+&quot;)--&gt;id6
-   id11(&quot;+&quot;)--&gt;id10
-   id11(&quot;+&quot;)--&gt;id12(&quot;∞&quot;)
-
-
-    </pre></section>
-</div><p>To simplify the combinatorics we can substitute rational tangles (as) twist vectors for the basic
-tangles and record the tree as a string in polish notation</p>
-<div class="proof example admonition" id="example-2">
-<p class="admonition-title"><span class="caption-number">Example 5 </span></p>
-<section class="example-content" id="proof-content">
-<p><img alt="Mont" src="../media/mont.svg" /></p>
-<p>Algebraically:</p>
-<p>$[1 2 0]+\LP[2 1 0]+[2 2 0]\RP$</p>
-<p>In polish notation:</p>
-<p>$+[1 2 0]+[2 1 0][2 2 0]$</p>
-<p>As a algebraic tangle tree
-att “decoded”:</p>
-<pre  class="mermaid">
-        flowchart TD
-id0(&quot;+&quot;)--&gt;id1(&quot;[1 2 0]&quot;)
-id0(&quot;+&quot;)--&gt;id2(&quot;+&quot;)
-id2(&quot;+&quot;)--&gt;id3(&quot;[2 1 0]&quot;)
-id2(&quot;+&quot;)--&gt;id4(&quot;[2 2 0]&quot;)
-    </pre></section>
+</div><!-- prettier-ignore-start -->
+<div class="proof definition admonition" id="uc-c-f2-d-f2_t">
+<p class="admonition-title"><span class="caption-number">Definition 2 </span> (Bonahon and Seibenmann Section 12.7.1 <span id="id2">[<a class="reference internal" href="../note-wptt/use-case.html#id6" title="Francis Bonahon and Laurence C Siebenmann. New Geometric Splittings of Classical Knots and the Classiﬁcation and Symmetries of Arborescent Knots. 2016. URL: https://dornsife.usc.edu/francis-bonahon/wp-content/uploads/sites/205/2023/06/BonSieb-compressed.pdf.">BS16</a>]</span>)</p>
+<section class="definition-content" id="proof-content">
+<!-- prettier-ignore-end -->
+<p>The <strong>$F_2$ move</strong> on a weighted arborescent tangle tree reverses the cyclic order of bonds and
+weights at one vertex on the tree and at every vertex at even distance from it; also apply $\eta$
+($Y$-axis rotation) to every free bond of a vertex at even (or zero) distance, and apply $\xi$
+($X$-axis rotation) to every free bond at odd distance. The rotations are relative to the
+orientation of the plumbing square (Conway sphere) of the band being acted on.</p>
+</section>
+</div><!-- prettier-ignore-start -->
+<div class="proof definition admonition" id="uc-c-f1-d-f1_t">
+<p class="admonition-title"><span class="caption-number">Definition 3 </span> (Bonahon and Seibenmann Section 12.7.1 <span id="id3">[<a class="reference internal" href="../note-wptt/use-case.html#id6" title="Francis Bonahon and Laurence C Siebenmann. New Geometric Splittings of Classical Knots and the Classiﬁcation and Symmetries of Arborescent Knots. 2016. URL: https://dornsife.usc.edu/francis-bonahon/wp-content/uploads/sites/205/2023/06/BonSieb-compressed.pdf.">BS16</a>]</span>)</p>
+<section class="definition-content" id="proof-content">
+<!-- prettier-ignore-end -->
+<p>The <strong>$F_1$ move</strong> on a weighted arborescent tangle tree reverses the cyclic order of bonds and
+weights at every vertex of the graph and applies $\zeta$ ($Z$-axis rotation) to every free bond. The
+rotations are relative to the orientation of the plumbing square (Conway sphere) of the band being
+acted on.</p>
+</section>
 </div></section>
+<section id="computational-description">
+<h3>Computational Description<a class="headerlink" href="#computational-description" title="Link to this heading"></a></h3>
+<p>A computational framing of the moves on a <a class="reference internal" href="../note-wptt/index.html#note-wptt"><span class="std std-ref">weighted planar tangle trees (WPTT)</span></a> is
+slightly problematic. The notational WPTT is formed by a collection of singly linked lists where
+parents point to children. This directional linkage means moving “up” a tree from child to parent is
+functionally difficult. This requires special handling for each of the moves. When a $F_3^\prime$
+shift is requested over a parent connection, we will instead model the shift as the equivalent
+collection of $F_3^\prime$ moves in the opposite direction. Next, for the $F_1$ and $F_2$ moves, we
+will assume that the vertex passed to the mutator is the root vertex. Our final consideration is for
+the $F_2$ move, we must indicate weather to operate on the equivalence class of the indicate vertex
+or that of its children.</p>
+</section>
+</section>
 <section id="bibliography">
 <h2>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading"></a></h2>
-<span class="target" id="id3"></span></section>
+<div class="docutils container" id="id4">
+<div role="list" class="citation-list">
+<div class="citation" id="id7" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>BS16<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>,<a role="doc-backlink" href="#id3">3</a>)</span>
+<p>Francis Bonahon and Laurence C Siebenmann. New Geometric Splittings of Classical Knots and the Classiﬁcation and Symmetries of Arborescent Knots. 2016. URL: <a class="reference external" href="https://dornsife.usc.edu/francis-bonahon/wp-content/uploads/sites/205/2023/06/BonSieb-compressed.pdf">https://dornsife.usc.edu/francis-bonahon/wp-content/uploads/sites/205/2023/06/BonSieb-compressed.pdf</a>.</p>
+</div>
+</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Notation Algebraic Tangle Trees" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Mutator Weighted Planar Tangle Tree $F_i$ Moves" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="unit-description.html" class="btn btn-neutral float-right" title="Unit Description" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

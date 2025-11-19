@@ -26,41 +26,12 @@
       <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
       <script type="module">
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
-const load = async () => {
-    await mermaid.run();
-    const all_mermaids = document.querySelectorAll(".mermaid");
-    const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
-    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
-    if(mermaids_to_add_zoom > 0) {
-        var svgs = d3.selectAll(".mermaid svg");
-        if(all_mermaids.length !== mermaids_processed.length) {
-            // try again in a sec, wait for mermaids to load
-            setTimeout(load, 200);
-            return;
-        } else if(svgs.size() !== mermaids_to_add_zoom) {
-            // try again in a sec, wait for mermaids to load
-            setTimeout(load, 200);
-            return;
-        } else {
-            svgs.each(function() {
-                var svg = d3.select(this);
-                svg.html("<g class='wrapper'>" + svg.html() + "</g>");
-                var inner = svg.select("g");
-                var zoom = d3.zoom().on("zoom", function(event) {
-                    inner.attr("transform", event.transform);
-                });
-                svg.call(zoom);
-            });
-        }
-    }
-};
-
-window.addEventListener("load", load);
+window.addEventListener("load", () => mermaid.run());
 </script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Notation Algebraic Tangle Trees" href="../note-algebraic_tangle_tree/index.html" />
+    <link rel="next" title="Mutator Weighted Planar Tangle Tree $F_i$ Moves" href="../mut-wptt_f_moves/index.html" />
     <link rel="prev" title="Use Case" href="use-case.html" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
 
@@ -109,7 +80,9 @@ window.addEventListener("load", load);
 
 
 <style>
-
+p.admonition-title{
+    color: #404040 !important;
+}
 </style>
  
 
@@ -161,14 +134,14 @@ window.addEventListener("load", load);
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#validation">Validation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id1">Configuration Function</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id2">Compute Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Mutate Function</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#doxygen-documentation">Doxygen Documentation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#c.MUT_RLITT_RINGSHIFT_CONFIG_WPTT"><code class="docutils literal notranslate"><span class="pre">MUT_RLITT_RINGSHIFT_CONFIG_WPTT</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#c.MUT_RLITT_RINGSHIFT_CONFIG_IS_NULL"><code class="docutils literal notranslate"><span class="pre">MUT_RLITT_RINGSHIFT_CONFIG_IS_NULL</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#c.MUT_RLITT_RINGSHIFT_COMPUTE_CFG_ERROR"><code class="docutils literal notranslate"><span class="pre">MUT_RLITT_RINGSHIFT_COMPUTE_CFG_ERROR</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#c.MUT_RLITT_RINGSHIFT_COMPUTE_ALREADY_COMPUTED"><code class="docutils literal notranslate"><span class="pre">MUT_RLITT_RINGSHIFT_COMPUTE_ALREADY_COMPUTED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.MUT_RLITT_RINGSHIFT_MUTATE_CFG_ERROR"><code class="docutils literal notranslate"><span class="pre">MUT_RLITT_RINGSHIFT_MUTATE_CFG_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.MUT_RLITT_RINGSHIFT_MUTATE_ALREADY_COMPUTED"><code class="docutils literal notranslate"><span class="pre">MUT_RLITT_RINGSHIFT_MUTATE_ALREADY_COMPUTED</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv426mut_rlitt_ringshift_configP28mut_rlitt_ringshift_config_t"><code class="docutils literal notranslate"><span class="pre">mut_rlitt_ringshift_config()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv426mut_rlitt_ringshift_mutatev"><code class="docutils literal notranslate"><span class="pre">mut_rlitt_ringshift_mutate()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv428mut_rlitt_ringshift_config_t"><code class="docutils literal notranslate"><span class="pre">mut_rlitt_ringshift_config_t</span></code></a></li>
@@ -184,6 +157,7 @@ window.addEventListener("load", load);
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../mut-wptt_f_moves/index.html">Mutator Weighted Planar Tangle Tree $F_i$ Moves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../note-twist_vector/index.html">Notation Twist Vector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../note-wptt/index.html">Notation Weighted Planar Tangle Tree</a></li>
@@ -263,7 +237,7 @@ window.addEventListener("load", load);
 <section id="implements">
 <h2>Implements<a class="headerlink" href="#implements" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="#computation-interface"><span class="xref myst">Computation Interface</span></a></p></li>
+<li><p><a class="reference internal" href="#mutator-interface"><span class="xref myst">Mutator Interface</span></a></p></li>
 </ul>
 </section>
 <section id="uses">
@@ -282,7 +256,7 @@ window.addEventListener("load", load);
 <h3>Public Structures<a class="headerlink" href="#public-structures" title="Link to this heading"></a></h3>
 <section id="configuration-structure">
 <h4>Configuration Structure<a class="headerlink" href="#configuration-structure" title="Link to this heading"></a></h4>
-<p>The configuration structure contains the data needed for computing the tree with $R^\pm$ applied.</p>
+<p>The configuration structure contains the data needed for mutating the tree with $R^\pm$.</p>
 <p>This includes:</p>
 <ul class="simple">
 <li><p>A pointer to a notation structure for a WPTT.</p></li>
@@ -293,7 +267,7 @@ window.addEventListener("load", load);
 <h3>Public Functions<a class="headerlink" href="#public-functions" title="Link to this heading"></a></h3>
 <section id="configuration-function">
 <h4>Configuration Function<a class="headerlink" href="#configuration-function" title="Link to this heading"></a></h4>
-<p>The configuration function configures the local instance variable of the computation.</p>
+<p>The configuration function configures the local instance variable of the mutation.</p>
 <p>This process is described in the following state machines:</p>
 <pre  class="mermaid">
         stateDiagram-v2
@@ -303,10 +277,10 @@ window.addEventListener("load", load);
     Sc --&gt; [*]
 
     </pre></section>
-<section id="compute-function">
-<h4>Compute Function<a class="headerlink" href="#compute-function" title="Link to this heading"></a></h4>
-<p>The compute function carries out the arborescent tangle ring shift computation. The function may
-contain sub machines that can be broken out into functions in the implementation.</p>
+<section id="mutate-function">
+<h4>Mutate Function<a class="headerlink" href="#mutate-function" title="Link to this heading"></a></h4>
+<p>The mutate function carries out the arborescent tangle ring shift mutation. The function may contain
+submachines that can be broken out into functions in the implementation.</p>
 <p>This process is described in the following state machines:</p>
 <pre  class="mermaid">
         stateDiagram-v2
@@ -338,7 +312,7 @@ object vertex.</p>
 <h4>Positive Tests<a class="headerlink" href="#positive-tests" title="Link to this heading"></a></h4>
 <div class="admonition-valid-config admonition">
 <p class="admonition-title">Valid Config</p>
-<p>A valid configuration for the computation is passed to the function.</p>
+<p>A valid configuration for the mutation is passed to the function.</p>
 <p><strong>Inputs:</strong></p>
 <ul class="simple">
 <li><p>A valid config.</p></li>
@@ -351,7 +325,7 @@ object vertex.</p>
 <h4>Negative Tests<a class="headerlink" href="#negative-tests" title="Link to this heading"></a></h4>
 <div class="admonition-null-config admonition">
 <p class="admonition-title">Null Config</p>
-<p>A null configuration for the computation is passed to the function.</p>
+<p>A null configuration for the mutation is passed to the function.</p>
 <p><strong>Inputs:</strong></p>
 <ul class="simple">
 <li><p>A null config.</p></li>
@@ -364,8 +338,7 @@ object vertex.</p>
 <p>A configuration with various null parameters is passed to the function.</p>
 <p><strong>Inputs:</strong></p>
 <ul class="simple">
-<li><p>A configuration with null rootstock.</p></li>
-<li><p>A configuration with null scion.</p></li>
+<li><p>A configuration with null wptt.</p></li>
 </ul>
 <p><strong>Expected Output:</strong></p>
 <p>A negative response.</p>
@@ -373,13 +346,13 @@ object vertex.</p>
 </section>
 </section>
 <section id="id2">
-<h3>Compute Function<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<h3>Mutate Function<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <section id="id3">
 <h4>Positive Tests<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
 <div class="admonition-a-valid-config admonition">
 <p class="admonition-title">A valid config</p>
-<p>A valid configuration is set for the component. The computation is executed and
-returns successfully. The result written to the write interface is correct</p>
+<p>A valid configuration is set for the component. The mutation is executed and
+returns successfully.</p>
 <p><strong>Inputs:</strong></p>
 <ul class="simple">
 <li><p>A valid configuration is set.</p></li>
@@ -387,20 +360,7 @@ returns successfully. The result written to the write interface is correct</p>
 <p><strong>Expected Output:</strong></p>
 <ul class="simple">
 <li><p>A positive response.</p></li>
-<li><p>A correct output on the write interface.</p></li>
-</ul>
-</div>
-<div class="admonition-a-valid-configuration-with-null-write-interface admonition">
-<p class="admonition-title">A valid configuration with null write interface</p>
-<p>A valid configuration is set for the component with null write. The computation is
-executed and returns successfully.</p>
-<p><strong>Inputs:</strong></p>
-<ul class="simple">
-<li><p>A valid configuration is set.</p></li>
-</ul>
-<p><strong>Expected Output:</strong></p>
-<ul class="simple">
-<li><p>A positive response.</p></li>
+<li><p>Mutation is correct.</p></li>
 </ul>
 </div>
 </section>
@@ -408,7 +368,7 @@ executed and returns successfully.</p>
 <h4>Negative Tests<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
 <div class="admonition-not-configured admonition">
 <p class="admonition-title">Not Configured</p>
-<p>The compute interface is called before configuration.</p>
+<p>The mutate interface is called before configuration.</p>
 <p><strong>Inputs:</strong></p>
 <ul class="simple">
 <li><p>None.</p></li>
@@ -442,14 +402,14 @@ executed and returns successfully.</p>
 </dd></dl>
 
 <dl class="cpp macro">
-<dt class="sig sig-object cpp" id="c.MUT_RLITT_RINGSHIFT_COMPUTE_CFG_ERROR">
-<span class="target" id="mut__rlitt__ringshift_8h_1a0fe993278c9d81f3306455fc71a67256"></span><span class="sig-name descname"><span class="n"><span class="pre">MUT_RLITT_RINGSHIFT_COMPUTE_CFG_ERROR</span></span></span><a class="headerlink" href="#c.MUT_RLITT_RINGSHIFT_COMPUTE_CFG_ERROR" title="Link to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="c.MUT_RLITT_RINGSHIFT_MUTATE_CFG_ERROR">
+<span class="target" id="mut__rlitt__ringshift_8h_1ab21c3e00f8bc8f9e5d1b6adb6a4b45c8"></span><span class="sig-name descname"><span class="n"><span class="pre">MUT_RLITT_RINGSHIFT_MUTATE_CFG_ERROR</span></span></span><a class="headerlink" href="#c.MUT_RLITT_RINGSHIFT_MUTATE_CFG_ERROR" title="Link to this definition"></a><br /></dt>
 <dd><p>Failed to configure the module due to null config. </p>
 </dd></dl>
 
 <dl class="cpp macro">
-<dt class="sig sig-object cpp" id="c.MUT_RLITT_RINGSHIFT_COMPUTE_ALREADY_COMPUTED">
-<span class="target" id="mut__rlitt__ringshift_8h_1a1f374b668c27112df2e144fdd57c430f"></span><span class="sig-name descname"><span class="n"><span class="pre">MUT_RLITT_RINGSHIFT_COMPUTE_ALREADY_COMPUTED</span></span></span><a class="headerlink" href="#c.MUT_RLITT_RINGSHIFT_COMPUTE_ALREADY_COMPUTED" title="Link to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="c.MUT_RLITT_RINGSHIFT_MUTATE_ALREADY_COMPUTED">
+<span class="target" id="mut__rlitt__ringshift_8h_1a299bf6446faeb5befe35f21def4c7196"></span><span class="sig-name descname"><span class="n"><span class="pre">MUT_RLITT_RINGSHIFT_MUTATE_ALREADY_COMPUTED</span></span></span><a class="headerlink" href="#c.MUT_RLITT_RINGSHIFT_MUTATE_ALREADY_COMPUTED" title="Link to this definition"></a><br /></dt>
 <dd><p>Failed to configure the module due to the config having been previously computed against. </p>
 </dd></dl>
 
@@ -641,7 +601,7 @@ executed and returns successfully.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="use-case.html" class="btn btn-neutral float-left" title="Use Case" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../note-algebraic_tangle_tree/index.html" class="btn btn-neutral float-right" title="Notation Algebraic Tangle Trees" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../mut-wptt_f_moves/index.html" class="btn btn-neutral float-right" title="Mutator Weighted Planar Tangle Tree $F_i$ Moves" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

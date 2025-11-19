@@ -26,36 +26,7 @@
       <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
       <script type="module">
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
-const load = async () => {
-    await mermaid.run();
-    const all_mermaids = document.querySelectorAll(".mermaid");
-    const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
-    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
-    if(mermaids_to_add_zoom > 0) {
-        var svgs = d3.selectAll(".mermaid svg");
-        if(all_mermaids.length !== mermaids_processed.length) {
-            // try again in a sec, wait for mermaids to load
-            setTimeout(load, 200);
-            return;
-        } else if(svgs.size() !== mermaids_to_add_zoom) {
-            // try again in a sec, wait for mermaids to load
-            setTimeout(load, 200);
-            return;
-        } else {
-            svgs.each(function() {
-                var svg = d3.select(this);
-                svg.html("<g class='wrapper'>" + svg.html() + "</g>");
-                var inner = svg.select("g");
-                var zoom = d3.zoom().on("zoom", function(event) {
-                    inner.attr("transform", event.transform);
-                });
-                svg.call(zoom);
-            });
-        }
-    }
-};
-
-window.addEventListener("load", load);
+window.addEventListener("load", () => mermaid.run());
 </script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -108,7 +79,9 @@ window.addEventListener("load", load);
 
 
 <style>
-
+p.admonition-title{
+    color: #404040 !important;
+}
 </style>
  
 
@@ -145,6 +118,7 @@ window.addEventListener("load", load);
 <li class="toctree-l1"><a class="reference internal" href="_collections/gen-rational/index.html">Generator Rational Tangles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/gen-rlitt/index.html">Generator Right Leaning Identity Tangle Tree</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/mut-wptt_f_moves/index.html">Mutator Weighted Planar Tangle Tree $F_i$ Moves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/note-twist_vector/index.html">Notation Twist Vector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/note-wptt/index.html">Notation Weighted Planar Tangle Tree</a></li>
@@ -180,6 +154,7 @@ window.addEventListener("load", load);
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
   rel="stylesheet"
 />
+<p><a class="reference external" href="https://doi.org/10.5281/zenodo.17612692"><img alt="DOI - 10.5281/zenodo.17612692" src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.17612692-2ea44f?logo=doi" /></a></p>
 <p><a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0"><img alt="License: GPL v3" src="https://img.shields.io/badge/License-GPLv3-blue.svg" /></a></p>
 <section id="tanglenomicon-core-libraries">
 <h1>Tanglenomicon Core Libraries<a class="headerlink" href="#tanglenomicon-core-libraries" title="Link to this heading"></a></h1>
@@ -518,6 +493,11 @@ the <a class="reference external" href="https://clrs.cc">COLORS</a> color palett
 <li class="toctree-l1"><a class="reference internal" href="_collections/mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="_collections/mut-rlitt_ringshift/use-case.html">Use Case</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_collections/mut-rlitt_ringshift/unit-description.html">Unit Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/mut-wptt_f_moves/index.html">Mutator Weighted Planar Tangle Tree $F_i$ Moves</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_collections/mut-wptt_f_moves/use-case.html">Use Case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_collections/mut-wptt_f_moves/unit-description.html">Unit Description</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a><ul>

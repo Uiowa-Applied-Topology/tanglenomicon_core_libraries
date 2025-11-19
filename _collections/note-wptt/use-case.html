@@ -69,7 +69,9 @@
 
 
 <style>
-
+p.admonition-title{
+    color: #404040 !important;
+}
 </style>
  
 
@@ -106,6 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../gen-rational/index.html">Generator Rational Tangles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gen-rlitt/index.html">Generator Right Leaning Identity Tangle Tree</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mut-rlitt_ringshift/index.html">Mutator Right Leaning Identity Tangle Tree Ring Shift</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mut-wptt_f_moves/index.html">Mutator Weighted Planar Tangle Tree $F_i$ Moves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../note-algebraic_tangle_tree/index.html">Notation Algebraic Tangle Trees</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../note-twist_vector/index.html">Notation Twist Vector</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Notation Weighted Planar Tangle Tree</a><ul class="current">
@@ -276,7 +279,7 @@ constructing this combinatorial notation we, need to define some labels for the 
 of bands in the smooth setting. This language will be reused when we transition to the more
 combinatorial setting.</p>
 <div class="proof definition admonition" id="apn-def-1">
-<p class="admonition-title"><span class="caption-number">Definition 1 </span> (Relationships of Bands)</p>
+<p class="admonition-title"><span class="caption-number">Definition 4 </span> (Relationships of Bands)</p>
 <section class="definition-content" id="proof-content">
 <p>Given a band $B$ with plumbing squares, we call the set $C$ of bands
 plumbed to $B$ the <strong>children</strong> of $B$. Additionally, for $c\in C$ we call $B$
@@ -299,7 +302,7 @@ relationships to edges.</p>
 second piece of essential information. To solve this problem, we will define a modified version of
 an abstract tree, the <strong>rooted plane tree</strong>.</p>
 <div class="proof definition admonition" id="apn-def-2">
-<p class="admonition-title"><span class="caption-number">Definition 3 </span> (Rooted Plane Tree)</p>
+<p class="admonition-title"><span class="caption-number">Definition 6 </span> (Rooted Plane Tree)</p>
 <section class="definition-content" id="proof-content">
 <p>A <strong>rooted plane tree</strong> is an abstract tree with imbued with a strict total
 order on the vertices. We call the least vertex the <strong>root</strong> of the tree.</p>
@@ -448,14 +451,14 @@ with the count, as shown in <a class="reference internal" href="#UC-N-APN-E-16">
 is useful during computation on weighted planar trees to partition vertices into two classes,
 essential vertices and non-essential vertices.</p>
 <div class="proof definition admonition" id="apn-def-2">
-<p class="admonition-title"><span class="caption-number">Definition 3 </span> (Essential vertex)</p>
+<p class="admonition-title"><span class="caption-number">Definition 6 </span> (Essential vertex)</p>
 <section class="definition-content" id="proof-content">
 <p>We define an <strong>essential vertex</strong> as any vertex with valence
 greater than $3$ or ring number greater than $1$. A vertex is called
 non-essential if it has valence $0,1,2$ and no rings.</p>
 </section>
 </div><div class="proof definition admonition" id="apn-def-3">
-<p class="admonition-title"><span class="caption-number">Definition 5 </span> (Non-essential vertex)</p>
+<p class="admonition-title"><span class="caption-number">Definition 8 </span> (Non-essential vertex)</p>
 <section class="definition-content" id="proof-content">
 <p>A vertex is called
 non-essential if it has valence $0,1,2$ and no rings.</p>
@@ -471,7 +474,7 @@ non-essential if it has valence $0,1,2$ and no rings.</p>
 <h4>Sticks<a class="headerlink" href="#sticks" title="Link to this heading"></a></h4>
 <p>The final important portion in the anatomy of a tree is to describe the sticks of a tree.</p>
 <div class="proof definition admonition" id="apn-def-3">
-<p class="admonition-title"><span class="caption-number">Definition 5 </span> (Sticks of a weighted planar tree)</p>
+<p class="admonition-title"><span class="caption-number">Definition 8 </span> (Sticks of a weighted planar tree)</p>
 <section class="definition-content" id="proof-content">
 <p>Let $\Gamma$ be a weighted planar tree and $\LS e_i\RS$ be the set of essential
 vertices of $\Gamma$ including their bonds. We call the collection subtrees
