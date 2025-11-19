@@ -22,6 +22,7 @@ add_subdirectory(gen-rlitt)
 # Add Mutator Components
 # ##############################################################################
 add_subdirectory(mut-rlitt_ringshift)
+add_subdirectory(mut-wptt_f_moves)
 
 # ##############################################################################
 # Add Notation Components
