@@ -18,7 +18,7 @@ static void test_mutate_negative_no_config(void)
     uint8_t retval = 0;
 
     retval = mut_rlitt_ringshift_mutate();
-    TEST_ASSERT_EQUAL(MUT_STATUS_BLDR(MUT_DEFS_COMPUTE_FAIL,
-                                      MUT_RLITT_RINGSHIFT_COMPUTE_CFG_ERROR),
+    TEST_ASSERT_EQUAL(MUT_STATUS_BLDR(MUT_DEFS_MUTATE_FAIL,
+                                      MUT_RLITT_RINGSHIFT_MUTATE_CFG_ERROR),
                       retval);
 }

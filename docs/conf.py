@@ -108,7 +108,7 @@ html_theme_options = {
 }
 # -- Mermaid settings ---------------------------------------------------
 
-mermaid_d3_zoom = True
+mermaid_d3_zoom = False
 mermaid_init_js = """mermaid.initialize({
   securityLevel: 'loose',
   theme: 'dark',

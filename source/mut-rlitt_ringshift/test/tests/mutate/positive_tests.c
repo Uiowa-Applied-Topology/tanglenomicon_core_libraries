@@ -64,7 +64,7 @@ void test_mutate_positive(void)
         &wptt
     };
     retval = mut_rlitt_ringshift_config(&cfg);
-    TEST_ASSERT_EQUAL(MUT_DEFS_COMPUTE_SUCCESS, retval);
+    TEST_ASSERT_EQUAL(MUT_DEFS_MUTATE_SUCCESS, retval);
     retval = mut_rlitt_ringshift_mutate();
-    TEST_ASSERT_EQUAL(MUT_DEFS_COMPUTE_SUCCESS, retval);
+    TEST_ASSERT_EQUAL(MUT_DEFS_MUTATE_SUCCESS, retval);
 }

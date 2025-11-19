@@ -70,14 +70,14 @@
  * @brief Failed to configure the module due to null config.
  *
  */
-#define MUT_RLITT_RINGSHIFT_COMPUTE_CFG_ERROR    (0X1U << 1U)
+#define MUT_RLITT_RINGSHIFT_MUTATE_CFG_ERROR    (0X1U << 1U)
 
 
 /*!
  * @brief Failed to configure the module due to the config having been previously computed against.
  *
  */
-#define MUT_RLITT_RINGSHIFT_COMPUTE_ALREADY_COMPUTED    (0X1U << 2U)
+#define MUT_RLITT_RINGSHIFT_MUTATE_ALREADY_COMPUTED    (0X1U << 2U)
 
 /******************************************************************************/
 /*************************** Typedefs *****************************************/

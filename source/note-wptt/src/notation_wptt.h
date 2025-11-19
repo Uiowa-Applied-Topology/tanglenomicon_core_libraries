@@ -166,7 +166,7 @@ extern "C"
  */
 typedef struct note_wptt_node_t {
     struct note_wptt_node_t *children[NOTE_WPTT_DECODE_MAX_CHILDREN];
-    int8_t                   weights[NOTE_WPTT_DECODE_MAX_WEIGHTS + 1];
+    int8_t                   weights[NOTE_WPTT_DECODE_MAX_WEIGHTS];
     size_t                   number_of_children;
     uint8_t                  number_of_rings;
     note_wptt_order_e        order;

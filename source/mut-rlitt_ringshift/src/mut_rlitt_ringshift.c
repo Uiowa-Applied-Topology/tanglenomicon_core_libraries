@@ -104,20 +104,20 @@ uint8_t mut_rlitt_ringshift_config(mut_rlitt_ringshift_config_t *config_arg)
  */
 uint8_t mut_rlitt_ringshift_mutate()
 {
-    uint8_t ret_val = MUT_DEFS_COMPUTE_FAIL;
+    uint8_t ret_val = MUT_DEFS_MUTATE_FAIL;
 
     /*Ensure the cfg is not empty.*/
     if (mut_rlitt_ringshift_localcfg == NULL)
     {
-        ret_val |= MUT_RLITT_RINGSHIFT_COMPUTE_CFG_ERROR;
+        ret_val |= MUT_RLITT_RINGSHIFT_MUTATE_CFG_ERROR;
     } /*Ensure not previously executed.*/
     else if (mut_rlitt_ringshift_executed != false)
     {
-        ret_val |= MUT_RLITT_RINGSHIFT_COMPUTE_ALREADY_COMPUTED;
+        ret_val |= MUT_RLITT_RINGSHIFT_MUTATE_ALREADY_COMPUTED;
     }
     else
     {
-        ret_val = MUT_DEFS_COMPUTE_SUCCESS;
+        ret_val = MUT_DEFS_MUTATE_SUCCESS;
         mut_rlitt_ringshift_executed = true;
         ret_val |= mut_rlitt_ringshift_ringshift_tree(mut_rlitt_ringshift_localcfg->wptt);
     }
@@ -136,7 +136,7 @@ uint8_t mut_rlitt_ringshift_mutate()
  */
 STATIC_INLINE_UINT8 mut_rlitt_ringshift_ringshift_tree(note_wptt_t *tree)
 {
-    uint8_t           ret_val = MUT_DEFS_COMPUTE_SUCCESS;
+    uint8_t           ret_val = MUT_DEFS_MUTATE_SUCCESS;
     note_wptt_node_t *stack[MUT_RLITT_RINGSHIFT_STACK_SIZE]          = { NULL };
     size_t            childidx_stack[MUT_RLITT_RINGSHIFT_STACK_SIZE] = { 0 };
 

@@ -2,6 +2,8 @@
 /* Created by joe on 4/25/25. */
 /* */
 #include "utils.h"
+#include "bits/stdint-uintn.h"
+#include "notation_wptt.h"
 #include "storage_defs.h"
 #include "stdbool.h"
 
@@ -11,10 +13,14 @@ static bool nodes_walk(const note_wptt_node_t *node1,
 /******************************************************************************/
 /*******************************Test Data******** ************************/
 /******************************************************************************/
-static note_wptt_node_t        note_wptt_nodes[2 * UTIL_TANG_DEFS_MAX_CROSSINGNUM];
+#define UTIL_TEST_BUFFER_SIZE    (200u * UTIL_TANG_DEFS_MAX_CROSSINGNUM)
+static note_wptt_node_t        note_wptt_nodes[UTIL_TEST_BUFFER_SIZE];
 static note_wptt_node_buffer_t node_buffer = { note_wptt_nodes,
-                                               2u * UTIL_TANG_DEFS_MAX_CROSSINGNUM,
+                                               UTIL_TEST_BUFFER_SIZE,
                                                0 };
+
+static note_wptt_t note_wptt_buffer[UTIL_TEST_BUFFER_SIZE];
+static size_t      note_wptt_buffer_idx = 0;
 /******************************************************************************/
 /*******************************Test Functions******** ************************/
 /******************************************************************************/
@@ -69,19 +75,47 @@ void test_util_clear_buffer()
 {
     size_t i;
 
-    for (i = 0; i < 2 * UTIL_TANG_DEFS_MAX_CROSSINGNUM; i++)
+    for (i = 0; i < UTIL_TEST_BUFFER_SIZE; i++)
     {
         size_t j;
-        for (j = 0; j < UTIL_TANG_DEFS_MAX_CROSSINGNUM; j++)
+        for (j = 0; j < NOTE_WPTT_DECODE_MAX_CHILDREN; j++)
         {
-            node_buffer.buffer[i].children[j] = NULL;
-            node_buffer.buffer[i].weights[j]  = 0;
+            note_wptt_nodes[i].children[j] = NULL;
+            note_wptt_nodes[i].weights[j]  = 0;
         }
-        node_buffer.buffer[i].weights[j]         = 0;
-        node_buffer.buffer[i].number_of_children = 0;
-        node_buffer.buffer[i].number_of_rings    = 0;
-        node_buffer.buffer[i].order = NOTE_WPTT_ORDER_UNINIT;
+        note_wptt_nodes[i].weights[NOTE_WPTT_DECODE_MAX_CHILDREN] = 0;
+        note_wptt_nodes[i].number_of_children = 0;
+        note_wptt_nodes[i].number_of_rings    = 0;
+        note_wptt_nodes[i].order = NOTE_WPTT_ORDER_UNINIT;
     }
     node_buffer.idx  = 0;
-    node_buffer.size = 2 * UTIL_TANG_DEFS_MAX_CROSSINGNUM;
+    node_buffer.size = UTIL_TEST_BUFFER_SIZE;
+    for (i = 0; i < UTIL_TEST_BUFFER_SIZE; i++)
+    {
+        note_wptt_buffer[i].root        = NULL;
+        note_wptt_buffer[i].label       = NOTE_WPTT_V4_LABEL_UNINIT;
+        note_wptt_buffer[i].node_buffer = NULL;
+    }
+}
+
+void load_note(note_wptt_t **list, char **strings, size_t count)
+{
+    size_t i;
+
+    for (i = 0; i < count; i++)
+    {
+        uint8_t      decode_res;
+        char *       string;
+        note_wptt_t *note;
+        list[i] = &note_wptt_buffer[note_wptt_buffer_idx];
+        note    = list[i];
+        string  = strings[i];
+        note_wptt_buffer_idx++;
+        list[i]->node_buffer = &node_buffer;
+        decode_res           = note_wptt_decode(string, note);
+        if (NOTE_DEFS_DECODE_SUCCESS != decode_res)
+        {
+            break;
+        }
+    }
 }

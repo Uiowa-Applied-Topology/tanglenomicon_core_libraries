@@ -15,7 +15,7 @@
 /*************************** Includes *****************************************/
 /******************************************************************************/
 
-#include "computation_defs.h"
+#include "mutator_defs.h"
 #include "stdbool.h"
 #include "stdlib.h"
 #include "string.h"
@@ -28,25 +28,6 @@
 /*************************** Typedefs *****************************************/
 /******************************************************************************/
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
-/*!
- * @brief The type definition for configuring the template computation.
- *
- */
-typedef struct {
-} mut_template_result_t;
-#ifdef __cplusplus
-}
-#endif
-
-#ifdef __cplusplus
-extern "C"
-{
-#endif
 
 /*!
  * @brief The type definition for configuring the template computation.
