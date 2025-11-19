@@ -570,7 +570,7 @@ STATIC_INLINE_UINT8 note_wptt_decode_weight_handler(char **str)
  */
 STATIC_INLINE_UINT8 note_wptt_decode_push_node()
 {
-    uint8_t retval = NOTE_STATUS_BLDR(NOTE_DEFS_ENCODE_FAIL, NOTE_WPTT_ENCODE_OVRUNDR_ERROR);
+    uint8_t retval = NOTE_STATUS_BLDR(NOTE_DEFS_ENCODE_FAIL, NOTE_WPTT_DECODE_OVRUNDR_ERROR);
 
     /* Check that we don't have a buffer overflow*/
     if ((decode_buffer->idx) + 1 < (decode_buffer->size) &&
@@ -612,7 +612,7 @@ STATIC_INLINE_UINT8 note_wptt_decode_push_node()
 STATIC_INLINE_UINT8 note_wptt_decode_add_child()
 {
     uint8_t retval = NOTE_STATUS_BLDR(
-        NOTE_DEFS_ENCODE_FAIL, NOTE_WPTT_ENCODE_OVRUNDR_ERROR);
+        NOTE_DEFS_ENCODE_FAIL, NOTE_WPTT_DECODE_OVRUNDR_ERROR);
 
     /*Check if there is open space on the stack*/
     if ((0 < wptt_stack_len) && (wptt_stack_len < NOTE_WPTT_STACK_SIZE))
