@@ -53,6 +53,7 @@
               zlib
               cmake-format
               gsl
+              mermaid-cli
             ];
 
             shellHook = ''

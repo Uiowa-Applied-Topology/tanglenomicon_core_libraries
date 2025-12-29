@@ -22,6 +22,8 @@ point at infinity with the triple $\LP\infty,\infty,\infty\RP$.
 To support the encoding of tangles (as well as other similar objects) we allow for open paths.
 Meaning curves with endpoints that are not equal.
 
+![](/home/joe/Documents/joe-starr/static/ducks/IMG_1585.JPEG)
+
 ### Computational Description
 
 There are no special computational considerations for this use-case.

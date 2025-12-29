@@ -6,3 +6,5 @@ target_link_libraries(test_computation_rational_data_app computation_defs
 
 add_test(NAME test_computation_rational_data
          COMMAND test_computation_rational_data_app)
+target_link_libraries(test_computation_rational_data_app computation_defs
+                      tang_defs comp_rational_data Unity Cmock)

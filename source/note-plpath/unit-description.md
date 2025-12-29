@@ -84,7 +84,7 @@ goals of non-runner components. That means this notation structure contains:
 
 ```{warning}
 
-This structure does not offer a guarentee on intersection (or self intersection). This means
+This structure does not offer any guarantees on intersection (or self intersection). This means
 that segments of a path may intersect (or self intersect).
 
 ```
@@ -92,8 +92,7 @@ that segments of a path may intersect (or self intersect).
 ##### Point Structure
 
 The point structure contains a three tuple of doubles representing the $x,y,z$ coordinate of a point
-on the path. The structure also contains a pointer to the "next" point in the segment.  
-
+on the path. The structure also contains a pointer to the "next" point in the segment.
 
 #### Functions
 
@@ -138,7 +137,7 @@ stateDiagram-v2
     rl --> is_eof
     is_eof --> rl: Is a comment
     is_eof --> rp: Is a point
-    is_eof --> ans: Is a new segement
+    is_eof --> ans: Is a new segment
     ans --> rl
     rp --> is_good_pt
     is_good_pt --> a2s: Point is valid
