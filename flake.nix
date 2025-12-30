@@ -156,7 +156,7 @@
               inkscape
               just
               ninja
-              nodePackages.prettier
+              prettier
               openssl
               python3
               rip2
@@ -172,6 +172,7 @@
               zip
               zlib
               cmake-format
+              mermaid-cli
             ];
 
             shellHook = ''
