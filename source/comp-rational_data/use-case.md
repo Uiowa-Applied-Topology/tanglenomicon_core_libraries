@@ -20,7 +20,7 @@ number, parity, and algebraic equivalence of closures.
 
 In Conways original tangle paper {cite:p}`conwayEnumerationKnotsLinks1970` he states that rational
 tangles and rational numbers are in one to one correspondence, this was later proven for tangles by
-Goldman and Kauffman {cite:p}`goldmanRationalTangles1997a`. The correspondence comes from
+Goldman and Kauffman {cite:p}`goldmanRationalTangles1997`. The correspondence comes from
 interpreting the twist vector of a rational tangle as a finite continued fraction that is:
 $\LB a\ b\ c\RB=c+\frac{1}{b+\frac{1}{a}}$
 
@@ -58,7 +58,7 @@ fraction $F(T)$ of parity e/o.
 #### Algebraic Equivalence
 
 The algebraic equivalence class for a tangle describes the knot equivalence class of the numerator
-closure of the tangle. Equivalence is give by schubert {cite:p}`Schubert1956` as:
+closure of the tangle. Equivalence is give by Schubert {cite:p}`schubertKnotenMitZwei1956` as:
 
 ```{prf:theorem} Schubert
 :label: thm-schubert

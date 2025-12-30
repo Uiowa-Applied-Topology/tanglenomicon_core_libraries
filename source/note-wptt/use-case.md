@@ -411,10 +411,11 @@ bond picking up the data of each weight as it sweeps through, this can be seen i
 ##### Walking the tree
 
 To expand the local method to capture the whole weighted planar tree, we need a method to move from
-$\Gamma_v$ to a child while recording this descent. We will descend the tree in a depth-first order.
-Annotating each local linearization with four sets of delimiters that indicate the change in depth
-in the tree. Each delimiter also communicates extra information about the subtree it is delimiting.
-The four sets of delimiters are as follows:
+$\Gamma_v$ to a child while recording this descent. This method follows the balanced parentheses
+strategy developed by Munaro and Raman {cite:p}`munroSuccinctRepresentationBalanced2001`. We will
+descend the tree in a depth-first order. Annotating each local linearization with four sets of
+delimiters that indicate the change in depth in the tree. Each delimiter also communicates extra
+information about the subtree it is delimiting. The four sets of delimiters are as follows:
 
 - $\LB\RB$: Corresponds to a half open stick and is interpreted as a twist vector for a rational
   tangle. Note that, to align with the traditional notation, the twist vector is written in depth
