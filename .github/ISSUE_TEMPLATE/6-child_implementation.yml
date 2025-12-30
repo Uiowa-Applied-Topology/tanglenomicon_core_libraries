@@ -1,0 +1,24 @@
+name: 👶 Implementation
+description: Template for an Implementation subtask
+title: "[👶] Implement"
+labels:
+    - Child
+    - Implementation
+body:
+    - type: checkboxes
+      id: check-search
+      attributes:
+          label: "Checklist:"
+          options:
+              - label: Implement a header.
+                required: false
+              - label: Implement source file.
+                required: false
+              - label: Implement cmake file and library target.
+                required: false
+              - label: "Check doxygen comments exist. "
+                required: false
+              - label: "Check doxygen comments are linked. "
+                required: false
+              - label: Verify docs build
+                required: false

@@ -1,6 +1,6 @@
-name: 🚀 Enhancement
-description: Template for suggesting and enhancement
-title: "[🚀] "
+name:🧹 Chore
+description: Template for infrastructure chores 
+title: "[🧹] "
 labels:
     - Enhancement
 body:
@@ -18,16 +18,16 @@ body:
       attributes:
           label: Will you be opening a pull request?
           description: >-
-              Will you be opening a pull request for this enhancement?
+              Will you be opening a pull request for this chore?
           options:
               - label: "yes"
+              - label: "no, it will piggyback on another issue"
               - label: "no"
     - type: textarea
       id: whats-your-suggestion
       attributes:
-          label: What is the your suggested enhancement? and Why is it an enhancement?
+          label: What is the chore?  
           description: Your question
           placeholder: >-
-              Example: You should add xyz feature to this work.
       validations:
           required: true
