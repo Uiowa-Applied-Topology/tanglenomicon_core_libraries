@@ -1,0 +1,9 @@
+/* */
+/* Created by joe on 6/23/25. */
+/* */
+
+#ifndef TEST_COMP_RLITT_PURE_VIGNETTE_CONFIG_NEGATIVE_TESTS_H
+#define TEST_COMP_RLITT_PURE_VIGNETTE_CONFIG_NEGATIVE_TESTS_H
+void test_config_negative(void);
+
+#endif /* TEST_COMP_RLITT_PURE_VIGNETTE_CONFIG_NEGATIVE_TESTS_H */

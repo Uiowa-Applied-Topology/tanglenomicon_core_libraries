@@ -12,7 +12,7 @@ abstract: A use case description for mutation of a WPTT by $F_i$ move.
 
 ### Mathematical Description
 
-Bonahon and Siebenmann define a collection of moves on
+Bonahon and Siebenmann {cite:p}`bonahonNewGeometricSplittings2016` define a collection of moves on
 [weighted planar tangle trees (WPTT)](#note-wptt) that preserve the isotopy type of the underlying
 tangle. This component realizes three of those moves: $F_3^\prime$, $F_2$, and $F_1$.
 
