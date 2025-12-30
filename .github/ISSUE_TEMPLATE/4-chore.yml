@@ -28,6 +28,5 @@ body:
       attributes:
           label: What is the chore?  
           description: Your question
-          placeholder: >-
       validations:
           required: true
