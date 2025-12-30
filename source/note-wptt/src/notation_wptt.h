@@ -35,7 +35,7 @@
 #define NOTE_WPTT_DECODE_MAX_CHILDREN    (UTIL_TANG_DEFS_MAX_CROSSINGNUM)
 
 /*!
- * @brief The maximum number of children in a node.
+ * @brief The maximum length of a linearized string.
  */
 #define NOTE_WPTT_MAX_STR_LEN            ((UTIL_TANG_DEFS_MAX_CROSSINGNUM + 1) * 5u)
 
