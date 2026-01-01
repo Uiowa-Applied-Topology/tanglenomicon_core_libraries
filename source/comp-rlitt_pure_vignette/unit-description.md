@@ -220,6 +220,7 @@ returns successfully. The result written to the write interface is correct.
     - i([3][3]3)
     - i[3 3 3 3]
     - i(([3][3]3)([3][3]3)([3][3]3))
+    - i[3]
 
 **Expected Output:**
 
@@ -229,6 +230,7 @@ returns successfully. The result written to the write interface is correct.
     - i([][])
     - i((([])))
     - i(([][])([][])([][]))
+    - i[]
 ```
 
 #### Negative Tests
@@ -264,11 +266,17 @@ interface.
     - i([3][3]3)
     - i[3 3 3 3]
     - i(([3][3]3)([3][3]3)([3][3]3))
+    - i[3]
 
 **Expected Output:**
 
 - A positive response.
-- The result is correct.
+- The result is correct:
+    - i((([][])))
+    - i([][])
+    - i((([])))
+    - i(([][])([][])([][]))
+    - i[]
 ```
 
 #### Negative Tests

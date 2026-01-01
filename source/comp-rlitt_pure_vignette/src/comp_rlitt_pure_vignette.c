@@ -200,88 +200,86 @@ STATIC_INLINE_UINT8 comp_rlitt_pure_vignette_walk_tree(const note_wptt_t *tree)
 
     *str_p = 'i';
     str_p++;
-    if (0 != tree->root->number_of_children)
+
+    /* We are going to use count instead of index. This helps with intuiting the state of the stack.
+     * The count starts at 1 since the root is going to be added to the stack before the main loop.
+     */
+    size_t            stack_count = 1;
+    note_wptt_node_t *stack[COMP_RLITT_PURE_VIGNETTE_STACK_SIZE]          = { NULL };
+    size_t            childidx_stack[COMP_RLITT_PURE_VIGNETTE_STACK_SIZE] = { 0 };
+
+    stack[stack_count - 1] = tree->root;
+
+    while ((COMP_DEFS_COMPUTE_SUCCESS == ret_val) && (stack_count != 0))
     {
-        /* We are going to use count instead of index. This helps with intuiting the state of the
-         * stack. The count starts at 1 since the root is going to be added to the stack before the
-         * main loop.
-         */
-        size_t            stack_count = 1;
-        note_wptt_node_t *stack[COMP_RLITT_PURE_VIGNETTE_STACK_SIZE]          = { NULL };
-        size_t            childidx_stack[COMP_RLITT_PURE_VIGNETTE_STACK_SIZE] = { 0 };
+        note_wptt_node_t *active_vertex = stack[stack_count - 1];
 
-        stack[stack_count - 1] = tree->root;
-
-        while ((COMP_DEFS_COMPUTE_SUCCESS == ret_val) && (stack_count != 0))
+        if (0 == active_vertex->number_of_children)
         {
-            note_wptt_node_t *active_vertex = stack[stack_count - 1];
-
-            if (0 == active_vertex->number_of_children)
+            if (str_p + 1 <= str_end)
             {
-                if (str_p + 1 <= str_end)
-                {
-                    *str_p = '[';
-                    str_p++;
-                    *str_p = ']';
-                    str_p++;
-                }
-                else
-                {
-                    ret_val |= COMP_STATUS_BLDR(COMP_DEFS_COMPUTE_FAIL,
-                                                COMP_RLITT_PURE_VIGNETTE_COMPUTE_STR_BUFFER);
-                }
-            }
-            else if (0 == childidx_stack[stack_count - 1])
-            {
-                if (str_p <= str_end)
-                {
-                    *str_p = '(';
-                    str_p++;
-                }
-                else
-                {
-                    ret_val |= COMP_STATUS_BLDR(COMP_DEFS_COMPUTE_FAIL,
-                                                COMP_RLITT_PURE_VIGNETTE_COMPUTE_STR_BUFFER);
-                }
-            }
-            else if (active_vertex->number_of_children == childidx_stack[stack_count - 1])
-            {
-                if (str_p <= str_end)
-                {
-                    *str_p = ')';
-                    str_p++;
-                }
-                else
-                {
-                    ret_val |= COMP_STATUS_BLDR(COMP_DEFS_COMPUTE_FAIL,
-                                                COMP_RLITT_PURE_VIGNETTE_COMPUTE_STR_BUFFER);
-                }
-            }
-
-
-            if (active_vertex->number_of_children <= childidx_stack[stack_count - 1])
-            {
-                /*Pop stack*/
-                stack_count--;
+                *str_p = '[';
+                str_p++;
+                *str_p = ']';
+                str_p++;
             }
             else
             {
-                size_t child_idx = childidx_stack[stack_count - 1];
-                /*Push child to stack*/
-                childidx_stack[stack_count - 1]++;
-                if (stack_count < COMP_RLITT_PURE_VIGNETTE_STACK_SIZE)
-                {
-                    stack_count++;
-                    stack[stack_count - 1]          = active_vertex->children[child_idx];
-                    childidx_stack[stack_count - 1] = 0;
-                }
-                else
-                {
-                    ret_val |= COMP_STATUS_BLDR(COMP_DEFS_COMPUTE_FAIL,
-                                                COMP_RLITT_PURE_VIGNETTE_COMPUTE_STACK_OVRFLW);
-                }
+                ret_val |= COMP_STATUS_BLDR(COMP_DEFS_COMPUTE_FAIL,
+                                            COMP_RLITT_PURE_VIGNETTE_COMPUTE_STR_BUFFER);
+            }
+        }
+        else if (0 == childidx_stack[stack_count - 1])
+        {
+            if (str_p <= str_end)
+            {
+                *str_p = '(';
+                str_p++;
+            }
+            else
+            {
+                ret_val |= COMP_STATUS_BLDR(COMP_DEFS_COMPUTE_FAIL,
+                                            COMP_RLITT_PURE_VIGNETTE_COMPUTE_STR_BUFFER);
+            }
+        }
+        else if (active_vertex->number_of_children == childidx_stack[stack_count - 1])
+        {
+            if (str_p <= str_end)
+            {
+                *str_p = ')';
+                str_p++;
+            }
+            else
+            {
+                ret_val |= COMP_STATUS_BLDR(COMP_DEFS_COMPUTE_FAIL,
+                                            COMP_RLITT_PURE_VIGNETTE_COMPUTE_STR_BUFFER);
+            }
+        }
+
+
+        if (active_vertex->number_of_children <= childidx_stack[stack_count - 1])
+        {
+            /*Pop stack*/
+            stack_count--;
+        }
+        else
+        {
+            size_t child_idx = childidx_stack[stack_count - 1];
+            /*Push child to stack*/
+            childidx_stack[stack_count - 1]++;
+            if (stack_count < COMP_RLITT_PURE_VIGNETTE_STACK_SIZE)
+            {
+                stack_count++;
+                stack[stack_count - 1]          = active_vertex->children[child_idx];
+                childidx_stack[stack_count - 1] = 0;
+            }
+            else
+            {
+                ret_val |= COMP_STATUS_BLDR(COMP_DEFS_COMPUTE_FAIL,
+                                            COMP_RLITT_PURE_VIGNETTE_COMPUTE_STACK_OVRFLW);
             }
         }
     }
+
     return ret_val;
 }
