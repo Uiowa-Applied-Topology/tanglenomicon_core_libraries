@@ -65,7 +65,7 @@ functionally difficult. This requires special handling for each of the moves. Wh
 shift is requested over a parent connection, we will instead model the shift as the equivalent
 collection of $F_3^\prime$ moves in the opposite direction. Next, for the $F_1$ and $F_2$ moves, we
 will assume that the vertex passed to the mutator is the root vertex. Our final consideration is for
-the $F_2$ move, we must indicate weather to operate on the equivalence class of the indicate vertex
+the $F_2$ move, we must indicate whether to operate on the equivalence class of the indicated vertex
 or that of its children.
 
 ## Bibliography
@@ -76,12 +76,4 @@ or that of its children.
 
 ```{raw} latex
     \newpage
-```
-
-```
-
-```
-
-```
-
 ```

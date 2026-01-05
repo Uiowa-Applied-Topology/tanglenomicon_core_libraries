@@ -38,7 +38,7 @@
               ninja
               prettier
               openssl
-              python3
+              python313
               rip2
               ruff
               stdenv.cc.cc.lib

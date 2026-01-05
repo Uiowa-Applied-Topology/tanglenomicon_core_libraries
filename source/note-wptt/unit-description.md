@@ -98,7 +98,7 @@ wptt data structure. This data is summarized as:
 - Weights and their location in the cyclic order
 - Number of rings
 
-Each of these items are easy to encode in a C structure. The children (except parent linkage) are
+Each of these items is easy to encode in a C structure. The children (except parent linkage) are
 encoded as an array of pointers to the children. Additionally, this array implicitly encodes a
 cyclic order of the children by the order in the array. Weights are encoded likewise in an array.
 Weight index is interpreted as "after" the same child weight in order as seen below.
@@ -482,7 +482,10 @@ The function will produce an error.
 
 ## Doxygen Documentation
 
-```{doxygenfile} notation_wptt.h
+::: doxy.core_lib.code file: notation_wptt.
+
+```{doxy.core_lib.code}
+file: notation_wptt.h
 
 ```
 

@@ -14,7 +14,7 @@ bootstrap:
       mkdir -p docs/.build/doxygen; \
     fi
     if test ! -e .venv; then \
-      uv venv --python 3.11 && uv pip install -r requirements.txt ; \
+      uv venv --python 3.13 && uv pip install -r requirements.txt ; \
     fi
 
 
