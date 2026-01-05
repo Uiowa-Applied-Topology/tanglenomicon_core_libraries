@@ -1,7 +1,5 @@
 # Generic Interfaces
 
-(interface-computation)=
-
 ## Computation
 
 ```{toctree}
@@ -10,8 +8,6 @@
 ./computation/unit-description.md
 
 ```
-
-(interface-generator)=
 
 ## Generator
 
@@ -22,8 +18,6 @@
 
 ```
 
-(interface-mutator)=
-
 ## Mutator
 
 ```{toctree}
@@ -33,8 +27,6 @@
 
 ```
 
-(interface-notation)=
-
 ## Notation
 
 ```{toctree}
@@ -43,8 +35,6 @@
 ./notation/unit-description.md
 
 ```
-
-(interface-storage)=
 
 ## Storage
 

@@ -63,7 +63,7 @@ C
 
 ## Implements
 
-- [Notations Interface](../../notation-interface.md)
+- [Notations Interface](#interface-notation)
 
 ## Uses
 

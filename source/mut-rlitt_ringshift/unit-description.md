@@ -49,7 +49,7 @@ C
 
 ## Implements
 
-- [Mutator Interface](#mutator-interface)
+- [Mutator Interface](#interface-mutator)
 
 ## Uses
 
