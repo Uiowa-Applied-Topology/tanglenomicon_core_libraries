@@ -1,9 +1,6 @@
-(store-json)=
-
 # Storage JSON
 
-```{toctree}
-./use-case.md
-./unit-description.md
+[](){#store-json}
 
-```
+- [Use Case](./use-case.md)
+- [Unit Description](./unit-description.md)

@@ -1,9 +1,6 @@
-(note-twist_vector)=
-
 # Notation Twist Vector
 
-```{toctree}
-./use-case.md
-./unit-description.md
+[](){#note-twist_vector}
 
-```
+- [Use Case](./use-case.md)
+- [Unit Description](./unit-description.md)

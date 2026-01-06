@@ -1,6 +1,6 @@
 ---
 date: 2024-09-18
-status: test
+
 authors:
     - Joe Starr
 contact: support@joe-starr.com
@@ -381,7 +381,7 @@ for weighted planar trees. We can adjust the following linearization strategy fo
 planar tangle trees by prepending a label $\alpha$ from $V_4$.
 
 <!-- prettier-ignore-start -->
-(linearize_a_vertex)=
+{#linearize_a_vertex}
 ##### Linearizing a vertex
 <!-- prettier-ignore-end -->
 

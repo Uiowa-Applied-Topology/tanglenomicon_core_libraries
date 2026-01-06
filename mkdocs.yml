@@ -39,11 +39,14 @@ watch:
 plugins:
     - gh-admonitions:
     - search:
+    - autorefs
+    - awesome-nav
     - include-files:
           temp_location: Libraries
           search_syntax:
               - "**/*.md"
               - "**/media/*.*"
+              - "**/.nav.yml"
           search_paths:
               - source
     # - mkdoxy:
@@ -56,6 +59,7 @@ plugins:
     #                   RECURSIVE: True # recursive search in source directories
 
 markdown_extensions:
+    - attr_list
     - pymdownx.arithmatex:
           generic: true
     - toc:

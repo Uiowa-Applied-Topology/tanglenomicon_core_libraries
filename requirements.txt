@@ -11,9 +11,11 @@ mdx-include
 mkdocs-github-admonitions-plugin
 mkdocs-redirects
 cairosvg
+mkdocs-autorefs
 mkdocstrings[python]
 griffe-typingdoc
 mkdocs-macros-plugin
 markdown-include-variants
 pymdown-extensions
 mkdoxy
+mkdocs-awesome-nav

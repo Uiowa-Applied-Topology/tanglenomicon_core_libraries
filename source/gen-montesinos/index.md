@@ -1,9 +1,6 @@
-(gen-montesinos)=
-
 # Generator Montesinos Tangles
 
-```{toctree}
-./use-case.md
-./unit-description.md
+[](){#gen-montesinos}
 
-```
+- [Use Case](./use-case.md)
+- [Unit Description](./unit-description.md)

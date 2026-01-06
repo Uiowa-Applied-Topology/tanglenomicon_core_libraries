@@ -1,9 +1,6 @@
-(comp-rlitt_pure_vignette)=
-
 # Computation Right Leaning Identity Tangle Tree Pure Vignette
 
-```{toctree}
-./use-case.md
-./unit-description.md
+[](){#comp-rlitt_pure_vignette}
 
-```
+- [Use Case](./use-case.md)
+- [Unit Description](./unit-description.md)

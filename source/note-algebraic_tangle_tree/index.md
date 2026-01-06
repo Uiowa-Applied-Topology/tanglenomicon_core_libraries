@@ -1,9 +1,6 @@
-(note-att)=
-
 # Notation Algebraic Tangle Trees
 
-```{toctree}
-./use-case.md
-./unit-description.md
+[](){#note-att}
 
-```
+- [Use Case](./use-case.md)
+- [Unit Description](./unit-description.md)

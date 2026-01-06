@@ -1,9 +1,6 @@
-(comp-rlitt_grafting)=
-
 # Computation Right Leaning Identity Tangle Tree Grafting
 
-```{toctree}
-./use-case.md
-./unit-description.md
+[](){#comp-rlitt_grafting}
 
-```
+- [Use Case](./use-case.md)
+- [Unit Description](./unit-description.md)

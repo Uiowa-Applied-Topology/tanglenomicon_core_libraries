@@ -1,9 +1,6 @@
-(gen-rational)=
-
 # Generator Rational Tangles
 
-```{toctree}
-./use-case.md
-./unit-description.md
+[](){#gen-rational}
 
-```
+- [Use Case](./use-case.md)
+- [Unit Description](./unit-description.md)
