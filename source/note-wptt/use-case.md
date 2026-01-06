@@ -363,7 +363,7 @@ closed, 1 free bond half-open, and 2 free bonds open.
 :class: dropdown
 
 Bonahon and Seibenman prove a correspondence between sticks and rational tangles
-{cite:p}`bonahonNewGeometricSplittings2016` particularly when a stick is open it
+[@bonahonNewGeometricSplittings2016] particularly when a stick is open it
 takes the form of the vignette seen below where each free bond forms a boundary
 component.
 
@@ -412,10 +412,10 @@ bond picking up the data of each weight as it sweeps through, this can be seen i
 
 To expand the local method to capture the whole weighted planar tree, we need a method to move from
 $\Gamma_v$ to a child while recording this descent. This method follows the balanced parentheses
-strategy developed by Munaro and Raman {cite:p}`munroSuccinctRepresentationBalanced2001`. We will
-descend the tree in a depth-first order. Annotating each local linearization with four sets of
-delimiters that indicate the change in depth in the tree. Each delimiter also communicates extra
-information about the subtree it is delimiting. The four sets of delimiters are as follows:
+strategy developed by Munaro and Raman [@munroSuccinctRepresentationBalanced2001]. We will descend
+the tree in a depth-first order. Annotating each local linearization with four sets of delimiters
+that indicate the change in depth in the tree. Each delimiter also communicates extra information
+about the subtree it is delimiting. The four sets of delimiters are as follows:
 
 - $\LB\RB$: Corresponds to a half open stick and is interpreted as a twist vector for a rational
   tangle. Note that, to align with the traditional notation, the twist vector is written in depth

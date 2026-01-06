@@ -12,12 +12,12 @@ abstract: A use case description for mutation of a WPTT by $F_i$ move.
 
 ### Mathematical Description
 
-Bonahon and Siebenmann {cite:p}`bonahonNewGeometricSplittings2016` define a collection of moves on
+Bonahon and Siebenmann [@bonahonNewGeometricSplittings2016] define a collection of moves on
 [weighted planar tangle trees (WPTT)](#note-wptt) that preserve the isotopy type of the underlying
 tangle. This component realizes three of those moves: $F_3^\prime$, $F_2$, and $F_1$.
 
 <!-- prettier-ignore-start -->
-:::{prf:definition} Bonahon and Seibenmann Section 12.7.3 {cite:p}`bonahonNewGeometricSplittings2016`
+:::{prf:definition} Bonahon and Seibenmann Section 12.7.3 [@bonahonNewGeometricSplittings2016]
 :label: wpt-moves-def-f3p_move
 <!-- prettier-ignore-end -->
 
@@ -32,7 +32,7 @@ orientation of the plumbing square (Conway sphere) of the band being acted on.
 :::
 
 <!-- prettier-ignore-start -->
-:::{prf:definition} Bonahon and Seibenmann Section 12.7.1 {cite:p}`bonahonNewGeometricSplittings2016`
+:::{prf:definition} Bonahon and Seibenmann Section 12.7.1 [@bonahonNewGeometricSplittings2016]
 :label: uc-c-f2-d-f2_t
 <!-- prettier-ignore-end -->
 
@@ -45,7 +45,7 @@ orientation of the plumbing square (Conway sphere) of the band being acted on.
 :::
 
 <!-- prettier-ignore-start -->
-:::{prf:definition} Bonahon and Seibenmann Section 12.7.1 {cite:p}`bonahonNewGeometricSplittings2016`
+:::{prf:definition} Bonahon and Seibenmann Section 12.7.1 [@bonahonNewGeometricSplittings2016]
 :label: uc-c-f1-d-f1_t
 <!-- prettier-ignore-end -->
 

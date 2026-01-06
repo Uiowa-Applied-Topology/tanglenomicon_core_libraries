@@ -10,7 +10,7 @@ abstract: A use case description for computation of arborescent tangle pure vign
 
 As described by the notation for [weighted planar tangle trees (WPTT)](#note-wptt) we may linearize
 a WPTT with a modified balanced parentheses tree notation strategy
-{cite:p}`munroSuccinctRepresentationBalanced2001`.
+[@munroSuccinctRepresentationBalanced2001].
 
 ```{prf:definition}
 
@@ -24,7 +24,7 @@ The pure vignette of an [Right Leaning Identity Tangle Tree (RLITT)](https://the
 ```
 
 ```{prf:proof}
-Bonahon and Siebenmann {cite:p}`bonahonNewGeometricSplittings2016` tell us that the abstract tree
+Bonahon and Siebenmann [@bonahonNewGeometricSplittings2016] tell us that the abstract tree
 underlying a weighted planar tree is invariant (consequence of proposition 12.22). That is, two
 weighted planar trees resolve to the same knot type if and only if there is a tree isomorphism
 between their underlying abstract trees. This extends in the obvious way to WPTT with underlying
