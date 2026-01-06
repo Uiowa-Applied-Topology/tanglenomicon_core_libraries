@@ -23,7 +23,7 @@ C
 
 ## Implements
 
-- [Notations Interface](../../docs/use_cases/notation-interface.md)
+- [Notations Interface][interface-notation]
 
 ## Uses
 
@@ -41,9 +41,12 @@ Discussion of canonicality of this construction of twist vector can be found in
 [${}^{[2]}$](https://doi.org/10.48550/arxiv.math/0212011). A twist vector encodes these alternating
 twists as a list of integers.
 
-> [!Example] Example Starting with the $0$ tangle ![[../../../media/0.svg | center | 200]] then
-> twisting NE/SE clockwise 3 times SW/SE cockwise 2 times NE/SE clockwise 2 times we have
-> ![[../../../media/Rational.svg | center | 200]] noted as $\LB3\ 2\ 2\RB$
+<!-- prettier-ignore-start -->
+!!! example 
+    Starting with the $0$ tangle ![](./media/0.svg) then
+    twisting NE/SE clockwise 3 times SW/SE clockwise 2 times NE/SE clockwise 2 times we have
+    ![](./media/Rational.svg) noted as $\LB3\ 2\ 2\RB$
+<!-- prettier-ignore-end -->
 
 ### Data Structure Description
 
@@ -72,7 +75,3 @@ string in reverse.
    [https://doi.org/10.1016/B978-0-08-012975-4.50034-5](https://doi.org/10.1016/b978-0-08-012975-4.50034-5).
 2. Kauffman, Louis H., and Sofia Lambropoulou. “On the Classification of Rational Knots,” 2002.
    [https://doi.org/10.48550/ARXIV.MATH/0212011](https://doi.org/10.48550/arxiv.math/0212011).
-
-```{raw} latex
-    \newpage
-```

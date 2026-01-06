@@ -26,64 +26,59 @@ call these algebraic tangle trees. The concept of a algebraic tree decomposition
 Caudron [@caudron1982classification] and then further refined by Connolly
 [@connollyClassificationTabulation2string2021].
 
-````{prf:example}
+<!-- prettier-ignore-start -->
 
-```mermaid
- flowchart TD
+!!! example
 
-   id0("+")-->id1("∞")
-   id0("+")-->id2("∞")
+    ```mermaid
+    flowchart TD
 
-   id6("+")-->id7("1")
-   id6("+")-->id8("0")
+      id0("+")-->id1("∞")
+      id0("+")-->id2("∞")
 
-   id3("v")-->id4("0")
-   id3("v")-->id5("0")
+      id6("+")-->id7("1")
+      id6("+")-->id8("0")
 
-   id9("v")-->id0
-   id9("v")-->id3
+      id3("v")-->id4("0")
+      id3("v")-->id5("0")
 
-   id10("+")-->id9
-   id10("+")-->id6
-   id11("+")-->id10
-   id11("+")-->id12("∞")
+      id9("v")-->id0
+      id9("v")-->id3
+
+      id10("+")-->id9
+      id10("+")-->id6
+      id11("+")-->id10
+      id11("+")-->id12("∞")
 
 
-```
-````
+    ```
+
+<!-- prettier-ignore-end -->
 
 To simplify the combinatorics we can substitute rational tangles (as) twist vectors for the basic
 tangles and record the tree as a string in polish notation
 
-````{prf:example}
+<!-- prettier-ignore-start -->
+!!! example
 
-![Mont](../../../media/mont.svg)
+    ![Mont](./media/mont.svg)
 
-Algebraically:
+    Algebraically:
 
-$[1 2 0]+\LP[2 1 0]+[2 2 0]\RP$
+    $[1 2 0]+\LP[2 1 0]+[2 2 0]\RP$
 
-In polish notation:
+    In polish notation:
 
-$+[1 2 0]+[2 1 0][2 2 0]$
+    $+[1 2 0]+[2 1 0][2 2 0]$
 
-As a algebraic tangle tree
-att "decoded":
-   ```mermaid
-   flowchart TD
-   id0("+")-->id1("[1 2 0]")
-   id0("+")-->id2("+")
-   id2("+")-->id3("[2 1 0]")
-   id2("+")-->id4("[2 2 0]")
-   ```
-````
+    As a algebraic tangle tree
+    att "decoded":
+      ```mermaid
+      flowchart TD
+      id0("+")-->id1("[1 2 0]")
+      id0("+")-->id2("+")
+      id2("+")-->id3("[2 1 0]")
+      id2("+")-->id4("[2 2 0]")
+      ```
 
-## Bibliography
-
-```{bibliography}
-   :filter: docname in docnames
-```
-
-```{raw} latex
-    \newpage
-```
+<!-- prettier-ignore-end -->

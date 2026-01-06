@@ -41,7 +41,7 @@ C
 
 ## Uses
 
-- [Notation Twist Vector](../note-twist_vector/use-case)
+- [Notation Twist Vector](../note-twist_vector/index.md)
 
 ## Libraries
 
