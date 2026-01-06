@@ -19,3 +19,4 @@ markdown-include-variants
 pymdown-extensions
 mkdoxy
 mkdocs-awesome-nav
+mkdocs-bibtex

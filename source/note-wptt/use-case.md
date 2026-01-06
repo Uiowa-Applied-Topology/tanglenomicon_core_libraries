@@ -18,8 +18,8 @@ abstract: A use case description for the Weighted Planar Trees Notation.
 ###### Bands and Plumbing Squares
 
 Our first step in describing a notation for the arborescent knots
-{cite:p}`bonahonNewGeometricSplittings2016` is describing a plumbing operation on bands. A band with
-a plumbing square is a band $S^1x[0,1]$, along with an oriented square on the band such that two of
+[@bonahonNewGeometricSplittings2016] is describing a plumbing operation on bands. A band with a
+plumbing square is a band $S^1x[0,1]$, along with an oriented square on the band such that two of
 the sides of the square intersect the boundary of the band. Two examples of bands with plumbing
 squares can be seen in {prf:ref}`UC-N-APN-E-4`, note in the pink band the square should be viewed as
 looking through the surface of the band. That is, a half rotation of the band will yield a plumbing

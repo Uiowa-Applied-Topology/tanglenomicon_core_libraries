@@ -49,6 +49,8 @@ plugins:
               - "**/.nav.yml"
           search_paths:
               - source
+    - bibtex:
+          bib_file: "docs/ref.bib"
     # - mkdoxy:
     #       projects:
     #           core_lib: # name of project must be alphanumeric + numbers (without spaces)
