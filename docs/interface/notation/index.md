@@ -1,9 +1,6 @@
-(interface-notation)=
+[](){#interface-notation}
 
 # Notation Interface
 
-```{toctree}
-./use-case.md
-./unit-description.md
-
-```
+- [Use Case](./use-case.md)
+- [Unit Description](./unit-description.md)

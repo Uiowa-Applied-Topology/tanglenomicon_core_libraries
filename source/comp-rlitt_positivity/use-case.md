@@ -8,4 +8,5 @@ abstract: A use case description for computation of arborescent tangle positivit
 
 # Use Case
 
-The RLITT positivity computation use case is described in the thesis by Starr.
+The RLITT positivity computation use case is described in the
+[thesis by Starr](https://thesis.joe-starr.com/tabulation/).

@@ -8,14 +8,5 @@ abstract: A use case description for computation of Arborescent Tangle neutralit
 
 # Use Case
 
-The WPTT vertex canonicity use case is described in the thesis by Starr.
-
-## Bibliography
-
-```{bibliography}
-   :filter: docname in docnames
-```
-
-```{raw} latex
-    \newpage
-```
+The WPTT vertex canonicity use case is described in the
+[thesis by Starr](https://thesis.joe-starr.com/tabulation/).

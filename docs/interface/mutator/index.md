@@ -1,9 +1,6 @@
-(interface-mutator)=
+[](){#interface-mutator}
 
 # Mutator Interface
 
-```{toctree}
-./use-case.md
-./unit-description.md
-
-```
+- [Use Case](./use-case.md)
+- [Unit Description](./unit-description.md)

@@ -1,9 +1,6 @@
-(storage-comp)=
+[](){#storage-comp}
 
 # Storage Interface
 
-```{toctree}
-./use-case.md
-./unit-description.md
-
-```
+- [Use Case](./use-case.md)
+- [Unit Description](./unit-description.md)

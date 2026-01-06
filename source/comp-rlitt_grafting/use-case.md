@@ -8,4 +8,5 @@ abstract: A use case description for computation of Arborescent Tangle Grafting 
 
 # Use Case
 
-The RLITT grafting use case is described in the thesis by Starr.
+The RLITT grafting use case is described in the
+[thesis by Starr](https://thesis.joe-starr.com/tabulation/).
