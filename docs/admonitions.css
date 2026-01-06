@@ -19,7 +19,9 @@
           mask-image: var(--md-admonition-icon--test-card);
 }
 
-
+/************************************************************************************************/
+/************************************************************************************************/
+/************************************************************************************************/
 
 .md-typeset .admonition.requirement-card,
 .md-typeset details.requirement-card {
@@ -35,4 +37,104 @@
   background-color: rgb(240, 18, 190);
   -webkit-mask-image: var(--md-admonition-icon--requirement-card);
           mask-image: var(--md-admonition-icon--requirement-card);
+}
+
+/************************************************************************************************/
+/************************************************************************************************/
+/************************************************************************************************/
+
+.md-typeset .admonition.example,
+.md-typeset details.example {
+  border-color:#F012BE; 
+}
+.md-typeset .example > .admonition-title,
+.md-typeset .example > summary {
+  background-color: rgba(240, 18, 190, 0.1);
+  border-color: rgb(240, 18, 190);
+}
+.md-typeset .example > .admonition-title::before,
+.md-typeset .example > summary::before {
+  background-color: rgb(240, 18, 190);
+  -webkit-mask-image: var(--md-admonition-icon--example);
+          mask-image: var(--md-admonition-icon--example);
+}
+
+/************************************************************************************************/
+/************************************************************************************************/
+/************************************************************************************************/
+
+.md-typeset .admonition.theorem,
+.md-typeset details.theorem {
+  border-color:#F012BE; 
+}
+.md-typeset .theorem > .admonition-title,
+.md-typeset .theorem > summary {
+  background-color: rgba(240, 18, 190, 0.1);
+  border-color: rgb(240, 18, 190);
+}
+.md-typeset .theorem > .admonition-title::before,
+.md-typeset .theorem > summary::before {
+  background-color: rgb(240, 18, 190);
+  -webkit-mask-image: var(--md-admonition-icon--theorem);
+          mask-image: var(--md-admonition-icon--theorem);
+}
+
+/************************************************************************************************/
+/************************************************************************************************/
+/************************************************************************************************/
+
+.md-typeset .admonition.lemma,
+.md-typeset details.lemma {
+  border-color:#F012BE; 
+}
+.md-typeset .lemma > .admonition-title,
+.md-typeset .lemma > summary {
+  background-color: rgba(240, 18, 190, 0.1);
+  border-color: rgb(240, 18, 190);
+}
+.md-typeset .lemma > .admonition-title::before,
+.md-typeset .lemma > summary::before {
+  background-color: rgb(240, 18, 190);
+  -webkit-mask-image: var(--md-admonition-icon--lemma);
+          mask-image: var(--md-admonition-icon--lemma);
+}
+
+/************************************************************************************************/
+/************************************************************************************************/
+/************************************************************************************************/
+
+.md-typeset .admonition.definition,
+.md-typeset details.definition {
+  border-color:#F012BE; 
+}
+.md-typeset .definition > .admonition-title,
+.md-typeset .definition > summary {
+  background-color: rgba(240, 18, 190, 0.1);
+  border-color: rgb(240, 18, 190);
+}
+.md-typeset .definition > .admonition-title::before,
+.md-typeset .definition > summary::before {
+  background-color: rgb(240, 18, 190);
+  -webkit-mask-image: var(--md-admonition-icon--definition);
+          mask-image: var(--md-admonition-icon--definition);
+}
+
+/************************************************************************************************/
+/************************************************************************************************/
+/************************************************************************************************/
+
+.md-typeset .admonition.proof,
+.md-typeset details.proof {
+  border-color:#F012BE; 
+}
+.md-typeset .proof > .admonition-title,
+.md-typeset .proof > summary {
+  background-color: rgba(240, 18, 190, 0.1);
+  border-color: rgb(240, 18, 190);
+}
+.md-typeset .proof > .admonition-title::before,
+.md-typeset .proof > summary::before {
+  background-color: rgb(240, 18, 190);
+  -webkit-mask-image: var(--md-admonition-icon--proof);
+          mask-image: var(--md-admonition-icon--proof);
 }

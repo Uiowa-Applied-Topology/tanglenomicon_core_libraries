@@ -52,7 +52,7 @@ N/A
 A rational tangle is given by alternating NE,SE and SE,SW twisting of the $0$
 tangle[${}^{[2]}$](https://doi.org/10.48550/arXiv.math/0212011)[${}^{[1]}$](https://doi.org/10.1016/B978-0-08-012975-4.50034-5).
 A canonical combinatorial description of a rational tangle can be given by the
-[Twist Vector](../notations/twist%20vector.md).
+[Twist Vector](#notation-twist_vector).
 
 This module generates twist vectors and in doing so rational tangles. A normal flows go as:
 

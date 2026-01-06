@@ -39,8 +39,9 @@ watch:
 plugins:
     - gh-admonitions:
     - search:
-    - autorefs
-    - awesome-nav
+    - autorefs:
+    - awesome-nav:
+          resolve_closest: true
     - include-files:
           temp_location: Libraries
           search_syntax:
