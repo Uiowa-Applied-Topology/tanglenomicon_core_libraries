@@ -446,3 +446,4 @@ DartConfiguration.tcl
 
 .direnv
 .envrc
+*.a

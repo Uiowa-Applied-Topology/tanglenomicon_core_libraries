@@ -35,15 +35,6 @@ live: bootstrap
     source .venv/bin/activate && \
     sphinx-autobuild docs docs/.build/html
 
-
-pdf: bootstrap
-    source .venv/bin/activate && \
-    sphinx-build -M latex docs docs/.build
-    cp -r docs/resources/coloremoji/coloremoji docs/.build/latex
-    cp docs/resources/coloremoji/coloremoji.sty docs/.build/latex
-    cd docs/.build/latex && \
-    nextonic compile tanglenomiconcorelibraries.tex --keep-logs --keep-intermediates
-
 html: bootstrap
     source .venv/bin/activate && \
     sphinx-build -M html docs docs/.build
@@ -53,7 +44,7 @@ build_all : bootstrap
         rip {{buildDir}}; \
     fi
     source .venv/bin/activate && \
-    cmake -B{{buildDir}} -DCMAKE_BUILD_TYPE={{buildTrgt}} && \
+    cmake -B{{buildDir}} -DCMAKE_BUILD_TYPE={{buildTrgt}} -DCMAKE_COLOR_DIAGNOSTICS=TRUE -G Ninja && \
     cmake --build {{buildDir}}
 
 test_all: bootstrap
@@ -66,7 +57,7 @@ build_dbg : bootstrap
         rip {{buildDir_dbg}}; \
     fi
     source .venv/bin/activate && \
-    cmake -B{{buildDir_dbg}} -DCMAKE_BUILD_TYPE={{buildTrgt_dbg}} && \
+    cmake -B{{buildDir_dbg}} -DCMAKE_BUILD_TYPE={{buildTrgt_dbg}} -DCMAKE_COLOR_DIAGNOSTICS=TRUE -G Ninja && \
     cmake --build {{buildDir_dbg}}
 
 test_dbg: bootstrap
@@ -99,8 +90,5 @@ do-prettier:
     prettier -w "docs/**/*.md"
     prettier -w "source/**/*.md"
 
-zip: html
-    zip -r ./library_documentation.zip ./docs/.build/html
-
 compile_commands:
-    cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+    cmake -B{{buildDir}} -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_COLOR_DIAGNOSTICS=TRUE -G Ninja 
