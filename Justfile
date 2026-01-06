@@ -14,7 +14,7 @@ bootstrap:
       mkdir -p docs/.build/doxygen; \
     fi
     if test ! -e .venv; then \
-      uv venv --python 3.13 && uv pip install -r requirements.txt ; \
+      uv venv --python 3.13 && uv pip install -r requirements.txt && uv pip install "git+https://github.com/Joecstarr/mkdocs_include_files"; \
     fi
 
 
@@ -32,7 +32,15 @@ bib:
 
 live: bootstrap
     source .venv/bin/activate && \
-    sphinx-autobuild docs docs/.build/html
+    mkdocs serve
+
+pdf: bootstrap
+    source .venv/bin/activate && \
+    sphinx-build -M latex docs docs/.build
+    cp -r docs/resources/coloremoji/coloremoji docs/.build/latex
+    cp docs/resources/coloremoji/coloremoji.sty docs/.build/latex
+    cd docs/.build/latex && \
+    nextonic compile tanglenomiconcorelibraries.tex --keep-logs --keep-intermediates
 
 html: bootstrap
     source .venv/bin/activate && \

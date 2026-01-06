@@ -6,7 +6,6 @@ cython
 tqdm
 rich
 lizard
-mkdocs-include-files
 mkdocs-material
 mdx-include 
 mkdocs-github-admonitions-plugin

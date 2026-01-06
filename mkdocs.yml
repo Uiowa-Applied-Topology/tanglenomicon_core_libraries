@@ -1,4 +1,4 @@
-site_name: Right Leaning Identity Tangle Tree Generation Toolchain
+site_name: "The Tanglenomicon: Core Libraries"
 site_description: A toolchain for generating RLITT
 site_url: https://joe-starr.com/
 theme:
@@ -20,7 +20,7 @@ theme:
           primary: purple
           accent: deep purple
     features:
-        - navigation.sections
+        - navigation.indexes
 repo_name: Uiowa-Applied-Topology/tanglenomicon_rlitt_runner
 repo_url: https://github.com/Uiowa-Applied-Topology/tanglenomicon_rlitt_runner
 extra_css:
@@ -34,39 +34,26 @@ extra_javascript:
 
 watch:
     - docs
+    - source
 
 plugins:
     - gh-admonitions:
-    - search: n
+    - search:
     - include-files:
-      temp_location: .temp/include
-      search_syntax: *.md
-      search_paths: source
-    - mkdoxy:
-          projects:
-              core_lib: # name of project must be alphanumeric + numbers (without spaces)
-                  src-dirs: ./source/ # path to source code (support multiple paths separated by space) => INPUT
-                  full-doc: True # if you want to generate full documentation
-                  doxy-cfg: # standard doxygen configuration (key: value)
-                      FILE_PATTERNS: "*.c *.h*" # specify file patterns to filter out
-                      RECURSIVE: True # recursive search in source directories
-    - mkdocstrings:
-          handlers:
-              python:
-                  options:
-                      extensions:
-                          - griffe_typingdoc
-                      show_root_heading: true
-                      show_if_no_docstring: true
-                      inherited_members: true
-                      members_order: source
-                      separate_signature: true
-                      unwrap_annotated: true
-                      merge_init_into_class: true
-                      signature_crossrefs: true
-                      show_symbol_type_heading: true
-                      show_symbol_type_toc: true
-                      filters: [] # An empty list means no filtering, so private members will be included.
+          temp_location: Libraries
+          search_syntax:
+              - "**/*.md"
+              - "**/media/*.*"
+          search_paths:
+              - source
+    # - mkdoxy:
+    #       projects:
+    #           core_lib: # name of project must be alphanumeric + numbers (without spaces)
+    #               src-dirs: ./source/ # path to source code (support multiple paths separated by space) => INPUT
+    #               full-doc: True # if you want to generate full documentation
+    #               doxy-cfg: # standard doxygen configuration (key: value)
+    #                   FILE_PATTERNS: "*.c *.h" # specify file patterns to filter out
+    #                   RECURSIVE: True # recursive search in source directories
 
 markdown_extensions:
     - pymdownx.arithmatex:
