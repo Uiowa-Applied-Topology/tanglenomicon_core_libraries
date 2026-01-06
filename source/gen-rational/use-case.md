@@ -37,7 +37,7 @@ C
 
 ## Implements
 
-- [Generator Interface](../../docs/use_cases/generator-interface.md)
+- [Generator Interface](#interface-generator)
 
 ## Uses
 

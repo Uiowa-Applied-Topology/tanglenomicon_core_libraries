@@ -62,6 +62,7 @@ plugins:
 
 markdown_extensions:
     - attr_list
+    - footnotes
     - pymdownx.arithmatex:
           generic: true
     - toc:
