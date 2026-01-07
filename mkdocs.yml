@@ -3,22 +3,6 @@ site_description: A toolchain for generating RLITT
 site_url: https://joe-starr.com/
 theme:
     name: material
-    palette:
-        # Dark Mode
-        - scheme: slate
-          toggle:
-              icon: material/weather-sunny
-              name: Dark mode
-          primary: purple
-          accent: deep purple
-
-        # Light Mode
-        - scheme: default
-          toggle:
-              icon: material/weather-night
-              name: Light mode
-          primary: purple
-          accent: deep purple
     features:
         - navigation.indexes
 repo_name: Uiowa-Applied-Topology/tanglenomicon_rlitt_runner
@@ -52,15 +36,11 @@ plugins:
               - source
     - bibtex:
           bib_file: "docs/ref.bib"
-    # - mkdoxy:
-    #       projects:
-    #           core_lib: # name of project must be alphanumeric + numbers (without spaces)
-    #               src-dirs: ./source/ # path to source code (support multiple paths separated by space) => INPUT
-    #               full-doc: True # if you want to generate full documentation
-    #               doxy-cfg: # standard doxygen configuration (key: value)
-    #                   FILE_PATTERNS: "*.c *.h" # specify file patterns to filter out
-    #                   RECURSIVE: True # recursive search in source directories
-
+    - mkdocstrings:
+          handlers:
+              c:
+                  options:
+                      dosomething: yes
 markdown_extensions:
     - attr_list
     - footnotes

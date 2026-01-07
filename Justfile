@@ -14,7 +14,9 @@ bootstrap:
       mkdir -p docs/.build/doxygen; \
     fi
     if test ! -e .venv; then \
-      uv venv --python 3.13 && uv pip install -r requirements.txt && uv pip install "git+https://github.com/Joecstarr/mkdocs_include_files"; \
+      uv venv --python 3.13 && uv pip install -r requirements.txt && \
+      uv pip install "git+https://github.com/Joecstarr/mkdocs_include_files" && \
+      uv pip install "git+https://github.com/Joecstarr/mkdocs-bibtex"; \
     fi
 
 

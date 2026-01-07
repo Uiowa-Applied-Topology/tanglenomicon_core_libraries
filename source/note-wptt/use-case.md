@@ -13,5 +13,5 @@ abstract: A use case description for the Weighted Planar Trees Notation.
 
 ### Mathematical description
 
-Full description of the WPTT use case can be found in the following
+A full description of the WPTT use case can be found in the following
 [thesis](https://thesis.joe-starr.com/tabulation/#subsec-wptt).

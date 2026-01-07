@@ -67,20 +67,12 @@ None
 
 ## Doxygen Documentation
 
-```{doxygenfile} comp_rational_data.h
-
-```
+<!-- prettier-ignore-start -->
+::: ./source/comp-rational_data/src/comp_rational_data.h 
+    handler: c
 
 ```{doxygenfile} comp_rational_data.c
 
 ```
 
-## Bibliography
-
-```{bibliography}
-   :filter: docname in docnames
-```
-
-```{raw} latex
-    \newpage
-```
+<!-- prettier-ignore-end -->
