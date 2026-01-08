@@ -11,6 +11,9 @@ extra_css:
     - https://unpkg.com/katex@0/dist/katex.min.css
     - "admonitions.css"
 
+nav:
+    - Libraries: "*include ./source/*/mkdocs.yml"
+
 extra_javascript:
     - https://unpkg.com/katex@0/dist/katex.min.js
     - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
@@ -22,33 +25,21 @@ watch:
 
 plugins:
     - gh-admonitions:
+    - monorepo
     - search:
     - autorefs:
-    - awesome-nav:
-          resolve_closest: true
-    - include-files:
-          temp_location: Libraries
-          search_syntax:
-              - "**/*.md"
-              - "**/media/*.*"
-              - "**/.nav.yml"
-          search_paths:
-              - source
+    - awesome-nav
+    # - include-files:
+    #       temp_location: Libraries
+    #       search_syntax:
+    #           - "**/*.md"
+    #           - "**/media/*.*"
+    #           - "**/.nav.yml"
+    #       search_paths:
+    #           - source
     - bibtex:
           bib_file: "docs/ref.bib"
-    - mkdoxy:
-          projects:
-              core_lib: # name of project must be alphanumeric + numbers (without spaces)
-                  src-dirs: ./source/ # path to source code (support multiple paths separated by space) => INPUT
-                  full-doc: False # if you want to generate full documentation
-                  doxy-cfg: # standard doxygen configuration (key: value)
-                      FILE_PATTERNS: "*.c *.h" # specify file patterns to filter out
-                      RECURSIVE: True # recursive search in source directories
-          save-api: .mkdoxy
-          full-doc: True
-          debug: False
-          ignore-errors: False
-          emojis-enabled: True
+
 markdown_extensions:
     - attr_list
     - footnotes

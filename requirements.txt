@@ -21,3 +21,4 @@ mkdoxy
 mkdocs-awesome-nav
 mkdocs-bibtex
 mkdocstrings-c
+mkdocs-monorepo-plugin
