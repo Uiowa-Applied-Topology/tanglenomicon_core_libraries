@@ -36,11 +36,14 @@ plugins:
               - source
     - bibtex:
           bib_file: "docs/ref.bib"
-    - mkdocstrings:
-          handlers:
-              c:
-                  options:
-                      dosomething: yes
+    - mkdoxy:
+          projects:
+              core_lib: # name of project must be alphanumeric + numbers (without spaces)
+                  src-dirs: ./source/ # path to source code (support multiple paths separated by space) => INPUT
+                  full-doc: False # if you want to generate full documentation
+                  doxy-cfg: # standard doxygen configuration (key: value)
+                      FILE_PATTERNS: "*.c *.h" # specify file patterns to filter out
+                      RECURSIVE: True # recursive search in source directories
 markdown_extensions:
     - attr_list
     - footnotes

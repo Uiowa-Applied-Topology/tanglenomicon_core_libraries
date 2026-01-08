@@ -1,0 +1,7 @@
+title: Computation Rational Data
+sort:
+    direction: desc
+    type: natural
+    by: filename
+    sections: last
+    ignore_case: true
