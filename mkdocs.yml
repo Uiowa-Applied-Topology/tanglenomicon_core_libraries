@@ -44,6 +44,11 @@ plugins:
                   doxy-cfg: # standard doxygen configuration (key: value)
                       FILE_PATTERNS: "*.c *.h" # specify file patterns to filter out
                       RECURSIVE: True # recursive search in source directories
+          save-api: .mkdoxy
+          full-doc: True
+          debug: False
+          ignore-errors: False
+          emojis-enabled: True
 markdown_extensions:
     - attr_list
     - footnotes

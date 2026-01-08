@@ -46,7 +46,7 @@ pdf: bootstrap
 
 html: bootstrap
     source .venv/bin/activate && \
-    sphinx-build -M html docs docs/.build
+    mkdocs build
 
 build_all : bootstrap
     if test -e {{buildDir}}; then \
