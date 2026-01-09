@@ -1,4 +1,10 @@
-#include "string.h"
+#include "tests/compute/positive_tests.h"
+#include "tests/compute/negative_tests.h"
+#include "tests/config/positive_tests.h"
+#include "tests/config/negative_tests.h"
+#include "tests/results/positive_tests.h"
+#include "tests/results/negative_tests.h"
+#include "test_storage_stubs.h"
 #include "unity.h"
 
 /******************************************************************************/
@@ -13,7 +19,6 @@
 /*******************************Test Data**************************************/
 /******************************************************************************/
 
-
 /* clang-format off */
 
 /* clang-format on */
@@ -22,44 +27,30 @@
 /*******************************Test prep**************************************/
 /******************************************************************************/
 
-void setUp(void) {}
-
-void tearDown(void) {}
-
-/******************************************************************************/
-/*******************************Test cases*************************************/
-/******************************************************************************/
-
-/*!
- * @brief
- * @param
- */
-void test_config(void)
+void setUp(void)
 {
+    test_stub_storage_clear_buffers();
 }
-/*!
- * @brief
- * @param
- */
-void test_compute(void)
+
+void tearDown(void)
 {
+    test_stub_storage_clear_buffers();
 }
-/*!
- * @brief
- * @param
- */
-void test_results(void)
-{
-}
+
 /******************************************************************************/
 /*******************************Test main**************************************/
 /******************************************************************************/
+
 int main(void)
 {
     UNITY_BEGIN();
 
-    RUN_TEST(test_config);
-    RUN_TEST(test_compute);
+    RUN_TEST(test_compute_negative);
+    RUN_TEST(test_config_negative);
+    RUN_TEST(test_config_positive);
+    RUN_TEST(test_compute_positive);
+    RUN_TEST(test_results_positive);
+    RUN_TEST(test_results_negative);
 
     return UNITY_END();
 }

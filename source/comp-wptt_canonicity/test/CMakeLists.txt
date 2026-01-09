@@ -1,14 +1,22 @@
-add_executable(test_computation_wptt_canoncity_app
-               test_computation_wptt_canoncity.c)
+add_executable(
+  test_comp_wptt_canonicity
+  test_comp_wptt_canonicity.c
+  tests/config/positive_tests.c
+  tests/config/negative_tests.c
+  tests/compute/positive_tests.c
+  tests/compute/negative_tests.c
+  tests/results/positive_tests.c
+  utils/data.c
+  tests/results/negative_tests.c)
 
 target_link_libraries(
-  test_computation_wptt_canoncity_app
+  test_comp_wptt_canonicity
   computation_defs
   tang_defs
-  notation_wptt
-  comp_wptt_canoncity
+  storage_defs
+  test_stub_storage_stub
+  comp_wptt_canonicity
   Unity
   Cmock)
 
-add_test(NAME test_computation_wptt_canoncity
-         COMMAND test_computation_wptt_canoncity_app)
+add_test(NAME test_comp_wptt_canonicity COMMAND test_comp_wptt_canonicity)
