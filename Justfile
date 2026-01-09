@@ -6,10 +6,9 @@ set export
 buildTrgt := "Release"
 buildTrgt_dbg := "Debug"
 buildDir := "./.build"
-buildDir_dbg := "./.build_dbg"
 
 # Set up development environment
-bootstrap build_dir=buildDir:
+bootstrap:
     git submodule update --init --recursive
     if test ! -e docs/.build/doxygen; then \
       mkdir -p docs/.build/doxygen; \
@@ -52,18 +51,9 @@ test_all: bootstrap
     cd {{buildDir}} && \
     ctest -C {{buildTrgt}}
 
-build_dbg : bootstrap
-    if test -e {{buildDir_dbg}}; then \
-        rip {{buildDir_dbg}}; \
-    fi
+run TRGT: build_all
     source .venv/bin/activate && \
-    cmake -B{{buildDir_dbg}} -DCMAKE_BUILD_TYPE={{buildTrgt_dbg}} -DCMAKE_COLOR_DIAGNOSTICS=TRUE -G Ninja && \
-    cmake --build {{buildDir_dbg}}
-
-test_dbg: bootstrap
-    source .venv/bin/activate && \
-    cd {{buildDir_dbg}} && \
-    ctest -C {{buildTrgt_dbg}}
+    .build/{{TRGT}}
 
 do-cmakeformat:
     find . -name 'CMakeLists.txt' -exec cmake-format -i {} \;
