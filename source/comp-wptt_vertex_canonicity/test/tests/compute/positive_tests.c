@@ -56,8 +56,10 @@ static note_wptt_t weight_double_weight_nonroot = {&pp1b3bb3b1p3p,NULL,NOTE_WPTT
 /* primary_canon_wptt */
 
 static note_wptt_node_t b0b = {{NULL},{0,0,0},0,0,NOTE_WPTT_ORDER_FORWARD};
+static note_wptt_node_t pb3bb0bp= {{&leaf3,&b0b},{0,0,0},2,0,NOTE_WPTT_ORDER_FORWARD};
 static note_wptt_node_t pb0bp = {{&b0b},{0,0},1,0,NOTE_WPTT_ORDER_FORWARD};
 static note_wptt_t inf_tangle = {&pb0bp,NULL,NOTE_WPTT_V4_LABEL_I};
+static note_wptt_t zero_tangle = {&b0b,NULL,NOTE_WPTT_V4_LABEL_I};
 
 /************************************************************************************************/
 /****************** Non-Canon *******************************************************************/
@@ -65,9 +67,13 @@ static note_wptt_t inf_tangle = {&pb0bp,NULL,NOTE_WPTT_V4_LABEL_I};
 static note_wptt_node_t pb0b3p = {{&b0b},{0,3},1,0,NOTE_WPTT_ORDER_FORWARD};
 static note_wptt_t stick_zero_leaf = {&pb0b3p,NULL,NOTE_WPTT_V4_LABEL_I};
 
+static note_wptt_node_t pb3bb0_3bp = {{&leaf3,&pb0b3p },{0,0},2,0,NOTE_WPTT_ORDER_FORWARD};
 static note_wptt_node_t ppb3bb3bpp = {{&pb3bb3bp},{0,0},1,0,NOTE_WPTT_ORDER_FORWARD};
+static note_wptt_node_t ppb3bb0bpp = {{&pb3bb0bp},{0,0},1,0,NOTE_WPTT_ORDER_FORWARD};
 static note_wptt_node_t pppb3bb3bpp3p = {{&ppb3bb3bpp },{0,3},1,0,NOTE_WPTT_ORDER_FORWARD};
 static note_wptt_t stick_zero_internal = {&pppb3bb3bpp3p,NULL,NOTE_WPTT_V4_LABEL_I};
+static note_wptt_t stick_zero_leaf2 = {&pb3bb0bp,NULL,NOTE_WPTT_V4_LABEL_I};
+static note_wptt_t stick_zero_leaf3 = {&pb3bb0_3bp ,NULL,NOTE_WPTT_V4_LABEL_I};
 
 /*********** One  *******************************************************************************/
 /************************************************************************************************/
@@ -502,6 +508,21 @@ static void test_compute_stick_non_zero()
                                      test_stub_read_success_msg("i[0 0]",
                                                                 "is_canon_vertex"),
                                      "Error in output");
+
+    cfg.wptt           = &zero_tangle;
+    cfg.vertex         = &b0b;
+    cfg.parent         = NULL;
+    cfg.parent_is_root = false;
+    cfg.positivity     = COMP_WPTT_VERT_CANON_POS_POS;
+    ret_val            = comp_wptt_vert_canon_config(&cfg);
+
+    TEST_ASSERT_EQUAL_UINT8_MESSAGE(ret_val, COMP_DEFS_CONFIG_SUCCESS, "Error in config.");
+    ret_val = comp_wptt_vert_canon_compute();
+    TEST_ASSERT_EQUAL_UINT8_MESSAGE(ret_val, COMP_DEFS_COMPUTE_SUCCESS, "Error in computation.");
+    TEST_ASSERT_EQUAL_STRING_MESSAGE("true",
+                                     test_stub_read_success_msg("i[0]",
+                                                                "is_canon_vertex"),
+                                     "Error in output");
 /*******************************************************************/
 /* leaf*/
 /*******************************************************************/
@@ -517,6 +538,36 @@ static void test_compute_stick_non_zero()
     TEST_ASSERT_EQUAL_UINT8_MESSAGE(ret_val, COMP_DEFS_COMPUTE_SUCCESS, "Error in computation.");
     TEST_ASSERT_EQUAL_STRING_MESSAGE("false",
                                      test_stub_read_success_msg("i[0 3]",
+                                                                "is_canon_vertex"),
+                                     "Error in output");
+
+    cfg.wptt           = &stick_zero_leaf3;
+    cfg.vertex         = &b0b;
+    cfg.parent         = &pb0b3p;
+    cfg.parent_is_root = false;
+    cfg.positivity     = COMP_WPTT_VERT_CANON_POS_POS;
+    ret_val            = comp_wptt_vert_canon_config(&cfg);
+
+    TEST_ASSERT_EQUAL_UINT8_MESSAGE(ret_val, COMP_DEFS_CONFIG_SUCCESS, "Error in config.");
+    ret_val = comp_wptt_vert_canon_compute();
+    TEST_ASSERT_EQUAL_UINT8_MESSAGE(ret_val, COMP_DEFS_COMPUTE_SUCCESS, "Error in computation.");
+    TEST_ASSERT_EQUAL_STRING_MESSAGE("false",
+                                     test_stub_read_success_msg("i([3][0 3])",
+                                                                "is_canon_vertex"),
+                                     "Error in output");
+
+    cfg.wptt           = &stick_zero_leaf2;
+    cfg.vertex         = &b0b;
+    cfg.parent         = &pb3bb0bp;
+    cfg.parent_is_root = true;
+    cfg.positivity     = COMP_WPTT_VERT_CANON_POS_POS;
+    ret_val            = comp_wptt_vert_canon_config(&cfg);
+
+    TEST_ASSERT_EQUAL_UINT8_MESSAGE(ret_val, COMP_DEFS_CONFIG_SUCCESS, "Error in config.");
+    ret_val = comp_wptt_vert_canon_compute();
+    TEST_ASSERT_EQUAL_UINT8_MESSAGE(ret_val, COMP_DEFS_COMPUTE_SUCCESS, "Error in computation.");
+    TEST_ASSERT_EQUAL_STRING_MESSAGE("false",
+                                     test_stub_read_success_msg("i([3][0])",
                                                                 "is_canon_vertex"),
                                      "Error in output");
 /*******************************************************************/

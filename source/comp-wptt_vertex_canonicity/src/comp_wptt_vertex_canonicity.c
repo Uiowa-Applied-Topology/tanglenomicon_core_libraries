@@ -394,11 +394,24 @@ STATIC_INLINE bool comp_wptt_vert_canon_stick(const note_wptt_node_t *vertex,
     /* If we are on a leaf vertex. */
     else if (0 == vertex->number_of_children)
     {
+        int parent_weight = 0;
+        if (NULL != parent)
+        {
+            for (i = 0; i <= parent->number_of_children; i++)
+            {
+                parent_weight += parent->weights[i];
+            }
+        }
+
         /* Check that the weight is not $\pm 1$, and not zero (unless the parent is the root,
          * infinity tangle)*/
         if ((-1 == active_weight) ||
             (1 == active_weight) ||
-            ((0 == active_weight) && (false == parent_is_root)))
+            ((0 == active_weight) &&
+             ((false == parent_is_root) ||
+              ((true == parent_is_root) &&
+               ((1 < parent->number_of_children) ||
+                ((1 == parent->number_of_children) && (0 != parent_weight)))))))
         {
             comp_wptt_vert_canon_localrestult.is_canonical =
                 COMP_WPTT_VERT_CANON_IS_NONCANONICAL;
