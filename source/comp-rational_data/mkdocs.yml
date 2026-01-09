@@ -1,4 +1,9 @@
 site_name: Computation Rational Data
+
+nav:
+    - use-case.md
+    - unit-description.md
+
 plugins:
     - mkdoxy:
           projects:

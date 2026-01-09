@@ -4,6 +4,8 @@ site_url: https://joe-starr.com/
 theme:
     name: material
     features:
+        - navigation.tabs
+        - navigation.tabs.sticky
         - navigation.indexes
 repo_name: Uiowa-Applied-Topology/tanglenomicon_rlitt_runner
 repo_url: https://github.com/Uiowa-Applied-Topology/tanglenomicon_rlitt_runner
@@ -12,7 +14,34 @@ extra_css:
     - "admonitions.css"
 
 nav:
+    - Interfaces:
+          - "interface/index.md"
+          - Runner:
+                - "interface/runner/index.md"
+                - "interface/runner/use-case.md"
+                - "interface/runner/unit-description.md"
+          - Generator:
+                - "interface/generator/index.md"
+                - "interface/generator/use-case.md"
+                - "interface/generator/unit-description.md"
+          - Computation:
+                - "interface/computation/index.md"
+                - "interface/computation/use-case.md"
+                - "interface/computation/unit-description.md"
+          - Mutator:
+                - "interface/mutator/index.md"
+                - "interface/mutator/use-case.md"
+                - "interface/mutator/unit-description.md"
+          - Notation:
+                - "interface/notation/index.md"
+                - "interface/notation/use-case.md"
+                - "interface/notation/unit-description.md"
+          - Storage:
+                - "interface/storage/index.md"
+                - "interface/storage/use-case.md"
+                - "interface/storage/unit-description.md"
     - Libraries: "*include ./source/*/mkdocs.yml"
+    - Source Documentation: "corelib/files.md"
 
 extra_javascript:
     - https://unpkg.com/katex@0/dist/katex.min.js
@@ -24,19 +53,23 @@ watch:
     - source
 
 plugins:
+    - mkdoxy:
+          projects:
+              corelib: # name of project must be alphanumeric + numbers (without spaces)
+                  src-dirs: ./source/ # path to source code (support multiple paths separated by space) => INPUT
+                  full-doc: True # if you want to generate full documentation
+                  doxy-cfg: # standard doxygen configuration (key: value)
+                      FILE_PATTERNS: "*.c *.h" # specify file patterns to filter out
+                      RECURSIVE: True # recursive search in source directories
+          # save-api: .mkdoxy
+          # full-doc: True
+          # debug: False
+          # ignore-errors: False
+          # emojis-enabled: True
     - gh-admonitions:
     - monorepo
     - search:
     - autorefs:
-    - awesome-nav
-    # - include-files:
-    #       temp_location: Libraries
-    #       search_syntax:
-    #           - "**/*.md"
-    #           - "**/media/*.*"
-    #           - "**/.nav.yml"
-    #       search_paths:
-    #           - source
     - bibtex:
           bib_file: "docs/ref.bib"
 
