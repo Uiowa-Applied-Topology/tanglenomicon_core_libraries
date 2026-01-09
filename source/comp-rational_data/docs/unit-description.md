@@ -55,7 +55,7 @@ C
 
 ## Implements
 
-- [Computation Interface](#interface-computation)
+- [Computation Interface][interface-computation]
 
 ## Uses
 
