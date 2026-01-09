@@ -24,12 +24,3 @@ Meaning curves with endpoints that are not equal.
 
 There are no special computational considerations for this use case.
 
-## Bibliography
-
-```{bibliography}
-   :filter: docname in docnames
-```
-
-```{raw} latex
-    \newpage
-```

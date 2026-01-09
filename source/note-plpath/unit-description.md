@@ -272,16 +272,3 @@ The function will produce an error.
 
 ```
 
-## Bibliography
-
-```{bibliography}
-   :filter: docname in docnames
-```
-
-```{raw} latex
-    \newpage
-```
-
-```
-
-```

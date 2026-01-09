@@ -5,6 +5,4 @@ When the computation component is invoked, it produces a single output. The comp
 does not allocate memory, it must be configured with sufficient buffer space to successfully
 execute. Input data for a computation component shall not be mutated.
 
-```{raw} latex
-    \newpage
-```
+

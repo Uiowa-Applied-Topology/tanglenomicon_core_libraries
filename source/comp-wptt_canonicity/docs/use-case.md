@@ -14,12 +14,3 @@ abstract: A use case description for computation of Weighted Planar Tangle Tree 
 
 Information on the use case for determining WPTT canonicity can be found in the thesis by Starr.
 
-## Bibliography
-
-```{bibliography}
-   :filter: docname in docnames
-```
-
-```{raw} latex
-    \newpage
-```

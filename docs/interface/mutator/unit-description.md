@@ -59,6 +59,4 @@ stateDiagram-v2
     wod -->  [*]
 ```
 
-```{raw} latex
-    \newpage
-```
+

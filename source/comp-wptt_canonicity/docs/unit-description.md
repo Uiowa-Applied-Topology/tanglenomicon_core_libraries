@@ -375,12 +375,3 @@ A negative response.
 
 ```
 
-## Bibliography
-
-```{bibliography}
-   :filter: docname in docnames
-```
-
-```{raw} latex
-    \newpage
-```
