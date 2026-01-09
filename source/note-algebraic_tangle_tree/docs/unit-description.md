@@ -226,34 +226,35 @@ stateDiagram-v2
 
 ### Decode interface
 
-```{test-card} Valid string representing a algebraic tangle tree
+<!-- prettier-ignore-start -->
+!!! test-card "Valid string representing a algebraic tangle tree"
 
-A valid string representing a algebraic tangle tree is fed to the function.
+    A valid string representing a algebraic tangle tree is fed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid string representing a algebraic tangle tree.
+    - A valid string representing a algebraic tangle tree.
 
-**Expected Output:**
+    **Expected Output:**
 
-A correct and valid decoding of the string
+    A correct and valid decoding of the string
 
 
-```
+<!-- prettier-ignore-end -->
 
 ### Encode interface
 
-```{test-card} Valid algebraic tangle tree
+<!-- prettier-ignore-start -->
+!!! test-card "Valid algebraic tangle tree"
 
-A valid algebraic tangle tree is fed to the function.
+    A valid algebraic tangle tree is fed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- A correct and valid algebraic tangle tree.
+    - A correct and valid algebraic tangle tree.
 
-**Expected Output:**
+    **Expected Output:**
 
-A valid string representing the algebraic tangle tree.
+    A valid string representing the algebraic tangle tree.
 
-```
-
+<!-- prettier-ignore-end -->

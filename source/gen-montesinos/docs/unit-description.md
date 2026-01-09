@@ -179,85 +179,87 @@ stateDiagram-v2
 
 #### Positive Tests
 
-```{test-card} Valid Config
+<!-- prettier-ignore-start -->
+!!! test-card "Valid Config"
 
-A valid configuration for the generator is passed to the function.
+    A valid configuration for the generator is passed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid config.
+    - A valid config.
 
-**Expected Output:**
+    **Expected Output:**
 
-A positive response.
+    A positive response.
 
-```
+<!-- prettier-ignore-end -->
 
 #### Negative Tests
 
-```{test-card} Null Config
+<!-- prettier-ignore-start -->
+!!! test-card "Null Config"
 
-A null configuration for the generator is passed to the function.
+    A null configuration for the generator is passed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- A null config.
+    - A null config.
 
-**Expected Output:**
+    **Expected Output:**
 
-A negative response.
+    A negative response.
 
-```
+<!-- prettier-ignore-end -->
 
 ### Generate interface
 
-```{test-card} Valid Configuration and generation
+<!-- prettier-ignore-start -->
+!!! test-card "Valid Configuration and generation"
 
-A valid configuration is set and the generation is called.
+    A valid configuration is set and the generation is called.
 
-**Inputs:**
+    **Inputs:**
 
-- The twist vector lists
-    1. $\,$
-        - [ 0 1 1 ]
-        - [ 0 2 2 ]
-        - [ 0 3 3 ]
-    2. $\,$
-        - [ 1 1 1 ]
-        - [ 1 2 2 ]
-    3. $\,$
-        - [ 2 1 1 ]
-        - [ 2 2 2 ]
-        - [ 2 3 3 ]
-        - [ 2 4 4 ]
+    - The twist vector lists
+        1. 
+            - `[ 1 1 0 ]`
+            - `[ 2 2 0 ]`
+            - `[ 3 3 0 ]`
+        2. 
+            - `[ 1 1 1 ]`
+            - `[ 1 2 2 ]`
+        3. 
+            - `[ 2 1 1 ]`
+            - `[ 2 2 2 ]`
+            - `[ 2 3 3 ]`
+            - `[ 2 4 4 ]`
 
-**Expected Output:**
+    **Expected Output:**
 
-The algebraic tangle trees:
--  +[1 1 0]+[1 1 1][1 1 2]
--  +[1 1 0]+[1 1 1][2 2 2]
--  +[1 1 0]+[1 1 1][3 3 2]
--  +[1 1 0]+[1 1 1][4 4 2]
--  +[1 1 0]+[2 2 1][1 1 2]
--  +[1 1 0]+[2 2 1][2 2 2]
--  +[1 1 0]+[2 2 1][3 3 2]
--  +[1 1 0]+[2 2 1][4 4 2]
--  +[2 2 0]+[1 1 1][1 1 2]
--  +[2 2 0]+[1 1 1][2 2 2]
--  +[2 2 0]+[1 1 1][3 3 2]
--  +[2 2 0]+[1 1 1][4 4 2]
--  +[2 2 0]+[2 2 1][1 1 2]
--  +[2 2 0]+[2 2 1][2 2 2]
--  +[2 2 0]+[2 2 1][3 3 2]
--  +[2 2 0]+[2 2 1][4 4 2]
--  +[3 3 0]+[1 1 1][1 1 2]
--  +[3 3 0]+[1 1 1][2 2 2]
--  +[3 3 0]+[1 1 1][3 3 2]
--  +[3 3 0]+[1 1 1][4 4 2]
--  +[3 3 0]+[2 2 1][1 1 2]
--  +[3 3 0]+[2 2 1][2 2 2]
--  +[3 3 0]+[2 2 1][3 3 2]
--  +[3 3 0]+[2 2 1][4 4 2]
+    The algebraic tangle trees:
+    -  `+[1 1 0]+[1 1 1][1 1 2]`
+    -  `+[1 1 0]+[1 1 1][2 2 2]`
+    -  `+[1 1 0]+[1 1 1][3 3 2]`
+    -  `+[1 1 0]+[1 1 1][4 4 2]`
+    -  `+[1 1 0]+[2 2 1][1 1 2]`
+    -  `+[1 1 0]+[2 2 1][2 2 2]`
+    -  `+[1 1 0]+[2 2 1][3 3 2]`
+    -  `+[1 1 0]+[2 2 1][4 4 2]`
+    -  `+[2 2 0]+[1 1 1][1 1 2]`
+    -  `+[2 2 0]+[1 1 1][2 2 2]`
+    -  `+[2 2 0]+[1 1 1][3 3 2]`
+    -  `+[2 2 0]+[1 1 1][4 4 2]`
+    -  `+[2 2 0]+[2 2 1][1 1 2]`
+    -  `+[2 2 0]+[2 2 1][2 2 2]`
+    -  `+[2 2 0]+[2 2 1][3 3 2]`
+    -  `+[2 2 0]+[2 2 1][4 4 2]`
+    -  `+[3 3 0]+[1 1 1][1 1 2]`
+    -  `+[3 3 0]+[1 1 1][2 2 2]`
+    -  `+[3 3 0]+[1 1 1][3 3 2]`
+    -  `+[3 3 0]+[1 1 1][4 4 2]``
+    -  `+[3 3 0]+[2 2 1][1 1 2]`
+    -  `+[3 3 0]+[2 2 1][2 2 2]`
+    -  `+[3 3 0]+[2 2 1][3 3 2]`
+    -  `+[3 3 0]+[2 2 1][4 4 2]`
 
-```
-
+<!-- prettier-ignore-end -->

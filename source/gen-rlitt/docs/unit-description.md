@@ -118,7 +118,7 @@ stateDiagram-v2
     state outer_for {
         inner_for: "for each scion"
         state inner_for {
-            graft: Graft scion to rootstock formeing $$\ \Gamma$$
+            graft: Graft scion to rootstock forming $$\ \Gamma$$
             pos: Identify the neutrality of $$\ \Gamma$$
             rep: Report $$\Gamma$$ and its neutrality
             [*] --> graft
@@ -141,109 +141,114 @@ stateDiagram-v2
 
 #### Positive Tests
 
-```{test-card} Valid Config
+<!-- prettier-ignore-start -->
+!!! test-card "Valid Configuration"
 
-A valid configuration for the generator is passed to the function.
+    A valid configuration for the generator is passed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid config.
+    - A valid config.
 
-**Expected Output:**
+    **Expected Output:**
 
-A positive response.
+    A positive response.
 
-```
+<!-- prettier-ignore-end -->
 
 #### Negative Tests
 
-```{test-card} Null Config
+<!-- prettier-ignore-start -->
+!!! test-card "Null Configuration"
 
-A null configuration for the generator is passed to the function.
+    A null configuration for the generator is passed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- A null config.
+    - A null config.
 
-**Expected Output:**
+    **Expected Output:**
 
-A negative response.
+    A negative response.
 
-```
+<!-- prettier-ignore-end -->
 
-```{test-card} Null Configuration Parameters
+<!-- prettier-ignore-start -->
+!!! test-card "Null Configuration Parameters"
 
-A configuration with various null parameters is passed to the function.
+    A configuration with various null parameters is passed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- A configuration with null rootstock.
-- A configuration with 0 rootstock_len.
-- A configuration with null scion.
-- A configuration with 0 scion_len.
-- A configuration with null str_buffer.
-- A configuration with 0 str_buffer_len.
+    - A configuration with null rootstock.
+    - A configuration with 0 rootstock_len.
+    - A configuration with null scion.
+    - A configuration with 0 scion_len.
+    - A configuration with null str_buffer.
+    - A configuration with 0 str_buffer_len.
 
-**Expected Output:**
+    **Expected Output:**
 
-A negative response.
+    A negative response.
 
-```
+<!-- prettier-ignore-end -->
 
 ### Generate Function
 
 #### Positive Tests
 
-```{test-card} Valid Configuration and generation
+<!-- prettier-ignore-start -->
+!!! test-card "Valid Configuration and Generation"
 
-A valid configuration is set and the generation is called.
+    A valid configuration is set and the generation is called.
 
-**Inputs:**
+    **Inputs:**
 
-- The rootstock list
-    - $\iota\LB 1\RB$
-    - $\iota\LP\LB2\RB \LB3\RB 4\RP$
-- The scion list
-    - $\iota\LB 5\RB$
-    - $\iota\LP\LB6\RB \LB7\RB 8\RP$
+    - The rootstock list
+        - $\iota\LB 1\RB$
+        - $\iota\LP\LB2\RB \LB3\RB 4\RP$
+    - The scion list
+        - $\iota\LB 5\RB$
+        - $\iota\LP\LB6\RB \LB7\RB 8\RP$
 
-**Expected Output:**
+    **Expected Output:**
 
-The algebraic tangle trees:
--  $\iota\LB5\ 1\RB$
--  $\iota\LP\LP\LB 6\RB\LB 7\RB 8\RP 1\RP$
--  $\iota\LP\LB2\RB\LB3\RB\LB5\RB 4\RP$
--  $\iota\LP\LB2\RB\LB3\RB\LP\LB6\RB\LB7\RB8\RP4\RP$
+    The algebraic tangle trees:
+    -  $\iota\LB5\ 1\RB$
+    -  $\iota\LP\LP\LB 6\RB\LB 7\RB 8\RP 1\RP$
+    -  $\iota\LP\LB2\RB\LB3\RB\LB5\RB 4\RP$
+    -  $\iota\LP\LB2\RB\LB3\RB\LP\LB6\RB\LB7\RB8\RP4\RP$
 
-```
+<!-- prettier-ignore-end -->
 
-```{test-card} Generation of low crossing number
+<!-- prettier-ignore-start -->
+!!! test-card "Generation of low crossing number"
 
-A valid configuration is set and the generation is called to comput up to 5 crossings.
+    A valid configuration is set and the generation is called to compute up to 5 crossings.
 
-**Inputs:**
+    **Inputs:**
 
-- All tangles up to $4$ crossings.
+    - All tangles up to $4$ crossings.
 
-**Expected Output:**
+    **Expected Output:**
 
-All tangles up to $5$ crossings.
+    All tangles up to $5$ crossings.
 
-```
+<!-- prettier-ignore-end -->
 
 #### Negative Tests
 
-```{test-card} Not Configured
+<!-- prettier-ignore-start -->
+!!! test-card "Not Configured"
 
-The generate interface is called before configuration.
+    The generate interface is called before configuration.
 
-**Inputs:**
+    **Inputs:**
 
-- None.
+    - None.
 
-**Expected Output:**
+    **Expected Output:**
 
-A negative response.
+    A negative response.
 
-```
-
+<!-- prettier-ignore-end -->

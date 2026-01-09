@@ -340,143 +340,149 @@ stateDiagram-v2
 
 #### Positive Tests
 
-```{test-card} Valid string representing a knot
+<!-- prettier-ignore-start -->
+!!! test-card "Valid string representing a knot"
 
-A valid string representing a knot (no free bond) is fed to the function.
+    A valid string representing a knot (no free bond) is fed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid string representing a knot.
-- A stick tree.
-- A tree with an essential vertex.
-- A tree with a vertex that has ring number.
-- A tree with a vertex with more than one weight.
+    - A valid string representing a knot.
+    - A stick tree.
+    - A tree with an essential vertex.
+    - A tree with a vertex that has ring number.
+    - A tree with a vertex with more than one weight.
 
-**Expected Output:**
+    **Expected Output:**
 
-A valid decoding of the string
+    A valid decoding of the string
 
-```
+<!-- prettier-ignore-end -->
 
-```{test-card} Valid string representing a tangle
+<!-- prettier-ignore-start -->
+!!! test-card "Valid string representing a tangle"
 
-A valid string representing a tangle (with free bond) is fed to the function.
+    A valid string representing a tangle (with free bond) is fed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid string representing a tangle with each label:
-    - i
-    - x
-    - y
-    - z
-- A stick tree.
-- A tree with an essential vertex.
-- A tree with a vertex that has ring number.
-- A tree with a vertex with more than one weight.
+    - A valid string representing a tangle with each label:
+        - i
+        - x
+        - y
+        - z
+    - A stick tree.
+    - A tree with an essential vertex.
+    - A tree with a vertex that has ring number.
+    - A tree with a vertex with more than one weight.
 
-**Expected Output:**
+    **Expected Output:**
 
-A valid decoding of the string
+    A valid decoding of the string
 
 
-```
+<!-- prettier-ignore-end -->
 
 #### Negative Tests
 
-```{test-card} A malformed tree is fed to the function
+<!-- prettier-ignore-start -->
+!!! test-card "A malformed tree is fed to the function"
 
-Various malformed trees are fed to the function.
+    Various malformed trees are fed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-Malformed strings with the following characteristics:
+    Malformed strings with the following characteristics:
 
-- A missing closing delimiter.
-- An unexpected character is in the string.
-- The string has more weights than possible.
-- An empty string.
+    - A missing closing delimiter.
+    - An unexpected character is in the string.
+    - The string has more weights than possible.
+    - An empty string.
 
-**Expected Output:**
+    **Expected Output:**
 
-The function reports an error.
+    The function reports an error.
 
 
-```
+<!-- prettier-ignore-end -->
 
 ### Encode interface
 
 #### Positive Tests
 
-```{test-card} A valid knot wptt is fed to the function
+<!-- prettier-ignore-start -->
+!!! test-card "A valid knot wptt is fed to the function"
 
-A valid knot wptt (with no label) is fed to the encode function.
+    A valid knot wptt (with no label) is fed to the encode function.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid wptt representing a knot.
-- A stick wptt.
-- A wptt with an essential vertex.
-- A wptt with a vertex that has ring number.
-- A wptt with a vertex with more than one weight.
+    - A valid wptt representing a knot.
+    - A stick wptt.
+    - A wptt with an essential vertex.
+    - A wptt with a vertex that has ring number.
+    - A wptt with a vertex with more than one weight.
 
-**Expected Output:**
+    **Expected Output:**
 
-The function produces the corresponding encoded string.
+    The function produces the corresponding encoded string.
 
-```
+<!-- prettier-ignore-end -->
 
-```{test-card} A valid tangle wptt is fed to the function
+<!-- prettier-ignore-start -->
+!!! test-card "A valid tangle wptt is fed to the function"
 
-A valid tangle wptt (with label) is fed to the encode function.
+    A valid tangle wptt (with label) is fed to the encode function.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid wptt representing a tangle with each label:
-    - i
-    - x
-    - y
-    - z
-- A stick wptt.
-- A wptt with an essential vertex.
-- A wptt with a vertex that has ring number.
-- A wptt with a vertex with more than one weight.
-- A wptt with a vertex that has reverse order.
+    - A valid wptt representing a tangle with each label:
+        - i
+        - x
+        - y
+        - z
+    - A stick wptt.
+    - A wptt with an essential vertex.
+    - A wptt with a vertex that has ring number.
+    - A wptt with a vertex with more than one weight.
+    - A wptt with a vertex that has reverse order.
 
-**Expected Output:**
+    **Expected Output:**
 
-The function produces the corresponding encoded string.
+    The function produces the corresponding encoded string.
 
 
-```
+<!-- prettier-ignore-end -->
 
 #### Negative Tests
 
-```{test-card} A malformed wptt is passed to the function
+<!-- prettier-ignore-start -->
+!!! test-card "A malformed wptt is passed to the function"
 
-A malformed wptt is passed to the function.
+    A malformed wptt is passed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- A NULL child is present
-- A NULL root is present
-- An UNINIT label is present
+    - A NULL child is present
+    - A NULL root is present
+    - An UNINIT label is present
 
-**Expected Output:**
+    **Expected Output:**
 
-The function will produce an error.
+    The function will produce an error.
 
-```
+<!-- prettier-ignore-end -->
 
-```{test-card} A NULL string buffer is passed
+<!-- prettier-ignore-start -->
+!!! test-card "A NULL string buffer is passed"
 
-The output string buffer is a NULL pointer.
+    The output string buffer is a NULL pointer.
 
-**Inputs:**
+    **Inputs:**
 
-- A NULL pointer buffer is passed to the function
+    - A NULL pointer buffer is passed to the function
 
-**Expected Output:**
+    **Expected Output:**
 
-The function will produce an error.
-```
-
+    The function will produce an error.
+<!-- prettier-ignore-end -->

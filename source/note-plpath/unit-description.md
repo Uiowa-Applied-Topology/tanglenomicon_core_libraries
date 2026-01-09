@@ -188,87 +188,80 @@ The private functions of the component are straightforward.
 
 #### Positive Tests
 
-```{test-card} Valid string representing a PL path
+<!-- prettier-ignore-start -->
+!!! test-card "Valid string representing a PL path"
 
-A valid string representing a PL path  is fed to the function.
+    A valid string representing a PL path  is fed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- Valid strings representing a PL path:
-    - A string with multiple segments
-    - A string with a single segment
-    - A string with comments
-    - A string with no comments
-    - A string with `\n\n\n`
-    - A string with terminal `\n`
-    - A string with no segments.
+    - Valid strings representing a PL path:
+        - A string with multiple segments
+        - A string with a single segment
+        - A string with comments
+        - A string with no comments
+        - A string with `\n\n\n`
+        - A string with terminal `\n`
+        - A string with no segments.
 
-**Expected Output:**
+    **Expected Output:**
 
-A correct and valid decoding of the string
+    A correct and valid decoding of the string
 
-```
+<!-- prettier-ignore-end -->
 
 #### Negative Tests
 
-```{test-card} A malformed PL path is fed to the function
+<!-- prettier-ignore-start -->
+!!! test-card "A malformed PL path is fed to the function"
 
-A malformed PL path string is fed to the function.
+    A malformed PL path string is fed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-Malformed strings with the following characteristics:
+    Malformed strings with the following characteristics:
 
-- An illegal character.
-- An incomplete point.
+    - An illegal character.
+    - An incomplete point.
 
 
-**Expected Output:**
+    **Expected Output:**
 
-The function reports an error.
+    The function reports an error.
 
-```
+<!-- prettier-ignore-end -->
 
 ### Encode Interface
 
 #### Positive Tests
 
-```{test-card} Valid PL path
+<!-- prettier-ignore-start -->
+!!! test-card "Valid PL path"
 
-A valid PL path is fed to the function.
+    A valid PL path is fed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- A correct and valid PL path.
+    - A correct and valid PL path.
 
-**Expected Output:**
+    **Expected Output:**
 
-A valid string representing the PL path.
+    A valid string representing the PL path.
 
-```
+<!-- prettier-ignore-end -->
 
 #### Negative Tests
 
-```{test-card} A NULL string buffer is passed
+<!-- prettier-ignore-start -->
+!!! test-card "A NULL string buffer is passed"
 
-The output string buffer is a NULL pointer.
+    The output string buffer is a NULL pointer.
 
-**Inputs:**
+    **Inputs:**
 
-- A NULL pointer buffer is passed to the function
+    - A NULL pointer buffer is passed to the function
 
-**Expected Output:**
+    **Expected Output:**
 
-The function will produce an error.
-```
-
-## Doxygen Documentation
-
-```{doxygenfile} notation_plpath.h
-
-```
-
-```{doxygenfile} notation_plpath.c
-
-```
-
+    The function will produce an error.
+<!-- prettier-ignore-end -->

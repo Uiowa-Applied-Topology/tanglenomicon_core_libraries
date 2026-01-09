@@ -173,197 +173,206 @@ The tree walking function follows the pattern used by other WPTT components.
 
 #### Positive Tests
 
-```{test-card} Valid Configuration
+<!-- prettier-ignore-start -->
+!!! test-card "Valid Configuration"
 
-A valid configuration for the computation is passed to the function.
+    A valid configuration for the computation is passed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid configuration.
+    - A valid configuration.
 
-**Expected Output:**
+    **Expected Output:**
 
-A positive response.
+    A positive response.
 
-```
+<!-- prettier-ignore-end -->
 
 #### Negative Tests
 
-```{test-card} Null Configuration
+<!-- prettier-ignore-start -->
+!!! test-card "Null Configuration"
 
-A null configuration for the computation is passed to the function.
+    A null configuration for the computation is passed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- A null configuration.
+    - A null configuration.
 
-**Expected Output:**
+    **Expected Output:**
 
-A negative response.
+    A negative response.
 
-```
+<!-- prettier-ignore-end -->
 
-```{test-card} Null configuration Parameters
+<!-- prettier-ignore-start -->
+!!! test-card "Null configuration Parameters"
 
-A configuration with various null parameters is passed to the function.
+    A configuration with various null parameters is passed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- A configuration with null tree.
+    - A configuration with null tree.
 
-**Expected Output:**
+    **Expected Output:**
 
-A negative response.
+    A negative response.
 
-```
+<!-- prettier-ignore-end -->
 
 ### Compute Function
 
 #### Positive Tests
 
-```{test-card} A valid configuration
+<!-- prettier-ignore-start -->
+!!! test-card "A valid configuration"
 
-A valid configuration is set for the component. The computation is executed and
-returns successfully. The result written to the write interface is correct.
+    A valid configuration is set for the component. The computation is executed and
+    returns successfully. The result written to the write interface is correct.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid configuration is set with the following trees:
-    - Canonical trees
-        - `i[3 3]`
-        - `i[3 0]`
-        - `x([3 3]3[3 3])`
-        - `i((([3 3]3[3 3])3)-3)`
-        - `i[-3]`
-        - `i[0]`
-        - `i[0 0]`
-        - `i[2]`
-        - `i[-2]`
-        - `i[1]`
-        - `i[-1]`
-    - Non-canonical trees
-        - S.A
-            - `i[3 -3]`
-            - `i((([3 -3]3[3 3])3)-3)`
-            - `i((([3 3]3[3 3])3)3)`
-            - `i(([3 3]3[3 3])3((([3 3]3[3 3])3)3))`
-        - S.0
-            - `i[-1 -3]`
-            - `i[1 3]`
-            - `i([3 3][3 3](([3 3]3[3 3])1))`
-            - `i([3 3][3 3](([3 3]3[3 3])-1))`
-            - `i([3 3][3 3][1])`
-            - `i([3 3][3 3][-1])`
-            - `i(((([3 3]3[3 3])1)-3)[3 3])`
-            - `i(((([3 3]3[3 3])-1)3)[3 3])`
-            - `i(((([3 3]3[3 3])3)-1)[3 3])`
-            - `i(((([3 3]3[3 3])-3)1)[3 3])`
-        - S.1
-            - `i[-3 0 3]`
-            - `i([3 3][3 3][0])`
-            - `i((([3 3]3[3 3]))[3 3])`
-            - `i(((([3 3]3[3 3])3))3)`
-            - `i(((([3 3]3[3 3]))3)3)`
-        - W
-            - `i(3[-3]3)`
-            - `i([-3](3[-3]3))`
-            - `i(3[-3]3[-3])`
-        - P.P
-            - `i([-2][3])`
-            - `i([3 3](([3 3]3[3 3])-2))`
-        - P.N
-            - `i([2][3])`
-            - `i([3 3](([3 3]3[3 3])2))`
+    - A valid configuration is set with the following trees:
+        - Canonical trees
+            - `i[3 3]`
+            - `i[3 0]`
+            - `x([3 3]3[3 3])`
+            - `i((([3 3]3[3 3])3)-3)`
+            - `i[-3]`
+            - `i[0]`
+            - `i[0 0]`
+            - `i[2]`
+            - `i[-2]`
+            - `i[1]`
+            - `i[-1]`
+        - Non-canonical trees
+            - S.A
+                - `i[3 -3]`
+                - `i((([3 -3]3[3 3])3)-3)`
+                - `i((([3 3]3[3 3])3)3)`
+                - `i(([3 3]3[3 3])3((([3 3]3[3 3])3)3))`
+            - S.0
+                - `i[-1 -3]`
+                - `i[1 3]`
+                - `i([3 3][3 3](([3 3]3[3 3])1))`
+                - `i([3 3][3 3](([3 3]3[3 3])-1))`
+                - `i([3 3][3 3][1])`
+                - `i([3 3][3 3][-1])`
+                - `i(((([3 3]3[3 3])1)-3)[3 3])`
+                - `i(((([3 3]3[3 3])-1)3)[3 3])`
+                - `i(((([3 3]3[3 3])3)-1)[3 3])`
+                - `i(((([3 3]3[3 3])-3)1)[3 3])`
+            - S.1
+                - `i[-3 0 3]`
+                - `i([3 3][3 3][0])`
+                - `i((([3 3]3[3 3]))[3 3])`
+                - `i(((([3 3]3[3 3])3))3)`
+                - `i(((([3 3]3[3 3]))3)3)`
+            - W
+                - `i(3[-3]3)`
+                - `i([-3](3[-3]3))`
+                - `i(3[-3]3[-3])`
+            - P.P
+                - `i([-2][3])`
+                - `i([3 3](([3 3]3[3 3])-2))`
+            - P.N
+                - `i([2][3])`
+                - `i([3 3](([3 3]3[3 3])2))`
 
-**Expected Output:**
+    **Expected Output:**
 
-- A positive response.
-- A correct output on the write interface.
+    - A positive response.
+    - A correct output on the write interface.
 
-```
+<!-- prettier-ignore-end -->
 
-```{test-card} A valid configuration with null write interface
+<!-- prettier-ignore-start -->
+!!! test-card "A valid configuration with null write interface"
 
-A valid configuration is set for the component with null write. The computation is
-executed and returns successfully.
+    A valid configuration is set for the component with null write. The computation is
+    executed and returns successfully.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid configuration is set.
+    - A valid configuration is set.
 
-**Expected Output:**
+    **Expected Output:**
 
-- A positive response.
+    - A positive response.
 
-```
+<!-- prettier-ignore-end -->
 
 #### Negative Tests
 
-```{test-card} Not Configured
+<!-- prettier-ignore-start -->
+!!! test-card "Not Configured"
 
-The compute interface is called before configuration.
+    The compute interface is called before configuration.
 
-**Inputs:**
+    **Inputs:**
 
-- None.
+    - None.
 
-**Expected Output:**
+    **Expected Output:**
 
-A negative response.
+    A negative response.
 
-```
+<!-- prettier-ignore-end -->
 
 ### Result Function
 
 #### Positive Tests
 
-```{test-card} Correct handling of a canonical tree
+<!-- prettier-ignore-start -->
+!!! test-card "Correct handling of a canonical tree"
 
-A valid configuration is set for the component. The computation is executed and
-returns successfully. The result written to the write interface is correct.
+    A valid configuration is set for the component. The computation is executed and
+    returns successfully. The result written to the write interface is correct.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid configuration is set, the following trees are configured:
-    - One tree for each canonicity condition.
+    - A valid configuration is set, the following trees are configured:
+        - One tree for each canonicity condition.
 
-**Expected Output:**
+    **Expected Output:**
 
-- A positive response.
-- A correct output on the write interface.
-```
+    - A positive response.
+    - A correct output on the write interface.
+<!-- prettier-ignore-end -->
 
-```{test-card} Correct handling of a noncanonical tree
+<!-- prettier-ignore-start -->
+!!! test-card "Correct handling of a noncanonical tree"
 
-A valid configuration is set for the component. The computation is executed and
-returns successfully. The result written to the write interface is correct.
+    A valid configuration is set for the component. The computation is executed and
+    returns successfully. The result written to the write interface is correct.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid configuration is set, the following trees are configured:
-    - One tree for each canonicity condition.
+    - A valid configuration is set, the following trees are configured:
+        - One tree for each canonicity condition.
 
-**Expected Output:**
+    **Expected Output:**
 
-- A positive response.
-- A correct output on the write interface.
-```
+    - A positive response.
+    - A correct output on the write interface.
+<!-- prettier-ignore-end -->
 
 #### Negative Tests
 
-```{test-card} Computation not executed
+<!-- prettier-ignore-start -->
+!!! test-card "Computation not executed"
 
-The result interface is called before compute has been run.
+    The result interface is called before compute has been run.
 
-**Inputs:**
+    **Inputs:**
 
-- None.
+    - None.
 
-**Expected Output:**
+    **Expected Output:**
 
-A negative response.
+    A negative response.
 
-```
+<!-- prettier-ignore-end -->
 
 ## Doxygen Documentation
 
@@ -374,4 +383,3 @@ A negative response.
 ```{doxygenfile} comp_wptt_canonicity.c
 
 ```
-

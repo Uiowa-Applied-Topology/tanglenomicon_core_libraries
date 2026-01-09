@@ -153,303 +153,318 @@ When this function is invoked, the result of the vertex canonicity computation p
 
 #### Positive Tests
 
-```{test-card} Valid Config
+<!-- prettier-ignore-start -->
+!!! test-card "Valid Config"
 
-A valid configuration for the computation is passed to the function.
+    A valid configuration for the computation is passed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid config.
+    - A valid config.
 
-**Expected Output:**
+    **Expected Output:**
 
-A positive response.
+    A positive response.
 
-```
+<!-- prettier-ignore-end -->
 
 #### Negative Tests
 
-```{test-card} Null Config
+<!-- prettier-ignore-start -->
+!!! test-card "Null Config"
 
-A null configuration for the computation is passed to the function.
+    A null configuration for the computation is passed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- A null config.
+    - A null config.
 
-**Expected Output:**
+    **Expected Output:**
 
-A negative response.
+    A negative response.
 
-```
+<!-- prettier-ignore-end -->
 
-```{test-card} Null Configuration Parameters
+<!-- prettier-ignore-start -->
+!!! test-card "Null Configuration Parameters"
 
-A configuration with various null parameters is passed to the function.
+    A configuration with various null parameters is passed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- A configuration with null tree.
+    - A configuration with null tree.
 
-**Expected Output:**
+    **Expected Output:**
 
-A negative response.
+    A negative response.
 
-```
+<!-- prettier-ignore-end -->
 
 ### Compute Function
 
 #### Positive Tests
 
-```{test-card} A valid configuration with null write interface
+<!-- prettier-ignore-start -->
+!!! test-card "A valid configuration with null write interface"
 
-A valid configuration is set for the component with null write. The computation is
-executed and returns successfully.
+    A valid configuration is set for the component with null write. The computation is
+    executed and returns successfully.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid configuration is set.
+    - A valid configuration is set.
 
-**Expected Output:**
+    **Expected Output:**
 
-- A positive response.
+    - A positive response.
 
-```
+<!-- prettier-ignore-end -->
 
-```{test-card} Identified vertex is canonical
+<!-- prettier-ignore-start -->
+!!! test-card "Identified vertex is canonical"
 
-A valid configuration with write function is set for the component. The indentified vertex is canonical. The computation is executed and returns successfully.
+    A valid configuration with write function is set for the component. The indentified vertex is canonical. The computation is executed and returns successfully.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid configuration is set.
-- The indentified vertex is canonical:
-    - Is the root
-    - Is away from root
-- The positivity is set to:
-    - positive
-    - negative
+    - A valid configuration is set.
+    - The identified vertex is canonical:
+        - Is the root
+        - Is away from root
+    - The positivity is set to:
+        - positive
+        - negative
 
 
-**Expected Output:**
+    **Expected Output:**
 
-- A positive response.
-- True written to buffer
+    - A positive response.
+    - True written to buffer
 
-```
+<!-- prettier-ignore-end -->
 
-```{test-card} Identified vertex violates the alternating stick condition
+<!-- prettier-ignore-start -->
+!!! test-card "Identified vertex violates the alternating stick condition"
 
-A valid configuration with write function is set for the component. The indentified vertex fails to be
-canonical by violating the alternating portion of the stick condition. The computation is executed
-and returns successfully.
+    A valid configuration with write function is set for the component. The indentified vertex fails to be
+    canonical by violating the alternating portion of the stick condition. The computation is executed
+    and returns successfully.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid configuration is set.
-- The indentified vertex is not canonical by violating:
-    - vertex is $v_0$ and $w_0<0$ with $w_1<0$
-    - vertex is $v_0$ and $w_0>0$ with $w_1>0$
-    - vertex is $v_i$ with $i\neq 0$ and $w_{i}>0$ with $w_{i+1}>0$
-    - vertex is $v_i$ with $i\neq 0$ and $w_{i}<0$ with $w_{i+1}<0$
+    - A valid configuration is set.
+    - The identified vertex is not canonical by violating:
+        - vertex is $v_0$ and $w_0<0$ with $w_1<0$
+        - vertex is $v_0$ and $w_0>0$ with $w_1>0$
+        - vertex is $v_i$ with $i\neq 0$ and $w_{i}>0$ with $w_{i+1}>0$
+        - vertex is $v_i$ with $i\neq 0$ and $w_{i}<0$ with $w_{i+1}<0$
 
-**Expected Output:**
+    **Expected Output:**
 
-- A positive response.
-- False written to buffer.
+    - A positive response.
+    - False written to buffer.
 
-```
+<!-- prettier-ignore-end -->
 
-```{test-card} Identified vertex is not canonical
+<!-- prettier-ignore-start -->
+!!! test-card "Identified vertex is not canonical"
 
-A valid configuration with write function is set for the component. The indentified vertex fails to be canonical in each of the conditions. The computation is executed and returns successfully.
+    A valid configuration with write function is set for the component. The indentified vertex fails to be canonical in each of the conditions. The computation is executed and returns successfully.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid configuration is set.
-- The indentified vertex is not canonical by violating:
-    - Stick condition and vertex is distance 2 from root
-    - Stick condition and vertex is distance 1 from root
-    - Weight condition and vertex is the root
-    - Weight condition and vertex is not the root
-    - Positivity condition
+    - A valid configuration is set.
+    - The identified vertex is not canonical by violating:
+        - Stick condition and vertex is distance 2 from root
+        - Stick condition and vertex is distance 1 from root
+        - Weight condition and vertex is the root
+        - Weight condition and vertex is not the root
+        - Positivity condition
 
-**Expected Output:**
+    **Expected Output:**
 
-- A positive response.
-- False written to buffer.
+    - A positive response.
+    - False written to buffer.
 
-```
+<!-- prettier-ignore-end -->
 
-```{test-card} Identified vertex is not canonical
+<!-- prettier-ignore-start -->
+!!! test-card "Identified vertex is not canonical"
 
-A valid configuration with write function is set for the component. The indentified vertex fails to be canonical in each of the conditions. The computation is executed and returns successfully.
+    A valid configuration with write function is set for the component. The indentified vertex fails to be canonical in each of the conditions. The computation is executed and returns successfully.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid configuration is set.
-- The indentified vertex is not canonical by violating:
-    - Stick condition and vertex is distance 2 from root
-    - Stick condition and vertex is distance 1 from root
-    - Weight condition and vertex is the root
-    - Weight condition and vertex is not the root
-    - Positivity condition
+    - A valid configuration is set.
+    - The identified vertex is not canonical by violating:
+        - Stick condition and vertex is distance 2 from root
+        - Stick condition and vertex is distance 1 from root
+        - Weight condition and vertex is the root
+        - Weight condition and vertex is not the root
+        - Positivity condition
 
-**Expected Output:**
+    **Expected Output:**
 
-- A positive response.
-- False written to buffer.
+    - A positive response.
+    - False written to buffer.
 
-```
+<!-- prettier-ignore-end -->
 
-```{test-card} Identified vertex is not canonical
+<!-- prettier-ignore-start -->
+!!! test-card "Identified vertex is not canonical"
 
-A valid configuration with write function is set for the component. The indentified vertex fails to be canonical in each of the conditions. The computation is executed and returns successfully.
+    A valid configuration with write function is set for the component. The indentified vertex fails to be canonical in each of the conditions. The computation is executed and returns successfully.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid configuration is set.
-- The indentified vertex is not canonical by violating:
-    - Stick condition and vertex is distance 2 from root
-    - Stick condition and vertex is distance 1 from root
-    - Weight condition and vertex is the root
-    - Weight condition and vertex is not the root
-    - Positivity condition
+    - A valid configuration is set.
+    - The identified vertex is not canonical by violating:
+        - Stick condition and vertex is distance 2 from root
+        - Stick condition and vertex is distance 1 from root
+        - Weight condition and vertex is the root
+        - Weight condition and vertex is not the root
+        - Positivity condition
 
-**Expected Output:**
+    **Expected Output:**
 
-- A positive response.
-- False written to buffer.
+    - A positive response.
+    - False written to buffer.
 
-```
+<!-- prettier-ignore-end -->
 
-```{test-card} Identified vertex is not canonical
+<!-- prettier-ignore-start -->
+!!! test-card "Identified vertex is not canonical"
 
-A valid configuration with write function is set for the component. The indentified vertex fails to be canonical in each of the conditions. The computation is executed and returns successfully.
+    A valid configuration with write function is set for the component. The indentified vertex fails to be canonical in each of the conditions. The computation is executed and returns successfully.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid configuration is set.
-- The indentified vertex is not canonical by violating:
-    - Stick condition and vertex is distance 2 from root
-    - Stick condition and vertex is distance 1 from root
-    - Weight condition and vertex is the root
-    - Weight condition and vertex is not the root
-    - Positivity condition
+    - A valid configuration is set.
+    - The identified vertex is not canonical by violating:
+        - Stick condition and vertex is distance 2 from root
+        - Stick condition and vertex is distance 1 from root
+        - Weight condition and vertex is the root
+        - Weight condition and vertex is not the root
+        - Positivity condition
 
-**Expected Output:**
+    **Expected Output:**
 
-- A positive response.
-- False written to buffer.
+    - A positive response.
+    - False written to buffer.
 
-```
+<!-- prettier-ignore-end -->
 
-```{test-card} Identified vertex is not canonical
+<!-- prettier-ignore-start -->
+!!! test-card "Identified vertex is not canonical"
 
-A valid configuration with write function is set for the component. The indentified vertex fails to be canonical in each of the conditions. The computation is executed and returns successfully.
+    A valid configuration with write function is set for the component. The indentified vertex fails to be canonical in each of the conditions. The computation is executed and returns successfully.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid configuration is set.
-- The indentified vertex is not canonical by violating:
-    - Stick condition and vertex is distance 2 from root
-    - Stick condition and vertex is distance 1 from root
-    - Weight condition and vertex is the root
-    - Weight condition and vertex is not the root
-    - Positivity condition
+    - A valid configuration is set.
+    - The identified vertex is not canonical by violating:
+        - Stick condition and vertex is distance 2 from root
+        - Stick condition and vertex is distance 1 from root
+        - Weight condition and vertex is the root
+        - Weight condition and vertex is not the root
+        - Positivity condition
 
-**Expected Output:**
+    **Expected Output:**
 
-- A positive response.
-- False written to buffer.
+    - A positive response.
+    - False written to buffer.
 
-```
+<!-- prettier-ignore-end -->
 
-```{test-card} Identified vertex is not canonical
+<!-- prettier-ignore-start -->
+!!! test-card "Identified vertex is not canonical"
 
-A valid configuration with write function is set for the component. The indentified vertex fails to be canonical in each of the conditions. The computation is executed and returns successfully.
+    A valid configuration with write function is set for the component. The indentified vertex fails to be canonical in each of the conditions. The computation is executed and returns successfully.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid configuration is set.
-- The indentified vertex is not canonical by violating:
-    - Stick condition and vertex is distance 2 from root
-    - Stick condition and vertex is distance 1 from root
-    - Weight condition and vertex is the root
-    - Weight condition and vertex is not the root
-    - Positivity condition
+    - A valid configuration is set.
+    - The identified vertex is not canonical by violating:
+        - Stick condition and vertex is distance 2 from root
+        - Stick condition and vertex is distance 1 from root
+        - Weight condition and vertex is the root
+        - Weight condition and vertex is not the root
+        - Positivity condition
 
-**Expected Output:**
+    **Expected Output:**
 
-- A positive response.
-- False written to buffer.
+    - A positive response.
+    - False written to buffer.
 
-```
+<!-- prettier-ignore-end -->
 
 #### Negative Tests
 
-```{test-card} Not Configured
+<!-- prettier-ignore-start -->
+!!! test-card "Not Configured"
 
-The compute interface is called before configuration.
+    The compute interface is called before configuration.
 
-**Inputs:**
+    **Inputs:**
 
-- None.
+    - None.
 
-**Expected Output:**
+    **Expected Output:**
 
-A negative response.
+    A negative response.
 
-```
+<!-- prettier-ignore-end -->
 
-```{test-card} Index out of bounds
+<!-- prettier-ignore-start -->
+!!! test-card "Index out of bounds"
 
-The configured vertex index is out of the bounds of the condigured tree.
+    The configured vertex index is out of the bounds of the condigured tree.
 
-**Inputs:**
+    **Inputs:**
 
-- A configuration set with invalid index.
+    - A configuration set with invalid index.
 
-**Expected Output:**
+    **Expected Output:**
 
-A negative response.
+    A negative response.
 
-```
+<!-- prettier-ignore-end -->
 
 ### Result Function
 
 #### Positive Tests
 
-```{test-card} A valid configuration and computation
+<!-- prettier-ignore-start -->
+!!! test-card "A valid configuration and computation"
 
-A valid configuration is set for the component. The computation is executed and
-returns successfully. The resulting value is correct when read from the result
-interface.
+    A valid configuration is set for the component. The computation is executed and
+    returns successfully. The resulting value is correct when read from the result
+    interface.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid configuration is set which evaluates to canonical.
-- A valid configuration is set which evaluates to non-canonical.
+    - A valid configuration is set which evaluates to canonical.
+    - A valid configuration is set which evaluates to non-canonical.
 
-**Expected Output:**
+    **Expected Output:**
 
-- A positive response.
-- The result is correct.
-```
+    - A positive response.
+    - The result is correct.
+<!-- prettier-ignore-end -->
 
 #### Negative Tests
 
-```{test-card} Computation not executed
+<!-- prettier-ignore-start -->
+!!! test-card "Computation not executed"
 
-The result interface is called before compute has been run.
+    The result interface is called before compute has been run.
 
-**Inputs:**
+    **Inputs:**
 
-- None.
+    - None.
 
-**Expected Output:**
+    **Expected Output:**
 
-A negative response.
+    A negative response.
 
-```
-
+<!-- prettier-ignore-end -->

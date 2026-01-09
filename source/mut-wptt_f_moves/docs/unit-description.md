@@ -248,140 +248,146 @@ stateDiagram-v2
 
 #### Positive Tests
 
-```{test-card} Valid Config
+<!-- prettier-ignore-start -->
+!!! test-card "Valid Config"
 
-A valid configuration for the mutation is passed to the function.
+    A valid configuration for the mutation is passed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid config.
+    - A valid config.
 
-**Expected Output:**
+    **Expected Output:**
 
-A positive response.
+    A positive response.
 
-```
+<!-- prettier-ignore-end -->
 
 #### Negative Tests
 
-```{test-card} Null Config
+<!-- prettier-ignore-start -->
+!!! test-card "Null Config"
 
-A null configuration for the mutation is passed to the function.
+    A null configuration for the mutation is passed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- A null config.
+    - A null config.
 
-**Expected Output:**
+    **Expected Output:**
 
-A negative response.
+    A negative response.
 
-```
+<!-- prettier-ignore-end -->
 
-```{test-card} Invalid Configuration Parameters
+<!-- prettier-ignore-start -->
+!!! test-card "Invalid Configuration Parameters"
 
-A configuration with various null parameters is passed to the function.
+    A configuration with various null parameters is passed to the function.
 
-**Inputs:**
+    **Inputs:**
 
-- A configuration with null vertex.
-- A configuration with an uninitialized move.
-- Configurations for the $F_1$ move with:
-    - Null label
-    - Uninitialized label
-- Configurations for the $F_2$ move with:
-    - Null label
-    - Uninitialized label
-    - Uninitialized eqclass
-- Configurations for the $F_3^\prime$ move with:
-    - Uninitialized direction
+    - A configuration with null vertex.
+    - A configuration with an uninitialized move.
+    - Configurations for the $F_1$ move with:
+        - Null label
+        - Uninitialized label
+    - Configurations for the $F_2$ move with:
+        - Null label
+        - Uninitialized label
+        - Uninitialized eqclass
+    - Configurations for the $F_3^\prime$ move with:
+        - Uninitialized direction
 
-**Expected Output:**
+    **Expected Output:**
 
-A negative response.
+    A negative response.
 
-```
+<!-- prettier-ignore-end -->
 
 ### Mutate Function
 
 #### Positive Tests
 
-```{test-card} A valid config
+<!-- prettier-ignore-start -->
+!!! test-card "A valid config"
 
-A valid configuration is set for the component. The mutation is executed and
-returns successfully.
+    A valid configuration is set for the component. The mutation is executed and
+    returns successfully.
 
-**Inputs:**
+    **Inputs:**
 
-- A valid configuration is set for $F_1$.
-- Valid configurations are set for $F_2$:
-    - Eqclass is child.
-    - Eqclass is self.
-- Valid configurations are set for $F_3^\prime$ with at least one test suming two weights:
-    - Odd weight:
-        - Index is rightmost:
-            - Direction is forward.
-            - Direction is backward.
-        - Index is leftmost:
-            - Direction is forward.
-            - Direction is backward.
-    - Even weight:
-        - Index is rightmost:
-            - Direction is forward.
-            - Direction is backward.
-        - Index is leftmost:
-            - Direction is forward.
-            - Direction is backward.
+    - A valid configuration is set for $F_1$.
+    - Valid configurations are set for $F_2$:
+        - Eqclass is child.
+        - Eqclass is self.
+    - Valid configurations are set for $F_3^\prime$ with at least one test suming two weights:
+        - Odd weight:
+            - Index is rightmost:
+                - Direction is forward.
+                - Direction is backward.
+            - Index is leftmost:
+                - Direction is forward.
+                - Direction is backward.
+        - Even weight:
+            - Index is rightmost:
+                - Direction is forward.
+                - Direction is backward.
+            - Index is leftmost:
+                - Direction is forward.
+                - Direction is backward.
 
-**Expected Output:**
+    **Expected Output:**
 
-- A positive response.
-- Mutation is correct.
+    - A positive response.
+    - Mutation is correct.
 
-```
+<!-- prettier-ignore-end -->
 
 #### Negative Tests
 
-```{test-card} Not Configured
+<!-- prettier-ignore-start -->
+!!! test-card "Not Configured"
 
-The mutate interface is called before configuration.
+    The mutate interface is called before configuration.
 
-**Inputs:**
+    **Inputs:**
 
-- None.
+    - None.
 
-**Expected Output:**
+    **Expected Output:**
 
-A negative response.
+    A negative response.
 
-```
+<!-- prettier-ignore-end -->
 
-```{test-card} Double Execute
+<!-- prettier-ignore-start -->
+!!! test-card "Double Execute"
 
-The mutate interface is called without reconfiguring the module.
+    The mutate interface is called without reconfiguring the module.
 
-**Inputs:**
+    **Inputs:**
 
-- None.
+    - None.
 
-**Expected Output:**
+    **Expected Output:**
 
-A negative response.
+    A negative response.
 
-```
+<!-- prettier-ignore-end -->
 
-```{test-card} $F_3^\prime$ index out of bounds
+<!-- prettier-ignore-start -->
+!!! test-card "$F_3^\prime$ index out of bounds"
 
-The mutate interface is called with a weight index configured outside
-of the size of the number of children.
+    The mutate interface is called with a weight index configured outside
+    of the size of the number of children.
 
-**Inputs:**
+    **Inputs:**
 
-- Configuration with weight idx outside bounds.
+    - Configuration with weight idx outside bounds.
 
-**Expected Output:**
+    **Expected Output:**
 
-A negative response.
+    A negative response.
 
-```
-
+<!-- prettier-ignore-end -->
