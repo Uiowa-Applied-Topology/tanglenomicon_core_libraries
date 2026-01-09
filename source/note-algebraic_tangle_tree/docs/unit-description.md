@@ -50,7 +50,7 @@ C
 
 ## Implements
 
-- [Notations Interface](#interface-notation)
+- [Notations Interface][interface-notation]
 
 ## Uses
 

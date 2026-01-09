@@ -57,11 +57,11 @@ C
 
 ## Implements
 
-- [Computation Interface](#interface-computation)
+- [Computation Interface][interface-computation]
 
 ## Uses
 
-- [Notation Weighted Planar Tangle Tree](#note-wptt)
+- [Notation Weighted Planar Tangle Tree][note-wptt]
 
 ## Libraries
 

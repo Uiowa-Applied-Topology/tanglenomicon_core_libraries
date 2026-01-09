@@ -50,15 +50,15 @@ C
 
 ## Implements
 
-- [Generator Interface](#interface-generator)
+- [Generator Interface][interface-generator]
 
 ## Uses
 
-- [Notation arborescent weighted planar tangle tree](#note-wptt)
-- [Computation Right Leaning Identify Tangle Tree Grafting](#comp-rlitt_grafting)
-- [Computation Right Leaning Identify Tangle Tree Ring Shift](#comp-rlitt_ringshift)
-- [Computation Right Leaning Identify Tangle Tree Positivity](#comp-rlitt_positivitiy)
-- [Computation Weighted Planar Tangle Tree Vertex Canonicity](#comp-wptt_vertex_canonicity)
+- [Notation arborescent weighted planar tangle tree][note-wptt]
+- [Computation Right Leaning Identify Tangle Tree Grafting][comp-rlitt_grafting]
+- [Computation Right Leaning Identify Tangle Tree Ring Shift][comp-rlitt_ringshift]
+- [Computation Right Leaning Identify Tangle Tree Positivity][comp-rlitt_positivitiy]
+- [Computation Weighted Planar Tangle Tree Vertex Canonicity][comp-wptt_vertex_canonicity]
 
 ## Libraries
 
@@ -105,10 +105,10 @@ The generation function carries out the arborescent tangle generation until the 
 exhausted.
 
 The grafting operation is carried out by a call to the computation
-[grafting component](#comp-rlitt_grafting), canonicity is determined by the
-[vertex canonicity computation component](#comp-wptt_vertex_canonicity), normalization of rings is
-carried out by the [ring shift component](#comp-rlitt_ringshift), and the positivity determination
-is carried out by the [positivity computation component](#comp-rlitt_positivitiy).
+[grafting component][comp-rlitt_grafting], canonicity is determined by the
+[vertex canonicity computation component][comp-wptt_vertex_canonicity], normalization of rings is
+carried out by the [ring shift component][comp-rlitt_ringshift], and the positivity determination
+is carried out by the [positivity computation component][comp-rlitt_positivitiy].
 
 This process is described in the following state machines:
 

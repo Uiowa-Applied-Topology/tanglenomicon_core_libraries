@@ -24,7 +24,7 @@ C
 
 ## Implements
 
-- [Notations Interface](#interface-notation)
+- [Notations Interface][interface-notation]
 
 ## Uses
 
@@ -41,14 +41,15 @@ The twist vector notation component does not use any external libraries.
 #### Notation structure
 
 The interface structure contains an array of integers, each entry of the twist vector is stored into
-the array. The indexing of the array is as in @se-tv-math-index.
+the array. The indexing of the array is as in:
 
-```{math}
-:label: se-tv-math-index
- [ x_n\ x_{n-1}\ \cdots\ x_0]\to \begin{array}{|c|c|c|c|} \hline
+[](){#se-tv-math-index}
+
+$$
+[ x_n\ x_{n-1}\ \cdots\ x_0]\to \begin{array}{|c|c|c|c|} \hline
 \text{0x0000}& & &\text{0x0000}+n\cdot \text{size\_t}\\\hline x_0&\cdots &
 x_{n-1} &x_n\\ \hline \end{array}
-```
+$$
 
 ### Public Functions
 

@@ -11,7 +11,7 @@ C++
 
 ## Implements
 
-[Interface](#interface-storage)
+[Interface][interface-storage]
 
 ## Libraries
 

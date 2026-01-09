@@ -59,7 +59,7 @@ C
 
 ## Uses
 
-- [Notation Twist Vector](#note-twist_vector)
+- [Notation Twist Vector][note-twist_vector]
 
 ## External Libraries
 

@@ -84,7 +84,7 @@ C
 
 ## Uses
 
-- [Notation Weighted Planar Tangle Tree](#note-wptt)
+- [Notation Weighted Planar Tangle Tree][note-wptt]
 
 ## External Libraries
 

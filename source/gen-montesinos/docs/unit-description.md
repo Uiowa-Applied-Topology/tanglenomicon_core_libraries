@@ -50,7 +50,7 @@ C
 
 ## Implements
 
-- [Generator Interface](#interface-generator)
+- [Generator Interface][interface-generator]
 
 ## Uses
 

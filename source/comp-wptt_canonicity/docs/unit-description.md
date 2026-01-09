@@ -71,12 +71,12 @@ C
 
 ## Implements
 
-- [Computation Interface](#interface-computation)
+- [Computation Interface][interface-computation]
 
 ## Uses
 
-- [Notation Weighted Planar Tangle Tree](#note-wptt)
-- [Computation WPTT Vertex Canonicity](#comp-wptt_vertex_canonicity)
+- [Notation Weighted Planar Tangle Tree][note-wptt]
+- [Computation WPTT Vertex Canonicity][comp-wptt_vertex_canonicity]
 
 ## External Libraries
 

@@ -63,7 +63,7 @@ C
 
 ## Implements
 
-- [Notations Interface](#interface-notation)
+- [Notations Interface][interface-notation]
 
 ## Uses
 
@@ -103,17 +103,18 @@ encoded as an array of pointers to the children. Additionally, this array implic
 cyclic order of the children by the order in the array. Weights are encoded likewise in an array.
 Weight index is interpreted as "after" the same child weight in order as seen below.
 
-```{prf:example} Interleaved index
+<!-- prettier-ignore-start -->
+!!! example "Example: Interleaved index"
 
-For child array $[c_0,c_1,\cdots,c_{n-1}]$ and weight array
-$[w_0,w_1,\cdots,w_{n-1}]$. The order as described in the
-[use-case](#linearize_a_vertex) is given as:
+    For child array $[c_0,c_1,\cdots,c_{n-1}]$ and weight array
+    $[w_0,w_1,\cdots,w_{n-1}]$. The order as described in the
+    [use-case](#linearize_a_vertex) is given as:
 
--   Forward $$w_0c_0w_1c_1\cdots w_{n-1}c_{n-1}w_{n}$$ Forward it the assumed
-    default.
--   Reverse $$w_{n}c_{n-1}w_{n-1}\cdots,w_1c_1w_0, $$
+    -   Forward $$w_0c_0w_1c_1\cdots w_{n-1}c_{n-1}w_{n}$$ Forward it the assumed
+        default.
+    -   Reverse $$w_{n}c_{n-1}w_{n-1}\cdots,w_1c_1w_0, $$
 
-```
+<!-- prettier-ignore-end -->
 
 Finally, read order is encoded as a simple enum consisting of:
 

@@ -15,10 +15,10 @@ An algebraic tangle is any tangle generated from an "algebraic" statement built 
 operations $+$ and $\vee$ on the four basic tangles ($0,\
 \pm1,\ \infty$).
 
-```{prf:example}
-
-$\LP\LP\infty+\infty\RP\vee\LP 0\vee0\RP\RP+\LP1+0\RP+\infty$
-```
+<!-- prettier-ignore-start -->
+!!! example ""
+    $\LP\LP\infty+\infty\RP\vee\LP 0\vee0\RP\RP+\LP1+0\RP+\infty$
+<!-- prettier-ignore-end -->
 
 Since each of $+$ and $\vee$ are binary operations we can interpret these algebraic statements as
 binary trees where each non-leaf vertex corresponds to an operation and each leaf a basic tangle, we
