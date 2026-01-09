@@ -180,22 +180,3 @@ A valid string representing the twist vector.
 
 ```
 
-## Doxygen Documentation
-
-```{doxygenfile} notation_tv.h
-
-```
-
-```{doxygenfile} notation_tv.c
-
-```
-
-## Bibliography
-
-```{bibliography}
-   :filter: docname in docnames
-```
-
-```{raw} latex
-    \newpage
-```

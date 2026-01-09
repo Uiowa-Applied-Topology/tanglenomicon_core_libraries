@@ -290,22 +290,3 @@ A negative response.
 
 ```
 
-## Doxygen Documentation
-
-```{doxygenfile} comp_rlitt_grafting.h
-
-```
-
-```{doxygenfile} comp_rlitt_grafting.c
-
-```
-
-## Bibliography
-
-```{bibliography}
-   :filter: docname in docnames
-```
-
-```{raw} latex
-    \newpage
-```

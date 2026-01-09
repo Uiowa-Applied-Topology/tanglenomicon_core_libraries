@@ -65,14 +65,3 @@ C
 
 None
 
-## Doxygen Documentation
-
-<!-- prettier-ignore-start -->
-::: ./source/comp-rational_data/src/comp_rational_data.h 
-    handler: c
-
-```{doxygenfile} comp_rational_data.c
-
-```
-
-<!-- prettier-ignore-end -->

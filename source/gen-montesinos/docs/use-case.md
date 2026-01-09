@@ -167,6 +167,4 @@ stateDiagram-v2
    Classiﬁcation and Symmetries of Arborescent Knots”. Version: January 26, 2016
    [pdf](https://dornsife.usc.edu/assets/sites/1191/docs/preprints/bonsieb.pdf)
 
-```{raw} latex
-    \newpage
-```
+

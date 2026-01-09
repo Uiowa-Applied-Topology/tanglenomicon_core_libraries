@@ -480,29 +480,3 @@ The output string buffer is a NULL pointer.
 The function will produce an error.
 ```
 
-## Doxygen Documentation
-
-::: doxy.core_lib.code file: notation_wptt.
-
-```{doxy.core_lib.code}
-file: notation_wptt.h
-
-```
-
-```{doxygenfile} notation_wptt.c
-
-```
-
-## Bibliography
-
-```{bibliography}
-   :filter: docname in docnames
-```
-
-```{raw} latex
-    \newpage
-```
-
-```
-
-```

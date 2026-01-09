@@ -453,22 +453,3 @@ A negative response.
 
 ```
 
-## Doxygen Documentation
-
-```{doxygenfile} comp_wptt_vertex_canonicity.h
-
-```
-
-```{doxygenfile} comp_wptt_vertex_canonicity.c
-
-```
-
-## Bibliography
-
-```{bibliography}
-   :filter: docname in docnames
-```
-
-```{raw} latex
-    \newpage
-```

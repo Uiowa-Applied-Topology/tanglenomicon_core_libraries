@@ -200,22 +200,3 @@ A negative response.
 
 ```
 
-## Doxygen Documentation
-
-```{doxygenfile} mut_rlitt_ringshift.h
-
-```
-
-```{doxygenfile} mut_rlitt_ringshift.c
-
-```
-
-## Bibliography
-
-```{bibliography}
-   :filter: docname in docnames
-```
-
-```{raw} latex
-    \newpage
-```

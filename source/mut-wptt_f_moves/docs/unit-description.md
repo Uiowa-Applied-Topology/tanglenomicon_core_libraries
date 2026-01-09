@@ -385,22 +385,3 @@ A negative response.
 
 ```
 
-## Doxygen Documentation
-
-```{doxygenfile} mut_wptt_f_moves.h
-
-```
-
-```{doxygenfile} mut_wptt_f_moves.c
-
-```
-
-## Bibliography
-
-```{bibliography}
-   :filter: docname in docnames
-```
-
-```{raw} latex
-    \newpage
-```

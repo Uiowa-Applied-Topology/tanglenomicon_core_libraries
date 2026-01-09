@@ -227,22 +227,3 @@ The twist vectors:
 
 ```
 
-## Doxygen Documentation
-
-```{doxygenfile} generator_rational.h
-
-```
-
-```{doxygenfile} generator_rational.c
-
-```
-
-## Bibliography
-
-```{bibliography}
-   :filter: docname in docnames
-```
-
-```{raw} latex
-    \newpage
-```

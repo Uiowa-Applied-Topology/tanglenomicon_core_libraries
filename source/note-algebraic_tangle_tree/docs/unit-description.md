@@ -257,22 +257,3 @@ A valid string representing the algebraic tangle tree.
 
 ```
 
-## Doxygen Documentation
-
-```{doxygenfile} notation_att.h
-
-```
-
-```{doxygenfile} notation_att.c
-
-```
-
-## Bibliography
-
-```{bibliography}
-   :filter: docname in docnames
-```
-
-```{raw} latex
-    \newpage
-```

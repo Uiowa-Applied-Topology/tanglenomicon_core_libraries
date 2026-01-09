@@ -247,22 +247,3 @@ A negative response.
 
 ```
 
-## Doxygen Documentation
-
-```{doxygenfile} generator_rlitt.h
-
-```
-
-```{doxygenfile} generator_rlitt.c
-
-```
-
-## Bibliography
-
-```{bibliography}
-   :filter: docname in docnames
-```
-
-```{raw} latex
-    \newpage
-```

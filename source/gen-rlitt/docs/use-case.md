@@ -10,12 +10,8 @@ abstract: A use case description for computation of Arborescent Tangle neutralit
 
 The RLITT generation use case is described in the thesis by Starr.
 
-## Bibliography
 
-```{bibliography}
-   :filter: docname in docnames
-```
 
-```{raw} latex
-    \newpage
-```
+
+
+

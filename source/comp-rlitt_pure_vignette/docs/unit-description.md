@@ -294,23 +294,3 @@ The result interface is called before compute has been run.
 A negative response.
 
 ```
-
-## Doxygen Documentation
-
-```{doxygenfile} comp_rlitt_pure_vignette.h
-
-```
-
-```{doxygenfile} comp_rlitt_pure_vignette.c
-
-```
-
-## Bibliography
-
-```{bibliography}
-   :filter: docname in docnames
-```
-
-```{raw} latex
-    \newpage
-```

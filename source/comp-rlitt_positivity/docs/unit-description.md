@@ -385,22 +385,3 @@ A negative response.
 
 ```
 
-## Doxygen Documentation
-
-```{doxygenfile} comp_rlitt_positivity.h
-
-```
-
-```{doxygenfile} comp_rlitt_positivity.c
-
-```
-
-## Bibliography
-
-```{bibliography}
-   :filter: docname in docnames
-```
-
-```{raw} latex
-    \newpage
-```

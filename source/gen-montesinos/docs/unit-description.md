@@ -261,22 +261,3 @@ The algebraic tangle trees:
 
 ```
 
-## Doxygen Documentation
-
-```{doxygenfile} generator_montesinos.h
-
-```
-
-```{doxygenfile} generator_montesinos.c
-
-```
-
-## Bibliography
-
-```{bibliography}
-   :filter: docname in docnames
-```
-
-```{raw} latex
-    \newpage
-```

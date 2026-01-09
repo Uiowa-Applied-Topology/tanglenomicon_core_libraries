@@ -17,6 +17,4 @@ C++
 
 ## Functionality
 
-```{raw} latex
-    \newpage
-```
+

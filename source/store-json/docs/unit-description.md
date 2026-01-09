@@ -17,22 +17,3 @@ C++
 
 ## Functionality
 
-## Doxygen Documentation
-
-```{doxygenfile} storage_json.h
-
-```
-
-```{doxygenfile} storage_json.c
-
-```
-
-## Bibliography
-
-```{bibliography}
-   :filter: docname in docnames
-```
-
-```{raw} latex
-    \newpage
-```
