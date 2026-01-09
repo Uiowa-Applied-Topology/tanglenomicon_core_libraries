@@ -56,7 +56,7 @@ successful.
 
 The flow for a computation is modeled by the following state machine:
 
-```mermaid}
+```mermaid
 stateDiagram-v2
     state "Get data" as gd
     state "Work on data" as wod
