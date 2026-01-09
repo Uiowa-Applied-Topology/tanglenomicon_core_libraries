@@ -57,7 +57,7 @@ C
 
 ## Implements
 
-- [Notations Interface](../../notation-interface.md)
+- [Notations Interface][interface-notation]
 
 ## Uses
 
@@ -83,12 +83,13 @@ goals of non-runner components. That means this notation structure contains:
 - The size of the supplied list of segments
 - A buffer of points to be used to build the piecewise linear path
 
-```{warning}
+<!-- prettier-ignore-start -->
+!!! warning
 
-This structure does not offer any guarantees on intersection (or self intersection). This means
-that segments of a path may intersect (or self intersect).
+    This structure does not offer any guarantees on intersection (or self intersection). This means
+    that segments of a path may intersect (or self intersect).
 
-```
+<!-- prettier-ignore-end -->
 
 ##### Point Structure
 
@@ -116,12 +117,13 @@ Where $x,y,z$ are string representations of floating-point numbers, `\n\n` indic
 of a new segment of the collection of PL paths, and a line starting with `//` indicates a comment
 line.
 
-```{warning}
+<!-- prettier-ignore-start -->
+!!! warning
 
-Comments are lost when decoding the string. This means if you take a round trip (file -> decode -> encode)
-the resulting string will have no comments.
+    Comments are lost when decoding the string. This means if you take a round trip (file -> decode -> encode)
+    the resulting string will have no comments.
 
-```
+
 
 This process is described in the following state machines:
 
