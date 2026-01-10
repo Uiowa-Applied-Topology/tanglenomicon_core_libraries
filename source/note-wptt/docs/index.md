@@ -1,6 +1,4 @@
-[](){#interface-computation}
-
-# Computation Interface
+[](){#note-wptt}
 
 - [Use Case](./use-case.md)
 - [Unit Description](./unit-description.md)

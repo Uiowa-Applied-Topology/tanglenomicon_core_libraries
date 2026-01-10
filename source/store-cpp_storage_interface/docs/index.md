@@ -1,3 +1,3 @@
 # Storage C++ Interface
 
-[](){#store-cpp}
+[](){#store-cpp_storage_interface}

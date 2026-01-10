@@ -166,5 +166,3 @@ stateDiagram-v2
 1. F. Bonahon and L. C. Siebenmann, “New Geometric Splittings of Classical Knots and the
    Classiﬁcation and Symmetries of Arborescent Knots”. Version: January 26, 2016
    [pdf](https://dornsife.usc.edu/assets/sites/1191/docs/preprints/bonsieb.pdf)
-
-

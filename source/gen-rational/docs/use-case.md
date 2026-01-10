@@ -116,5 +116,3 @@ stateDiagram-v2
    [https://doi.org/10.1016/B978-0-08-012975-4.50034-5](https://doi.org/10.1016/b978-0-08-012975-4.50034-5).
 2. Kauffman, Louis H., and Sofia Lambropoulou. “On the Classification of Rational Knots,” 2002.
    [https://doi.org/10.48550/ARXIV.MATH/0212011](https://doi.org/10.48550/arxiv.math/0212011).
-
-

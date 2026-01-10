@@ -1,6 +1,4 @@
-[](){#interface-computation}
-
-# Computation Interface
+[](){#gen-rational}
 
 - [Use Case](./use-case.md)
 - [Unit Description](./unit-description.md)

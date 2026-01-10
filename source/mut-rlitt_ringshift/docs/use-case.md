@@ -9,9 +9,3 @@ abstract: A use case description for mutation of the rings of an Arborescent Tan
 # Use Case
 
 The RLITT ring shift use case is described in the thesis by Starr.
-
-
-
-
-
-

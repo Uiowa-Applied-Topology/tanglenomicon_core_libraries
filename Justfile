@@ -81,12 +81,10 @@ check-uncrustify:
     find ./source -iname "*.cpp" -exec  sh -c 'uncrustify -c .uncrustify.cfg --check "$0" || kill $PPID' \{\} \;
 
 check-prettier:
-    prettier README.md --check
     prettier "docs/**/*.md" --check
     prettier "source/**/*.md" --check
 
 do-prettier:
-    prettier -w README.md
     prettier -w "docs/**/*.md"
     prettier -w "source/**/*.md"
 

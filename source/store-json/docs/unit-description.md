@@ -16,4 +16,3 @@ C++
 ## Libraries
 
 ## Functionality
-
