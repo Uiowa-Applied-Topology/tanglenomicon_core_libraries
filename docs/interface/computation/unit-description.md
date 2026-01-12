@@ -28,7 +28,7 @@ classDiagram
 
 ### Public Structures
 
-#### Computation Config Structure
+#### Computation Configuration Structure
 
 The computation config structure defines the collection of data the component needs for a single
 run. Setting a config should be considered equivalent to instantiating a class in a high-level
@@ -42,7 +42,7 @@ internally in other computation or generator components.
 
 ### Public Functions
 
-#### Config Function
+#### Configuration Function
 
 The function will take a configuration as input and set the local config instance to that input. The
 function returns a flag indicating if the function was successful. This function can be considered
@@ -56,7 +56,7 @@ successful.
 
 The flow for a computation is modeled by the following state machine:
 
-```mermaid}
+```mermaid
 stateDiagram-v2
     state "Get data" as gd
     state "Work on data" as wod
@@ -71,7 +71,3 @@ stateDiagram-v2
 
 When this function is invoked, the result of the computation process is reported. The actual
 internal functionality is specific to the specific computation.
-
-```{raw} latex
-    \newpage
-```

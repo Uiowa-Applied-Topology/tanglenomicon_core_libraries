@@ -1,0 +1,116 @@
+site_name: "The Tanglenomicon: Core Libraries"
+site_description: A toolchain for generating RLITT
+site_url: https://joe-starr.com/
+theme:
+    name: material
+    logo: assets/logo.png
+    favicon: assets/favicon.png
+    palette:
+        - media: "(prefers-color-scheme: light)"
+          accent: deep purple
+          primary: deep purple
+          scheme: default
+          toggle:
+              icon: material/brightness-7
+              name: Switch to dark mode
+
+        # Palette toggle for dark mode
+        - media: "(prefers-color-scheme: dark)"
+          accent: deep purple
+          primary: deep purple
+          scheme: slate
+          toggle:
+              icon: material/brightness-4
+              name: Switch to light mode
+    features:
+        - navigation.tabs
+        - navigation.tabs.sticky
+        - navigation.indexes
+        - navigation.path
+repo_name: Uiowa-Applied-Topology/tanglenomicon_rlitt_runner
+repo_url: https://github.com/Uiowa-Applied-Topology/tanglenomicon_rlitt_runner
+extra_css:
+    - https://unpkg.com/katex@0/dist/katex.min.css
+    - "admonitions.css"
+
+nav:
+    - Interfaces:
+          - "interface/index.md"
+          - Generator:
+                - "interface/generator/index.md"
+                - "interface/generator/use-case.md"
+                - "interface/generator/unit-description.md"
+          - Computation:
+                - "interface/computation/index.md"
+                - "interface/computation/use-case.md"
+                - "interface/computation/unit-description.md"
+          - Mutator:
+                - "interface/mutator/index.md"
+                - "interface/mutator/use-case.md"
+                - "interface/mutator/unit-description.md"
+          - Notation:
+                - "interface/notation/index.md"
+                - "interface/notation/use-case.md"
+                - "interface/notation/unit-description.md"
+          - Storage:
+                - "interface/storage/index.md"
+                - "interface/storage/use-case.md"
+                - "interface/storage/unit-description.md"
+    - Libraries: "*include ./source/*/mkdocs.yml"
+    - Source Documentation: "corelib/files.md"
+
+extra_javascript:
+    - https://unpkg.com/katex@0/dist/katex.min.js
+    - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+    - "extra.js"
+
+watch:
+    - docs
+    - source
+
+plugins:
+    - auto-refresh-build-pages:
+          update_message: "The page has been updated. Do you want to reload?"
+          yes_button_text: "Yes"
+          no_button_text: "No"
+          check_interval_seconds: 10
+    - mkdoxy:
+          projects:
+              corelib: # name of project must be alphanumeric + numbers (without spaces)
+                  src-dirs: ./source/ # path to source code (support multiple paths separated by space) => INPUT
+                  full-doc: True # if you want to generate full documentation
+                  doxy-cfg: # standard doxygen configuration (key: value)
+                      FILE_PATTERNS: "*.c *.h" # specify file patterns to filter out
+                      RECURSIVE: True # recursive search in source directories
+    - gh-admonitions:
+    - monorepo
+    - search:
+    - autorefs:
+    - bibtex:
+          bib_file: "docs/ref.bib"
+
+markdown_extensions:
+    - attr_list
+    - footnotes
+    - pymdownx.arithmatex:
+          generic: true
+    - toc:
+          permalink: 
+          separator: "_"
+    - admonition
+    - pymdownx.details
+    - pymdownx.emoji:
+          emoji_index: !!python/name:material.extensions.emoji.twemoji
+          emoji_generator: !!python/name:material.extensions.emoji.to_svg
+          options:
+              custom_icons:
+                  - overrides/.icons
+    - pymdownx.superfences:
+          custom_fences:
+              - name: mermaid
+                class: mermaid
+                format: !!python/name:pymdownx.superfences.fence_code_format
+extra:
+    social:
+        - icon: fontawesome/brands/github-alt
+          link: https://github.com/Uiowa-Applied-Topology/tanglenomicon_rlitt_runner

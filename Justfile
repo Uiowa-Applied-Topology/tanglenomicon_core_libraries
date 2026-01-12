@@ -10,11 +10,13 @@ buildDir := "./.build"
 # Set up development environment
 bootstrap:
     git submodule update --init --recursive
+    prek install -f
     if test ! -e docs/.build/doxygen; then \
       mkdir -p docs/.build/doxygen; \
     fi
     if test ! -e .venv; then \
-      uv venv --python 3.11 && uv pip install -r requirements.txt ; \
+      uv venv --python 3.13 && uv pip install -r requirements.txt && \
+      uv pip install "git+https://github.com/Joecstarr/mkdocs-bibtex"; \
     fi
 
 
@@ -32,11 +34,19 @@ bib:
 
 live: bootstrap
     source .venv/bin/activate && \
-    sphinx-autobuild docs docs/.build/html
+    mkdocs serve --livereload
+
+pdf: bootstrap
+    source .venv/bin/activate && \
+    sphinx-build -M latex docs docs/.build
+    cp -r docs/resources/coloremoji/coloremoji docs/.build/latex
+    cp docs/resources/coloremoji/coloremoji.sty docs/.build/latex
+    cd docs/.build/latex && \
+    nextonic compile tanglenomiconcorelibraries.tex --keep-logs --keep-intermediates
 
 html: bootstrap
     source .venv/bin/activate && \
-    sphinx-build -M html docs docs/.build
+    mkdocs build -d .site
 
 build_all : bootstrap
     if test -e {{buildDir}}; then \
@@ -56,7 +66,7 @@ run TRGT: build_all
     .build/{{TRGT}}
 
 do-cmakeformat:
-    find . -name 'CMakeLists.txt' -exec cmake-format -i {} \;
+    find ./source/ -name 'CMakeLists.txt' -exec cmake-format -i {} \;
 
 check-cmakeformat:
     find . -name 'CMakeLists.txt' -exec cmake-format --check {} \;
@@ -70,15 +80,17 @@ check-uncrustify:
     find ./source -iname "*.h"   -exec  sh -c 'uncrustify -c .uncrustify.cfg --check "$0" || kill $PPID' \{\} \;
     find ./source -iname "*.cpp" -exec  sh -c 'uncrustify -c .uncrustify.cfg --check "$0" || kill $PPID' \{\} \;
 
-check-prettier:
-    prettier README.md --check
-    prettier "docs/**/*.md" --check
-    prettier "source/**/*.md" --check
+check-mdformat: 
+    mdformat docs --check && \
+    mdformat source --check 
 
-do-prettier:
-    prettier -w README.md
-    prettier -w "docs/**/*.md"
-    prettier -w "source/**/*.md"
+do-mdformat:
+    mdformat  docs && \
+    mdformat source
+
+check: check-cmakeformat check-cmakeformat check-uncrustify 
+    @echo "🚀 Checked the files"
+    
 
 compile_commands:
     cmake -B{{buildDir}} -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_COLOR_DIAGNOSTICS=TRUE -G Ninja 

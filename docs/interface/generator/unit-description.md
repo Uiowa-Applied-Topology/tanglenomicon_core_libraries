@@ -23,7 +23,7 @@ classDiagram
 
 ### Public Structures
 
-#### Generator Config Structure
+#### Generator Configuration Structure
 
 The generator config structure defines the collection of data the component needs for a single run.
 Setting a config should be considered equivalent to instantiating a class in a high-level language.
@@ -31,7 +31,7 @@ However, in this case, there is only ever a single active instance of the class.
 
 ### Public Functions
 
-#### Config Function
+#### Configuration Function
 
 The function will take a configuration as input and set the local config instance to that input. The
 function returns a flag indicating if the function was successful. This function can be considered
@@ -58,8 +58,4 @@ stateDiagram-v2
     rv --> if_done
     if_done --> [*]: Operations are complete
     if_done --> wod: Operations are not complete
-```
-
-```{raw} latex
-    \newpage
 ```

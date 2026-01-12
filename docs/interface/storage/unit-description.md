@@ -24,7 +24,3 @@ and returns the value.
 
 The write function takes in a key, index, and value tuple and writes the value to the data store at
 key:index. The function then returns an integer status indicator.
-
-```{raw} latex
-    \newpage
-```

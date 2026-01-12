@@ -1,0 +1,4 @@
+site_name: Notation Weighted Planar Tangle Tree
+nav:
+    - use-case.md
+    - unit-description.md
