@@ -38,7 +38,8 @@
               ninja
               prettier
               openssl
-              python3
+              prek
+              python313
               rip2
               ruff
               stdenv.cc.cc.lib
@@ -57,6 +58,7 @@
             ];
 
             shellHook = ''
+              prek install -f
               just bootstrap
               source .venv/bin/activate
               echo done!

@@ -1,4 +1,4 @@
-name: CMake
+name: Quality Check
 
 on:
     pull_request:
@@ -24,20 +24,10 @@ jobs:
             - name: Install Nix
               uses: DeterminateSystems/nix-installer-action@main
 
-            - name: Prettier
+            - name: Check
               run: |
                   nix develop --command \
-                      just check-prettier
-
-            - name: CMake-format
-              run: |
-                  nix develop --command \
-                      just check-cmakeformat
-
-            - name: C-format
-              run: |
-                  nix develop --command \
-                      just check-uncrustify
+                      just check
 
             - name: Build
               run: |

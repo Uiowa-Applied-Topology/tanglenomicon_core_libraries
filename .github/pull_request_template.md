@@ -1,7 +1,3 @@
-# 👷🏽‍♀️ Pull Request
-
-## Title
-
 [Provide a succinct and descriptive title for the pull request, e.g., "Implements a new notation
 module for the Conway notation."]
 
@@ -36,10 +32,10 @@ information about any added tests.]
 - [ ] No new tests are failing.
 - [ ] Any changes beyond one monorepo are justified above
 
-### New Feature Sub-list
+### New Feature Sublist
 
 - [ ] The feature has a module monorepo
-- [ ] The feature has a usecase document
+- [ ] The feature has a use case document
 - [ ] The feature has a unit description document
 - [ ] The feature has an implementation
 - [ ] The feature has unit tests

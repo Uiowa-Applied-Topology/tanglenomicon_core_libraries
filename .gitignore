@@ -447,3 +447,7 @@ DartConfiguration.tcl
 .direnv
 .envrc
 *.a
+.mkdoxy/core_lib
+site
+site
+.site

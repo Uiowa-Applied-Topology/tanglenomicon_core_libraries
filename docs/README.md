@@ -29,7 +29,7 @@ We're targeting a "write once deploy anywhere" design.
 Tasks will be decomposed per library. Issues/bugs will be tracked per report, combining where it
 makes sense.
 
-## Version control
+## Version Control
 
 Version control will be git based with research Git as the source of truth. Work items will have a
 branch per work item. Merging a work item will be managed by merge requests.
@@ -114,19 +114,19 @@ Project structure will follow a fairly "normal" project structure as follows:
  ┗ 📜requirements.txt
 ```
 
-## Define a Unit: A unit in this project shall be a monorepo member of the source directory
+## Define a Unit: A Unit in This Project Shall Be a Monorepo Member of the Source Directory
 
 ## Quality
 
 This repository is a collection of libraries for The Tanglenomicon project. The primary quality goal
 of libraries is to never fail in an undetectable way.
 
-### Unit testing
+### Unit Testing
 
 Every unit is expected to have a unit test suite. Unit test suites are expected to flex every public
 interface of that unit. Code coverage is optional but encouraged.
 
-### Integration testing
+### Integration Testing
 
 Integration testing is not expected.
 
@@ -188,7 +188,7 @@ These common use cases along with their associated unit descriptions are found b
 - [Use Case](./interface/storage/use-case.md)
 - [Unit Description](./interface/storage/unit-description.md)
 
-### Non-functional Requirements
+### Non-Functional Requirements
 
 Not applicable.
 
@@ -207,8 +207,7 @@ libraries for unity testing. Test indexing is handled by
 
 #### Code Style Guide
 
-The C/C++ code in this repository shall be formatted by the bundled clang-format configuration.
-Doxygen comments are expected to be formatted.
+The C/C++ code in this repository shall be formatted by the bundled uncrustify configuration.
 
 ### Tools
 
@@ -223,6 +222,9 @@ Doxygen comments are expected to be formatted.
 - Python
 - sphinx
 - Pytest
+- prek
+- uncrustify
+- mdformat
 
 # Design and Documentation
 
