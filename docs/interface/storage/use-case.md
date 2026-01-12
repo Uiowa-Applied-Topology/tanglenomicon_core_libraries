@@ -21,7 +21,3 @@ called a **value**.
 ```
 A JSON data store with the key:index:value structure.
 ````
-
-```{raw} latex
-    \newpage
-```
