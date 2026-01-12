@@ -1,0 +1,4 @@
+site_name: Generator Rational Tangles
+nav:
+    - use-case.md
+    - unit-description.md

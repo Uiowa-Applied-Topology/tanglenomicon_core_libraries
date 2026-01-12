@@ -1,0 +1,4 @@
+site_name: Notation Algebraic Tangle Trees
+nav:
+    - use-case.md
+    - unit-description.md

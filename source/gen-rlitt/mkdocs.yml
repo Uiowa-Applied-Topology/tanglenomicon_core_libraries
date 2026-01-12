@@ -1,0 +1,4 @@
+site_name: Generator Right Leaning Identity Tangle Tree
+nav:
+    - use-case.md
+    - unit-description.md
