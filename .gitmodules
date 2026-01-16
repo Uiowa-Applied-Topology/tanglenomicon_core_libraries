@@ -4,3 +4,6 @@
 [submodule "libraries/unit_test_framework"]
 	path = libraries/unit_test_framework
 	url = https://github.com/ThrowTheSwitch/Unity.git
+[submodule "libraries/unitmock_test_framework"]
+	path = libraries/unitmock_test_framework
+	url = https://github.com/ThrowTheSwitch/CMock.git
