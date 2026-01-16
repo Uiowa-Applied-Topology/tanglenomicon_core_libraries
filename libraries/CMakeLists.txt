@@ -2,7 +2,7 @@ block(SCOPE_FOR VARIABLES)
 unset(CMAKE_CXX_CPPCHECK)
 unset(CMAKE_C_CPPCHECK)
 add_subdirectory(json)
-add_subdirectory(unit_test_framework)
+add_subdirectory(unit_test_framework/src)
 endblock()
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}")
