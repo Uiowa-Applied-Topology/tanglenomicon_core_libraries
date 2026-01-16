@@ -67,9 +67,11 @@ run TRGT: build_all
 
 do-cmakeformat:
     find ./source/ -name 'CMakeLists.txt' -exec cmake-format -i {} \;
+    cmake-format -i ./libraries/CMakeLists.txt
 
 check-cmakeformat:
-    find . -name 'CMakeLists.txt' -exec cmake-format --check {} \;
+    find ./source/ -name 'CMakeLists.txt' -exec cmake-format --check {} \;
+    cmake-format --check ./libraries/CMakeLists.txt
 
 do-uncrustify:
     find ./source -iname "*.c"   -exec  sh -c 'uncrustify -c .uncrustify.cfg --replace "$0" || kill $PPID' \{\} \;
