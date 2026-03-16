@@ -14,7 +14,7 @@ repos:
           - id: uncrustify
             name: uncrustify
             language: system
-            entry: uncrustify -c .uncrustify.cfg --check
+            entry: uncrustify -c .uncrustify.cfg --check -q
             exclude:
                 glob:
                     - "libraries/**/*.*"

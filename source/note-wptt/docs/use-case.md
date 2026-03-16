@@ -2,8 +2,8 @@
 date: 2024-09-18
 
 authors:
-  - Joe Starr
-contact: support@joe-starr.com
+  - joe_starr
+contact: dr@joe-starr.com
 abstract: A use case description for the Weighted Planar Trees Notation.
 ---
 

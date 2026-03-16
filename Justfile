@@ -165,7 +165,6 @@ check-doxygen:
 # Run cmake-format
 do-cmakeformat:
     find ./source/ -name 'CMakeLists.txt' -exec cmake-format -i {} \;
-    find ./wrappers/ -name 'CMakeLists.txt' -exec cmake-format -i {} \;
     cmake-format -i ./libraries/CMakeLists.txt
     cmake-format -i CMakeLists.txt
 
@@ -205,6 +204,11 @@ do-uncrustify:
     find ./source -iname "*.c"   -exec  sh -c 'uncrustify -c .uncrustify.cfg --replace "$0" || kill $PPID' \{\} \;
     find ./source -iname "*.h"   -exec  sh -c 'uncrustify -c .uncrustify.cfg --replace "$0" || kill $PPID' \{\} \;
     find ./source -iname "*.cpp" -exec  sh -c 'uncrustify -c .uncrustify.cfg --replace "$0" || kill $PPID' \{\} \;
+    find ./source -iname "*.hpp" -exec  sh -c 'uncrustify -c .uncrustify.cfg --replace "$0" || kill $PPID' \{\} \;
+    find ./misc -iname "*.c"   -exec  sh -c 'uncrustify -c .uncrustify.cfg --replace "$0" || kill $PPID' \{\} \;
+    find ./misc -iname "*.h"   -exec  sh -c 'uncrustify -c .uncrustify.cfg --replace "$0" || kill $PPID' \{\} \;
+    find ./misc -iname "*.cpp" -exec  sh -c 'uncrustify -c .uncrustify.cfg --replace "$0" || kill $PPID' \{\} \;
+    find ./misc -iname "*.hpp" -exec  sh -c 'uncrustify -c .uncrustify.cfg --replace "$0" || kill $PPID' \{\} \;
 
 ##################################################################################################
 ####### rumdl format ##########################################################################
@@ -214,6 +218,7 @@ do-uncrustify:
 do-rumdl:
     rumdl fmt --fix docs
     rumdl fmt --fix source
+    rumdl fmt --fix misc 
 
 
 ##################################################################################################

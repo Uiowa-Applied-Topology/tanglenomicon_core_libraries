@@ -1,10 +1,12 @@
 ---
 date: 2024-09-18
 authors:
-  - Joe Starr
-contact: support@joe-starr.com
+  - joe_starr
+contact: dr@joe-starr.com
 abstract: A use case description for the PL plpath Notation.
 ---
+
+[](){#linearize_a_vertex}
 
 # Use Case
 
@@ -12,7 +14,7 @@ abstract: A use case description for the PL plpath Notation.
 
 ### Mathematical Description
 
-##### Notation for Piecewise Linear Path in $\R^3$
+#### Notation for Piecewise Linear Path in $\R^3$
 
 A mathematical knot is a smooth embedding of a collection of $S^1$ into $\R^3$ or $S^3$. These
 smooth curves can be approximated by a collection of piecewise linear paths.

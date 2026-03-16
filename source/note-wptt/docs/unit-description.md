@@ -1,8 +1,8 @@
 ---
 date: 2024-09-18
 authors:
-  - Joe Starr
-contact: support@joe-starr.com
+  - joe_starr
+contact: dr@joe-starr.com
 abstract: A unit description for the arborescent planar tangle tree notation.
 ---
 
@@ -103,19 +103,14 @@ encoded as an array of pointers to the children. Additionally, this array implic
 cyclic order of the children by the order in the array. Weights are encoded likewise in an array.
 Weight index is interpreted as "after" the same child weight in order as seen below.
 
-<!-- prettier-ignore-start -->
-
-!!! example "Example: Interleaved index"
-
-    For child array $[c_0,c_1,\cdots,c_{n-1}]$ and weight array
-    $[w_0,w_1,\cdots,w_{n-1}]$. The order as described in the
-    [use-case](#linearize_a_vertex) is given as:
-
-    - Forward $$w_0c_0w_1c_1\cdots w_{n-1}c_{n-1}w_{n}$$ Forward it the assumed
-        default.
-    - Reverse $$w_{n}c_{n-1}w_{n-1}\cdots,w_1c_1w_0, $$
-
-<!-- prettier-ignore-end -->
+> [!example] "Example: Interleaved index"
+>
+> For child array $[c_0,c_1,\cdots,c_{n-1}]$ and weight array $[w_0,w_1,\cdots,w_{n-1}]$. The order
+> as described in the [use-case][#linearize_a_vertex] is given as:
+>
+> - Forward $$w_0c_0w_1c_1\cdots w_{n-1}c_{n-1}w_{n}$$ Forward it the assumed
+>        default.
+> - Reverse $$w_{n}c_{n-1}w_{n-1}\cdots,w_1c_1w_0, $$
 
 Finally, read order is encoded as a simple enum consisting of:
 
@@ -212,13 +207,13 @@ This function checks a character passed to it and updates the current notation i
 seven execution paths. These paths are based on the class the character falls into:
 
 - A delimiter
-    - An opening delimiter
-        - $\langle$
-        - $[$
-        - $($
-    - A closing delimiter
-        - $\rangle$
-        - $)$
+  - An opening delimiter
+    - $\langle$
+    - $[$
+    - $($
+  - A closing delimiter
+    - $\rangle$
+    - $)$
 - An integer beginning with "0-9" or "-"
 - A space character
 
@@ -342,154 +337,129 @@ stateDiagram-v2
 
 #### Positive Tests
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "Valid string representing a knot"
-
-    A valid string representing a knot (no free bond) is fed to the function.
-
-    **Inputs:**
-
-    - A valid string representing a knot.
-    - A stick tree.
-    - A tree with an essential vertex.
-    - A tree with a vertex that has ring number.
-    - A tree with a vertex with more than one weight.
-
-    **Expected Output:**
-
-    A valid decoding of the string
-
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-
-!!! test-card "Valid string representing a tangle"
-
-    A valid string representing a tangle (with free bond) is fed to the function.
-
-    **Inputs:**
-
-    - A valid string representing a tangle with each label:
-        - i
-        - x
-        - y
-        - z
-    - A stick tree.
-    - A tree with an essential vertex.
-    - A tree with a vertex that has ring number.
-    - A tree with a vertex with more than one weight.
-
-    **Expected Output:**
-
-    A valid decoding of the string
-
-<!-- prettier-ignore-end -->
+> [!test-card] "Valid string representing a knot"
+>
+> A valid string representing a knot (no free bond) is fed to the function.
+>
+> **Inputs:**
+>
+>   - A valid string representing a knot.
+>   - A stick tree.
+>   - A tree with an essential vertex.
+>   - A tree with a vertex that has ring number.
+>   - A tree with a vertex with more than one weight.
+>
+> **Expected Output:**
+>
+>    A valid decoding of the string
+>
+>
+> [!test-card] "Valid string representing a tangle"
+>
+> A valid string representing a tangle (with free bond) is fed to the function.
+>
+> **Inputs:**
+>
+>   - A valid string representing a tangle with each label:
+>     - i
+>     - x
+>     - y
+>     - z
+>   - A stick tree.
+>   - A tree with an essential vertex.
+>   - A tree with a vertex that has ring number.
+>   - A tree with a vertex with more than one weight.
+>
+> **Expected Output:**
+>
+>    A valid decoding of the string
 
 #### Negative Tests
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "A malformed tree is fed to the function"
-
-    Various malformed trees are fed to the function.
-
-    **Inputs:**
-
-    Malformed strings with the following characteristics:
-
-    - A missing closing delimiter.
-    - An unexpected character is in the string.
-    - The string has more weights than possible.
-    - An empty string.
-
-    **Expected Output:**
-
-    The function reports an error.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "A malformed tree is fed to the function"
+>
+> Various malformed trees are fed to the function.
+>
+> **Inputs:**
+>
+> Malformed strings with the following characteristics:
+>
+>   - A missing closing delimiter.
+>   - An unexpected character is in the string.
+>   - The string has more weights than possible.
+>   - An empty string.
+>
+> **Expected Output:**
+>
+>    The function reports an error.
 
 ### Encode Interface
 
 #### Positive Tests
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "A valid knot wptt is fed to the function"
-
-    A valid knot wptt (with no label) is fed to the encode function.
-
-    **Inputs:**
-
-    - A valid wptt representing a knot.
-    - A stick wptt.
-    - A wptt with an essential vertex.
-    - A wptt with a vertex that has ring number.
-    - A wptt with a vertex with more than one weight.
-
-    **Expected Output:**
-
-    The function produces the corresponding encoded string.
-
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-
-!!! test-card "A valid tangle wptt is fed to the function"
-
-    A valid tangle wptt (with label) is fed to the encode function.
-
-    **Inputs:**
-
-    - A valid wptt representing a tangle with each label:
-        - i
-        - x
-        - y
-        - z
-    - A stick wptt.
-    - A wptt with an essential vertex.
-    - A wptt with a vertex that has ring number.
-    - A wptt with a vertex with more than one weight.
-    - A wptt with a vertex that has reverse order.
-
-    **Expected Output:**
-
-    The function produces the corresponding encoded string.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "A valid knot wptt is fed to the function"
+>
+> A valid knot wptt (with no label) is fed to the encode function.
+>
+> **Inputs:**
+>
+>   - A valid wptt representing a knot.
+>   - A stick wptt.
+>   - A wptt with an essential vertex.
+>   - A wptt with a vertex that has ring number.
+>   - A wptt with a vertex with more than one weight.
+>
+> **Expected Output:**
+>
+>    The function produces the corresponding encoded string.
+>
+>
+> [!test-card] "A valid tangle wptt is fed to the function"
+>
+> A valid tangle wptt (with label) is fed to the encode function.
+>
+> **Inputs:**
+>
+>   - A valid wptt representing a tangle with each label:
+>     - i
+>     - x
+>     - y
+>     - z
+>   - A stick wptt.
+>   - A wptt with an essential vertex.
+>   - A wptt with a vertex that has ring number.
+>   - A wptt with a vertex with more than one weight.
+>   - A wptt with a vertex that has reverse order.
+>
+> **Expected Output:**
+>
+>    The function produces the corresponding encoded string.
 
 #### Negative Tests
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "A malformed wptt is passed to the function"
-
-    A malformed wptt is passed to the function.
-
-    **Inputs:**
-
-    - A NULL child is present
-    - A NULL root is present
-    - An UNINIT label is present
-
-    **Expected Output:**
-
-    The function will produce an error.
-
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-
-!!! test-card "A NULL string buffer is passed"
-
-    The output string buffer is a NULL pointer.
-
-    **Inputs:**
-
-    - A NULL pointer buffer is passed to the function
-
-    **Expected Output:**
-
-    The function will produce an error.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "A malformed wptt is passed to the function"
+>
+> A malformed wptt is passed to the function.
+>
+> **Inputs:**
+>
+>   - A NULL child is present
+>   - A NULL root is present
+>   - An UNINIT label is present
+>
+> **Expected Output:**
+>
+>    The function will produce an error.
+>
+>
+> [!test-card] "A NULL string buffer is passed"
+>
+> The output string buffer is a NULL pointer.
+>
+> **Inputs:**
+>
+>   - A NULL pointer buffer is passed to the function
+>
+> **Expected Output:**
+>
+>    The function will produce an error.

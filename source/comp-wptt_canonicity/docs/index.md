@@ -1,4 +1,4 @@
-[](<>){}#comp-wptt_canonicity}
+[](<>){#comp-wptt_canonicity}
 
 # Computation Weighted Planar Tangle Tree Canonicity
 

@@ -47,9 +47,8 @@ the array. The indexing of the array is as in:
 
 $$
 [ x_n\ x_{n-1}\ \cdots\ x_0]\to \begin{array}{|c|c|c|c|} \hline
-\text{0x0000}& & &\text{0x0000}+n\cdot \text{size\_t}\\\hline x_0&\cdots &
-x_{n-1} &x_n\\ \hline \end{array}
-$$
+\text{0x0000}& & &\text{0x0000}+n\cdot \text{size\_t}\\\hline x_0&\cdots & x_{n-1} &x_n\\ \hline
+\end{array} $$
 
 ### Public Functions
 
@@ -150,36 +149,28 @@ stateDiagram-v2
 
 ### Decode Interface
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "Valid string representing a twist vector"
-
-    A valid string representing a twist vector is fed to the function.
-
-    **Inputs:**
-
-    - A valid string representing a twist vector.
-
-    **Expected Output:**
-
-    A correct and valid decoding of the string
-
-<!-- prettier-ignore-end -->
+> [!test-card] "Valid string representing a twist vector"
+>
+> A valid string representing a twist vector is fed to the function.
+>
+> **Inputs:**
+>
+>   - A valid string representing a twist vector.
+>
+> **Expected Output:**
+>
+>    A correct and valid decoding of the string
 
 ### Encode Interface
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "Valid twist vector"
-
-    A valid twist vector is fed to the function.
-
-    **Inputs:**
-
-    - A correct and valid twist vector.
-
-    **Expected Output:**
-
-    A valid string representing the twist vector.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "Valid twist vector"
+>
+> A valid twist vector is fed to the function.
+>
+> **Inputs:**
+>
+>   - A correct and valid twist vector.
+>
+> **Expected Output:**
+>
+>    A valid string representing the twist vector.

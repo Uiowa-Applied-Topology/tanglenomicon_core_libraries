@@ -136,103 +136,82 @@ if_done --> [*]: if i == 2**(N-1)
 
 #### Positive Tests
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "Valid Configuration"
-
-    A valid configuration for the generator is passed to the function.
-
-    **Inputs:**
-
-    - A valid configuration.
-
-    **Expected Output:**
-
-    A positive response.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "Valid Configuration"
+>
+> A valid configuration for the generator is passed to the function.
+>
+> **Inputs:**
+>
+>   - A valid configuration.
+>
+> **Expected Output:**
+>
+>    A positive response.
 
 #### Negative Tests
 
-<!-- prettier-ignore-start -->
+> [!test-card] "Null Configuration"
+>
+> A null configuration for the generator is passed to the function.
+>
+> **Inputs:**
+>
+>   - A null configuration.
+>
+> **Expected Output:**
+>
+>    A negative response.
 
-!!! test-card "Null Configuration"
+> [!test-card] "A Configuration with null twist vector"
+>
+> A configuration with a null twist vector is passed to the function.
+>
+> **Inputs:**
+>
+>   - A configuration with a null twist vector.
+>
+> **Expected Output:**
+>
+>    A negative response.
 
-    A null configuration for the generator is passed to the function.
-
-    **Inputs:**
-
-    - A null configuration.
-
-    **Expected Output:**
-
-    A negative response.
-
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-
-!!! test-card "A Configuration with null twist vector"
-
-    A configuration with a null twist vector is passed to the function.
-
-    **Inputs:**
-
-    - A configuration with a null twist vector.
-
-    **Expected Output:**
-
-    A negative response.
-
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-
-!!! test-card "A Configuration with null string buffer"
-
-    A configuration with a null string buffer is passed to the function.
-
-    **Inputs:**
-
-    - A configuration with a null string buffer.
-
-    **Expected Output:**
-
-    A negative response.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "A Configuration with null string buffer"
+>
+> A configuration with a null string buffer is passed to the function.
+>
+> **Inputs:**
+>
+>   - A configuration with a null string buffer.
+>
+> **Expected Output:**
+>
+>    A negative response.
 
 ### Generate Interface
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "Valid Configuration and generation"
-
-    A valid configuration is set and the generation is called.
-
-    **Inputs:**
-
-    - A target crossing number of 5
-
-    **Expected Output:**
-
-    The twist vectors:
-
-    - `[1 1 1 1 1]`
-    - `[2 1 1 1 0]`
-    - `[1 2 1 1 0]`
-    - `[1 1 2 1 0]`
-    - `[1 1 1 2 0]`
-    - `[3 1 1]`
-    - `[1 3 1]`
-    - `[1 1 3]`
-    - `[2 2 1]`
-    - `[2 1 2]`
-    - `[1 2 2]`
-    - `[3 2 0]`
-    - `[2 3 0]`
-    - `[4 1 0]`
-    - `[1 4 0]`
-    - `[5]`
-
-<!-- prettier-ignore-end -->
+> [!test-card] "Valid Configuration and generation"
+>
+> A valid configuration is set and the generation is called.
+>
+> **Inputs:**
+>
+>   - A target crossing number of 5
+>
+> **Expected Output:**
+>
+>    The twist vectors:
+>   - `[1 1 1 1 1]`
+>   - `[2 1 1 1 0]`
+>   - `[1 2 1 1 0]`
+>   - `[1 1 2 1 0]`
+>   - `[1 1 1 2 0]`
+>   - `[3 1 1]`
+>   - `[1 3 1]`
+>   - `[1 1 3]`
+>   - `[2 2 1]`
+>   - `[2 1 2]`
+>   - `[1 2 2]`
+>   - `[3 2 0]`
+>   - `[2 3 0]`
+>   - `[4 1 0]`
+>   - `[1 4 0]`
+>   - `[5]`

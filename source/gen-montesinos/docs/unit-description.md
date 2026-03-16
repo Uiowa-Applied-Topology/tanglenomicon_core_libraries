@@ -179,91 +179,69 @@ stateDiagram-v2
 
 #### Positive Tests
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "Valid Configuration"
-
-    A valid configuration for the generator is passed to the function.
-
-    **Inputs:**
-
-    - A valid configuration.
-
-    **Expected Output:**
-
-    A positive response.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "Valid Configuration"
+>
+> A valid configuration for the generator is passed to the function.
+>
+> **Inputs:**
+>
+>   - A valid configuration.
+>
+> **Expected Output:**
+>
+>    A positive response.
 
 #### Negative Tests
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "Null Configuration"
-
-    A null configuration for the generator is passed to the function.
-
-    **Inputs:**
-
-    - A null configuration.
-
-    **Expected Output:**
-
-    A negative response.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "Null Configuration"
+>
+> A null configuration for the generator is passed to the function.
+>
+> **Inputs:**
+>
+>   - A null configuration.
+>
+> **Expected Output:**
+>
+>    A negative response.
 
 ### Generate Interface
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "Valid Configuration and generation"
-
-    A valid configuration is set and the generation is called.
-
-    **Inputs:**
-
-    - The twist vector lists
-        1\.
-        \- `[ 1 1 0 ]`
-        \- `[ 2 2 0 ]`
-        \- `[ 3 3 0 ]`
-        2\.
-        \- `[ 1 1 1 ]`
-        \- `[ 1 2 2 ]`
-        3\.
-        \- `[ 2 1 1 ]`
-        \- `[ 2 2 2 ]`
-        \- `[ 2 3 3 ]`
-        \- `[ 2 4 4 ]`
-
-    **Expected Output:**
-
-    The algebraic tangle trees:
-
-    - `+[1 1 0]+[1 1 1][1 1 2]`
-    - `+[1 1 0]+[1 1 1][2 2 2]`
-    - `+[1 1 0]+[1 1 1][3 3 2]`
-    - `+[1 1 0]+[1 1 1][4 4 2]`
-    - `+[1 1 0]+[2 2 1][1 1 2]`
-    - `+[1 1 0]+[2 2 1][2 2 2]`
-    - `+[1 1 0]+[2 2 1][3 3 2]`
-    - `+[1 1 0]+[2 2 1][4 4 2]`
-    - `+[2 2 0]+[1 1 1][1 1 2]`
-    - `+[2 2 0]+[1 1 1][2 2 2]`
-    - `+[2 2 0]+[1 1 1][3 3 2]`
-    - `+[2 2 0]+[1 1 1][4 4 2]`
-    - `+[2 2 0]+[2 2 1][1 1 2]`
-    - `+[2 2 0]+[2 2 1][2 2 2]`
-    - `+[2 2 0]+[2 2 1][3 3 2]`
-    - `+[2 2 0]+[2 2 1][4 4 2]`
-    - `+[3 3 0]+[1 1 1][1 1 2]`
-    - `+[3 3 0]+[1 1 1][2 2 2]`
-    - `+[3 3 0]+[1 1 1][3 3 2]`
-    - \`+[3 3 0]+[1 1 1][4 4 2]\`\`
-    - `+[3 3 0]+[2 2 1][1 1 2]`
-    - `+[3 3 0]+[2 2 1][2 2 2]`
-    - `+[3 3 0]+[2 2 1][3 3 2]`
-    - `+[3 3 0]+[2 2 1][4 4 2]`
-
-<!-- prettier-ignore-end -->
+> [!test-card] "Valid Configuration and generation"
+>
+> A valid configuration is set and the generation is called.
+>
+> **Inputs:**
+>
+>   - The twist vector lists
+>        1\. \- `[ 1 1 0 ]` \- `[ 2 2 0 ]` \- `[ 3 3 0 ]` 2\. \- `[ 1 1 1 ]` \- `[ 1 2 2 ]` 3\. \-
+>        `[ 2 1 1 ]` \- `[ 2 2 2 ]` \- `[ 2 3 3 ]` \- `[ 2 4 4 ]`
+>
+> **Expected Output:**
+>
+>    The algebraic tangle trees:
+>
+>   - `+[1 1 0]+[1 1 1][1 1 2]`
+>   - `+[1 1 0]+[1 1 1][2 2 2]`
+>   - `+[1 1 0]+[1 1 1][3 3 2]`
+>   - `+[1 1 0]+[1 1 1][4 4 2]`
+>   - `+[1 1 0]+[2 2 1][1 1 2]`
+>   - `+[1 1 0]+[2 2 1][2 2 2]`
+>   - `+[1 1 0]+[2 2 1][3 3 2]`
+>   - `+[1 1 0]+[2 2 1][4 4 2]`
+>   - `+[2 2 0]+[1 1 1][1 1 2]`
+>   - `+[2 2 0]+[1 1 1][2 2 2]`
+>   - `+[2 2 0]+[1 1 1][3 3 2]`
+>   - `+[2 2 0]+[1 1 1][4 4 2]`
+>   - `+[2 2 0]+[2 2 1][1 1 2]`
+>   - `+[2 2 0]+[2 2 1][2 2 2]`
+>   - `+[2 2 0]+[2 2 1][3 3 2]`
+>   - `+[2 2 0]+[2 2 1][4 4 2]`
+>   - `+[3 3 0]+[1 1 1][1 1 2]`
+>   - `+[3 3 0]+[1 1 1][2 2 2]`
+>   - `+[3 3 0]+[1 1 1][3 3 2]`
+>   - \`+[3 3 0]+[1 1 1][4 4 2]\`\`
+>   - `+[3 3 0]+[2 2 1][1 1 2]`
+>   - `+[3 3 0]+[2 2 1][2 2 2]`
+>   - `+[3 3 0]+[2 2 1][3 3 2]`
+>   - `+[3 3 0]+[2 2 1][4 4 2]`
