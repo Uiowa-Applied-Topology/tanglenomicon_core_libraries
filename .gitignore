@@ -451,3 +451,5 @@ DartConfiguration.tcl
 site
 site
 .site
+*.orig
+.wine/
