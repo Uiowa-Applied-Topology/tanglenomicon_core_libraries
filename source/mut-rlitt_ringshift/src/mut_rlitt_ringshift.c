@@ -13,6 +13,7 @@
 /******************************************************************************/
 
 #include "mut_rlitt_ringshift.h"
+#include "notation_wptt.h"
 #include "stdbool.h"
 #include "stdint.h"
 #include "stdio.h"
@@ -246,10 +247,10 @@ STATIC_INLINE bool mut_rlitt_ringshift_is_ringsubtree(const note_wptt_node_t *no
  */
 STATIC_INLINE int mut_rlitt_ringshift_ringsubtreecmp(const void *node1, const void *node2)
 {
-    bool node1_ring = mut_rlitt_ringshift_is_ringsubtree(
-        *(const note_wptt_node_t **)node1);
-    bool node2_ring = mut_rlitt_ringshift_is_ringsubtree(
-        *(const note_wptt_node_t **)node2);
+    const note_wptt_node_t *typed_n1 = *(const note_wptt_node_t **)node1;
+    const note_wptt_node_t *typed_n2 = *(const note_wptt_node_t **)node2;
+    bool node1_ring = mut_rlitt_ringshift_is_ringsubtree(typed_n1);
+    bool node2_ring = mut_rlitt_ringshift_is_ringsubtree(typed_n2);
 
     if (node1_ring != node2_ring)
     {
@@ -259,7 +260,7 @@ STATIC_INLINE int mut_rlitt_ringshift_ringsubtreecmp(const void *node1, const vo
         }
         return -1;
     }
-    return 0;
+    return (typed_n1 > typed_n2) - (typed_n1 < typed_n2);
 }
 
 /**
