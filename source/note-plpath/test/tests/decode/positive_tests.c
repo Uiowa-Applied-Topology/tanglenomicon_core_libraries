@@ -39,7 +39,7 @@ static void test_decode_positive_multiple_segments(void)
     uint8_t retval;
     char *  paths =
         "0,0,0\n0,1,1\n0,2,2\n0,3,3\n\n// a comment\n1,0,0\n1,1,1\n1,2,2\n\n2,0,0";
-    note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { 0, 0, 0, NULL };
+    note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { { 0, 0, 0, NULL } };
     note_plpath_point_buffer_t buffer = { (note_plpath_point_t *)&points,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                           0 };
@@ -69,7 +69,7 @@ static void test_decode_positive_single_segment(void)
     uint8_t retval;
     char *  paths =
         "0,0,0\n0,1,1\n0,2,2\n0,3,3";
-    note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { 0, 0, 0, NULL };
+    note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { { 0, 0, 0, NULL } };
     note_plpath_point_buffer_t buffer = { (note_plpath_point_t *)&points,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                           0 };
@@ -99,7 +99,7 @@ static void test_decode_positive_no_comment(void)
     uint8_t retval;
     char *  paths =
         "0,0,0\n0,1,1\n0,2,2\n0,3,3\n\n1,0,0\n1,1,1\n1,2,2\n\n2,0,0";
-    note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { 0, 0, 0, NULL };
+    note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { { 0, 0, 0, NULL } };
     note_plpath_point_buffer_t buffer = { (note_plpath_point_t *)&points,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                           0 };
@@ -129,7 +129,7 @@ static void test_decode_positive_with_comment(void)
     uint8_t retval;
     char *  paths =
         "0,0,0\n0,1,1\n0,2,2\n0,3,3\n\n// a comment\n1,0,0\n1,1,1\n1,2,2\n\n2,0,0";
-    note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { 0, 0, 0, NULL };
+    note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { { 0, 0, 0, NULL } };
     note_plpath_point_buffer_t buffer = { (note_plpath_point_t *)&points,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                           0 };
@@ -159,7 +159,7 @@ static void test_decode_positive_nlnlnl(void)
     uint8_t retval;
     char *  paths =
         "0,0,0\n0,1,1\n0,2,2\n0,3,3\n\n\n// a comment\n1,0,0\n1,1,1\n1,2,2\n\n2,0,0\n\n\n";
-    note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { 0, 0, 0, NULL };
+    note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { { 0, 0, 0, NULL } };
     note_plpath_point_buffer_t buffer = { (note_plpath_point_t *)&points,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                           0 };
@@ -189,7 +189,7 @@ static void test_decode_positive_term_nl(void)
     uint8_t retval;
     char *  paths =
         "0,0,0\n0,1,1\n0,2,2\n0,3,3\n\n\n// a comment\n1,0,0\n1,1,1\n1,2,2\n\n2,0,0\n";
-    note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { 0, 0, 0, NULL };
+    note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { { 0, 0, 0, NULL } };
     note_plpath_point_buffer_t buffer = { (note_plpath_point_t *)&points,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                           0 };
@@ -218,7 +218,7 @@ static void test_decode_positive_no_segments(void)
     uint8_t retval;
     char *  paths = "";
 
-    note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { 0, 0, 0, NULL };
+    note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { { 0, 0, 0, NULL } };
     note_plpath_point_buffer_t buffer = { (note_plpath_point_t *)&points,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                           0 };

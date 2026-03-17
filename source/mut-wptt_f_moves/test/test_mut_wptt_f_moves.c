@@ -3,6 +3,7 @@
 #include "tests/config/positive_tests.h"
 #include "tests/config/negative_tests.h"
 #include "test_storage_stubs.h"
+#include "utils/utils.h"
 #include "unity.h"
 
 /******************************************************************************/

@@ -6,6 +6,7 @@
 #include "test_storage_stubs.h"
 #include "unity.h"
 #include "unity_internals.h"
+#include "../../utils/utils.h"
 
 static void test_mutate_negative_no_config(void);
 static void test_mutate_negative_executed(void);

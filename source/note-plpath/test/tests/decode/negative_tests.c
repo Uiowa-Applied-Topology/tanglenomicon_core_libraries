@@ -24,7 +24,7 @@ static void test_decode_negative_null(void)
     uint8_t retval;
     char *  paths =
         "0,0,0\n0,1,1\n0,2,2\n0,3,3\n\n// a% comment\n1,0,\n1,1,1\n1,2,2\n\n2,0,0";
-    note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { 0, 0, 0, NULL };
+    note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { { 0, 0, 0, NULL } };
     note_plpath_point_buffer_t buffer = { (note_plpath_point_t *)&points,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                           0 };
@@ -69,7 +69,7 @@ static void test_decode_negative_badpoint(void)
         "0,0,0\n0,1,1\n0,2,2\n0,3,3\n\n// a% comment\n,0,0";
     char *paths_e4 =
         "0,0,0\n0,1,1\n0,2,2\n0,3,3\n\n// a% comment\n,,";
-    note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { 0, 0, 0, NULL };
+    note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { { 0, 0, 0, NULL } };
     note_plpath_point_buffer_t buffer = { (note_plpath_point_t *)&points,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                           0 };
@@ -122,7 +122,7 @@ static void test_decode_negative_badchar(void)
         "0,0,0\n0,1,1\n0,2,2\n0,3,3\n// a% comment\n%1,0,0\n1,1,1\n1,2,2\n\n2,0,0";
     char *paths4 =
         "0,0,0\n0,1,1\n0,2,2\n0,3,3\n// a% comment\n1,0,0%";
-    note_plpath_point_t        points[10u * UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { 0, 0, 0, NULL };
+    note_plpath_point_t        points[10u * UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { { 0, 0, 0, NULL } };
     note_plpath_point_buffer_t buffer = { (note_plpath_point_t *)&points,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                           0 };

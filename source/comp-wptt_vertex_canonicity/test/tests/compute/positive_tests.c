@@ -69,7 +69,6 @@ static note_wptt_t stick_zero_leaf = {&pb0b3p,NULL,NOTE_WPTT_V4_LABEL_I};
 
 static note_wptt_node_t pb3bb0_3bp = {{&leaf3,&pb0b3p },{0,0},2,0,NOTE_WPTT_ORDER_FORWARD};
 static note_wptt_node_t ppb3bb3bpp = {{&pb3bb3bp},{0,0},1,0,NOTE_WPTT_ORDER_FORWARD};
-static note_wptt_node_t ppb3bb0bpp = {{&pb3bb0bp},{0,0},1,0,NOTE_WPTT_ORDER_FORWARD};
 static note_wptt_node_t pppb3bb3bpp3p = {{&ppb3bb3bpp },{0,3},1,0,NOTE_WPTT_ORDER_FORWARD};
 static note_wptt_t stick_zero_internal = {&pppb3bb3bpp3p,NULL,NOTE_WPTT_V4_LABEL_I};
 static note_wptt_t stick_zero_leaf2 = {&pb3bb0bp,NULL,NOTE_WPTT_V4_LABEL_I};
