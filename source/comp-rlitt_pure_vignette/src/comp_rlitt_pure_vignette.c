@@ -13,7 +13,6 @@
 /******************************************************************************/
 
 #include "comp_rlitt_pure_vignette.h"
-#include "bits/stdint-uintn.h"
 #include "computation_defs.h"
 #include "stdbool.h"
 #include "stdio.h"

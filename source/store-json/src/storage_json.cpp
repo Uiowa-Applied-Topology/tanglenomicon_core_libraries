@@ -19,16 +19,17 @@ using sj   = storage_ns::storage_json_c;
 
 const char *sj::read(const char *key, const char *index)
 {
-    std::string *value = new std::string();
+    char *value = NULL;
 
     if (this->data.contains(key))
     {
         if (this->data[key].contains(index))
         {
-            value->append((std::string)this->data[key][index]);
+            /* cppcheck-suppress cstyleCast*/
+            value = (char *)&this->data[key][index];
         }
     }
-    return value->c_str();
+    return value;
 }
 
 /**
@@ -61,6 +62,7 @@ uint8_t sj::write(const char *key, const char *index, const char *value)
  * \brief
  * \param file_path
  */
+/* cppcheck-suppress passedByValue */
 sj::storage_json_c(std::string file_path, bool newfile)
 {
     this->file_path = file_path;

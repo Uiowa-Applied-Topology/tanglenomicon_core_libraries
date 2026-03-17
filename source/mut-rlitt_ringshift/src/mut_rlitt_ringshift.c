@@ -46,11 +46,6 @@ STATIC_INLINE_UINT8 mut_rlitt_ringshift_ringshift_tree(note_wptt_t *tree);
 /************************** Local Variables ***********************************/
 /******************************************************************************/
 
-/**
- * \brief The local configuration of the RLITT ring shift computation module.
- *
- */
-static note_wptt_node_t *mut_rlitt_ringshift_localnodes;
 
 /**
  * \brief The local configuration of the RLITT ring shift computation module.

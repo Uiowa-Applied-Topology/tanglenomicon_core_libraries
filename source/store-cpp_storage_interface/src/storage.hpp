@@ -33,7 +33,8 @@ namespace storage_ns
  */
 class storage_interface_c
 {
-  public:
+public:
+
     /**
      * \brief
      * \param key
@@ -51,7 +52,9 @@ class storage_interface_c
      */
     virtual const char *read(const char *key, const char *index) = 0;
 
-    virtual ~storage_interface_c() {};
+    virtual ~storage_interface_c()
+    {
+    };
 
     /**
      * \brief
@@ -59,14 +62,14 @@ class storage_interface_c
     bool makenewfile = false;
 
     /**
-     * \brief uuid
-     *        from
-     *        [stackOverflow](https://stackoverflow.com/questions/24365331/how-can-i-generate-uuid-in-c-without-using-boost-library)
+     * \brief uuid from
+     *[stackOverflow](https://stackoverflow.com/questions/24365331/how-can-i-generate-uuid-in-c-without-using-boost-library)
      * \return Returns a UUID as a string.
      */
     static std::string generate_uuid_v4();
 
-  private:
+private:
+
     /**
      * \brief
      */
@@ -80,12 +83,12 @@ class storage_interface_c
     /**
      * \brief
      */
-    static std::uniform_int_distribution<> dis;
+    static std::uniform_int_distribution <> dis;
 
     /**
      * \brief
      */
-    static std::uniform_int_distribution<> dis2;
+    static std::uniform_int_distribution <> dis2;
 };
-}; // namespace storage_ns
+}; /* namespace storage_ns */
 #endif /* end STORAGE_INTERFACE_H */

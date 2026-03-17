@@ -39,18 +39,20 @@ namespace storage_ns
  */
 class storage_json_c : public storage_interface_c
 {
-  public:
+public:
+
     /**
      * \brief
      * \param file_path
      * \param makenewfile
      */
+    /* cppcheck-suppress passedByValue */
     storage_json_c(std::string file_path, bool newfile);
 
     /**
      * \brief
      */
-    ~storage_json_c();
+    ~storage_json_c() override;
 
     /**
      * \brief
@@ -58,7 +60,7 @@ class storage_json_c : public storage_interface_c
      * \param index
      * \return
      */
-    const char *read(const char *key, const char *index);
+    const char *read(const char *key, const char *index) override;
 
     /**
      * \brief
@@ -67,9 +69,10 @@ class storage_json_c : public storage_interface_c
      * \param value
      * \return
      */
-    uint8_t write(const char *key, const char *index, const char *value);
+    uint8_t write(const char *key, const char *index, const char *value) override;
 
-  private:
+private:
+
     /**
      * \brief
      */
@@ -80,5 +83,5 @@ class storage_json_c : public storage_interface_c
      */
     std::string file_path = "";
 };
-} // namespace storage_ns
+} /* namespace storage_ns */
 #endif /* end STORAGE_JSON_H */

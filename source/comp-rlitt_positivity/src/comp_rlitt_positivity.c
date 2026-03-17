@@ -13,7 +13,6 @@
 /******************************************************************************/
 
 #include "comp_rlitt_positivity.h"
-#include "bits/stdint-uintn.h"
 #include "computation_defs.h"
 #include "stdbool.h"
 #include "stdio.h"

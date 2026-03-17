@@ -13,7 +13,6 @@
 /******************************************************************************/
 
 #include "comp_wptt_vertex_canonicity.h"
-#include "bits/stdint-uintn.h"
 #include "computation_defs.h"
 #include "notation_wptt.h"
 #include "stdbool.h"

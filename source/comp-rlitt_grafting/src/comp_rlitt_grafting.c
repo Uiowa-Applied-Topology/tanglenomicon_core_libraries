@@ -13,7 +13,6 @@
 /******************************************************************************/
 
 #include "comp_rlitt_grafting.h"
-#include "bits/stdint-intn.h"
 #include "stdbool.h"
 #include "stdint.h"
 #include "stdio.h"

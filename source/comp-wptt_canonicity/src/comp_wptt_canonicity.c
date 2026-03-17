@@ -13,7 +13,6 @@
 /******************************************************************************/
 
 #include "comp_wptt_canonicity.h"
-#include "bits/stdint-uintn.h"
 #include "comp_wptt_vertex_canonicity.h"
 #include "computation_defs.h"
 #include "notation_defs.h"
@@ -21,7 +20,6 @@
 #include "stdint.h"
 #include "stdio.h"
 #include "stdlib.h"
-#include "sys/types.h"
 #include "tang_defs.h"
 
 /******************************************************************************/

@@ -9,7 +9,6 @@
  */
 
 #include "generator_rlitt.h"
-#include "bits/stdint-uintn.h"
 #include "comp_rlitt_grafting.h"
 #include "comp_wptt_vertex_canonicity.h"
 #include "comp_rlitt_positivity.h"

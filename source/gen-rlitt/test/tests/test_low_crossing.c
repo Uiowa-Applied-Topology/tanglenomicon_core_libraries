@@ -2,7 +2,6 @@
 /* Created by joe on 6/29/25. */
 /* */
 /* cppcheck-suppress-begin [unreadVariable, unusedVariable] */
-#include "bits/stdint-uintn.h"
 #include "notation_wptt.h"
 #include "generator_rlitt.h"
 #include "test_low_crossing.h"
