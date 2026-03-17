@@ -1,12 +1,12 @@
-/*!
- *  @file notation_tv.c
+/**
+ *  \file notation_tv.c
  *
- *  @brief  Notation module for twist vectors.
+ *  \brief  Notation module for twist vectors.
  *
  *
- *  @author    Isabel Darcy
- *  @author    Zachary Bryhtan
- *  @author    Joe Starr
+ *  \author    Isabel Darcy
+ *  \author    Zachary Bryhtan
+ *  \author    Joe Starr
  *
  */
 
@@ -18,8 +18,8 @@
 /************************** Defines *******************************************/
 /******************************************************************************/
 
-/*!
- * @brief The number base used for str->int functions.
+/**
+ * \brief The number base used for str->int functions.
  *
  */
 #define NOTE_TV_INT_BASE    (10u)
@@ -32,11 +32,11 @@
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
 
-/*!
- * @brief A function to reverse the order of the twist vector.
+/**
+ * \brief A function to reverse the order of the twist vector.
  *
- * @param tv Twist vector to work on.
- * @return note_tv_t a pointer to the reversed object, needed for nesting.
+ * \param tv Twist vector to work on.
+ * \return note_tv_t a pointer to the reversed object, needed for nesting.
  */
 STATIC_INLINE note_tv_t *note_tv_tvrev(note_tv_t *tv);
 

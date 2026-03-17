@@ -199,6 +199,7 @@ if_done --> [*]: if i == 2**(N-1)
 > **Expected Output:**
 >
 >    The twist vectors:
+>
 >   - `[1 1 1 1 1]`
 >   - `[2 1 1 1 0]`
 >   - `[1 2 1 1 0]`

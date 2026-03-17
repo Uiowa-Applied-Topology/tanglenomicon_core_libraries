@@ -1,4 +1,4 @@
-/*!
+/**
  *  @file store-cpp_storage_interface.hpp
  *
  *  @brief  store-cpp_storage_interface interface description.

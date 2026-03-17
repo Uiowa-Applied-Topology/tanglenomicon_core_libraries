@@ -1,10 +1,10 @@
-/*!
- *  @file mut_rlitt_ringshift.c
+/**
+ *  \file mut_rlitt_ringshift.c
  *
- *  @brief  A rlitt_ringshift module
+ *  \brief  A rlitt_ringshift module
  *
  *
- *  @author    Joe Starr
+ *  \author    Joe Starr
  *
  */
 
@@ -23,8 +23,8 @@
 /************************** Defines *******************************************/
 /******************************************************************************/
 
-/*!
- * @brief Maximum size of the stacks used for tree traversal
+/**
+ * \brief Maximum size of the stacks used for tree traversal
  *
  */
 #define MUT_RLITT_RINGSHIFT_STACK_SIZE    (UTIL_TANG_DEFS_MAX_CROSSINGNUM)
@@ -46,20 +46,20 @@ STATIC_INLINE_UINT8 mut_rlitt_ringshift_ringshift_tree(note_wptt_t *tree);
 /************************** Local Variables ***********************************/
 /******************************************************************************/
 
-/*!
- * @brief The local configuration of the RLITT ring shift computation module.
+/**
+ * \brief The local configuration of the RLITT ring shift computation module.
  *
  */
 static note_wptt_node_t *mut_rlitt_ringshift_localnodes;
 
-/*!
- * @brief The local configuration of the RLITT ring shift computation module.
+/**
+ * \brief The local configuration of the RLITT ring shift computation module.
  *
  */
 static mut_rlitt_ringshift_config_t *mut_rlitt_ringshift_localcfg = NULL;
 
-/*!
- * @brief The local computation status of the RLITT ring shift computation module.
+/**
+ * \brief The local computation status of the RLITT ring shift computation module.
  *
  */
 static bool mut_rlitt_ringshift_executed = false;
@@ -128,11 +128,11 @@ uint8_t mut_rlitt_ringshift_mutate()
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
 
-/*!
- * @brief Walk the input tree.
+/**
+ * \brief Walk the input tree.
  *
- * @param tree The input tree.
- * @return
+ * \param tree The input tree.
+ * \return
  */
 STATIC_INLINE_UINT8 mut_rlitt_ringshift_ringshift_tree(note_wptt_t *tree)
 {
@@ -172,10 +172,10 @@ STATIC_INLINE_UINT8 mut_rlitt_ringshift_ringshift_tree(note_wptt_t *tree)
     return ret_val;
 }
 
-/*!
- * @brief Normalize the vertex order to forward.
+/**
+ * \brief Normalize the vertex order to forward.
  *
- * @param node The vertex to reverse.
+ * \param node The vertex to reverse.
  */
 STATIC_INLINE void mut_rlitt_ringshift_reverse_node(note_wptt_node_t *node)
 {
@@ -204,11 +204,11 @@ STATIC_INLINE void mut_rlitt_ringshift_reverse_node(note_wptt_node_t *node)
     }
 }
 
-/*!
- * @brief Identify if the vertex is the root of a $\pm$-ring subtree.
+/**
+ * \brief Identify if the vertex is the root of a $\pm$-ring subtree.
  *
- * @param node the vertex to examine.
- * @return
+ * \param node the vertex to examine.
+ * \return
  */
 STATIC_INLINE bool mut_rlitt_ringshift_is_ringsubtree(const note_wptt_node_t *node)
 {
@@ -236,8 +236,8 @@ STATIC_INLINE bool mut_rlitt_ringshift_is_ringsubtree(const note_wptt_node_t *no
     return ret_val;
 }
 
-/*!
- * @brief Compares two vertices and orders them.
+/**
+ * \brief Compares two vertices and orders them.
  *
  *  The function takes two vertices as input. The two are placed in the following order:
  *
@@ -245,9 +245,9 @@ STATIC_INLINE bool mut_rlitt_ringshift_is_ringsubtree(const note_wptt_node_t *no
  *  - node2 < node1: When node1 has a ring and node2 does not
  *  - node1 = node2: When node1 and node2 both have a ring
  *
- * @param node1 The first node.
- * @param node2 The second vertex.
- * @return An integer -1,0,1 indicating the result of the compare.
+ * \param node1 The first node.
+ * \param node2 The second vertex.
+ * \return An integer -1,0,1 indicating the result of the compare.
  */
 STATIC_INLINE int mut_rlitt_ringshift_ringsubtreecmp(const void *node1, const void *node2)
 {
@@ -267,10 +267,10 @@ STATIC_INLINE int mut_rlitt_ringshift_ringsubtreecmp(const void *node1, const vo
     return 0;
 }
 
-/*!
- * @brief Sort the children of a vertex so ring subtrees are at the highest indices.
+/**
+ * \brief Sort the children of a vertex so ring subtrees are at the highest indices.
  *
- * @param node The vertex to sort the children of.
+ * \param node The vertex to sort the children of.
  */
 STATIC_INLINE void mut_rlitt_ringshift_move_ringsubtrees(note_wptt_node_t *node)
 {

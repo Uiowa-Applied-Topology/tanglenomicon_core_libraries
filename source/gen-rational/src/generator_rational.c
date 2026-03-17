@@ -1,12 +1,12 @@
-/*!
- *  @file generator_rational.c
+/**
+ *  \file generator_rational.c
  *
- *  @brief  A module for generating rational tangles.
+ *  \brief  A module for generating rational tangles.
  *
  *
- *  @author    Isabel Darcy
- *  @author    Zachary Bryhtan
- *  @author    Joe Starr
+ *  \author    Isabel Darcy
+ *  \author    Zachary Bryhtan
+ *  \author    Joe Starr
  *
  */
 
@@ -24,8 +24,8 @@
 /************************** Defines *******************************************/
 /******************************************************************************/
 
-/*!
- * @brief Number of combination functions used by the module.
+/**
+ * \brief Number of combination functions used by the module.
  *
  */
 #define GEN_RATIONAL_PERM_FUNS_LEN    (2u)
@@ -38,30 +38,30 @@
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
 
-/*!
- * @brief A function to process a template describing the ' ', and '+' for a twist vector. A
+/**
+ * \brief A function to process a template describing the ' ', and '+' for a twist vector. A
  *template is a bitfield where 1 is $+$ and 0 is ' '. Example: 0101 -> [1 1+1 1+1] -> [1 2 2]
  *
- * @param template Template to work on.
- * @return uint8_t Success/Fail flag.
+ * \param template Template to work on.
+ * \return uint8_t Success/Fail flag.
  */
 STATIC_INLINE_UINT8 gen_rational_proc_template(uint8_t template);
 
-/*!
- * @brief A function to write the twist vector in cfg to the store-storage_interface device in cfg.
+/**
+ * \brief A function to write the twist vector in cfg to the store-storage_interface device in cfg.
  *
- * @param cfg Configuration to work on.
- * @return uint8_t Success/Fail flag.
+ * \param cfg Configuration to work on.
+ * \return uint8_t Success/Fail flag.
  */
 STATIC_INLINE_UINT8 gen_rational_write();
 
-/*!
- * @brief The canonical form for twist vector is given as odd length. When we get something in the
+/**
+ * \brief The canonical form for twist vector is given as odd length. When we get something in the
  *even class of twist vectors we can 'oddify' it by prepending a 0. This function handles prepending
  *the zero and then writing to the cfg store-storage_interface device.
  *
- * @param cfg Configuration to work on.
- * @return uint8_t Success/Fail flag.
+ * \param cfg Configuration to work on.
+ * \return uint8_t Success/Fail flag.
  */
 STATIC_INLINE_UINT8 gen_rational_evenperm_shift_write();
 
@@ -69,8 +69,8 @@ STATIC_INLINE_UINT8 gen_rational_evenperm_shift_write();
 /************************** Local Variables ***********************************/
 /******************************************************************************/
 
-/*!
- * @brief The local configuration of the rational gen module.
+/**
+ * \brief The local configuration of the rational gen module.
  *
  */
 static gen_rational_config_t *gen_rational_localcfg = NULL;

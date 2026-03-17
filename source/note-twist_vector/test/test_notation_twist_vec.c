@@ -39,9 +39,9 @@ void tearDown(void)
 /*******************************Test cases*************************************/
 /******************************************************************************/
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 STATIC_INLINE void test_encode(void)
 {
@@ -54,9 +54,9 @@ STATIC_INLINE void test_encode(void)
         test_tv.twist_vector, tv_t.twist_vector, tv_t.tv_length);
 }
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 STATIC_INLINE void test_decode(void)
 {

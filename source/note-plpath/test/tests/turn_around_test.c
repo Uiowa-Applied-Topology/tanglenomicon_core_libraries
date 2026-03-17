@@ -10,9 +10,9 @@
 static void test_turn_around_test_ede(void);
 static void test_turn_around_test_ded(void);
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 void test_turn_around(void)
 {

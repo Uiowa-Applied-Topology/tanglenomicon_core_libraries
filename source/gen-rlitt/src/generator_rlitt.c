@@ -1,10 +1,10 @@
-/*!
- *  @file generator_rlitt.c
+/**
+ *  \file generator_rlitt.c
  *
- *  @brief  generator module for rlitt.
+ *  \brief  generator module for rlitt.
  *
  *
- *  @author    Joe Starr
+ *  \author    Joe Starr
  *
  */
 
@@ -40,14 +40,14 @@ STATIC_INLINE_UINT8 gen_rlitt_grafting_handler(size_t rootstock_idx, size_t scio
 /************************** Local Variables ***********************************/
 /******************************************************************************/
 
-/*!
- * @brief The local configuration of the rlitt gen module.
+/**
+ * \brief The local configuration of the rlitt gen module.
  *
  */
 static gen_rlitt_config_t *gen_rlitt_localcfg = NULL;
 
-/*!
- * @brief The local configuration of the rlitt gen module.
+/**
+ * \brief The local configuration of the rlitt gen module.
  *
  */
 static bool gen_rlitt_executed = false;
@@ -144,12 +144,12 @@ uint8_t gen_rlitt_generate()
 /************************** Private Function Definitions **********************/
 /******************************************************************************/
 
-/*!
- * @brief Process the grafting of a rootstock and a scion into one or two resulting trees.
+/**
+ * \brief Process the grafting of a rootstock and a scion into one or two resulting trees.
  *
- * @param rootstock_idx The index for the rootstock.
- * @param scion_idx The index for the scion.
- * @return The success status of this generation step.
+ * \param rootstock_idx The index for the rootstock.
+ * \param scion_idx The index for the scion.
+ * \return The success status of this generation step.
  */
 STATIC_INLINE_UINT8 gen_rlitt_grafting_handler(size_t rootstock_idx, size_t scion_idx)
 {
@@ -257,11 +257,11 @@ STATIC_INLINE_UINT8 gen_rlitt_grafting_handler(size_t rootstock_idx, size_t scio
     return ret_val;
 }
 
-/*!
- * @brief Compute the string representation for the positivity of a tree.
+/**
+ * \brief Compute the string representation for the positivity of a tree.
  *
- * @param positivity The positivity of a tree.
- * @return The string representation of the positivity.
+ * \param positivity The positivity of a tree.
+ * \return The string representation of the positivity.
  */
 STATIC_INLINE const char *gen_rlitt_get_posstr(comp_rlitt_positivity_flvrs_e positivity)
 {
@@ -285,14 +285,14 @@ STATIC_INLINE const char *gen_rlitt_get_posstr(comp_rlitt_positivity_flvrs_e pos
     return NULL;
 }
 
-/*!
- * @brief Store the grafted tangle.
+/**
+ * \brief Store the grafted tangle.
  *
- * @param result the grafted tangle.
- * @param rootstock the rootstock for the grafted tangle.
- * @param scion the scion for the grafted tangle.
- * @param positivity the positivity string for the grafted tangle.
- * @return The success flag for the operation.
+ * \param result the grafted tangle.
+ * \param rootstock the rootstock for the grafted tangle.
+ * \param scion the scion for the grafted tangle.
+ * \param positivity the positivity string for the grafted tangle.
+ * \return The success flag for the operation.
  */
 STATIC_INLINE_UINT8 gen_rlitt_store_tangle(const note_wptt_t *result,
                                            const note_wptt_t *rootstock,
@@ -336,12 +336,12 @@ STATIC_INLINE_UINT8 gen_rlitt_store_tangle(const note_wptt_t *result,
     return ret_val;
 }
 
-/*!
- * @brief Determine if the vertices adjacent to the root are canonical.
+/**
+ * \brief Determine if the vertices adjacent to the root are canonical.
  *
- * @param root The root vertex for the tree to verify.
- * @param positivity The positivity condition to verify, positive or negative.
- * @return True when the vertices adjacent to the root are canonical, false otherwise.
+ * \param root The root vertex for the tree to verify.
+ * \param positivity The positivity condition to verify, positive or negative.
+ * \return True when the vertices adjacent to the root are canonical, false otherwise.
  */
 STATIC_INLINE bool gen_rlitt_root_canon(const note_wptt_node_t *root,
                                         comp_wptt_vert_canon_positivity_e positivity)

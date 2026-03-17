@@ -1,10 +1,10 @@
-/*!
- *  @file comp_wptt_vert_canon.c
+/**
+ *  \file comp_wptt_vert_canon.c
  *
- *  @brief  A wptt vertex canonicity computation module
+ *  \brief  A wptt vertex canonicity computation module
  *
  *
- *  @author   Joe Starr
+ *  \author   Joe Starr
  *
  */
 
@@ -25,8 +25,8 @@
 /************************** Defines *******************************************/
 /******************************************************************************/
 
-/*!
- * @brief The local configuration of the WPTT vertex canonicity module.
+/**
+ * \brief The local configuration of the WPTT vertex canonicity module.
  *
  */
 #define COMP_WPTT_VERT_CANON_STACK_SIZE    (UTIL_TANG_DEFS_MAX_CROSSINGNUM)
@@ -35,20 +35,20 @@
 /************************** Typedefs ******************************************/
 /******************************************************************************/
 
-/*!
- * @brief The local configuration of the WPTT vertex canonicity module.
+/**
+ * \brief The local configuration of the WPTT vertex canonicity module.
  *
  */
 static comp_wptt_vert_canon_config_t *comp_wptt_vert_canon_localcfg = NULL;
 
-/*!
- * @brief The local result of the WPTT vertex canonicity module.
+/**
+ * \brief The local result of the WPTT vertex canonicity module.
  *
  */
 static comp_wptt_vert_canon_result_t comp_wptt_vert_canon_localrestult = {};
 
-/*!
- * @brief The local computation status of the WPTT vertex canonicity module.
+/**
+ * \brief The local computation status of the WPTT vertex canonicity module.
  *
  */
 static bool comp_wptt_vert_canon_executed = false;
@@ -208,11 +208,11 @@ const comp_wptt_vert_canon_result_t *comp_wptt_vert_canon_result()
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
 
-/*!
- * @brief Check the weight condition of the vertex.
+/**
+ * \brief Check the weight condition of the vertex.
  *
- * @param vertex The object vertex.
- * @return True when canonical false otherwise
+ * \param vertex The object vertex.
+ * \return True when canonical false otherwise
  */
 STATIC_INLINE bool comp_wptt_vert_canon_weights(const note_wptt_node_t *vertex)
 {
@@ -247,13 +247,13 @@ STATIC_INLINE bool comp_wptt_vert_canon_weights(const note_wptt_node_t *vertex)
     return true;
 }
 
-/*!
- * @brief Check the stick condition of the vertex looking up.
+/**
+ * \brief Check the stick condition of the vertex looking up.
  *
- * @param parent The parent vertex.
- * @param active_weight The weight carried by the object vertex.
- * @param number_of_children The number of children of the object vertex.
- * @return True if canonical false otherwise.
+ * \param parent The parent vertex.
+ * \param active_weight The weight carried by the object vertex.
+ * \param number_of_children The number of children of the object vertex.
+ * \return True if canonical false otherwise.
  */
 STATIC_INLINE bool comp_wptt_vert_canon_stick_parent(const note_wptt_node_t *parent,
                                                      int active_weight,
@@ -298,13 +298,13 @@ STATIC_INLINE bool comp_wptt_vert_canon_stick_parent(const note_wptt_node_t *par
     return true;
 }
 
-/*!
- * @brief Check the stick condition of the vertex looking down.
+/**
+ * \brief Check the stick condition of the vertex looking down.
  *
- * @param child The child vertex of the object vertex.
- * @param number_of_children The number of children of the object vertex.
- * @param active_weight The weight carried by the object vertex.
- * @return True if canonical false otherwise.
+ * \param child The child vertex of the object vertex.
+ * \param number_of_children The number of children of the object vertex.
+ * \param active_weight The weight carried by the object vertex.
+ * \return True if canonical false otherwise.
  */
 STATIC_INLINE bool comp_wptt_vert_canon_stick_child(const note_wptt_node_t *child,
                                                     size_t number_of_children,
@@ -358,13 +358,13 @@ STATIC_INLINE bool comp_wptt_vert_canon_stick_child(const note_wptt_node_t *chil
     return true;
 }
 
-/*!
- * @brief Compute the canonicity of the object vertex against the stick condition.
+/**
+ * \brief Compute the canonicity of the object vertex against the stick condition.
  *
- * @param vertex The object vertex.
- * @param parent The parent vertex (if any).
- * @param parent_is_root A flag indicating if the object vertex is near the root.
- * @return True if canonical false otherwise.
+ * \param vertex The object vertex.
+ * \param parent The parent vertex (if any).
+ * \param parent_is_root A flag indicating if the object vertex is near the root.
+ * \return True if canonical false otherwise.
  */
 STATIC_INLINE bool comp_wptt_vert_canon_stick(const note_wptt_node_t *vertex,
                                               const note_wptt_node_t *parent,
@@ -422,12 +422,12 @@ STATIC_INLINE bool comp_wptt_vert_canon_stick(const note_wptt_node_t *vertex,
     return true;
 }
 
-/*!
- * @brief Compute the canonicity of the object vertex against the positivity condition.
+/**
+ * \brief Compute the canonicity of the object vertex against the positivity condition.
  *
- * @param vertex The object vertex.
- * @param parent The parent vertex.
- * @return True if canonical false otherwise.
+ * \param vertex The object vertex.
+ * \param parent The parent vertex.
+ * \return True if canonical false otherwise.
  */
 STATIC_INLINE bool comp_wptt_vert_canon_positivity(const note_wptt_node_t *vertex,
                                                    const note_wptt_node_t *parent)

@@ -1,10 +1,10 @@
-/*!
- *  @file notation_wptt.c
+/**
+ *  \file notation_wptt.c
  *
- *  @brief  Notation module for weighted planar tangle trees.
+ *  \brief  Notation module for weighted planar tangle trees.
  *
  *
- *  @author    Joe Starr
+ *  \author    Joe Starr
  *
  */
 
@@ -17,13 +17,13 @@
 /************************** Private Typedef ***********************************/
 /******************************************************************************/
 
-/*!
- * @brief The function pointer type for decode dictionary functions.
+/**
+ * \brief The function pointer type for decode dictionary functions.
  */
 typedef uint8_t (*char_handler_funptr_t)(char **str);
 
-/*!
- * @brief The type for the elements of the decode dictionary.
+/**
+ * \brief The type for the elements of the decode dictionary.
  */
 typedef struct note_wptt_decode_char_dic_t {
     char *                char_class;
@@ -34,40 +34,40 @@ typedef struct note_wptt_decode_char_dic_t {
 /************************** Defines *******************************************/
 /******************************************************************************/
 
-/*!
- * @brief The character for the identity label.
+/**
+ * \brief The character for the identity label.
  */
 #define NOTE_WPTT_V4_LABEL_I_STR      ('i')
 
-/*!
- * @brief The character for the x rotation label.
+/**
+ * \brief The character for the x rotation label.
  */
 #define NOTE_WPTT_V4_LABEL_X_STR      ('x')
 
-/*!
- * @brief The character for the y rotation label.
+/**
+ * \brief The character for the y rotation label.
  */
 #define NOTE_WPTT_V4_LABEL_Y_STR      ('y')
 
-/*!
- * @brief The character for the z rotation label.
+/**
+ * \brief The character for the z rotation label.
  */
 #define NOTE_WPTT_V4_LABEL_Z_STR      ('z')
 
-/*!
- * @brief The size of the decode stack.
+/**
+ * \brief The size of the decode stack.
  *
  */
 #define NOTE_WPTT_STACK_SIZE          (UTIL_TANG_DEFS_MAX_CROSSINGNUM)
 
-/*!
- * @brief The size of the dictionary of decode functions.
+/**
+ * \brief The size of the dictionary of decode functions.
  *
  */
 #define NOTE_WPTT_DECODE_DICT_SIZE    (6u)
 
-/*!
- * @brief The number base used for string->int functions.
+/**
+ * \brief The number base used for string->int functions.
  *
  */
 #define NOTE_WPTT_INT_BASE            (10u)
@@ -128,24 +128,24 @@ STATIC_INLINE_UINT8 note_wptt_encode_process_active_node(note_wptt_node_t *activ
 /************************** Local Variables ***********************************/
 /******************************************************************************/
 
-/*!
- * @brief The wptt stack used in the encode and decode functions. This needs to be initialized at
+/**
+ * \brief The wptt stack used in the encode and decode functions. This needs to be initialized at
  *the beginning of the using function.
  */
 static note_wptt_node_t *wptt_node_stack[NOTE_WPTT_STACK_SIZE] = { NULL };
 
-/*!
- * @brief The current number of elements on the wptt stack.
+/**
+ * \brief The current number of elements on the wptt stack.
  */
 static size_t wptt_stack_len = 0;
 
-/*!
- * @brief Pointer to a buffer of wptt nodes. Used by decode path functions.
+/**
+ * \brief Pointer to a buffer of wptt nodes. Used by decode path functions.
  */
 static note_wptt_node_buffer_t *decode_buffer = NULL;
 
-/*!
- * @brief The stack containing the current child index used in the encode path functions.
+/**
+ * \brief The stack containing the current child index used in the encode path functions.
  */
 uint8_t child_idx_stack[UTIL_TANG_DEFS_MAX_CROSSINGNUM];
 /******************************************************************************/
@@ -327,10 +327,10 @@ uint8_t note_wptt_encode(note_wptt_t wptt, char *str, size_t buffer_size)
 
 /************************** Decode Path Functions *****************************/
 
-/*!
- * @brief Get the label for the input string.
- * @param label The first char of the input string.
- * @return The designator for the label.
+/**
+ * \brief Get the label for the input string.
+ * \param label The first char of the input string.
+ * \return The designator for the label.
  */
 STATIC_INLINE note_wptt_V4_label_e note_wptt_decode_get_v4_label(char label)
 {
@@ -371,11 +371,11 @@ STATIC_INLINE note_wptt_V4_label_e note_wptt_decode_get_v4_label(char label)
     return retval;
 }
 
-/*!
- * @brief Determine if a character from the input string is one of the valid characters.
- * @param valid_chars The list of valid characters.
- * @param str_char A character form the input string.
- * @return The truthiness of if the character is one of the valid characters.
+/**
+ * \brief Determine if a character from the input string is one of the valid characters.
+ * \param valid_chars The list of valid characters.
+ * \param str_char A character form the input string.
+ * \return The truthiness of if the character is one of the valid characters.
  */
 STATIC_INLINE bool note_wptt_decode_check_charset(const char *valid_chars,
                                                   const char str_char)
@@ -394,12 +394,12 @@ STATIC_INLINE bool note_wptt_decode_check_charset(const char *valid_chars,
     return retval;
 }
 
-/*!
- * @brief Dictionary function to consume and advance the to the the next character of the input
+/**
+ * \brief Dictionary function to consume and advance the to the the next character of the input
  *string.
  *
- * @param str A pointer to the pointer a the current character of the input string.
- * @return A status flag indicating successful completion of the subroutine.
+ * \param str A pointer to the pointer a the current character of the input string.
+ * \return A status flag indicating successful completion of the subroutine.
  */
 /* cppcheck-suppress constParameterPointer*/
 STATIC_INLINE_UINT8 note_wptt_decode_space_handler(char **str)
@@ -410,11 +410,11 @@ STATIC_INLINE_UINT8 note_wptt_decode_space_handler(char **str)
     return NOTE_DEFS_DECODE_SUCCESS;
 }
 
-/*!
- * @brief Dictionary function to initialize and push a child node onto the stack.
+/**
+ * \brief Dictionary function to initialize and push a child node onto the stack.
  *
- * @param str A pointer to the pointer a the current character of the input string.
- * @return A status flag indicating successful completion of the subroutine.
+ * \param str A pointer to the pointer a the current character of the input string.
+ * \return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_decode_opn_p_handler(char **str)
 {
@@ -426,11 +426,11 @@ STATIC_INLINE_UINT8 note_wptt_decode_opn_p_handler(char **str)
     return retval;
 }
 
-/*!
- * @brief Dictionary function to process and create a stick subtree.
+/**
+ * \brief Dictionary function to process and create a stick subtree.
  *
- * @param str A pointer to the pointer for the current character of the input string.
- * @return A status flag indicating successful completion of the subroutine.
+ * \param str A pointer to the pointer for the current character of the input string.
+ * \return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_decode_opn_b_handler(char **str)
 {
@@ -492,11 +492,11 @@ STATIC_INLINE_UINT8 note_wptt_decode_opn_b_handler(char **str)
     return retval;
 }
 
-/*!
- * @brief Dictionary function to initialize and push a child node onto the stack with a ring number.
+/**
+ * \brief Dictionary function to initialize and push a child node onto the stack with a ring number.
  *
- * @param str A pointer to the pointer a the current character of the input string.
- * @return A status flag indicating successful completion of the subroutine.
+ * \param str A pointer to the pointer a the current character of the input string.
+ * \return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_decode_opn_a_handler(char **str)
 {
@@ -526,12 +526,12 @@ STATIC_INLINE_UINT8 note_wptt_decode_opn_a_handler(char **str)
     return retval;
 }
 
-/*!
- * @brief Dictionary function to pop a node off of the wptt stack and advance to the next character
+/**
+ * \brief Dictionary function to pop a node off of the wptt stack and advance to the next character
  *of the string.
  *
- * @param str A pointer to the pointer a the current character of the input string.
- * @return A status flag indicating successful completion of the subroutine.
+ * \param str A pointer to the pointer a the current character of the input string.
+ * \return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_decode_cls_handler(char **str)
 {
@@ -542,11 +542,11 @@ STATIC_INLINE_UINT8 note_wptt_decode_cls_handler(char **str)
     return retval;
 }
 
-/*!
- * @brief Dictionary function to process an integer weight and advance the input string.
+/**
+ * \brief Dictionary function to process an integer weight and advance the input string.
  *
- * @param str A pointer to the pointer a the current character of the input string.
- * @return A status flag indicating successful completion of the subroutine.
+ * \param str A pointer to the pointer a the current character of the input string.
+ * \return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_decode_weight_handler(char **str)
 {
@@ -563,10 +563,10 @@ STATIC_INLINE_UINT8 note_wptt_decode_weight_handler(char **str)
     return retval;
 }
 
-/*!
- * @brief Initializes and pushes a node to the wptt stack.
+/**
+ * \brief Initializes and pushes a node to the wptt stack.
  *
- * @return A status flag indicating successful completion of the subroutine.
+ * \return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_decode_push_node()
 {
@@ -604,10 +604,10 @@ STATIC_INLINE_UINT8 note_wptt_decode_push_node()
     return retval;
 }
 
-/*!
- * @brief Makes the active node on the wptt stack a child of the node below it on the stack.
+/**
+ * \brief Makes the active node on the wptt stack a child of the node below it on the stack.
  *
- * @return A status flag indicating successful completion of the subroutine.
+ * \return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_decode_add_child()
 {
@@ -635,11 +635,11 @@ STATIC_INLINE_UINT8 note_wptt_decode_add_child()
 
 /************************** Encode Path Functions   **************************/
 
-/*!
- * @brief Determine whether the active node is the root of stick.
+/**
+ * \brief Determine whether the active node is the root of stick.
  *
- * @param active_node A wptt node and potential stick root.
- * @return The truthiness of whether the active node is the root of stick.
+ * \param active_node A wptt node and potential stick root.
+ * \return The truthiness of whether the active node is the root of stick.
  */
 STATIC_INLINE bool note_wptt_encode_stick_check(note_wptt_node_t *active_node_p)
 {
@@ -662,11 +662,11 @@ STATIC_INLINE bool note_wptt_encode_stick_check(note_wptt_node_t *active_node_p)
     return retval;
 }
 
-/*!
- * @brief Determine the next child index by the order of the active node.
+/**
+ * \brief Determine the next child index by the order of the active node.
  *
- * @param active_node The node under investigation.
- * @return The next ordered child index.
+ * \param active_node The node under investigation.
+ * \return The next ordered child index.
  */
 STATIC_INLINE void note_wptt_encode_normalize_node_order(
     note_wptt_node_t *active_node_p)
@@ -691,13 +691,13 @@ STATIC_INLINE void note_wptt_encode_normalize_node_order(
     }
 }
 
-/*!
- * @brief Process and insert a stick subtree into the output string.
+/**
+ * \brief Process and insert a stick subtree into the output string.
  *
- * @param active_node The node under investigation.
- * @param str_p A pointer to the pointer of current index of the output string.
- * @param buffer_end_p A pointer to the end of the output string buffer.
- * @return A status flag indicating successful completion of the subroutine.
+ * \param active_node The node under investigation.
+ * \param str_p A pointer to the pointer of current index of the output string.
+ * \param buffer_end_p A pointer to the end of the output string buffer.
+ * \return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_encode_insert_stick(note_wptt_node_t *active_node_p,
                                                   char **str_p,
@@ -739,13 +739,13 @@ STATIC_INLINE_UINT8 note_wptt_encode_insert_stick(note_wptt_node_t *active_node_
     return retval;
 }
 
-/*!
- * @brief Insert the V4 label into the output string.
+/**
+ * \brief Insert the V4 label into the output string.
  *
- * @param label The V4 of a wptt.
- * @param str_p A pointer to the pointer of current index of the output string.
- * @param buffer_end_p A pointer to the end of the output string buffer.
- * @return A status flag indicating successful completion of the subroutine.
+ * \param label The V4 of a wptt.
+ * \param str_p A pointer to the pointer of current index of the output string.
+ * \param buffer_end_p A pointer to the end of the output string buffer.
+ * \return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_encode_insert_label(note_wptt_V4_label_e label,
                                                   char **str_p,
@@ -793,13 +793,13 @@ STATIC_INLINE_UINT8 note_wptt_encode_insert_label(note_wptt_V4_label_e label,
     return retval;
 }
 
-/*!
- * @brief Insert a space into the output string to delimit two integers.
+/**
+ * \brief Insert a space into the output string to delimit two integers.
  *
- * @param str_p A pointer to the pointer of current index of the output string.
- * @param buffer_start_p A pointer to the start of the output string buffer.
- * @param buffer_end_p A pointer to the end of the output string buffer.
- * @return A status flag indicating successful completion of the subroutine.
+ * \param str_p A pointer to the pointer of current index of the output string.
+ * \param buffer_start_p A pointer to the start of the output string buffer.
+ * \param buffer_end_p A pointer to the end of the output string buffer.
+ * \return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_encode_insert_space(char **str_p,
                                                   const char *buffer_start_p,
@@ -825,13 +825,13 @@ STATIC_INLINE_UINT8 note_wptt_encode_insert_space(char **str_p,
     return retval;
 }
 
-/*!
- * @brief Insert a character into the output string.
+/**
+ * \brief Insert a character into the output string.
  *
- * @param new_char A character to insert.
- * @param str_p A pointer to the pointer of current index of the output string.
- * @param buffer_end_p A pointer to the end of the output string buffer.
- * @return A status flag indicating successful completion of the subroutine.
+ * \param new_char A character to insert.
+ * \param str_p A pointer to the pointer of current index of the output string.
+ * \param buffer_end_p A pointer to the end of the output string buffer.
+ * \return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_encode_insert_char(char new_char,
                                                  char **str_p,
@@ -852,13 +852,13 @@ STATIC_INLINE_UINT8 note_wptt_encode_insert_char(char new_char,
     return retval;
 }
 
-/*!
- * @brief Insert the base 10 string representation of an integer into the output string.
+/**
+ * \brief Insert the base 10 string representation of an integer into the output string.
  *
- * @param new_int An integer to insert.
- * @param str_p A pointer to the pointer of current index of the output string.
- * @param buffer_end_p A pointer to the end of the output string buffer.
- * @return A status flag indicating successful completion of the subroutine.
+ * \param new_int An integer to insert.
+ * \param str_p A pointer to the pointer of current index of the output string.
+ * \param buffer_end_p A pointer to the end of the output string buffer.
+ * \return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_encode_insert_int(int8_t new_int,
                                                 char **str_p,
@@ -884,15 +884,15 @@ STATIC_INLINE_UINT8 note_wptt_encode_insert_int(int8_t new_int,
     return retval;
 }
 
-/*!
- * @brief Cap off the string representation of a node.
+/**
+ * \brief Cap off the string representation of a node.
  *
- * @param active_node The node under investigation.
- * @param str_p A pointer to the pointer of current index of the output string.
- * @param ordered_child_idx The next child index in the order of the active node.
- * @param buffer_start_p A pointer to the start of the output string buffer.
- * @param buffer_end_p A pointer to the end of the output string buffer.
- * @return A status flag indicating successful completion of the subroutine.
+ * \param active_node The node under investigation.
+ * \param str_p A pointer to the pointer of current index of the output string.
+ * \param ordered_child_idx The next child index in the order of the active node.
+ * \param buffer_start_p A pointer to the start of the output string buffer.
+ * \param buffer_end_p A pointer to the end of the output string buffer.
+ * \return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_encode_complete_active_node(
     const note_wptt_node_t *active_node_p,
@@ -926,15 +926,15 @@ STATIC_INLINE_UINT8 note_wptt_encode_complete_active_node(
     return retval;
 }
 
-/*!
- * @brief Determine the next action in the processing of the active node.
+/**
+ * \brief Determine the next action in the processing of the active node.
  *
- * @param active_node The node under investigation.
- * @param str_p A pointer to the pointer of current index of the output string.
- * @param ordered_child_idx The next child index in the order of the active node.
- * @param buffer_start_p A pointer to the start of the output string buffer.
- * @param buffer_end_p A pointer to the end of the output string buffer.
- * @return A status flag indicating successful completion of the subroutine.
+ * \param active_node The node under investigation.
+ * \param str_p A pointer to the pointer of current index of the output string.
+ * \param ordered_child_idx The next child index in the order of the active node.
+ * \param buffer_start_p A pointer to the start of the output string buffer.
+ * \param buffer_end_p A pointer to the end of the output string buffer.
+ * \return A status flag indicating successful completion of the subroutine.
  */
 STATIC_INLINE_UINT8 note_wptt_encode_process_active_node(
     note_wptt_node_t *active_node,

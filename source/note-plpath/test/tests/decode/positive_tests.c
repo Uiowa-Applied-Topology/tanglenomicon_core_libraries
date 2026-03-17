@@ -14,9 +14,9 @@ static void test_decode_positive_term_nl(void);
 static void test_decode_positive_no_segments(void);
 
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 void test_decode_positive(void)
 {

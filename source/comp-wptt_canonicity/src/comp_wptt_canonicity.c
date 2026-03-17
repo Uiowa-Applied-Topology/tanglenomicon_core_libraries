@@ -1,10 +1,10 @@
-/*!
- *  @file comp_wptt_canonicity.c
+/**
+ *  \file comp_wptt_canonicity.c
  *
- *  @brief  A module for computing the canonicity of a WPTT
+ *  \brief  A module for computing the canonicity of a WPTT
  *
  *
- *  @author   Joe Starr
+ *  \author   Joe Starr
  *
  */
 
@@ -47,17 +47,17 @@ STATIC_INLINE comp_wptt_vert_canon_positivity_e comp_wptt_vert_canon_convert_pos
 /******************************************************************************/
 
 /**
- * @brief File scoped variable for storing result of the previous computation.
+ * \brief File scoped variable for storing result of the previous computation.
  */
 static comp_wptt_canonicity_result_t comp_wptt_canonicity_localrestult;
 
 /**
- * @brief File scoped variable for storing the execution state of the module.
+ * \brief File scoped variable for storing the execution state of the module.
  */
 static bool comp_wptt_canonicity_executed = true;
 
 /**
- * @brief File scoped variable for storing the configuration of the next run.
+ * \brief File scoped variable for storing the configuration of the next run.
  */
 static comp_wptt_canonicity_config_t *comp_wptt_canonicity_localcfg = NULL;
 /******************************************************************************/
@@ -188,10 +188,10 @@ const comp_wptt_canonicity_result_t *comp_wptt_canonicity_result()
 /******************************************************************************/
 
 /**
- * @brief Convert the enum from the global version to the local vertex version
+ * \brief Convert the enum from the global version to the local vertex version
  *
- * @param pos The positivity condition to check for the whole tree
- * @return The vertex enum representation for the positivity condition.
+ * \param pos The positivity condition to check for the whole tree
+ * \return The vertex enum representation for the positivity condition.
  */
 STATIC_INLINE comp_wptt_vert_canon_positivity_e comp_wptt_vert_canon_convert_pos(
     comp_wptt_cononicity_positivity_e pos)
@@ -213,11 +213,11 @@ STATIC_INLINE comp_wptt_vert_canon_positivity_e comp_wptt_vert_canon_convert_pos
     return COMP_WPTT_VERT_CANON_POS_UNINIT;
 }
 
-/*!
- * @brief Walk the input tree and determine the canonicity of each vertex.
+/**
+ * \brief Walk the input tree and determine the canonicity of each vertex.
  *
- * @param tree The tree to walk.
- * @return A status indicator for the function.
+ * \param tree The tree to walk.
+ * \return A status indicator for the function.
  */
 STATIC_INLINE_UINT8 comp_wptt_canonicity_walk_tree()
 {

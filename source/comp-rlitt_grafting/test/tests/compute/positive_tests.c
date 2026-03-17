@@ -16,9 +16,9 @@ void test_compute_positive(void)
     RUN_TEST(test_compute_no_write);
 }
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 static void test_compute_write(void)
 {
@@ -103,9 +103,9 @@ static void test_compute_write(void)
     TEST_ASSERT_EQUAL_STRING("i[99]", test_stub_read_success("i([1][2][3][99 5 4]6)", "scion"));
 }
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 static void test_compute_no_write(void)
 {

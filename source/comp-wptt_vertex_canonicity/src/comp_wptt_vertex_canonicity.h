@@ -1,10 +1,10 @@
-/*!
- *  @file comp_wptt_vertex_canonicity.h
+/**
+ *  \file comp_wptt_vertex_canonicity.h
  *
- *  @brief  A module for computing the canonicity of a vertex of a wptt.
+ *  \brief  A module for computing the canonicity of a vertex of a wptt.
  *
  *
- *  @author   Joe Starr
+ *  \author   Joe Starr
  *
  */
 
@@ -40,14 +40,14 @@
  | `
  |
  */
-/*!
- * @brief Failed to configure the module due to issue in rootstock.
+/**
+ * \brief Failed to configure the module due to issue in rootstock.
  *
  */
 #define COMP_WPTT_VERT_CANON_CONFIG_PARAM      (0x1u << 1u)
 
-/*!
- * @brief Failed to configure the module due to null config
+/**
+ * \brief Failed to configure the module due to null config
  *
  */
 #define COMP_WPTT_VERT_CANON_CONFIG_IS_NULL    (0x1u << 2u)
@@ -66,14 +66,14 @@
  |
  */
 
-/*!
- * @brief Failed to configure the module due to null config
+/**
+ * \brief Failed to configure the module due to null config
  *
  */
 #define COMP_WPTT_VERT_CANON_COMPUTE_CFG_ERROR           (0x1u << 1u)
 
-/*!
- * @brief Failed to configure the module due to null config
+/**
+ * \brief Failed to configure the module due to null config
  *
  */
 #define COMP_WPTT_VERT_CANON_COMPUTE_ALREADY_COMPUTED    (0x1u << 2u)
@@ -87,8 +87,8 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief Type defining the order direction of a node in a wptt.
+/**
+ * \brief Type defining the order direction of a node in a wptt.
  */
 typedef enum comp_wptt_vert_canon_positivity_e {
     COMP_WPTT_VERT_CANON_POS_UNINIT,
@@ -105,8 +105,8 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief Type defining the order direction of a node in a wptt.
+/**
+ * \brief Type defining the order direction of a node in a wptt.
  */
 typedef enum comp_wptt_vert_canon_canon_e {
     COMP_WPTT_VERT_CANON_CAN_UNINIT,
@@ -122,8 +122,8 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief The type definition for configuring the root_neut_rlitt computation.
+/**
+ * \brief The type definition for configuring the root_neut_rlitt computation.
  *
  */
 typedef struct {
@@ -138,8 +138,8 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief The type definition for configuring the root_neut_rlitt computation.
+/**
+ * \brief The type definition for configuring the root_neut_rlitt computation.
  *
  */
 typedef struct {
@@ -163,9 +163,9 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief The public configuration function.
- * @param config_arg The config to set.
+/**
+ * \brief The public configuration function.
+ * \param config_arg The config to set.
  */
 uint8_t comp_wptt_vert_canon_config(comp_wptt_vert_canon_config_t *config_arg);
 
@@ -178,9 +178,9 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief A public function, calling this executes the computation on the configured tangle.
- * @return uint8_t Generation status info.
+/**
+ * \brief A public function, calling this executes the computation on the configured tangle.
+ * \return uint8_t Generation status info.
  */
 uint8_t comp_wptt_vert_canon_compute();
 
@@ -193,9 +193,9 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief A public function, calling this retrieves the results of the last computation
- * @return comp_wptt_vert_canon_result_t Computation results.
+/**
+ * \brief A public function, calling this retrieves the results of the last computation
+ * \return comp_wptt_vert_canon_result_t Computation results.
  */
 const comp_wptt_vert_canon_result_t *comp_wptt_vert_canon_result();
 

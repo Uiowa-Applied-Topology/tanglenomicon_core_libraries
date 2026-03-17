@@ -1,4 +1,4 @@
-/*!
+/**
  *  @file store-cpp_storage_interface.hpp
  *
  *  @brief  store-cpp_storage_interface interface description.
@@ -28,62 +28,62 @@
 /******************************************************************************/
 namespace storage_ns
 {
-/*!
- * @brief
+/**
+ * \brief
  */
 class storage_interface_c
 {
   public:
-    /*!
-     * @brief
-     * @param key
-     * @param index
-     * @param value
-     * @return
+    /**
+     * \brief
+     * \param key
+     * \param index
+     * \param value
+     * \return
      */
     virtual uint8_t write(const char *key, const char *index,
                           const char *value) = 0;
 
-    /*!
-     * @brief
-     * @param key
-     * @return
+    /**
+     * \brief
+     * \param key
+     * \return
      */
     virtual const char *read(const char *key, const char *index) = 0;
 
     virtual ~storage_interface_c() {};
 
-    /*!
-     * @brief
+    /**
+     * \brief
      */
     bool makenewfile = false;
 
-    /*!
-     * @brief uuid
+    /**
+     * \brief uuid
      *        from
      *        [stackOverflow](https://stackoverflow.com/questions/24365331/how-can-i-generate-uuid-in-c-without-using-boost-library)
-     * @return Returns a UUID as a string.
+     * \return Returns a UUID as a string.
      */
     static std::string generate_uuid_v4();
 
   private:
-    /*!
-     * @brief
+    /**
+     * \brief
      */
     static std::random_device rd;
 
-    /*!
-     * @brief
+    /**
+     * \brief
      */
     static std::mt19937 gen;
 
-    /*!
-     * @brief
+    /**
+     * \brief
      */
     static std::uniform_int_distribution<> dis;
 
-    /*!
-     * @brief
+    /**
+     * \brief
      */
     static std::uniform_int_distribution<> dis2;
 };

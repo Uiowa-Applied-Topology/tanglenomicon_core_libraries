@@ -11,9 +11,9 @@ static void test_decode_positive_tangle_2(void);
 static void test_decode_positive_tangle_3(void);
 static void test_decode_positive_tangle_4(void);
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 void test_decode_positive(void)
 {
@@ -33,9 +33,9 @@ void test_decode_positive(void)
  * - A tree with a vertex with more than one weight.
  */
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 static void test_decode_positive_knot_1(void)
 {
@@ -134,9 +134,9 @@ static void test_decode_positive_knot_1(void)
  * - A valid string representing a knot.
  */
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 static void test_decode_positive_knot_2(void)
 {
@@ -202,9 +202,9 @@ static void test_decode_positive_knot_2(void)
  *     - x
  */
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 static void test_decode_positive_tangle_1(void)
 {
@@ -305,9 +305,9 @@ static void test_decode_positive_tangle_1(void)
  *     - i
  */
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 static void test_decode_positive_tangle_2(void)
 {
@@ -369,9 +369,9 @@ static void test_decode_positive_tangle_2(void)
  *     - y
  */
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 static void test_decode_positive_tangle_3(void)
 {
@@ -471,9 +471,9 @@ static void test_decode_positive_tangle_3(void)
  *     - z
  */
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 static void test_decode_positive_tangle_4(void)
 {

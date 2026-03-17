@@ -53,9 +53,9 @@ void tearDown(void)
 /*******************************Test cases*************************************/
 /******************************************************************************/
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 void test_create_obj(void)
 {
@@ -69,9 +69,9 @@ void test_create_obj(void)
 
 /* char *read(char *key, char *index) */
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 void test_read(void)
 {
@@ -88,9 +88,9 @@ void test_read(void)
 
 /* char *read(char *key, char *index) */
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 void test_read_malformed(void)
 {
@@ -108,9 +108,9 @@ void test_read_malformed(void)
 
 /* int write(char *key, char *index, char *value) */
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 void test_write_newkey(void)
 {
@@ -127,9 +127,9 @@ void test_write_newkey(void)
 
 /* int write(char *key, char *index, char *value) */
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 void test_write_newindex(void)
 {
@@ -146,9 +146,9 @@ void test_write_newindex(void)
 
 /* int write(char *key, char *index, char *value) */
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 void test_write_updateindex(void)
 {

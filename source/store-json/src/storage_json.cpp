@@ -1,4 +1,4 @@
-/*!
+/**
  *  @file storage_JSON.c
  *
  *  @brief  store-storage_interface module for store-json files.
@@ -31,12 +31,12 @@ const char *sj::read(const char *key, const char *index)
     return value->c_str();
 }
 
-/*!
- * @brief
- * @param key
- * @param index
- * @param value
- * @return
+/**
+ * \brief
+ * \param key
+ * \param index
+ * \param value
+ * \return
  */
 uint8_t sj::write(const char *key, const char *index, const char *value)
 {
@@ -57,9 +57,9 @@ uint8_t sj::write(const char *key, const char *index, const char *value)
     return ret_val;
 }
 
-/*!
- * @brief
- * @param file_path
+/**
+ * \brief
+ * \param file_path
  */
 sj::storage_json_c(std::string file_path, bool newfile)
 {

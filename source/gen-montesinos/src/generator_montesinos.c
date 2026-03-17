@@ -1,12 +1,12 @@
-/*!
- *  @file generator_montesinos.c
+/**
+ *  \file generator_montesinos.c
  *
- *  @brief  A module for generating montesinos tangles.
+ *  \brief  A module for generating montesinos tangles.
  *
  *
- *  @author    Isabel Darcy
- *  @author    Zachary Bryhtan
- *  @author    Joe Starr
+ *  \author    Isabel Darcy
+ *  \author    Zachary Bryhtan
+ *  \author    Joe Starr
  *
  */
 
@@ -38,8 +38,8 @@ STATIC_INLINE_UINT8 gen_montesinos_process_loop_state(const size_t *stack);
 /************************** Local Variables ***********************************/
 /******************************************************************************/
 
-/*!
- * @brief The local configuration of the montesinos gen module.
+/**
+ * \brief The local configuration of the montesinos gen module.
  *
  */
 static gen_montesinos_config_t *gen_montesinos_localcfg = NULL;

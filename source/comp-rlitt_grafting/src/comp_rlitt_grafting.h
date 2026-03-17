@@ -1,10 +1,10 @@
-/*!
- *  @file comp_rlitt_grafting.h
+/**
+ *  \file comp_rlitt_grafting.h
  *
- *  @brief  A module for compute rlitt_grafting
+ *  \brief  A module for compute rlitt_grafting
  *
  *
- *  @author    Joe Starr
+ *  \author    Joe Starr
  *
  */
 
@@ -41,26 +41,26 @@
  | `
  |
  */
-/*!
- * @brief Failed to configure the module due to issue in rootstock.
+/**
+ * \brief Failed to configure the module due to issue in rootstock.
  *
  */
 #define COMP_RLITT_GRAFTING_CONFIG_ROOTSTOCK    (0x1u << 1u)
 
-/*!
- * @brief Failed to configure the module due to issue in scion.
+/**
+ * \brief Failed to configure the module due to issue in scion.
  *
  */
 #define COMP_RLITT_GRAFTING_CONFIG_SCION        (0x1u << 2u)
 
-/*!
- * @brief Failed to configure the module due to null config
+/**
+ * \brief Failed to configure the module due to null config
  *
  */
 #define COMP_RLITT_GRAFTING_CONFIG_IS_NULL      (0x1u << 3u)
 
-/*!
- * @brief Failed to configure the module due to error in config buffer
+/**
+ * \brief Failed to configure the module due to error in config buffer
  *
  */
 #define COMP_RLITT_GRAFTING_CONFIG_BUFFER       (0x1u << 4u)
@@ -82,32 +82,32 @@
  |
  */
 
-/*!
- * @brief Failed to configure the module due to issue in rootstock.
+/**
+ * \brief Failed to configure the module due to issue in rootstock.
  *
  */
 #define COMP_RLITT_GRAFTING_COMPUTE_ROOTSTOCK           (0x1u << 1u)
 
-/*!
- * @brief Failed to configure the module due to issue in the grafting operation.
+/**
+ * \brief Failed to configure the module due to issue in the grafting operation.
  *
  */
 #define COMP_RLITT_GRAFTING_COMPUTE_GRAFTING_RLITT      (0x1u << 2u)
 
-/*!
- * @brief Failed to configure the module due to config error
+/**
+ * \brief Failed to configure the module due to config error
  *
  */
 #define COMP_RLITT_GRAFTING_COMPUTE_CFG_ERROR           (0x1u << 3u)
 
-/*!
- * @brief Failed to configure the module due to error in copying.
+/**
+ * \brief Failed to configure the module due to error in copying.
  *
  */
 #define COMP_RLITT_GRAFTING_COMPUTE_COPYERROR           (0x1u << 4u)
 
-/*!
- * @brief Failed to configure the module due to config having previously been processed
+/**
+ * \brief Failed to configure the module due to config having previously been processed
  *
  */
 #define COMP_RLITT_GRAFTING_COMPUTE_ALREADY_COMPUTED    (0x1u << 5u)
@@ -121,8 +121,8 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief The type definition for the result reporting of the rlitt_grafting computation.
+/**
+ * \brief The type definition for the result reporting of the rlitt_grafting computation.
  *
  */
 typedef struct {
@@ -137,8 +137,8 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief The type definition for configuring the rlitt_grafting computation.
+/**
+ * \brief The type definition for configuring the rlitt_grafting computation.
  *
  */
 typedef struct {
@@ -161,9 +161,9 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief The public configuration function.
- * @param config_arg The config to set.
+/**
+ * \brief The public configuration function.
+ * \param config_arg The config to set.
  */
 uint8_t comp_rlitt_grafting_config(comp_rlitt_grafting_config_t *config_arg);
 
@@ -176,9 +176,9 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief A public function, calling this executes the computation on the configured tangle.
- * @return uint8_t computation status info.
+/**
+ * \brief A public function, calling this executes the computation on the configured tangle.
+ * \return uint8_t computation status info.
  */
 uint8_t comp_rlitt_grafting_compute();
 
@@ -191,9 +191,9 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief A public function, calling this executes the computation on the configured tangle.
- * @return uint8_t computation status info.
+/**
+ * \brief A public function, calling this executes the computation on the configured tangle.
+ * \return uint8_t computation status info.
  */
 uint8_t comp_rlitt_grafting_compute();
 
@@ -206,9 +206,9 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief A public function, calling this retrieves the results of the last computation
- * @return comp_rlitt_grafting_result_t Computation results.
+/**
+ * \brief A public function, calling this retrieves the results of the last computation
+ * \return comp_rlitt_grafting_result_t Computation results.
  */
 const comp_rlitt_grafting_result_t *comp_rlitt_grafting_result();
 

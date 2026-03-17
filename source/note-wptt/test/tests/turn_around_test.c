@@ -8,9 +8,9 @@
 extern bool test_util_trees_equal(const note_wptt_t *tree1, const note_wptt_t *tree2);
 static void test_turn_around_test_1(void);
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 void test_turn_around(void)
 {
@@ -25,9 +25,9 @@ void test_turn_around(void)
  * - A tree with a vertex with more than one weight.
  */
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 static void test_turn_around_test_1(void)
 {

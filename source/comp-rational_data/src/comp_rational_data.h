@@ -1,11 +1,11 @@
-/*!
- *  @file comp_rational_data.h
+/**
+ *  \file comp_rational_data.h
  *
- *  @brief  A module for compute rational tangle data: fraction, algebraic equivlance, and parity.
+ *  \brief  A module for compute rational tangle data: fraction, algebraic equivlance, and parity.
  *
  *
- *  @author    Isabel Darcy
- *  @author    Joe Starr
+ *  \author    Isabel Darcy
+ *  \author    Joe Starr
  *
  */
 
@@ -29,8 +29,8 @@
 
 /*************************** Write Keys   *************************************/
 
-/*!
- * @brief The key for the rational data computation
+/**
+ * \brief The key for the rational data computation
  *
  */
 #define COMP_RATIONAL_DAT_STORAGE_UKEY    ("COMP_RATIONAL_DAT")
@@ -38,20 +38,20 @@
 
 /*************************** Config *******************************************/
 
-/*!
- * @brief Failed to configure the module due to null config
+/**
+ * \brief Failed to configure the module due to null config
  *
  */
 #define COMP_RATIONAL_DAT_CONFIG_IS_NULL       (0x1u << 1u)
 
-/*!
- * @brief Failed to configure the module due to issue in buffer.
+/**
+ * \brief Failed to configure the module due to issue in buffer.
  *
  */
 #define COMP_RATIONAL_DAT_CONFIG_BUFFER        (0x1u << 2u)
 
-/*!
- * @brief Failed to configure the module due to issue in string buffer.
+/**
+ * \brief Failed to configure the module due to issue in string buffer.
  *
  */
 #define COMP_RATIONAL_DAT_CONFIG_STR_BUFFER    (0x1u << 3u)
@@ -65,8 +65,8 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief The type definition for configuring the rational data computation.
+/**
+ * \brief The type definition for configuring the rational data computation.
  *
  */
 typedef struct {
@@ -85,8 +85,8 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief The type definition for configuring the rational data computation.
+/**
+ * \brief The type definition for configuring the rational data computation.
  *
  */
 typedef struct {
@@ -108,9 +108,9 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief The public configuration function.
- * @param config_arg The config to set.
+/**
+ * \brief The public configuration function.
+ * \param config_arg The config to set.
  */
 uint8_t comp_rational_data_config(comp_rational_data_config_t *config_arg);
 
@@ -123,9 +123,9 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief A public function, calling this executes the computation on the configured tangle.
- * @return uint8_t computation status info.
+/**
+ * \brief A public function, calling this executes the computation on the configured tangle.
+ * \return uint8_t computation status info.
  */
 uint8_t comp_rational_data_compute();
 
@@ -137,9 +137,9 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief A public function, calling this retrieves the results of the last computation
- * @return comp_rational_data_result_t Computation results.
+/**
+ * \brief A public function, calling this retrieves the results of the last computation
+ * \return comp_rational_data_result_t Computation results.
  */
 const comp_rational_data_result_t *comp_rational_data_result();
 

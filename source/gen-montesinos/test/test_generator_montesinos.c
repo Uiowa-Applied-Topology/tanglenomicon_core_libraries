@@ -246,9 +246,9 @@ void tearDown(void)
 /*******************************Test cases*************************************/
 /******************************************************************************/
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 STATIC_INLINE void test_config(void)
 {
@@ -260,9 +260,9 @@ STATIC_INLINE void test_config(void)
         ret_val, GEN_MONTESINOS_CONFIG_IS_NULL | GEN_DEFS_CONFIG_FAIL);
 }
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 STATIC_INLINE void test_generate(void)
 {
@@ -299,9 +299,9 @@ STATIC_INLINE void test_generate(void)
     }
 }
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 STATIC_INLINE void test_generate_fail(void)
 {

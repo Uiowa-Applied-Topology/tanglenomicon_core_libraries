@@ -183,8 +183,8 @@ static note_wptt_t pos_plus_noncanon_internal = {&pppb3bb3bpm2pb3bp,NULL,NOTE_WP
 /* clang-format on */
 
 
-/*!
- * @brief Positive computation test cases
+/**
+ * \brief Positive computation test cases
  */
 void test_compute_positive(void)
 {
