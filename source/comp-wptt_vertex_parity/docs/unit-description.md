@@ -2,7 +2,7 @@
 date: 2026-03-18
 authors:
   - joe_starr
-contact: support@joe-starr.com
+contact: dr@joe-starr.com
 abstract: A unit description for computation of arborescent tangle vertex parity.
 ---
 

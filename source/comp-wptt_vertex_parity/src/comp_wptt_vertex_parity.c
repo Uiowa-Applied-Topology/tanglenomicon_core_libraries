@@ -63,7 +63,7 @@ static bool comp_wptt_vertex_parity_executed = false;
 /******************************************************************************/
 
 STATIC_INLINE comp_sum_parity_parity_e comp_wptt_vertex_parity_weight(int16_t weight);
-STATIC_INLINE_UINT8 comp_wptt_parity_walk_tree();
+STATIC_INLINE_UINT8 comp_wptt_parity_walk_tree(void);
 STATIC_INLINE comp_sum_parity_parity_e comp_wptt_vertex_parity_rotate(
     comp_sum_parity_parity_e parity);
 STATIC_INLINE comp_sum_parity_parity_e comp_wptt_vertex_parity_sum(
@@ -115,7 +115,7 @@ uint8_t comp_wptt_vertex_parity_config(comp_wptt_vertex_parity_config_t *config_
 /*
  *  Documentation in header
  */
-uint8_t comp_wptt_vertex_parity_compute()
+uint8_t comp_wptt_vertex_parity_compute(void)
 {
     uint8_t ret_val = COMP_DEFS_COMPUTE_FAIL;
 
@@ -192,7 +192,7 @@ uint8_t comp_wptt_vertex_parity_compute()
 /*
  *  Documentation in header
  */
-const comp_wptt_vertex_parity_result_t *comp_wptt_vertex_parity_result()
+const comp_wptt_vertex_parity_result_t *comp_wptt_vertex_parity_result(void)
 {
     const comp_wptt_vertex_parity_result_t *ret_val = NULL;
 
@@ -246,7 +246,7 @@ STATIC_INLINE comp_sum_parity_parity_e comp_wptt_vertex_parity_weight(int16_t we
  *
  * \return A success value.
  */
-STATIC_INLINE_UINT8 comp_wptt_parity_walk_tree()
+STATIC_INLINE_UINT8 comp_wptt_parity_walk_tree(void)
 {
     uint8_t ret_val = COMP_DEFS_COMPUTE_SUCCESS;
 
