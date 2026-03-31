@@ -1,0 +1,4 @@
+site_name: Computation Parity of Tangle Sums
+nav:
+    - use-case.md
+    - unit-description.md
