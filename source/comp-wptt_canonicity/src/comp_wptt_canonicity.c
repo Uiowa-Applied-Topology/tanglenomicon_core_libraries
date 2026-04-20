@@ -35,7 +35,7 @@
 /******************************************************************************/
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
-STATIC_INLINE_UINT8 comp_wptt_canonicity_walk_tree();
+STATIC_INLINE_UINT8 comp_wptt_canonicity_walk_tree(void);
 
 STATIC_INLINE comp_wptt_vert_canon_positivity_e comp_wptt_vert_canon_convert_pos(
     comp_wptt_cononicity_positivity_e pos);
@@ -105,7 +105,7 @@ uint8_t comp_wptt_canonicity_config(comp_wptt_canonicity_config_t *config_arg)
 /*
  *  Documentation in header
  */
-uint8_t comp_wptt_canonicity_compute()
+uint8_t comp_wptt_canonicity_compute(void)
 {
     uint8_t ret_val = COMP_DEFS_COMPUTE_FAIL;
 
@@ -162,7 +162,7 @@ uint8_t comp_wptt_canonicity_compute()
 /*
  *  Documentation in header
  */
-const comp_wptt_canonicity_result_t *comp_wptt_canonicity_result()
+const comp_wptt_canonicity_result_t *comp_wptt_canonicity_result(void)
 {
     const comp_wptt_canonicity_result_t *ret_val = NULL;
 
@@ -217,7 +217,7 @@ STATIC_INLINE comp_wptt_vert_canon_positivity_e comp_wptt_vert_canon_convert_pos
  * \param tree The tree to walk.
  * \return A status indicator for the function.
  */
-STATIC_INLINE_UINT8 comp_wptt_canonicity_walk_tree()
+STATIC_INLINE_UINT8 comp_wptt_canonicity_walk_tree(void)
 {
     const note_wptt_t *tree     = comp_wptt_canonicity_localcfg->wptt;
     uint8_t            ret_val  = COMP_DEFS_COMPUTE_SUCCESS;

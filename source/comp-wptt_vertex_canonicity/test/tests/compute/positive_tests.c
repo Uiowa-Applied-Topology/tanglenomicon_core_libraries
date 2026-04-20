@@ -7,14 +7,14 @@
 #include "comp_wptt_vertex_canonicity.h"
 #include "unity.h"
 
-static void test_compute_config_write();
-static void test_compute_config_nowrite();
+static void test_compute_config_write(void);
+static void test_compute_config_nowrite(void);
 
-static void test_compute_stick_alternating();
-static void test_compute_stick_one_end();
-static void test_compute_stick_non_zero();
-static void test_compute_positivity();
-static void test_compute_weight();
+static void test_compute_stick_alternating(void);
+static void test_compute_stick_one_end(void);
+static void test_compute_stick_non_zero(void);
+static void test_compute_positivity(void);
+static void test_compute_weight(void);
 
 /* clang-format off */
 static note_wptt_node_t leaf3 = {{NULL},{3},0,0,NOTE_WPTT_ORDER_FORWARD};
@@ -196,7 +196,7 @@ void test_compute_positive(void)
     RUN_TEST(test_compute_weight);
 }
 
-static void test_compute_config_write()
+static void test_compute_config_write(void)
 {
     comp_wptt_vert_canon_config_t cfg = { &test_stub_write_success,
                                           &primary_canon_wptt,
@@ -255,7 +255,7 @@ static void test_compute_config_write()
                                      "Error in output");
 }
 
-static void test_compute_config_nowrite()
+static void test_compute_config_nowrite(void)
 {
     comp_wptt_vert_canon_config_t cfg = { NULL,
                                           NULL,
@@ -271,7 +271,7 @@ static void test_compute_config_nowrite()
     TEST_ASSERT_EQUAL_UINT8(ret_val, COMP_DEFS_COMPUTE_SUCCESS);
 }
 
-static void test_compute_stick_alternating()
+static void test_compute_stick_alternating(void)
 {
 /*******************************************************************/
 /* Near the root*/
@@ -351,7 +351,7 @@ static void test_compute_stick_alternating()
                                      "Error in output");
 }
 
-static void test_compute_stick_one_end()
+static void test_compute_stick_one_end(void)
 {
 /*******************************************************************/
 /* Leaf*/
@@ -472,7 +472,7 @@ static void test_compute_stick_one_end()
                                      "Error in output");
 }
 
-static void test_compute_stick_non_zero()
+static void test_compute_stick_non_zero(void)
 {
 /*******************************************************************/
 /* Infinity Tangle */
@@ -589,7 +589,7 @@ static void test_compute_stick_non_zero()
                                      "Error in output");
 }
 
-static void test_compute_positivity()
+static void test_compute_positivity(void)
 {
 /************************************************************************************************/
 /* Plus */
@@ -708,7 +708,7 @@ static void test_compute_positivity()
                                      "Error in output");
 }
 
-static void test_compute_weight()
+static void test_compute_weight(void)
 {
 /************************************************************************************************/
 /* At the root */

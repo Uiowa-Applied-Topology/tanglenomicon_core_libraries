@@ -6,7 +6,8 @@
 #include "test_storage_stubs.h"
 #include "unity.h"
 #include "../../utils/utils.h"
-extern uint8_t stub_write_success();
+
+extern uint8_t stub_write_success(void);
 static void test_config_positive_nowrite(void);
 static void test_config_positive_write(void);
 

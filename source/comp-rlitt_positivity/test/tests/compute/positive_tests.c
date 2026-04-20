@@ -26,7 +26,7 @@ void test_compute_positive(void)
     RUN_TEST(test_compute_internal);
 }
 
-static void test_compute_config_write()
+static void test_compute_config_write(void)
 {
     comp_rlitt_positivity_config_t cfg = { &test_stub_write_success, &root_neut_3 };
     uint8_t ret_val = comp_rlitt_positivity_config(&cfg);
@@ -40,7 +40,7 @@ static void test_compute_config_write()
                                      "Error in output");
 }
 
-static void test_compute_config_nowrite()
+static void test_compute_config_nowrite(void)
 {
     comp_rlitt_positivity_config_t cfg = { NULL, &root_neut_3 };
     uint8_t ret_val = comp_rlitt_positivity_config(&cfg);

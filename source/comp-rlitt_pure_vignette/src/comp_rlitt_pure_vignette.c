@@ -112,7 +112,7 @@ uint8_t comp_rlitt_pure_vignette_config(comp_rlitt_pure_vignette_config_t *confi
 /*
  *  Documentation in header
  */
-uint8_t comp_rlitt_pure_vignette_compute()
+uint8_t comp_rlitt_pure_vignette_compute(void)
 {
     uint8_t ret_val = COMP_DEFS_COMPUTE_FAIL;
 
@@ -162,7 +162,7 @@ uint8_t comp_rlitt_pure_vignette_compute()
 /*
  *  Documentation in header
  */
-const comp_rlitt_pure_vignette_result_t *comp_rlitt_pure_vignette_result()
+const comp_rlitt_pure_vignette_result_t *comp_rlitt_pure_vignette_result(void)
 {
     const comp_rlitt_pure_vignette_result_t *ret_val = NULL;
 

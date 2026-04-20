@@ -7,7 +7,7 @@
 #include "unity.h"
 #include "../../utils/data.h"
 
-extern uint8_t stub_write_success();
+extern uint8_t stub_write_success(void);
 
 void test_config_positive(void)
 {

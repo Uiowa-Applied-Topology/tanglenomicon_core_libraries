@@ -53,7 +53,7 @@ STATIC_INLINE_UINT8 gen_rational_proc_template(uint8_t template);
  * \param cfg Configuration to work on.
  * \return uint8_t Success/Fail flag.
  */
-STATIC_INLINE_UINT8 gen_rational_write();
+STATIC_INLINE_UINT8 gen_rational_write(void);
 
 /**
  * \brief The canonical form for twist vector is given as odd length. When we get something in the
@@ -63,7 +63,7 @@ STATIC_INLINE_UINT8 gen_rational_write();
  * \param cfg Configuration to work on.
  * \return uint8_t Success/Fail flag.
  */
-STATIC_INLINE_UINT8 gen_rational_evenperm_shift_write();
+STATIC_INLINE_UINT8 gen_rational_evenperm_shift_write(void);
 
 /******************************************************************************/
 /************************** Local Variables ***********************************/
@@ -112,7 +112,7 @@ uint8_t gen_rational_config(gen_rational_config_t *config_arg)
 /*
  *  Documentation in header
  */
-uint8_t gen_rational_generate()
+uint8_t gen_rational_generate(void)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_FAIL;
 
@@ -187,7 +187,7 @@ static uint8_t gen_rational_proc_template(uint8_t template)
 /*
  *  Documentation at declaration
  */
-uint8_t gen_rational_evenperm_shift_write()
+uint8_t gen_rational_evenperm_shift_write(void)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_SUCCESS;
     /* Set function inputs to match the cfg data*/
@@ -220,7 +220,7 @@ uint8_t gen_rational_evenperm_shift_write()
 /*
  *  Documentation at declaration
  */
-uint8_t gen_rational_write()
+uint8_t gen_rational_write(void)
 {
     uint8_t ret_val      = GEN_DEFS_GENERATION_FAIL;
     uint8_t write_status = STORE_DEFS_WRITE_FAIL;

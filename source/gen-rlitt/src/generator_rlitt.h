@@ -190,7 +190,7 @@ extern "C" {
  *
  * \return uint8_t Generation status info.
  */
-uint8_t gen_rlitt_generate();
+uint8_t gen_rlitt_generate(void);
 
 #ifdef __cplusplus
 }

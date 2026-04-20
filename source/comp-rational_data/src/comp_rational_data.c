@@ -164,7 +164,7 @@ uint8_t comp_rational_data_config(comp_rational_data_config_t *config_arg)
 /*
  *  Documentation in header
  */
-uint8_t comp_rational_data_compute()
+uint8_t comp_rational_data_compute(void)
 {
     uint8_t  ret_val = COMP_DEFS_COMPUTE_SUCCESS;
     uint16_t p;
@@ -201,7 +201,7 @@ uint8_t comp_rational_data_compute()
 /*
  *  Documentation in header
  */
-const comp_rational_data_result_t *comp_rational_data_result()
+const comp_rational_data_result_t *comp_rational_data_result(void)
 {
     const comp_rational_data_result_t *ret_val = NULL;
 

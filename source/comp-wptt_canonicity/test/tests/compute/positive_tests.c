@@ -9,14 +9,14 @@
 #include "unity.h"
 #include "../../utils/data.h"
 
-static void test_compute_config_write();
-static void test_compute_config_nowrite();
+static void test_compute_config_write(void);
+static void test_compute_config_nowrite(void);
 
-static void test_compute_stick_alternating();
-static void test_compute_stick_one_end();
-static void test_compute_stick_non_zero();
-static void test_compute_positivity();
-static void test_compute_weight();
+static void test_compute_stick_alternating(void);
+static void test_compute_stick_one_end(void);
+static void test_compute_stick_non_zero(void);
+static void test_compute_positivity(void);
+static void test_compute_weight(void);
 
 static storage_write_funptr_t write_g;
 static note_wptt_t *          notes_g;
@@ -24,7 +24,7 @@ static char *strs_g;
 static comp_wptt_cononicity_positivity_e pos_g;
 static char *res_g;
 
-static void test_func_compute()
+static void test_func_compute(void)
 {
     char buffer[1024] = { '\0' };
     comp_wptt_canonicity_config_t cfg = { write_g,
@@ -61,7 +61,7 @@ void test_compute_positive(void)
     test_compute_weight();
 }
 
-static void test_compute_config_write()
+static void test_compute_config_write(void)
 {
     note_wptt_t *notes[] = { &ib3_3b,
                              &ib3_0b,
@@ -114,7 +114,7 @@ static void test_compute_config_write()
     }
 }
 
-static void test_compute_config_nowrite()
+static void test_compute_config_nowrite(void)
 {
     note_wptt_t *notes[] = { &ib3_3b,
                              &ib3_0b,
@@ -167,7 +167,7 @@ static void test_compute_config_nowrite()
     }
 }
 
-static void test_compute_stick_alternating()
+static void test_compute_stick_alternating(void)
 {
     note_wptt_t *notes[] = { &ib3_m3b,
                              &ipppb3_m3b3b3_3bp3pm3p,
@@ -196,7 +196,7 @@ static void test_compute_stick_alternating()
     }
 }
 
-static void test_compute_stick_one_end()
+static void test_compute_stick_one_end(void)
 {
     note_wptt_t *notes[] = { &ib1_3b,
                              &ibm1_m3b,
@@ -243,7 +243,7 @@ static void test_compute_stick_one_end()
     }
 }
 
-static void test_compute_stick_non_zero()
+static void test_compute_stick_non_zero(void)
 {
     note_wptt_t *notes[] = { &ib3_0_3b,
                              &ipb3_3bb3_3bb0bp,
@@ -274,7 +274,7 @@ static void test_compute_stick_non_zero()
     }
 }
 
-static void test_compute_positivity()
+static void test_compute_positivity(void)
 {
     note_wptt_t *notes[] = { &ipbm2bb3bp,
                              &ipb3_3bppb3_3b3b3_3bpm2pp,
@@ -302,7 +302,7 @@ static void test_compute_positivity()
     }
 }
 
-static void test_compute_weight()
+static void test_compute_weight(void)
 {
     note_wptt_t *notes[] = { &ip3b3b3p,
                              &ipb3bp3b3b3pp,

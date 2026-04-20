@@ -128,7 +128,7 @@ extern "C"
  * \brief A public function, calling this executes the computation on the configured tangle.
  * \return uint8_t Generation status info.
  */
-uint8_t mut_rlitt_ringshift_mutate();
+uint8_t mut_rlitt_ringshift_mutate(void);
 
 #ifdef __cplusplus
 }

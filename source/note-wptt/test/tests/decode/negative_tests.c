@@ -25,7 +25,7 @@ void test_decode_negative(void)
  *
  * - An empty string.
  */
-void test_decode_negative_test_1()
+void test_decode_negative_test_1(void)
 {
     uint8_t retval = -1;
     char    string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = "";
@@ -47,7 +47,7 @@ void test_decode_negative_test_1()
  *
  * - A missing closing delimiter.
  */
-void test_decode_negative_test_2()
+void test_decode_negative_test_2(void)
 {
     uint8_t retval = -1;
     char    string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = "(";
@@ -69,7 +69,7 @@ void test_decode_negative_test_2()
  *
  * - An unexpected character is in the string.
  */
-void test_decode_negative_test_3()
+void test_decode_negative_test_3(void)
 {
     uint8_t retval = -1;
     char    string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] =
@@ -92,7 +92,7 @@ void test_decode_negative_test_3()
  *
  * - The string has more weights than possible.
  */
-void test_decode_negative_test_4()
+void test_decode_negative_test_4(void)
 {
     uint8_t retval = -1;
     char    string[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = "x(4 4)";
