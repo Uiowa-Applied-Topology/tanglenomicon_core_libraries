@@ -45,8 +45,8 @@ STATIC_INLINE_UINT8 comp_rational_data_alg_eq(uint16_t p, uint16_t q);
  * \brief A private function that commits to store-storage_interface the algebraic equivalence
  *classes associated to the configured tangle.
  *
- * \param num_eq The equivlance class for the numerator closure of the configured tangle.
- * \param den_eq The equivlance class for the denominator closure of the configured tangle.
+ * \param num_eq The equivalence class for the numerator closure of the configured tangle.
+ * \param den_eq The equivalence class for the denominator closure of the configured tangle.
  * \return uint8_t A condition code for the computation. Indicates failure mode if any.
  */
 STATIC_INLINE_UINT8 comp_rational_data_write_alg_eq(uint16_t num_eq,
