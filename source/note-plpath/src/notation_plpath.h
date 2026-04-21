@@ -22,10 +22,6 @@
 /*******************************Defines ***************************************/
 /******************************************************************************/
 
-/**
- * \brief The maximum number of weights in a node.
- */
-#define NOTE_PLPATH_DECODE_MAX_SEGMENTS    (UTIL_TANG_DEFS_MAX_CROSSINGNUM + 1)
 
 /**
  * \brief The maximum number of children in a node.
@@ -126,14 +122,33 @@ extern "C"
  * \brief Type defining the data of a plpath node.
  */
 typedef struct note_plpath_point_t {
-    double                      x;
-    double                      y;
-    double                      z;
+    long double                 x;
+    long double                 y;
+    long double                 z;
     struct note_plpath_point_t *next_point;
 } note_plpath_point_t;
 #ifdef __cplusplus
 }
 #endif
+
+/******************************************************************************/
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+/**
+ * \brief Type defining the data of a buffer of plpath nodes.
+ */
+typedef struct note_plpath_segment_t {
+    note_plpath_point_t *         head;
+    struct note_plpath_segment_t *next_seg;
+} note_plpath_segment_t;
+#ifdef __cplusplus
+}
+#endif
+
 
 /******************************************************************************/
 
@@ -162,12 +177,31 @@ extern "C"
 #endif
 
 /**
+ * \brief Type defining the data of a buffer of plpath nodes.
+ */
+typedef struct note_plpath_segment_buffer_t {
+    note_plpath_segment_t *buffer;
+    size_t                 size;
+    size_t                 idx;
+} note_plpath_segment_buffer_t;
+#ifdef __cplusplus
+}
+#endif
+
+/******************************************************************************/
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+/**
  * \brief Type defining the notation for a plpath.
  */
 typedef struct {
-    note_plpath_point_t *       segments[NOTE_PLPATH_DECODE_MAX_SEGMENTS];
-    size_t                      segment_count;
-    note_plpath_point_buffer_t *buffer;
+    note_plpath_segment_t *       segments;
+    note_plpath_point_buffer_t *  pnt_buff;
+    note_plpath_segment_buffer_t *seg_buff;
 } note_plpath_t;
 #ifdef __cplusplus
 }

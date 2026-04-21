@@ -12,21 +12,18 @@ abstract: A unit description for the arborescent planar tangle tree notation.
 classDiagram
     note_plpath --|> notation
     note_plpath *-- note_plpath_t
-    note_plpath_t *-- note_plpath_segment_t
     note_plpath_t *-- note_plpath_point_buffer_t
+    note_plpath_t *-- note_plpath_segment_buffer_t
+    note_plpath_t *-- note_plpath_segment_t
+    note_plpath_segment_t *-- note_plpath_point_t
     note_plpath_point_buffer_t *-- note_plpath_point_t
+    note_plpath_segment_buffer_t *-- note_plpath_segment_t
+
     class note_plpath_t {
         <<struct>>
-        note_plpath_point_t segments[]
-        size_t segement_count
+        note_plpath_segment_t *segments
         note_plpath_point_buffer_t* point_buffer
-    }
-
-
-    class note_plpath_segment_t {
-        <<struct>>
-        note_plpath_point_t* points
-        size_t point_count
+        note_plpath_point_buffer_t* segment_buffer
     }
 
     class note_plpath_point_buffer_t {
@@ -34,6 +31,19 @@ classDiagram
         note_plpath_point_t* points
         size_t size
         size_t idx
+    }
+
+    class note_plpath_segment_buffer_t {
+        <<struct>>
+        note_plpath_segment_t* segments
+        size_t size
+        size_t idx
+    }
+
+    class note_plpath_segment_t {
+        <<struct>>
+        note_plpath_point_t* head
+        note_plpath_segment_t * next_seg
     }
 
     class note_plpath_point_t {
@@ -78,10 +88,10 @@ The piecewise linear path notation component does not use any external libraries
 The interface structure for the component is designed to match the non memory allocating design
 goals of non-runner components. That means this notation structure contains:
 
-- An array of piecewise linear path segments (a single connected component homotopic to a point or
-    $S^1$)
-- The size of the supplied list of segments
+- A linked list of piecewise linear path segments (a single connected component homotopic to a
+    point or $S^1$)
 - A buffer of points to be used to build the piecewise linear path
+- A buffer of segments to be used to build the linked list of segments
 
 >[!warning]
 >
@@ -92,6 +102,11 @@ goals of non-runner components. That means this notation structure contains:
 
 The point structure contains a three tuple of doubles representing the $x,y,z$ coordinate of a point
 on the path. The structure also contains a pointer to the "next" point in the segment.
+
+##### Segment Structure
+
+The segment structure contains a pointer to the head point of the segment as well as a pointer to
+the "next" point in the segment.
 
 #### Functions
 
