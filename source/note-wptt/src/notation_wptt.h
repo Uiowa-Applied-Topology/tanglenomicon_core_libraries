@@ -37,7 +37,7 @@
 /**
  * \brief The maximum length of a linearized string.
  */
-#define NOTE_WPTT_MAX_STR_LEN            ((UTIL_TANG_DEFS_MAX_CROSSINGNUM + 1) * 5u)
+#define NOTE_WPTT_MAX_STR_LEN            ((UTIL_TANG_DEFS_MAX_CROSSINGNUM + 1) * 50u)
 
 /*******************************Decode Flags***********************************/
 
