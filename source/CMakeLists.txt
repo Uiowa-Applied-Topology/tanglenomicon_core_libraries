@@ -14,6 +14,7 @@ add_subdirectory(comp-rlitt_pure_vignette)
 add_subdirectory(comp-wptt_canonicity)
 add_subdirectory(comp-sum_parity)
 add_subdirectory(comp-wptt_vertex_parity)
+add_subdirectory(comp-itt_2_pp_buf_size)
 add_subdirectory(comp-itt_to_path)
 
 # ##############################################################################

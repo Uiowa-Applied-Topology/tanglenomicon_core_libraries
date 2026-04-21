@@ -3,27 +3,29 @@ date: 2026-03-16
 authors:
   - joe_starr
 contact: support@joe-starr.com
-abstract: A use case description for computation of a PL path in $\R^3$ arborescent tangle computation.
+abstract: A use case description for computation of a piecewise linear path in $\R^3$ arborescent tangle computation.
 ---
 
 ## Mathematical Description
 
-Definitionally, a tangle is a collection of $S^1$ and intervals in $\R^3$ or $S^3$. In practice, we
+Definitionally, a tangle is a set of $S^1$ and intervals in $\R^3$ or $S^3$. In practice, we often
 encode tangles as planar diagrams with over/under crossings. In computational contexts these
-diagrams are encoded into a convenient combinatorial form, in the case of an arborescent tangle
-these are the ITT. For some research contexts, particularly those where physical models are needed,
-the PL path is useful.
+diagrams are encoded into convenient combinatorial forms, in the case of an arborescent tangle these
+are the WPTT. For some research contexts, particularly those with physical considerations, encoding
+a tangle into a piecewise linear (PL) path in $\R^3$ is ideal. We now describe a method for
+converting a WPTT (in reality we will describe a method for identity tangle trees ITT) into a PL
+path.
 
-A ITT can be converted to a PL path in a number of different ways. For example, we could leverage
+An ITT can be converted to a PL path in a number of different ways. For example, we could leverage
 the necklace model given by Bonahon and Siebenmann[@bonahonNewGeometricSplittings2016]. This method
 has the benefit of being easily manipulated by Möbius transformations. Unfortunately, the method of
 Bonahon and Siebenmann is quite complex, in the interest of effort we will describe here a slightly
 more convenient method. This method, when compared to the Bonahon and Siebenmann construction, is
 hard to modify mathematically but quite easy to work with computationally.
 
-When we render a ITT diagrammatically we see that one clear choice for building blocks are the
-basic and integral tangles, seen in different colors below. The integral tangles correspond to the
-weights of a ITT.
+When we render an ITT diagrammatically we see that one clear choice for building blocks are the
+basic ($0$, $\ifty$, and $\pm 1$) tangles. The $\pm 1$ tangles can be built into horizontal and
+vertical integral tangles with the $+$ and $\vee$ operations, seen in different colors below.
 
 ![ITT](./media/example_tangle.svg)
 
@@ -33,9 +35,8 @@ The ITT $((2[3][-3])[4])$ rendered diagrammatically.
 
 ///
 
-The tangle algebraic operations $+$ $\vee$ that allow us to combine the basic tangles into integral
-tangles will form the backbone of our methodology. To begin we define PL encodings for the four
-basic tangles in the following coordinate system:
+To build with theses we first select a coordinate system (below) and define PL encodings for the
+four basic tangles.
 
 ![coordinate system](./media/v4_rotations.svg)
 
@@ -52,12 +53,21 @@ The coordinate system used for the encoding of tangles as PL paths.
 | $1$      | ![-1](./media/1.svg)    | $(-1,1,0)\to(0,0,-1)\to(1,-1,0)$    | $(-1,-1,0)\to(0,0,1)\to(1,1,0)$     |
 | $-1$     | ![1](./media/m1.svg)    | $(-1,1,0)\to(0,0,1)\to(1,-1,0)$     | $(-1,-1,0)\to(0,0,-1)\to(1,1,0)$    |
 
-To build an integral tangle from these basic tangles we start with a $\pm1$ tangle. Now taking a
-second $\pm1$ tangle we translate it so the left endpoints of the second tangle align with the right
-of the initial tangle (or bottom and top for $\vee$). Finally, we combine paths where they coincide.
-In some cases the operations will "cap off" an internal knotted component, locations where
-components are capped off are determined based on the [parity][comp-wptt_vertex_parity] of the
-operands.
+Next we describe how to build integral tangles from the $\pm 1$ tangles. Start by placing a PL
+$\pm 1$ tangle into the ambient space. Next, take a second $\pm1$ tangle and translate it so the
+left endpoints of the second tangle align with the right endpoints of the initial tangle (or bottom
+and top for $\vee$). Finally, combine paths where they coincide by taking the union of the paths.
+
+To extend this method to the general arborescent case is straight forward, requiring only a few
+additions. The first addition is a change to the "gluing" of paths. When applying a $+$ or $\vee$
+operation to a general tangle the endpoints will generally not agree. In these cases instead of
+taking a union we will introduce a new path segment between the sets of endpoints. It's also
+important to note that in some cases an operation will "cap off" an internally knotted component,
+locations where components are capped off are determined based on the
+[parity][comp-wptt_vertex_parity] of the operands. Where this occurs can be determined by the parity
+of the two summands. Finally, we will enforce that the fixed points of every tangle sit on the
+corners of the bounding cube box of that tangle. This requires the addition of up to four extra
+path segments per subtangle.
 
 > [!example]
 >
@@ -83,11 +93,11 @@ operands.
 >| ---------------- | -------------------------------------- | ------------------------------------------------------------------- | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 >| $\infty +\infty$ | ![$\infty+\infty$](./media/bubble.svg) | $\begin{aligned}(-1,1,0)&\to(-0.5,0,0)\\&\to(-1,-1,0)\end{aligned}$ | $\begin{aligned}(3,1,0)&\to(2.5,0,0)\\&\to(3,-1,0)\end{aligned}$ | $\begin{aligned}(1,1,0)&\to(0.5,0,0)\\&\to(1,-1,0)\\&\to(1.5,0,0)\\&\to(1,1,0)\end{aligned}$ |
 
-To extend this method to the general arborescent is straight forward, requiring only two changes.
-First that we track the width and heights of tangles being built allowing us to accurately translate
-components of paths. Next we must track or compute the parity of components so we can cap off
-internally knotted components.
-
 ## Computational Description
 
-No special consideration.
+We will maintain some extra information with our paths. First we will track the width and heights of
+tangles as they are being built. Tracking this allows us to easily translate components of paths.
+Next we must track or compute the parity of tangles as we build. This allows us to detect when we
+must cap off internally knotted components.
+
+Additionally, for aesthetic reasons our PL paths will skip all zero weights of non-leaf vertices.

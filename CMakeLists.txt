@@ -33,10 +33,10 @@ endif(NOT CMAKE_BUILD_TYPE STREQUAL "Emscripten")
 # ##############################################################################
 
 set(CMAKE_CXX_FLAGS_RELEASE
-    "-O2 -Wall -pedantic -Werror"
+    "-O2 -Wall -pedantic -Werror -m64 "
     CACHE STRING "" FORCE)
 set(CMAKE_C_FLAGS_RELEASE
-    "-O2 -Wall -pedantic -Werror"
+    "-O2 -Wall -pedantic -Werror -m64"
     CACHE STRING "" FORCE)
 mark_as_advanced(CMAKE_CXX_FLAGS_RELEASE CMAKE_C_FLAGS_RELEASE)
 # Update the documentation string of CMAKE_BUILD_TYPE for GUIs
@@ -45,18 +45,18 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 
 endif(CMAKE_BUILD_TYPE STREQUAL "Debug")
 set(CMAKE_CXX_FLAGS_DEBUG
-    "-O1 -g -Wall -pedantic -Werror "
+    "-O1 -g -Wall -pedantic -Werror -m64"
     CACHE STRING "" FORCE)
 set(CMAKE_C_FLAGS_DEBUG
-    "-O1 -g -Wall -pedantic -Werror "
+    "-O1 -g -Wall -pedantic -Werror -m64"
     CACHE STRING "" FORCE)
 mark_as_advanced(CMAKE_CXX_FLAGS_DEBUG CMAKE_C_FLAGS_DEBUG)
 
 set(CMAKE_CXX_FLAGS_EMSCRIPTEN
-    "-O3 -fPIC -Wall -pedantic -Werror"
+    "-O3 -fPIC -Wall -pedantic -Werror -m64"
     CACHE STRING "" FORCE)
 set(CMAKE_C_FLAGS_EMSCRIPTEN
-    "-O3 -fPIC -Wall -pedantic -Werror"
+    "-O3 -fPIC -Wall -pedantic -Werror -m64"
     CACHE STRING "" FORCE)
 mark_as_advanced(CMAKE_CXX_FLAGS_EMSCRIPTEN CMAKE_C_FLAGS_EMSCRIPTEN)
 # Update the documentation string of CMAKE_BUILD_TYPE for GUIs
