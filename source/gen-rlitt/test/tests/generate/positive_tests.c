@@ -90,8 +90,7 @@ static note_wptt_node_t ipb2b2b1p = { {
                                       2,
                                       0,
                                       NOTE_WPTT_ORDER_FORWARD };
-static note_wptt_node_t ib8b = { {
-                                 },
+static note_wptt_node_t ib8b = { { NULL },
                                  {
                                      8
                                  },

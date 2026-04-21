@@ -44,7 +44,7 @@ static comp_wptt_vert_canon_config_t *comp_wptt_vert_canon_localcfg = NULL;
  * \brief The local result of the WPTT vertex canonicity module.
  *
  */
-static comp_wptt_vert_canon_result_t comp_wptt_vert_canon_localrestult = {};
+static comp_wptt_vert_canon_result_t comp_wptt_vert_canon_localrestult;
 
 /**
  * \brief The local computation status of the WPTT vertex canonicity module.

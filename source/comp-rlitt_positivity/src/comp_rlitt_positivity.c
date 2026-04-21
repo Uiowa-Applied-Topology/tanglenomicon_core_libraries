@@ -39,7 +39,7 @@ static comp_rlitt_positivity_config_t *comp_rlitt_positivity_localcfg = NULL;
  * \brief The local result of the RLITT positivity computation module.
  *
  */
-static comp_rlitt_positivity_result_t comp_rlitt_positivity_localrestult = {};
+static comp_rlitt_positivity_result_t comp_rlitt_positivity_localrestult;
 
 /**
  * \brief The local computation status of the RLITT positivity computation module.

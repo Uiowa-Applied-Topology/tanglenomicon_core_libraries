@@ -51,7 +51,7 @@ static comp_rlitt_pure_vignette_config_t *comp_rlitt_pure_vignette_localcfg = NU
  * \brief The local result of the RLITT pure vignette computation module.
  *
  */
-static comp_rlitt_pure_vignette_result_t comp_rlitt_pure_vignette_localrestult = {};
+static comp_rlitt_pure_vignette_result_t comp_rlitt_pure_vignette_localrestult;
 
 /**
  * \brief The local string buffer of the RLITT pure vignette computation module.
