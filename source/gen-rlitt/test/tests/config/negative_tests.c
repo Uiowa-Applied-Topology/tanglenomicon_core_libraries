@@ -8,7 +8,6 @@
 #include "../../utils/utils.h"
 
 static void test_config_negative_null_config(void);
-static void test_config_negative_null_param(void);
 static void test_config_negative_null_param_rootstocklist(void);
 static void test_config_negative_null_param_rootstocklen(void);
 static void test_config_negative_null_param_scionlist(void);

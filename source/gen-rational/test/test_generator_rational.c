@@ -138,9 +138,9 @@ void tearDown(void)
 /*******************************Test cases*************************************/
 /******************************************************************************/
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 STATIC_INLINE void test_config(void)
 {
@@ -158,9 +158,9 @@ STATIC_INLINE void test_config(void)
         ret_val, GEN_RATIONAL_CONFIG_STR_BUFFER | GEN_DEFS_CONFIG_FAIL);
 }
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 STATIC_INLINE void test_generate_fail(void)
 {
@@ -171,9 +171,9 @@ STATIC_INLINE void test_generate_fail(void)
     TEST_ASSERT_EQUAL_UINT8(ret_val, GEN_DEFS_GENERATION_FAIL);
 }
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 STATIC_INLINE void test_generate(void)
 {

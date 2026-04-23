@@ -1,10 +1,10 @@
-/*!
- *  @file generator_defs.h
+/**
+ *  \file generator_defs.h
  *
- *  @brief  Common definitions for generator objects.
+ *  \brief  Common definitions for generator objects.
  *
  *
- *  @author    Joe Starr
+ *  \author    Joe Starr
  *
  */
 
@@ -33,24 +33,24 @@
 
 /****************************** Encode Status *********************************/
 
-/*! @brief Success is a 0. That lets us use hight bits for generator specific codes */
+/** \brief Success is a 0. That lets us use hight bits for generator specific codes */
 #define GEN_DEFS_CONFIG_SUCCESS    (0u)
 
-/*! @brief We use bit 0 to indicate a fail. Specific failures encoded in higher bits. */
+/** \brief We use bit 0 to indicate a fail. Specific failures encoded in higher bits. */
 #define GEN_DEFS_CONFIG_FAIL       (1u)
 
 /****************************** Decode Status *********************************/
 
-/*! @brief Success is a 0. That lets us use hight bits for generator specific codes */
+/** \brief Success is a 0. That lets us use hight bits for generator specific codes */
 #define GEN_DEFS_GENERATION_SUCCESS    (0u)
 
-/*! @brief We use bit 0 to indicate a fail. Specific failures encoded in higher bits. */
+/** \brief We use bit 0 to indicate a fail. Specific failures encoded in higher bits. */
 #define GEN_DEFS_GENERATION_FAIL       (1u)
 
 /****************************** Flag Builder Macro ****************************/
 
-/*!
- * @brief A function like macro for building bitfield flags
+/**
+ * \brief A function like macro for building bitfield flags
  *
  */
 #define GEN_STATUS_BLDR(FLAG, HIGH_BITS)    ((FLAG) | (HIGH_BITS))

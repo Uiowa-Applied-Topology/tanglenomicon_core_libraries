@@ -1,5 +1,4 @@
 #include "positive_tests.h"
-#include "bits/stdint-uintn.h"
 #include "notation_plpath.h"
 #include "notation_defs.h"
 #include "unity.h"
@@ -7,16 +6,12 @@
 
 static void test_encode_positive_multiple_segments(void);
 static void test_encode_positive_single_segment(void);
-static void test_encode_positive_no_comment(void);
-static void test_encode_positive_with_comment(void);
-static void test_encode_positive_nlnlnl(void);
-static void test_encode_positive_term_nl(void);
 static void test_encode_positive_no_segments(void);
 
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 void test_encode_positive(void)
 {

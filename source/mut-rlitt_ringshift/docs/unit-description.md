@@ -1,8 +1,8 @@
 ---
 date: 2025-06-16
 authors:
-  - Joe Starr
-contact: support@joe-starr.com
+  - joe_starr
+contact: dr@joe-starr.com
 abstract: A unit description description for mutation of the rings of an Arborescent Tangle tree.
 ---
 
@@ -121,92 +121,73 @@ object vertex.
 
 #### Positive Tests
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "Valid Configuration"
-
-    A valid configuration for the mutation is passed to the function.
-
-    **Inputs:**
-
-    - A valid configuration.
-
-    **Expected Output:**
-
-    A positive response.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "Valid Configuration"
+>
+> A valid configuration for the mutation is passed to the function.
+>
+> **Inputs:**
+>
+>   - A valid configuration.
+>
+> **Expected Output:**
+>
+>    A positive response.
 
 #### Negative Tests
 
-<!-- prettier-ignore-start -->
+> [!test-card] "Null Configuration"
+>
+> A null configuration for the mutation is passed to the function.
+>
+> **Inputs:**
+>
+>   - A null configuration.
+>
+> **Expected Output:**
+>
+>    A negative response.
 
-!!! test-card "Null Configuration"
-
-    A null configuration for the mutation is passed to the function.
-
-    **Inputs:**
-
-    - A null configuration.
-
-    **Expected Output:**
-
-    A negative response.
-
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-
-!!! test-card "Null Configuration Parameters"
-
-    A configuration with various null parameters is passed to the function.
-
-    **Inputs:**
-
-    - A configuration with null wptt.
-
-    **Expected Output:**
-
-    A negative response.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "Null Configuration Parameters"
+>
+> A configuration with various null parameters is passed to the function.
+>
+> **Inputs:**
+>
+>   - A configuration with null wptt.
+>
+> **Expected Output:**
+>
+>    A negative response.
 
 ### Mutate Function
 
 #### Positive Tests
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "A valid configuration"
-
-    A valid configuration is set for the component. The mutation is executed and
-    returns successfully.
-
-    **Inputs:**
-
-    - A valid configuration is set.
-
-    **Expected Output:**
-
-    - A positive response.
-    - Mutation is correct.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "A valid configuration"
+>
+> A valid configuration is set for the component. The mutation is executed and returns successfully.
+>
+> **Inputs:**
+>
+>   - A valid configuration is set.
+>
+> **Expected Output:**
+>
+>   - A positive response.
+>   - Mutation is correct.
+>
 
 #### Negative Tests
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "Not Configured"
-
-    The mutate interface is called before configuration.
-
-    **Inputs:**
-
-    - None.
-
-    **Expected Output:**
-
-    A negative response.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "Not Configured"
+>
+> The mutate interface is called before configuration.
+>
+> **Inputs:**
+>
+>   - None.
+>
+> **Expected Output:**
+>
+>    A negative response.
+>

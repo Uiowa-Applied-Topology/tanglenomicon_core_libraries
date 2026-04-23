@@ -1,10 +1,10 @@
-/*!
- *  @file notation_plpath.c
+/**
+ *  \file notation_plpath.c
  *
- *  @brief  Notation module for PL paths.
+ *  \brief  Notation module for PL paths.
  *
  *
- *  @author    Joe Starr
+ *  \author    Joe Starr
  *
  */
 
@@ -143,12 +143,12 @@ uint8_t note_plpath_encode(note_plpath_t path, char *str, size_t buffer_size)
 /************************** Decode Path ***************************************/
 
 /**
- * @brief Build a pointer object from start of the string.
+ * \brief Build a pointer object from start of the string.
  *
- * @param str The start of the input string.
- * @param point A pointer to the new pointer object.
- * @param str_end The end of the input string.
- * @return A pointer to the next char in the string after parsing the point. Alternatively a null
+ * \param str The start of the input string.
+ * \param point A pointer to the new pointer object.
+ * \param str_end The end of the input string.
+ * \return A pointer to the next char in the string after parsing the point. Alternatively a null
  *pointer if something has gone wrong.
  */
 STATIC_INLINE char * note_plpath_dp_build_pt(char *str,
@@ -196,11 +196,11 @@ STATIC_INLINE char * note_plpath_dp_build_pt(char *str,
 }
 
 /**
- * @brief Strip a comment line from the input string.
+ * \brief Strip a comment line from the input string.
  *
- * @param str A pointer to the current location in the input string.
- * @param str_end The end of the input string.
- * @return A pointer to the next char in the string after parsing the point. Alternatively a null
+ * \param str A pointer to the current location in the input string.
+ * \param str_end The end of the input string.
+ * \return A pointer to the next char in the string after parsing the point. Alternatively a null
  *pointer if something has gone wrong.
  */
 STATIC_INLINE char * note_plpath_dp_strip_com(char *str, const char *str_end)
@@ -213,11 +213,11 @@ STATIC_INLINE char * note_plpath_dp_strip_com(char *str, const char *str_end)
 }
 
 /**
- * @brief Strip new lines from the front of the input string.
+ * \brief Strip new lines from the front of the input string.
  *
- * @param str A pointer to the current location in the input string.
- * @param str_end The end of the input string.
- * @return A pointer to the next char in the string after parsing the point. Alternatively a null
+ * \param str A pointer to the current location in the input string.
+ * \param str_end The end of the input string.
+ * \return A pointer to the next char in the string after parsing the point. Alternatively a null
  *pointer if something has gone wrong.
  */
 STATIC_INLINE char * note_plpath_dp_move_nl(char *str, const char *str_end)
@@ -230,11 +230,11 @@ STATIC_INLINE char * note_plpath_dp_move_nl(char *str, const char *str_end)
 }
 
 /**
- * @brief Strip white space chars from the front of the input string.
+ * \brief Strip white space chars from the front of the input string.
  *
- * @param str A pointer to the current location in the input string.
- * @param str_end The end of the input string.
- * @return A pointer to the next char in the string after parsing the point. Alternatively a null
+ * \param str A pointer to the current location in the input string.
+ * \param str_end The end of the input string.
+ * \return A pointer to the next char in the string after parsing the point. Alternatively a null
  *pointer if something has gone wrong.
  */
 STATIC_INLINE char * note_plpath_dp_strip_lws(char *str, const char *str_end)
@@ -247,11 +247,11 @@ STATIC_INLINE char * note_plpath_dp_strip_lws(char *str, const char *str_end)
 }
 
 /**
- * @brief Process and input string into a new point.
+ * \brief Process and input string into a new point.
  *
- * @param str The input string to process.
- * @param path The location to store the path.
- * @return A status flag indicating the success or failure of the operation.
+ * \param str The input string to process.
+ * \param path The location to store the path.
+ * \return A status flag indicating the success or failure of the operation.
  */
 STATIC_INLINE_UINT8 note_plpath_dp_process_str(char *str, note_plpath_t *path)
 {
@@ -328,13 +328,13 @@ STATIC_INLINE_UINT8 note_plpath_dp_process_str(char *str, note_plpath_t *path)
 
 /************************** Encode Path ***************************************/
 
-/*!
- * @brief Insert the base 10 string representation of a double into the output string.
+/**
+ * \brief Insert the base 10 string representation of a double into the output string.
  *
- * @param new_int A double to insert.
- * @param str A pointer of current index of the output string.
- * @param buffer_end A pointer to the end of the output string buffer.
- * @return A pointer to the next char in the string after parsing the point. Alternatively a null
+ * \param new_int A double to insert.
+ * \param str A pointer of current index of the output string.
+ * \param buffer_end A pointer to the end of the output string buffer.
+ * \return A pointer to the next char in the string after parsing the point. Alternatively a null
  *pointer if something has gone wrong.
  */
 STATIC_INLINE char * note_plpath_ep_insert_double(double new_double,
@@ -360,11 +360,11 @@ STATIC_INLINE char * note_plpath_ep_insert_double(double new_double,
 }
 
 /**
- * @brief Convert a segment (connected component) of the PL path into a string.
- * @param active_point The start of the segment.
- * @param str A pointer to the current location in the output string.
- * @param str_end A pointer to the end of the output string.
- * @return A pointer to the next char in the string after parsing the point. Alternatively a null
+ * \brief Convert a segment (connected component) of the PL path into a string.
+ * \param active_point The start of the segment.
+ * \param str A pointer to the current location in the output string.
+ * \param str_end A pointer to the end of the output string.
+ * \return A pointer to the next char in the string after parsing the point. Alternatively a null
  *pointer if something has gone wrong.
  */
 STATIC_INLINE char * note_plpath_ep_writeseg(note_plpath_point_t *active_point,

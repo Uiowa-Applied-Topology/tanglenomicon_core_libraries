@@ -80,9 +80,9 @@ void tearDown(void)
 /*******************************Test cases*************************************/
 /******************************************************************************/
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 STATIC_INLINE void test_decode(void)
 {
@@ -118,9 +118,9 @@ STATIC_INLINE void test_decode(void)
                                   tv_buffer_de.tv_length);
 }
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 STATIC_INLINE void test_encode(void)
 {

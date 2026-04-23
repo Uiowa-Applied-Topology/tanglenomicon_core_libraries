@@ -47,8 +47,8 @@ static void test_func_compute()
     }
 }
 
-/*!
- * @brief Positive computation test cases
+/**
+ * \brief Positive computation test cases
  */
 void test_compute_positive(void)
 {

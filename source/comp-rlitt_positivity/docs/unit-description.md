@@ -1,8 +1,8 @@
 ---
 date: 2025-06-16
 authors:
-  - Joe Starr
-contact: support@joe-starr.com
+  - joe_starr
+contact: dr@joe-starr.com
 abstract: A unit description for computation of arborescent tangle positivity.
 ---
 
@@ -191,220 +191,175 @@ When this function is invoked, the result of the positivity computation process 
 
 #### Positive Tests
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "Valid Configuration"
-
-    A valid configuration for the computation is passed to the function.
-
-    **Inputs:**
-
-    - A valid configuration.
-
-    **Expected Output:**
-
-    A positive response.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "Valid Configuration"
+>
+> A valid configuration for the computation is passed to the function.
+>
+> **Inputs:**
+>
+>   - A valid configuration.
+>
+> **Expected Output:**
+>
+>    A positive response.
 
 #### Negative Tests
 
-<!-- prettier-ignore-start -->
+> [!test-card] "Null Configuration"
+>
+> A null configuration for the computation is passed to the function.
+>
+> **Inputs:**
+>
+>   - A null configuration.
+>
+> **Expected Output:**
+>
+>    A negative response.
 
-!!! test-card "Null Configuration"
-
-    A null configuration for the computation is passed to the function.
-
-    **Inputs:**
-
-    - A null configuration.
-
-    **Expected Output:**
-
-    A negative response.
-
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-
-!!! test-card "Null configuration Parameters"
-
-    A configuration with various null parameters is passed to the function.
-
-    **Inputs:**
-
-    - A configuration with null tree.
-
-    **Expected Output:**
-
-    A negative response.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "Null configuration Parameters"
+>
+> A configuration with various null parameters is passed to the function.
+>
+> **Inputs:**
+>
+>   - A configuration with null tree.
+>
+> **Expected Output:**
+>
+>    A negative response.
 
 ### Compute Function
 
 #### Positive Tests
 
-<!-- prettier-ignore-start -->
+> [!test-card] "A valid configuration"
+>
+> A valid configuration is set for the component. The computation is executed and returns
+> successfully. The result written to the write interface is correct.
+>
+> **Inputs:**
+>
+>   - A valid configuration is set.
+>
+> **Expected Output:**
+>
+>   - A positive response.
+>   - A correct output on the write interface.
 
-!!! test-card "A valid configuration"
+> [!test-card] "A valid configuration with null write interface"
+>
+> A valid configuration is set for the component with null write. The computation is executed and
+> returns successfully.
+>
+> **Inputs:**
+>
+>   - A valid configuration is set.
+>
+> **Expected Output:**
+>
+>   - A positive response.
 
-    A valid configuration is set for the component. The computation is executed and
-    returns successfully. The result written to the write interface is correct.
+> [!test-card] "Correct handling of the root"
+>
+> A valid configuration is set for the component. The computation is executed and returns
+> successfully. The result written to the write interface is correct.
+>
+> **Inputs:**
+>
+>   - A valid configuration is set, the configured tree is integral with the following weights:
+>     - 2
+>     - -2
+>     - 3
+>
+> **Expected Output:**
+>
+>   - A positive response.
+>   - A correct output on the write interface.
 
-    **Inputs:**
+> [!test-card] "Correct handling of a leaf vertex"
+>
+> A valid configuration is set for the component. The computation is executed and returns
+> successfully. The result written to the write interface is correct.
+>
+> **Inputs:**
+>
+>   - A valid configuration is set, the following trees are configured:
+>     - `i([2][3])`
+>     - `i([-2][3])`
+>     - `i([3][3])`
+>     - `i([2][-2])`
+>     - `i([2][-2 -2])`
+>
+> **Expected Output:**
+>
+>   - A positive response.
+>   - A correct output on the write interface.
 
-    - A valid configuration is set.
-
-    **Expected Output:**
-
-    - A positive response.
-    - A correct output on the write interface.
-
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-
-!!! test-card "A valid configuration with null write interface"
-
-    A valid configuration is set for the component with null write. The computation is
-    executed and returns successfully.
-
-    **Inputs:**
-
-    - A valid configuration is set.
-
-    **Expected Output:**
-
-    - A positive response.
-
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-
-!!! test-card "Correct handling of the root"
-
-    A valid configuration is set for the component. The computation is executed and
-    returns successfully. The result written to the write interface is correct.
-
-    **Inputs:**
-
-    - A valid configuration is set, the configured tree is integral with the following weights:
-        - 2
-        - -2
-        - 3
-
-    **Expected Output:**
-
-    - A positive response.
-    - A correct output on the write interface.
-
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-
-!!! test-card "Correct handling of a leaf vertex"
-
-    A valid configuration is set for the component. The computation is executed and
-    returns successfully. The result written to the write interface is correct.
-
-    **Inputs:**
-
-    - A valid configuration is set, the following trees are configured:
-        - `i([2][3])`
-        - `i([-2][3])`
-        - `i([3][3])`
-        - `i([2][-2])`
-        - `i([2][-2 -2])`
-
-    **Expected Output:**
-
-    - A positive response.
-    - A correct output on the write interface.
-
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-
-!!! test-card "Correct handling of an internal vertex"
-
-    A valid configuration is set for the component. The computation is executed and
-    returns successfully. The result written to the write interface is correct.
-
-    **Inputs:**
-
-    - A valid configuration is set, the following trees are configured:
-        - `i([3](([3][3])2))`
-        - `i([3](([3][3])-2))`
-        - `i([3](([3][3])3))`
-        - `i((([3][3])2)(([3][3])-2))`
-
-    **Expected Output:**
-
-    - A positive response.
-    - A correct output on the write interface.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "Correct handling of an internal vertex"
+>
+> A valid configuration is set for the component. The computation is executed and returns
+> successfully. The result written to the write interface is correct.
+>
+> **Inputs:**
+>
+>   - A valid configuration is set, the following trees are configured:
+>     - `i([3](([3][3])2))`
+>     - `i([3](([3][3])-2))`
+>     - `i([3](([3][3])3))`
+>     - `i((([3][3])2)(([3][3])-2))`
+>
+> **Expected Output:**
+>
+>   - A positive response.
+>   - A correct output on the write interface.
 
 #### Negative Tests
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "Not Configured"
-
-    The compute interface is called before configuration.
-
-    **Inputs:**
-
-    - None.
-
-    **Expected Output:**
-
-    A negative response.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "Not Configured"
+>
+> The compute interface is called before configuration.
+>
+> **Inputs:**
+>
+>   - None.
+>
+> **Expected Output:**
+>
+>    A negative response.
 
 ### Result Function
 
 #### Positive Tests
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "A valid configuration and computation"
-
-    A valid configuration is set for the component. The computation is executed and
-    returns successfully. The resulting value is correct when read from the result
-    interface.
-
-    **Inputs:**
-
-    - A valid configuration is set with the following trees:
-        - `i([2][3])`
-        - `i([-2][3])`
-        - `i([3][3])`
-        - `i([2][-2])`
-
-    **Expected Output:**
-
-    - A positive response.
-    - The result is correct.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "A valid configuration and computation"
+>
+> A valid configuration is set for the component. The computation is executed and returns
+> successfully. The resulting value is correct when read from the result interface.
+>
+> **Inputs:**
+>
+>   - A valid configuration is set with the following trees:
+>     - `i([2][3])`
+>     - `i([-2][3])`
+>     - `i([3][3])`
+>     - `i([2][-2])`
+>
+> **Expected Output:**
+>
+>   - A positive response.
+>   - The result is correct.
 
 #### Negative Tests
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "Computation not executed"
-
-    The result interface is called before compute has been run.
-
-    **Inputs:**
-
-    - None.
-
-    **Expected Output:**
-
-    A negative response.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "Computation not executed"
+>
+> The result interface is called before compute has been run.
+>
+> **Inputs:**
+>
+>   - None.
+>
+> **Expected Output:**
+>
+>    A negative response.

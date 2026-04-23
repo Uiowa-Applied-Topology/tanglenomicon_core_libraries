@@ -1,10 +1,10 @@
-/*!
- *  @file comp_wptt_canonicity.h
+/**
+ *  \file comp_wptt_canonicity.h
  *
- *  @brief  A module for compute wptt_canonicity
+ *  \brief  A module for compute wptt_canonicity
  *
  *
- *  @author    author
+ *  \author    author
  *
  */
 
@@ -41,26 +41,26 @@
  | `
  |
  */
-/*!
- * @brief Failed to configure the module due to issue in rootstock.
+/**
+ * \brief Failed to configure the module due to issue in rootstock.
  *
  */
 #define COMP_WPTT_CANON_CONFIG_PARAM         (0x1u << 1u)
 
-/*!
- * @brief Failed to configure the module due to null config
+/**
+ * \brief Failed to configure the module due to null config
  *
  */
 #define COMP_WPTT_CANON_CONFIG_IS_NULL       (0x1u << 2u)
 
-/*!
- * @brief Failed to configure the module due to uninit positivity
+/**
+ * \brief Failed to configure the module due to uninit positivity
  *
  */
 #define COMP_WPTT_CANON_CONFIG_POS_ERROR     (0x1u << 3u)
 
-/*!
- * @brief Failed to configure the module due to tree as null
+/**
+ * \brief Failed to configure the module due to tree as null
  *
  */
 #define COMP_WPTT_CANON_CONFIG_TREE_ERROR    (0x1u << 4u)
@@ -81,26 +81,26 @@
  |
  */
 
-/*!
- * @brief Failed to configure the module due to null config
+/**
+ * \brief Failed to configure the module due to null config
  *
  */
 #define COMP_WPTT_CANON_COMPUTE_CFG_ERROR           (0x1u << 1u)
 
-/*!
- * @brief Failed to configure the module due to config previously executed against
+/**
+ * \brief Failed to configure the module due to config previously executed against
  *
  */
 #define COMP_WPTT_CANON_COMPUTE_ALREADY_COMPUTED    (0x1u << 2u)
 
-/*!
- * @brief Failed to configure the module due to error in the vertex computation
+/**
+ * \brief Failed to configure the module due to error in the vertex computation
  *
  */
 #define COMP_WPTT_CANON_COMPUTE_VERTCOMP_ERROR      (0x1u << 3u)
 
-/*!
- * @brief Failed to configure the module due to error in the vertex stack
+/**
+ * \brief Failed to configure the module due to error in the vertex stack
  *
  */
 #define COMP_WPTT_CANON_COMPUTE_STACK_ERROR         (0x1u << 4u)
@@ -115,8 +115,8 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief Type defining the order direction of a node in a wptt.
+/**
+ * \brief Type defining the order direction of a node in a wptt.
  */
 typedef enum comp_wptt_canonicity_canon_e {
     COMP_WPTT_CANON_CAN_UNINIT,
@@ -132,8 +132,8 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief Type defining the order direction of a node in a wptt.
+/**
+ * \brief Type defining the order direction of a node in a wptt.
  */
 typedef enum comp_wptt_cononicity_positivity_e {
     COMP_WPTT_CANON_POS_UNINIT,
@@ -150,8 +150,8 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief The type definition for configuring the wptt_canonicity computation.
+/**
+ * \brief The type definition for configuring the wptt_canonicity computation.
  *
  */
 typedef struct {
@@ -166,8 +166,8 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief The type definition for configuring the wptt_canonicity computation.
+/**
+ * \brief The type definition for configuring the wptt_canonicity computation.
  *
  */
 typedef struct {
@@ -192,9 +192,9 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief The public configuration function.
- * @param config_arg The config to set.
+/**
+ * \brief The public configuration function.
+ * \param config_arg The config to set.
  */
 uint8_t comp_wptt_canonicity_config(comp_wptt_canonicity_config_t *config_arg);
 
@@ -207,9 +207,9 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief The public compute function. Calling this executes the computation on the configured data.
- * @return uint8_t Generation status info.
+/**
+ * \brief The public compute function. Calling this executes the computation on the configured data.
+ * \return uint8_t Generation status info.
  */
 uint8_t comp_wptt_canonicity_compute();
 
@@ -223,10 +223,10 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief The public result function. Calling this retrieves the result of the computation on the
+/**
+ * \brief The public result function. Calling this retrieves the result of the computation on the
  *configured data.
- * @return uint8_t Generation status info.
+ * \return uint8_t Generation status info.
  */
 const comp_wptt_canonicity_result_t * comp_wptt_canonicity_result();
 

@@ -2,7 +2,6 @@
 /* Created by joe on 6/29/25. */
 /* */
 /* cppcheck-suppress-begin [unreadVariable, unusedVariable] */
-#include "bits/stdint-uintn.h"
 #include "notation_wptt.h"
 #include "generator_rlitt.h"
 #include "test_low_crossing.h"
@@ -12,10 +11,7 @@
 #include "../utils/utils.h"
 #include "unity.h"
 #include <stdbool.h>
-static struct note_wptt_node_t note_wptt_nodes[20 * UTIL_TANG_DEFS_MAX_CROSSINGNUM];
-static note_wptt_node_buffer_t buffer = { (note_wptt_node_t *)&note_wptt_nodes,
-                                          20 * UTIL_TANG_DEFS_MAX_CROSSINGNUM,
-                                          0 };
+
 size_t number_of_tangles = 0;
 STATIC_INLINE_UINT8 stub_write_success(const char *key,
                                        const char *index,
@@ -32,18 +28,14 @@ STATIC_INLINE_UINT8 stub_write_success(const char *key,
 void test_low_crossing(void)
 {
     size_t i;
-    char * zero[] = { "i[0]" };
-    gen_rlitt_positivity_e zero_p[] = { GEN_RLITT_NEU };
 
-    char *one[] = { "i[1]", "i[-1]" };
-    gen_rlitt_positivity_e one_p[] = { GEN_RLITT_NEU, GEN_RLITT_NEU };
-    note_wptt_t *          one_n[2];
+    char *       one[] = { "i[1]", "i[-1]" };
+    note_wptt_t *one_n[2];
 
     load_note(one_n, one, 2);
 
-    char *two_good[] = { "i[2]", "i[-2]" };
-    gen_rlitt_positivity_e two_good_p[] = { GEN_RLITT_NEU, GEN_RLITT_NEU };
-    note_wptt_t *          two_good_n[2];
+    char *       two_good[] = { "i[2]", "i[-2]" };
+    note_wptt_t *two_good_n[2];
     load_note(two_good_n, two_good, 2);
 
     char *       two_not_good[] = { "i[2 0]", "i[-2 0]" };
@@ -71,14 +63,12 @@ void test_low_crossing(void)
     note_wptt_t *four_good_neu_n[8];
     load_note(four_good_neu_n, four_good_neu, 8);
 
-    char *four_good_neg[] = { "i([-2][-2])" };
-    gen_rlitt_positivity_e four_good_neg_p[] = { GEN_RLITT_NEG };
-    note_wptt_t *          four_good_neg_n[1];
+    char *       four_good_neg[] = { "i([-2][-2])" };
+    note_wptt_t *four_good_neg_n[1];
     load_note(four_good_neg_n, four_good_neg, 1);
 
-    char *four_good_pos[] = { "i([2][2])" };
-    gen_rlitt_positivity_e four_good_pos_p[] = { GEN_RLITT_POS };
-    note_wptt_t *          four_good_pos_n[1];
+    char *       four_good_pos[] = { "i([2][2])" };
+    note_wptt_t *four_good_pos_n[1];
     load_note(four_good_pos_n, four_good_pos, 1);
 
     char *       four_not_good_neu[] = { "i[4 0]",

@@ -1,8 +1,8 @@
 ---
 date: 2024-09-18
 authors:
-  - Joe Starr
-contact: support@joe-starr.com
+  - joe_starr
+contact: dr@joe-starr.com
 abstract: A unit description for the arborescent planar tangle tree notation.
 ---
 
@@ -83,14 +83,10 @@ goals of non-runner components. That means this notation structure contains:
 - The size of the supplied list of segments
 - A buffer of points to be used to build the piecewise linear path
 
-<!-- prettier-ignore-start -->
-
-!!! warning
-
-    This structure does not offer any guarantees on intersection (or self intersection). This means
-    that segments of a path may intersect (or self intersect).
-
-<!-- prettier-ignore-end -->
+>[!warning]
+>
+> This structure does not offer any guarantees on intersection (or self intersection). This means
+> that segments of a path may intersect (or self intersect).
 
 ##### Point Structure
 
@@ -103,7 +99,7 @@ on the path. The structure also contains a pointer to the "next" point in the se
 
 The decode function takes in a string of the following form:
 
-```
+```text
 x,y,z
 x,y,z
 x,y,z
@@ -118,12 +114,10 @@ Where $x,y,z$ are string representations of floating-point numbers, `\n\n` indic
 of a new segment of the collection of PL paths, and a line starting with `//` indicates a comment
 line.
 
-<!-- prettier-ignore-start -->
-
-!!! warning
-
-    Comments are lost when decoding the string. This means if you take a round trip (file -> decode -> encode)
-    the resulting string will have no comments.
+> [!warning]
+>
+> Comments are lost when decoding the string. This means if you take a round trip (file -> decode ->
+> encode) the resulting string will have no comments.
 
 This process is described in the following state machines:
 
@@ -190,86 +184,69 @@ The private functions of the component are straightforward.
 
 #### Positive Tests
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "Valid string representing a PL path"
-
-    A valid string representing a PL path is fed to the function.
-
-    **Inputs:**
-
-    - Valid strings representing a PL path:
-        - A string with multiple segments
-        - A string with a single segment
-        - A string with comments
-        - A string with no comments
-        - A string with `\n\n\n`
-        - A string with terminal `\n`
-        - A string with no segments.
-
-    **Expected Output:**
-
-    A correct and valid decoding of the string
-
-<!-- prettier-ignore-end -->
+> [!test-card] "Valid string representing a PL path"
+>
+> A valid string representing a PL path is fed to the function.
+>
+> **Inputs:**
+>
+>   - Valid strings representing a PL path:
+>     - A string with multiple segments
+>     - A string with a single segment
+>     - A string with comments
+>     - A string with no comments
+>     - A string with `\n\n\n`
+>     - A string with terminal `\n`
+>     - A string with no segments.
+>
+> **Expected Output:**
+>
+>    A correct and valid decoding of the string
 
 #### Negative Tests
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "A malformed PL path is fed to the function"
-
-    A malformed PL path string is fed to the function.
-
-    **Inputs:**
-
-    Malformed strings with the following characteristics:
-
-    - An illegal character.
-    - An incomplete point.
-
-```
-**Expected Output:**
-
-The function reports an error.
-```
-
-<!-- prettier-ignore-end -->
+> [!test-card] "A malformed PL path is fed to the function"
+>
+> A malformed PL path string is fed to the function.
+>
+> **Inputs:**
+>
+> Malformed strings with the following characteristics:
+>
+>   - An illegal character.
+>   - An incomplete point.
+>
+> **Expected Output:**
+>
+>    The function reports an error.
+>
 
 ### Encode Interface
 
 #### Positive Tests
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "Valid PL path"
-
-    A valid PL path is fed to the function.
-
-    **Inputs:**
-
-    - A correct and valid PL path.
-
-    **Expected Output:**
-
-    A valid string representing the PL path.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "Valid PL path"
+>
+> A valid PL path is fed to the function.
+>
+> **Inputs:**
+>
+>   - A correct and valid PL path.
+>
+> **Expected Output:**
+>
+>    A valid string representing the PL path.
 
 #### Negative Tests
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "A NULL string buffer is passed"
-
-    The output string buffer is a NULL pointer.
-
-    **Inputs:**
-
-    - A NULL pointer buffer is passed to the function
-
-    **Expected Output:**
-
-    The function will produce an error.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "A NULL string buffer is passed"
+>
+> The output string buffer is a NULL pointer.
+>
+> **Inputs:**
+>
+>   - A NULL pointer buffer is passed to the function
+>
+> **Expected Output:**
+>
+>    The function will produce an error.

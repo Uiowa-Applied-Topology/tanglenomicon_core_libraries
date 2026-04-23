@@ -17,7 +17,7 @@ classDiagram
 
 #### Read Function
 
-The read function takes in a key index pair, then reads the value at key:index from the data store
+The read function takes in a key index pair, then reads the value at key: index from the data store
 and returns the value.
 
 #### Write Function

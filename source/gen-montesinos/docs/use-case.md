@@ -64,7 +64,7 @@ N/A
 
 A canonical description of a Montesinos Knots is given by Bonahon and Siebenmann in Theorem 11.6 of
 "New Geometric Splittings of Classical Knots and the Classiﬁcation and Symmetries of Arborescent
-Knots" [${}^{[1]}$](https://dornsife.usc.edu/assets/sites/1191/docs/preprints/bonsieb.pdf). The
+Knots" [${}^{[1]}$](https: //dornsife.usc.edu/assets/sites/1191/docs/preprints/bonsieb.pdf). The
 given construction can be modified to describe a canonical Montesinos Tangle. That is a tangle with
 $n$ rational sub-tangles summed together with $+$, with potentially $1$ integral tangle as the final
 sub-tangle. This means our generation strategy for Montesinos tangles is to take combinations of our

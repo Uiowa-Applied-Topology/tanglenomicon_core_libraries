@@ -1,8 +1,8 @@
 ---
 date: 2025-11-16
 authors:
-  - Joe Starr
-contact: support@joe-starr.com
+  - joe_starr
+contact: dr@joe-starr.com
 abstract: A unit description for mutation of the $F_i$ move mutator.
 ---
 
@@ -248,153 +248,124 @@ stateDiagram-v2
 
 #### Positive Tests
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "Valid Configuration"
-
-    A valid configuration for the mutation is passed to the function.
-
-    **Inputs:**
-
-    - A valid configuration.
-
-    **Expected Output:**
-
-    A positive response.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "Valid Configuration"
+>
+> A valid configuration for the mutation is passed to the function.
+>
+> **Inputs:**
+>
+>   - A valid configuration.
+>
+> **Expected Output:**
+>
+>    A positive response.
 
 #### Negative Tests
 
-<!-- prettier-ignore-start -->
+> [!test-card] "Null Configuration"
+>
+> A null configuration for the mutation is passed to the function.
+>
+> **Inputs:**
+>
+>   - A null configuration.
+>
+> **Expected Output:**
+>
+>    A negative response.
 
-!!! test-card "Null Configuration"
-
-    A null configuration for the mutation is passed to the function.
-
-    **Inputs:**
-
-    - A null configuration.
-
-    **Expected Output:**
-
-    A negative response.
-
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-
-!!! test-card "Invalid Configuration Parameters"
-
-    A configuration with various null parameters is passed to the function.
-
-    **Inputs:**
-
-    - A configuration with null vertex.
-    - A configuration with an uninitialized move.
-    - Configurations for the $F_1$ move with:
-        - Null label
-        - Uninitialized label
-    - Configurations for the $F_2$ move with:
-        - Null label
-        - Uninitialized label
-        - Uninitialized eqclass
-    - Configurations for the $F_3^\prime$ move with:
-        - Uninitialized direction
-
-    **Expected Output:**
-
-    A negative response.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "Invalid Configuration Parameters"
+>
+> A configuration with various null parameters is passed to the function.
+>
+> **Inputs:**
+>
+>   - A configuration with null vertex.
+>   - A configuration with an uninitialized move.
+>   - Configurations for the $F_1$ move with:
+>     - Null label
+>     - Uninitialized label
+>   - Configurations for the $F_2$ move with:
+>     - Null label
+>     - Uninitialized label
+>     - Uninitialized eqclass
+>   - Configurations for the $F_3^\prime$ move with:
+>     - Uninitialized direction
+>
+> **Expected Output:**
+>
+>    A negative response.
 
 ### Mutate Function
 
 #### Positive Tests
 
-<!-- prettier-ignore-start -->
-
-!!! test-card "A valid configuration"
-
-    A valid configuration is set for the component. The mutation is executed and
-    returns successfully.
-
-    **Inputs:**
-
-    - A valid configuration is set for $F_1$.
-    - Valid configurations are set for $F_2$:
-        - Eqclass is child.
-        - Eqclass is self.
-    - Valid configurations are set for $F_3^\prime$ with at least one test suming two weights:
-        - Odd weight:
-            - Index is rightmost:
-                - Direction is forward.
-                - Direction is backward.
-            - Index is leftmost:
-                - Direction is forward.
-                - Direction is backward.
-        - Even weight:
-            - Index is rightmost:
-                - Direction is forward.
-                - Direction is backward.
-            - Index is leftmost:
-                - Direction is forward.
-                - Direction is backward.
-
-    **Expected Output:**
-
-    - A positive response.
-    - Mutation is correct.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "A valid configuration"
+>
+> A valid configuration is set for the component. The mutation is executed and returns successfully.
+>
+> **Inputs:**
+>
+>   - A valid configuration is set for $F_1$.
+>   - Valid configurations are set for $F_2$:
+>     - Eqclass is child.
+>     - Eqclass is self.
+>   - Valid configurations are set for $F_3^\prime$ with at least one test suming two weights:
+>     - Odd weight:
+>         - Index is rightmost:
+>             - Direction is forward.
+>             - Direction is backward.
+>         - Index is leftmost:
+>             - Direction is forward.
+>             - Direction is backward.
+>     - Even weight:
+>         - Index is rightmost:
+>             - Direction is forward.
+>             - Direction is backward.
+>         - Index is leftmost:
+>             - Direction is forward.
+>             - Direction is backward.
+>
+> **Expected Output:**
+>
+>   - A positive response.
+>   - Mutation is correct.
 
 #### Negative Tests
 
-<!-- prettier-ignore-start -->
+> [!test-card] "Not Configured"
+>
+> The mutate interface is called before configuration.
+>
+> **Inputs:**
+>
+>   - None.
+>
+> **Expected Output:**
+>
+>    A negative response.
 
-!!! test-card "Not Configured"
+> [!test-card] "Double Execute"
+>
+> The mutate interface is called without reconfiguring the module.
+>
+> **Inputs:**
+>
+>   - None.
+>
+> **Expected Output:**
+>
+>    A negative response.
 
-    The mutate interface is called before configuration.
-
-    **Inputs:**
-
-    - None.
-
-    **Expected Output:**
-
-    A negative response.
-
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-
-!!! test-card "Double Execute"
-
-    The mutate interface is called without reconfiguring the module.
-
-    **Inputs:**
-
-    - None.
-
-    **Expected Output:**
-
-    A negative response.
-
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-
-!!! test-card "$F_3^\prime$ index out of bounds"
-
-    The mutate interface is called with a weight index configured outside
-    of the size of the number of children.
-
-    **Inputs:**
-
-    - Configuration with weight idx outside bounds.
-
-    **Expected Output:**
-
-    A negative response.
-
-<!-- prettier-ignore-end -->
+> [!test-card] "$F_3^\prime$ index out of bounds"
+>
+> The mutate interface is called with a weight index configured outside of the size of the number of
+> children.
+>
+> **Inputs:**
+>
+>   - Configuration with weight idx outside bounds.
+>
+> **Expected Output:**
+>
+>    A negative response.

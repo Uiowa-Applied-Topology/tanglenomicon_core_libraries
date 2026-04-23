@@ -43,8 +43,8 @@ static void test_func_results()
     TEST_ASSERT_EQUAL_UINT_MESSAGE(res_g, results->is_canonical, buffer);
 }
 
-/*!
- * @brief Positive computation test cases
+/**
+ * \brief Positive computation test cases
  */
 void test_results_positive(void)
 {

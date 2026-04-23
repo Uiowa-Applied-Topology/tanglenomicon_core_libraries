@@ -1,9 +1,9 @@
-/*!
- *  @file mut_wptt_f_moves.h
+/**
+ *  \file mut_wptt_f_moves.h
  *
- *  @brief Mutates a tree by one of the $F_i$ moves.
+ *  \brief Mutates a tree by one of the $F_i$ moves.
  *
- *  @author    Joe Starr
+ *  \author    Joe Starr
  *
  */
 
@@ -40,38 +40,38 @@
  | `
  |
  */
-/*!
- * @brief Failed to configure the module due to issue with the object vertex.
+/**
+ * \brief Failed to configure the module due to issue with the object vertex.
  *
  */
 #define MUT_WPTT_F_MOVES_CONFIG_VERTEX     (0X1U << 1U)
 
-/*!
- * @brief Failed to configure the module due to a null config.
+/**
+ * \brief Failed to configure the module due to a null config.
  *
  */
 #define MUT_WPTT_F_MOVES_CONFIG_IS_NULL    (0X1U << 2U)
 
-/*!
- * @brief Failed to configure the module due to F1 config issue.
+/**
+ * \brief Failed to configure the module due to F1 config issue.
  *
  */
 #define MUT_WPTT_F_MOVES_CONFIG_F1         (0X1U << 3U)
 
-/*!
- * @brief Failed to configure the module due to F2 config issue.
+/**
+ * \brief Failed to configure the module due to F2 config issue.
  *
  */
 #define MUT_WPTT_F_MOVES_CONFIG_F2         (0X1U << 4U)
 
-/*!
- * @brief Failed to configure the module due to F3 config issue.
+/**
+ * \brief Failed to configure the module due to F3 config issue.
  *
  */
 #define MUT_WPTT_F_MOVES_CONFIG_F3         (0X1U << 5U)
 
-/*!
- * @brief Failed to configure the module due to move config issue.
+/**
+ * \brief Failed to configure the module due to move config issue.
  *
  */
 #define MUT_WPTT_F_MOVES_CONFIG_MOVE       (0X1U << 6U)
@@ -97,45 +97,45 @@
  */
 
 
-/*!
- * @brief Failed to run the module due to null config.
+/**
+ * \brief Failed to run the module due to null config.
  *
  */
 #define MUT_WPTT_F_MOVES_MUTATE_CFG_ERROR    (0X1U << 1U)
 
 
-/*!
- * @brief Failed to run the module due to the config having been previously computed against.
+/**
+ * \brief Failed to run the module due to the config having been previously computed against.
  *
  */
 #define MUT_WPTT_F_MOVES_MUTATE_ALREADY_COMPUTED    (0X1U << 2U)
 
-/*!
- * @brief Failed to run the module due to move configuration error
+/**
+ * \brief Failed to run the module due to move configuration error
  *
  */
 #define MUT_WPTT_F_MOVES_MUTATE_MOVE_CFG            (0X1U << 3U)
 
-/*!
- * @brief Failed to run the module due to eqclass configuration error.
+/**
+ * \brief Failed to run the module due to eqclass configuration error.
  *
  */
 #define MUT_WPTT_F_MOVES_MUTATE_MOVE_EQCLASS        (0X1U << 4U)
 
-/*!
- * @brief Failed to run the module due to mutation $F_3\prime$ error
+/**
+ * \brief Failed to run the module due to mutation $F_3\prime$ error
  *
  */
 #define MUT_WPTT_F_MOVES_MUTATE_MOVE_F3_ERROR       (0X1U << 5U)
 
-/*!
- * @brief Failed to run the module due to error while walking the tree.
+/**
+ * \brief Failed to run the module due to error while walking the tree.
  *
  */
 #define MUT_WPTT_F_MOVES_MUTATE_MOVE_WALK_ERROR     (0X1U << 6U)
 
-/*!
- * @brief Failed to run the module due to error in label computation.
+/**
+ * \brief Failed to run the module due to error in label computation.
  *
  */
 #define MUT_WPTT_F_MOVES_MUTATE_LABEL_ERROR         (0X1U << 7U)
@@ -149,8 +149,8 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief Type defining the moves available in the module
+/**
+ * \brief Type defining the moves available in the module
  */
 typedef enum mut_f_moves_e {
     MUT_F_MOVE_UNINIT,
@@ -169,8 +169,8 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief Type defining the direction to shift a weight in the $F_3\prime$ move.
+/**
+ * \brief Type defining the direction to shift a weight in the $F_3\prime$ move.
  */
 typedef enum mut_f_moves_direction_e {
     MUT_F_MOVES_DIR_UNINIT,
@@ -187,8 +187,8 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief Type defining the equivalence class to apply the $F_2$ to.
+/**
+ * \brief Type defining the equivalence class to apply the $F_2$ to.
  */
 typedef enum mut_f_moves_eqclass_e {
     MUT_F_MOVES_EQCLASS_UNINIT,
@@ -204,8 +204,8 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief The type definition for configuring the module.
+/**
+ * \brief The type definition for configuring the module.
  *
  */
 typedef struct {
@@ -229,9 +229,9 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief The public configuration function.
- * @param config_arg The config to set.
+/**
+ * \brief The public configuration function.
+ * \param config_arg The config to set.
  */
 uint8_t mut_wptt_f_moves_config(mut_wptt_f_moves_config_t *config_arg);
 
@@ -244,9 +244,9 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief A public function, calling this executes the mutator on the configured data.
- * @return uint8_t Mutation status info.
+/**
+ * \brief A public function, calling this executes the mutator on the configured data.
+ * \return uint8_t Mutation status info.
  */
 uint8_t mut_wptt_f_moves_mutate();
 

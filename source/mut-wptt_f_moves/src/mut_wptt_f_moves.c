@@ -1,15 +1,15 @@
 /**
- * @file
- * @brief
+ * \file
+ * \brief
  */
 
-/*!
- *  @file mut_wptt_f_moves.c
+/**
+ *  \file mut_wptt_f_moves.c
  *
- *  @brief Mutates a tree by one of the $F_i$ moves.
+ *  \brief Mutates a tree by one of the $F_i$ moves.
  *
  *
- *  @author   Joe Starr
+ *  \author   Joe Starr
  *
  */
 
@@ -30,7 +30,7 @@
 /******************************************************************************/
 
 /**
- * @brief The maximum stack size for the walk function.
+ * \brief The maximum stack size for the walk function.
  */
 #define MUT_WPTT_F_MOVES_STACK_SIZE    (UTIL_TANG_DEFS_MAX_CROSSINGNUM)
 
@@ -38,8 +38,8 @@
 /************************** Typedefs ******************************************/
 /******************************************************************************/
 
-/*!
- * @brief The function pointer type for walk reverse checker callback functions.
+/**
+ * \brief The function pointer type for walk reverse checker callback functions.
  */
 typedef bool (*should_reverse_funptr_t)(size_t depth);
 
@@ -63,12 +63,12 @@ STATIC_INLINE_UINT8 mut_wptt_f_moves_F3_nowrap();
 /******************************************************************************/
 
 /**
- * @brief Variable indicating if the configuration has been executed against.
+ * \brief Variable indicating if the configuration has been executed against.
  */
 static uint8_t was_executed = 0;
 
 /**
- * @brief Variable to store the local configuration to execute against.
+ * \brief Variable to store the local configuration to execute against.
  */
 static mut_wptt_f_moves_config_t *localcfg = NULL;
 /******************************************************************************/
@@ -185,11 +185,11 @@ uint8_t mut_wptt_f_moves_mutate()
 /******************************************************************************/
 
 /**
- * @brief Apply the $F_1$ move to a WPTT at the given vertex.
+ * \brief Apply the $F_1$ move to a WPTT at the given vertex.
  *
  * If the object vertex is not the root the move is mathematically undefined.
  *
- * @return The success flag of the move.
+ * \return The success flag of the move.
  */
 STATIC_INLINE_UINT8 mut_wptt_f_moves_F1()
 {
@@ -207,11 +207,11 @@ STATIC_INLINE_UINT8 mut_wptt_f_moves_F1()
 }
 
 /**
- * @brief Apply the $F_2$ move to a WPTT at the given vertex.
+ * \brief Apply the $F_2$ move to a WPTT at the given vertex.
  *
  * If the object vertex is not the root the move is mathematically undefined.
  *
- * @return The success flag of the move.
+ * \return The success flag of the move.
  */
 STATIC_INLINE_UINT8 mut_wptt_f_moves_F2()
 {
@@ -255,12 +255,12 @@ STATIC_INLINE_UINT8 mut_wptt_f_moves_F2()
 }
 
 /**
- * @brief Apply the $F_3^\prime$ move to a WPTT at the given vertex.
+ * \brief Apply the $F_3^\prime$ move to a WPTT at the given vertex.
  *
  * If the move would be applied "upwards" in the tree instead apply $F_3^\prime$ to all siblings in
  *the opposite direction.
  *
- * @return The success flag of the move.
+ * \return The success flag of the move.
  */
 STATIC_INLINE_UINT8 mut_wptt_f_moves_F3()
 {
@@ -300,9 +300,9 @@ STATIC_INLINE_UINT8 mut_wptt_f_moves_F3()
 }
 
 /**
- * @brief Apply $F_3^\prime$ to the object vertex with no wrap around parent.
+ * \brief Apply $F_3^\prime$ to the object vertex with no wrap around parent.
  *
- * @return Indicate the success of the operation.
+ * \return Indicate the success of the operation.
  */
 STATIC_INLINE_UINT8 mut_wptt_f_moves_F3_nowrap()
 {
@@ -349,9 +349,9 @@ STATIC_INLINE_UINT8 mut_wptt_f_moves_F3_nowrap()
 }
 
 /**
- * @brief Apply $F_3^\prime$ to the object vertex with wrap around parent.
+ * \brief Apply $F_3^\prime$ to the object vertex with wrap around parent.
  *
- * @return Indicate the success of the operation.
+ * \return Indicate the success of the operation.
  */
 STATIC_INLINE_UINT8 mut_wptt_f_moves_F3_wrap(size_t target_idx)
 {
@@ -375,12 +375,12 @@ STATIC_INLINE_UINT8 mut_wptt_f_moves_F3_wrap(size_t target_idx)
 }
 
 /**
- * @brief Walk the tree, reverse the order of the current vertex when reverse_checker() is true.
+ * \brief Walk the tree, reverse the order of the current vertex when reverse_checker() is true.
  *
- * @param vertex The vertex to start the walk at.
- * @param reverse_checker The function to determine if order should be reversed.
+ * \param vertex The vertex to start the walk at.
+ * \param reverse_checker The function to determine if order should be reversed.
  *
- * @return The success flag of the move.
+ * \return The success flag of the move.
  */
 STATIC_INLINE_UINT8 mut_wptt_f_moves_walk(note_wptt_node_t *vertex,
                                           should_reverse_funptr_t reverse_checker)
@@ -447,10 +447,10 @@ STATIC_INLINE_UINT8 mut_wptt_f_moves_walk(note_wptt_node_t *vertex,
 }
 
 /**
- * @brief Callback function for always true.
+ * \brief Callback function for always true.
  *
- * @param depth The depth that has been achieved in the tree walk.
- * @return The determination of if to reverse the order of the vertex.
+ * \param depth The depth that has been achieved in the tree walk.
+ * \return The determination of if to reverse the order of the vertex.
  */
 STATIC_INLINE bool mut_wptt_f_moves_revall(size_t depth)
 {
@@ -458,12 +458,12 @@ STATIC_INLINE bool mut_wptt_f_moves_revall(size_t depth)
 }
 
 /**
- * @brief Callback function that reverse order at even distance from the root of the walk.
+ * \brief Callback function that reverse order at even distance from the root of the walk.
  *
  * An odd depth indicates an even distance from the root the root is depth $0$.
  *
- * @param depth The count of edges away from the root of the tree.
- * @return The determination of if to reverse the order of the vertex.
+ * \param depth The count of edges away from the root of the tree.
+ * \return The determination of if to reverse the order of the vertex.
  */
 STATIC_INLINE bool mut_wptt_f_moves_revodd(size_t depth)
 {
@@ -475,11 +475,11 @@ STATIC_INLINE bool mut_wptt_f_moves_revodd(size_t depth)
 }
 
 /**
- * @brief Multiply two values of the Klein four group.
+ * \brief Multiply two values of the Klein four group.
  *
- * @param x Left multiplicand.
- * @param y Right multiplicand.
- * @return Resultant element of $K_4$.
+ * \param x Left multiplicand.
+ * \param y Right multiplicand.
+ * \return Resultant element of $K_4$.
  */
 STATIC_INLINE note_wptt_V4_label_e mut_wptt_f_moves_V4_mult(note_wptt_V4_label_e x,
                                                             note_wptt_V4_label_e y)

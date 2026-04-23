@@ -5,11 +5,13 @@
 #include "test_storage_stubs.h"
 #include "stdbool.h"
 #include "stdio.h"
+#include <string.h>
+#include <tang_defs.h>
 
 #define HASHSIZE    (100 * UTIL_TANG_DEFS_MAX_CROSSINGNUM)
 
 
-char buffer[1024];
+char strbuffer[1024];
 
 typedef struct idxlist {  /* table entry: */
     struct idxlist *next; /* next entry in chain */
@@ -23,12 +25,13 @@ typedef struct keylist {
     idxlist *       idxtab[HASHSIZE]; /* pointer table */
 } keylist;
 
-static keylist *keytab[HASHSIZE]; /* pointer table */
+static keylist *keytab[HASHSIZE] = { NULL }; /* pointer table */
 
-static keylist keytab_buffer[HASHSIZE]            = { { NULL, NULL, NULL } };
+static keylist keytab_buffer[HASHSIZE]            = { { NULL, NULL, { NULL } } };
 static idxlist idxtab_buffer[HASHSIZE * HASHSIZE] = { { NULL, NULL, NULL } };
 static size_t  keytab_buffer_idx = 0;
 static size_t  idxtab_buffer_idx = 0;
+
 void test_stub_storage_clear_buffers(void)
 {
     keytab_buffer_idx = 0;
@@ -55,24 +58,26 @@ void test_stub_storage_clear_buffers(void)
 }
 
 /* hash: form hash value for string s */
-static size_t str_hash(const char *s)
+STATIC_INLINE size_t str_hash(const char *s, size_t length)
 {
-    size_t hash = 5381;
-    int    c;
+    size_t         i;
+    const uint8_t *buffer = (const uint8_t *)s;
+    uint32_t       s1     = 1;
+    uint32_t       s2     = 0;
 
-    while (c = *s++)
+    for (i = 0; i < length; i++)
     {
-        hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+        s1 = (s1 + buffer[i]) % 65521;
+        s2 = (s2 + s1) % 65521;
     }
-    hash = hash % HASHSIZE;
-    return hash;
+    return ((s2 << 16) | s1) % HASHSIZE;
 }
 
 /* lookup: look for s in hashtab */
-static idxlist *idx_lookup(idxlist **li, const char *s)
+STATIC_INLINE idxlist *idx_lookup(idxlist **li, const char *s)
 {
     idxlist *np;
-    size_t   hash = str_hash(s);
+    size_t   hash = str_hash(s, strlen(s));
 
     for (np = li[hash]; np != NULL; np = np->next)
     {
@@ -85,7 +90,7 @@ static idxlist *idx_lookup(idxlist **li, const char *s)
 }
 
 /* install: put (name, defn) in hashtab */
-static idxlist *idx_install(idxlist **li, const char *name, const char *defn)
+STATIC_INLINE idxlist *idx_install(idxlist **li, const char *name, const char *defn)
 {
     idxlist *np;
 
@@ -98,7 +103,7 @@ static idxlist *idx_install(idxlist **li, const char *name, const char *defn)
         }
         np = &idxtab_buffer[idxtab_buffer_idx];
         idxtab_buffer_idx++;
-        hashval     = str_hash(name);
+        hashval     = str_hash(name, strlen(name));
         np->name    = strdup(name);
         np->next    = li[hashval];
         li[hashval] = np;
@@ -111,10 +116,10 @@ static idxlist *idx_install(idxlist **li, const char *name, const char *defn)
 }
 
 /* lookup: look for s in hashtab */
-static keylist *key_lookup(const char *s)
+STATIC_INLINE keylist *key_lookup(const char *s)
 {
     keylist *np;
-    size_t   hash = str_hash(s);
+    size_t   hash = str_hash(s, strlen(s));
 
     for (np = keytab[hash]; np != NULL; np = np->next)
     {
@@ -127,7 +132,7 @@ static keylist *key_lookup(const char *s)
 }
 
 /* install: put (name, defn) in hashtab */
-static keylist *key_install(const char *name)
+STATIC_INLINE keylist *key_install(const char *name)
 {
     keylist *np = NULL;
 
@@ -140,7 +145,7 @@ static keylist *key_install(const char *name)
         }
         np = &keytab_buffer[keytab_buffer_idx];
         keytab_buffer_idx++;
-        hashval         = str_hash(name);
+        hashval         = str_hash(name, strlen(name));
         np->name        = strdup(name);
         np->next        = keytab[hashval];
         keytab[hashval] = np;
@@ -185,14 +190,14 @@ const char *test_stub_read_success_msg(const char *key, const char *index)
         }
         else
         {
-            snprintf(buffer, sizeof(buffer), "Cant find index %s for %s", index, key);
-            return buffer;
+            snprintf(strbuffer, sizeof(strbuffer), "Cant find index %s for %s", index, key);
+            return strbuffer;
         }
     }
     else
     {
-        snprintf(buffer, sizeof(buffer), "Cant find %s", key);
-        return buffer;
+        snprintf(strbuffer, sizeof(strbuffer), "Cant find %s", key);
+        return strbuffer;
     }
     return ret_val;
 }

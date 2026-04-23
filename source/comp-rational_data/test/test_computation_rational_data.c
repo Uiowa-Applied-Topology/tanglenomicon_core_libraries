@@ -117,9 +117,9 @@ void tearDown(void)
 /*******************************Test cases*************************************/
 /******************************************************************************/
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 STATIC_INLINE void test_config(void)
 {
@@ -137,9 +137,9 @@ STATIC_INLINE void test_config(void)
         ret_val, COMP_RATIONAL_DAT_CONFIG_STR_BUFFER | COMP_DEFS_CONFIG_FAIL);
 }
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 STATIC_INLINE void test_result(void)
 {
@@ -159,9 +159,9 @@ STATIC_INLINE void test_result(void)
     TEST_ASSERT_EQUAL_UINT8(result->den_algebraic_equ, 4);
 }
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 STATIC_INLINE void test_compute(void)
 {

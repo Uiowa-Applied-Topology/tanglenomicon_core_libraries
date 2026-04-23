@@ -10,9 +10,9 @@
 static void test_turn_around_test_ede(void);
 static void test_turn_around_test_ded(void);
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 void test_turn_around(void)
 {
@@ -32,7 +32,7 @@ static void test_turn_around_test_ede(void)
     uint8_t                    retval;
     char                       output[1000]      = { '\0' };
     char                       output_post[1000] = { '\0' };
-    note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { 0, 0, 0, NULL };
+    note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { { 0, 0, 0, NULL } };
     note_plpath_point_buffer_t buffer = { (note_plpath_point_t *)&points,
                                           UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                           0 };
@@ -56,13 +56,14 @@ static void test_turn_around_test_ded(void)
     {
         uint8_t                    retval;
         char                       output[1000] = { '\0' };
-        note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { 0, 0, 0, NULL };
+        note_plpath_point_t        points[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { { 0, 0, 0, NULL } };
         note_plpath_point_buffer_t buffer = { (note_plpath_point_t *)&points,
                                               UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                               0 };
         note_plpath_t              path = { { NULL }, 0, &buffer };
 
-        note_plpath_point_t        points_post[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { 0, 0, 0, NULL };
+        note_plpath_point_t        points_post[UTIL_TANG_DEFS_MAX_CROSSINGNUM] = { { 0, 0, 0,
+                                                                                     NULL } };
         note_plpath_point_buffer_t buffer_post = { (note_plpath_point_t *)&points_post,
                                                    UTIL_TANG_DEFS_MAX_CROSSINGNUM,
                                                    0 };

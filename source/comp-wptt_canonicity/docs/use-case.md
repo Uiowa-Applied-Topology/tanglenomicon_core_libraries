@@ -1,7 +1,7 @@
 ---
 date: 2024-09-18
 authors:
-  - Joe Starr
+  - joe_starr
 contact: joe@joe-starr.com
 abstract: A use case description for computation of Weighted Planar Tangle Tree Canonicty.
 ---

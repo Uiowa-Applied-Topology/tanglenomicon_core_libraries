@@ -1,10 +1,10 @@
-/*!
- *  @file storage_defs.h
+/**
+ *  \file storage_defs.h
  *
- *  @brief  Common definitions for store-storage_interface objects.
+ *  \brief  Common definitions for store-storage_interface objects.
  *
  *
- *  @author    Joe Starr
+ *  \author    Joe Starr
  *
  */
 
@@ -48,18 +48,18 @@ typedef const char *(*storage_read_funptr_t)(const char *key,
 
 /****************************** write Status *********************************/
 
-/*! @brief Success is a 0. That lets us use hight bits for store-storage_interface specific codes */
+/** \brief Success is a 0. That lets us use hight bits for store-storage_interface specific codes */
 #define STORE_DEFS_WRITE_SUCCESS    (0u)
 
-/*! @brief We use bit 0 to indicate a fail. Specific failures writed in higher bits. */
+/** \brief We use bit 0 to indicate a fail. Specific failures writed in higher bits. */
 #define STORE_DEFS_WRITE_FAIL       (1u)
 
 /****************************** Read Status *********************************/
 
-/*! @brief Success is a 0. That lets us use hight bits for store-storage_interface specific codes */
+/** \brief Success is a 0. That lets us use hight bits for store-storage_interface specific codes */
 #define STORE_DEFS_READ_SUCCESS    (0u)
 
-/*! @brief We use bit 0 to indicate a fail. Specific failures writed in higher bits. */
+/** \brief We use bit 0 to indicate a fail. Specific failures writed in higher bits. */
 #define STORE_DEFS_READ_FAIL       (1u)
 
 #endif /* end STORAGE_DEFS_H */

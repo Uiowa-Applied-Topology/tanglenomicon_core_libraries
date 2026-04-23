@@ -5,7 +5,6 @@ pytest-html
 cython
 tqdm
 rich
-lizard
 mkdocs-material
 mdx-include 
 mkdocs-github-admonitions-plugin
@@ -19,10 +18,7 @@ markdown-include-variants
 pymdown-extensions
 mkdoxy
 mkdocs-awesome-nav
-mkdocs-bibtex
 mkdocstrings-c
 mkdocs-monorepo-plugin
-mdformat
-mdformat-mkdocs
 mkdocs-auto-refresh-build-pages
-mdformat-front-matters
+reloadserver

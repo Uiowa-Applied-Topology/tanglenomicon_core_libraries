@@ -1,10 +1,10 @@
-/*!
- *  @file comp_rlitt_positivity.c
+/**
+ *  \file comp_rlitt_positivity.c
  *
- *  @brief  A rlitt_positivity module
+ *  \brief  A rlitt_positivity module
  *
  *
- *  @author   Joe Starr
+ *  \author   Joe Starr
  *
  */
 
@@ -13,7 +13,6 @@
 /******************************************************************************/
 
 #include "comp_rlitt_positivity.h"
-#include "bits/stdint-uintn.h"
 #include "computation_defs.h"
 #include "stdbool.h"
 #include "stdio.h"
@@ -30,20 +29,20 @@
 /************************** Typedefs ******************************************/
 /******************************************************************************/
 
-/*!
- * @brief The local configuration of the RLITT positivity computation module.
+/**
+ * \brief The local configuration of the RLITT positivity computation module.
  *
  */
 static comp_rlitt_positivity_config_t *comp_rlitt_positivity_localcfg = NULL;
 
-/*!
- * @brief The local result of the RLITT positivity computation module.
+/**
+ * \brief The local result of the RLITT positivity computation module.
  *
  */
-static comp_rlitt_positivity_result_t comp_rlitt_positivity_localrestult = {};
+static comp_rlitt_positivity_result_t comp_rlitt_positivity_localrestult;
 
-/*!
- * @brief The local computation status of the RLITT positivity computation module.
+/**
+ * \brief The local computation status of the RLITT positivity computation module.
  *
  */
 static bool comp_rlitt_positivity_executed = false;
@@ -200,12 +199,12 @@ const comp_rlitt_positivity_result_t *comp_rlitt_positivity_result()
 /******************************************************************************/
 
 
-/*!
- * @brief Processes an internal vertex (has parent and children) to determine its positivity.
+/**
+ * \brief Processes an internal vertex (has parent and children) to determine its positivity.
  *
- * @param stick_length The current length of the stick being traversed
- * @param stick_has_p2 Indicates if the stick being traversed contains a weight of +2.
- * @param stick_has_m2 Indicates if the stick being traversed contains a weight of -2.
+ * \param stick_length The current length of the stick being traversed
+ * \param stick_has_p2 Indicates if the stick being traversed contains a weight of +2.
+ * \param stick_has_m2 Indicates if the stick being traversed contains a weight of -2.
  */
 STATIC_INLINE void comp_rlitt_positivity_proc_internal(size_t stick_length,
                                                        bool stick_has_p2,
@@ -238,10 +237,10 @@ STATIC_INLINE void comp_rlitt_positivity_proc_internal(size_t stick_length,
     }
 }
 
-/*!
- * @brief Processes a leaf vertex (has parent and no children) to determine its positivity.
+/**
+ * \brief Processes a leaf vertex (has parent and no children) to determine its positivity.
  *
- * @param weight The weight of the leaf vertex.
+ * \param weight The weight of the leaf vertex.
  */
 STATIC_INLINE void comp_rlitt_positivity_proc_leaf(int8_t weight)
 {
@@ -269,11 +268,11 @@ STATIC_INLINE void comp_rlitt_positivity_proc_leaf(int8_t weight)
     }
 }
 
-/*!
- * @brief Walk the input tree and determine positivity of each vertex.
+/**
+ * \brief Walk the input tree and determine positivity of each vertex.
  *
- * @param tree The tree to walk.
- * @return A status indicator for the function.
+ * \param tree The tree to walk.
+ * \return A status indicator for the function.
  */
 STATIC_INLINE_UINT8 comp_rlitt_positivity_walk_tree(const note_wptt_t *tree)
 {

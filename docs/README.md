@@ -1,7 +1,10 @@
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  rel="stylesheet"
-/>
+---
+authors:
+    - joe_starr
+---
+
+<!-- rumdl-disable-next-line -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
 
 [![DOI - 10.5281/zenodo.17612692](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.17612692-2ea44f?logo=doi)](https://doi.org/10.5281/zenodo.17612692)
 
@@ -9,7 +12,7 @@
 
 # Tanglenomicon Core Libraries
 
-The Tanglenomicon core libraries repository consists of a collection of libraries for computation
+The Tanglenomicon core libraries' repository consists of a collection of libraries for computation
 and generation of knot/tangle data. Each library should be considered its own project with its own
 life-cycle however libraries are loosely coupled by a common CMake interface.
 
@@ -17,12 +20,12 @@ The libraries found here are primarily C, the C modules are expected to be C++ l
 target OS, but Ubuntu Linux with Nix is the CI OS. Each library will adhere to a common design that
 allows them flexibility and platform and language agnosticism. The design allows a library, maybe
 "calculate Jones polynomial", to be runnable in a Jupyter notebook during undergraduate knot theory
-class, or wrapped in MATLAB interfaces for scientific computing, or on a university cluster for
+class, or wrapped in Matlab interfaces for scientific computing, or on a university cluster for
 high-performance use cases.
 
 We're targeting a "write once deploy anywhere" design.
 
-# Planning
+## Planning
 
 ## Tasks
 
@@ -42,7 +45,7 @@ A release will be created at the completion of each feature life cycle.
 
 The project adopts [semantic versioning](https://semver.org) for version labels.
 
-```
+```text
 vMAJOR.MINOR.PATCH
 ```
 
@@ -78,7 +81,7 @@ justify every decision made in the process.
 
 Project structure will follow a fairly "normal" project structure as follows:
 
-```
+```text
 📦tanglenomicon_core
  ┣ 📂.github
  ┃ ┗ 📂workflows
@@ -226,7 +229,7 @@ The C/C++ code in this repository shall be formatted by the bundled uncrustify c
 - uncrustify
 - mdformat
 
-# Design and Documentation
+## Design and Documentation
 
 C/C++ code is documented with [Doxygen](https://www.doxygen.nl/), the Doxygen comments shall be
 parsed and output as XML. General documentation shall be recorded as markdown files in each module's
@@ -293,8 +296,4 @@ the [COLORS](https://clrs.cc) color palette.
 .black {
     color: #111111;
 }
-```
-
-```
-
 ```

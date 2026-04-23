@@ -1,10 +1,10 @@
-/*!
- *  @file generator_rlitt.h
+/**
+ *  \file generator_rlitt.h
  *
- *  @brief  Generator module for rlitt generator.
+ *  \brief  Generator module for rlitt generator.
  *
  *
- *  @author    Joe Starr
+ *  \author    Joe Starr
  *
  */
 
@@ -36,20 +36,20 @@
  | `
  |
  */
-/*!
- * @brief Failed to configure the module due to issue in rootstock.
+/**
+ * \brief Failed to configure the module due to issue in rootstock.
  *
  */
 #define GEN_RLITT_CONFIG_IS_NULL             (0x1u << 1u)
 
-/*!
- * @brief Failed to configure the module due to issue in scion.
+/**
+ * \brief Failed to configure the module due to issue in scion.
  *
  */
 #define GEN_RLITT_CONFIG_ROOTSTOCKS_ERROR    (0x1u << 2u)
 
-/*!
- * @brief Failed to configure the module due to null config
+/**
+ * \brief Failed to configure the module due to null config
  *
  */
 #define GEN_RLITT_CONFIG_SCIONS_ERROR        (0x1u << 3u)
@@ -74,50 +74,50 @@
  |
  */
 
-/*!
- * @brief Failed to configure the module due to issue in rootstock.
+/**
+ * \brief Failed to configure the module due to issue in rootstock.
  *
  */
 #define GEN_RLITT_GENERATE_ROOTSTOCK           (0x1u << 1u)
 
-/*!
- * @brief Failed to configure the module due to issue in scion.
+/**
+ * \brief Failed to configure the module due to issue in scion.
  *
  */
 #define GEN_RLITT_GENERATE_SCION               (0x1u << 2u)
 
-/*!
- * @brief Failed to configure the module due to null config
+/**
+ * \brief Failed to configure the module due to null config
  *
  */
 #define GEN_RLITT_GENERATE_GRAFTING            (0x1u << 3u)
 
-/*!
- * @brief Failed to configure the module due to null config
+/**
+ * \brief Failed to configure the module due to null config
  *
  */
 #define GEN_RLITT_GENERATE_NEUTRALITY          (0x1u << 4u)
 
-/*!
- * @brief Failed to configure the module due to null config
+/**
+ * \brief Failed to configure the module due to null config
  *
  */
 #define GEN_RLITT_GENERATE_ALREADY_COMPUTED    (0x1u << 5u)
 
-/*!
- * @brief Failed to configure the module due to null config
+/**
+ * \brief Failed to configure the module due to null config
  *
  */
 #define GEN_RLITT_GENERATE_SHIFT               (0x1u << 6u)
 
-/*!
- * @brief Failed to configure the module due to null config
+/**
+ * \brief Failed to configure the module due to null config
  *
  */
 #define GEN_RLITT_GENERATE_PRINT_ERROR         (0x2u << 1u)
 
-/*!
- * @brief Failed to configure the module due to null config
+/**
+ * \brief Failed to configure the module due to null config
  *
  */
 #define GEN_RLITT_GENERATE_CFG_ERROR           (0x2u << 2u)
@@ -130,8 +130,8 @@
 extern "C" {
 #endif
 
-/*!
- * @brief Type defining the $V_4$ label for a wptt
+/**
+ * \brief Type defining the $V_4$ label for a wptt
  */
 typedef enum gen_rlitt_positivity_e {
     GEN_RLITT_UNINIT,
@@ -147,8 +147,8 @@ typedef enum gen_rlitt_positivity_e {
 extern "C" {
 #endif
 
-/*!
- * @brief The type definition for configuring the rlitt generation.
+/**
+ * \brief The type definition for configuring the rlitt generation.
  *
  */
 typedef struct gen_rlitt_config_t {
@@ -170,9 +170,9 @@ typedef struct gen_rlitt_config_t {
 extern "C" {
 #endif
 
-/*!
- * @brief The public configuration function.
- * @param config_arg The config to set.
+/**
+ * \brief The public configuration function.
+ * \param config_arg The config to set.
  */
 uint8_t gen_rlitt_config(gen_rlitt_config_t *config_arg);
 
@@ -184,11 +184,11 @@ uint8_t gen_rlitt_config(gen_rlitt_config_t *config_arg);
 extern "C" {
 #endif
 
-/*!
- * @brief The public generation function. When called the module will work against the current
+/**
+ * \brief The public generation function. When called the module will work against the current
  *config.
  *
- * @return uint8_t Generation status info.
+ * \return uint8_t Generation status info.
  */
 uint8_t gen_rlitt_generate();
 

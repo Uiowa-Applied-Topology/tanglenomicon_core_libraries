@@ -1,8 +1,8 @@
 ---
 date: 2025-06-16
 authors:
-  - Joe Starr
-contact: support@joe-starr.com
+  - joe_starr
+contact: dr@joe-starr.com
 abstract: A use case description for computation of arborescent tangle positivity computation.
 ---
 

@@ -1,10 +1,10 @@
-/*!
- *  @file comp_rlitt_grafting.c
+/**
+ *  \file comp_rlitt_grafting.c
  *
- *  @brief  A rlitt_grafting module
+ *  \brief  A rlitt_grafting module
  *
  *
- *  @author    Joe Starr
+ *  \author    Joe Starr
  *
  */
 
@@ -13,7 +13,6 @@
 /******************************************************************************/
 
 #include "comp_rlitt_grafting.h"
-#include "bits/stdint-intn.h"
 #include "stdbool.h"
 #include "stdint.h"
 #include "stdio.h"
@@ -23,8 +22,8 @@
 /************************** Defines *******************************************/
 /******************************************************************************/
 
-/*!
- * @brief The maximum size of the stack used for walking the trees.
+/**
+ * \brief The maximum size of the stack used for walking the trees.
  *
  */
 #define COMP_RLITT_GRAFTING_STACK_SIZE    (UTIL_TANG_DEFS_MAX_CROSSINGNUM)
@@ -45,38 +44,38 @@ STATIC_INLINE_UINT8 comp_rlitt_grafting_graft(note_wptt_node_t *scion);
 /************************** Local Variables ***********************************/
 /******************************************************************************/
 
-/*!
- * @brief The local configuration of the rlitt grafting module.
+/**
+ * \brief The local configuration of the rlitt grafting module.
  *
  */
 static note_wptt_node_t *comp_rlitt_grafting_localnodes;
 
-/*!
- * @brief The local configuration of the rlitt grafting module.
+/**
+ * \brief The local configuration of the rlitt grafting module.
  *
  */
 static size_t comp_rlitt_grafting_nodes_idx = 0;
 
-/*!
- * @brief The local configuration of the rlitt grafting module.
+/**
+ * \brief The local configuration of the rlitt grafting module.
  *
  */
 static size_t comp_rlitt_grafting_nodes_count = 0;
 
-/*!
- * @brief The local configuration of the rlitt grafting module.
+/**
+ * \brief The local configuration of the rlitt grafting module.
  *
  */
 static comp_rlitt_grafting_config_t *comp_rlitt_grafting_localcfg = NULL;
 
-/*!
- * @brief The local result of the rlitt grafting module.
+/**
+ * \brief The local result of the rlitt grafting module.
  *
  */
 static comp_rlitt_grafting_result_t comp_rlitt_grafting_localrestult = { NULL };
 
-/*!
- * @brief The local computation status of the rlitt grafting module.
+/**
+ * \brief The local computation status of the rlitt grafting module.
  *
  */
 static bool comp_rlitt_grafting_executed = false;
@@ -253,11 +252,11 @@ const comp_rlitt_grafting_result_t *comp_rlitt_grafting_result()
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
 
-/*!
- * @brief Copies a given tree into the output buffer.
+/**
+ * \brief Copies a given tree into the output buffer.
  *
- * @param tree The tree to copy into the output buffer.
- * @return A flag indicating success of the copy.
+ * \param tree The tree to copy into the output buffer.
+ * \return A flag indicating success of the copy.
  */
 STATIC_INLINE_UINT8 comp_rlitt_grafting_copy_tree(const note_wptt_t *tree)
 {
@@ -319,11 +318,11 @@ STATIC_INLINE_UINT8 comp_rlitt_grafting_copy_tree(const note_wptt_t *tree)
     return ret_val;
 }
 
-/*!
- * @brief Copies values of a vertex to a new vertex.
+/**
+ * \brief Copies values of a vertex to a new vertex.
  *
- * @param src The source vertex.
- * @param dest The destination vertex.
+ * \param src The source vertex.
+ * \param dest The destination vertex.
  */
 STATIC_INLINE void comp_rlitt_grafting_copy_nodevals(const note_wptt_node_t *src,
                                                      note_wptt_node_t *dest)
@@ -341,14 +340,14 @@ STATIC_INLINE void comp_rlitt_grafting_copy_nodevals(const note_wptt_node_t *src
     dest->order = src->order;
 }
 
-/*!
- * @brief Graft a scion onto the idx element of the rootstock.
+/**
+ * \brief Graft a scion onto the idx element of the rootstock.
  *
  * We copied the rootstock into a new buffer so that buffer is in index order. We can directly
  *access the ith element for grafting.
  *
- * @param scion The scion for processing.
- * @return A status indicator for the operation
+ * \param scion The scion for processing.
+ * \return A status indicator for the operation
  */
 STATIC_INLINE_UINT8 comp_rlitt_grafting_graft(note_wptt_node_t *scion)
 {

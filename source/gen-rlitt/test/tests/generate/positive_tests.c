@@ -66,15 +66,6 @@ static note_wptt_node_t ipb2bb2bp = { {
                                       2,
                                       0,
                                       NOTE_WPTT_ORDER_FORWARD };
-static note_wptt_node_t ippb2bb2bpp = { {
-                                            &ipb2bb2bp
-                                        },
-                                        {
-                                            0
-                                        },
-                                        1,
-                                        0,
-                                        NOTE_WPTT_ORDER_FORWARD };
 static note_wptt_node_t ipbm2bm2bm1p = { {
                                              &ibm2b,
                                              &ibm2b
@@ -99,8 +90,7 @@ static note_wptt_node_t ipb2b2b1p = { {
                                       2,
                                       0,
                                       NOTE_WPTT_ORDER_FORWARD };
-static note_wptt_node_t ib8b = { {
-                                 },
+static note_wptt_node_t ib8b = { { NULL },
                                  {
                                      8
                                  },

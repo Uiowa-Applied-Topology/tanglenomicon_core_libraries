@@ -1,4 +1,4 @@
-/*!
+/**
  *  @file storage_JSON.h
  *
  *  @brief  store-storage_interface module for store-json files.
@@ -34,51 +34,54 @@
 /******************************************************************************/
 namespace storage_ns
 {
-/*!
- * @brief
+/**
+ * \brief
  */
 class storage_json_c : public storage_interface_c
 {
-  public:
-    /*!
-     * @brief
-     * @param file_path
-     * @param makenewfile
+public:
+
+    /**
+     * \brief
+     * \param file_path
+     * \param makenewfile
      */
+    /* cppcheck-suppress passedByValue */
     storage_json_c(std::string file_path, bool newfile);
 
-    /*!
-     * @brief
+    /**
+     * \brief
      */
-    ~storage_json_c();
+    ~storage_json_c() override;
 
-    /*!
-     * @brief
-     * @param key
-     * @param index
-     * @return
+    /**
+     * \brief
+     * \param key
+     * \param index
+     * \return
      */
-    const char *read(const char *key, const char *index);
+    const char *read(const char *key, const char *index) override;
 
-    /*!
-     * @brief
-     * @param key
-     * @param index
-     * @param value
-     * @return
+    /**
+     * \brief
+     * \param key
+     * \param index
+     * \param value
+     * \return
      */
-    uint8_t write(const char *key, const char *index, const char *value);
+    uint8_t write(const char *key, const char *index, const char *value) override;
 
-  private:
-    /*!
-     * @brief
+private:
+
+    /**
+     * \brief
      */
     nlohmann::json data = NULL;
 
-    /*!
-     * @brief
+    /**
+     * \brief
      */
     std::string file_path = "";
 };
-} // namespace storage_ns
+} /* namespace storage_ns */
 #endif /* end STORAGE_JSON_H */

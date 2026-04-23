@@ -1,10 +1,10 @@
-/*!
- *  @file comp_rlitt_pure_vignette.h
+/**
+ *  \file comp_rlitt_pure_vignette.h
  *
- *  @brief  A module for compute rlitt_pure_vignette
+ *  \brief  A module for compute rlitt_pure_vignette
  *
  *
- *  @author    Joe Starr
+ *  \author    Joe Starr
  *
  */
 
@@ -37,15 +37,15 @@
  | `
  |
  */
-/*!
- * @brief Failed to configure the module due to issue in rootstock.
+/**
+ * \brief Failed to configure the module due to issue in rootstock.
  *
  */
 #define COMP_RLITT_PURE_VIGNETTE_CONFIG_NULLTREE    (0X1U << 1U)
 
 
-/*!
- * @brief Failed to configure the module due to null config
+/**
+ * \brief Failed to configure the module due to null config
  *
  */
 #define COMP_RLITT_PURE_VIGNETTE_CONFIG_IS_NULL    (0X1U << 3U)
@@ -68,26 +68,26 @@
 
 
 
-/*!
- * @brief Failed to configure the module due to config error
+/**
+ * \brief Failed to configure the module due to config error
  *
  */
 #define COMP_RLITT_PURE_VIGNETTE_COMPUTE_CFG_ERROR           (0X1U << 1U)
 
-/*!
- * @brief Failed to configure the module due to config already having been processed.
+/**
+ * \brief Failed to configure the module due to config already having been processed.
  *
  */
 #define COMP_RLITT_PURE_VIGNETTE_COMPUTE_ALREADY_COMPUTED    (0X1U << 2U)
 
-/*!
- * @brief Failed to configure the module due to issue in scion.
+/**
+ * \brief Failed to configure the module due to issue in scion.
  *
  */
 #define COMP_RLITT_PURE_VIGNETTE_COMPUTE_STR_BUFFER          (0X1U << 3U)
 
-/*!
- * @brief Failed to configure the module due to issue in scion.
+/**
+ * \brief Failed to configure the module due to issue in scion.
  *
  */
 #define COMP_RLITT_PURE_VIGNETTE_COMPUTE_STACK_OVRFLW        (0X1U << 4U)
@@ -97,8 +97,8 @@
 /******************************************************************************/
 
 
-/*!
- * @brief The type definition for reporting the results of rlitt_pure_vignette computation.
+/**
+ * \brief The type definition for reporting the results of rlitt_pure_vignette computation.
  *
  */
 typedef struct {
@@ -113,8 +113,8 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief The type definition for configuring the rlitt_pure_vignette computation.
+/**
+ * \brief The type definition for configuring the rlitt_pure_vignette computation.
  *
  */
 typedef struct {
@@ -134,9 +134,9 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief The public configuration function.
- * @param config_arg The config to set.
+/**
+ * \brief The public configuration function.
+ * \param config_arg The config to set.
  */
 uint8_t comp_rlitt_pure_vignette_config(comp_rlitt_pure_vignette_config_t *config_arg);
 
@@ -149,9 +149,9 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief A public function, calling this executes the computation on the configured tangle.
- * @return uint8_t Generation status info.
+/**
+ * \brief A public function, calling this executes the computation on the configured tangle.
+ * \return uint8_t Generation status info.
  */
 uint8_t comp_rlitt_pure_vignette_compute();
 
@@ -164,9 +164,9 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief A public function, calling this retrieves the results of the last computation
- * @return comp_rlitt_pure_vignette_result_t Computation results.
+/**
+ * \brief A public function, calling this retrieves the results of the last computation
+ * \return comp_rlitt_pure_vignette_result_t Computation results.
  */
 const comp_rlitt_pure_vignette_result_t *comp_rlitt_pure_vignette_result();
 

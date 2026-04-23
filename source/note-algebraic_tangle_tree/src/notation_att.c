@@ -1,12 +1,12 @@
-/*!
- *  @file notation_att.c
+/**
+ *  \file notation_att.c
  *
- *  @brief  Notation module for twist vectors.
+ *  \brief  Notation module for twist vectors.
  *
  *
- *  @author    Isabel Darcy
- *  @author    Zachary Bryhtan
- *  @author    Joe Starr
+ *  \author    Isabel Darcy
+ *  \author    Zachary Bryhtan
+ *  \author    Joe Starr
  *
  */
 
@@ -22,13 +22,13 @@
 /************************** Local Variables ***********************************/
 /******************************************************************************/
 
-/*!
- * @brief store-storage_interface for the current string index.
+/**
+ * \brief store-storage_interface for the current string index.
  */
 static size_t note_att_str_idx = 0u;
 
-/*!
- * @brief store-storage_interface for the current twist vector index.
+/**
+ * \brief store-storage_interface for the current twist vector index.
  */
 static size_t note_att_tv_idx = 0u;
 /******************************************************************************/
@@ -121,11 +121,11 @@ uint8_t note_att_encode(note_att_t att, char *str, size_t buffer_size)
 /************************** Private Function Definitions **********************/
 /******************************************************************************/
 
-/*!
+/**
  *
- * @param node
- * @param str
- * @return
+ * \param node
+ * \param str
+ * \return
  */
 STATIC_INLINE_UINT8 note_att_traverse(note_att_node_t *node,
                                       char *str,
@@ -185,11 +185,11 @@ STATIC_INLINE_UINT8 note_att_traverse(note_att_node_t *node,
     return retval;
 }
 
-/*!
- * @brief Decode a string into a twist vector and report succes.
- * @param tv The note_tv_t store-storage_interface to store the data to.
- * @param str The data to decode.
- * @return Indicate success failure of adding the twist vector.
+/**
+ * \brief Decode a string into a twist vector and report succes.
+ * \param tv The note_tv_t store-storage_interface to store the data to.
+ * \param str The data to decode.
+ * \return Indicate success failure of adding the twist vector.
  */
 STATIC_INLINE_UINT8 note_att_add_tv(const note_tv_t *tv,
                                     char *str,
@@ -209,13 +209,13 @@ STATIC_INLINE_UINT8 note_att_add_tv(const note_tv_t *tv,
     return ret_val;
 }
 
-/*!
- * @brief Walk the string converting it to an algebraic tangle tree.
- * @param att The store-storage_interface location for the algebraic tangle tree.
- * @param node
- * @param str
- * @param att_node_idx
- * @return
+/**
+ * \brief Walk the string converting it to an algebraic tangle tree.
+ * \param att The store-storage_interface location for the algebraic tangle tree.
+ * \param node
+ * \param str
+ * \param att_node_idx
+ * \return
  */
 STATIC_INLINE_UINT8 note_att_traverse_string(note_att_t *att,
                                              note_att_node_t *node,
@@ -287,11 +287,11 @@ STATIC_INLINE_UINT8 note_att_traverse_string(note_att_t *att,
     return ret_val;
 }
 
-/*!
+/**
  *
- * @param str
- * @param att
- * @return
+ * \param str
+ * \param att
+ * \return
  */
 STATIC_INLINE_UINT8 note_att_process_tv(const char *str, note_att_t *att)
 {

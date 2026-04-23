@@ -1,10 +1,10 @@
-/*!
- *  @file comp_rlitt_pure_vignette.c
+/**
+ *  \file comp_rlitt_pure_vignette.c
  *
- *  @brief  A rlitt_pure_vignette module
+ *  \brief  A rlitt_pure_vignette module
  *
  *
- *  @author   Joe Starr
+ *  \author   Joe Starr
  *
  */
 
@@ -13,7 +13,6 @@
 /******************************************************************************/
 
 #include "comp_rlitt_pure_vignette.h"
-#include "bits/stdint-uintn.h"
 #include "computation_defs.h"
 #include "stdbool.h"
 #include "stdio.h"
@@ -42,26 +41,26 @@ STATIC_INLINE_UINT8 comp_rlitt_pure_vignette_walk_tree(const note_wptt_t *tree);
 /************************** Local Variables ***********************************/
 /******************************************************************************/
 
-/*!
- * @brief The local configuration of the RLITT pure vignette computation module.
+/**
+ * \brief The local configuration of the RLITT pure vignette computation module.
  *
  */
 static comp_rlitt_pure_vignette_config_t *comp_rlitt_pure_vignette_localcfg = NULL;
 
-/*!
- * @brief The local result of the RLITT pure vignette computation module.
+/**
+ * \brief The local result of the RLITT pure vignette computation module.
  *
  */
-static comp_rlitt_pure_vignette_result_t comp_rlitt_pure_vignette_localrestult = {};
+static comp_rlitt_pure_vignette_result_t comp_rlitt_pure_vignette_localrestult;
 
-/*!
- * @brief The local string buffer of the RLITT pure vignette computation module.
+/**
+ * \brief The local string buffer of the RLITT pure vignette computation module.
  *
  */
 static char comp_rlitt_pure_vignette_str[COMP_RLITT_PURE_VIGNETTE_STR_BUFF_SIZE] = { '\0' };
 
-/*!
- * @brief The local computation status of the RLITT pure vignette computation module.
+/**
+ * \brief The local computation status of the RLITT pure vignette computation module.
  *
  */
 static bool comp_rlitt_pure_vignette_executed = false;
@@ -186,11 +185,11 @@ const comp_rlitt_pure_vignette_result_t *comp_rlitt_pure_vignette_result()
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
 
-/*!
- * @brief Walk the input tree and determine paren set for each vertex.
+/**
+ * \brief Walk the input tree and determine paren set for each vertex.
  *
- * @param tree The tree to walk.
- * @return A status indicator for the function.
+ * \param tree The tree to walk.
+ * \return A status indicator for the function.
  */
 STATIC_INLINE_UINT8 comp_rlitt_pure_vignette_walk_tree(const note_wptt_t *tree)
 {

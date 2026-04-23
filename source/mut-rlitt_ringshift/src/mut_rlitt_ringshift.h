@@ -1,10 +1,10 @@
-/*!
- *  @file mut_rlitt_ringshift.h
+/**
+ *  \file mut_rlitt_ringshift.h
  *
- *  @brief  A module for compute rlitt_ringshift
+ *  \brief  A module for compute rlitt_ringshift
  *
  *
- *  @author    Joe Starr
+ *  \author    Joe Starr
  *
  */
 
@@ -39,14 +39,14 @@
  | `
  |
  */
-/*!
- * @brief Failed to configure the module due to issue in rootstock.
+/**
+ * \brief Failed to configure the module due to issue in rootstock.
  *
  */
 #define MUT_RLITT_RINGSHIFT_CONFIG_WPTT       (0X1U << 1U)
 
-/*!
- * @brief Failed to configure the module due to null config
+/**
+ * \brief Failed to configure the module due to null config
  *
  */
 #define MUT_RLITT_RINGSHIFT_CONFIG_IS_NULL    (0X1U << 2U)
@@ -66,15 +66,15 @@
  */
 
 
-/*!
- * @brief Failed to configure the module due to null config.
+/**
+ * \brief Failed to configure the module due to null config.
  *
  */
 #define MUT_RLITT_RINGSHIFT_MUTATE_CFG_ERROR    (0X1U << 1U)
 
 
-/*!
- * @brief Failed to configure the module due to the config having been previously computed against.
+/**
+ * \brief Failed to configure the module due to the config having been previously computed against.
  *
  */
 #define MUT_RLITT_RINGSHIFT_MUTATE_ALREADY_COMPUTED    (0X1U << 2U)
@@ -88,8 +88,8 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief The type definition for configuring the rlitt_ringshift computation.
+/**
+ * \brief The type definition for configuring the rlitt_ringshift computation.
  *
  */
 typedef struct {
@@ -109,9 +109,9 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief The public configuration function.
- * @param config_arg The config to set.
+/**
+ * \brief The public configuration function.
+ * \param config_arg The config to set.
  */
 uint8_t mut_rlitt_ringshift_config(mut_rlitt_ringshift_config_t *config_arg);
 
@@ -124,9 +124,9 @@ extern "C"
 {
 #endif
 
-/*!
- * @brief A public function, calling this executes the computation on the configured tangle.
- * @return uint8_t Generation status info.
+/**
+ * \brief A public function, calling this executes the computation on the configured tangle.
+ * \return uint8_t Generation status info.
  */
 uint8_t mut_rlitt_ringshift_mutate();
 

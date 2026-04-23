@@ -11,9 +11,9 @@ static void test_encode_negative_2(void);
 static void test_encode_negative_3(void);
 static void test_encode_negative_4(void);
 
-/*!
- * @brief
- * @param
+/**
+ * \brief
+ * \param
  */
 void test_encode_negative(void)
 {
