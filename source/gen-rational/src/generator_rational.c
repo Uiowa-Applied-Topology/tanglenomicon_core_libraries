@@ -1,12 +1,12 @@
 /**
  *  \file generator_rational.c
  *
- *  \brief  A module for generating rational tangles.
+ *  \brief A module for generating rational tangles.
  *
  *
- *  \author    Isabel Darcy
- *  \author    Zachary Bryhtan
- *  \author    Joe Starr
+ *  \author Isabel Darcy
+ *  \author Zachary Bryhtan
+ *  \author Joe Starr
  *
  */
 
@@ -50,7 +50,6 @@ STATIC_INLINE_UINT8 gen_rational_proc_template(uint8_t template);
 /**
  * \brief A function to write the twist vector in cfg to the store-storage_interface device in cfg.
  *
- * \param cfg Configuration to work on.
  * \return uint8_t Success/Fail flag.
  */
 STATIC_INLINE_UINT8 gen_rational_write(void);
@@ -60,7 +59,6 @@ STATIC_INLINE_UINT8 gen_rational_write(void);
  *even class of twist vectors we can 'oddify' it by prepending a 0. This function handles prepending
  *the zero and then writing to the cfg store-storage_interface device.
  *
- * \param cfg Configuration to work on.
  * \return uint8_t Success/Fail flag.
  */
 STATIC_INLINE_UINT8 gen_rational_evenperm_shift_write(void);

@@ -1,12 +1,12 @@
 /**
  *  \file generator_rational.h
  *
- *  \brief  A module for generating rational tangles.
+ *  \brief A module for generating rational tangles.
  *
  *
- *  \author    Isabel Darcy
- *  \author    Zachary Bryhtan
- *  \author    Joe Starr
+ *  \author Isabel Darcy
+ *  \author Zachary Bryhtan
+ *  \author Joe Starr
  *
  */
 
@@ -32,11 +32,10 @@
  * *******************************************/
 
 /**
- * \brief The key for
+ * \brief The key for the rational tangle generation.
  *
  */
-#define GEN_RATIONAL_STORAGE_UKEY    ("GEN_RATIONAL")
-/*@@@TODO: add keys*/
+#define GEN_RATIONAL_STORAGE_UKEY    "GEN_RATIONAL"
 
 /*************************** Config *******************************************/
 
@@ -80,11 +79,12 @@ extern "C"
  *
  */
 typedef struct {
-    uint8_t                crossingNumber;
-    storage_write_funptr_t storage_write;
-    note_tv_t *            tv_n;
-    char *                 tv_str_buff;
-    size_t                 tv_str_buff_len;
+    uint8_t                crossingNumber;  /**< The target crossing number.*/
+    storage_write_funptr_t storage_write;   /**< A standard storage write interface.*/
+    note_tv_t *            tv_n;            /**< A storage location for a twist vector.*/
+    char *                 tv_str_buff;     /**< A string buffer for output of the twist vector.*/
+    size_t                 tv_str_buff_len; /**< A string buffer size for output of the twist
+                                             * vector.*/
 } gen_rational_config_t;
 #ifdef __cplusplus
 }
@@ -102,6 +102,7 @@ extern "C"
 /**
  * \brief The public configuration function.
  * \param config_arg The config to set.
+ * \return uint8_t Config status info.
  */
 uint8_t gen_rational_config(gen_rational_config_t *config_arg);
 

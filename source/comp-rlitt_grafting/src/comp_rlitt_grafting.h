@@ -1,10 +1,10 @@
 /**
  *  \file comp_rlitt_grafting.h
  *
- *  \brief  A module for compute rlitt_grafting
+ *  \brief A computation module for grafting two RLITT at a given vertex index.
  *
  *
- *  \author    Joe Starr
+ *  \author Joe Starr
  *
  */
 
@@ -126,7 +126,7 @@ extern "C"
  *
  */
 typedef struct {
-    note_wptt_t *grafted_wptt;
+    note_wptt_t *grafted_wptt; /**< A pointer to a grafted WPTT.*/
 } comp_rlitt_grafting_result_t;
 #ifdef __cplusplus
 }
@@ -142,11 +142,12 @@ extern "C"
  *
  */
 typedef struct {
-    storage_write_funptr_t storage_write;
-    const note_wptt_t *    rootstock;
-    const note_wptt_t *    scion;
-    size_t                 rlitt_grafting_idx;
-    note_wptt_t *          output_wptt;
+    storage_write_funptr_t storage_write;      /**< A standard write interface.*/
+    const note_wptt_t *    rootstock;          /**< The rootstock for the grafting.*/
+    const note_wptt_t *    scion;              /**< The scion for the grafting.*/
+    size_t                 rlitt_grafting_idx; /**< The index of the rootstock to graft at.*/
+    note_wptt_t *          output_wptt;        /**< The location to store the output of the
+                                                * grafting.*/
 } comp_rlitt_grafting_config_t;
 #ifdef __cplusplus
 }
@@ -164,6 +165,7 @@ extern "C"
 /**
  * \brief The public configuration function.
  * \param config_arg The config to set.
+ * \return uint8_t config status info.
  */
 uint8_t comp_rlitt_grafting_config(comp_rlitt_grafting_config_t *config_arg);
 

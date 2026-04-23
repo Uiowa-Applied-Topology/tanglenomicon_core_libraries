@@ -1,10 +1,10 @@
 /**
  *  \file notation_wptt.h
  *
- *  \brief  Notation module for Arborescent Weighted Planar Tree Notation (wptt) notation.
+ *  \brief Notation module for Arborescent Weighted Planar Tree Notation (wptt) notation.
  *
  *
- *  \author    Joe Starr
+ *  \author Joe Starr
  *
  */
 
@@ -110,7 +110,7 @@
 #define NOTE_WPTT_ENCODE_MALFORMED        (0x01u << 0x02u)
 
 /**
- * \brief Encode path error flag indicating an over/under flow error.
+ * \brief Encode path error flag indicating an over/underflow error.
  *
  */
 #define NOTE_WPTT_ENCODE_OVRUNDR_ERROR    (0x01u << 0x03u)
@@ -125,15 +125,15 @@ extern "C"
 #endif
 
 /**
- * \brief Type defining the $V_4$ label for a wptt
+ * \brief Type defining the \f$V_4\f$ label for a wptt
  */
 typedef enum note_wptt_V4_label_e {
-    NOTE_WPTT_V4_LABEL_UNINIT,
-    NOTE_WPTT_V4_LABEL_NONE,
-    NOTE_WPTT_V4_LABEL_I,
-    NOTE_WPTT_V4_LABEL_X,
-    NOTE_WPTT_V4_LABEL_Y,
-    NOTE_WPTT_V4_LABEL_Z
+    NOTE_WPTT_V4_LABEL_UNINIT, /**< The label is uninitialized.*/
+    NOTE_WPTT_V4_LABEL_NONE,   /**< There is no label for the WPTT.*/
+    NOTE_WPTT_V4_LABEL_I,      /**< The label is identity.*/
+    NOTE_WPTT_V4_LABEL_X,      /**< The label is an x rotation.*/
+    NOTE_WPTT_V4_LABEL_Y,      /**< The label is a y rotation.*/
+    NOTE_WPTT_V4_LABEL_Z       /**< The label is a z rotation.*/
 } note_wptt_V4_label_e;
 #ifdef __cplusplus
 }
@@ -148,9 +148,9 @@ extern "C"
  * \brief Type defining the order direction of a node in a wptt.
  */
 typedef enum note_wptt_order_e {
-    NOTE_WPTT_ORDER_UNINIT,
-    NOTE_WPTT_ORDER_FORWARD,
-    NOTE_WPTT_ORDER_REVERSE
+    NOTE_WPTT_ORDER_UNINIT,  /**< The order is uninitialized.*/
+    NOTE_WPTT_ORDER_FORWARD, /**< The order is forward.*/
+    NOTE_WPTT_ORDER_REVERSE  /**< The order is reverse.*/
 } note_wptt_order_e;
 #ifdef __cplusplus
 }
@@ -165,11 +165,16 @@ extern "C"
  * \brief Type defining the data of a wptt node.
  */
 typedef struct note_wptt_node_t {
-    struct note_wptt_node_t *children[NOTE_WPTT_DECODE_MAX_CHILDREN];
-    int8_t                   weights[NOTE_WPTT_DECODE_MAX_WEIGHTS];
-    size_t                   number_of_children;
-    uint8_t                  number_of_rings;
-    note_wptt_order_e        order;
+    struct note_wptt_node_t *children[NOTE_WPTT_DECODE_MAX_CHILDREN]; /**< The order is
+                                                                       * uninitialized.*/
+    int8_t                   weights[NOTE_WPTT_DECODE_MAX_WEIGHTS];   /**< A list of weights of a
+                                                                       * vertex.*/
+    size_t                   number_of_children;                      /**< The number of children.*/
+    uint8_t                  number_of_rings;                         /**< The number of rings of a
+                                                                       * vertex.*/
+    note_wptt_order_e        order;                                   /**< The order to read the
+                                                                       * weights and children of the
+                                                                       * vertex.*/
 } note_wptt_node_t;
 #ifdef __cplusplus
 }
@@ -184,9 +189,9 @@ extern "C"
  * \brief Type defining the data of a buffer of wptt nodes.
  */
 typedef struct note_wptt_node_buffer_t {
-    note_wptt_node_t *buffer;
-    size_t            size;
-    size_t            idx;
+    note_wptt_node_t *buffer; /**< A buffer of nodes.*/
+    size_t            size;   /**< The total size of the buffer.*/
+    size_t            idx;    /**< The index of the next unused node. */
 } note_wptt_node_buffer_t;
 #ifdef __cplusplus
 }
@@ -201,9 +206,9 @@ extern "C"
  * \brief Type defining the notation for a wptt.
  */
 typedef struct {
-    note_wptt_node_t *       root;
-    note_wptt_node_buffer_t *node_buffer;
-    note_wptt_V4_label_e     label;
+    note_wptt_node_t *       root;        /**< The root node of a tree.*/
+    note_wptt_node_buffer_t *node_buffer; /**< A buffer of nodes to build the tree.*/
+    note_wptt_V4_label_e     label;       /**< The label for the tree.*/
 } note_wptt_t;
 #ifdef __cplusplus
 }
@@ -221,8 +226,8 @@ extern "C"
 /**
  * \brief Function to take a note_wptt_t and decode it as a string
  *
- * \param att the note_wptt_t pointer to decode.
  * \param str Output string for decoded note_wptt_t
+ * \param wptt the note_wptt_t pointer to decode.
  * \return uint8_t The return code for the decoding operation.
  */
 uint8_t note_wptt_decode(char *str, note_wptt_t *wptt);
@@ -241,8 +246,9 @@ extern "C"
  * This function modifies the input WPTT. The input is normalized so all nodes have "forward" order.
  *This does not change the topology.
  *
+ * \param wptt the note_wptt_t pointer to store the encoded string into.
  * \param str Input string to encode as note_wptt_t
- * \param att the note_wptt_t pointer to store the encoded string into.
+ * \param buffer_size The size of the string buffer
  * \return uint8_t The return code for the encoding operation.
  */
 uint8_t note_wptt_encode(note_wptt_t wptt, char *str, size_t buffer_size);

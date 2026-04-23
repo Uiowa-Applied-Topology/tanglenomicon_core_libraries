@@ -1,15 +1,10 @@
 /**
- * \file
- * \brief
- */
-
-/**
  *  \file mut_wptt_f_moves.c
  *
  *  \brief Mutates a tree by one of the $F_i$ moves.
  *
  *
- *  \author   Joe Starr
+ *  \author Joe Starr
  *
  */
 
@@ -207,7 +202,7 @@ STATIC_INLINE_UINT8 mut_wptt_f_moves_F1(void)
 }
 
 /**
- * \brief Apply the $F_2$ move to a WPTT at the given vertex.
+ * \brief Apply the \f$F_2\f$ move to a WPTT at the given vertex.
  *
  * If the object vertex is not the root the move is mathematically undefined.
  *
@@ -255,10 +250,10 @@ STATIC_INLINE_UINT8 mut_wptt_f_moves_F2(void)
 }
 
 /**
- * \brief Apply the $F_3^\prime$ move to a WPTT at the given vertex.
+ * \brief Apply the \f$F_3^\prime\f$ move to a WPTT at the given vertex.
  *
- * If the move would be applied "upwards" in the tree instead apply $F_3^\prime$ to all siblings in
- *the opposite direction.
+ * If the move would be applied "upwards" in the tree instead apply \f$F_3^\prime\f$ to all siblings
+ *in the opposite direction.
  *
  * \return The success flag of the move.
  */
@@ -300,7 +295,7 @@ STATIC_INLINE_UINT8 mut_wptt_f_moves_F3(void)
 }
 
 /**
- * \brief Apply $F_3^\prime$ to the object vertex with no wrap around parent.
+ * \brief Apply \f$F_3^\prime\f$ to the object vertex with no wrap around parent.
  *
  * \return Indicate the success of the operation.
  */
@@ -349,8 +344,9 @@ STATIC_INLINE_UINT8 mut_wptt_f_moves_F3_nowrap(void)
 }
 
 /**
- * \brief Apply $F_3^\prime$ to the object vertex with wrap around parent.
+ * \brief Apply \f$F_3^\prime\f$ to the object vertex with wrap around parent.
  *
+ * \param target_idx A target weight index for the \f$F_3\f$ move
  * \return Indicate the success of the operation.
  */
 STATIC_INLINE_UINT8 mut_wptt_f_moves_F3_wrap(size_t target_idx)

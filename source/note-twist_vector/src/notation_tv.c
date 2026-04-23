@@ -1,12 +1,12 @@
 /**
  *  \file notation_tv.c
  *
- *  \brief  Notation module for twist vectors.
+ *  \brief Notation module for twist vectors.
  *
  *
- *  \author    Isabel Darcy
- *  \author    Zachary Bryhtan
- *  \author    Joe Starr
+ *  \author Isabel Darcy
+ *  \author Zachary Bryhtan
+ *  \author Joe Starr
  *
  */
 

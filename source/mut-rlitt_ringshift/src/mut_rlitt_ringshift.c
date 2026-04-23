@@ -1,10 +1,10 @@
 /**
  *  \file mut_rlitt_ringshift.c
  *
- *  \brief  A rlitt_ringshift module
+ *  \brief A rlitt_ringshift module
  *
  *
- *  \author    Joe Starr
+ *  \author Joe Starr
  *
  */
 
@@ -201,7 +201,7 @@ STATIC_INLINE void mut_rlitt_ringshift_reverse_node(note_wptt_node_t *node)
 }
 
 /**
- * \brief Identify if the vertex is the root of a $\pm$-ring subtree.
+ * \brief Identify if the vertex is the root of a \f$\pm\f$-ring subtree.
  *
  * \param node the vertex to examine.
  * \return

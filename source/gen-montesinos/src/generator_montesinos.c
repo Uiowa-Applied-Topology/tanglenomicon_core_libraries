@@ -1,12 +1,12 @@
 /**
  *  \file generator_montesinos.c
  *
- *  \brief  A module for generating montesinos tangles.
+ *  \brief A module for generating Montesinos tangles.
  *
  *
- *  \author    Isabel Darcy
- *  \author    Zachary Bryhtan
- *  \author    Joe Starr
+ *  \author Isabel Darcy
+ *  \author Zachary Bryhtan
+ *  \author Joe Starr
  *
  */
 
@@ -39,7 +39,7 @@ STATIC_INLINE_UINT8 gen_montesinos_process_loop_state(const size_t *stack);
 /******************************************************************************/
 
 /**
- * \brief The local configuration of the montesinos gen module.
+ * \brief The local configuration of the Montesinos gen module.
  *
  */
 static gen_montesinos_config_t *gen_montesinos_localcfg = NULL;
@@ -101,6 +101,12 @@ uint8_t gen_montesinos_generate(void)
 /******************************************************************************/
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
+
+/**
+ * \brief Process the lists of rational tangles.
+ *
+ * \return Success indicator.
+ */
 STATIC_INLINE_UINT8 gen_montesinos_process_lists(void)
 {
     uint8_t       ret_val = GEN_DEFS_GENERATION_SUCCESS;
@@ -121,7 +127,7 @@ STATIC_INLINE_UINT8 gen_montesinos_process_lists(void)
             }
             else
             {
-                ret_val = gen_montesinos_process_loop_state(stack);
+                ret_val |= gen_montesinos_process_loop_state(stack);
                 stack[stack_ptr]++;
             }
         }
@@ -135,6 +141,12 @@ STATIC_INLINE_UINT8 gen_montesinos_process_lists(void)
     return ret_val;
 }
 
+/**
+ * \brief Produce Montesinos tangles for current stack position.
+ *
+ * \param stack The current stack position.
+ * \return Success indicator.
+ */
 STATIC_INLINE_UINT8 gen_montesinos_process_loop_state(const size_t *stack)
 {
     uint8_t          ret_val        = GEN_DEFS_GENERATION_FAIL;

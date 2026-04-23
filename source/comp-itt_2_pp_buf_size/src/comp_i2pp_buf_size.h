@@ -1,7 +1,7 @@
 /**
  *  \file comp_i2pp_buf_size.h
  *
- *  \brief A component to compute the buffer seize needed to turn a ITT into a PL path.
+ *  \brief A component to compute the buffer seize needed to turn an ITT into a PL path.
  *
  *  \author Joe Starr
  *
@@ -97,11 +97,9 @@ extern "C"
 /**
  * \brief Defines the return type containing the computed value.
  *
- * Contains only the size of buffer needed for the notation transformation.
- *
  */
 typedef struct {
-    uint64_t buff_size;
+    uint64_t buff_size;/**< The size of buffer needed to contain the PL path */
 } comp_i2pp_buf_size_result_t;
 #ifdef __cplusplus
 }
@@ -115,13 +113,10 @@ extern "C"
 /**
  * \brief The type definition for configuring the component.
  *
- * Contains a:
- * - Standard write interface.
- * - An object ITT to compute over.
  */
 typedef struct {
-    storage_write_funptr_t storage_write;
-    const note_wptt_t *    itt;
+    storage_write_funptr_t storage_write; /**< A standard write interface*/
+    const note_wptt_t *    itt;           /**< The itt being converted to a PL path */
 } comp_i2pp_buf_size_config_t;
 #ifdef __cplusplus
 }
@@ -139,6 +134,7 @@ extern "C"
 /**
  * \brief The public configuration function for the computation.
  * \param config_arg The config to set.
+ * \return uint8_t Configuration status info.
  */
 uint8_t comp_i2pp_buf_size_config(comp_i2pp_buf_size_config_t *config_arg);
 

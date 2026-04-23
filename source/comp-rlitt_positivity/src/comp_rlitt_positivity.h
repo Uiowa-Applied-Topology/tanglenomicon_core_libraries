@@ -1,10 +1,10 @@
 /**
  *  \file comp_rlitt_positivity.h
  *
- *  \brief  A module for compute rlitt_positivity
+ *  \brief A computation module for determining the positivity of an RLITT.
  *
  *
- *  \author    Joe Starr
+ *  \author Joe Starr
  *
  */
 
@@ -96,11 +96,12 @@ extern "C"
  * \brief Type defining the positivity states for a WPTT.
  */
 typedef enum comp_rlitt_positivity_flvrs_e {
-    COMP_RLITT_POSITIVITY_FLVR_UNINIT,
-    COMP_RLITT_POSITIVITY_FLVR_POS,
-    COMP_RLITT_POSITIVITY_FLVR_NEG,
-    COMP_RLITT_POSITIVITY_FLVR_NEU,
-    COMP_RLITT_POSITIVITY_FLVR_UND
+    COMP_RLITT_POSITIVITY_FLVR_UNINIT, /**< Uninitialized positivity.*/
+    COMP_RLITT_POSITIVITY_FLVR_POS,    /**< Indicates positive positivity.*/
+    COMP_RLITT_POSITIVITY_FLVR_NEG,    /**< Indicates negative positivity.*/
+    COMP_RLITT_POSITIVITY_FLVR_NEU,    /**< Indicates neutral positivity.*/
+    COMP_RLITT_POSITIVITY_FLVR_UND     /**< Indicates an undefined positivity. This is used for
+                                        * cases such as \f$ \iota([2][-2]) \f$*/
 } comp_rlitt_positivity_flvrs_e;
 #ifdef __cplusplus
 }
@@ -115,7 +116,7 @@ extern "C"
  *
  */
 typedef struct {
-    comp_rlitt_positivity_flvrs_e positivity;
+    comp_rlitt_positivity_flvrs_e positivity;/**< The positivity of the tangle.*/
 } comp_rlitt_positivity_result_t;
 #ifdef __cplusplus
 }
@@ -131,8 +132,8 @@ extern "C"
  *
  */
 typedef struct {
-    storage_write_funptr_t storage_write;
-    const note_wptt_t *    wptt;
+    storage_write_funptr_t storage_write; /**< A standard write interface.*/
+    const note_wptt_t *    wptt;          /**< The tangle to compute the positivity of.*/
 } comp_rlitt_positivity_config_t;
 #ifdef __cplusplus
 }
@@ -150,6 +151,7 @@ extern "C"
 /**
  * \brief The public configuration function.
  * \param config_arg The config to set.
+ * \return uint8_t Config status info.
  */
 uint8_t comp_rlitt_positivity_config(comp_rlitt_positivity_config_t *config_arg);
 

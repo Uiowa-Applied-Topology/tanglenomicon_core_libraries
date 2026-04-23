@@ -1,10 +1,10 @@
 /**
  *  \file notation_wptt.c
  *
- *  \brief  Notation module for weighted planar tangle trees.
+ *  \brief Notation module for weighted planar tangle trees.
  *
  *
- *  \author    Joe Starr
+ *  \author Joe Starr
  *
  */
 
@@ -26,8 +26,8 @@ typedef uint8_t (*char_handler_funptr_t)(char **str);
  * \brief The type for the elements of the decode dictionary.
  */
 typedef struct note_wptt_decode_char_dic_t {
-    char *                char_class;
-    char_handler_funptr_t funptr;
+    char *                char_class; /**< The character class to decode.*/
+    char_handler_funptr_t funptr;     /**< The decode function pointer for the character class.*/
 } note_wptt_decode_char_dic_t;
 
 /******************************************************************************/
@@ -77,11 +77,11 @@ typedef struct note_wptt_decode_char_dic_t {
 /******************************************************************************/
 
 /************************** Decode path Function Declarations *****************/
-STATIC_INLINE_UINT8 note_wptt_decode_push_node();
+STATIC_INLINE_UINT8 note_wptt_decode_push_node(void);
 STATIC_INLINE note_wptt_V4_label_e note_wptt_decode_get_v4_label(char label);
 STATIC_INLINE bool note_wptt_decode_check_charset(const char *valid_chars,
                                                   const char str);
-STATIC_INLINE_UINT8 note_wptt_decode_add_child();
+STATIC_INLINE_UINT8 note_wptt_decode_add_child(void);
 STATIC_INLINE_UINT8 note_wptt_decode_space_handler(char **str);
 STATIC_INLINE_UINT8 note_wptt_decode_opn_p_handler(char **str);
 STATIC_INLINE_UINT8 note_wptt_decode_opn_a_handler(char **str);
@@ -638,7 +638,7 @@ STATIC_INLINE_UINT8 note_wptt_decode_add_child(void)
 /**
  * \brief Determine whether the active node is the root of stick.
  *
- * \param active_node A wptt node and potential stick root.
+ * \param active_node_p A wptt node and potential stick root.
  * \return The truthiness of whether the active node is the root of stick.
  */
 STATIC_INLINE bool note_wptt_encode_stick_check(note_wptt_node_t *active_node_p)
@@ -665,11 +665,9 @@ STATIC_INLINE bool note_wptt_encode_stick_check(note_wptt_node_t *active_node_p)
 /**
  * \brief Determine the next child index by the order of the active node.
  *
- * \param active_node The node under investigation.
- * \return The next ordered child index.
+ * \param active_node_p The node under investigation.
  */
-STATIC_INLINE void note_wptt_encode_normalize_node_order(
-    note_wptt_node_t *active_node_p)
+STATIC_INLINE void note_wptt_encode_normalize_node_order(note_wptt_node_t *active_node_p)
 {
     if (NOTE_WPTT_ORDER_REVERSE == active_node_p->order)
     {
@@ -694,7 +692,7 @@ STATIC_INLINE void note_wptt_encode_normalize_node_order(
 /**
  * \brief Process and insert a stick subtree into the output string.
  *
- * \param active_node The node under investigation.
+ * \param active_node_p The node under investigation.
  * \param str_p A pointer to the pointer of current index of the output string.
  * \param buffer_end_p A pointer to the end of the output string buffer.
  * \return A status flag indicating successful completion of the subroutine.
@@ -887,19 +885,18 @@ STATIC_INLINE_UINT8 note_wptt_encode_insert_int(int8_t new_int,
 /**
  * \brief Cap off the string representation of a node.
  *
- * \param active_node The node under investigation.
+ * \param active_node_p The node under investigation.
  * \param str_p A pointer to the pointer of current index of the output string.
  * \param ordered_child_idx The next child index in the order of the active node.
  * \param buffer_start_p A pointer to the start of the output string buffer.
  * \param buffer_end_p A pointer to the end of the output string buffer.
  * \return A status flag indicating successful completion of the subroutine.
  */
-STATIC_INLINE_UINT8 note_wptt_encode_complete_active_node(
-    const note_wptt_node_t *active_node_p,
-    char **str_p,
-    size_t ordered_child_idx,
-    const char *buffer_start_p,
-    const char *buffer_end_p)
+STATIC_INLINE_UINT8 note_wptt_encode_complete_active_node(const note_wptt_node_t *active_node_p,
+                                                          char **str_p,
+                                                          size_t ordered_child_idx,
+                                                          const char *buffer_start_p,
+                                                          const char *buffer_end_p)
 {
     uint8_t retval = NOTE_DEFS_ENCODE_SUCCESS;
 
@@ -936,12 +933,11 @@ STATIC_INLINE_UINT8 note_wptt_encode_complete_active_node(
  * \param buffer_end_p A pointer to the end of the output string buffer.
  * \return A status flag indicating successful completion of the subroutine.
  */
-STATIC_INLINE_UINT8 note_wptt_encode_process_active_node(
-    note_wptt_node_t *active_node,
-    char **str_p,
-    size_t ordered_child_idx,
-    const char *buffer_start_p,
-    const char *buffer_end_p)
+STATIC_INLINE_UINT8 note_wptt_encode_process_active_node(note_wptt_node_t *active_node,
+                                                         char **str_p,
+                                                         size_t ordered_child_idx,
+                                                         const char *buffer_start_p,
+                                                         const char *buffer_end_p)
 {
     uint8_t retval      = NOTE_DEFS_ENCODE_SUCCESS;
     bool    found_stick = note_wptt_encode_stick_check(active_node);

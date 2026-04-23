@@ -89,12 +89,10 @@ extern "C"
 /**
  * \brief Type of the result of the computation.
  *
- * Contains a parity value as well as a count of internal components.
- *
  */
 typedef struct {
-    comp_sum_parity_parity_e parity;
-    uint16_t                 component_count;
+    comp_sum_parity_parity_e parity;          /**< The resulting parity.*/
+    uint16_t                 component_count; /**< The number of internally connected components.*/
 } comp_wptt_vertex_parity_result_t;
 #ifdef __cplusplus
 }
@@ -109,15 +107,14 @@ extern "C"
  * \brief The type definition for configuring the computation.
  *
  * Contains a:
- * - Write interface.
  * - A WPTT pointer for write.
  * - An object vertex.
  *
  */
 typedef struct {
-    storage_write_funptr_t  storage_write;
-    const note_wptt_t *     wptt;
-    const note_wptt_node_t *vertex;
+    storage_write_funptr_t  storage_write; /**< A standard storage interface.*/
+    const note_wptt_t *     wptt;          /**< The WPTT containing the object vertex.*/
+    const note_wptt_node_t *vertex;        /**< The object vertex.*/
 } comp_wptt_vertex_parity_config_t;
 #ifdef __cplusplus
 }
@@ -135,6 +132,7 @@ extern "C"
 /**
  * \brief The public configuration function for the computation.
  * \param config_arg The config to set.
+ * \return uint8_t Config status info.
  */
 uint8_t comp_wptt_vertex_parity_config(comp_wptt_vertex_parity_config_t *config_arg);
 

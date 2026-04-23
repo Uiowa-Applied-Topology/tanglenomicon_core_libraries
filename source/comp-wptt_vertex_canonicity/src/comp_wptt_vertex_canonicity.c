@@ -1,10 +1,10 @@
 /**
- *  \file comp_wptt_vert_canon.c
+ *  \file comp_wptt_vertex_canonicity.c
  *
- *  \brief  A wptt vertex canonicity computation module
+ *  \brief A module for computing the canonicity of a vertex of a wptt.
  *
  *
- *  \author   Joe Starr
+ *  \author Joe Starr
  *
  */
 

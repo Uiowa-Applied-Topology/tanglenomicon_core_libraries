@@ -1,12 +1,12 @@
 /**
  *  \file notation_att.h
  *
- *  \brief  Notation module for twist vector notation.
+ *  \brief Notation module for twist vector notation.
  *
  *
- *  \author    Isabel Darcy
- *  \author    Zachary Bryhtan
- *  \author    Joe Starr
+ *  \author Isabel Darcy
+ *  \author Zachary Bryhtan
+ *  \author Joe Starr
  *
  */
 
@@ -36,61 +36,59 @@
  | Plus     |  0  |  0  |  0  |  0  |  0  |  0  |  0  |  1  |
  |----------|-----|-----|-----|-----|-----|-----|-----|-----|
  | Vee      |  0  |  0  |  0  |  0  |  0  |  0  |  1  |  0  |
- |
  */
 
 /**
- * \brief
+ * \brief The length to shift for the operation.
  *
  */
 #define NOTE_ATT_OP_SHIFT_LEN    (0x00u)
 
 /**
- * \brief
+ * \brief Indicates an uninitialized operation.
  *
  */
 #define NOTE_ATT_OP_UNINIT       (0x00u << NOTE_ATT_OP_SHIFT_LEN)
 
 /**
- * \brief
+ * \brief Indicates a \f$ +\f$ operation.
  *
  */
 #define NOTE_ATT_OP_PLUS         (0x01u << NOTE_ATT_OP_SHIFT_LEN)
 
 /**
- * \brief
+ * \brief Indicates a \f$\vee\f$ operation.
  *
  */
 #define NOTE_ATT_OP_VEE          (0x02u << NOTE_ATT_OP_SHIFT_LEN)
 
 /**
- * \brief
+ * \brief Function like macro to clear the current operation.
  *
  */
-#define NOTE_ATT_CLR_OP(FLV) \
-        (FLV = ((FLV)&(~(0x03u << NOTE_ATT_OP_SHIFT_LEN))))
+#define NOTE_ATT_CLR_OP(FLV)        (FLV = ((FLV)&(~(0x03u << NOTE_ATT_OP_SHIFT_LEN))))
 
 /**
- * \brief
+ * \brief Function Like macro to set an operation.
  *
  */
 #define NOTE_ATT_SET_OP(FLV, OP)    (FLV = (((FLV) | (OP))))
 
 /**
- * \brief
+ * \brief Function like macro to check an operation.
  *
  */
 #define NOTE_ATT_CHK_OP(FLVR, OP) \
         (((FLVR) & (0x03u << NOTE_ATT_OP_SHIFT_LEN)) == (OP) ? (true) : (false))
 
 /**
- * \brief
+ * \brief Indicates a failure in traversal.
  *
  */
 #define NOTE_ATT_TRAVERSE_FAIL       (0x01u)
 
 /**
- * \brief
+ * \brief Indicates a successful traversal.
  *
  */
 #define NOTE_ATT_TRAVERSE_SUCCESS    (0x00u)
@@ -108,11 +106,11 @@ extern "C"
  * \brief The core structure for algebraic tangle trees.
  */
 typedef struct note_att_node_t {
-    struct note_att_node_t *L_child;
-    struct note_att_node_t *R_child;
-    note_tv_t *             L_tv;
-    note_tv_t *             R_tv;
-    uint8_t                 operation;
+    struct note_att_node_t *L_child;   /**< The left child of the current operation.*/
+    struct note_att_node_t *R_child;   /**< The right child of the current operation.*/
+    note_tv_t *             L_tv;      /**< The left twist vector child of the current operation.*/
+    note_tv_t *             R_tv;      /**< The right twist vector child of the current operation.*/
+    uint8_t                 operation; /**< The current operation.*/
 } note_att_node_t;
 #ifdef __cplusplus
 }
@@ -127,11 +125,12 @@ extern "C"
  * \brief The core structure for algebraic tangle trees.
  */
 typedef struct {
-    note_att_node_t *root;
-    note_att_node_t *node_buffer;
-    size_t           node_buffer_len;
-    note_tv_t *      tv_buffer;
-    size_t           tv_buffer_len;
+    note_att_node_t *root;            /**< The root of the ATT.*/
+    note_att_node_t *node_buffer;     /**< A buffer of nodes used to construct an ATT.*/
+    size_t           node_buffer_len; /**< The length of the node buffer.*/
+    note_tv_t *      tv_buffer;       /**< A buffer of twist vectors for the leaf nodes of the
+                                       * ATT.*/
+    size_t           tv_buffer_len;   /**< The length of the twist vector buffer.*/
 } note_att_t;
 #ifdef __cplusplus
 }
@@ -169,6 +168,7 @@ extern "C"
  *
  * \param att the note_att_t pointer to encode.
  * \param str Output string for encoded note_att_t
+ * \param buffer_size The size of the string buffer
  * \return uint8_t The return code for the encoding operation.
  */
 uint8_t note_att_encode(note_att_t att, char *str, size_t buffer_size);

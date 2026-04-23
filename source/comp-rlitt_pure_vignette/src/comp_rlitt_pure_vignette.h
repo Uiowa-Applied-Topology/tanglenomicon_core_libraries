@@ -1,10 +1,10 @@
 /**
  *  \file comp_rlitt_pure_vignette.h
  *
- *  \brief  A module for compute rlitt_pure_vignette
+ *  \brief A computation module for determining the pure vignette of an RLITT.
  *
  *
- *  \author    Joe Starr
+ *  \author Joe Starr
  *
  */
 
@@ -102,7 +102,7 @@
  *
  */
 typedef struct {
-    const char *result;
+    const char *result; /**< The pure vignette string containing the result.*/
 } comp_rlitt_pure_vignette_result_t;
 #ifdef __cplusplus
 }
@@ -118,8 +118,8 @@ extern "C"
  *
  */
 typedef struct {
-    storage_write_funptr_t storage_write;
-    const note_wptt_t *wptt;
+    storage_write_funptr_t storage_write; /**< A standard write interface.*/
+    const note_wptt_t *wptt;              /**< The tree to compute the pure vignette of.*/
 } comp_rlitt_pure_vignette_config_t;
 #ifdef __cplusplus
 }
@@ -137,6 +137,7 @@ extern "C"
 /**
  * \brief The public configuration function.
  * \param config_arg The config to set.
+ * \return uint8_t Config status info.
  */
 uint8_t comp_rlitt_pure_vignette_config(comp_rlitt_pure_vignette_config_t *config_arg);
 

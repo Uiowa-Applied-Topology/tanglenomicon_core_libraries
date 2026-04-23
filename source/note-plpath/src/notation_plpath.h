@@ -1,10 +1,10 @@
 /**
  *  \file notation_plpath.h
  *
- *  \brief  Notation module for PL paths.
+ *  \brief Notation module for PL paths.
  *
  *
- *  \author    Joe Starr
+ *  \author Joe Starr
  *
  */
 
@@ -72,7 +72,7 @@
 #define NOTE_PLPATH_DECODE_BUFFER_ERROR     (0x01u << 0x04u)
 
 /**
- * \brief Decode plpath error flag indicating an over/under flow error.
+ * \brief Decode plpath error flag indicating an over/underflow error.
  *
  */
 #define NOTE_PLPATH_DECODE_OVRUNDR_ERROR    (0x01u << 0x05u)
@@ -85,7 +85,7 @@
  | -------------------------- | --- | --- | --- | --- | --- | --- | --- | --- |
  | Success                    | 0   | 0   | 0   | 0   | 0   | 0   | 0   | 0   |
  | Encode String Buf Error    | 0   | 0   | 0   | 0   | 0   | 0   | 1   | 0   |
- | Malformed plpath Error       | 0   | 0   | 0   | 0   | 0   | 1   | 0   | 0   |
+ | Malformed plpath Error     | 0   | 0   | 0   | 0   | 0   | 1   | 0   | 0   |
  | Over/Underflow Error       | 0   | 0   | 0   | 0   | 1   | 0   | 0   | 0   |
  | `
  |
@@ -104,7 +104,7 @@
 #define NOTE_PLPATH_ENCODE_MALFORMED        (0x01u << 0x02u)
 
 /**
- * \brief Encode plpath error flag indicating an over/under flow error.
+ * \brief Encode plpath error flag indicating an over/underflow error.
  *
  */
 #define NOTE_PLPATH_ENCODE_OVRUNDR_ERROR    (0x01u << 0x03u)
@@ -122,10 +122,10 @@ extern "C"
  * \brief Type defining the data of a plpath node.
  */
 typedef struct note_plpath_point_t {
-    long double                 x;
-    long double                 y;
-    long double                 z;
-    struct note_plpath_point_t *next_point;
+    long double                 x;          /**< The x coordinate of the point.*/
+    long double                 y;          /**< The y coordinate of the point.*/
+    long double                 z;          /**< The z coordinate of the point.*/
+    struct note_plpath_point_t *next_point; /**< The next point in the path (linked list).*/
 } note_plpath_point_t;
 #ifdef __cplusplus
 }
@@ -142,8 +142,8 @@ extern "C"
  * \brief Type defining the data of a buffer of plpath nodes.
  */
 typedef struct note_plpath_segment_t {
-    note_plpath_point_t *         head;
-    struct note_plpath_segment_t *next_seg;
+    note_plpath_point_t *         head;     /**< The head of the path.*/
+    struct note_plpath_segment_t *next_seg; /**< The next segment in the tangle.*/
 } note_plpath_segment_t;
 #ifdef __cplusplus
 }
@@ -161,9 +161,9 @@ extern "C"
  * \brief Type defining the data of a buffer of plpath nodes.
  */
 typedef struct note_plpath_point_buffer_t {
-    note_plpath_point_t *buffer;
-    size_t               size;
-    size_t               idx;
+    note_plpath_point_t *buffer; /**< A buffer of points.*/
+    size_t               size;   /**< The size of the buffer.*/
+    size_t               idx;    /**< The index of the next unused point.*/
 } note_plpath_point_buffer_t;
 #ifdef __cplusplus
 }
@@ -180,9 +180,9 @@ extern "C"
  * \brief Type defining the data of a buffer of plpath nodes.
  */
 typedef struct note_plpath_segment_buffer_t {
-    note_plpath_segment_t *buffer;
-    size_t                 size;
-    size_t                 idx;
+    note_plpath_segment_t *buffer; /**< A buffer of segments.*/
+    size_t                 size;   /**< The size of the buffer.*/
+    size_t                 idx;    /**< The index of the next unused segment.*/
 } note_plpath_segment_buffer_t;
 #ifdef __cplusplus
 }
@@ -199,9 +199,9 @@ extern "C"
  * \brief Type defining the notation for a plpath.
  */
 typedef struct {
-    note_plpath_segment_t *       segments;
-    note_plpath_point_buffer_t *  pnt_buff;
-    note_plpath_segment_buffer_t *seg_buff;
+    note_plpath_segment_t *       segments; /**< A linked list of segments in the tangle.*/
+    note_plpath_point_buffer_t *  pnt_buff; /**< A point buffer.*/
+    note_plpath_segment_buffer_t *seg_buff; /**< A segment buffer.*/
 } note_plpath_t;
 #ifdef __cplusplus
 }
@@ -219,8 +219,8 @@ extern "C"
 /**
  * \brief Function to take a note_plpath_t and decode it as a string
  *
- * \param att the note_plpath_t pointer to decode.
  * \param str Output string for decoded note_plpath_t
+ * \param path the note_plpath_t pointer to decode.
  * \return uint8_t The return code for the decoding operation.
  */
 uint8_t note_plpath_decode(char *str, note_plpath_t *path);
@@ -239,8 +239,9 @@ extern "C"
  * This function modifies the input PATH. The input is normalized so all nodes have "forward" order.
  *This does not change the topology.
  *
+ * \param path the note_plpath_t pointer to store the encoded string into.
  * \param str Input string to encode as note_plpath_t
- * \param att the note_plpath_t pointer to store the encoded string into.
+ * \param buffer_size The size of the string buffer
  * \return uint8_t The return code for the encoding operation.
  */
 uint8_t note_plpath_encode(note_plpath_t path, char *str, size_t buffer_size);

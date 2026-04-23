@@ -1,12 +1,12 @@
 /**
- *  @file storage_JSON.h
+ *  @file storage_json.hpp
  *
- *  @brief  store-storage_interface module for store-json files.
+ *  @brief store-storage_interface module for store-json files.
  *
  *
- *  @author    Isabel Darcy
- *  @author    Zachary Bryhtan
- *  @author    Joe Starr
+ *  @author Isabel Darcy
+ *  @author Zachary Bryhtan
+ *  @author Joe Starr
  *
  */
 
@@ -35,16 +35,16 @@
 namespace storage_ns
 {
 /**
- * \brief
+ * \brief json implementation of the storage_interface_c
  */
 class storage_json_c : public storage_interface_c
 {
 public:
 
     /**
-     * \brief
-     * \param file_path
-     * \param makenewfile
+     * \brief Constructor for the class.
+     * \param file_path Path to the file to output to.
+     * \param newfile Flag to create new file.
      */
     /* cppcheck-suppress passedByValue */
     storage_json_c(std::string file_path, bool newfile);
@@ -55,31 +55,32 @@ public:
     ~storage_json_c() override;
 
     /**
-     * \brief
-     * \param key
-     * \param index
-     * \return
+     * \brief Standard read interface.
+     * \param key The key to read.
+     * \param index The index to read.
+     * \return The value at [key][index].
      */
     const char *read(const char *key, const char *index) override;
 
     /**
-     * \brief
-     * \param key
-     * \param index
-     * \param value
-     * \return
+     * \brief Standard write interface.
+     * \param key The key for the write.
+     * \param index The index for the write.
+     * \param value The value to write.
+     * \return A status indicator.
+     *
      */
     uint8_t write(const char *key, const char *index, const char *value) override;
 
 private:
 
     /**
-     * \brief
+     * \brief The data for the JSON file.
      */
     nlohmann::json data = NULL;
 
     /**
-     * \brief
+     * \brief The path to the JSON file.
      */
     std::string file_path = "";
 };

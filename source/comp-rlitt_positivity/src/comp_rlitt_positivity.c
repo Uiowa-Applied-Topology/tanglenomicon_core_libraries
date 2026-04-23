@@ -1,10 +1,10 @@
 /**
  *  \file comp_rlitt_positivity.c
  *
- *  \brief  A rlitt_positivity module
+ *  \brief A computation module for determining the positivity of an RLITT.
  *
  *
- *  \author   Joe Starr
+ *  \author Joe Starr
  *
  */
 
@@ -23,6 +23,10 @@
 /************************** Defines *******************************************/
 /******************************************************************************/
 
+/**
+ * \brief The stack size used for walking the tree.
+ *
+ */
 #define COMP_RLITT_POSITIVITY_STACK_SIZE    (UTIL_TANG_DEFS_MAX_CROSSINGNUM)
 
 /******************************************************************************/
@@ -200,7 +204,8 @@ const comp_rlitt_positivity_result_t *comp_rlitt_positivity_result(void)
 
 
 /**
- * \brief Processes an internal vertex (has parent and children) to determine its positivity.
+ * \brief Processes an internal vertex (has parent and children) to determine the positivity of that
+ *object vertex.
  *
  * \param stick_length The current length of the stick being traversed
  * \param stick_has_p2 Indicates if the stick being traversed contains a weight of +2.

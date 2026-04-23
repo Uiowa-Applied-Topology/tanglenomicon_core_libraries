@@ -1,10 +1,10 @@
 /**
  *  \file mut_rlitt_ringshift.h
  *
- *  \brief  A module for compute rlitt_ringshift
+ *  \brief A module for compute rlitt_ringshift
  *
  *
- *  \author    Joe Starr
+ *  \author Joe Starr
  *
  */
 
@@ -40,7 +40,7 @@
  |
  */
 /**
- * \brief Failed to configure the module due to issue in rootstock.
+ * \brief Failed to configure the module due to issue in the WPTT.
  *
  */
 #define MUT_RLITT_RINGSHIFT_CONFIG_WPTT       (0X1U << 1U)
@@ -67,14 +67,14 @@
 
 
 /**
- * \brief Failed to configure the module due to null config.
+ * \brief Failed to mutate the module due to null config.
  *
  */
 #define MUT_RLITT_RINGSHIFT_MUTATE_CFG_ERROR    (0X1U << 1U)
 
 
 /**
- * \brief Failed to configure the module due to the config having been previously computed against.
+ * \brief Failed to mutate the module due to the config having been previously computed against.
  *
  */
 #define MUT_RLITT_RINGSHIFT_MUTATE_ALREADY_COMPUTED    (0X1U << 2U)
@@ -93,7 +93,7 @@ extern "C"
  *
  */
 typedef struct {
-    note_wptt_t *wptt;
+    note_wptt_t *wptt;/**< The WPTT to mutate.*/
 } mut_rlitt_ringshift_config_t;
 
 #ifdef __cplusplus
@@ -112,6 +112,7 @@ extern "C"
 /**
  * \brief The public configuration function.
  * \param config_arg The config to set.
+ * \return uint8_t config status info.
  */
 uint8_t mut_rlitt_ringshift_config(mut_rlitt_ringshift_config_t *config_arg);
 

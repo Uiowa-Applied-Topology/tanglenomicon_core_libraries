@@ -345,9 +345,9 @@ STATIC_INLINE_UINT8 note_plpath_dp_process_str(char *str, note_plpath_t *path)
 /**
  * \brief Insert the base 10 string representation of a double into the output string.
  *
- * \param new_int A double to insert.
+ * \param new_double A double to insert.
  * \param str A pointer of current index of the output string.
- * \param buffer_end A pointer to the end of the output string buffer.
+ * \param str_end A pointer to the end of the output string buffer.
  * \return A pointer to the next char in the string after parsing the point. Alternatively a null
  *pointer if something has gone wrong.
  */

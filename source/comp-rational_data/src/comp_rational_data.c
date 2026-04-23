@@ -1,11 +1,12 @@
 /**
  *  \file comp_rational_data.c
  *
- *  \brief  A module for compute rational tangle data: fraction, algebraic equivlance, and parity.
+ *  \brief A module for computation of rational tangle data: fraction, algebraic equivalence, and
+ *parity.
  *
  *
- *  \author    Isabel Darcy
- *  \author    Joe Starr
+ *  \author Isabel Darcy
+ *  \author Joe Starr
  *
  */
 

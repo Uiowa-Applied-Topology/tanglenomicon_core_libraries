@@ -401,8 +401,8 @@ STATIC_INLINE_UINT8 walk_tree(void)
  * \brief Build a vertical or horizontal integral tangle.
  *
  *  Create a segment set representing an integral tangle with `weight` crossings. Store the segments
- *in the `set` pointer. If the tangle is to be horizontal or vertical is determined by `op` $+$ for
- *horizontal and $\vee$ for vertical.
+ *in the `set` pointer. If the tangle is to be horizontal or vertical is determined by `op` \f$+\f$
+ * for horizontal and \f$\vee\f$ for vertical.
  *
  * \param set The segement set to store the integral tangle.
  * \param weight The number of crossings to include in the integral tangle.
@@ -826,10 +826,10 @@ STATIC_INLINE_UINT8  build_nonzero_vee(segset_t *set, int64_t weight)
 }
 
 /**
- * \brief Sum two tangles with $+$ or $\vee$.
+ * \brief Sum two tangles with \f$+\f$ or \f$\vee\f$.
  *
- * Use either the $+$ or $\vee$ operation to sum two tangles A and B. The sum modifies the tangle A
- *with the content of tangle B.
+ * Use either the \f$+\f$ or \f$\vee\f$ operation to sum two tangles A and B. The sum modifies the
+ *tangle A with the content of tangle B.
  *
  * \param tangleA The left summand.
  * \param tangleB The right summand.
@@ -944,7 +944,7 @@ STATIC_INLINE_UINT8 do_sum(segset_t *tangleA, segset_t *tangleB, comp_sum_parity
 }
 
 /**
- * \brief Do a $\vee$ sum
+ * \brief Do a \f$\vee\f$ sum
  *
  *
  * \param tangleA The left summand.
@@ -1103,7 +1103,7 @@ STATIC_INLINE_UINT8 do_vee(segset_t *tangleA, segset_t *tangleB)
 }
 
 /**
- * \brief Do a $+$ sum
+ * \brief Do a \f$+\f$ sum
  *
  * \param tangleA The left summand.
  * \param tangleB The right summand.
@@ -1375,8 +1375,8 @@ STATIC_INLINE_UINT8 normalize_ends(segset_t *set)
 }
 
 /**
- * \brief Attach the fixed points of the tangle with parity $\chi$ to the corners of it's bounding
- *box.
+ * \brief Attach the fixed points of the tangle with parity \f$\chi\f$ to the corners of it's
+ *bounding box.
  *
  * \param set The segment set for the tangle to normalize
  * \return A status indicator for the tangle creation.
@@ -1454,8 +1454,8 @@ STATIC_INLINE_UINT8 normalize_chi(segset_t *set)
 }
 
 /**
- * \brief Attach the fixed points of the tangle with parity $\infty$ to the corners of it's bounding
- *box.
+ * \brief Attach the fixed points of the tangle with parity \f$\infty\f$ to the corners of it's
+ *bounding box.
  *
  * \param set The segment set for the tangle to normalize
  * \return A status indicator for the tangle creation.
@@ -1533,7 +1533,8 @@ STATIC_INLINE_UINT8 normalize_inf(segset_t *set)
 }
 
 /**
- * \brief Attach the fixed points of the tangle with parity $0$ to the corners of it's bounding box.
+ * \brief Attach the fixed points of the tangle with parity \f$0\f$ to the corners of it's bounding
+ *box.
  *
  * \param set The segment set for the tangle to normalize
  * \return A status indicator for the tangle creation.
@@ -1615,7 +1616,6 @@ STATIC_INLINE_UINT8 normalize_zero(segset_t *set)
  * Reverse linkage of the points in a segment and swap the head and end points.
  *
  * \param seg The segment to reverse.
- * \return A status indicator for the tangle creation.
  */
 STATIC_INLINE void reverse_segment(seg_t *seg)
 {
@@ -1631,7 +1631,6 @@ STATIC_INLINE void reverse_segment(seg_t *seg)
  * \brief Reverse the path (linked list) formed by points.
  *
  * \param head The head of the linked list.
- * \return A status indicator for the tangle creation.
  */
 STATIC_INLINE void reverse_path(note_plpath_point_t *head)
 {

@@ -1,10 +1,10 @@
 /**
  *  \file generator_rlitt.h
  *
- *  \brief  Generator module for rlitt generator.
+ *  \brief Generator module for rlitt generator.
  *
  *
- *  \author    Joe Starr
+ *  \author Joe Starr
  *
  */
 
@@ -37,19 +37,19 @@
  |
  */
 /**
- * \brief Failed to configure the module due to issue in rootstock.
+ * \brief Failed to configure the module due to null pointer.
  *
  */
 #define GEN_RLITT_CONFIG_IS_NULL             (0x1u << 1u)
 
 /**
- * \brief Failed to configure the module due to issue in scion.
+ * \brief Failed to configure the module due to issue in the rootstock.
  *
  */
 #define GEN_RLITT_CONFIG_ROOTSTOCKS_ERROR    (0x1u << 2u)
 
 /**
- * \brief Failed to configure the module due to null config
+ * \brief Failed to configure the module due to issue in scion.
  *
  */
 #define GEN_RLITT_CONFIG_SCIONS_ERROR        (0x1u << 3u)
@@ -75,49 +75,49 @@
  */
 
 /**
- * \brief Failed to configure the module due to issue in rootstock.
+ * \brief Failed to generate the module due to issue in rootstock.
  *
  */
 #define GEN_RLITT_GENERATE_ROOTSTOCK           (0x1u << 1u)
 
 /**
- * \brief Failed to configure the module due to issue in scion.
+ * \brief Failed to generate the module due to issue in scion.
  *
  */
 #define GEN_RLITT_GENERATE_SCION               (0x1u << 2u)
 
 /**
- * \brief Failed to configure the module due to null config
+ * \brief Failed to generate the module due to grafting issue.
  *
  */
 #define GEN_RLITT_GENERATE_GRAFTING            (0x1u << 3u)
 
 /**
- * \brief Failed to configure the module due to null config
+ * \brief Failed to generate the module due to neutrality issue.
  *
  */
 #define GEN_RLITT_GENERATE_NEUTRALITY          (0x1u << 4u)
 
 /**
- * \brief Failed to configure the module due to null config
+ * \brief Failed to generate the module due to the configuration being already computed.
  *
  */
 #define GEN_RLITT_GENERATE_ALREADY_COMPUTED    (0x1u << 5u)
 
 /**
- * \brief Failed to configure the module due to null config
+ * \brief Failed to generate the module due to shifting error.
  *
  */
 #define GEN_RLITT_GENERATE_SHIFT               (0x1u << 6u)
 
 /**
- * \brief Failed to configure the module due to null config
+ * \brief Failed to generate the module due to a print error.
  *
  */
 #define GEN_RLITT_GENERATE_PRINT_ERROR         (0x2u << 1u)
 
 /**
- * \brief Failed to configure the module due to null config
+ * \brief Failed to generate the module due to a configuration error.
  *
  */
 #define GEN_RLITT_GENERATE_CFG_ERROR           (0x2u << 2u)
@@ -134,10 +134,10 @@ extern "C" {
  * \brief Type defining the $V_4$ label for a wptt
  */
 typedef enum gen_rlitt_positivity_e {
-    GEN_RLITT_UNINIT,
-    GEN_RLITT_POS,
-    GEN_RLITT_NEG,
-    GEN_RLITT_NEU
+    GEN_RLITT_UNINIT, /**< The RLITT positivity is uninitialized.*/
+    GEN_RLITT_POS,    /**< Indicates a positive positivity.*/
+    GEN_RLITT_NEG,    /**< Indicates a negative positivity.*/
+    GEN_RLITT_NEU     /**< Indicates a neutral positivity.*/
 } gen_rlitt_positivity_e;
 #ifdef __cplusplus
 }
@@ -152,11 +152,11 @@ extern "C" {
  *
  */
 typedef struct gen_rlitt_config_t {
-    storage_write_funptr_t storage_write;
-    const note_wptt_t **   rootstocks;
-    size_t                 rootstocks_len;
-    const note_wptt_t **   scions;
-    size_t                 scions_len;
+    storage_write_funptr_t storage_write;  /**< A standard write interface. */
+    const note_wptt_t **   rootstocks;     /**< A list of rootstocks. */
+    size_t                 rootstocks_len; /**< The number of rootstocks. */
+    const note_wptt_t **   scions;         /**< A list of scions. */
+    size_t                 scions_len;     /**< The number of scions. */
 } gen_rlitt_config_t;
 #ifdef __cplusplus
 }
@@ -173,6 +173,7 @@ extern "C" {
 /**
  * \brief The public configuration function.
  * \param config_arg The config to set.
+ * \return uint8_t Config status info.
  */
 uint8_t gen_rlitt_config(gen_rlitt_config_t *config_arg);
 
