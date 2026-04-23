@@ -312,19 +312,19 @@ stateDiagram-v2
 >     - Eqclass is self.
 >   - Valid configurations are set for $F_3^\prime$ with at least one test suming two weights:
 >     - Odd weight:
->       - Index is rightmost:
->         - Direction is forward.
->         - Direction is backward.
->       - Index is leftmost:
->         - Direction is forward.
->         - Direction is backward.
+>         - Index is rightmost:
+>             - Direction is forward.
+>             - Direction is backward.
+>         - Index is leftmost:
+>             - Direction is forward.
+>             - Direction is backward.
 >     - Even weight:
->       - Index is rightmost:
->         - Direction is forward.
->         - Direction is backward.
->       - Index is leftmost:
->         - Direction is forward.
->         - Direction is backward.
+>         - Index is rightmost:
+>             - Direction is forward.
+>             - Direction is backward.
+>         - Index is leftmost:
+>             - Direction is forward.
+>             - Direction is backward.
 >
 > **Expected Output:**
 >

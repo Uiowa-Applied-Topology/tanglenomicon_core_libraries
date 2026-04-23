@@ -155,11 +155,11 @@ stateDiagram-v2
 >
 > **Inputs:**
 >
->   - A valid string representing a twist vector.
+> - A valid string representing a twist vector.
 >
 > **Expected Output:**
 >
->    A correct and valid decoding of the string
+> A correct and valid decoding of the string
 
 ### Encode Interface
 
@@ -169,8 +169,8 @@ stateDiagram-v2
 >
 > **Inputs:**
 >
->   - A correct and valid twist vector.
+> - A correct and valid twist vector.
 >
 > **Expected Output:**
 >
->    A valid string representing the twist vector.
+> A valid string representing the twist vector.

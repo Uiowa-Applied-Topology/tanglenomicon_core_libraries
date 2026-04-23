@@ -207,13 +207,13 @@ This function checks a character passed to it and updates the current notation i
 seven execution paths. These paths are based on the class the character falls into:
 
 - A delimiter
-  - An opening delimiter
-    - $\langle$
-    - $[$
-    - $($
-  - A closing delimiter
-    - $\rangle$
-    - $)$
+    - An opening delimiter
+        - $\langle$
+        - $[$
+        - $($
+    - A closing delimiter
+        - $\rangle$
+        - $)$
 - An integer beginning with "0-9" or "-"
 - A space character
 
