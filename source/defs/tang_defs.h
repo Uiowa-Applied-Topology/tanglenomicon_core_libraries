@@ -1,10 +1,10 @@
 /**
  *  \file tang_defs.h
  *
- *  \brief  Common definitions for the tanglenomicon project.
+ *  \brief Common definitions for the tanglenomicon project.
  *
  *
- *  \author    Joe Starr
+ *  \author Joe Starr
  *
  */
 
@@ -22,10 +22,12 @@
     (defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L))
 #define STATIC_INLINE    static inline
 #else
+/** \brief Define a macro for C89 static support. */
 #define STATIC_INLINE    static
 #endif
 #endif /* STATIC_INLINE */
 
+/** \brief Define a macro for C89 static support. */
 #define STATIC_INLINE_UINT8    STATIC_INLINE uint8_t
 /******************************************************************************/
 /****************************** Includes **************************************/

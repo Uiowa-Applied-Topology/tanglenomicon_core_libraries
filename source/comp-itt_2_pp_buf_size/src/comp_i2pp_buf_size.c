@@ -1,7 +1,7 @@
 /**
  *  \file comp_i2pp_buf_size.c
  *
- *  \brief A component to compute the buffer seize needed to turn a ITT into a PL path.
+ *  \brief A component to compute the buffer seize needed to turn an ITT into a PL path.
  *
  *
  *  \author Joe Starr

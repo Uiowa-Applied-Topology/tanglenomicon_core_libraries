@@ -1,10 +1,10 @@
 /**
  *  \file generator_rlitt.c
  *
- *  \brief  generator module for rlitt.
+ *  \brief generator module for rlitt.
  *
  *
- *  \author    Joe Starr
+ *  \author Joe Starr
  *
  */
 
@@ -160,7 +160,7 @@ STATIC_INLINE_UINT8 gen_rlitt_grafting_handler(size_t rootstock_idx, size_t scio
                                                                              {0},
                                                                              0,
                                                                              0,
-                                                                             NOTE_WPTT_ORDER_UNINIT 
+                                                                             NOTE_WPTT_ORDER_UNINIT
                                                                            }};
 /* clang-format on */
     note_wptt_node_buffer_t             buffer = { note_wptt_node,
@@ -225,10 +225,10 @@ STATIC_INLINE_UINT8 gen_rlitt_grafting_handler(size_t rootstock_idx, size_t scio
                                                       gen_rlitt_get_posstr(
                                                           positivity_res->positivity));
 /* clang-format off */
-                    /* If the tree rootstock is a stick at the root we need to invert the sign of 
+                    /* If the tree rootstock is a stick at the root we need to invert the sign of
                      * the root vertex and store the result.
                      */
-                    if (1 == gen_rlitt_localcfg->rootstocks[rootstock_idx]->root->number_of_children) 
+                    if (1 == gen_rlitt_localcfg->rootstocks[rootstock_idx]->root->number_of_children)
 /* clang-format on */
                     {
                         uint8_t number_of_children = shifted_wptt->root->number_of_children;

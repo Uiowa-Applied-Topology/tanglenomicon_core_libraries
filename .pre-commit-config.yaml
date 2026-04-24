@@ -11,6 +11,20 @@ repos:
             files:
                 glob:
                     - "**/*.md"
+          - id: doxygen
+            name: doxygen
+            language: system
+            entry: just check-doxygen
+            pass_filenames: false
+            exclude:
+                glob:
+                    - "libraries/**/*.*"
+            files:
+                glob:
+                    - "**/*.c"
+                    - "**/*.h"
+                    - "**/*.cpp"
+                    - "**/*.hpp"
           - id: uncrustify
             name: uncrustify
             language: system

@@ -1,10 +1,10 @@
 /**
  *  \file comp_wptt_canonicity.h
  *
- *  \brief  A module for compute wptt_canonicity
+ *  \brief A module for compute wptt_canonicity
  *
  *
- *  \author    author
+ *  \author Joe Starr
  *
  */
 
@@ -54,7 +54,7 @@
 #define COMP_WPTT_CANON_CONFIG_IS_NULL       (0x1u << 2u)
 
 /**
- * \brief Failed to configure the module due to uninit positivity
+ * \brief Failed to configure the module due to uninitialized positivity
  *
  */
 #define COMP_WPTT_CANON_CONFIG_POS_ERROR     (0x1u << 3u)
@@ -116,12 +116,12 @@ extern "C"
 #endif
 
 /**
- * \brief Type defining the order direction of a node in a wptt.
+ * \brief Defines the enumeration for canonicity of a tangle.
  */
 typedef enum comp_wptt_canonicity_canon_e {
-    COMP_WPTT_CANON_CAN_UNINIT,
-    COMP_WPTT_CANON_IS_CANONICAL,
-    COMP_WPTT_CANON_IS_NONCANONICAL,
+    COMP_WPTT_CANON_CAN_UNINIT,      /**< Canonicity is uninitialized.*/
+    COMP_WPTT_CANON_IS_CANONICAL,    /**< Indicates a canonical tangle.*/
+    COMP_WPTT_CANON_IS_NONCANONICAL, /**< Indicates a non canonical tangle.*/
 } comp_wptt_canonicity_canon_e;
 #ifdef __cplusplus
 }
@@ -133,12 +133,12 @@ extern "C"
 #endif
 
 /**
- * \brief Type defining the order direction of a node in a wptt.
+ * \brief Defines the positivity of a tangle.
  */
 typedef enum comp_wptt_cononicity_positivity_e {
-    COMP_WPTT_CANON_POS_UNINIT,
-    COMP_WPTT_CANON_POS_POS,
-    COMP_WPTT_CANON_POS_NEG,
+    COMP_WPTT_CANON_POS_UNINIT, /**< Positivity is uninitialized.*/
+    COMP_WPTT_CANON_POS_POS,    /**< Determine if the tangle is positive canonical.*/
+    COMP_WPTT_CANON_POS_NEG,    /**< Determine if the tangle is negative canonical.*/
 } comp_wptt_cononicity_positivity_e;
 
 #ifdef __cplusplus
@@ -151,11 +151,11 @@ extern "C"
 #endif
 
 /**
- * \brief The type definition for configuring the wptt_canonicity computation.
+ * \brief The type definition for the result of the computation.
  *
  */
 typedef struct {
-    comp_wptt_canonicity_canon_e is_canonical;
+    comp_wptt_canonicity_canon_e is_canonical;/**< Indicates the canonicity of the tangle.*/
 } comp_wptt_canonicity_result_t;
 #ifdef __cplusplus
 }
@@ -171,9 +171,9 @@ extern "C"
  *
  */
 typedef struct {
-    storage_write_funptr_t            storage_write;
-    note_wptt_t *                     wptt;
-    comp_wptt_cononicity_positivity_e positivity;
+    storage_write_funptr_t            storage_write; /**< A standard write interface.*/
+    note_wptt_t *                     wptt;          /**< The WPTT to determine the canonicity of.*/
+    comp_wptt_cononicity_positivity_e positivity;    /**< The positivity to compute against.*/
 } comp_wptt_canonicity_config_t;
 #ifdef __cplusplus
 }
@@ -195,6 +195,7 @@ extern "C"
 /**
  * \brief The public configuration function.
  * \param config_arg The config to set.
+ * \return uint8_t Config status info.
  */
 uint8_t comp_wptt_canonicity_config(comp_wptt_canonicity_config_t *config_arg);
 

@@ -1,4 +1,5 @@
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -6,10 +7,17 @@ from pathlib import Path
 def sort_json(json):
     files = {}
     for obj in json:
-        path = Path(obj["file"]).relative_to(Path.cwd())
-        if str(path) not in files:
-            files[str(path)] = []
-        files[str(path)].append(obj)
+        try:
+            path = Path(obj["file"]).relative_to(Path.cwd())
+            if str(path) not in files:
+                files[str(path)] = []
+            files[str(path)].append(obj)
+        except:
+            if "." not in files:
+                files["."] = []
+            files["."].append(obj)
+            print(obj)
+            pass
     for file in files:
         files[file].sort(key=lambda x: x["line"])
     return files
@@ -23,15 +31,27 @@ def format(obj):
 
 def main():
     outfile = Path("./.build/doxygen/warnings/index.html")
+    outfile2 = Path("./.build/doxygen/warnings/index.json")
     outfile.parent.mkdir(parents=True, exist_ok=True)
     inp = "["
     for line in sys.stdin:
+        line = re.sub(r"\\", "/", line)
+        line = re.sub(r"\n", " ", line)
         inp += line
-    if inp.endswith(",\n"):
-        inp = inp[:-2]
+    if inp.endswith("\n"):
+        inp = inp[:-1]
+    if inp.endswith(" "):
+        inp = inp[:-1]
+    if inp.endswith(","):
+        inp = inp[:-1]
     inp += "]"
-    jsonobjs = json.loads(inp)
-    files = sort_json(jsonobjs)
+    with open(outfile2, "w") as file:
+        file.write(inp)
+    if inp != "[]":
+        jsonobjs = json.loads(inp)
+        files = sort_json(jsonobjs)
+    else:
+        files = []
     html = """ <!doctype html>
 <html lang="en">
     <head>
@@ -53,7 +73,7 @@ td{
         }
 </style>
 </head><body>"""
-    html += f"""<h1 style="color:var(--drac-red);">Total Warnings: {len(jsonobjs)}"""
+    html += f"""<h1 style="color:var(--drac-red);">Total Warnings: {len(files)}"""
     if files:
         for file in files:
             html += (

@@ -1,12 +1,12 @@
 /**
- *  @file storage_JSON.c
+ *  \file storage_json.cpp
  *
- *  @brief  store-storage_interface module for store-json files.
+ *  \brief store-storage_interface module for store-json files.
  *
  *
- *  @author    Isabel Darcy
- *  @author    Zachary Bryhtan
- *  @author    Joe Starr
+ *  \author Isabel Darcy
+ *  \author Zachary Bryhtan
+ *  \author Joe Starr
  *
  */
 
@@ -14,8 +14,15 @@
 #include <fstream>
 #include <iostream>
 
+/**
+ * \brief Reference for the JSON library
+ */
 using json = nlohmann::json;
-using sj   = storage_ns::storage_json_c;
+
+/**
+ * \brief Reference for the C wrapper library
+ */
+using sj = storage_ns::storage_json_c;
 
 const char *sj::read(const char *key, const char *index)
 {
@@ -32,13 +39,6 @@ const char *sj::read(const char *key, const char *index)
     return value;
 }
 
-/**
- * \brief
- * \param key
- * \param index
- * \param value
- * \return
- */
 uint8_t sj::write(const char *key, const char *index, const char *value)
 {
     uint8_t ret_val = STORE_DEFS_WRITE_SUCCESS;
@@ -58,10 +58,6 @@ uint8_t sj::write(const char *key, const char *index, const char *value)
     return ret_val;
 }
 
-/**
- * \brief
- * \param file_path
- */
 /* cppcheck-suppress passedByValue */
 sj::storage_json_c(std::string file_path, bool newfile)
 {

@@ -309,6 +309,13 @@ STATIC_INLINE_UINT8 comp_wptt_parity_walk_tree(void)
     return ret_val;
 }
 
+/**
+ * \brief Determine the sum of the parities.
+ *
+ * \param parity_a The parity of the left summand.
+ * \param parity_b The parity of the right summand.
+ * \return The resulting parity.
+ */
 STATIC_INLINE comp_sum_parity_parity_e comp_wptt_vertex_parity_sum(
     comp_sum_parity_parity_e parity_a,
     comp_sum_parity_parity_e parity_b)

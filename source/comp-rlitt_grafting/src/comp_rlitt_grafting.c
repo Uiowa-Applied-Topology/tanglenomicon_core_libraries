@@ -1,10 +1,10 @@
 /**
  *  \file comp_rlitt_grafting.c
  *
- *  \brief  A rlitt_grafting module
+ *  \brief A computation module for grafting two RLITT at a given vertex index.
  *
  *
- *  \author    Joe Starr
+ *  \author Joe Starr
  *
  */
 
@@ -341,10 +341,10 @@ STATIC_INLINE void comp_rlitt_grafting_copy_nodevals(const note_wptt_node_t *src
 }
 
 /**
- * \brief Graft a scion onto the idx element of the rootstock.
+ * \brief Graft a scion onto the index element of the rootstock.
  *
  * We copied the rootstock into a new buffer so that buffer is in index order. We can directly
- *access the ith element for grafting.
+ *access the \f$\text{i}^{\text{th}}\f$ element for grafting.
  *
  * \param scion The scion for processing.
  * \return A status indicator for the operation

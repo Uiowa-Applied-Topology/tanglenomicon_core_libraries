@@ -1,10 +1,10 @@
 /**
  *  \file storage_defs.h
  *
- *  \brief  Common definitions for store-storage_interface objects.
+ *  \brief Common definitions for store-storage_interface objects.
  *
  *
- *  \author    Joe Starr
+ *  \author Joe Starr
  *
  */
 
@@ -34,9 +34,13 @@
 extern "C"
 {
 #endif
+
+/** \brief Defines the standard write interface function pointer type. */
 typedef uint8_t (*storage_write_funptr_t)(const char *key,
                                           const char *index,
                                           const char *value);
+
+/** \brief Defines the standard read interface function pointer type. */
 typedef const char *(*storage_read_funptr_t)(const char *key,
                                              const char *index);
 #ifdef __cplusplus

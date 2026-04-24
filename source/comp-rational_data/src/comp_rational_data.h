@@ -1,11 +1,12 @@
 /**
  *  \file comp_rational_data.h
  *
- *  \brief  A module for compute rational tangle data: fraction, algebraic equivlance, and parity.
+ *  \brief A module for computation of rational tangle data: fraction, algebraic equivalence, and
+ *parity.
  *
  *
- *  \author    Isabel Darcy
- *  \author    Joe Starr
+ *  \author Isabel Darcy
+ *  \author Joe Starr
  *
  */
 
@@ -33,8 +34,7 @@
  * \brief The key for the rational data computation
  *
  */
-#define COMP_RATIONAL_DAT_STORAGE_UKEY    ("COMP_RATIONAL_DAT")
-/*@@@TODO: add keys*/
+#define COMP_RATIONAL_DAT_STORAGE_UKEY    "COMP_RATIONAL_DAT"
 
 /*************************** Config *******************************************/
 
@@ -70,11 +70,13 @@ extern "C"
  *
  */
 typedef struct {
-    int   numerator;
-    int   denominator;
-    char *parity;
-    int   num_algebraic_equ;
-    int   den_algebraic_equ;
+    int   numerator;         /**< The numerator of the rational number for the tangle.*/
+    int   denominator;       /**< The denominator of the rational number for the tangle.*/
+    char *parity;            /**< The parity string of the tangle.*/
+    int   num_algebraic_equ; /**< The numerator equivalence class of the rational number for the
+                              * tangle.*/
+    int   den_algebraic_equ; /**< The denominator equivalence class of the rational number for the
+                              * tangle.*/
 } comp_rational_data_result_t;
 #ifdef __cplusplus
 }
@@ -90,10 +92,10 @@ extern "C"
  *
  */
 typedef struct {
-    storage_write_funptr_t storage_write;
-    note_tv_t *            tv_n;
-    char *                 tv_str_buff;
-    size_t                 tv_str_buff_len;
+    storage_write_funptr_t storage_write;   /**< The standard write interface.*/
+    note_tv_t *            tv_n;            /**< A twist vector to compute over.*/
+    char *                 tv_str_buff;     /**< The string buffer for output.*/
+    size_t                 tv_str_buff_len; /**< The length of the string buffer for output.*/
 } comp_rational_data_config_t;
 #ifdef __cplusplus
 }
@@ -111,6 +113,7 @@ extern "C"
 /**
  * \brief The public configuration function.
  * \param config_arg The config to set.
+ * \return uint8_t config status info.
  */
 uint8_t comp_rational_data_config(comp_rational_data_config_t *config_arg);
 

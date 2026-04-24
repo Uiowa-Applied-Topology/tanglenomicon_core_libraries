@@ -1,10 +1,10 @@
 /**
  *  \file comp_rlitt_pure_vignette.c
  *
- *  \brief  A rlitt_pure_vignette module
+ *  \brief A computation module for determining the pure vignette of an RLITT.
  *
  *
- *  \author   Joe Starr
+ *  \author Joe Starr
  *
  */
 
@@ -23,7 +23,16 @@
 /************************** Defines *******************************************/
 /******************************************************************************/
 
+/**
+ * \brief Stack size for walking the tree.
+ *
+ */
 #define COMP_RLITT_PURE_VIGNETTE_STACK_SIZE       (UTIL_TANG_DEFS_MAX_CROSSINGNUM)
+
+/**
+ * \brief String buffer size used for vignette output.
+ *
+ */
 #define COMP_RLITT_PURE_VIGNETTE_STR_BUFF_SIZE    (UTIL_TANG_DEFS_MAX_CROSSINGNUM * 0x3u)
 
 /******************************************************************************/
@@ -57,7 +66,7 @@ static comp_rlitt_pure_vignette_result_t comp_rlitt_pure_vignette_localrestult;
  * \brief The local string buffer of the RLITT pure vignette computation module.
  *
  */
-static char comp_rlitt_pure_vignette_str[COMP_RLITT_PURE_VIGNETTE_STR_BUFF_SIZE] = { '\0' };
+static char comp_rlitt_pure_vignette_str[COMP_RLITT_PURE_VIGNETTE_STR_BUFF_SIZE] = "\0";
 
 /**
  * \brief The local computation status of the RLITT pure vignette computation module.

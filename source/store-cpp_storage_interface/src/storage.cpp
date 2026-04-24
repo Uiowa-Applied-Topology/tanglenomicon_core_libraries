@@ -1,12 +1,12 @@
 /**
- *  @file store-cpp_storage_interface.hpp
+ *  @file storage.cpp
  *
- *  @brief  store-cpp_storage_interface interface description.
+ *  @brief store-cpp_storage_interface interface description.
  *
  *
- *  @author    Isabel Darcy
- *  @author    Zachary Bryhtan
- *  @author    Joe Starr
+ *  @author Isabel Darcy
+ *  @author Zachary Bryhtan
+ *  @author Joe Starr
  *
  */
 

@@ -1,10 +1,10 @@
 /**
  *  \file comp_wptt_vertex_canonicity.h
  *
- *  \brief  A module for computing the canonicity of a vertex of a wptt.
+ *  \brief A module for computing the canonicity of a vertex of a wptt.
  *
  *
- *  \author   Joe Starr
+ *  \author Joe Starr
  *
  */
 
@@ -88,12 +88,12 @@ extern "C"
 #endif
 
 /**
- * \brief Type defining the order direction of a node in a wptt.
+ * \brief Defines the positivity of a vertex.
  */
 typedef enum comp_wptt_vert_canon_positivity_e {
-    COMP_WPTT_VERT_CANON_POS_UNINIT,
-    COMP_WPTT_VERT_CANON_POS_POS,
-    COMP_WPTT_VERT_CANON_POS_NEG,
+    COMP_WPTT_VERT_CANON_POS_UNINIT, /**< Positivity is uninitialized.*/
+    COMP_WPTT_VERT_CANON_POS_POS,    /**< Determine if the vertex is positive canonical.*/
+    COMP_WPTT_VERT_CANON_POS_NEG,    /**< Determine if the vertex is negative canonical.*/
 } comp_wptt_vert_canon_positivity_e;
 #ifdef __cplusplus
 }
@@ -106,12 +106,12 @@ extern "C"
 #endif
 
 /**
- * \brief Type defining the order direction of a node in a wptt.
+ * \brief Defines the enumeration for canonicity of a vertex.
  */
 typedef enum comp_wptt_vert_canon_canon_e {
-    COMP_WPTT_VERT_CANON_CAN_UNINIT,
-    COMP_WPTT_VERT_CANON_IS_CANONICAL,
-    COMP_WPTT_VERT_CANON_IS_NONCANONICAL,
+    COMP_WPTT_VERT_CANON_CAN_UNINIT,      /**< Canonicity is uninitialized.*/
+    COMP_WPTT_VERT_CANON_IS_CANONICAL,    /**< Indicates a canonical vertex.*/
+    COMP_WPTT_VERT_CANON_IS_NONCANONICAL, /**< Indicates a non canonical vertex.*/
 } comp_wptt_vert_canon_canon_e;
 #ifdef __cplusplus
 }
@@ -127,7 +127,7 @@ extern "C"
  *
  */
 typedef struct {
-    comp_wptt_vert_canon_canon_e is_canonical;
+    comp_wptt_vert_canon_canon_e is_canonical; /**< Indicates the canonicity of a vertex.*/
 } comp_wptt_vert_canon_result_t;
 #ifdef __cplusplus
 }
@@ -143,12 +143,14 @@ extern "C"
  *
  */
 typedef struct {
-    storage_write_funptr_t            storage_write;
-    const note_wptt_t *               wptt;
-    const note_wptt_node_t *          vertex;
-    const note_wptt_node_t *          parent;
-    bool                              parent_is_root;
-    comp_wptt_vert_canon_positivity_e positivity;
+    storage_write_funptr_t            storage_write;  /**< A standard write interface.*/
+    const note_wptt_t *               wptt;           /**< The WPTT containing the object vertex.*/
+    const note_wptt_node_t *          vertex;         /**< The vertex to determine the canonicity
+                                                       * of.*/
+    const note_wptt_node_t *          parent;         /**< The parent of the object vertex.*/
+    bool                              parent_is_root; /**< Indicates if the parent is the root of
+                                                       * the tree.*/
+    comp_wptt_vert_canon_positivity_e positivity;     /**< The positivity to compute against.*/
 } comp_wptt_vert_canon_config_t;
 #ifdef __cplusplus
 }
@@ -166,6 +168,7 @@ extern "C"
 /**
  * \brief The public configuration function.
  * \param config_arg The config to set.
+ * \return uint8_t Config status info.
  */
 uint8_t comp_wptt_vert_canon_config(comp_wptt_vert_canon_config_t *config_arg);
 

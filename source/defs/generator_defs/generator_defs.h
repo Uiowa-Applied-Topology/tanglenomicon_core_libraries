@@ -1,10 +1,10 @@
 /**
  *  \file generator_defs.h
  *
- *  \brief  Common definitions for generator objects.
+ *  \brief Common definitions for generator objects.
  *
  *
- *  \author    Joe Starr
+ *  \author Joe Starr
  *
  */
 

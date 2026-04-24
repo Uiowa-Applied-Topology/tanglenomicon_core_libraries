@@ -1,12 +1,12 @@
 /**
  *  \file notation_att.c
  *
- *  \brief  Notation module for twist vectors.
+ *  \brief Notation module for twist vectors.
  *
  *
- *  \author    Isabel Darcy
- *  \author    Zachary Bryhtan
- *  \author    Joe Starr
+ *  \author Isabel Darcy
+ *  \author Zachary Bryhtan
+ *  \author Joe Starr
  *
  */
 
@@ -123,9 +123,12 @@ uint8_t note_att_encode(note_att_t att, char *str, size_t buffer_size)
 
 /**
  *
- * \param node
- * \param str
- * \return
+ * \brief Recursively traverse a tree building a string as you go.
+ *
+ * \param node The current vertex in the tree.
+ * \param str An output string.
+ * \param buffer_size The size of the string buffer.
+ * \return The status of the traverse.
  */
 STATIC_INLINE_UINT8 note_att_traverse(note_att_node_t *node,
                                       char *str,
@@ -188,7 +191,8 @@ STATIC_INLINE_UINT8 note_att_traverse(note_att_node_t *node,
 /**
  * \brief Decode a string into a twist vector and report succes.
  * \param tv The note_tv_t store-storage_interface to store the data to.
- * \param str The data to decode.
+ * \param str An output string.
+ * \param buffer_size The size of the string buffer.
  * \return Indicate success failure of adding the twist vector.
  */
 STATIC_INLINE_UINT8 note_att_add_tv(const note_tv_t *tv,

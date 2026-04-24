@@ -1,10 +1,10 @@
 /**
  *  \file notation_defs.h
  *
- *  \brief  Common definitions for notation objects.
+ *  \brief Common definitions for notation objects.
  *
  *
- *  \author    Joe Starr
+ *  \author Joe Starr
  *
  */
 

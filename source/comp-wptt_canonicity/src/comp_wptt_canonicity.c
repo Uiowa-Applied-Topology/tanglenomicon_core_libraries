@@ -1,10 +1,10 @@
 /**
  *  \file comp_wptt_canonicity.c
  *
- *  \brief  A module for computing the canonicity of a WPTT
+ *  \brief A module for computing the canonicity of a WPTT
  *
  *
- *  \author   Joe Starr
+ *  \author Joe Starr
  *
  */
 
@@ -26,6 +26,10 @@
 /************************** Defines *******************************************/
 /******************************************************************************/
 
+/**
+ * \brief Stack size for walking the tree.
+ *
+ */
 #define COMP_WPTT_CANON_STACK_SIZE    (UTIL_TANG_DEFS_MAX_CROSSINGNUM)
 
 /******************************************************************************/
@@ -214,7 +218,6 @@ STATIC_INLINE comp_wptt_vert_canon_positivity_e comp_wptt_vert_canon_convert_pos
 /**
  * \brief Walk the input tree and determine the canonicity of each vertex.
  *
- * \param tree The tree to walk.
  * \return A status indicator for the function.
  */
 STATIC_INLINE_UINT8 comp_wptt_canonicity_walk_tree(void)

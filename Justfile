@@ -4,7 +4,7 @@ set export
     just --list
 
 # Set up development environment
-bootstrap: 
+bootstrap:
     if test ! -e .venv; then \
       just refresh-sub ; \
       prek install -f -c .pre-commit-config.yaml ; \
@@ -15,9 +15,9 @@ bootstrap:
     fi
 
 # Refresh the submodules in the project
-refresh-sub: 
-      git submodule deinit -f . 
-      git submodule update --init --recursive 
+refresh-sub:
+      git submodule deinit -f .
+      git submodule update --init --recursive
 
 ##################################################################################################
 ## Cmake      ####################################################################################
@@ -36,14 +36,14 @@ clean_win: bootstrap
         rip {{buildDir_win}}; \
     fi
 
-# Build for windows 
+# Build for windows
 build_win : bootstrap
     source .venv/bin/activate && \
     cmake -DCMAKE_TOOLCHAIN_FILE=./misc/cmake/mingw-toolchain.cmake -B{{buildDir_win}} -DCMAKE_BUILD_TYPE={{buildTrgt_win}} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_COLOR_DIAGNOSTICS=TRUE -G Ninja && \
-    cmake --build {{buildDir_win}} -j 
+    cmake --build {{buildDir_win}} -j
 
 
-# Test windows 
+# Test windows
 test_wine: bootstrap
     source .venv/bin/activate && \
     cd {{buildDir_win}} && \
@@ -62,13 +62,13 @@ clean_rel: bootstrap
         rip {{buildDir_rel}}; \
     fi
 
-# Build for release 
+# Build for release
 build_rel : bootstrap
     source .venv/bin/activate && \
     cmake  -DCMAKE_TOOLCHAIN_FILE=./misc/cmake/musl-toolchain.cmake -B{{buildDir_rel}} -DCMAKE_BUILD_TYPE={{buildTrgt_rel}} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_COLOR_DIAGNOSTICS=TRUE -G Ninja && \
-    cmake --build {{buildDir_rel}} -j 
+    cmake --build {{buildDir_rel}} -j
 
-# Test release 
+# Test release
 test_rel: bootstrap
     source .venv/bin/activate && \
     cd {{buildDir_rel}} && \
@@ -86,13 +86,13 @@ clean_dbg: bootstrap
         rip {{buildDir_dbg}}; \
     fi
 
-# Build for debug 
+# Build for debug
 build_dbg : bootstrap
     source .venv/bin/activate && \
     cmake -DCMAKE_TOOLCHAIN_FILE=./misc/cmake/musl-toolchain.cmake -B{{buildDir_dbg}} -DCMAKE_BUILD_TYPE={{buildTrgt_dbg}} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_COLOR_DIAGNOSTICS=TRUE -G Ninja && \
-    cmake --build {{buildDir_dbg}} -j 
+    cmake --build {{buildDir_dbg}} -j
 
-# Test debug 
+# Test debug
 test_dbg: bootstrap
     source .venv/bin/activate && \
     cd {{buildDir_dbg}} && \
@@ -108,7 +108,7 @@ build_all: build_dbg build_rel build_win
     exit 0
 
 # Run testing for all versions
-test_all: test_rel test_dbg 
+test_all: test_rel test_dbg
     @echo "🚀 tested everything"
     exit 0
 
@@ -116,12 +116,12 @@ test_all: test_rel test_dbg
 ## mkdocs     ####################################################################################
 ##################################################################################################
 
-# Build docs 
+# Build docs
 html: bootstrap
     source .venv/bin/activate && \
     mkdocs build -d ./.build/docs
 
-# Luanch live docs 
+# Luanch live docs
 live: bootstrap
     @echo "🚀 Check port 8000"
     source .venv/bin/activate && \
@@ -137,17 +137,17 @@ live: bootstrap
 ##################################################################################################
 
 
-# Generate warnings from doxygen 
+# Generate warnings from doxygen
 warning-doxygen:
-    -doxygen misc/doxy/.doxyconfig | python ./misc/doxy/make_doxywarnhtml.py 
+    -doxygen misc/doxy/.doxyconfig | python ./misc/doxy/make_doxywarnhtml.py
 
-# Cyclically Generate warnings from doxygen 
+# Cyclically Generate warnings from doxygen
 c-warning-doxygen:
     -watch -n 3 just warning-doxygen
 
 # Server cppcheck results
 [working-directory: '.build/doxygen/warnings']
-serve-doxygen: bootstrap warning-doxygen 
+serve-doxygen: bootstrap warning-doxygen
     @echo "🚀 Check port 1315"
     source ../../../.venv/bin/activate && \
     python -m reloadserver 1315
@@ -177,11 +177,11 @@ do-cmakeformat:
 clear-cppcheck: build_rel
     mkdir -p ./.build/cppcheck
 
-# Build cppckeck html 
+# Build cppckeck html
 report-cppcheck:
     mkdir -p ./.build/cppcheck
     cppcheck --project=./.build/Release/compile_commands.json -q -ilibraries  --enable=all --std=c99 --inline-suppr --suppressions-list=cppcheck.supp --suppress=*:./libraries/json/lib/single_include/nlohmann/json.hpp --xml 2> ./.build/cppcheck/err.xml
-    cppcheck-htmlreport --file=./.build/cppcheck/err.xml --report-dir=./.build/cppcheck --source-dir=. 
+    cppcheck-htmlreport --file=./.build/cppcheck/err.xml --report-dir=./.build/cppcheck --source-dir=.
 
 # Server cppcheck results
 [working-directory: '.build/cppcheck']
@@ -199,7 +199,7 @@ check-cppcheck: build_rel
 ####### uncrustify format ########################################################################
 ##################################################################################################
 
-# Run uncrustify 
+# Run uncrustify
 do-uncrustify:
     find ./source -iname "*.c"   -exec  sh -c 'uncrustify -c .uncrustify.cfg --replace "$0" || kill $PPID' \{\} \;
     find ./source -iname "*.h"   -exec  sh -c 'uncrustify -c .uncrustify.cfg --replace "$0" || kill $PPID' \{\} \;
@@ -213,20 +213,20 @@ do-uncrustify:
 ##################################################################################################
 ####### rumdl format ##########################################################################
 ##################################################################################################
-    
-# Run rumdl 
+
+# Run rumdl
 do-rumdl:
-    rumdl fmt --fix docs
-    rumdl fmt --fix source
-    rumdl fmt --fix misc 
+    rumdl fmt docs
+    rumdl fmt source
+    rumdl fmt misc
 
 
 ##################################################################################################
 ####### check everything #########################################################################
 ##################################################################################################
 
-# Check all style and formatting. Fail on warning.  
-check: 
+# Check all style and formatting. Fail on warning.
+check:
     prek run --all-files
     @echo "🚀 Checked the files"
     exit 0
@@ -235,7 +235,7 @@ check:
 ####### all format ###############################################################################
 ##################################################################################################
 
-# Run all formatting.  
+# Run all formatting.
 format: do-rumdl do-cmakeformat do-uncrustify
     @echo "🚀 Formated the files"
     exit 0

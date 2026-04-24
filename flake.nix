@@ -68,6 +68,7 @@
               rumdl
               vscode-extensions.vadimcn.vscode-lldb
               wine64
+              texliveSmall
             ]
             ++ builtins.attrValues ccPkgs;
 

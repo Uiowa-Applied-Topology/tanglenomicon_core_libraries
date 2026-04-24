@@ -85,19 +85,19 @@
 #define COMP_ITT_TO_PATH_COMPUTE_ALREADY_COMPUTED    (0x1u << 2u)
 
 /**
- * \brief
+ * \brief Failed the computation due to a segment buffer overflow.
  *
  */
 #define COMP_ITT_TO_PATH_COMPUTE_SEG_BUFF_ERROR      (0x1u << 3u)
 
 /**
- * \brief
+ * \brief Failed the computation due to a point buffer overflow.
  *
  */
 #define COMP_ITT_TO_PATH_COMPUTE_PNT_BUFF_ERROR      (0x1u << 3u)
 
 /**
- * \brief
+ * \brief Failed the computation due to a stack error.
  *
  */
 #define COMP_ITT_TO_PATH_COMPUTE_STACK_ERROR         (0x1u << 3u)
@@ -138,12 +138,12 @@ extern "C"
  * \brief The type definition for configuring the computation.
  *
  * Contains a pointer to an input ITT and an output PL path. The ITT is converted to a collection of
- *points in $\R^3$ which in turn forms linear segments stored in `out_path`.
+ *points in \f$\R^3\f$ which in turn forms linear segments stored in `out_path`.
  *
  */
 typedef struct {
     storage_write_funptr_t storage_write; /**< A pointer to a write function. */
-    const note_wptt_t *    itt;           /**< A const pointer to a ITT. */
+    const note_wptt_t *    itt;           /**< A const pointer to an ITT. */
     note_plpath_t *        out_path;      /**< A pointer to the output PL path container. */
 } comp_itt_to_path_config_t;
 #ifdef __cplusplus

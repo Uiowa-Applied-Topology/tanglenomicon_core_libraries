@@ -1,9 +1,9 @@
 /**
  *  \file mut_wptt_f_moves.h
  *
- *  \brief Mutates a tree by one of the $F_i$ moves.
+ *  \brief Mutates a tree by one of the \f$F_i\f$ moves.
  *
- *  \author    Joe Starr
+ *  \author Joe Starr
  *
  */
 
@@ -123,7 +123,7 @@
 #define MUT_WPTT_F_MOVES_MUTATE_MOVE_EQCLASS        (0X1U << 4U)
 
 /**
- * \brief Failed to run the module due to mutation $F_3\prime$ error
+ * \brief Failed to run the module due to mutation \f$F_3\prime\f$ error
  *
  */
 #define MUT_WPTT_F_MOVES_MUTATE_MOVE_F3_ERROR       (0X1U << 5U)
@@ -153,10 +153,10 @@ extern "C"
  * \brief Type defining the moves available in the module
  */
 typedef enum mut_f_moves_e {
-    MUT_F_MOVE_UNINIT,
-    MUT_F_MOVE_F1,
-    MUT_F_MOVE_F2,
-    MUT_F_MOVE_F3,
+    MUT_F_MOVE_UNINIT, /**< The move is uninitialized.*/
+    MUT_F_MOVE_F1,     /**< The \f$ F_1 \f$ move.*/
+    MUT_F_MOVE_F2,     /**< The \f$ F_2 \f$ move.*/
+    MUT_F_MOVE_F3,     /**< The \f$ F_3 \f$ move.*/
 } mut_f_moves_e;
 #ifdef __cplusplus
 }
@@ -170,12 +170,12 @@ extern "C"
 #endif
 
 /**
- * \brief Type defining the direction to shift a weight in the $F_3\prime$ move.
+ * \brief Type defining the direction to shift a weight in the \f$F_3\prime\f$ move.
  */
 typedef enum mut_f_moves_direction_e {
-    MUT_F_MOVES_DIR_UNINIT,
-    MUT_F_MOVES_DIR_FWD,
-    MUT_F_MOVES_DIR_BK,
+    MUT_F_MOVES_DIR_UNINIT, /**< The direction is uninitialized.*/
+    MUT_F_MOVES_DIR_FWD,    /**< The direction moves a weight forward.*/
+    MUT_F_MOVES_DIR_BK,     /**< The direction moves a weight backward.*/
 } mut_f_moves_direction_e;
 #ifdef __cplusplus
 }
@@ -188,12 +188,14 @@ extern "C"
 #endif
 
 /**
- * \brief Type defining the equivalence class to apply the $F_2$ to.
+ * \brief Type defining the equivalence class to apply the \f$F_2\f$ to.
  */
 typedef enum mut_f_moves_eqclass_e {
-    MUT_F_MOVES_EQCLASS_UNINIT,
-    MUT_F_MOVES_EQCLASS_SELF,
-    MUT_F_MOVES_EQCLASS_CHILD,
+    MUT_F_MOVES_EQCLASS_UNINIT, /**< The equivalence class is uninitialized.*/
+    MUT_F_MOVES_EQCLASS_SELF,   /**< Apply \f$ F_2\f$ to the object vertex and even distance nodes.
+                                 */
+    MUT_F_MOVES_EQCLASS_CHILD,  /**< Apply \f$ F_2\f$ to the children object vertex and odd distance
+                                 * nodes. */
 } mut_f_moves_eqclass_e;
 #ifdef __cplusplus
 }
@@ -209,12 +211,12 @@ extern "C"
  *
  */
 typedef struct {
-    note_wptt_node_t *      vertex;
-    note_wptt_V4_label_e *  V4_label;
-    mut_f_moves_e           move;
-    size_t                  weight_idx;
-    mut_f_moves_direction_e direction;
-    mut_f_moves_eqclass_e   eqclass;
+    note_wptt_node_t *      vertex;     /**< The object vertex to apply moves to.*/
+    note_wptt_V4_label_e *  V4_label;   /**< the label of the root.*/
+    mut_f_moves_e           move;       /**< The move to apply.*/
+    size_t                  weight_idx; /**< The index of the weight to operate on.*/
+    mut_f_moves_direction_e direction;  /**< The direction to move the weight.*/
+    mut_f_moves_eqclass_e   eqclass;    /**< The equivalence class for applying \f$ F_2\f$.*/
 } mut_wptt_f_moves_config_t;
 #ifdef __cplusplus
 }
@@ -232,6 +234,7 @@ extern "C"
 /**
  * \brief The public configuration function.
  * \param config_arg The config to set.
+ * \return uint8_t config status info.
  */
 uint8_t mut_wptt_f_moves_config(mut_wptt_f_moves_config_t *config_arg);
 

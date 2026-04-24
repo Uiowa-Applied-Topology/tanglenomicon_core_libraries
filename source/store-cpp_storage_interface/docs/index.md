@@ -1,5 +1,9 @@
-# Storage C++ Interface
+---
+date: 2024-09-18
 
-## Storage C++ Interface
+authors:
+  - joe_starr
+contact: dr@joe-starr.com
+---
 
-[](){#store-cpp_storage_interface}
+Template wrapper for the storage interface.

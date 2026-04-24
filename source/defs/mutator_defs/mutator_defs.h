@@ -1,10 +1,10 @@
 /**
  *  \file computation_defs.h
  *
- *  \brief  Common definitions for computation objects.
+ *  \brief Common definitions for computation objects.
  *
  *
- *  \author    Joe Starr
+ *  \author Joe Starr
  *
  */
 

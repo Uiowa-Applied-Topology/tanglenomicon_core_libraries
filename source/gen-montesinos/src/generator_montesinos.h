@@ -1,12 +1,12 @@
 /**
  *  \file generator_montesinos.h
  *
- *  \brief  A module for generating montesinos tangles.
+ *  \brief A module for generating Montesinos tangles.
  *
  *
- *  \author    Isabel Darcy
- *  \author    Zachary Bryhtan
- *  \author    Joe Starr
+ *  \author Isabel Darcy
+ *  \author Zachary Bryhtan
+ *  \author Joe Starr
  *
  */
 
@@ -28,15 +28,13 @@
 /*************************** Defines ******************************************/
 /******************************************************************************/
 
-/*************************** Write Keys
- * *******************************************/
+/*************************** Write Keys ***************************************/
 
 /**
- * \brief The key for
+ * \brief The key for the Montesinos generator
  *
  */
-#define GEN_MONTESINOS_STORAGE_UKEY    ("GEN_MONTESINOS")
-/*@@@TODO: add keys*/
+#define GEN_MONTESINOS_STORAGE_UKEY    "GEN_MONTESINOS"
 
 /*************************** Config *******************************************/
 
@@ -58,8 +56,6 @@
  */
 #define GEN_MONTESINOS_CONFIG_STR_BUFFER    (0x1u << 3u)
 
-/*************************** Generate *****************************************/
-
 /******************************************************************************/
 /*************************** Typedefs *****************************************/
 /******************************************************************************/
@@ -70,17 +66,17 @@ extern "C"
 #endif
 
 /**
- * \brief The type definition for configuring the montesinos generation.
+ * \brief The type definition for configuring the Montesinos generation.
  *
  */
 typedef struct {
-    storage_write_funptr_t storage_write;
-    note_att_t *           att_n;
-    note_tv_t **           tv_sets;
-    size_t *               tv_set_lens;
-    size_t                 tv_sets_len;
-    char *                 str_buff;
-    size_t                 str_buff_len;
+    storage_write_funptr_t storage_write; /**< Standard write interface.*/
+    note_att_t *           att_n;         /**< A notation location for an ATT.*/
+    note_tv_t **           tv_sets;       /**< A list of lists of twist vectors.*/
+    size_t *               tv_set_lens;   /**< A list of lengths for each list of twist vectors.*/
+    size_t                 tv_sets_len;   /**< The lengths of the list of lists of twist vectors.*/
+    char *                 str_buff;      /**< A string buffer for output.*/
+    size_t                 str_buff_len;  /**< The length of the string buffer for output.*/
 } gen_montesinos_config_t;
 #ifdef __cplusplus
 }
@@ -98,6 +94,7 @@ extern "C"
 /**
  * \brief The public configuration function.
  * \param config_arg The config to set.
+ * \return uint8_t Config status info.
  */
 uint8_t gen_montesinos_config(gen_montesinos_config_t *config_arg);
 
