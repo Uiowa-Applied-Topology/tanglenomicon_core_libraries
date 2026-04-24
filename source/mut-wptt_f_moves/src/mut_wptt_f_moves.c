@@ -48,15 +48,15 @@ typedef bool (*should_reverse_funptr_t)(size_t depth);
 /******************************************************************************/
 STATIC_INLINE note_wptt_V4_label_e mut_wptt_f_moves_V4_mult(note_wptt_V4_label_e x,
                                                             note_wptt_V4_label_e y);
-STATIC_INLINE_UINT8 mut_wptt_f_moves_F1();
-STATIC_INLINE_UINT8 mut_wptt_f_moves_F2();
-STATIC_INLINE_UINT8 mut_wptt_f_moves_F3();
+STATIC_INLINE_UINT8 mut_wptt_f_moves_F1(void);
+STATIC_INLINE_UINT8 mut_wptt_f_moves_F2(void);
+STATIC_INLINE_UINT8 mut_wptt_f_moves_F3(void);
 STATIC_INLINE_UINT8 mut_wptt_f_moves_walk(note_wptt_node_t *vertex,
                                           should_reverse_funptr_t reverse_checker);
 STATIC_INLINE bool mut_wptt_f_moves_revall(size_t depth);
 STATIC_INLINE bool mut_wptt_f_moves_revodd(size_t depth);
 STATIC_INLINE_UINT8 mut_wptt_f_moves_F3_wrap(size_t target_idx);
-STATIC_INLINE_UINT8 mut_wptt_f_moves_F3_nowrap();
+STATIC_INLINE_UINT8 mut_wptt_f_moves_F3_nowrap(void);
 
 /******************************************************************************/
 /************************** Local Variables ***********************************/
@@ -135,7 +135,7 @@ uint8_t mut_wptt_f_moves_config(mut_wptt_f_moves_config_t *config_arg)
 /*
  *  Documentation in header
  */
-uint8_t mut_wptt_f_moves_mutate()
+uint8_t mut_wptt_f_moves_mutate(void)
 {
     uint8_t ret_val = MUT_DEFS_MUTATE_FAIL;
 
@@ -191,7 +191,7 @@ uint8_t mut_wptt_f_moves_mutate()
  *
  * \return The success flag of the move.
  */
-STATIC_INLINE_UINT8 mut_wptt_f_moves_F1()
+STATIC_INLINE_UINT8 mut_wptt_f_moves_F1(void)
 {
     uint8_t ret_val = MUT_DEFS_MUTATE_SUCCESS;
 
@@ -213,7 +213,7 @@ STATIC_INLINE_UINT8 mut_wptt_f_moves_F1()
  *
  * \return The success flag of the move.
  */
-STATIC_INLINE_UINT8 mut_wptt_f_moves_F2()
+STATIC_INLINE_UINT8 mut_wptt_f_moves_F2(void)
 {
     uint8_t ret_val = MUT_DEFS_MUTATE_SUCCESS;
 
@@ -262,7 +262,7 @@ STATIC_INLINE_UINT8 mut_wptt_f_moves_F2()
  *
  * \return The success flag of the move.
  */
-STATIC_INLINE_UINT8 mut_wptt_f_moves_F3()
+STATIC_INLINE_UINT8 mut_wptt_f_moves_F3(void)
 {
     uint8_t      ret_val            = MUT_DEFS_MUTATE_SUCCESS;
     const size_t idx                = localcfg->weight_idx;
@@ -304,7 +304,7 @@ STATIC_INLINE_UINT8 mut_wptt_f_moves_F3()
  *
  * \return Indicate the success of the operation.
  */
-STATIC_INLINE_UINT8 mut_wptt_f_moves_F3_nowrap()
+STATIC_INLINE_UINT8 mut_wptt_f_moves_F3_nowrap(void)
 {
     uint8_t      ret_val    = MUT_DEFS_MUTATE_SUCCESS;
     const size_t idx        = localcfg->weight_idx;
@@ -375,7 +375,7 @@ STATIC_INLINE_UINT8 mut_wptt_f_moves_F3_wrap(size_t target_idx)
 }
 
 /**
- * \brief Walk the tree, reverse the order of the current vertex when reverse_checker() is true.
+ * \brief Walk the tree, reverse the order of the current vertex when reverse_checker(void) is true.
  *
  * \param vertex The vertex to start the walk at.
  * \param reverse_checker The function to determine if order should be reversed.

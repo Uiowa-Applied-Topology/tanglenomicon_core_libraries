@@ -31,7 +31,7 @@
 /******************************************************************************/
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
-STATIC_INLINE_UINT8 gen_montesinos_process_lists();
+STATIC_INLINE_UINT8 gen_montesinos_process_lists(void);
 STATIC_INLINE_UINT8 gen_montesinos_process_loop_state(const size_t *stack);
 
 /******************************************************************************/
@@ -72,7 +72,7 @@ uint8_t gen_montesinos_config(gen_montesinos_config_t *config_arg)
 /*
  *  Documentation in header
  */
-uint8_t gen_montesinos_generate()
+uint8_t gen_montesinos_generate(void)
 {
     uint8_t ret_val = GEN_DEFS_GENERATION_FAIL;
     /* build tree */
@@ -101,7 +101,7 @@ uint8_t gen_montesinos_generate()
 /******************************************************************************/
 /************************** Private Function Declarations *********************/
 /******************************************************************************/
-STATIC_INLINE_UINT8 gen_montesinos_process_lists()
+STATIC_INLINE_UINT8 gen_montesinos_process_lists(void)
 {
     uint8_t       ret_val = GEN_DEFS_GENERATION_SUCCESS;
     size_t        stack[UTIL_TANG_DEFS_MAX_CROSSINGNUM * 2u];

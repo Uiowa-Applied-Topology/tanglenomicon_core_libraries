@@ -97,7 +97,7 @@ uint8_t gen_rlitt_config(gen_rlitt_config_t *config_arg)
 /*
  *  Documentation in header
  */
-uint8_t gen_rlitt_generate()
+uint8_t gen_rlitt_generate(void)
 {
     uint8_t ret_val = COMP_DEFS_COMPUTE_FAIL;
 

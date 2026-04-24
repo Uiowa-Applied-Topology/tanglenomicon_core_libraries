@@ -1,0 +1,4 @@
+site_name: Computation of Buffer Size Needed for Converting a Identity Tangle Tree to PL Path
+nav:
+    - use-case.md
+    - unit-description.md

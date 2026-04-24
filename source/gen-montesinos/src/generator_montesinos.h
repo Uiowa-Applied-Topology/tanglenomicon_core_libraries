@@ -116,7 +116,7 @@ extern "C"
  *
  * \return uint8_t Generation status info.
  */
-uint8_t gen_montesinos_generate();
+uint8_t gen_montesinos_generate(void);
 
 #ifdef __cplusplus
 }

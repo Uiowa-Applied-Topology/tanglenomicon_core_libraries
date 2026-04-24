@@ -248,7 +248,7 @@ extern "C"
  * \brief A public function, calling this executes the mutator on the configured data.
  * \return uint8_t Mutation status info.
  */
-uint8_t mut_wptt_f_moves_mutate();
+uint8_t mut_wptt_f_moves_mutate(void);
 
 #ifdef __cplusplus
 }

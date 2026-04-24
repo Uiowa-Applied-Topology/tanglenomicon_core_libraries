@@ -568,7 +568,7 @@ STATIC_INLINE_UINT8 note_wptt_decode_weight_handler(char **str)
  *
  * \return A status flag indicating successful completion of the subroutine.
  */
-STATIC_INLINE_UINT8 note_wptt_decode_push_node()
+STATIC_INLINE_UINT8 note_wptt_decode_push_node(void)
 {
     uint8_t retval = NOTE_STATUS_BLDR(NOTE_DEFS_ENCODE_FAIL, NOTE_WPTT_DECODE_OVRUNDR_ERROR);
 
@@ -609,7 +609,7 @@ STATIC_INLINE_UINT8 note_wptt_decode_push_node()
  *
  * \return A status flag indicating successful completion of the subroutine.
  */
-STATIC_INLINE_UINT8 note_wptt_decode_add_child()
+STATIC_INLINE_UINT8 note_wptt_decode_add_child(void)
 {
     uint8_t retval = NOTE_STATUS_BLDR(
         NOTE_DEFS_ENCODE_FAIL, NOTE_WPTT_DECODE_OVRUNDR_ERROR);

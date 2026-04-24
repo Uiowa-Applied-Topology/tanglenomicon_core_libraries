@@ -1,0 +1,4 @@
+site_name: Computation of Identity Tangle Tree to a Piecewise Linear Path
+nav:
+    - use-case.md
+    - unit-description.md

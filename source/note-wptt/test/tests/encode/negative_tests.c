@@ -29,7 +29,7 @@ void test_encode_negative(void)
  *
  * - An UNINIT label is present
  */
-void test_encode_negative_1()
+void test_encode_negative_1(void)
 {
     uint8_t retval = -1;
 
@@ -116,7 +116,7 @@ void test_encode_negative_1()
  *
  * - A NULL root is present
  */
-void test_encode_negative_2()
+void test_encode_negative_2(void)
 {
     uint8_t retval = -1;
 
@@ -141,7 +141,7 @@ void test_encode_negative_2()
  *
  * - A NULL child is present
  */
-void test_encode_negative_3()
+void test_encode_negative_3(void)
 {
     uint8_t retval = -1;
 
@@ -172,7 +172,7 @@ void test_encode_negative_3()
  *
  * - A NULL pointer buffer is passed to the function
  */
-void test_encode_negative_4()
+void test_encode_negative_4(void)
 {
     uint8_t retval = -1;
 

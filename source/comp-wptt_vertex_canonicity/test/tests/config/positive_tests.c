@@ -5,7 +5,7 @@
 #include "positive_tests.h"
 #include "test_storage_stubs.h"
 #include "unity.h"
-extern uint8_t stub_write_success();
+extern uint8_t stub_write_success(void);
 
 void test_config_positive(void)
 {

@@ -211,7 +211,7 @@ extern "C"
  * \brief The public compute function. Calling this executes the computation on the configured data.
  * \return uint8_t Generation status info.
  */
-uint8_t comp_wptt_canonicity_compute();
+uint8_t comp_wptt_canonicity_compute(void);
 
 #ifdef __cplusplus
 }
@@ -228,7 +228,7 @@ extern "C"
  *configured data.
  * \return uint8_t Generation status info.
  */
-const comp_wptt_canonicity_result_t * comp_wptt_canonicity_result();
+const comp_wptt_canonicity_result_t * comp_wptt_canonicity_result(void);
 
 #ifdef __cplusplus
 }

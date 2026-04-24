@@ -98,7 +98,7 @@ uint8_t mut_rlitt_ringshift_config(mut_rlitt_ringshift_config_t *config_arg)
 /*
  *  Documentation in header
  */
-uint8_t mut_rlitt_ringshift_mutate()
+uint8_t mut_rlitt_ringshift_mutate(void)
 {
     uint8_t ret_val = MUT_DEFS_MUTATE_FAIL;
 

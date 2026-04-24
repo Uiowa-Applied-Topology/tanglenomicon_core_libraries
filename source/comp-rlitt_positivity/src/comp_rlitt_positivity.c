@@ -102,7 +102,7 @@ uint8_t comp_rlitt_positivity_config(comp_rlitt_positivity_config_t *config_arg)
 /*
  *  Documentation in header
  */
-uint8_t comp_rlitt_positivity_compute()
+uint8_t comp_rlitt_positivity_compute(void)
 {
     uint8_t ret_val = COMP_DEFS_COMPUTE_FAIL;
 
@@ -175,7 +175,7 @@ uint8_t comp_rlitt_positivity_compute()
 /*
  *  Documentation in header
  */
-const comp_rlitt_positivity_result_t *comp_rlitt_positivity_result()
+const comp_rlitt_positivity_result_t *comp_rlitt_positivity_result(void)
 {
     const comp_rlitt_positivity_result_t *ret_val = NULL;
 

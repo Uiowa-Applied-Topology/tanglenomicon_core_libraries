@@ -15,6 +15,14 @@ extern note_plpath_point_t p11;
 extern note_plpath_point_t p10;
 
 extern note_plpath_point_t p20;
+
+
+
+extern note_plpath_segment_t sp20;
+extern note_plpath_segment_t sp10;
+extern note_plpath_segment_t sp00;
+extern note_plpath_segment_t sp00ss;
+
 bool test_util_path_equal(const note_plpath_t *tree1, const note_plpath_t *tree2);
 
 #endif /* UTILS_H */

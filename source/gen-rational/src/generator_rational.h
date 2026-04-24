@@ -120,7 +120,7 @@ extern "C"
  *
  * \return uint8_t Generation status info.
  */
-uint8_t gen_rational_generate();
+uint8_t gen_rational_generate(void);
 
 #ifdef __cplusplus
 }

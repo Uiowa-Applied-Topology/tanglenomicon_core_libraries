@@ -144,7 +144,7 @@ uint8_t comp_rlitt_grafting_config(comp_rlitt_grafting_config_t *config_arg)
 /*
  *  Documentation in header
  */
-uint8_t comp_rlitt_grafting_compute()
+uint8_t comp_rlitt_grafting_compute(void)
 {
     uint8_t ret_val = COMP_DEFS_COMPUTE_FAIL;
 
@@ -228,7 +228,7 @@ uint8_t comp_rlitt_grafting_compute()
 /*
  *  Documentation in header
  */
-const comp_rlitt_grafting_result_t *comp_rlitt_grafting_result()
+const comp_rlitt_grafting_result_t *comp_rlitt_grafting_result(void)
 {
     const comp_rlitt_grafting_result_t *ret_val = NULL;
 

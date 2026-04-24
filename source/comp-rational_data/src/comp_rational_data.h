@@ -127,7 +127,7 @@ extern "C"
  * \brief A public function, calling this executes the computation on the configured tangle.
  * \return uint8_t computation status info.
  */
-uint8_t comp_rational_data_compute();
+uint8_t comp_rational_data_compute(void);
 
 #ifdef __cplusplus
 }
@@ -141,7 +141,7 @@ extern "C"
  * \brief A public function, calling this retrieves the results of the last computation
  * \return comp_rational_data_result_t Computation results.
  */
-const comp_rational_data_result_t *comp_rational_data_result();
+const comp_rational_data_result_t *comp_rational_data_result(void);
 
 #ifdef __cplusplus
 }

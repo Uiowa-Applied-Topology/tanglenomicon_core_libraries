@@ -108,7 +108,7 @@ uint8_t comp_wptt_vert_canon_config(comp_wptt_vert_canon_config_t *config_arg)
 /*
  *  Documentation in header
  */
-uint8_t comp_wptt_vert_canon_compute()
+uint8_t comp_wptt_vert_canon_compute(void)
 {
     uint8_t ret_val = COMP_DEFS_COMPUTE_FAIL;
 
@@ -184,7 +184,7 @@ uint8_t comp_wptt_vert_canon_compute()
 /*
  *  Documentation in header
  */
-const comp_wptt_vert_canon_result_t *comp_wptt_vert_canon_result()
+const comp_wptt_vert_canon_result_t *comp_wptt_vert_canon_result(void)
 {
     const comp_wptt_vert_canon_result_t *ret_val = NULL;
 

@@ -65,7 +65,7 @@ note_wptt_node_buffer_t *test_util_get_buffer(void)
     return &buffer;
 }
 
-void test_util_clear_buffer()
+void test_util_clear_buffer(void)
 {
     size_t i;
 

@@ -166,7 +166,7 @@ extern "C"
  * \brief A public function, calling this executes the computation on the configured tangle.
  * \return uint8_t Generation status info.
  */
-uint8_t comp_rlitt_positivity_compute();
+uint8_t comp_rlitt_positivity_compute(void);
 
 #ifdef __cplusplus
 }
@@ -181,7 +181,7 @@ extern "C"
  * \brief A public function, calling this retrieves the results of the last computation
  * \return comp_rlitt_positivity_result_t Computation results.
  */
-const comp_rlitt_positivity_result_t *comp_rlitt_positivity_result();
+const comp_rlitt_positivity_result_t *comp_rlitt_positivity_result(void);
 
 #ifdef __cplusplus
 }
