@@ -216,9 +216,9 @@ do-uncrustify:
 
 # Run rumdl
 do-rumdl:
-    rumdl fmt --fix docs
-    rumdl fmt --fix source
-    rumdl fmt --fix misc
+    rumdl fmt docs
+    rumdl fmt source
+    rumdl fmt misc
 
 
 ##################################################################################################
